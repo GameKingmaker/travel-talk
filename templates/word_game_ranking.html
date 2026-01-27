@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .rk-wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 56px; }
+  .rk-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:14px; }
+  .rk-title{ font-size:34px; font-weight:900; letter-spacing:-0.5px; margin:0; }
+  .rk-sub{ margin:6px 0 0; color:#6b7280; font-size:14px; line-height:1.45; }
+
+  .rk-actions{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    height:40px; padding:0 14px;
+    border-radius:12px; border:1px solid rgba(15,23,42,0.10);
+    background:#fff; color:#0f172a; text-decoration:none; font-weight:800; cursor:pointer;
+  }
+  .btn.primary{ background:#2563eb; color:#fff; border-color:rgba(37,99,235,0.22); }
+  .btn.ghost{ background:#f8fafc; }
+
+  .rk-grid{ display:grid; grid-template-columns: 1.2fr 0.8fr; gap:14px; align-items:start; }
+  @media (max-width: 920px){ .rk-grid{ grid-template-columns:1fr; } }
+
+  .card{
+    background:#fff;
+    border:1px solid rgba(15,23,42,0.10);
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(2,8,23,0.06);
+    overflow:hidden;
+  }
+
+  .card-hd{ padding:14px 16px; border-bottom:1px solid rgba(15,23,42,0.06); display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  .card-hd h3{ margin:0; font-size:16px; font-weight:900; letter-spacing:-0.2px; }
+  .pill{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:4px 10px; border-radius:999px;
+    background:#f1f5ff; border:1px solid rgba(37,99,235,0.18);
+    color:#1d4ed8; font-weight:900; font-size:12px; white-space:nowrap;
+  }
+
+  table{ width:100%; border-collapse:collapse; }
+  th, td{ padding:12px 12px; text-align:left; border-bottom:1px solid rgba(15,23,42,0.06); }
+  th{ font-size:12px; color:#64748b; font-weight:900; background:#fafcff; }
+  td{ font-size:14px; color:#0f172a; }
+  .rk-num{ width:62px; color:#475569; font-weight:900; }
+  .rk-name{ font-weight:900; }
+  .rk-score{ width:110px; font-weight:900; }
+  .rk-date{ width:90px; color:#64748b; font-size:12px; }
+
+  /* TOP3 강조 */
+  tr.top1 td{ background: rgba(250, 204, 21, 0.10); }
+  tr.top2 td{ background: rgba(148, 163, 184, 0.12); }
+  tr.top3 td{ background: rgba(249, 115, 22, 0.10); }
+
+  /* 내 기록 강조 */
+  tr.me td{ outline: 2px solid rgba(37,99,235,0.22); outline-offset:-2px; background: rgba(37,99,235,0.06); }
+
+  .muted{ color:#64748b; font-size:12px; }
+  .empty{ padding:18px 16px; color:#64748b; }
+
+  .mybox{ padding:14px 16px; }
+  .myrow{ display:flex; gap:10px; flex-wrap:wrap; }
+  .chip{
+    display:flex; align-items:center; gap:8px;
+    padding:10px 12px; border-radius:14px;
+    background:#fff; border:1px solid rgba(15,23,42,0.10);
+  }
+  .chip b{ font-weight:900; }
+  .chip .val{ font-weight:900; }
+  .note{ margin-top:10px; color:#64748b; font-size:12px; line-height:1.5; }
+</style>
+
+<div class="rk-wrap">
+  <div class="rk-head">
+    <div>
+      <h1 class="rk-title">단어 게임 랭킹</h1>
+      <p class="rk-sub">랭킹 모드에서 기록된 <b>최고 점수</b> 기준으로 정렬됩니다.</p>
+    </div>
+    <div class="rk-actions">
+      <a class="btn ghost" href="{{ url_for('word_game') }}">← 게임으로</a>
+      <a class="btn ghost" href="{{ url_for('quiz') }}">← 게임 선택</a>
+      {% if not user %}
+        <a class="btn primary" href="{{ url_for('login') }}">로그인</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="rk-grid">
+    <!-- 랭킹 테이블 -->
+    <div class="card">
+      <div class="card-hd">
+        <h3>TOP 50</h3>
+        <span class="pill">최고점수</span>
+      </div>
+
+      {% if not top or top|length == 0 %}
+        <div class="empty">아직 랭킹 기록이 없습니다. 랭킹 모드로 플레이해보세요!</div>
+      {% else %}
+        <table>
+          <thead>
+            <tr>
+              <th class="rk-num">순위</th>
+              <th>닉네임</th>
+              <th class="rk-score">점수</th>
+              <th class="rk-date">날짜</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in top %}
+              {% set rank = loop.index %}
+              {% set is_me = (user and row["id"] == user["id"]) %}
+              <tr class="
+                {% if rank == 1 %}top1{% elif rank == 2 %}top2{% elif rank == 3 %}top3{% endif %}
+                {% if is_me %} me{% endif %}
+              ">
+              <td class="rk-num">
+                  {% if rank == 1 %}🥇
+                  {% elif rank == 2 %}🥈
+                  {% elif rank == 3 %}🥉
+                  {% else %}{{ rank }}
+                  {% endif %}
+                </td>
+
+                <td class="rk-name">
+                  {{ row.nickname }}
+                  {% if is_me %}
+                    <span class="pill" style="margin-left:8px;">내 기록</span>
+                  {% endif %}
+                </td>
+
+                <td class="rk-score">{{ row.score }}점</td>
+
+                <td class="rk-date">
+                  {% if row.at %}
+                    {{ row.at[:10] }}
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+    </div>
+
+    <!-- 내 정보 카드 -->
+    <div class="card">
+      <div class="card-hd">
+        <h3>내 랭킹</h3>
+        <span class="pill">랭킹 모드 기준</span>
+      </div>
+      <div class="mybox">
+        {% if user %}
+          <div class="myrow">
+            <div class="chip"><b>내 순위</b> <span class="val">{% if my_rank %}{{ my_rank }}위{% else %}-{% endif %}</span></div>
+            <div class="chip"><b>내 최고점</b> <span class="val">{{ my_best or 0 }}점</span></div>
+          </div>
+          <div class="note">
+            랭킹 모드에서 게임오버 시 자동으로 기록이 저장됩니다.<br>
+            (연습 모드는 기록에 반영되지 않아요)
+          </div>
+        {% else %}
+          <div class="empty">
+            로그인하면 내 순위/최고점이 표시됩니다.<br>
+            <span class="muted">※ 비로그인 상태에서는 랭킹 저장이 되지 않습니다.</span>
+          </div>
+          <a class="btn primary" style="margin-top:12px;" href="{{ url_for('login') }}">로그인 하러가기</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>일본여행 회화 공부방</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script>
+    window.IS_LOGGED_IN = {{ (user is not none) | tojson }};
+  </script>
+</head>
+
+<body data-logged-in="{% if user %}1{% else %}0{% endif %}">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+  <img src="/static/logo.png" class="site-logo" alt="일본어 회화 공부방">
+</a>
+
+
+      <nav class="nav">
+        <a href="{{ url_for('situations') }}" class="{% if request.path.startswith('/situations') %}active{% endif %}">
+          <span class="nav-txt">
+            <span class="t1">상황별 회화</span>
+          </span>
+        </a>
+
+        <a href="{{ url_for('note') }}" class="{% if request.path.startswith('/note') %}active{% endif %}">
+          <span class="nav-txt">
+            <span class="t1">나만의</span>
+            <span class="t2">학습노트</span>
+          </span>
+        </a>
+
+        <a href="{{ url_for('quiz') }}" class="{% if request.path.startswith('/quiz') %}active{% endif %}">
+          <span class="nav-txt">
+            <span class="t1">퀴즈 게임</span>
+          </span>
+        </a>
+
+        <a href="{{ url_for('board') }}" class="{% if request.path.startswith('/board') %}active{% endif %}">
+          <span class="nav-txt">
+            <span class="t1">일반게시판</span>
+          </span>
+        </a>
+
+        <a class="nav-link {% if request.path.startswith('/words') %}active{% endif %}" href="{{ url_for('words_categories') }}">
+          <span class="nav-txt">
+            <span class="t1">단어모음</span>
+          </span>
+        </a>
+
+        {% if user %}
+          <a href="{{ url_for('mypage') }}" class="{% if request.path.startswith('/mypage') %}active{% endif %}">
+            <span class="nav-txt">
+              <span class="t1">나의 정보</span>
+            </span>
+          </a>
+        {% endif %}
+      </nav>
+
+      {% if user %}
+        <div class="nav-item" style="position:relative;">
+          <button id="notifBtn" class="btn" type="button" style="height:44px; border-radius:12px;">
+            <span class="nav-txt">
+              <span class="t1">🔔</span>
+              <span class="t2">알림</span>
+            </span>
+            {% if g.unread_cnt and g.unread_cnt > 0 %}
+              <span class="pill" style="margin-left:8px;">NEW {{ g.unread_cnt }}</span>
+            {% endif %}
+          </button>
+
+          <div id="notifBox"
+               style="display:none; position:absolute; right:0; top:52px; width:360px; z-index:1000;
+                      background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:12px; box-shadow:0 10px 30px rgba(16,24,40,.12);">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px;">
+              <strong>최근 알림</strong>
+              <button id="notifAllRead" class="btn" type="button" style="padding:6px 10px; border-radius:10px;">모두 읽음</button>
+            </div>
+            <div id="notifList" style="display:flex; flex-direction:column; gap:8px;"></div>
+            <div style="margin-top:10px;">
+              <a class="btn btn-primary" href="{{ url_for('mypage') }}" style="width:100%; text-align:center;">나의 정보에서 보기</a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="auth">
+        {% if user %}
+          <span class="hello">
+            <span class="nav-txt">
+              <span class="t1">{{ user["nickname"] }}</span>
+              <span class="t2">님</span>
+            </span>
+          </span>
+          <a class="btn btn-ghost" href="{{ url_for('logout') }}">로그아웃</a>
+        {% else %}
+          <a class="btn btn-ghost" href="{{ url_for('login') }}">로그인</a>
+          <a class="btn btn-primary" href="{{ url_for('register') }}">회원가입</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          {% if category != 'success' %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">© 무료 커뮤니티형 공부방 </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+
+  <script>
+  (function(){
+    const btn = document.getElementById("notifBtn");
+    const box = document.getElementById("notifBox");
+    const list = document.getElementById("notifList");
+    const allReadBtn = document.getElementById("notifAllRead");
+
+    if (!btn || !box || !list) return;
+
+    function escapeHtml(s){
+      return (s||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+    }
+
+    async function loadRecent(){
+      list.innerHTML = `<div style="color:#667085; font-size:13px; padding:8px;">불러오는 중...</div>`;
+      const res = await fetch("/api/notifications/recent");
+      if (!res.ok){
+        list.innerHTML = `<div style="color:#667085; font-size:13px; padding:8px;">알림을 불러오지 못했어요.</div>`;
+        return;
+      }
+      const data = await res.json();
+      const items = data.items || [];
+      if (items.length === 0){
+        list.innerHTML = `<div style="color:#667085; font-size:13px; padding:8px;">최근 알림이 없어요.</div>`;
+        return;
+      }
+      list.innerHTML = items.map(n => {
+        const badge = n.is_read === 0 ? `<span class="pill" style="margin-left:8px;">NEW</span>` : ``;
+        const who = n.from_nickname ? `<b>${escapeHtml(n.from_nickname)}</b> · ` : ``;
+        return `
+          <a href="/board/${n.post_id}?n=${n.id}" style="text-decoration:none; color:inherit;
+              border:1px solid #e5e7eb; border-radius:14px; padding:10px; background:#fff;
+              ${n.is_read===0 ? "box-shadow:0 0 0 2px rgba(34,197,94,.15) inset;" : ""}">
+            <div style="font-weight:800; font-size:12px; line-height:1.2;">${escapeHtml(n.message)} ${badge}</div>
+            <div style="margin-top:6px; color:#475467; font-size:12px;">${who}${escapeHtml(n.created_at).slice(5,10)}</div>
+          </a>
+        `;
+      }).join("");
+    }
+
+    btn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      const open = box.style.display !== "none";
+      box.style.display = open ? "none" : "block";
+      if (!open) await loadRecent();
+    });
+
+    document.addEventListener("click", () => { box.style.display = "none"; });
+
+    if (allReadBtn){
+      allReadBtn.addEventListener("click", async (e) => {
+        e.stopPropagation();
+        const res = await fetch("/api/notifications/mark_all_read", {method:"POST"});
+        if (res.ok) location.reload();
+      });
+    }
+  })();
+  </script>
+  <!-- =========================
+     회원정보(모달)
+     ========================= -->
+<div id="memberCardOverlay" style="display:none; position:fixed; inset:0; background:rgba(16,24,40,.50); z-index:9999;">
+  <div id="memberCardModal"
+       style="width:380px; max-width:calc(100vw - 28px); margin:10vh auto 0; background:#fff; border-radius:20px;
+              border:1px solid #e6ebf7; box-shadow:0 18px 70px rgba(16,24,40,.22); overflow:hidden;">
+
+    <div style="padding:14px 16px; display:flex; justify-content:space-between; align-items:center; background:#0b1220; color:#fff;">
+      <div style="display:flex; gap:10px; align-items:center;">
+        <span style="display:inline-flex; width:10px; height:10px; border-radius:50%; background:#22c55e;"></span>
+        <div style="font-weight:900;">회원정보</div>
+      </div>
+      <button id="memberCardClose" class="btn" type="button"
+              style="padding:6px 10px; border-radius:10px; background:#111b30; border:1px solid rgba(255,255,255,.15); color:#fff;">
+        닫기
+      </button>
+    </div>
+
+    <div style="padding:16px;">
+      <div style="display:flex; gap:12px; align-items:center;">
+        <div id="mcAvatar"
+             style="width:54px; height:54px; border-radius:18px; background:#eef4ff; border:1px solid #cfe0ff;
+                    display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; color:#2563eb;">
+          -
+        </div>
+
+        <div style="min-width:0; flex:1;">
+          <div style="display:flex; align-items:center; gap:10px; min-width:0;">
+            <div id="mcNick" style="font-size:18px; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">-</div>
+            <div id="mcGrade"
+                 style="font-size:12px; padding:6px 10px; border-radius:999px;
+                        background:#fff7ed; border:1px solid #fdba74; color:#9a3412; font-weight:900;">
+              -
+            </div>
+          </div>
+          <div id="mcUser" style="color:#98a2b3; font-size:13px; margin-top:3px;">-</div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div style="border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
+          <div style="font-size:12px; color:#667085;">작성글</div>
+          <div id="mcPosts" style="font-size:20px; font-weight:900; margin-top:2px;">0</div>
+        </div>
+        <div style="border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
+          <div style="font-size:12px; color:#667085;">작성댓글</div>
+          <div id="mcComments" style="font-size:20px; font-weight:900; margin-top:2px;">0</div>
+        </div>
+      </div>
+
+      <div style="margin-top:10px; border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
+        <div style="font-size:12px; color:#667085;">최근 접속</div>
+        <div id="mcLastSeen" style="font-weight:900; margin-top:2px;">-</div>
+      </div>
+
+      <div style="margin-top:12px; display:flex; gap:10px;">
+        <a id="mcPostsBtn" class="btn btn-primary" href="#"
+           style="flex:1; text-align:center; border-radius:14px;">
+          작성글 보기
+        </a>
+      </div>
+
+      {% if user and is_admin(user) %}
+      <div id="mcAdminRow" style="margin-top:10px;">
+        <button id="mcAdminBtn" class="btn" type="button" style="width:100%; border-radius:14px;">
+          관리자: 회원관리
+        </button>
+      </div>
+      {% endif %}
+
+      <div id="mcMsg" style="margin-top:10px; font-size:13px; color:#60708a;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  console.log("member modal loaded"); // ✅ 이제 진짜 실행됨
+
+  const overlay = document.getElementById("memberCardOverlay");
+  const closeBtn = document.getElementById("memberCardClose");
+
+  function openMemberCard(nick){
+    document.getElementById("mcNick").textContent = nick || "-";
+    document.getElementById("mcAvatar").textContent = "-";
+    document.getElementById("mcUser").textContent = "";
+    document.getElementById("mcGrade").textContent = "";
+    document.getElementById("mcPosts").textContent = "0";
+    document.getElementById("mcComments").textContent = "0";
+    document.getElementById("mcLastSeen").textContent = "-";
+    document.getElementById("mcMsg").textContent = "불러오는 중...";
+    overlay.style.display = "block";
+
+    fetch(`/api/member_card?nick=${encodeURIComponent(nick)}`)
+      .then(r => r.json())
+      .then(data => {
+        if (!data.ok){
+          document.getElementById("mcMsg").textContent = "회원 정보를 찾을 수 없어요.";
+          return;
+        }
+
+        const m = data.member || {};
+        document.getElementById("mcNick").textContent = m.nickname || "-";
+        document.getElementById("mcUser").textContent = m.username ? `아이디: ${m.username}` : "";
+        document.getElementById("mcGrade").textContent = m.grade || "일반";
+function gradeToIcon(grade){
+  grade = (grade || "").trim();
+
+  if (grade.includes("총관리자")) return "👑";
+  if (grade.includes("관리자")) return "🛡️";
+
+  if (grade.includes("마스터")) return "🎖️";
+  if (grade.includes("다이아")) return "💎";
+  if (grade.includes("골드")) return "🥇";
+  if (grade.includes("실버")) return "🥈";
+  if (grade.includes("브론즈")) return "🥉";
+  if (grade.includes("입문")) return "🌱";
+
+  return "🙂";
+}
+
+document.getElementById("mcAvatar").textContent = gradeToIcon(m.grade);
+
+
+        document.getElementById("mcPosts").textContent = String(m.post_cnt ?? 0);
+        document.getElementById("mcComments").textContent = String(m.comment_cnt ?? 0);
+
+        const ls = m.last_seen_at || "";
+        document.getElementById("mcLastSeen").textContent = ls ? ls.slice(0,16).replace("T"," ") : "-";
+
+        const postsBtn = document.getElementById("mcPostsBtn");
+        postsBtn.href = `/board?q=${encodeURIComponent(m.nickname || nick)}`;
+
+        document.getElementById("mcMsg").textContent = "";
+      })
+      .catch(() => {
+        document.getElementById("mcMsg").textContent = "오류가 발생했어요.";
+      });
+  }
+
+  function closeMemberCard(){ overlay.style.display = "none"; }
+
+  if (closeBtn) closeBtn.addEventListener("click", closeMemberCard);
+  if (overlay){
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeMemberCard();
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-member]");
+    if (!el) return;
+    e.preventDefault();
+    const nick = el.getAttribute("data-member");
+    if (nick) openMemberCard(nick);
+  });
+})();
+</script>
+
+
+</body>
+</html>

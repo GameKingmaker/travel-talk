@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ✅ 오늘의 회화 (기존 박스) -->
+<section class="today-wrap">
+  <div class="today-card">
+    <h2 class="today-title">오늘의 회화</h2>
+    <p class="today-sub">매일 새로운 문장으로 바뀝니다.</p>
+
+    <div class="today-box">
+      <div class="row">
+        <div class="label">일본어:</div>
+        <div class="value">{{ daily.jp }}</div>
+        <button class="tts-btn" type="button">발음 듣기</button>
+      </div>
+
+      <div class="row">
+        <div class="label">발음:</div>
+        <div class="value">{{ daily.pron }}</div>
+      </div>
+
+      <div class="row">
+        <div class="label">한국어 뜻:</div>
+        <div class="value">{{ daily.ko }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ 메뉴 섹션 (오늘의 회화 아래로 분리) -->
+<section class="menu-wrap">
+  <h3 class="menu-title">학습 메뉴</h3>
+  <p class="menu-sub">원하는 학습을 선택해서 바로 시작해요.</p>
+
+  <div class="menu-grid">
+   <a class="menu-card" href="{{ url_for('quiz_dialog_list') }}">
+      <div class="menu-name">상황별 회화</div>
+      <div class="menu-desc">공항·호텔·교통·식당 등 실전 대화 퀴즈</div>
+    </a>
+
+    <a class="menu-card" href="{{ url_for('note') }}">
+      <div class="menu-name">나만의 학습노트</div>
+      <div class="menu-desc">외운 문장 저장 + 복습 체크로 기억 강화</div>
+    </a>
+
+    <a class="menu-card" href="{{ url_for('quiz') }}">
+      <div class="menu-name">퀴즈 게임</div>
+      <div class="menu-desc">재미있게 푸는 일본어 퀴즈</div>
+    </a>
+
+    <a class="menu-card" href="{{ url_for('board') }}">
+      <div class="menu-name">일반게시판</div>
+      <div class="menu-desc">질문·후기·정보 공유로 같이 성장하기</div>
+    </a>
+
+    <a class="menu-card" href="{{ url_for('words_categories') }}">
+      <div class="menu-name">단어모음</div>
+      <div class="menu-desc">자주 쓰는 단어를 모아 바로 암기</div>
+    </a>
+  </div>
+</section>
+
+{% endblock %}

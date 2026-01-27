@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-head">
+  <h1>{{ quiz.scene_title }}</h1>
+  <p class="page-guide">
+    상대 말풍선(일본어/발음)을 보고, 내 말풍선에 <b>발음(한글)</b>로 입력하세요. (띄어쓰기/기호 무시)
+  </p>
+</section>
+
+<div class="dialog-wrap">
+  <div class="scene">
+    <img src="{{ quiz.image }}" alt="scene" class="scene-img">
+  </div>
+
+  <div class="bubbles">
+
+    <!-- 상대방 말풍선: 일본어 + 발음 -->
+    <div class="bubble partner">
+      <div class="jp">{{ quiz.partner_jp }}</div>
+      <div class="pron">{{ quiz.partner_pron }}</div>
+    </div>
+
+    <!-- 내 말풍선: 발음 입력 -->
+    <div class="bubble me">
+      <div class="label">내 답변(발음 입력)</div>
+      <input id="userInput" class="answer-input" placeholder="예) 아리가또고자이마스">
+      <button id="checkBtn" class="check-btn">정답 확인</button>
+
+      <div id="result" class="result"></div>
+      <div id="reveal" class="reveal" style="display:none;"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 정답 hidden (초기 버전) -->
+<input type="hidden" id="answerPron" value="{{ quiz.answer_pron }}">
+<input type="hidden" id="answerKo" value="{{ quiz.answer_ko }}">
+<input type="hidden" id="answerJp" value="{{ quiz.answer_jp }}">
+
+<script>
+  const checkBtn = document.getElementById("checkBtn");
+  const userInput = document.getElementById("userInput");
+  const result = document.getElementById("result");
+  const reveal = document.getElementById("reveal");
+
+  checkBtn.addEventListener("click", async () => {
+    const fd = new FormData();
+    fd.append("user_input", userInput.value);
+    fd.append("answer_pron", document.getElementById("answerPron").value);
+    fd.append("answer_ko", document.getElementById("answerKo").value);
+    fd.append("answer_jp", document.getElementById("answerJp").value);
+
+    const res = await fetch("/games/dialog_typing/check_pron", {
+      method: "POST",
+      body: fd
+    });
+    const data = await res.json();
+
+    if (data.ok) {
+      result.textContent = "✅ 정답!";
+    } else {
+      result.textContent = `❌ 오답! 정답 발음: ${data.answer_pron}`;
+    }
+
+    // 정답 확인 후: 일본어 + 한국어 뜻 공개(공부용)
+    reveal.style.display = "block";
+    reveal.innerHTML = `
+      <div><b>정답 일본어:</b> ${data.answer_jp}</div>
+      <div><b>뜻:</b> ${data.answer_ko}</div>
+    `;
+  });
+</script>
+
+<style>
+  .dialog-wrap { max-width: 900px; margin: 0 auto; }
+  .scene-img { width: 100%; border-radius: 14px; }
+  .bubbles { margin-top: 16px; display: grid; gap: 12px; }
+  .bubble { border: 1px solid #e5e7eb; border-radius: 14px; padding: 14px; background: #fff; }
+  .partner .jp { font-size: 18px; font-weight: 800; }
+  .partner .pron { margin-top: 6px; color: #555; }
+  .me .answer-input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; margin: 8px 0; }
+  .check-btn { padding: 10px 14px; border-radius: 10px; border: 1px solid #ddd; background: #f7f7f7; cursor: pointer; }
+  .result { margin-top: 10px; font-weight: 800; }
+  .reveal { margin-top: 8px; color: #111; }
+</style>
+
+{% endblock %}

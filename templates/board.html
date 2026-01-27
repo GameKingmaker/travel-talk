@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .board-table { width:100%; border-collapse:collapse; table-layout:fixed; }
+  .board-table th, .board-table td { padding:12px 12px; text-align:left; border-bottom:1px solid rgba(15,23,42,0.06); }
+  .board-table th { font-size:12px; color:#64748b; font-weight:900; background:#fafcff; }
+  .board-table td { font-size:14px; color:#0f172a; vertical-align:middle; }
+
+  .td-center { text-align:center; }
+
+  .title-wrap { min-width:0; }
+  .title-line {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    min-width:0;
+    font-weight:900;
+  }
+  .title-link{
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    text-decoration:none;
+    color:inherit;
+  }
+
+  .author-box{ display:flex; align-items:center; gap:8px; min-width:0; }
+  .author-name{
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-weight:800;
+  }
+
+  .meta { font-size:13px; color:#334155; font-weight:800; }
+  .date { font-size:12px; color:#64748b; font-weight:800; }
+
+  .notice-flag{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:12px; font-weight:900;
+    color:#b45309;
+    background:#fff7ed;
+    border:1px solid #fdba74;
+    border-radius:999px;
+    padding:3px 9px;
+    flex:0 0 auto;
+  }
+</style>
+
+<section class="page-head" style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px;">
+  <div>
+    <h1>일반게시판</h1>
+
+    <form method="GET" action="{{ url_for('board') }}"
+          style="display:flex; gap:10px; align-items:center; margin-top:12px;">
+      <input
+        type="text"
+        name="q"
+        value="{{ q or '' }}"
+        placeholder="제목 또는 내용 검색"
+        style="flex:1; max-width:420px; padding:10px 12px; border-radius:12px; border:1px solid #d9e2ef; background:#fff;">
+      <button class="btn btn-primary" type="submit">검색</button>
+    </form>
+
+    <p style="margin:8px 0 0; color:#667085;">자유롭게 글을 남겨보세요.</p>
+  </div>
+
+  <div>
+    {% if user %}
+      <a class="btn btn-primary" href="{{ url_for('board_write') }}">글쓰기</a>
+    {% endif %}
+  </div>
+</section>
+
+<div class="board-wrap" style="padding:0; overflow:hidden;">
+  <table class="board-table">
+    <colgroup>
+      <col style="width:70px;">   {# 번호 #}
+      <col>                      {# 제목(가장 넓게) #}
+      <col style="width:160px;"> {# 작성자 #}
+      <col style="width:70px;">  {# 추천 #}
+      <col style="width:70px;">  {# 조회 #}
+      <col style="width:90px;">  {# 등록일 #}
+    </colgroup>
+
+    <thead>
+      <tr>
+        <th class="td-center">번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th class="td-center">추천</th>
+        <th class="td-center">조회</th>
+        <th class="td-center">등록일</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% if posts and posts|length > 0 %}
+        {% for p in posts %}
+          <tr class="{% if p.is_notice == 1 %}notice-row{% endif %}">
+            <td class="td-center meta">{{ loop.index }}</td>
+
+            <td>
+              <div class="title-wrap">
+                <div class="title-line">
+                  {% if p.is_notice == 1 %}
+                    <span class="notice-flag">📌 공지</span>
+                  {% endif %}
+
+                  <a class="title-link" href="{{ url_for('board_detail', post_id=p.id) }}">
+                    {{ p.title }}
+                  </a>
+                </div>
+              </div>
+            </td>
+
+            <td>
+              <div class="author-box">
+                {% set g = (p.author_grade or '일반')|trim %}
+                <span class="pill {% if '관리자' in g or '👑' in g %}pill-admin{% endif %}">
+                  {{ g }}
+                </span>
+
+                <a href="#"
+                  class="author-name"
+                  data-member="{{ p.author_nickname }}"
+                  style="color:#2563eb; text-decoration:underline; text-underline-offset:3px; cursor:pointer;">
+                  {{ p.author_nickname }}
+                </a>
+              </div>
+            </td>
+
+            <td class="td-center meta">{{ p.upvotes or 0 }}</td>
+            <td class="td-center meta">{{ p.views or 0 }}</td>
+            <td class="td-center date">{{ p.created_at|mmdd }}</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="6" style="padding:18px 16px; color:#64748b;">
+            아직 게시글이 없습니다.
+          </td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

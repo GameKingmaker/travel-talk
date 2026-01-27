@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .sit-wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 22px 18px 48px;
+  }
+
+  .sit-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:18px;
+  }
+  .sit-title{
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:-0.5px;
+    margin:0;
+  }
+  .sit-sub{
+    margin:6px 0 0;
+    color:#6b7280;
+    font-size:14px;
+    line-height:1.4;
+  }
+
+  .sit-grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:16px;
+    margin-top:16px;
+  }
+  @media (max-width: 860px){
+    .sit-grid{ grid-template-columns: 1fr; }
+  }
+
+  .cat-card{
+    background:#ffffff;
+    border:1px solid rgba(15, 23, 42, 0.08);
+    border-radius:16px;
+    padding:16px 16px 14px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  }
+  .cat-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .cat-name{
+    font-size:18px;
+    font-weight:800;
+    margin:0;
+    letter-spacing:-0.3px;
+  }
+  .cat-meta{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#6b7280;
+    font-size:12px;
+    white-space:nowrap;
+  }
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:4px 10px;
+    border-radius:999px;
+    background:#f1f5ff;
+    border:1px solid rgba(37, 99, 235, 0.18);
+    color:#1d4ed8;
+    font-weight:700;
+    font-size:12px;
+  }
+
+  .chip-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .chip{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+
+    width:100%;
+    padding:12px 14px;
+    border-radius:14px;
+    background:#f8fafc;
+    border:1px solid rgba(15, 23, 42, 0.08);
+
+    text-decoration:none;
+    color:#0f172a;
+    transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+  }
+  .chip:hover{
+    transform: translateY(-1px);
+    background:#ffffff;
+    border-color: rgba(37, 99, 235, 0.22);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.10);
+  }
+  .chip-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:0;
+  }
+  .dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: rgba(37,99,235,.85);
+    box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+    flex: 0 0 auto;
+  }
+  .chip-title{
+    font-weight:800;
+    letter-spacing:-0.2px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:34px;
+    height:26px;
+    padding:0 10px;
+    border-radius:999px;
+    background:#eef2ff;
+    border:1px solid rgba(99,102,241,.25);
+    color:#4338ca;
+    font-weight:800;
+    font-size:12px;
+    flex: 0 0 auto;
+  }
+
+  /* 작은 도움말 */
+  .hint{
+    margin-top:14px;
+    color:#64748b;
+    font-size:12px;
+  }
+</style>
+
+<div class="sit-wrap">
+  <div class="sit-head">
+    <div>
+      <h1 class="sit-title">상황별 회화</h1>
+      <p class="sit-sub">상황을 선택하면, 소분류별 핵심 문장을 볼 수 있어요.</p>
+    </div>
+  </div>
+
+  <div class="sit-grid">
+    {% for cat_key, cat in (situations or {}).items() %}
+      <section class="cat-card">
+        <div class="cat-top">
+          <h2 class="cat-name">{{ cat["title"] }}</h2>
+          <div class="cat-meta">
+            <span>소분류</span>
+            <span class="pill">{{ cat["subs"]|length }}</span>
+          </div>
+        </div>
+
+        <div class="chip-row">
+          {% for sub_key, sub in (cat.get("subs") or {}).items() %}
+            <a class="chip" href="{{ url_for('situation_detail', cat=cat_key, sub=sub_key) }}">
+              <div class="chip-left">
+                <span class="dot"></span>
+                <span class="chip-title">{{ sub["title"] }}</span>
+              </div>
+              <span class="badge">{{ sub["items"]|length }}</span>
+            </a>
+          {% endfor %}
+        </div>
+
+        <div class="hint">※ 버튼을 누르면 해당 소분류 문장이 열려요.</div>
+      </section>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-head" style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px;">
+  <div>
+    <h1>글쓰기</h1>
+    <p>제목 · 내용 · 이미지(선택)을 입력해 주세요.</p>
+  </div>
+  <a class="btn" href="{{ url_for('board') }}">취소</a>
+</section>
+
+<div class="board-wrap" style="padding:18px;">
+  <form method="POST" enctype="multipart/form-data">
+    <div style="display:flex; flex-direction:column; gap:14px; max-width:820px;">
+
+      <div>
+        <label style="display:block; margin-bottom:6px; font-weight:600;">글 제목</label>
+        <input type="text" name="title" value="{{ form.title if form else '' }}" required
+               style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid #e5e7eb;">
+      </div>
+
+      {# ✅ 관리자만 보이는 공지 체크박스 #}
+      {% if user and (user["nickname"] == "SW" or user["id"] == 1) %}
+        <div style="margin-top:-6px; padding:10px 12px; border:1px solid #e5e7eb; border-radius:12px; background:#fff;">
+          <label style="display:flex; gap:10px; align-items:center; font-weight:900;">
+            <input type="checkbox" name="is_notice" value="1"
+                   {% if form and form.get('is_notice') %}checked{% endif %}>
+            📌 공지글로 등록
+          </label>
+          <div style="margin-top:6px; font-size:12px; color:#667085;">
+            관리자만 공지글 작성이 가능합니다.
+          </div>
+        </div>
+      {% endif %}
+
+      <div>
+        <label style="display:block; margin-bottom:6px; font-weight:600;">글 내용</label>
+        <textarea name="content" rows="10" required
+                  style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid #e5e7eb;">{{ form.content if form else '' }}</textarea>
+      </div>
+
+      <div>
+        <label style="display:block; margin-bottom:6px; font-weight:600;">글 이미지(선택)</label>
+        <input type="file" name="image" accept=".png,.jpg,.jpeg,.gif,.webp">
+        <div style="margin-top:6px; color:#667085; font-size:13px;">png / jpg / jpeg / gif / webp 업로드 가능</div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:4px;">
+        <a class="btn" href="{{ url_for('board') }}">취소</a>
+        <button class="btn btn-primary" type="submit">등록</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+{% endblock %}

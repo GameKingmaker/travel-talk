@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .notif-item{
+    text-decoration:none;
+    color:inherit;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    padding:12px;
+    background:#fff;
+    display:block;
+  }
+  .notif-item.unread{
+    box-shadow: 0 0 0 2px rgba(34,197,94,.15) inset;
+  }
+</style>
+
+<section class="page-head" style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px;">
+  <div>
+    <h1 style="margin:0;">나의 정보</h1>
+    <p style="margin:6px 0 0; color:#667085;">내 활동과 알림을 한눈에 확인할 수 있어요.</p>
+  </div>
+</section>
+
+<div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:16px; margin-top:16px;">
+  <!-- 프로필 카드 -->
+  <div class="board-wrap" style="padding:18px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+      <div>
+        <div style="font-size:14px; color:#667085;">닉네임</div>
+        <div style="font-size:20px; font-weight:900;">{{ user["nickname"] }}</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:14px; color:#667085;">계급</div>
+        <div style="font-size:18px; font-weight:900;">{{ grade }}</div>
+      </div>
+    </div>
+    
+{% if user["nickname"] == "SW" or user["id"] == 1 %}
+  <form method="POST" action="{{ url_for('mypage_grade_update') }}"
+        style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+    <input name="custom_grade"
+           value="{{ grade }}"
+           placeholder="예: 일본여행 회화 마스터 🎌"
+           maxlength="30"
+           style="flex:1; height:42px; border-radius:12px; border:1px solid #e5e7eb; padding:0 12px;">
+    <button type="submit" class="btn btn-primary" style="height:42px; border-radius:12px;">저장</button>
+    <a class="btn" href="{{ url_for('mypage_grade_update') }}" style="display:none;"></a>
+  </form>
+  <div style="margin-top:6px; font-size:12px; color:#667085;">
+    비워두고 저장하면 기본 관리자 계급(총관리자 👑)으로 돌아가요.
+  </div>
+{% endif %}
+
+
+    <hr style="margin:14px 0; border:none; border-top:1px solid #e9edf5;">
+
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;">
+      <div style="border:1px solid #e6ebf7; border-radius:14px; padding:12px; background:#fff;">
+        <div style="color:#667085; font-size:12px;">작성 글</div>
+        <div style="font-size:20px; font-weight:900; margin-top:4px;">{{ post_cnt }}</div>
+      </div>
+      <div style="border:1px solid #e6ebf7; border-radius:14px; padding:12px; background:#fff;">
+        <div style="color:#667085; font-size:12px;">작성 댓글</div>
+        <div style="font-size:20px; font-weight:900; margin-top:4px;">{{ comment_cnt }}</div>
+      </div>
+      <div style="border:1px solid #e6ebf7; border-radius:14px; padding:12px; background:#fff;">
+        <div style="color:#667085; font-size:12px;">내 글 댓글</div>
+        <div style="font-size:20px; font-weight:900; margin-top:4px;">{{ received_cnt }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 알림 카드 -->
+  <div class="board-wrap" style="padding:18px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+      <h2 style="margin:0; font-size:18px;">알림</h2>
+      <div style="display:flex; gap:8px; align-items:center;">
+        {% if unread_cnt and unread_cnt > 0 %}
+          <span class="pill">NEW {{ unread_cnt }}</span>
+        {% endif %}
+        <button class="btn" id="markAllReadBtn" type="button">모두 읽음</button>
+      </div>
+    </div>
+
+ <div style="margin-top:12px;">
+  {% if recent and (recent|length) > 0 %}
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      {% for r in recent %}
+       <a href="{{ url_for('board_detail', post_id=r['post_id']) }}?n={{ r['id'] }}"
+   class="notif-item {% if r['is_read'] == 0 %}unread{% endif %}">
+  <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+    <div style="font-weight:900; font-size:13px; line-height:1.2;">
+      {{ r["message"] }}
+    </div>
+    <div style="color:#667085; font-size:12px; white-space:nowrap;">
+      {% if r["created_at"] %}
+        {{ r["created_at"][:10] }}
+      {% else %}
+        -
+      {% endif %}
+    </div>
+  </div>
+
+  <div style="margin-top:6px; color:#475467; font-size:12px;">
+    {% if r["from_nickname"] %}
+      <b>{{ r["from_nickname"] }}</b>
+    {% endif %}
+    {% if r["is_read"] == 0 %}
+      <span class="pill" style="margin-left:8px;">NEW</span>
+    {% endif %}
+  </div>
+</a>
+
+      {% endfor %}
+    </div>
+  {% else %}
+    <div style="padding:14px; border:1px dashed #e5e7eb; border-radius:14px; color:#667085; background:#fff;">
+      아직 알림이 없어요.
+    </div>
+  {% endif %}
+</div>
+</div>
+</div>
+
+<div style="font-size:18px; font-weight:900;">
+  {{ grade }}
+  {% if user["nickname"] == "SW" %}
+    <span class="pill" style="margin-left:8px;">ADMIN</span>
+  {% endif %}
+</div>
+
+<script>
+  const btn = document.getElementById("markAllReadBtn");
+  if (btn){
+    btn.addEventListener("click", async () => {
+      const res = await fetch("/api/notifications/mark_all_read", {method:"POST"});
+      if (res.ok) location.reload();
+    });
+  }
+</script>
+
+{% endblock %}

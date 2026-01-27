@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-head">
+  <h1>{{ quiz.title }}</h1>
+  <p class="page-guide">대화를 읽고, 아래 문제를 풀어보세요.</p>
+  <div class="back-row">
+    <a class="back-btn" href="{{ url_for('quiz_dialog_list') }}">← 목록</a>
+  </div>
+</section>
+
+<section class="phrase-list">
+
+  <!-- 이미지 -->
+  <div class="phrase-card" style="overflow:hidden;">
+    <img src="{{ url_for('static', filename=quiz.image) }}"
+         alt="quiz image"
+         style="width:100%; display:block; border-radius:14px;">
+  </div>
+
+  <!-- 대화 -->
+  <div class="phrase-card">
+    <div style="font-weight:700; margin-bottom:10px;">대화</div>
+
+    {% for line in quiz.dialog %}
+      <div class="p-line" style="margin:10px 0;">
+        <div style="font-size:13px; opacity:.75;">{{ line.role }}</div>
+        <div><span class="p-label">일본어:</span> <span class="p-jp">{{ line.jp }}</span></div>
+        <div><span class="p-label">발음:</span> <span class="p-pron">{{ line.pron }}</span></div>
+      </div>
+      {% if not loop.last %}<hr style="border:none;border-top:1px solid #eee;">{% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- 문제 -->
+  <div class="phrase-card" id="quiz-card">
+    <div style="font-weight:700; margin-bottom:10px;">문제</div>
+    <div style="margin-bottom:12px;">{{ quiz.question }}</div>
+
+    <div id="choices" style="display:grid; gap:10px;">
+      {% for c in quiz.choices %}
+        <label class="choice-item" style="display:flex; gap:10px; align-items:flex-start; padding:12px; border:1px solid #e8e8e8; border-radius:12px; cursor:pointer;">
+          <input type="radio" name="choice" value="{{ loop.index0 }}" style="margin-top:3px;">
+          <div>{{ loop.index }}. {{ c }}</div>
+        </label>
+      {% endfor %}
+    </div>
+
+    <div style="margin-top:14px; display:flex; gap:10px; align-items:center;">
+      <button class="speak-btn" id="check-btn" type="button">정답 확인</button>
+      <div id="result" style="font-weight:700;"></div>
+    </div>
+    <div id="answer-ko" style="margin-top:8px; display:none; opacity:.9;"></div>
+  </div>
+
+</section>
+
+<script>
+(async function(){
+  const btn = document.getElementById("check-btn");
+  const result = document.getElementById("result");
+  const answerKo = document.getElementById("answer-ko");
+
+  btn.addEventListener("click", async () => {
+    const checked = document.querySelector('input[name="choice"]:checked');
+    if (!checked) {
+      result.textContent = "선택지를 골라주세요!";
+      return;
+    }
+
+    const selected = parseInt(checked.value, 10);
+
+    const res = await fetch("{{ url_for('quiz_dialog_check', quiz_key=quiz_key) }}", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({selected})
+    });
+
+    const data = await res.json();
+    if (!data.ok) {
+      result.textContent = "오류가 발생했어요.";
+      return;
+    }
+
+    if (data.correct) {
+      result.textContent = "✅ 정답!";
+    } else {
+      result.textContent = "❌ 오답!";
+    }
+
+    answerKo.style.display = "block";
+    answerKo.textContent = "정답: " + (data.answer_index + 1) + "번 — " + data.answer_ko;
+  });
+})();
+</script>
+
+{% endblock %}

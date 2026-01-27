@@ -1,0 +1,777 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .wg-wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:22px 18px 56px;
+  }
+
+  .wg-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:14px;
+  }
+  .wg-title{
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:-0.5px;
+    margin:0;
+  }
+  .wg-sub{
+    margin:6px 0 0;
+    color:#6b7280;
+    font-size:14px;
+    line-height:1.45;
+  }
+
+  .wg-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:40px;
+    padding:0 14px;
+    border-radius:12px;
+    border:1px solid rgba(15,23,42,0.10);
+    background:#fff;
+    text-decoration:none;
+    color:#0f172a;
+    font-weight:800;
+    cursor:pointer;
+  }
+  .btn.primary{
+    background:#2563eb;
+    color:#fff;
+    border-color:rgba(37,99,235,0.22);
+  }
+  .btn.ghost{
+    background:#f8fafc;
+  }
+
+  .wg-panel{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:14px 0 12px;
+  }
+  .wg-chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 12px;
+    border-radius:14px;
+    background:#fff;
+    border:1px solid rgba(15,23,42,0.10);
+  }
+  .wg-chip b{ font-weight:900; }
+  .wg-chip .muted{ color:#64748b; font-size:12px; }
+
+  .wg-box{
+    background:#fff;
+    border:1px solid rgba(15,23,42,0.10);
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(2,8,23,0.06);
+    overflow:hidden;
+  }
+
+  .wg-arena{
+    position:relative;
+    height:420px;
+    background: linear-gradient(180deg, #f8fbff, #f1f5ff);
+    border-bottom:1px solid rgba(15,23,42,0.08);
+  }
+
+  .wg-line{
+    position:absolute;
+    top:0;
+    right:0;
+    width:10px;
+    height:100%;
+    background: rgba(239,68,68,0.20);
+    border-left:2px solid rgba(239,68,68,0.55);
+  }
+  .wg-line::after{
+    content:"GAME OVER LINE";
+    position:absolute;
+    top:10px;
+    right:12px;
+    font-size:11px;
+    font-weight:900;
+    color:rgba(239,68,68,0.75);
+    letter-spacing:0.5px;
+  }
+
+  .wg-word{
+    position:absolute;
+    left:0;
+    top:0;
+    padding:10px 12px;
+    border-radius:14px;
+    background:#ffffffcc;
+    border:1px solid rgba(37,99,235,0.18);
+    box-shadow:0 10px 18px rgba(37,99,235,0.08);
+    backdrop-filter: blur(6px);
+    user-select:none;
+    min-width:120px;
+  }
+  .wg-word .jp{
+    font-size:12px;
+    color:#64748b;
+    font-weight:700;
+    margin-bottom:2px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .wg-word .pron{
+    font-size:18px;
+    font-weight:900;
+    color:#0f172a;
+    white-space:nowrap;
+  }
+  .wg-word.hit{
+    transform: scale(0.98);
+    opacity:0.5;
+  }
+
+  .wg-bottom{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    padding:12px;
+    background:#fff;
+  }
+
+  .wg-input{
+    flex:1;
+    height:44px;
+    border-radius:14px;
+    border:1px solid rgba(15,23,42,0.12);
+    padding:0 14px;
+    font-size:15px;
+    outline:none;
+  }
+  .wg-input:focus{
+    border-color: rgba(37,99,235,0.40);
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+  }
+
+  .wg-hint{
+    padding:10px 12px 14px;
+    color:#64748b;
+    font-size:12px;
+    line-height:1.5;
+  }
+
+  .wg-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: rgba(2,6,23,0.25);
+    backdrop-filter: blur(6px);
+    z-index:5;
+  }
+
+  /* ✅ 모달: 화면 아래가 안 잘리도록 + 내부 스크롤 */
+  .wg-modal{
+    width:min(860px, 96%);
+    max-height: calc(100vh - 120px);
+    overflow:auto;
+    background:#fff;
+    border-radius:18px;
+    border:1px solid rgba(15,23,42,0.10);
+    box-shadow:0 20px 60px rgba(2,8,23,0.22);
+    padding:16px;
+  }
+
+  .wg-modal h3{
+    margin:0;
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:-0.3px;
+  }
+  .wg-modal p{
+    margin:8px 0 0;
+    color:#6b7280;
+    font-size:13px;
+    line-height:1.5;
+  }
+
+  /* ✅ 모드 선택 줄 */
+  .wg-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:12px;
+  }
+
+  /* ✅ 카테고리 영역: flex 대신 grid로 (잘림/지저분함 해결) */
+  #wgCats{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap:8px;
+    margin-top:12px;
+    align-items:stretch;
+  }
+
+  .wg-select{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 10px;
+    border-radius:12px;
+    border:1px solid rgba(15,23,42,0.10);
+    background:#f8fafc;
+    cursor:pointer;
+    user-select:none;
+    font-size:13px;
+    line-height:1.2;
+    min-height:40px;
+  }
+  .wg-select b{ font-weight:900; }
+  .wg-select input{ transform: translateY(1px); }
+
+  .wg-modal .wg-actions{
+    display:flex;
+    gap:10px;
+    justify-content:flex-end;
+    margin-top:14px;
+    padding-top:10px;
+    border-top:1px solid rgba(15,23,42,0.06);
+  }
+
+  .shake{
+    animation: shake 0.18s linear 0s 2;
+  }
+  @keyframes shake{
+    0%{ transform: translateX(0); }
+    25%{ transform: translateX(-3px); }
+    50%{ transform: translateX(3px); }
+    75%{ transform: translateX(-2px); }
+    100%{ transform: translateX(0); }
+  }
+
+  /* ✅ 작은 화면에서 grid 폭 살짝 줄이기 */
+  @media (max-width: 560px){
+    #wgCats{
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .wg-modal{
+      padding:14px;
+    }
+  }
+</style>
+
+<div class="wg-wrap">
+  <div class="wg-head">
+    <div>
+      <h1 class="wg-title">단어 게임</h1>
+      <p class="wg-sub">
+        화면에 나타나는 <b>발음</b>을 보고, 아래 입력칸에 <b>한국어 뜻</b>을 입력하세요.<br>
+        단어가 오른쪽 <b>빨간 선</b>을 넘으면 게임오버!<br>
+        <b>정답 5개</b>마다 레벨업합니다.
+      </p>
+    </div>
+
+    <div class="wg-actions">
+      <a class="btn ghost" href="{{ url_for('quiz') }}">← 게임 선택</a>
+      <a class="btn" href="{{ url_for('word_game_ranking_page') }}">랭킹 보기</a>
+      <button class="btn" id="wgResetBtn" type="button">재시작</button>
+      <button class="btn primary" id="wgStartBtn" type="button">단어 선택</button>
+    </div>
+  </div>
+
+  <div class="wg-panel">
+    <div class="wg-chip"><b>점수</b> <span id="wgScore">0</span></div>
+    <div class="wg-chip"><b>레벨</b> <span id="wgLevel">1</span> <span class="muted">(정답 5개마다 상승)</span></div>
+    <div class="wg-chip"><b>남은 풀</b> <span id="wgPool">-</span></div>
+  </div>
+
+  <div class="wg-box">
+    <div class="wg-arena" id="wgArena">
+      <div class="wg-line"></div>
+
+      <!-- 오버레이(시작/옵션) -->
+      <div class="wg-overlay" id="wgOverlay">
+        <div class="wg-modal">
+          <h3>단어 게임 설정</h3>
+          <p>카테고리를 선택하면 그 범위에서 단어가 나와요. (미선택 시 전체)</p>
+
+          <div class="wg-row" style="margin-top:10px;">
+            <label class="wg-select">
+              <input type="radio" name="wgMode" value="practice" checked>
+              <b>연습 모드</b> <span style="color:#64748b;font-size:12px;">(카테고리 선택 가능)</span>
+            </label>
+
+            <label class="wg-select">
+              <input type="radio" name="wgMode" value="rank">
+              <b>랭킹 모드</b> <span style="color:#64748b;font-size:12px;">(전체 단어 / 점수 저장)</span>
+            </label>
+          </div>
+
+          <div id="wgCats">
+            <!-- JS로 체크박스 생성 -->
+          </div>
+
+          <div class="wg-actions">
+            <button class="btn" id="wgOverlayClose" type="button">닫기</button>
+            <button class="btn primary" id="wgOverlayStart" type="button">게임 시작</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wg-bottom">
+      <input class="wg-input" id="wgInput" type="text" placeholder="여기에 한국어 뜻을 입력하고 Enter!" autocomplete="off" />
+      <button class="btn" id="wgSubmit" type="button">Enter</button>
+    </div>
+
+    <div class="wg-hint">
+      팁) 정답 비교는 <b>앞뒤 공백 제거</b> 후 정확히 일치하는지로 판단해요. (예: “화장실”)<br>
+      필요하면 뜻 데이터를 더 자연스럽게(동의어 처리) 확장해줄 수도 있어요.
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const arena = document.getElementById("wgArena");
+  const overlay = document.getElementById("wgOverlay");
+  const catsWrap = document.getElementById("wgCats");
+
+  const startBtn = document.getElementById("wgStartBtn");
+  const resetBtn = document.getElementById("wgResetBtn");
+  const overlayStart = document.getElementById("wgOverlayStart");
+  const overlayClose = document.getElementById("wgOverlayClose");
+
+  const input = document.getElementById("wgInput");
+  const submitBtn = document.getElementById("wgSubmit");
+
+  const scoreEl = document.getElementById("wgScore");
+  const levelEl = document.getElementById("wgLevel");
+  const poolEl = document.getElementById("wgPool");
+
+  const toast = (msg) => {
+    if (typeof window.showToast === "function") window.showToast(msg);
+    else alert(msg);
+  };
+
+  let allCats = [];       // {key,title,count}
+  let currentCats = [];   // 마지막으로 적용된 카테고리(재시작에 사용)
+  let pool = [];          // {cat_key,cat_title,jp,pron,ko}
+  let active = [];        // {el,x,y,speed,answer,word}
+  let rafId = null;
+  let running = false;
+
+  let score = 0;
+  let level = 1;
+  let cleared = 0;        // 정답으로 삭제한 개수(레벨업 기준)
+  let baseSpeed = 30;     // px/sec
+  let spawnEvery = 1300;  // ms
+  let spawnTimer = null;
+
+  function norm(s){ return String(s || "").trim(); }
+
+  function normAnswer(s){
+  let t = norm(s);
+
+  t = t.replace(/\([^)]*\)/g, "");
+
+  t = t.replace(/[,\s]/g, "");
+  t = t.replace(/원/g, "");
+
+  if (t === "만") return "10000";
+
+  if (t === "만원") return "10000";
+
+  let m = t.match(/^(\d+)만$/);
+  if (m){
+    const n = parseInt(m[1], 10);
+    if (!Number.isNaN(n)) return String(n * 10000);
+  }
+
+  m = t.match(/^(\d+)만원$/);
+  if (m){
+    const n = parseInt(m[1], 10);
+    if (!Number.isNaN(n)) return String(n * 10000);
+  }
+
+  return t;
+}
+
+  function getMode(){
+    const r = overlay.querySelector('input[name="wgMode"]:checked');
+    return r ? r.value : "practice";
+  }
+
+  function toggleCatsUI(){
+    const mode = getMode();
+    catsWrap.style.display = (mode === "rank") ? "none" : "grid";
+  }
+
+  async function loadPool(selectedCats){
+    const qs = new URLSearchParams();
+    qs.set("n", "2000");
+    if (selectedCats && selectedCats.length){
+      qs.set("cats", selectedCats.join(","));
+    }
+    const res = await fetch("/api/game_words?" + qs.toString());
+    const data = await res.json();
+    if (!data || !data.ok) throw new Error("pool load failed");
+
+    pool = Array.isArray(data.items) ? data.items : [];
+    poolEl.textContent = String(pool.length);
+
+    // 카테고리 목록 생성(최초 1회만: 전체 풀로 만들어야 정확)
+    if (!allCats.length){
+      const map = new Map();
+      for (const it of pool){
+        const k = it.cat_key;
+        if (!map.has(k)) map.set(k, {key:k, title: it.cat_title || k, count:0});
+        map.get(k).count += 1;
+      }
+      allCats = Array.from(map.values()).sort((a,b) => a.title.localeCompare(b.title, "ko"));
+      renderCats(allCats);
+    }
+  }
+
+  function renderCats(cats){
+    catsWrap.innerHTML = "";
+    for (const c of cats){
+      const label = document.createElement("label");
+      label.className = "wg-select";
+      label.innerHTML =
+        `<input type="checkbox" value="${c.key}">
+         <b>${c.title}</b>
+         <span style="color:#64748b;font-size:12px;">(${c.count})</span>`;
+      catsWrap.appendChild(label);
+    }
+  }
+
+  function getSelectedCats(){
+    const checks = catsWrap.querySelectorAll("input[type=checkbox]:checked");
+    return Array.from(checks).map(x => x.value);
+  }
+
+  function clearArenaWords(){
+    for (const a of active){
+      if (a.el && a.el.parentNode) a.el.parentNode.removeChild(a.el);
+    }
+    active = [];
+  }
+
+  function setHUD(){
+    scoreEl.textContent = String(score);
+    levelEl.textContent = String(level);
+    poolEl.textContent = String(pool.length);
+  }
+
+  function spawnWord(){
+    if (!running) return;
+    if (!pool.length){
+      loadPool(getSelectedCats()).catch(()=>{});
+      return;
+    }
+
+    const it = pool.pop();
+    poolEl.textContent = String(pool.length);
+
+    const el = document.createElement("div");
+    el.className = "wg-word";
+    el.innerHTML = `
+      <div class="jp">${it.jp}</div>
+      <div class="pron">${it.pron}</div>
+    `;
+    arena.appendChild(el);
+
+    const arenaRect = arena.getBoundingClientRect();
+    const maxY = Math.max(20, arenaRect.height - 80);
+    const y = 18 + Math.random() * (maxY - 18);
+    const x = - (120 + Math.random() * 100);
+
+    active.push({
+      el,
+      x,
+      y,
+      speed: baseSpeed + (level - 1) * 3 + Math.random() * 3,
+      answer: normAnswer(it.ko),
+      word: it
+    });
+
+    el.style.transform = `translate(${x}px, ${y}px)`;
+  }
+
+  async function submitRankScoreIfNeeded(){
+    if (getMode() !== "rank") return;
+    try{
+      const res = await fetch("/api/word_game/submit_score", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({score})
+      });
+      if (res.status === 401) return toast("랭킹 저장은 로그인 후 가능합니다.");
+      const data = await res.json();
+      if (data && data.ok){
+        if (data.updated) toast(`신기록! ${data.best}점`);
+        else toast(`기록: ${data.best}점 (최고기록 유지)`);
+      }
+    }catch(e){
+      // 네트워크 실패는 무시
+    }
+  }
+
+ let scoreSaved = false; 
+
+async function gameOver(){
+  if (scoreSaved) return;  
+  scoreSaved = true;
+
+  running = false;
+
+  if (spawnTimer) clearInterval(spawnTimer);
+  spawnTimer = null;
+
+  if (rafId) cancelAnimationFrame(rafId);
+  rafId = null;
+
+  await submitRankScoreIfNeeded();
+
+  toast(`게임오버! 점수: ${score}점`);
+  overlay.style.display = "flex";
+  input.blur();
+}
+
+
+
+  function tick(){
+    if (!running) return;
+
+    const arenaRect = arena.getBoundingClientRect();
+    const limitX = arenaRect.width - 14;
+
+    for (const a of active){
+      a.x += (a.speed / 60);
+      a.el.style.transform = `translate(${a.x}px, ${a.y}px)`;
+
+      const w = a.el.offsetWidth || 140;
+      if (a.x + w >= limitX){
+        gameOver();
+        return;
+      }
+    }
+
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function levelUpIfNeeded(){
+    if (cleared > 0 && cleared % 5 === 0){
+      level += 1;
+      baseSpeed += 4;
+      spawnEvery = Math.max(750, spawnEvery - 60);
+
+      if (spawnTimer) clearInterval(spawnTimer);
+      spawnTimer = setInterval(spawnWord, spawnEvery);
+
+      toast(`레벨업! Lv.${level}`);
+      setHUD();
+    }
+  }
+
+  function tryHit(){
+  if (!running) return;
+
+  const v = norm(input.value);
+
+  // 빈 입력 처리
+  if (!v){
+    input.value = "";
+    input.focus();
+    input.classList.add("shake");
+    setTimeout(()=>input.classList.remove("shake"), 220);
+    return;
+  }
+
+  const idx = active.findIndex(
+  a => isCorrectAnswer(v, a.word.ko)
+);
+
+
+  function normAnswer(s){
+  let t = norm(s);
+  
+  // 1) 콤마/원/공백 제거
+  t = t.replace(/[,\s]/g, "");
+  t = t.replace(/원/g, "");
+  
+  t = t.replace(/~/g, "");
+
+  // 2) "1만" -> "10000" 변환 (기본적인 만 단위)
+  // "10만" "2만" 같은 것도 대응
+  const m = t.match(/^(\d+)만$/);
+  if (m){
+    const n = parseInt(m[1], 10);
+    if (!Number.isNaN(n)) return String(n * 10000);
+  }
+
+  // 3) "만원" -> "10000" 같은 대표 케이스
+  if (t === "만원") return "10000";
+
+  return t;
+}
+  function splitAnswers(s){
+  let t = String(s || "");
+  t = t.replace(/\([^)]*\)/g, "");   // 괄호 제거: (만) 같은 거 삭제
+  t = t.replace(/또는|or/gi, "/");   // 또는/or -> /
+  t = t.replace(/[·,|]/g, "/");      // · , | -> /
+  return t
+    .split("/")
+    .map(x => normAnswer(x))
+    .filter(Boolean);
+}
+
+function isCorrectAnswer(userInput, answerRaw){
+  const u = normAnswer(userInput);
+  if (!u) return false;
+
+  const candidates = splitAnswers(answerRaw);
+  if (!candidates.length) return false;
+
+  return candidates.includes(u);
+}
+
+  if (idx === -1){
+    input.value = "";
+    input.focus();
+
+    input.classList.add("bad");
+    input.classList.add("shake");
+    setTimeout(()=>{
+      input.classList.remove("shake");
+      input.classList.remove("bad");
+    }, 240);
+
+    input.disabled = true;
+    setTimeout(()=>{ input.disabled = false; input.focus(); }, 180);
+
+    return;
+  }
+
+  const a = active[idx];
+  a.el.classList.add("hit");
+
+  score += 1;
+  cleared += 1;
+  setHUD();
+
+  setTimeout(() => {
+    if (a.el && a.el.parentNode) a.el.parentNode.removeChild(a.el);
+  }, 90);
+
+  active.splice(idx, 1);
+
+  input.value = "";
+  input.focus();
+
+  levelUpIfNeeded();
+  spawnWord();
+}
+
+
+
+  function startGame(){
+    scoreSaved = false;
+
+    clearArenaWords();
+    score = 0;
+    level = 1;
+    cleared = 0;
+
+    baseSpeed = 30;
+    spawnEvery = 1300;
+
+    setHUD();
+
+    running = true;
+    overlay.style.display = "none";
+    input.focus();
+
+    spawnWord();
+    spawnWord();
+
+    if (spawnTimer) clearInterval(spawnTimer);
+    spawnTimer = setInterval(spawnWord, spawnEvery);
+
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(tick);
+  }
+
+  async function openOverlay(){
+    overlay.style.display = "flex";
+    if (!allCats.length){
+      await loadPool([]); // 전체로 한 번 만들어서 카테고리 목록 생성
+    }
+    toggleCatsUI();
+  }
+
+  async function applyCatsAndStart(){
+    const mode = getMode();
+
+    if (mode === "rank") {
+      currentCats = [];
+      await loadPool([]);
+    } else {
+      const selected = getSelectedCats();
+      currentCats = selected.length ? selected : [];
+      await loadPool(currentCats);
+    }
+
+    startGame();
+  }
+
+  // 이벤트
+  startBtn.addEventListener("click", () => openOverlay().catch(()=>toast("불러오기 실패")));
+
+  resetBtn.addEventListener("click", async () => {
+    try{
+      const mode = getMode();
+      if (mode === "rank") await loadPool([]);
+      else await loadPool(currentCats);
+      startGame();
+    }catch(e){
+      toast("재시작 실패(데이터 불러오기 실패)");
+    }
+  });
+
+  overlayStart.addEventListener("click", () => {
+    applyCatsAndStart().catch(()=>toast("게임 데이터를 불러오지 못했어요."));
+  });
+
+  overlayClose.addEventListener("click", () => {
+    overlay.style.display = "none";
+  });
+
+  overlay.addEventListener("change", (e) => {
+    if (e.target && e.target.name === "wgMode") toggleCatsUI();
+  });
+
+  submitBtn.addEventListener("click", tryHit);
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") tryHit();
+  });
+
+  openOverlay().catch(()=>{});
+})();
+</script>
+
+{% endblock %}

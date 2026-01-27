@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .wrap{ max-width:860px; margin:0 auto; padding:22px 18px 48px; }
+  .title{ font-size:28px; font-weight:900; margin:0; letter-spacing:-.3px; }
+  .sub{ margin:8px 0 18px; color:#64748b; font-size:14px; }
+  .list{ display:flex; flex-direction:column; gap:10px; }
+  .item{
+    display:flex; justify-content:space-between; align-items:center;
+    background:#fff; border:1px solid rgba(15,23,42,0.08);
+    border-radius:14px; padding:14px 14px;
+    text-decoration:none; color:#0f172a;
+  }
+  .item:hover{ border-color:rgba(37,99,235,.25); box-shadow:0 6px 18px rgba(37,99,235,.10); }
+  .left{ display:flex; flex-direction:column; gap:3px; }
+  .name{ font-size:16px; font-weight:900; }
+  .desc{ font-size:13px; color:#475569; }
+  .go{ font-weight:900; color:#1d4ed8; }
+</style>
+
+<div class="wrap">
+  <h1 class="title">상황 대화 퀴즈</h1>
+  <p class="sub">그림과 대화를 보고, 지금 상황에 알맞은 문장을 골라 맞혀보세요.</p>
+
+  <div class="list">
+    {% for q in quizzes %}
+      <a class="item" href="{{ url_for('dialog_quiz_play', quiz_id=q.id) }}">
+        <div class="left">
+          <div class="name">{{ q.title }}</div>
+          <div class="desc">문제 풀기</div>
+        </div>
+        <div class="go">시작 →</div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

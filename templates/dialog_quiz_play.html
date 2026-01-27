@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .wrap{ max-width:920px; margin:0 auto; padding:22px 18px 60px; }
+
+  .head{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:14px; }
+  .title{ font-size:28px; font-weight:900; margin:0; letter-spacing:-.3px; }
+  .sub{ margin:8px 0 0; color:#64748b; font-size:14px; }
+
+  .card{
+    background:#fff; border:1px solid rgba(15,23,42,.08);
+    border-radius:18px; padding:16px;
+    box-shadow:0 10px 24px rgba(15,23,42,.06);
+  }
+
+  /* image */
+  .scene-wrap{ display:flex; justify-content:center; margin:10px 0 18px; }
+  .quiz-image{
+    width:40%;
+    max-width:420px;
+    min-width:260px;
+    height:auto;
+    border-radius:18px;
+    box-shadow:0 10px 24px rgba(0,0,0,.10);
+  }
+  @media (max-width:900px){ .quiz-image{ width:85%; min-width:auto; } }
+
+  /* dialog lines */
+  .lines{ margin-top:8px; display:flex; flex-direction:column; gap:8px; }
+  .line{
+    display:flex; gap:10px; align-items:flex-start;
+    padding:10px 12px; border-radius:14px;
+    background:#f8fafc; border:1px solid rgba(15,23,42,.06);
+  }
+  .role{ font-weight:900; color:#0f172a; width:52px; flex:0 0 auto; }
+  .jp{ font-weight:800; }
+  .pron{ color:#64748b; font-size:13px; margin-left:8px; font-weight:700; }
+
+  /* choices card buttons */
+  .choices{ margin-top:14px; display:grid; grid-template-columns:1fr; gap:10px; }
+  .choice{
+    width:100%;
+    display:flex; justify-content:space-between; align-items:center;
+    text-align:left;
+    padding:14px 14px;
+    border-radius:16px;
+    border:1px solid rgba(15,23,42,.10);
+    background:#ffffff;
+    cursor:pointer;
+    transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+    font-size:14px;
+    font-weight:800;
+    color:#0f172a;
+  }
+  .choice:hover{
+    transform: translateY(-1px);
+    border-color: rgba(37,99,235,.25);
+    box-shadow:0 8px 18px rgba(37,99,235,.10);
+  }
+  .choice:active{ transform: translateY(0px) scale(.99); }
+  .choice .badge{
+    font-size:12px; font-weight:900;
+    padding:4px 10px; border-radius:999px;
+    background:#f1f5ff; border:1px solid rgba(37,99,235,.18);
+    color:#1d4ed8;
+    white-space:nowrap;
+  }
+
+  /* states */
+  .choice.selected{
+    border-color: rgba(37,99,235,.40);
+    box-shadow:0 10px 22px rgba(37,99,235,.12);
+    background:#f8fbff;
+  }
+  .choice.correct{
+    border-color: rgba(34,197,94,.45);
+    background:#f0fdf4;
+    box-shadow:0 10px 22px rgba(34,197,94,.12);
+  }
+  .choice.wrong{
+    border-color: rgba(239,68,68,.45);
+    background:#fef2f2;
+    box-shadow:0 10px 22px rgba(239,68,68,.10);
+  }
+  .choice .mark{
+    font-size:18px;
+    font-weight:900;
+    opacity:.0;
+    transform: scale(.85);
+    transition: opacity .12s ease, transform .12s ease;
+  }
+  .choice.correct .mark,
+  .choice.wrong .mark{
+    opacity:1;
+    transform: scale(1);
+  }
+
+  /* result box */
+  .result{
+    margin-top:14px;
+    display:none;
+    padding:12px 14px;
+    border-radius:16px;
+    border:1px solid rgba(15,23,42,.10);
+    background:#f8fafc;
+  }
+  .result.show{ display:block; }
+  .result .row{ display:flex; gap:8px; align-items:flex-start; }
+  .result .icon{ font-size:18px; font-weight:900; }
+  .result.ok{ border-color: rgba(34,197,94,.35); background:#f0fdf4; }
+  .result.no{ border-color: rgba(239,68,68,.35); background:#fef2f2; }
+  .result .msg{ font-weight:900; }
+  .result .small{ margin-top:6px; color:#475569; font-size:13px; line-height:1.5; font-weight:700; }
+
+  /* translation block (result 아래) */
+  .trans-title{ margin-top:10px; font-weight:900; color:#0f172a; }
+  .trans-lines{ margin-top:6px; display:flex; flex-direction:column; gap:6px; }
+  .trans-line{
+    padding:10px 12px;
+    border-radius:12px;
+    border:1px solid rgba(15,23,42,.06);
+    background:#ffffff;
+  }
+  .trans-role{ font-weight:900; margin-right:6px; }
+  .trans-ko{ color:#0f172a; font-weight:800; }
+  .trans-jp{ color:#64748b; font-size:12px; margin-top:2px; font-weight:700; }
+
+  /* footer buttons */
+  .actions{ margin-top:14px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:10px 14px;
+    border-radius:12px;
+    border:1px solid rgba(15,23,42,.10);
+    background:#fff;
+    font-weight:900;
+    cursor:pointer;
+    text-decoration:none;
+    color:#0f172a;
+  }
+  .btn.primary{
+    background:#2563eb;
+    color:#fff;
+    border-color: rgba(37,99,235,.40);
+  }
+  .btn.primary:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+  }
+</style>
+
+<div class="wrap">
+  <div class="head">
+    <div>
+      <h1 class="title">{{ quiz.title }}</h1>
+      <p class="sub">그림과 대화를 보고, 지금 상황에 알맞은 문장을 골라 맞혀보세요.</p>
+    </div>
+    <a class="btn" href="{{ url_for('quiz_dialog_list') }}">목록</a>
+  </div>
+
+  <div class="card">
+    <div class="scene-wrap">
+      <img class="quiz-image" src="{{ url_for('static', filename=quiz.image) }}" alt="scene">
+    </div>
+
+    <div class="lines">
+      {% for line in quiz.lines %}
+        <div class="line">
+          <div class="role">{{ line.role }}</div>
+          <div>
+            <span class="jp">{{ line.jp }}</span>
+            <span class="pron">{{ line.pron }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- choices -->
+    <div class="choices" id="choices">
+      {% for ch in quiz.choices %}
+        {% set no = loop.index %}
+        <button type="button" class="choice" data-choice="{{ no }}">
+          <span>{{ no }}. {{ ch }}</span>
+          <span class="badge">선택</span>
+          <span class="mark">✔</span>
+        </button>
+      {% endfor %}
+    </div>
+
+    <!-- result -->
+    <div class="result" id="resultBox">
+      <div class="row">
+        <div class="icon" id="resultIcon">✔</div>
+        <div>
+          <div class="msg" id="resultMsg">정답!</div>
+          <div class="small" id="resultText"></div>
+
+          <!-- ✅ 여기서 대화 번역까지 같이 보여줌 -->
+          <div id="translationWrap" style="display:none;">
+            <div class="trans-title">📖 대화 번역</div>
+            <div class="trans-lines">
+              {% for line in quiz.lines %}
+                <div class="trans-line">
+                  <div><span class="trans-role">{{ line.role }}:</span> <span class="trans-ko">{{ line.ko or "" }}</span></div>
+                  <div class="trans-jp">({{ line.jp }} / {{ line.pron }})</div>
+                </div>
+              {% endfor %}
+            </div>
+
+            <div class="trans-title" style="margin-top:12px;">💡 왜 이게 정답일까요?</div>
+            <div class="small">{{ quiz.explain_ko }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="checkBtn" class="btn primary" disabled>정답 확인</button>
+
+      <!-- 다음 문제 -->
+      <a id="nextBtn" class="btn" href="{{ url_for('dialog_quiz_play', quiz_id=quiz.id + 1) }}" style="display:none;">
+        다음 문제 →
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const answer = {{ quiz.answer|int }};
+    const choices = Array.from(document.querySelectorAll(".choice"));
+    const checkBtn = document.getElementById("checkBtn");
+    const resultBox = document.getElementById("resultBox");
+    const resultIcon = document.getElementById("resultIcon");
+    const resultMsg = document.getElementById("resultMsg");
+    const resultText = document.getElementById("resultText");
+    const nextBtn = document.getElementById("nextBtn");
+    const translationWrap = document.getElementById("translationWrap");
+
+    let selected = null;
+    let locked = false;
+
+    function setResult(ok){
+      resultBox.classList.add("show");
+      resultBox.classList.toggle("ok", ok);
+      resultBox.classList.toggle("no", !ok);
+
+      resultIcon.textContent = ok ? "✅" : "❌";
+      resultMsg.textContent = ok ? "정답!" : "오답!";
+
+      // ✅ 정답 문장은 answer_ko 대신 choices[answer-1]을 보여줌
+      const correctText = "{{ quiz.choices[quiz.answer-1]|e }}";
+
+      resultText.innerHTML =
+        "정답: <b>" + answer + "번</b> · " + correctText + "<br>" +
+        "<span style='color:#475569; font-weight:700;'>{{ quiz.explain_ko|e }}</span>";
+
+      // ✅ 번역/설명 영역 표시
+      translationWrap.style.display = "block";
+
+      // 다음 문제 버튼 표시
+      nextBtn.style.display = "inline-flex";
+      checkBtn.disabled = true;
+    }
+
+    choices.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if(locked) return;
+
+        choices.forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+
+        selected = parseInt(btn.dataset.choice, 10);
+        checkBtn.disabled = false;
+      });
+    });
+
+    checkBtn.addEventListener("click", () => {
+      if(selected === null) return;
+      locked = true;
+
+      // 정답/오답 스타일 표시
+      choices.forEach(btn => {
+        const no = parseInt(btn.dataset.choice, 10);
+        btn.classList.remove("selected");
+        btn.querySelector(".mark").textContent = (no === answer) ? "✔" : "✖";
+        if(no === answer) btn.classList.add("correct");
+        else if(no === selected) btn.classList.add("wrong");
+      });
+
+      setResult(selected === answer);
+    });
+  })();
+</script>
+
+{% endblock %}

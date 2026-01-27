@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-head">
+  <h1 class="page-title">로그인</h1>
+  <p class="page-sub">아이디/비밀번호로 로그인하세요.</p>
+</div>
+
+<div class="form-wrap">
+  <form class="form-card" method="post" action="{{ url_for('login') }}" target="_self">
+    <div class="field">
+      <label class="label">아이디</label>
+      <input class="input" type="text" name="username" required autocomplete="username">
+    </div>
+
+    <div class="field">
+      <label class="label">비밀번호</label>
+      <input class="input" type="password" name="password" required autocomplete="current-password">
+    </div>
+
+    <div class="form-actions">
+      <button class="btn primary" type="submit">로그인</button>
+      <a class="btn" href="{{ url_for('register') }}">회원가입</a>
+      <a class="btn ghost" href="{{ url_for('forgot_password') }}">비밀번호 찾기</a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

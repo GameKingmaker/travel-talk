@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-head" style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px;">
+  <div>
+    <h1 style="margin:0;">
+      {% if post.is_notice == 1 %}
+        <span class="pill" style="margin-right:8px; background:#fff7ed; border:1px solid #fdba74; color:#9a3412;">공지</span>
+      {% endif %}
+      {{ post.title }}
+    </h1>
+
+    <p style="margin:6px 0 0; color:#667085;">
+      <span class="grade">{{ post.author_grade }}</span>
+      <span class="nick" style="margin-left:6px;">{{ post.author_nickname }}</span>
+      <span style="margin-left:10px;">·</span>
+      <span style="margin-left:10px;">{{ post.created_at|mmdd }}</span>
+      <span style="margin-left:10px;">·</span>
+      <span style="margin-left:10px;">조회 {{ post.views }}</span>
+    </p>
+  </div>
+
+  <div style="display:flex; gap:10px; align-items:center;">
+    <a class="btn" href="{{ url_for('board') }}">목록</a>
+
+    {% if is_owner %}
+      <a class="btn btn-primary" href="{{ url_for('board_edit', post_id=post.id) }}">수정</a>
+
+      <form method="POST" action="{{ url_for('board_delete', post_id=post.id) }}"
+            onsubmit="return confirm('정말 삭제할까요?');" style="display:inline;">
+        <button type="submit" class="btn" style="background:#fff; border:1px solid #f04438; color:#f04438;">
+          삭제
+        </button>
+      </form>
+    {% endif %}
+  </div>
+</section>
+
+<div class="board-wrap" style="padding:18px;">
+  {% if post.thumb_url %}
+    <div style="margin-bottom:16px;">
+      <img src="{{ post.thumb_url }}" alt="image"
+           style="max-width:520px; width:100%; border-radius:14px; border:1px solid #e5e7eb;">
+    </div>
+  {% endif %}
+
+  <div style="white-space:pre-wrap; line-height:1.7; color:#101828;">
+    {{ post.content }}
+  </div>
+</div>
+
+{# =========================
+   공지글이면 댓글/추천 비활성화(아예 안 보이게)
+   ========================= #}
+
+{% if post.is_notice == 1 %}
+
+  <hr style="margin:24px 0; border:none; border-top:1px solid #e9edf5;">
+
+  <div style="padding:14px 16px; border:1px solid #e1e7f5; border-radius:14px; background:#f6f8ff; color:#475467;">
+    공지글에는 댓글을 작성할 수 없습니다.
+  </div>
+
+{% else %}
+
+  <hr style="margin:24px 0; border:none; border-top:1px solid #e9edf5;">
+
+  <h3 style="margin:0 0 12px; font-size:18px;">댓글</h3>
+
+  {% if user %}
+  <form method="POST" action="{{ url_for('board_comment_create', post_id=post.id) }}"
+        style="display:flex; gap:10px; align-items:flex-start;">
+    <textarea name="content" rows="2" placeholder="댓글을 입력하세요"
+      style="flex:1; resize:none; padding:12px 14px; border-radius:12px; border:1px solid #d7deee;"></textarea>
+    <button class="btn btn-primary" type="submit" style="height:44px; border-radius:12px;">등록</button>
+  </form>
+  {% else %}
+  <div style="padding:12px 14px; border:1px solid #e1e7f5; border-radius:12px; background:#f6f8ff;">
+    댓글을 작성하려면 <a href="{{ url_for('login', next=url_for('board_detail', post_id=post.id)) }}">로그인</a> 해주세요.
+  </div>
+  {% endif %}
+
+  <div style="display:flex; gap:10px; align-items:center; margin-top:14px;">
+    <button id="upvoteBtn" class="btn btn-primary" type="button">
+      추천 <span id="upvoteCount">{{ post.upvotes or 0 }}</span>
+    </button>
+    <div id="upvoteMsg" style="font-size:13px; color:#60708a;"></div>
+  </div>
+
+  <script>
+    const btn = document.getElementById("upvoteBtn");
+    const countEl = document.getElementById("upvoteCount");
+    const msgEl = document.getElementById("upvoteMsg");
+
+    btn.addEventListener("click", async () => {
+      msgEl.textContent = "";
+      try {
+        const res = await fetch(`/board/{{ post.id }}/upvote`, { method: "POST" });
+        const data = await res.json();
+        if (data.upvotes !== undefined) countEl.textContent = data.upvotes;
+        msgEl.textContent = data.msg || (data.ok ? "완료" : "실패");
+      } catch (e) {
+        msgEl.textContent = "오류가 발생했어요.";
+      }
+    });
+  </script>
+
+  <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
+    {% if comments and comments|length > 0 %}
+      {% for c in comments %}
+        <div style="padding:12px 14px; border:1px solid #e6ebf7; border-radius:14px; background:#fff;">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="badge" style="padding:4px 10px; border-radius:999px; background:#eef4ff; border:1px solid #cfe0ff; font-size:12px;">
+                {{ c.author_grade }}
+              </span>
+              <strong>{{ c.author_nickname }}</strong>
+              <span style="color:#7b879d; font-size:12px;">
+                {{ c.created_at[5:7] }}/{{ c.created_at[8:10] }} {{ c.created_at[11:16] }}
+              </span>
+            </div>
+
+            {% if c.is_owner %}
+            <form method="POST" action="{{ url_for('board_comment_delete', comment_id=c.id) }}"
+                  onsubmit="return confirm('댓글을 삭제할까요?');">
+              <button type="submit" class="btn" style="padding:6px 10px; border-radius:10px;">삭제</button>
+            </form>
+            {% endif %}
+          </div>
+
+          <div style="margin-top:8px; white-space:pre-wrap; line-height:1.5;">{{ c.content }}</div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div style="padding:14px; border:1px dashed #d9e2f5; border-radius:14px; color:#6b7a99;">
+        아직 댓글이 없습니다.
+      </div>
+    {% endif %}
+  </div>
+
+{% endif %}
+
+{% endblock %}

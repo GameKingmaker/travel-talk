@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-head">
+  <h1>나만의 학습노트</h1>
+  <p>즐겨찾기 문장/단어 모아보기 · 가리기(복습) 기능</p>
+</section>
+
+<div class="note-panel">
+
+  <!-- ✅ 상단 오른쪽에 토글 배치 (문장 즐겨찾기에서만 적용) -->
+  <div class="note-bar">
+    <div class="note-toggles">
+      <label class="checkline">
+        <input type="checkbox" id="toggle-pron" />
+        <span>발음 가리기</span>
+      </label>
+      <label class="checkline">
+        <input type="checkbox" id="toggle-ko" />
+        <span>뜻 가리기</span>
+      </label>
+    </div>
+  </div>
+
+  <h2 style="margin:6px 0 12px; font-size:18px; font-weight:900;">문장 즐겨찾기</h2>
+
+  {% if fav_items and fav_items|length > 0 %}
+    <section class="phrase-list note-phrase-list" id="noteList">
+      {% for item in fav_items %}
+        <div class="phrase-card"
+             data-key="{{ item.phrase_key }}"
+             data-jp="{{ item.jp }}"
+             data-pron="{{ item.pron }}"
+             data-ko="{{ item.ko }}">
+          <button class="fav-btn on" title="즐겨찾기 해제">★</button>
+
+          <div class="phrase-body">
+            <div class="p-line"><span class="p-label">일본어:</span> <span class="p-jp">{{ item.jp }}</span></div>
+            <div class="p-line"><span class="p-label">발음:</span> <span class="p-pron">{{ item.pron }}</span></div>
+            <div class="p-line"><span class="p-label">뜻:</span> <span class="p-ko">{{ item.ko }}</span></div>
+          </div>
+
+          <button class="speak-btn" data-tts="{{ item.jp }}">발음 듣기</button>
+        </div>
+      {% endfor %}
+    </section>
+  {% else %}
+    <div class="empty">아직 즐겨찾기한 문장이 없습니다. ⭐ 버튼으로 저장해보세요.</div>
+  {% endif %}
+
+  <hr style="margin:26px 0; border:none; border-top:1px solid rgba(15,23,42,.08);" />
+
+  <h2 style="margin:6px 0 12px; font-size:18px; font-weight:900;">단어 즐겨찾기</h2>
+
+  {% if word_fav_items and word_fav_items|length > 0 %}
+  <section class="phrase-list" id="wordList">
+      {% for w in word_fav_items %}
+        <div class="phrase-card" style="align-items:center;"
+             data-cat="{{ w.cat_key }}"
+             data-jp="{{ w.jp }}">
+
+          <!-- 단어 즐겨찾기 해제 버튼(같은 .fav-btn 사용 + data-cat/data-jp) -->
+          <button class="fav-btn on" data-cat="{{ w.cat_key }}" data-jp="{{ w.jp }}" title="즐겨찾기 해제">★</button>
+
+          <div class="phrase-body">
+            <div class="p-line">
+              <span class="p-label">분류:</span>
+              <span class="p-jp"><a href="{{ url_for('words_detail', cat_key=w.cat_key) }}">{{ w.cat_title }}</a></span>
+            </div>
+            <div class="p-line"><span class="p-label">일본어:</span> <span class="p-jp">{{ w.jp }}</span></div>
+            <div class="p-line"><span class="p-label">발음:</span> <span class="p-pron">{{ w.pron }}</span></div>
+            <div class="p-line"><span class="p-label">뜻:</span> <span class="p-ko">{{ w.ko }}</span></div>
+          </div>
+
+          <button class="speak-btn" data-tts="{{ w.jp }}">발음 듣기</button>
+        </div>
+      {% endfor %}
+    </section>
+  {% else %}
+    <div class="empty">아직 즐겨찾기한 단어가 없습니다. 단어 목록에서 ★로 저장해보세요.</div>
+  {% endif %}
+
+</div>
+
+{% endblock %}

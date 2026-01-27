@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 22px 18px 48px;
+  }
+
+  .head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:14px;
+  }
+  .title{
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:-0.5px;
+    margin:0;
+  }
+  .sub{
+    margin:6px 0 0;
+    color:#6b7280;
+    font-size:14px;
+    line-height:1.4;
+  }
+
+  .top-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:14px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:40px;
+    padding:0 14px;
+    border-radius:12px;
+    border:1px solid rgba(15,23,42,.10);
+    background:#fff;
+    text-decoration:none;
+    color:#0f172a;
+    font-weight:800;
+  }
+  .btn:hover{
+    border-color: rgba(37,99,235,.22);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.10);
+  }
+
+  .search-row{
+    display:flex;
+    gap:10px;
+    margin-top:14px;
+  }
+  .search-row input{
+    flex:1;
+    height:44px;
+    border-radius:14px;
+    border:1px solid rgba(15, 23, 42, 0.10);
+    padding:0 14px;
+    outline:none;
+  }
+  .search-row button{
+    height:44px;
+    padding:0 16px;
+    border-radius:14px;
+    border:none;
+    background:#2563eb;
+    color:#fff;
+    font-weight:800;
+    cursor:pointer;
+  }
+
+  .card{
+    margin-top:16px;
+    background:#ffffff;
+    border:1px solid rgba(15, 23, 42, 0.08);
+    border-radius:16px;
+    padding:14px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  }
+
+  table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    overflow:hidden;
+    border-radius:14px;
+  }
+  th, td{
+    text-align:left;
+    padding:10px 12px;
+    border-bottom:1px solid rgba(15, 23, 42, 0.06);
+    font-size:14px;
+  }
+  th{
+    background:#f8fafc;
+    font-weight:900;
+  }
+  tr:last-child td{ border-bottom:none; }
+  .muted{ color:#6b7280; font-size:12px; margin-top:10px; }
+</style>
+
+<section class="page-head">
+  <h1>{{ title }}</h1>
+
+  <p class="page-guide">
+    일본어 / 발음 / 한국어 뜻 3줄로 확인하세요.<br>
+    ※ ★ 버튼을 누르면 즐겨찾기에 저장됩니다.
+  </p>
+
+  <div class="back-row">
+    <a class="back-btn" href="{{ url_for('words_categories') }}">← 분류 목록</a>
+  </div>
+</section>
+
+
+  <div class="card phrase-list">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%;">일본어</th>
+          <th style="width:25%;">발음</th>
+          <th>뜻</th>
+        </tr>
+      </thead>
+      <thead>
+  <tr>
+    <th style="width:70px;">즐겨</th>
+    <th style="width:25%;">일본어</th>
+    <th style="width:25%;">발음</th>
+    <th>뜻</th>
+  </tr>
+</thead>
+
+<tbody>
+{% for jp, pron, ko in (rows or []) %}
+  <tr>
+    <td>
+      <button type="button"
+              class="fav-btn"
+              data-cat="{{ cat_key }}"
+              data-jp="{{ jp }}">★</button>
+    </td>
+
+    <td>
+      <span class="jp-text">{{ jp }}</span>
+      <button type="button" class="tts-btn" data-tts="{{ jp }}">🔊</button>
+    </td>
+
+    <td><span class="p-pron">{{ pron }}</span></td>
+<td><span class="p-ko">{{ ko }}</span></td>
+
+  </tr>
+{% endfor %}
+</tbody>
+
+
+    </table>
+
+    <div class="muted">총 {{ (rows or [])|length }}개</div>
+  </div>
+</div>
+
+
+{% endblock %}

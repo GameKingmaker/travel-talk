@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-head" style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px;">
+  <div>
+    <h1>글 수정</h1>
+    <p>제목 · 내용 · 이미지(선택)</p>
+  </div>
+  <a class="btn" href="{{ url_for('board_detail', post_id=post.id) }}">취소</a>
+</section>
+
+<div class="board-wrap" style="padding:18px;">
+  <form method="POST" enctype="multipart/form-data">
+    <div style="display:flex; flex-direction:column; gap:14px; max-width:820px;">
+      <div>
+        <label style="display:block; margin-bottom:6px; font-weight:600;">글 제목</label>
+        <input type="text" name="title" value="{{ post.title }}" required
+               style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid #e5e7eb;">
+      </div>
+
+      <div>
+        <label style="display:block; margin-bottom:6px; font-weight:600;">글 내용</label>
+        <textarea name="content" rows="10" required
+                  style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid #e5e7eb;">{{ post.content }}</textarea>
+      </div>
+
+      <div>
+        <label style="display:block; margin-bottom:6px; font-weight:600;">글 이미지(선택)</label>
+        {% if post.thumb_url %}
+          <div style="margin:8px 0 10px;">
+            <img src="{{ post.thumb_url }}" alt="current"
+                 style="max-width:260px; width:100%; border-radius:14px; border:1px solid #e5e7eb;">
+            <div style="margin-top:6px; color:#667085; font-size:13px;">이미지 바꾸려면 아래에서 새 파일을 선택하세요.</div>
+          </div>
+        {% endif %}
+        <input type="file" name="image" accept=".png,.jpg,.jpeg,.gif,.webp">
+        <div style="margin-top:6px; color:#667085; font-size:13px;">png / jpg / jpeg / gif / webp 업로드 가능</div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:4px;">
+        <a class="btn" href="{{ url_for('board_detail', post_id=post.id) }}">취소</a>
+        <button class="btn btn-primary" type="submit">저장</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
