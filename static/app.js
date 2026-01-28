@@ -23,6 +23,7 @@ function showToast(message) {
 ========================= */
 function speak(text) {
   if (!text) return;
+
   const synth = window.speechSynthesis;
   if (!synth) {
     alert("이 브라우저는 음성 재생을 지원하지 않아요.");
@@ -41,19 +42,18 @@ function initSpeakButtons() {
   document.addEventListener("click", (e) => {
     const btn = e.target.closest(".speak-btn, .tts-btn");
     if (!btn) return;
-    const text = btn.getAttribute("data-tts") || btn.dataset.tts || "";
+
+    // ✅ data-tts가 tojson 형태일 수도 있으니 안전 파싱
+    const raw = btn.getAttribute("data-tts") || btn.dataset.tts || "";
+    const text = parseMaybeJSON(raw);
+
     speak(text);
   });
 }
 
 /* =========================
-   상황별 회화 즐겨찾기 (/api/favorites)
-   - 버튼: .fav-btn (phrase-card 안)
-   - 상태: classList 'on' 으로 판단
+   Utils
 ========================= */
-// 비로그인 상태면 즐겨찾기 막기 (상황별 회화도 단어와 동일하게)
-
-
 function safeParseJSON(raw, fallback = {}) {
   if (!raw) return fallback;
   try {
@@ -61,6 +61,31 @@ function safeParseJSON(raw, fallback = {}) {
   } catch {
     return fallback;
   }
+}
+
+// ✅ dataset 값이 '"안녕"' 처럼 JSON 문자열일 수 있어서 처리
+function parseMaybeJSON(raw) {
+  if (raw == null) return "";
+  const s = String(raw).trim();
+  if (!s) return "";
+
+  // JSON 문자열/객체/배열 형태면 파싱
+  if (
+    (s.startsWith('"') && s.endsWith('"')) ||
+    (s.startsWith("{") && s.endsWith("}")) ||
+    (s.startsWith("[") && s.endsWith("]"))
+  ) {
+    try {
+      const v = JSON.parse(s);
+      // 문자열이면 그대로
+      if (typeof v === "string") return v;
+      // 객체면 string으로 못 쓰니 안전하게 빈값
+      return "";
+    } catch {
+      return s;
+    }
+  }
+  return s;
 }
 
 function localTogglePhrase(key, payload, nextOn) {
@@ -76,16 +101,23 @@ function localTogglePhrase(key, payload, nextOn) {
   localStorage.setItem(storeKey, JSON.stringify(obj));
 }
 
+/* =========================
+   상황별 회화 즐겨찾기 (/api/favorites)
+   - 버튼: .fav-btn (phrase-card 안)
+   - 상태: classList 'on' 으로 판단
+========================= */
 async function togglePhraseFavorite(cardEl, btnEl) {
   if (!window.IS_LOGGED_IN) {
     showToast("로그인이 필요합니다.");
     return;
   }
 
-  const key = cardEl.dataset.key;
-  const jp = cardEl.dataset.jp;
-  const pron = cardEl.dataset.pron;
-  const ko = cardEl.dataset.ko;
+  const key = cardEl.dataset.key || "";
+
+  // ✅ 템플릿에서 data-jp/pron/ko를 tojson으로 넣었을 때도 안전하게 복원
+  const jp = parseMaybeJSON(cardEl.getAttribute("data-jp") || cardEl.dataset.jp || "");
+  const pron = parseMaybeJSON(cardEl.getAttribute("data-pron") || cardEl.dataset.pron || "");
+  const ko = parseMaybeJSON(cardEl.getAttribute("data-ko") || cardEl.dataset.ko || "");
 
   const isOn = btnEl.classList.contains("on");
   const nextOn = !isOn;
@@ -108,12 +140,13 @@ async function togglePhraseFavorite(cardEl, btnEl) {
       body: JSON.stringify(payload),
     });
 
-    // 비로그인: 로컬 저장으로 처리
+    // 로그인 필요
     if (res.status === 401) {
-  showToast("로그인이 필요합니다.");
-  return;
-}
-
+      // 롤백
+      btnEl.classList.toggle("on", isOn);
+      showToast("로그인이 필요합니다.");
+      return;
+    }
 
     if (!res.ok) {
       // 실패하면 UI 롤백
@@ -122,11 +155,10 @@ async function togglePhraseFavorite(cardEl, btnEl) {
       return;
     }
 
-    // 성공 토스트
     showToast(nextOn ? "나만의 학습노트에 저장되었습니다." : "학습노트에서 제거되었습니다.");
   } catch (err) {
-    // 네트워크 실패: 로컬 저장
-    localTogglePhrase(key, payload, nextOn);
+    // 네트워크 실패: 로컬 저장 (비로그인 지원하려면 여기에서 막지 않도록 정책 조정 가능)
+    localTogglePhrase(key, { jp, pron, ko }, nextOn);
     showToast(nextOn ? "나만의 학습노트에 저장되었습니다." : "학습노트에서 제거되었습니다.");
   }
 }
@@ -135,8 +167,6 @@ function initPhraseFavButtons() {
   document.addEventListener("click", (e) => {
     const btn = e.target.closest(".fav-btn");
     if (!btn) return;
-
-
 
     // 단어 페이지의 fav-btn도 같은 클래스라서 구분 필요:
     // 단어 버튼은 data-cat / data-jp 를 가지고 있음
@@ -152,9 +182,7 @@ function initPhraseFavButtons() {
 /* =========================
    단어 즐겨찾기 (/api/word_fav)
    - 버튼: .fav-btn (words_detail.html 테이블/리스트 안)
-   - 상태: classList 'on' 으로 판단 (문자 ☆/★로 판단 금지)
 ========================= */
-
 async function toggleWordFavorite(btn) {
   const cat_key = btn.dataset.cat;
   const jp = btn.dataset.jp;
@@ -164,7 +192,7 @@ async function toggleWordFavorite(btn) {
   const isOn = btn.classList.contains("on");
   const nextOn = !isOn;
 
-  // UI 먼저 반영 (별 문자 + on 클래스)
+  // UI 먼저 반영
   btn.classList.toggle("on", nextOn);
   btn.textContent = nextOn ? "★" : "☆";
 
@@ -177,7 +205,6 @@ async function toggleWordFavorite(btn) {
       body: JSON.stringify({ cat_key, jp, action }),
     });
 
-    // 로그인 필요
     if (res.status === 401) {
       // 롤백
       btn.classList.toggle("on", isOn);
@@ -219,7 +246,6 @@ function initWordFavButtons() {
 /* =========================
    Register Live Validation (기존 그대로)
 ========================= */
-
 function setMsg(el, text, kind) {
   if (!el) return;
   el.textContent = text || "";
@@ -355,10 +381,8 @@ function initRegisterValidation() {
 }
 
 /* =========================
-   Note Page (기존 로직 유지)
-   - 단어 즐겨찾기까지 서버에서 보여주려면 note.html/app.py도 확장 필요
+   Note Page (기존 로직 유지 + 안정화)
 ========================= */
-
 function escapeHtml(s) {
   return String(s)
     .replaceAll("&", "&amp;")
@@ -395,8 +419,8 @@ function initNotePage() {
   applyHide();
 
   const isLoggedIn = document.body.dataset.loggedIn === "1";
-  if (isLoggedIn) return; // ✅ 이 return 있어도 hide는 위에서 이미 적용됨
-  
+  if (isLoggedIn) return;
+
   const storeKey = "fav_phrases_v1";
   const raw = localStorage.getItem(storeKey);
 
@@ -409,9 +433,13 @@ function initNotePage() {
   const keys = Object.keys(obj);
 
   if (keys.length === 0) {
-    noteList.innerHTML = `<div class="empty">이 브라우저에 저장된 즐겨찾기가 없습니다. ⭐로 저장해보세요.</div>`;
+    if (noteList) {
+      noteList.innerHTML = `<div class="empty">이 브라우저에 저장된 즐겨찾기가 없습니다. ⭐로 저장해보세요.</div>`;
+    }
     return;
   }
+
+  if (!noteList) return;
 
   noteList.innerHTML = keys
     .map((k) => {
@@ -420,22 +448,24 @@ function initNotePage() {
       const pron = it.pron || "";
       const ko = it.ko || "";
       return `
-      <div class="phrase-card" data-key="${escapeHtml(k)}" data-jp="${escapeHtml(jp)}" data-pron="${escapeHtml(
-        pron
-      )}" data-ko="${escapeHtml(ko)}">
-        <button class="fav-btn on" title="즐겨찾기 해제">★</button>
+      <div class="phrase-card" data-key="${escapeHtml(k)}"
+           data-jp="${escapeHtml(jp)}" data-pron="${escapeHtml(pron)}" data-ko="${escapeHtml(ko)}">
+        <button class="fav-btn on" type="button" title="즐겨찾기 해제">★</button>
         <div class="phrase-body">
           <div class="p-line"><span class="p-label">일본어:</span> <span class="p-jp">${escapeHtml(jp)}</span></div>
           <div class="p-line"><span class="p-label">발음:</span> <span class="p-pron">${escapeHtml(pron)}</span></div>
           <div class="p-line"><span class="p-label">뜻:</span> <span class="p-ko">${escapeHtml(ko)}</span></div>
         </div>
-        <button class="speak-btn" data-tts="${escapeHtml(jp)}">발음 듣기</button>
+        <button class="speak-btn" type="button" data-tts="${escapeHtml(jp)}">발음 듣기</button>
       </div>
     `;
     })
     .join("");
 }
 
+/* =========================
+   Boot
+========================= */
 document.addEventListener("DOMContentLoaded", () => {
   try {
     initNotePage();
