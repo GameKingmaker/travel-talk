@@ -163,6 +163,23 @@
   const msgP  = $("msg-password");
   const msgP2 = $("msg-password2");
 
+  const btn = $("registerBtn");
+
+  function refreshButton(){
+    if (!btn) return;
+    const ok =
+      msgU.classList.contains("good") &&
+      msgN.classList.contains("good") &&
+      msgE.classList.contains("good") &&
+      msgE2.classList.contains("good") &&
+      msgP.classList.contains("good") &&
+      msgP2.classList.contains("good");
+
+    btn.disabled = !ok;
+    btn.style.opacity = ok ? "1" : "0.5";
+    btn.style.cursor  = ok ? "pointer" : "not-allowed";
+  }
+
   function setMsg(el, ok, text){
     if (!el) return;
     el.textContent = text || "";
@@ -183,10 +200,7 @@
 
   async function validateUsername(){
     const v = (elU.value || "").trim();
-    if (!v){
-      setMsg(msgU, false, "");
-      return;
-    }
+    if (!v){ setMsg(msgU, false, ""); return; }
     const res = await fetch(`/api/validate/username?u=${encodeURIComponent(v)}`);
     const data = await res.json();
     setMsg(msgU, !!data.ok && !!data.available, data.msg || "");
@@ -194,10 +208,7 @@
 
   async function validateNickname(){
     const v = (elN.value || "").trim();
-    if (!v){
-      setMsg(msgN, false, "");
-      return;
-    }
+    if (!v){ setMsg(msgN, false, ""); return; }
     const res = await fetch(`/api/validate/nickname?n=${encodeURIComponent(v)}`);
     const data = await res.json();
     setMsg(msgN, !!data.ok && !!data.available, data.msg || "");
@@ -205,10 +216,7 @@
 
   async function validateEmail(){
     const v = (elE.value || "").trim().toLowerCase();
-    if (!v){
-      setMsg(msgE, false, "");
-      return;
-    }
+    if (!v){ setMsg(msgE, false, ""); return; }
     const res = await fetch(`/api/validate/email?e=${encodeURIComponent(v)}`);
     const data = await res.json();
     setMsg(msgE, !!data.ok && !!data.available, data.msg || "");
@@ -217,42 +225,24 @@
   function validateEmail2(){
     const a = (elE.value || "").trim().toLowerCase();
     const b = (elE2.value || "").trim().toLowerCase();
-    if (!b){
-      setMsg(msgE2, false, "");
-      return;
-    }
-    if (a !== b){
-      setMsg(msgE2, false, "이메일이 일치하지 않습니다.");
-    } else {
-      setMsg(msgE2, true, "이메일이 일치합니다.");
-    }
+    if (!b){ setMsg(msgE2, false, ""); return; }
+    if (a !== b) setMsg(msgE2, false, "이메일이 일치하지 않습니다.");
+    else setMsg(msgE2, true, "이메일이 일치합니다.");
   }
 
   function validatePassword(){
     const v = elP.value || "";
-    if (!v){
-      setMsg(msgP, false, "");
-      return;
-    }
-    if (v.length < 8 || v.length > 16){
-      setMsg(msgP, false, "비밀번호는 8~16자여야 합니다.");
-    } else {
-      setMsg(msgP, true, "사용 가능한 비밀번호입니다.");
-    }
+    if (!v){ setMsg(msgP, false, ""); return; }
+    if (v.length < 8 || v.length > 16) setMsg(msgP, false, "비밀번호는 8~16자여야 합니다.");
+    else setMsg(msgP, true, "사용 가능한 비밀번호입니다.");
   }
 
   function validatePassword2(){
     const a = elP.value || "";
     const b = elP2.value || "";
-    if (!b){
-      setMsg(msgP2, false, "");
-      return;
-    }
-    if (a !== b){
-      setMsg(msgP2, false, "비밀번호가 일치하지 않습니다.");
-    } else {
-      setMsg(msgP2, true, "비밀번호가 일치합니다.");
-    }
+    if (!b){ setMsg(msgP2, false, ""); return; }
+    if (a !== b) setMsg(msgP2, false, "비밀번호가 일치하지 않습니다.");
+    else setMsg(msgP2, true, "비밀번호가 일치합니다.");
   }
 
   const dUsername = debounce(validateUsername, 250);
@@ -267,27 +257,15 @@
   if (elP) elP.addEventListener("input", () => { validatePassword(); validatePassword2(); });
   if (elP2) elP2.addEventListener("input", validatePassword2);
 
-  // 페이지 로드시 값이 이미 있으면 한번 검사
+  // ✅ 페이지 로드시 값이 이미 있으면 한번 검사(버튼 활성화까지)
   if (elU && elU.value) validateUsername();
   if (elN && elN.value) validateNickname();
   if (elE && elE.value) validateEmail();
+  validateEmail2();
+  validatePassword();
+  validatePassword2();
+  refreshButton();
 })();
-const btn = document.getElementById("registerBtn");
-
-function refreshButton(){
-  const ok =
-    msgU.classList.contains("good") &&
-    msgN.classList.contains("good") &&
-    msgE.classList.contains("good") &&
-    msgE2.classList.contains("good") &&
-    msgP.classList.contains("good") &&
-    msgP2.classList.contains("good");
-
-  btn.disabled = !ok;
-  btn.style.opacity = ok ? "1" : "0.5";
-  btn.style.cursor  = ok ? "pointer" : "not-allowed";
-}
-
 </script>
 
 
