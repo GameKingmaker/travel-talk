@@ -19,6 +19,7 @@ from datetime import datetime, timezone, timedelta
 from functools import wraps
 from typing import Any, Dict, List, Tuple, Optional
 from flask import send_from_directory
+from flask import Response
 
 from flask import (
     Flask, render_template, request, redirect, url_for,
@@ -38,6 +39,14 @@ UPLOAD_FOLDER = os.path.join(app.root_path, "static", "uploads")
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 ALLOWED_EXT = {"png", "jpg", "jpeg", "gif", "webp"}
+
+def seo(title=None, desc=None, keywords=None, author="Japanese Study Room"):
+    return {
+        "page_title": title,
+        "page_desc": desc,
+        "page_keywords": keywords,
+        "page_author": author,
+    }
 
 def mark_attendance_today(user: dict):
     """로그인 유저가 오늘 첫 방문이면 출석 1회 기록"""
@@ -2707,7 +2716,24 @@ def mypage():
 ADMIN_USERNAME = "cjswoaostk"
 
 def is_admin(user):
-    return bool(user and user.get("username") == ADMIN_USERNAME)
+    if not user:
+        return False
+    un = (user.get("username") or "").strip()
+    nn = (user.get("nickname") or "").strip()
+    cg = (user.get("custom_grade") or "").strip()
+
+    # ✅ 기존 관리자 아이디 + 너가 쓰는 ADMIN 계정 + 닉네임 SW + custom_grade에 관리자 계열 들어가면 관리자 처리
+    if un == ADMIN_USERNAME:
+        return True
+    if un.upper() == "ADMIN":
+        return True
+    if nn == "SW":
+        return True
+    if ("관리자" in cg) or ("총관리자" in cg) or ("왕관리" in cg):
+        return True
+
+    return False
+
 
 def get_user_score(user: dict) -> int:
     """
@@ -2880,21 +2906,6 @@ def dialog_typing_check_pron():
         "answer_ko": answer_ko,
     })
 
-@app.post("/quiz/dialog/check")
-def dialog_typing_check():
-    user_input = request.form.get("user_input", "")
-    answer_pron = request.form.get("answer_pron", "")
-    answer_jp = request.form.get("answer_jp", "")
-    answer_ko = request.form.get("answer_ko", "")
-
-    ok = normalize_pron(user_input) == normalize_pron(answer_pron)
-
-    return jsonify({
-        "ok": ok,
-        "answer_pron": answer_pron,
-        "answer_jp": answer_jp,
-        "answer_ko": answer_ko,
-    })
 
 
 def normalize_author_grade(grade: str) -> str:
@@ -3021,9 +3032,19 @@ def index():
     try:
         daily = get_daily_phrase()
     except Exception:
-        # DB 문제나 초기화 문제여도 홈은 무조건 떠야 함
         daily = {"jp": "", "pron": "", "ko": ""}
-    return render_template("index.html", user=user, daily=daily)
+
+    return render_template(
+        "index.html",
+        user=user,
+        daily=daily,   # ✅ 이 한 줄 추가
+        **seo(
+            title="일본 여행 회화 공부방 | 상황별 일본어 회화 · 단어 · 퀴즈 학습",
+            desc="일본 여행에서 바로 쓰는 필수 일본어 회화와 단어를 상황별로 학습하세요. 퀴즈와 학습노트로 빠르게 실력을 높일 수 있는 무료 공부방입니다.",
+            keywords="일본 여행 회화, 일본어 회화 공부, 여행 일본어 표현, 일본어 단어, 일본어 퀴즈"
+        )
+    )
+
 
 @app.route("/words")
 def words_categories():
@@ -3038,11 +3059,7 @@ def words_categories():
             "count": len(items),
         })
 
-    return render_template(
-        "words_categories.html",
-        user=user,
-        categories=categories
-    )
+    return render_template("words_categories.html", categories=categories, user=current_user())
 
 
 @app.route("/words/<cat_key>")
@@ -3084,10 +3101,18 @@ def words_detail(cat_key):
 def situations():
     user = current_user()
     return render_template(
-        "situation.html",
+        "situation.html",          # ✅ 파일명 정확히
         user=user,
-        situations=SITUATIONS  # ← 가공 ❌, 그대로
+        situations=SITUATIONS,     # ✅ 이게 없으면 목록 안나옴
+        **seo(
+            title="일본 여행 상황별 회화 모음 | 공항 · 식당 · 호텔 일본어 표현",
+            desc="공항, 식당, 호텔, 쇼핑 등 일본 여행에서 자주 쓰는 상황별 일본어 회화를 한눈에 학습하세요. 실전 대화 중심 회화 연습 사이트입니다.",
+            keywords="일본 여행 회화, 상황별 일본어, 공항 일본어, 식당 일본어, 호텔 일본어"
+        )
     )
+
+
+
 
 
 @app.route("/situations/<cat>/<sub>")
@@ -3114,7 +3139,6 @@ def situation_detail(cat: str, sub: str):
 
     items = []
     for i, item in enumerate(sub_obj.get("items", []), start=1):
-        # item이 (jp, pron, ko) 또는 (jp, pron, ko, source)여도 OK
         jp, pron, ko = item[:3]
         phrase_key = f"{cat}:{sub}:{i}"
         items.append({
@@ -3125,21 +3149,41 @@ def situation_detail(cat: str, sub: str):
             "is_fav": (phrase_key in fav_set),
         })
 
+    # ✅ SEO 자동 생성 (상세페이지 제목/설명/키워드)
+    cat_title = cat_obj["title"]
+    sub_title = sub_obj["title"]
+
+    seo_title = f"{cat_title} - {sub_title} | 일본 여행 상황별 회화"
+    seo_desc = (
+        f"{cat_title}에서 '{sub_title}' 상황에 바로 쓰는 일본어 회화를 정리했습니다. "
+        f"실전 표현/발음/뜻을 빠르게 학습하고 퀴즈로 복습하세요."
+    )
+    seo_keywords = f"{cat_title} 일본어, {sub_title} 일본어, 일본 여행 회화, 상황별 일본어, 일본어 표현"
+
     return render_template(
         "situation_detail.html",
         user=user,
         cat=cat,
         sub=sub,
-        cat_title=cat_obj["title"],
-        sub_title=sub_obj["title"],
+        cat_title=cat_title,
+        sub_title=sub_title,
         items=items,
+        **seo(title=seo_title, desc=seo_desc, keywords=seo_keywords),
     )
 
 
 @app.route("/quiz")
 def quiz():
     user = current_user()
-    return render_template("quiz.html", user=user)
+    return render_template(
+        "quiz.html",
+        user=user,
+        **seo(
+            title="일본어 회화 퀴즈 게임 | 재미있게 배우는 일본 여행 일본어",
+            desc="일본 여행 회화와 단어를 퀴즈 게임으로 재미있게 복습하세요. 빠르게 기억에 남는 일본어 학습 사이트입니다.",
+            keywords="일본어 퀴즈, 일본 여행 일본어, 일본어 회화 게임, 일본어 단어 퀴즈"
+        )
+    )
 
 # =========================
 # Quiz - Word Game
@@ -3193,40 +3237,6 @@ def api_game_words():
 
     return jsonify({"ok": True, "items": items})
 
-
-@app.post("/api/word_game/submit_score")
-def api_word_game_submit_score():
-    user = current_user()
-    if not user:
-        return jsonify(ok=False, error="login_required"), 401
-
-    data = request.get_json(silent=True) or {}
-    score = int(data.get("score") or 0)
-    if score < 0:
-        score = 0
-
-    uid = user["id"]
-    conn = db()
-    try:
-        row = conn.execute(
-            "SELECT best_word_score FROM users WHERE id=?",
-            (uid,)
-        ).fetchone()
-        best = int(row["best_word_score"] or 0) if row else 0
-
-        updated = False
-        if score > best:
-            conn.execute(
-                "UPDATE users SET best_word_score=?, best_word_score_at=? WHERE id=?",
-                (score, kst_now_iso(), uid)
-            )
-            conn.commit()
-            best = score
-            updated = True
-
-        return jsonify(ok=True, updated=updated, best=best)
-    finally:
-        conn.close()
 
 
 @app.route("/board/write", methods=["GET", "POST"])
@@ -3558,7 +3568,8 @@ def register():
 
         if errors:
             flash("입력값을 다시 확인해주세요.", "error")
-            return render_template("register.html", user=None, form=form, errors=errors)
+            return render_template("register.html", user=user, form=form, errors=errors)
+
 
         pw_hash = generate_password_hash(password)
         created_at = kst_now_iso()
@@ -3761,46 +3772,7 @@ from sqlite3 import IntegrityError
 def word_game_ranking():
     return redirect(url_for("word_game_ranking_page"))
 
-@app.get("/api/word_game/rankings")
-def api_word_game_rankings():
-    try:
-        conn = db()
-        cur = conn.cursor()
 
-        # 최고점수 0은 제외
-        rows = cur.execute(
-            """
-            SELECT nickname, best_word_score, best_word_score_at
-            FROM users
-            WHERE COALESCE(best_word_score, 0) > 0
-            ORDER BY best_word_score DESC, COALESCE(best_word_score_at, '') ASC
-            LIMIT 50
-            """
-        ).fetchall()
-
-        conn.close()
-
-        items = []
-        for r in rows:
-            # row가 sqlite Row일 수도/튜플일 수도 있어서 둘 다 대응
-            nickname = r["nickname"] if isinstance(r, dict) or hasattr(r, "keys") else r[0]
-            best = r["best_word_score"] if isinstance(r, dict) or hasattr(r, "keys") else r[1]
-            at = r["best_word_score_at"] if isinstance(r, dict) or hasattr(r, "keys") else r[2]
-
-            items.append({
-                "nickname": nickname,
-                "score": int(best or 0),
-                "at": at or ""
-            })
-
-        return jsonify({"ok": True, "items": items})
-
-    except Exception as e:
-        try:
-            conn.close()
-        except Exception:
-            pass
-        return jsonify({"ok": False, "error": str(e)}), 500
 
 @app.get("/quiz/word_game/ranking")
 def word_game_ranking_page():
@@ -4033,6 +4005,7 @@ def note():
     # 2) 단어 즐겨찾기 (word_favorites)
     word_fav_items = []
     conn = db()
+    wrows = []  # ✅ wrows 기본값
     try:
         ensure_word_favorites_table(conn)
         wrows = conn.execute(
@@ -4066,12 +4039,19 @@ def note():
             }
         )
 
+    # ✅ return은 반드시 함수 마지막(반복문 밖)
     return render_template(
         "note.html",
         user=user,
         fav_items=fav_items,
         word_fav_items=word_fav_items,
+        **seo(
+            title="나만의 일본어 학습노트 | 즐겨찾기 회화·단어 암기 공부",
+            desc="자주 쓰는 일본어 회화와 단어를 저장하고 가리기 기능으로 암기하세요. 나만의 일본어 공부 노트 공간입니다.",
+            keywords="일본어 학습노트, 일본어 암기, 일본어 단어장, 일본어 회화 저장"
+        )
     )
+
 
 
 # -------------------------
@@ -4213,26 +4193,25 @@ def api_word_fav_post():
 def word_game_rankings():
     conn = db()
     rows = conn.execute("""
-        SELECT nickname, username, best_word_score, best_word_score_at
+        SELECT id, nickname, best_word_score, best_word_score_at
         FROM users
-        WHERE best_word_score IS NOT NULL
+        WHERE COALESCE(best_word_score, 0) > 0
         ORDER BY best_word_score DESC, best_word_score_at ASC
         LIMIT 50
     """).fetchall()
     conn.close()
 
     items = []
-    rank = 0
     for r in rows:
-        rank += 1
         items.append({
-            "rank": rank,
+            "id": r["id"],
             "nickname": r["nickname"],
-            "username": r["username"],
             "score": int(r["best_word_score"] or 0),
             "at": r["best_word_score_at"]
         })
-    return jsonify({"ok": True, "items": items})
+
+    return jsonify(ok=True, items=items)
+
 
 # -------------------------
 # Live validation APIs (for register)
@@ -4338,6 +4317,19 @@ def api_member_card():
     if not nick:
         return jsonify(ok=False, error="nick_required"), 400
 
+    def table_cols(conn, table: str):
+        try:
+            rows = conn.execute(f"PRAGMA table_info({table})").fetchall()
+            return {r["name"] if isinstance(r, dict) else r[1] for r in rows}
+        except Exception:
+            return set()
+
+    def pick_first(cols, candidates):
+        for c in candidates:
+            if c in cols:
+                return c
+        return None
+
     conn = db()
     try:
         u = conn.execute(
@@ -4352,44 +4344,87 @@ def api_member_card():
         if not u:
             return jsonify(ok=False, error="not_found"), 404
 
-        # 작성글 수
-        row = conn.execute(
-            "SELECT COUNT(*) AS cnt FROM board_posts WHERE user_id=?",
-            (u["id"],),
-        ).fetchone()
-        post_cnt = int(row["cnt"] or 0) if row else 0
+        u = dict(u)
 
-        # 작성댓글 수
-        row = conn.execute(
-            "SELECT COUNT(*) AS cnt FROM board_comments WHERE user_id=?",
-            (u["id"],),
-        ).fetchone()
-        comment_cnt = int(row["cnt"] or 0) if row else 0
+        # ---- 게시글/댓글 테이블 컬럼 자동 감지 ----
+        post_cols = table_cols(conn, "board_posts")
+        cmt_cols  = table_cols(conn, "board_comments")
 
-        # 계급 처리
-        if u["nickname"] == "SW" or u["id"] == 1:
-            grade = "총관리자 👑"
-        else:
-            grade = (u.get("custom_grade") or "").strip() or "일반"
+        # 보통: user_id / author_id / writer_id 등으로 되어있을 수 있음
+        post_uid_col = pick_first(post_cols, ["user_id", "author_id", "writer_id", "member_id"])
+        post_nick_col = pick_first(post_cols, ["author_nickname", "nickname", "writer_nickname", "member_nickname"])
+        post_user_col = pick_first(post_cols, ["author_username", "username", "writer_username", "member_username"])
 
+        cmt_uid_col = pick_first(cmt_cols, ["user_id", "author_id", "writer_id", "member_id"])
+        cmt_nick_col = pick_first(cmt_cols, ["author_nickname", "nickname", "writer_nickname", "member_nickname"])
+        cmt_user_col = pick_first(cmt_cols, ["author_username", "username", "writer_username", "member_username"])
 
+        # ---- 작성글 수 계산 (id 우선, 없으면 nickname/username로 폴백) ----
+        where_post = []
+        params_post = []
 
-        # 최근접속일: last_seen_at 우선, 없으면 last_login_at
-        last_seen = u["last_seen_at"] or u["last_login_at"] or ""
+        if post_uid_col:
+            where_post.append(f"{post_uid_col}=?")
+            params_post.append(u["id"])
+        if post_nick_col:
+            where_post.append(f"{post_nick_col}=?")
+            params_post.append(u["nickname"])
+        if post_user_col and u.get("username"):
+            where_post.append(f"{post_user_col}=?")
+            params_post.append(u["username"])
 
+        post_cnt = 0
+        if where_post:
+            row = conn.execute(
+                f"SELECT COUNT(*) AS cnt FROM board_posts WHERE " + " OR ".join(where_post),
+                tuple(params_post),
+            ).fetchone()
+            post_cnt = int(row["cnt"] or 0) if row else 0
+
+        # ---- 작성댓글 수 계산 ----
+        where_cmt = []
+        params_cmt = []
+
+        if cmt_uid_col:
+            where_cmt.append(f"{cmt_uid_col}=?")
+            params_cmt.append(u["id"])
+        if cmt_nick_col:
+            where_cmt.append(f"{cmt_nick_col}=?")
+            params_cmt.append(u["nickname"])
+        if cmt_user_col and u.get("username"):
+            where_cmt.append(f"{cmt_user_col}=?")
+            params_cmt.append(u["username"])
+
+        comment_cnt = 0
+        if where_cmt:
+            row = conn.execute(
+                f"SELECT COUNT(*) AS cnt FROM board_comments WHERE " + " OR ".join(where_cmt),
+                tuple(params_cmt),
+            ).fetchone()
+            comment_cnt = int(row["cnt"] or 0) if row else 0
+
+        # ---- 계급: 네 기존 로직 그대로 사용 ----
+        grade = get_user_grade_label({"id": u["id"], "username": u.get("username")})
+
+        # ✅ JS가 data.member로 읽으니 member로 내려줌
         return jsonify(
             ok=True,
             member={
-                "nickname": u["nickname"],
-                "username": u["username"],   # (아이디)
+                "id": u["id"],
+                "username": u.get("username"),
+                "nickname": u.get("nickname"),
                 "grade": grade,
                 "post_cnt": post_cnt,
                 "comment_cnt": comment_cnt,
-                "last_seen_at": last_seen,
+                "last_login_at": u.get("last_login_at"),
+                "last_seen_at": u.get("last_seen_at"),
             }
         )
+
     finally:
         conn.close()
+
+
 # =========================
 # Quiz - Dialog Situation (객관식)
 # =========================
@@ -5044,20 +5079,77 @@ DIALOG_SCENE_QUIZZES = [
 
 ]
 
-@app.route("/robots.txt")
-def robots():
-    return send_from_directory(BASE_DIR, "robots.txt", mimetype="text/plain")
+@app.get("/robots.txt")
+def robots_txt():
+    content = "\n".join([
+        "User-agent: *",
+        "Allow: /",
+        "Sitemap: https://japanesestudyroom.com/sitemap.xml",
+    ])
+    return Response(content, mimetype="text/plain")
 
-@app.route("/sitemap.xml")
-def sitemap():
-    return send_from_directory(BASE_DIR, "sitemap.xml", mimetype="application/xml")
+
+def _absolute(path: str) -> str:
+    return "https://japanesestudyroom.com" + path
+
+
+@app.get("/sitemap.xml")
+def sitemap_xml():
+    urls = []
+
+    urls += [
+        (_absolute("/"), "daily", "1.0"),
+        (_absolute("/situations"), "weekly", "0.9"),
+        (_absolute("/quiz"), "weekly", "0.8"),
+        (_absolute("/words"), "weekly", "0.8"),
+        (_absolute("/board"), "daily", "0.6"),
+    ]
+
+    try:
+        for cat, obj in SITUATIONS.items():
+            for sub in obj["subs"].keys():
+                urls.append((_absolute(f"/situations/{cat}/{sub}"), "monthly", "0.7"))
+    except:
+        pass
+
+    try:
+        urls.append((_absolute("/quiz/dialog"), "weekly", "0.7"))
+        for q in DIALOG_SCENE_QUIZZES:
+            urls.append((_absolute(f"/quiz/dialog/{q['id']}"), "monthly", "0.6"))
+    except:
+        pass
+
+    xml = ['<?xml version="1.0" encoding="UTF-8"?>',
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+
+    for loc, freq, prio in urls:
+        xml += [
+            "  <url>",
+            f"    <loc>{loc}</loc>",
+            f"    <changefreq>{freq}</changefreq>",
+            f"    <priority>{prio}</priority>",
+            "  </url>",
+        ]
+
+    xml.append("</urlset>")
+    return Response("\n".join(xml), mimetype="application/xml")
 
 
 @app.get("/quiz/dialog")
 def quiz_dialog_list():
     user = current_user()
     quizzes = [{"id": q["id"], "title": q["title"]} for q in DIALOG_SCENE_QUIZZES]
-    return render_template("dialog_quiz_list.html", user=user, quizzes=quizzes)
+
+    return render_template(
+        "dialog_quiz_list.html",
+        user=user,
+        quizzes=quizzes,
+        **seo(
+            title="일본 여행 상황별 회화 퀴즈 | 실전 일본어 대화 연습",
+            desc="일본 여행에서 바로 쓰는 상황별 일본어 회화를 퀴즈로 재미있게 연습하세요. 실전 대화 중심 일본어 공부 사이트입니다.",
+            keywords="일본 여행 회화 퀴즈, 일본어 대화 연습, 상황별 일본어 퀴즈, 일본어 회화 게임"
+        )
+    )
 
 
 @app.get("/quiz/dialog/<int:quiz_id>")
@@ -5066,25 +5158,48 @@ def dialog_quiz_play(quiz_id: int):
     q = next((x for x in DIALOG_SCENE_QUIZZES if x["id"] == quiz_id), None)
     if not q:
         abort(404)
-    return render_template("dialog_quiz_play.html", user=user, quiz=q)
+
+    title = f"{q['title']} 일본어 회화 퀴즈 | 여행 일본어 실전 연습"
+    desc = f"{q['title']} 상황에서 사용하는 일본어 회화를 퀴즈로 연습하세요. 일본 여행에서 바로 써먹는 실전 표현을 쉽게 익힐 수 있습니다."
+    keywords = f"{q['title']} 일본어, 일본 여행 회화, 일본어 퀴즈, 상황별 일본어 표현"
+
+    return render_template(
+        "dialog_quiz_play.html",
+        user=user,
+        quiz=q,
+        **seo(
+            title=title,
+            desc=desc,
+            keywords=keywords
+        )
+    )
+
 @app.post("/quiz/dialog/check")
-def dialog_quiz_check():
-    user = current_user()
-    quiz_id = request.form.get("quiz_id", type=int)
-    choice = request.form.get("choice", type=int)
+def quiz_dialog_check():
+    data = request.get_json(silent=True) or {}
 
-    q = next((x for x in DIALOG_SCENE_QUIZZES if x["id"] == quiz_id), None)
+    quiz_id = int(data.get("quiz_id") or 0)
+    selected = int(data.get("selected") or 0)   # ✅ 프론트에서 selected로 보냄
+
+    q = next((x for x in DIALOG_SCENE_QUIZZES if int(x.get("id")) == quiz_id), None)
     if not q:
-        abort(404)
+        return jsonify(ok=False, error="not_found"), 404
 
-    ok = (choice == q["answer"])
-    result = {
-        "ok": ok,
-        "answer_no": q["answer"],
-        "answer_ko": q["answer_ko"],
-        "explain_ko": q["explain_ko"],
-    }
-    return render_template("dialog_quiz_play.html", user=user, quiz=q, result=result)
+    correct_no = int(q.get("answer") or 0)
+    correct = (selected == correct_no)
+
+    choices = q.get("choices") or []
+    correct_text = ""
+    if 1 <= correct_no <= len(choices):
+        correct_text = choices[correct_no - 1]
+
+    return jsonify(
+        ok=True,
+        correct=correct,
+        answer=correct_no,            # ✅ 프론트가 이 키를 봄
+        correct_text=correct_text,    # ✅ 프론트가 이 키를 봄
+        explain_ko=q.get("explain_ko", "")
+    )
 
 @app.context_processor
 def inject_helpers():
