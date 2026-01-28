@@ -11,17 +11,20 @@
 
 <div class="board-wrap" style="padding:18px;">
   <form method="POST" enctype="multipart/form-data">
+    {# CSRF 쓰는 경우에만 활성화 (app.py에서 csrf_token 제공 필요) #}
+    {# <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> #}
+
     <div style="display:flex; flex-direction:column; gap:14px; max-width:820px;">
       <div>
         <label style="display:block; margin-bottom:6px; font-weight:600;">글 제목</label>
-        <input type="text" name="title" value="{{ post.title }}" required
+        <input type="text" name="title" value="{{ post.title | e }}" required
                style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid #e5e7eb;">
       </div>
 
       <div>
         <label style="display:block; margin-bottom:6px; font-weight:600;">글 내용</label>
         <textarea name="content" rows="10" required
-                  style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid #e5e7eb;">{{ post.content }}</textarea>
+                  style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid #e5e7eb;">{{ post.content | e }}</textarea>
       </div>
 
       <div>
