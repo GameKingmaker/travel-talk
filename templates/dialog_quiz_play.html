@@ -37,7 +37,7 @@
   .jp{ font-weight:800; }
   .pron{ color:#64748b; font-size:13px; margin-left:8px; font-weight:700; }
 
-  /* choices card buttons */
+  /* choices */
   .choices{ margin-top:14px; display:grid; grid-template-columns:1fr; gap:10px; }
   .choice{
     width:100%;
@@ -86,9 +86,10 @@
   .choice .mark{
     font-size:18px;
     font-weight:900;
-    opacity:.0;
+    opacity:0;
     transform: scale(.85);
     transition: opacity .12s ease, transform .12s ease;
+    margin-left:10px;
   }
   .choice.correct .mark,
   .choice.wrong .mark{
@@ -113,7 +114,7 @@
   .result .msg{ font-weight:900; }
   .result .small{ margin-top:6px; color:#475569; font-size:13px; line-height:1.5; font-weight:700; }
 
-  /* translation block (result 아래) */
+  /* translation block */
   .trans-title{ margin-top:10px; font-weight:900; color:#0f172a; }
   .trans-lines{ margin-top:6px; display:flex; flex-direction:column; gap:6px; }
   .trans-line{
@@ -180,7 +181,7 @@
     <div class="choices" id="choices">
       {% for ch in quiz.choices %}
         {% set no = loop.index %}
-        <button type="button" class="choice" data-choice="{{ no }}">
+        <button type="button" class="choice choiceBtn" data-choice="{{ no }}">
           <span>{{ no }}. {{ ch }}</span>
           <span class="badge">선택</span>
           <span class="mark">✔</span>
@@ -192,11 +193,11 @@
     <div class="result" id="resultBox">
       <div class="row">
         <div class="icon" id="resultIcon">✔</div>
-        <div>
+        <div style="width:100%;">
           <div class="msg" id="resultMsg">정답!</div>
           <div class="small" id="resultText"></div>
 
-          <!-- ✅ 여기서 대화 번역까지 같이 보여줌 -->
+          <!-- 번역/해설 -->
           <div id="translationWrap" style="display:none;">
             <div class="trans-title">📖 대화 번역</div>
             <div class="trans-lines">
@@ -209,7 +210,7 @@
             </div>
 
             <div class="trans-title" style="margin-top:12px;">💡 왜 이게 정답일까요?</div>
-            <div class="small">{{ quiz.explain_ko }}</div>
+            <div class="small" id="explainKo"></div>
           </div>
         </div>
       </div>
@@ -218,80 +219,129 @@
     <div class="actions">
       <button id="checkBtn" class="btn primary" disabled>정답 확인</button>
 
-      <!-- 다음 문제 -->
-      <a id="nextBtn" class="btn" href="{{ url_for('dialog_quiz_play', quiz_id=quiz.id + 1) }}" style="display:none;">
-        다음 문제 →
-      </a>
+      {% if next_id %}
+        <a id="nextBtn" class="btn" href="{{ url_for('dialog_quiz_play', quiz_id=next_id) }}" style="display:none;">
+          다음 문제 →
+        </a>
+      {% else %}
+        <a id="nextBtn" class="btn" href="{{ url_for('quiz_dialog_list') }}" style="display:none;">
+          목록으로 →
+        </a>
+      {% endif %}
     </div>
   </div>
 </div>
 
 <script>
-  (function(){
-    const answer = {{ quiz.answer|int }};
-    const choices = Array.from(document.querySelectorAll(".choice"));
-    const checkBtn = document.getElementById("checkBtn");
-    const resultBox = document.getElementById("resultBox");
-    const resultIcon = document.getElementById("resultIcon");
-    const resultMsg = document.getElementById("resultMsg");
-    const resultText = document.getElementById("resultText");
-    const nextBtn = document.getElementById("nextBtn");
-    const translationWrap = document.getElementById("translationWrap");
+(() => {
+  const quizId = {{ quiz.id }};
+  const choiceBtns = Array.from(document.querySelectorAll(".choiceBtn"));
+  const checkBtn = document.getElementById("checkBtn");
 
-    let selected = null;
-    let locked = false;
+  const resultBox = document.getElementById("resultBox");
+  const resultIcon = document.getElementById("resultIcon");
+  const resultMsg = document.getElementById("resultMsg");
+  const resultText = document.getElementById("resultText");
+  const translationWrap = document.getElementById("translationWrap");
+  const explainKoEl = document.getElementById("explainKo");
+  const nextBtn = document.getElementById("nextBtn");
 
-    function setResult(ok){
-      resultBox.classList.add("show");
-      resultBox.classList.toggle("ok", ok);
-      resultBox.classList.toggle("no", !ok);
+  let selected = null;
+  let locked = false;
 
-      resultIcon.textContent = ok ? "✅" : "❌";
-      resultMsg.textContent = ok ? "정답!" : "오답!";
+  function toast(msg){
+    if (typeof window.showToast === "function") window.showToast(msg);
+    else alert(msg);
+  }
 
-      // ✅ 정답 문장은 answer_ko 대신 choices[answer-1]을 보여줌
-      const correctText = "{{ quiz.choices[quiz.answer-1]|e }}";
+  // ✅ 선택 UI
+  choiceBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (locked) return;
 
-      resultText.innerHTML =
-        "정답: <b>" + answer + "번</b> · " + correctText + "<br>" +
-        "<span style='color:#475569; font-weight:700;'>{{ quiz.explain_ko|e }}</span>";
+      selected = parseInt(btn.dataset.choice, 10);
 
-      // ✅ 번역/설명 영역 표시
-      translationWrap.style.display = "block";
+      choiceBtns.forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
 
-      // 다음 문제 버튼 표시
-      nextBtn.style.display = "inline-flex";
-      checkBtn.disabled = true;
+      // ✅ 선택하면 정답확인 버튼 활성화
+      checkBtn.disabled = false;
+    });
+  });
+
+  // ✅ 결과 표시
+  function showResult(isCorrect, answerNo, correctText, explainKo){
+    answerNo = parseInt(answerNo, 10);
+    if (!Number.isFinite(answerNo) || answerNo <= 0){
+      toast("정답 데이터가 올바르지 않아요. (answerNo 확인)");
+      locked = false;
+      checkBtn.disabled = false;
+      return;
     }
 
-    choices.forEach(btn => {
-      btn.addEventListener("click", () => {
-        if(locked) return;
+    // 이전 결과 초기화 + 정답/오답 표시
+    choiceBtns.forEach(b => {
+      const n = parseInt(b.dataset.choice, 10);
+      b.classList.remove("correct", "wrong");
 
-        choices.forEach(b => b.classList.remove("selected"));
-        btn.classList.add("selected");
+      if (n === answerNo) b.classList.add("correct");
+      if (selected === n && !isCorrect) b.classList.add("wrong");
+    });
 
-        selected = parseInt(btn.dataset.choice, 10);
+    // 결과 박스 표시
+    resultBox.classList.add("show");
+    resultBox.classList.toggle("ok", !!isCorrect);
+    resultBox.classList.toggle("no", !isCorrect);
+
+    resultIcon.textContent = isCorrect ? "✅" : "❌";
+    resultMsg.textContent = isCorrect ? "정답!" : "오답!";
+    resultText.textContent = `정답: ${answerNo}. ${correctText || ""}`.trim();
+
+    // 번역/해설 표시
+    if (translationWrap) translationWrap.style.display = "block";
+    if (explainKoEl) explainKoEl.textContent = explainKo || "";
+
+    // 다음 버튼 표시
+    if (nextBtn) nextBtn.style.display = "inline-flex";
+  }
+
+  // ✅ 정답 확인
+  checkBtn.addEventListener("click", async () => {
+    if (locked) return;
+    if (selected == null) return toast("보기를 먼저 선택하세요.");
+
+    locked = true;
+    checkBtn.disabled = true;
+
+    try{
+      const res = await fetch("{{ url_for('quiz_dialog_check') }}", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ quiz_id: quizId, selected })
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data || !data.ok){
+        locked = false;
         checkBtn.disabled = false;
-      });
-    });
+        return toast("오류가 발생했어요. (서버 응답 확인)");
+      }
 
-    checkBtn.addEventListener("click", () => {
-      if(selected === null) return;
-      locked = true;
+      // ✅ 서버 응답 키는 answer / correct_text 로 고정
+      showResult(!!data.correct, data.answer, data.correct_text, data.explain_ko);
 
-      // 정답/오답 스타일 표시
-      choices.forEach(btn => {
-        const no = parseInt(btn.dataset.choice, 10);
-        btn.classList.remove("selected");
-        btn.querySelector(".mark").textContent = (no === answer) ? "✔" : "✖";
-        if(no === answer) btn.classList.add("correct");
-        else if(no === selected) btn.classList.add("wrong");
-      });
+    }catch(e){
+      locked = false;
+      checkBtn.disabled = false;
+      toast("네트워크 오류가 발생했어요.");
+    }
+  });
 
-      setResult(selected === answer);
-    });
-  })();
+  // 초기: 선택 전엔 비활성
+  checkBtn.disabled = true;
+})();
 </script>
+
 
 {% endblock %}
