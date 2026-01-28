@@ -1,49 +1,67 @@
 {% extends "base.html" %}
+
+{# ✅ SEO: 카테고리/서브 타이틀 기반 자동 #}
+{% set page_title = (cat_title ~ " · " ~ sub_title ~ " | 상황별 회화 - 일본 여행 회화 공부방") %}
+{% set page_desc = "일본어/발음/뜻을 3줄로 빠르게 학습하고, 즐겨찾기로 복습하세요." %}
+{% set page_robots = "index,follow" %}
+
 {% block content %}
 
 <section class="page-head">
-  <h1>{{ cat_title }} · {{ sub_title }}</h1>
+  <h1>{{ (cat_title or "") | e }} · {{ (sub_title or "") | e }}</h1>
   <p class="page-guide">
-  일본어 / 발음 / 한국어 뜻 3줄로 확인하세요.<br>
-  ※ ★ 버튼을 누르면 즐겨찾기에 저장됩니다.
-</p>
+    일본어 / 발음 / 한국어 뜻 3줄로 확인하세요.<br>
+    ※ ★ 버튼을 누르면 즐겨찾기에 저장됩니다.
+  </p>
+
   <div class="back-row">
-  <a class="back-btn" href="{{ url_for('situations') }}">← 분류 목록</a>
-</div>
-
-
-
+    <a class="back-btn" href="{{ url_for('situations') }}">← 분류 목록</a>
+  </div>
 </section>
 
 <section class="phrase-list">
-  {% for item in items %}
-    <div class="phrase-card"
-         data-key="{{ item.phrase_key }}"
-         data-jp="{{ item.jp }}"
-         data-pron="{{ item.pron }}"
-         data-ko="{{ item.ko }}">
-      <button class="fav-btn {% if item.is_fav %}on{% endif %}" title="즐겨찾기">
-        ★
-      </button>
+  {% if items and (items|length) > 0 %}
+    {% for item in items %}
+      <div class="phrase-card"
+           data-key="{{ (item.phrase_key or '') | e }}"
+           data-jp='{{ (item.jp or "") | tojson }}'
+           data-pron='{{ (item.pron or "") | tojson }}'
+           data-ko='{{ (item.ko or "") | tojson }}'>
 
-      <div class="phrase-body">
-        <div class="p-line">
-  <span class="p-label">일본어:</span>
-  <span class="p-jp">
-    {{ item.jp }}
-    {% if item.source %}
-      <span class="quote-source">({{ item.source }})</span>
-    {% endif %}
-  </span>
-</div>
+        <button class="fav-btn {% if item.is_fav %}on{% endif %}" type="button" title="즐겨찾기">
+          ★
+        </button>
 
-        <div class="p-line"><span class="p-label">발음:</span> <span class="p-pron">{{ item.pron }}</span></div>
-        <div class="p-line"><span class="p-label">한국어 뜻:</span> <span class="p-ko">{{ item.ko }}</span></div>
+        <div class="phrase-body">
+          <div class="p-line">
+            <span class="p-label">일본어:</span>
+            <span class="p-jp">
+              {{ (item.jp or "") | e }}
+              {% if item.source %}
+                <span class="quote-source">({{ (item.source or "") | e }})</span>
+              {% endif %}
+            </span>
+          </div>
+
+          <div class="p-line">
+            <span class="p-label">발음:</span>
+            <span class="p-pron">{{ (item.pron or "") | e }}</span>
+          </div>
+
+          <div class="p-line">
+            <span class="p-label">한국어 뜻:</span>
+            <span class="p-ko">{{ (item.ko or "") | e }}</span>
+          </div>
+        </div>
+
+        <button class="speak-btn" type="button" data-tts='{{ (item.jp or "") | tojson }}'>발음 듣기</button>
       </div>
-
-      <button class="speak-btn" data-tts="{{ item.jp }}">발음 듣기</button>
+    {% endfor %}
+  {% else %}
+    <div style="padding:14px 16px; border:1px dashed #d9e2f5; border-radius:14px; color:#64748b; background:#fbfdff;">
+      아직 문장이 준비되지 않았어요. 곧 업데이트할게요!
     </div>
-  {% endfor %}
+  {% endif %}
 </section>
 
 {% endblock %}
