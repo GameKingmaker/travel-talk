@@ -1,5 +1,11 @@
 <!-- quiz.html -->
 {% extends "base.html" %}
+
+{# ✅ SEO (퀴즈 허브는 노출 OK) #}
+{% set page_title = "퀴즈 · 게임 | 일본 여행 회화 공부방" %}
+{% set page_desc = "단어 게임과 상황 대화 퀴즈 등 다양한 일본어 학습 게임을 바로 시작해보세요." %}
+{% set page_robots = "index,follow" %}
+
 {% block content %}
 
 <style>
@@ -35,11 +41,16 @@
   .game-foot{ margin-top:12px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
   .go{ font-weight:900; color:#1d4ed8; }
 
-  .disabled{
-    opacity:.55;
-    cursor:not-allowed;
-    pointer-events:none;
+  .hint{
+    margin-top:10px;
+    padding:12px 14px;
+    border:1px solid #e1e7f5;
+    border-radius:14px;
+    background:#f6f8ff;
+    color:#475467;
+    font-size:13px;
   }
+  .hint a{ color:#2563eb; text-decoration:underline; text-underline-offset:3px; }
 </style>
 
 <div class="quiz-wrap">
@@ -47,39 +58,47 @@
     <div>
       <h1 class="quiz-title">퀴즈 · 게임</h1>
       <p class="quiz-sub">게임을 선택해서 바로 시작해보세요.</p>
+
+      {% if not user %}
+        <div class="hint">
+          기록 저장/랭킹 참여는 <a href="{{ url_for('login', next=url_for('quiz') ) }}">로그인</a> 후 이용할 수 있어요.
+        </div>
+      {% endif %}
     </div>
   </div>
 
   <div class="game-grid">
-  <!-- 단어게임(1개만) -->
-  <a class="game-card" href="{{ url_for('word_game') }}">
-    <div class="game-top">
-      <h2 class="game-name">단어 게임</h2>
-      <span class="pill">연습 · 랭킹</span>
-    </div>
-    <p class="game-desc">
-      일본어 <b>발음</b>을 보고 <b>한국어 뜻</b>을 입력하세요.<br>
-      게임 시작 시 <b>연습 / 랭킹</b> 모드를 선택할 수 있어요.
-    </p>
-    <div class="game-foot">
-      <span class="go">시작하러 가기 →</span>
-    </div>
-  </a>
 
-  <!-- ✅ 상황 대화 퀴즈 -->
-  <a class="game-card" href="{{ url_for('quiz_dialog_list') }}">
-    <div class="game-top">
-      <h2 class="game-name">상황 대화 퀴즈</h2>
-      <span class="pill">상황 퀴즈</span>
-    </div>
-    <p class="game-desc">
-      그림과 대화를 보고 <b>지금 상황</b>에 알맞은 문장을 골라 맞혀보세요.
-    </p>
-    <div class="game-foot">
-      <span class="go">시작하러 가기 →</span>
-    </div>
-  </a>
+    <!-- 단어 게임 -->
+    <a class="game-card" href="{{ url_for('word_game') }}" aria-label="단어 게임 시작">
+      <div class="game-top">
+        <h2 class="game-name">단어 게임</h2>
+        <span class="pill">연습 · 랭킹</span>
+      </div>
+      <p class="game-desc">
+        일본어 <b>발음</b>을 보고 <b>한국어 뜻</b>을 입력하세요.<br>
+        게임 시작 시 <b>연습 / 랭킹</b> 모드를 선택할 수 있어요.
+      </p>
+      <div class="game-foot">
+        <span class="go">시작하러 가기 →</span>
+      </div>
+    </a>
+
+    <!-- 상황 대화 퀴즈 -->
+    <a class="game-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황 대화 퀴즈 시작">
+      <div class="game-top">
+        <h2 class="game-name">상황 대화 퀴즈</h2>
+        <span class="pill">상황 퀴즈</span>
+      </div>
+      <p class="game-desc">
+        그림과 대화를 보고 <b>지금 상황</b>에 알맞은 문장을 골라 맞혀보세요.
+      </p>
+      <div class="game-foot">
+        <span class="go">시작하러 가기 →</span>
+      </div>
+    </a>
+
+  </div>
 </div>
-
 
 {% endblock %}
