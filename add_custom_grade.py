@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect("phrases.db")
+conn = sqlite3.connect("/app/phrases.db")  # 실제 DB 경로로 수정
 cur = conn.cursor()
 
 try:
