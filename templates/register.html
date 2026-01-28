@@ -140,10 +140,155 @@
     </div>
 
     <div class="form-actions">
-      <button class="btn primary" type="submit">등록</button>
+      <button class="btn primary" type="submit" id="registerBtn" disabled>등록</button>
       <a class="btn" href="{{ url_for('index') }}">취소</a>
     </div>
   </form>
 </div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+
+  const elU  = $("reg-username");
+  const elN  = $("reg-nickname");
+  const elE  = $("reg-email");
+  const elE2 = $("reg-email2");
+  const elP  = $("reg-password");
+  const elP2 = $("reg-password2");
+
+  const msgU  = $("msg-username");
+  const msgN  = $("msg-nickname");
+  const msgE  = $("msg-email");
+  const msgE2 = $("msg-email2");
+  const msgP  = $("msg-password");
+  const msgP2 = $("msg-password2");
+
+  function setMsg(el, ok, text){
+    if (!el) return;
+    el.textContent = text || "";
+    el.classList.remove("good","bad");
+    if (text){
+      el.classList.add(ok ? "good" : "bad");
+    }
+    refreshButton();
+  }
+
+  function debounce(fn, ms){
+    let t;
+    return (...args) => {
+      clearTimeout(t);
+      t = setTimeout(() => fn(...args), ms);
+    };
+  }
+
+  async function validateUsername(){
+    const v = (elU.value || "").trim();
+    if (!v){
+      setMsg(msgU, false, "");
+      return;
+    }
+    const res = await fetch(`/api/validate/username?u=${encodeURIComponent(v)}`);
+    const data = await res.json();
+    setMsg(msgU, !!data.ok && !!data.available, data.msg || "");
+  }
+
+  async function validateNickname(){
+    const v = (elN.value || "").trim();
+    if (!v){
+      setMsg(msgN, false, "");
+      return;
+    }
+    const res = await fetch(`/api/validate/nickname?n=${encodeURIComponent(v)}`);
+    const data = await res.json();
+    setMsg(msgN, !!data.ok && !!data.available, data.msg || "");
+  }
+
+  async function validateEmail(){
+    const v = (elE.value || "").trim().toLowerCase();
+    if (!v){
+      setMsg(msgE, false, "");
+      return;
+    }
+    const res = await fetch(`/api/validate/email?e=${encodeURIComponent(v)}`);
+    const data = await res.json();
+    setMsg(msgE, !!data.ok && !!data.available, data.msg || "");
+  }
+
+  function validateEmail2(){
+    const a = (elE.value || "").trim().toLowerCase();
+    const b = (elE2.value || "").trim().toLowerCase();
+    if (!b){
+      setMsg(msgE2, false, "");
+      return;
+    }
+    if (a !== b){
+      setMsg(msgE2, false, "이메일이 일치하지 않습니다.");
+    } else {
+      setMsg(msgE2, true, "이메일이 일치합니다.");
+    }
+  }
+
+  function validatePassword(){
+    const v = elP.value || "";
+    if (!v){
+      setMsg(msgP, false, "");
+      return;
+    }
+    if (v.length < 8 || v.length > 16){
+      setMsg(msgP, false, "비밀번호는 8~16자여야 합니다.");
+    } else {
+      setMsg(msgP, true, "사용 가능한 비밀번호입니다.");
+    }
+  }
+
+  function validatePassword2(){
+    const a = elP.value || "";
+    const b = elP2.value || "";
+    if (!b){
+      setMsg(msgP2, false, "");
+      return;
+    }
+    if (a !== b){
+      setMsg(msgP2, false, "비밀번호가 일치하지 않습니다.");
+    } else {
+      setMsg(msgP2, true, "비밀번호가 일치합니다.");
+    }
+  }
+
+  const dUsername = debounce(validateUsername, 250);
+  const dNickname = debounce(validateNickname, 250);
+  const dEmail    = debounce(validateEmail, 250);
+
+  if (elU) elU.addEventListener("input", dUsername);
+  if (elN) elN.addEventListener("input", dNickname);
+  if (elE) elE.addEventListener("input", () => { dEmail(); validateEmail2(); });
+  if (elE2) elE2.addEventListener("input", validateEmail2);
+
+  if (elP) elP.addEventListener("input", () => { validatePassword(); validatePassword2(); });
+  if (elP2) elP2.addEventListener("input", validatePassword2);
+
+  // 페이지 로드시 값이 이미 있으면 한번 검사
+  if (elU && elU.value) validateUsername();
+  if (elN && elN.value) validateNickname();
+  if (elE && elE.value) validateEmail();
+})();
+const btn = document.getElementById("registerBtn");
+
+function refreshButton(){
+  const ok =
+    msgU.classList.contains("good") &&
+    msgN.classList.contains("good") &&
+    msgE.classList.contains("good") &&
+    msgE2.classList.contains("good") &&
+    msgP.classList.contains("good") &&
+    msgP2.classList.contains("good");
+
+  btn.disabled = !ok;
+  btn.style.opacity = ok ? "1" : "0.5";
+  btn.style.cursor  = ok ? "pointer" : "not-allowed";
+}
+
+</script>
+
 
 {% endblock %}
