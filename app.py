@@ -18,6 +18,7 @@ from flask import g
 from datetime import datetime, timezone, timedelta
 from functools import wraps
 from typing import Any, Dict, List, Tuple, Optional
+from flask import send_from_directory
 
 from flask import (
     Flask, render_template, request, redirect, url_for,
@@ -5042,7 +5043,9 @@ DIALOG_SCENE_QUIZZES = [
 
 
 ]
-
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory(".", "sitemap.xml", mimetype="application/xml")
 
 @app.get("/quiz/dialog")
 def quiz_dialog_list():
