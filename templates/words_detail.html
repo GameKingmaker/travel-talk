@@ -105,6 +105,7 @@
   tr:last-child td{ border-bottom:none; }
   .muted{ color:#6b7280; font-size:12px; margin-top:10px; }
 </style>
+<div class="wrap">
 
 <section class="page-head">
   <h1>{{ title }}</h1>
@@ -120,15 +121,8 @@
 </section>
 
 
-  <div class="card phrase-list">
+    <div class="card phrase-list">
     <table>
-      <thead>
-        <tr>
-          <th style="width:25%;">일본어</th>
-          <th style="width:25%;">발음</th>
-          <th>뜻</th>
-        </tr>
-      </thead>
       <thead>
   <tr>
     <th style="width:70px;">즐겨</th>
@@ -138,34 +132,87 @@
   </tr>
 </thead>
 
-<tbody>
-{% for jp, pron, ko in (rows or []) %}
-  <tr>
-    <td>
-      <button type="button"
-              class="fav-btn"
-              data-cat="{{ cat_key }}"
-              data-jp="{{ jp }}">★</button>
-    </td>
 
-    <td>
-      <span class="jp-text">{{ jp }}</span>
-      <button type="button" class="tts-btn" data-tts="{{ jp }}">🔊</button>
-    </td>
+      <tbody>
+      {% for row in (rows or []) %}
+        {# rows가 dict든 tuple/list든 대응 #}
+        {% set jp   = row.jp   if row.jp   is defined else row[0] %}
+        {% set pron = row.pron if row.pron is defined else row[1] %}
+        {% set ko   = row.ko   if row.ko   is defined else row[2] %}
 
-    <td><span class="p-pron">{{ pron }}</span></td>
-<td><span class="p-ko">{{ ko }}</span></td>
+        {% set is_fav = (fav_jp_set and (jp in fav_jp_set)) %}
 
-  </tr>
-{% endfor %}
-</tbody>
+        <tr>
+          <td>
+            <button type="button"
+                    class="fav-btn {% if is_fav %}on{% endif %}"
+                    data-cat="{{ cat_key }}"
+                    data-jp="{{ jp }}">
+              {% if is_fav %}★{% else %}☆{% endif %}
+            </button>
+          </td>
 
+          <td>
+            <span class="jp-text">{{ jp }}</span>
+            <button type="button" class="tts-btn" data-tts="{{ jp }}">🔊</button>
+          </td>
 
+          <td><span class="p-pron">{{ pron }}</span></td>
+          <td><span class="p-ko">{{ ko }}</span></td>
+        </tr>
+      {% endfor %}
+      </tbody>
     </table>
 
     <div class="muted">총 {{ (rows or [])|length }}개</div>
   </div>
-</div>
+<script>
+(() => {
+  function toast(msg){
+    if (typeof window.showToast === "function") window.showToast(msg);
+    else alert(msg);
+  }
 
+  // 즐겨찾기 토글
+  document.addEventListener("click", async (e) => {
+    const btn = e.target.closest(".fav-btn");
+    if (!btn) return;
+
+    if (!window.IS_LOGGED_IN){
+      toast("로그인 후 즐겨찾기를 사용할 수 있어요.");
+      return;
+    }
+
+    const cat_key = btn.getAttribute("data-cat");
+    const jp = btn.getAttribute("data-jp");
+    const on = btn.classList.contains("on");
+
+    try{
+      const res = await fetch("/api/word_fav", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+          action: on ? "remove" : "add",
+          cat_key,
+          jp
+        })
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.ok){
+        toast("처리 실패(로그인/서버 상태 확인)");
+        return;
+      }
+
+      btn.classList.toggle("on", !on);
+      btn.textContent = (!on) ? "★" : "☆";
+    }catch(err){
+      toast("네트워크 오류");
+    }
+  });
+})();
+</script>
+
+</div>
 
 {% endblock %}
