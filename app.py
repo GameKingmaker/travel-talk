@@ -5043,14 +5043,16 @@ DIALOG_SCENE_QUIZZES = [
 
 
 ]
-@app.route("/sitemap.xml")
-def sitemap():
-    return send_from_directory(".", "sitemap.xml", mimetype="application/xml")
 
 @app.route("/robots.txt")
 def robots():
-    return send_from_directory(".", "robots.txt", mimetype="text/plain")
-    
+    return send_from_directory(BASE_DIR, "robots.txt", mimetype="text/plain")
+
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory(BASE_DIR, "sitemap.xml", mimetype="application/xml")
+
+
 @app.get("/quiz/dialog")
 def quiz_dialog_list():
     user = current_user()
