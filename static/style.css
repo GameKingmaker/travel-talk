@@ -20,12 +20,12 @@ body{
   background:
     radial-gradient(1200px 600px at 20% 0%, rgba(99,102,241,0.18), transparent 60%),
     radial-gradient(900px 520px at 80% 10%, rgba(59,130,246,0.16), transparent 55%),
-    linear-gradient(180deg, rgba(243,245,255,1) 0%, rgba(236,240,255,1) 55%, rgba(243,245,255,1) 100%),
-    ;
+    linear-gradient(180deg, rgba(243,245,255,1) 0%, rgba(236,240,255,1) 55%, rgba(243,245,255,1) 100%);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
+
 
 /* topbar */
 .topbar{
@@ -500,16 +500,20 @@ body{
   position: relative;
   padding-top: 48px;
 }
-.phrase-card{
+/* =========================
+   Note 전용 카드 레이아웃 (phrase-card 덮어쓰기 방지)
+========================= */
+.note-phrase-list .phrase-card{
   width: 100%;
   display: flex;
   align-items: center;
   gap: 16px;
 }
-.phrase-body{
+.note-phrase-list .phrase-body{
   flex: 1;
   min-width: 0;
 }
+
 .note-controls{
   position: absolute;
   top: 16px;
@@ -1253,6 +1257,23 @@ button[type="submit"]:hover{
 a.btn-primary{
   color:white !important;
 }
+
+/* =========================
+   Words Detail: 발음/뜻 가리기 (정확히 p-pron / p-ko 대응)
+========================= */
+.phrase-list.hide-pron .p-pron{
+  color: transparent;
+  background: rgba(15,23,42,0.10);
+  border-radius: 8px;
+  user-select:none;
+}
+.phrase-list.hide-ko .p-ko{
+  color: transparent;
+  background: rgba(15,23,42,0.10);
+  border-radius: 8px;
+  user-select:none;
+}
+
 /* ===========================
    PRIMARY BUTTON SYSTEM
    (검색 / 글쓰기 / 등록 통일)
@@ -1291,3 +1312,23 @@ a.btn-primary{
   justify-content: center;
   text-decoration: none;
 }
+.field-msg.good { color:#16a34a; font-weight:800; }
+.field-msg.bad  { color:#dc2626; font-weight:800; }
+ /* =========================
+   Words Detail 전용 즐겨찾기 버튼(테이블)
+   - 전역 fav-btn 덮어쓰기 방지
+========================= */
+.phrase-list table .fav-btn{
+  width:44px;
+  height:34px;
+  border-radius:10px;
+  border:1px solid rgba(15,23,42,.10);
+  background:#fff;
+  cursor:pointer;
+  font-weight:900;
+}
+.phrase-list table .fav-btn.on{
+  background:#fff7ed;
+  border-color: rgba(249,115,22,.35);
+}
+
