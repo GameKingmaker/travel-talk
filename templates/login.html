@@ -1,27 +1,54 @@
 {% extends "base.html" %}
+
+{# 🔐 로그인 페이지는 검색노출 X #}
+{% set page_title = "로그인 | 일본 여행 회화 공부방" %}
+{% set page_desc = "아이디와 비밀번호로 일본 여행 회화 공부방에 로그인하세요." %}
+{% set page_robots = "noindex,nofollow" %}
+
 {% block content %}
 
 <div class="page-head">
   <h1 class="page-title">로그인</h1>
-  <p class="page-sub">아이디/비밀번호로 로그인하세요.</p>
+  <p class="page-sub">아이디와 비밀번호로 로그인하세요.</p>
 </div>
 
 <div class="form-wrap">
-  <form class="form-card" method="post" action="{{ url_for('login') }}" target="_self">
+  <form class="form-card"
+        method="post"
+        action="{{ url_for('login') }}"
+        autocomplete="off">
+
     <div class="field">
-      <label class="label">아이디</label>
-      <input class="input" type="text" name="username" required autocomplete="username">
+      <label class="label" for="username">아이디</label>
+      <input class="input"
+             id="username"
+             type="text"
+             name="username"
+             required
+             autocomplete="username"
+             autofocus>
     </div>
 
     <div class="field">
-      <label class="label">비밀번호</label>
-      <input class="input" type="password" name="password" required autocomplete="current-password">
+      <label class="label" for="password">비밀번호</label>
+      <input class="input"
+             id="password"
+             type="password"
+             name="password"
+             required
+             autocomplete="current-password">
     </div>
 
     <div class="form-actions">
       <button class="btn primary" type="submit">로그인</button>
-      <a class="btn" href="{{ url_for('register') }}">회원가입</a>
-      <a class="btn ghost" href="{{ url_for('forgot_password') }}">비밀번호 찾기</a>
+
+      <a class="btn" href="{{ url_for('register') }}">
+        회원가입
+      </a>
+
+      <a class="btn ghost" href="{{ url_for('forgot_password') }}">
+        비밀번호 찾기
+      </a>
     </div>
   </form>
 </div>
