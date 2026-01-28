@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+
+{# ✅ SEO: 상황별 회화 허브 #}
+{% set page_title = "상황별 회화 | 일본 여행 회화 공부방" %}
+{% set page_desc = "공항·호텔·교통·식당 등 상황을 선택하면 소분류별 핵심 문장을 바로 볼 수 있어요." %}
+{% set page_robots = "index,follow" %}
+
 {% block content %}
 
 <style>
@@ -143,7 +149,6 @@
     flex: 0 0 auto;
   }
 
-  /* 작은 도움말 */
   .hint{
     margin-top:14px;
     color:#64748b;
@@ -159,33 +164,42 @@
     </div>
   </div>
 
-  <div class="sit-grid">
-    {% for cat_key, cat in (situations or {}).items() %}
-      <section class="cat-card">
-        <div class="cat-top">
-          <h2 class="cat-name">{{ cat["title"] }}</h2>
-          <div class="cat-meta">
-            <span>소분류</span>
-            <span class="pill">{{ cat["subs"]|length }}</span>
+  {% if situations and (situations|length) > 0 %}
+    <div class="sit-grid">
+      {# ✅ dictsort로 키 기준 정렬 (원하는 순서가 따로 있으면 app.py에서 정렬해도 됨) #}
+      {% for cat_key, cat in (situations|dictsort) %}
+        {% set subs = (cat.get("subs") or {}) %}
+        <section class="cat-card">
+          <div class="cat-top">
+            <h2 class="cat-name">{{ (cat["title"] or "") | e }}</h2>
+            <div class="cat-meta">
+              <span>소분류</span>
+              <span class="pill">{{ subs|length }}</span>
+            </div>
           </div>
-        </div>
 
-        <div class="chip-row">
-          {% for sub_key, sub in (cat.get("subs") or {}).items() %}
-            <a class="chip" href="{{ url_for('situation_detail', cat=cat_key, sub=sub_key) }}">
-              <div class="chip-left">
-                <span class="dot"></span>
-                <span class="chip-title">{{ sub["title"] }}</span>
-              </div>
-              <span class="badge">{{ sub["items"]|length }}</span>
-            </a>
-          {% endfor %}
-        </div>
+          <div class="chip-row">
+            {% for sub_key, sub in (subs|dictsort) %}
+              {% set items = (sub.get("items") or []) %}
+              <a class="chip" href="{{ url_for('situation_detail', cat=cat_key, sub=sub_key) }}">
+                <div class="chip-left">
+                  <span class="dot"></span>
+                  <span class="chip-title">{{ (sub["title"] or "") | e }}</span>
+                </div>
+                <span class="badge">{{ items|length }}</span>
+              </a>
+            {% endfor %}
+          </div>
 
-        <div class="hint">※ 버튼을 누르면 해당 소분류 문장이 열려요.</div>
-      </section>
-    {% endfor %}
-  </div>
+          <div class="hint">※ 버튼을 누르면 해당 소분류 문장이 열려요.</div>
+        </section>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div style="margin-top:16px; padding:14px 16px; border:1px dashed #d9e2f5; border-radius:14px; color:#64748b; background:#fbfdff;">
+      아직 상황별 회화 분류를 준비 중입니다. 곧 업데이트할게요!
+    </div>
+  {% endif %}
 </div>
 
 {% endblock %}
