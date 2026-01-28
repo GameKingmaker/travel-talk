@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+
+{# ✅ 게시판 목록 SEO #}
+{% set page_title = (q and ("게시판 검색: " ~ q ~ " | 일본 여행 회화 공부방") ) or "일반게시판 | 일본 여행 회화 공부방" %}
+{% set page_desc = (q and ("일반게시판에서 '" ~ q ~ "' 검색 결과입니다.") ) or "일본 여행 회화 공부방 일반게시판입니다. 자유롭게 글을 남겨보세요." %}
+{% set page_robots = "index,follow" %}
+
 {% block content %}
 
 <style>
@@ -59,18 +65,27 @@
       <input
         type="text"
         name="q"
-        value="{{ q or '' }}"
+        value="{{ (q or '') | e }}"
         placeholder="제목 또는 내용 검색"
         style="flex:1; max-width:420px; padding:10px 12px; border-radius:12px; border:1px solid #d9e2ef; background:#fff;">
       <button class="btn btn-primary" type="submit">검색</button>
     </form>
 
-    <p style="margin:8px 0 0; color:#667085;">자유롭게 글을 남겨보세요.</p>
+    {% if q %}
+      <p style="margin:8px 0 0; color:#667085;">
+        검색어: <b>{{ q | e }}</b>
+        · <a href="{{ url_for('board') }}" style="color:#2563eb; text-decoration:underline; text-underline-offset:3px;">전체 보기</a>
+      </p>
+    {% else %}
+      <p style="margin:8px 0 0; color:#667085;">자유롭게 글을 남겨보세요.</p>
+    {% endif %}
   </div>
 
   <div>
     {% if user %}
       <a class="btn btn-primary" href="{{ url_for('board_write') }}">글쓰기</a>
+    {% else %}
+      <a class="btn" href="{{ url_for('login', next=url_for('board')) }}">로그인 후 글쓰기</a>
     {% endif %}
   </div>
 </section>
@@ -101,7 +116,13 @@
       {% if posts and posts|length > 0 %}
         {% for p in posts %}
           <tr class="{% if p.is_notice == 1 %}notice-row{% endif %}">
-            <td class="td-center meta">{{ loop.index }}</td>
+            <td class="td-center meta">
+              {% if p.is_notice == 1 %}
+                공지
+              {% else %}
+                {{ loop.index }}
+              {% endif %}
+            </td>
 
             <td>
               <div class="title-wrap">
@@ -111,7 +132,7 @@
                   {% endif %}
 
                   <a class="title-link" href="{{ url_for('board_detail', post_id=p.id) }}">
-                    {{ p.title }}
+                    {{ p.title | e }}
                   </a>
                 </div>
               </div>
@@ -119,17 +140,18 @@
 
             <td>
               <div class="author-box">
-                {% set g = (p.author_grade or '일반')|trim %}
-                <span class="pill {% if '관리자' in g or '👑' in g %}pill-admin{% endif %}">
-                  {{ g }}
+                {% set grade_txt = (p.author_grade or '일반')|trim %}
+                <span class="pill {% if '관리자' in grade_txt or '👑' in grade_txt %}pill-admin{% endif %}">
+                  {{ grade_txt }}
                 </span>
 
                 <a href="#"
-                  class="author-name"
-                  data-member="{{ p.author_nickname }}"
+                  class="author-name mc-open"
+                  data-nick="{{ p.author_nickname }}"
                   style="color:#2563eb; text-decoration:underline; text-underline-offset:3px; cursor:pointer;">
-                  {{ p.author_nickname }}
+                  {{ p.author_nickname | e }}
                 </a>
+
               </div>
             </td>
 
@@ -141,7 +163,11 @@
       {% else %}
         <tr>
           <td colspan="6" style="padding:18px 16px; color:#64748b;">
-            아직 게시글이 없습니다.
+            {% if q %}
+              검색 결과가 없습니다.
+            {% else %}
+              아직 게시글이 없습니다.
+            {% endif %}
           </td>
         </tr>
       {% endif %}
