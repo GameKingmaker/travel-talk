@@ -1,63 +1,106 @@
 {% extends "base.html" %}
+
+{# ✅ SEO (홈) #}
+{% set page_title = "일본 여행 회화 공부방 | 상황별 회화 · 단어 · 퀴즈로 배우기" %}
+{% set page_desc = "일본 여행을 위한 필수 회화와 단어를 상황별로 쉽고 재미있게 학습하세요. 퀴즈 게임과 학습노트로 빠르게 일본어를 익힐 수 있는 무료 공부방입니다." %}
+{% set page_robots = "index,follow" %}
+
 {% block content %}
 
-<!-- ✅ 오늘의 회화 (기존 박스) -->
+{# ✅ daily가 없을 때도 깨지지 않게 안전 기본값 #}
+{% set d = daily if daily is defined and daily else {"jp":"", "pron":"", "ko":""} %}
+
+<!-- ✅ 오늘의 회화 -->
 <section class="today-wrap">
   <div class="today-card">
     <h2 class="today-title">오늘의 회화</h2>
     <p class="today-sub">매일 새로운 문장으로 바뀝니다.</p>
 
     <div class="today-box">
-      <div class="row">
-        <div class="label">일본어:</div>
-        <div class="value">{{ daily.jp }}</div>
-        <button class="tts-btn" type="button">발음 듣기</button>
-      </div>
+      {% if d.jp %}
+        <div class="row">
+          <div class="label">일본어:</div>
+          <div class="value" id="dailyJp">{{ d.jp | e }}</div>
+          <button class="tts-btn" id="ttsBtn" type="button" aria-label="오늘의 회화 발음 듣기">발음 듣기</button>
+        </div>
 
-      <div class="row">
-        <div class="label">발음:</div>
-        <div class="value">{{ daily.pron }}</div>
-      </div>
+        <div class="row">
+          <div class="label">발음:</div>
+          <div class="value">{{ d.pron | e }}</div>
+        </div>
 
-      <div class="row">
-        <div class="label">한국어 뜻:</div>
-        <div class="value">{{ daily.ko }}</div>
-      </div>
+        <div class="row">
+          <div class="label">한국어 뜻:</div>
+          <div class="value">{{ d.ko | e }}</div>
+        </div>
+      {% else %}
+        <div style="padding:14px 16px; border:1px dashed #d9e2f5; border-radius:14px; color:#64748b; background:#fbfdff;">
+          오늘의 회화를 준비 중입니다. 잠시 후 다시 확인해 주세요.
+        </div>
+      {% endif %}
     </div>
   </div>
 </section>
 
-<!-- ✅ 메뉴 섹션 (오늘의 회화 아래로 분리) -->
+<!-- ✅ 메뉴 섹션 -->
 <section class="menu-wrap">
   <h3 class="menu-title">학습 메뉴</h3>
   <p class="menu-sub">원하는 학습을 선택해서 바로 시작해요.</p>
 
   <div class="menu-grid">
-   <a class="menu-card" href="{{ url_for('quiz_dialog_list') }}">
+    {# ⚠️ 네 코드에선 이름이 "상황별 회화"인데 링크는 quiz_dialog_list로 되어있음.
+       상황별 회화(실전 문장) 페이지가 따로 있다면 url_for('situations')로 바꾸는 걸 추천.
+       지금은 네가 연결해둔 그대로 유지. #}
+    <a class="menu-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황별 회화로 이동">
       <div class="menu-name">상황별 회화</div>
       <div class="menu-desc">공항·호텔·교통·식당 등 실전 대화 퀴즈</div>
     </a>
 
-    <a class="menu-card" href="{{ url_for('note') }}">
+    <a class="menu-card" href="{{ url_for('note') }}" aria-label="학습노트로 이동">
       <div class="menu-name">나만의 학습노트</div>
       <div class="menu-desc">외운 문장 저장 + 복습 체크로 기억 강화</div>
     </a>
 
-    <a class="menu-card" href="{{ url_for('quiz') }}">
+    <a class="menu-card" href="{{ url_for('quiz') }}" aria-label="퀴즈 게임으로 이동">
       <div class="menu-name">퀴즈 게임</div>
       <div class="menu-desc">재미있게 푸는 일본어 퀴즈</div>
     </a>
 
-    <a class="menu-card" href="{{ url_for('board') }}">
+    <a class="menu-card" href="{{ url_for('board') }}" aria-label="일반게시판으로 이동">
       <div class="menu-name">일반게시판</div>
       <div class="menu-desc">질문·후기·정보 공유로 같이 성장하기</div>
     </a>
 
-    <a class="menu-card" href="{{ url_for('words_categories') }}">
+    <a class="menu-card" href="{{ url_for('words_categories') }}" aria-label="단어모음으로 이동">
       <div class="menu-name">단어모음</div>
       <div class="menu-desc">자주 쓰는 단어를 모아 바로 암기</div>
     </a>
   </div>
 </section>
+
+{# ✅ TTS: 기본 브라우저 SpeechSynthesis (서버 없이도 동작)
+   - 일본어 문장을 읽어줌
+   - daily가 없으면 버튼도 안 뜸 #}
+<script>
+(function(){
+  const btn = document.getElementById("ttsBtn");
+  const jpEl = document.getElementById("dailyJp");
+  if (!btn || !jpEl) return;
+
+  btn.addEventListener("click", () => {
+    const text = (jpEl.textContent || "").trim();
+    if (!text) return;
+
+    try{
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "ja-JP";
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+    } catch(e){
+      alert("이 브라우저에서는 발음 듣기를 지원하지 않을 수 있어요.");
+    }
+  });
+})();
+</script>
 
 {% endblock %}
