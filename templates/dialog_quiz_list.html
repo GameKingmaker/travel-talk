@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+
+{# ✅ SEO (목록은 노출 OK) #}
+{% set page_title = "상황 대화 퀴즈 | 일본 여행 회화 공부방" %}
+{% set page_desc = "그림과 대화를 보고 상황에 알맞은 문장을 고르는 일본어 대화 퀴즈입니다." %}
+{% set page_robots = "index,follow" %}
+
 {% block content %}
 
 <style>
@@ -13,27 +19,39 @@
     text-decoration:none; color:#0f172a;
   }
   .item:hover{ border-color:rgba(37,99,235,.25); box-shadow:0 6px 18px rgba(37,99,235,.10); }
-  .left{ display:flex; flex-direction:column; gap:3px; }
-  .name{ font-size:16px; font-weight:900; }
+  .left{ display:flex; flex-direction:column; gap:3px; min-width:0; }
+  .name{ font-size:16px; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .desc{ font-size:13px; color:#475569; }
   .go{ font-weight:900; color:#1d4ed8; }
+  .empty{
+    padding:14px 16px; border:1px dashed #d9e2f5; border-radius:14px;
+    color:#64748b; background:#fbfdff;
+  }
 </style>
 
 <div class="wrap">
   <h1 class="title">상황 대화 퀴즈</h1>
   <p class="sub">그림과 대화를 보고, 지금 상황에 알맞은 문장을 골라 맞혀보세요.</p>
 
-  <div class="list">
-    {% for q in quizzes %}
-      <a class="item" href="{{ url_for('dialog_quiz_play', quiz_id=q.id) }}">
-        <div class="left">
-          <div class="name">{{ q.title }}</div>
-          <div class="desc">문제 풀기</div>
-        </div>
-        <div class="go">시작 →</div>
-      </a>
-    {% endfor %}
-  </div>
+  {% if quizzes and quizzes|length > 0 %}
+    <div class="list">
+      {% for q in quizzes %}
+        <a class="item"
+           href="{{ url_for('dialog_quiz_play', quiz_id=q.id) }}"
+           aria-label="{{ (q.title or '대화 퀴즈') | e }} 시작">
+          <div class="left">
+            <div class="name">{{ (q.title or "대화 퀴즈") | e }}</div>
+            <div class="desc">문제 풀기</div>
+          </div>
+          <div class="go">시작 →</div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty">
+      아직 등록된 대화 퀴즈가 없어요. (관리자가 퀴즈를 추가하면 여기에 표시됩니다.)
+    </div>
+  {% endif %}
 </div>
 
 {% endblock %}
