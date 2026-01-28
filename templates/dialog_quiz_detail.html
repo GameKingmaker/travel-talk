@@ -1,8 +1,14 @@
 {% extends "base.html" %}
+
+{# ✅ SEO (퀴즈 상세는 노출 OK) #}
+{% set page_title = (quiz.title ~ " | 대화 퀴즈 - 일본 여행 회화 공부방") %}
+{% set page_desc = ("대화를 읽고 문제를 풀어보세요. " ~ (quiz.question or ""))[:150] %}
+{% set page_robots = "index,follow" %}
+
 {% block content %}
 
 <section class="page-head">
-  <h1>{{ quiz.title }}</h1>
+  <h1>{{ quiz.title | e }}</h1>
   <p class="page-guide">대화를 읽고, 아래 문제를 풀어보세요.</p>
   <div class="back-row">
     <a class="back-btn" href="{{ url_for('quiz_dialog_list') }}">← 목록</a>
@@ -14,7 +20,7 @@
   <!-- 이미지 -->
   <div class="phrase-card" style="overflow:hidden;">
     <img src="{{ url_for('static', filename=quiz.image) }}"
-         alt="quiz image"
+         alt="{{ (quiz.title or 'quiz image') | e }}"
          style="width:100%; display:block; border-radius:14px;">
   </div>
 
@@ -24,9 +30,9 @@
 
     {% for line in quiz.dialog %}
       <div class="p-line" style="margin:10px 0;">
-        <div style="font-size:13px; opacity:.75;">{{ line.role }}</div>
-        <div><span class="p-label">일본어:</span> <span class="p-jp">{{ line.jp }}</span></div>
-        <div><span class="p-label">발음:</span> <span class="p-pron">{{ line.pron }}</span></div>
+        <div style="font-size:13px; opacity:.75;">{{ (line.role or '') | e }}</div>
+        <div><span class="p-label">일본어:</span> <span class="p-jp">{{ (line.jp or '') | e }}</span></div>
+        <div><span class="p-label">발음:</span> <span class="p-pron">{{ (line.pron or '') | e }}</span></div>
       </div>
       {% if not loop.last %}<hr style="border:none;border-top:1px solid #eee;">{% endif %}
     {% endfor %}
@@ -35,13 +41,15 @@
   <!-- 문제 -->
   <div class="phrase-card" id="quiz-card">
     <div style="font-weight:700; margin-bottom:10px;">문제</div>
-    <div style="margin-bottom:12px;">{{ quiz.question }}</div>
+    <div style="margin-bottom:12px;">{{ (quiz.question or '') | e }}</div>
 
     <div id="choices" style="display:grid; gap:10px;">
       {% for c in quiz.choices %}
-        <label class="choice-item" style="display:flex; gap:10px; align-items:flex-start; padding:12px; border:1px solid #e8e8e8; border-radius:12px; cursor:pointer;">
+        <label class="choice-item"
+               style="display:flex; gap:10px; align-items:flex-start; padding:12px;
+                      border:1px solid #e8e8e8; border-radius:12px; cursor:pointer;">
           <input type="radio" name="choice" value="{{ loop.index0 }}" style="margin-top:3px;">
-          <div>{{ loop.index }}. {{ c }}</div>
+          <div>{{ loop.index }}. {{ (c or '') | e }}</div>
         </label>
       {% endfor %}
     </div>
@@ -60,6 +68,22 @@
   const btn = document.getElementById("check-btn");
   const result = document.getElementById("result");
   const answerKo = document.getElementById("answer-ko");
+  const choiceLabels = Array.from(document.querySelectorAll("#choices .choice-item"));
+
+  function setBusy(isBusy){
+    btn.disabled = isBusy;
+    btn.style.opacity = isBusy ? "0.7" : "1";
+    btn.style.cursor = isBusy ? "not-allowed" : "pointer";
+    btn.textContent = isBusy ? "확인 중..." : "정답 확인";
+  }
+
+  function clearHighlights(){
+    choiceLabels.forEach(l => {
+      l.style.boxShadow = "";
+      l.style.borderColor = "#e8e8e8";
+      l.style.background = "#fff";
+    });
+  }
 
   btn.addEventListener("click", async () => {
     const checked = document.querySelector('input[name="choice"]:checked');
@@ -68,28 +92,54 @@
       return;
     }
 
+    clearHighlights();
+    result.textContent = "";
+    answerKo.style.display = "none";
+
     const selected = parseInt(checked.value, 10);
 
-    const res = await fetch("{{ url_for('quiz_dialog_check', quiz_key=quiz_key) }}", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({selected})
-    });
+    try{
+      setBusy(true);
 
-    const data = await res.json();
-    if (!data.ok) {
+      const res = await fetch("{{ url_for('quiz_dialog_check', quiz_key=quiz_key) }}", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({selected})
+      });
+
+      if (!res.ok){
+        result.textContent = "오류가 발생했어요.";
+        return;
+      }
+
+      const data = await res.json();
+      if (!data.ok) {
+        result.textContent = "오류가 발생했어요.";
+        return;
+      }
+
+      const correctIdx = data.answer_index;
+
+      // 하이라이트: 정답은 초록, 오답 선택은 빨강
+      if (choiceLabels[correctIdx]){
+        choiceLabels[correctIdx].style.borderColor = "#22c55e";
+        choiceLabels[correctIdx].style.boxShadow = "0 0 0 2px rgba(34,197,94,.15) inset";
+        choiceLabels[correctIdx].style.background = "#f0fdf4";
+      }
+      if (!data.correct && choiceLabels[selected]){
+        choiceLabels[selected].style.borderColor = "#ef4444";
+        choiceLabels[selected].style.boxShadow = "0 0 0 2px rgba(239,68,68,.12) inset";
+        choiceLabels[selected].style.background = "#fef2f2";
+      }
+
+      result.textContent = data.correct ? "✅ 정답!" : "❌ 오답!";
+      answerKo.style.display = "block";
+      answerKo.textContent = "정답: " + (data.answer_index + 1) + "번 — " + (data.answer_ko || "");
+    } catch(e){
       result.textContent = "오류가 발생했어요.";
-      return;
+    } finally{
+      setBusy(false);
     }
-
-    if (data.correct) {
-      result.textContent = "✅ 정답!";
-    } else {
-      result.textContent = "❌ 오답!";
-    }
-
-    answerKo.style.display = "block";
-    answerKo.textContent = "정답: " + (data.answer_index + 1) + "번 — " + data.answer_ko;
   });
 })();
 </script>
