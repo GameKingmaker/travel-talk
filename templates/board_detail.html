@@ -4,192 +4,378 @@
 
 {% block content %}
 
-<section class="page-head" style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px;">
-  <div>
-    <h1 style="margin:0;">
-      {% if post.is_notice == 1 %}
-        <span class="pill" style="margin-right:8px; background:#fff7ed; border:1px solid #fdba74; color:#9a3412;">공지</span>
-      {% endif %}
-      {{ post.title }}
-    </h1>
+<style>
+  /* =========================
+     NAVER CAFE-ish UI (board_detail only)
+     ========================= */
 
-    <p style="margin:6px 0 0; color:#667085;">
-      <span class="grade">{{ post.author_grade }}</span>
-      <span class="nick" style="margin-left:6px;">{{ post.author_nickname }}</span>
-      <span style="margin-left:10px;">·</span>
-      <span style="margin-left:10px;">{{ post.created_at|mmdd }}</span>
-      <span style="margin-left:10px;">·</span>
-      <span style="margin-left:10px;">조회 {{ post.views }}</span>
-    </p>
-  </div>
+  .bd-wrap{ max-width: 1040px; margin: 0 auto; }
 
-  <div style="display:flex; gap:10px; align-items:center;">
-    <a class="btn" href="{{ url_for('board') }}">목록</a>
-
-    {% if is_owner %}
-      <a class="btn btn-primary" href="{{ url_for('board_edit', post_id=post.id) }}">수정</a>
-
-      <form method="POST" action="{{ url_for('board_delete', post_id=post.id) }}"
-            onsubmit="return confirm('정말 삭제할까요?');" style="display:inline;">
-        <button type="submit" class="btn" style="background:#fff; border:1px solid #f04438; color:#f04438;">
-          삭제
-        </button>
-      </form>
-    {% endif %}
-  </div>
-</section>
-
-<div class="board-wrap" style="padding:18px;">
-  {% if post.thumb_url %}
-    <div style="margin-bottom:16px;">
-      <img src="{{ post.thumb_url }}" alt="image"
-           style="max-width:520px; width:100%; border-radius:14px; border:1px solid #e5e7eb;">
-    </div>
-  {% endif %}
-
-  <div style="white-space:pre-wrap; line-height:1.7; color:#101828;">
-  {{ post.content | e }}
-</div>
-
-</div>
-
-{# =========================
-   공지글이면 댓글/추천 비활성화(아예 안 보이게)
-   ========================= #}
-
-{% if post.is_notice == 1 %}
-
-  <hr style="margin:24px 0; border:none; border-top:1px solid #e9edf5;">
-
-  <div style="padding:14px 16px; border:1px solid #e1e7f5; border-radius:14px; background:#f6f8ff; color:#475467;">
-    공지글에는 댓글을 작성할 수 없습니다.
-  </div>
-
-{% else %}
-
-  <hr style="margin:24px 0; border:none; border-top:1px solid #e9edf5;">
-
-  <h3 style="margin:0 0 12px; font-size:18px;">댓글</h3>
-
-  {% if user %}
-  <form method="POST" action="{{ url_for('board_comment_create', post_id=post.id) }}"
-        style="display:flex; gap:10px; align-items:flex-start;">
-    <textarea name="content" rows="2" placeholder="댓글을 입력하세요"
-      style="flex:1; resize:none; padding:12px 14px; border-radius:12px; border:1px solid #d7deee;"></textarea>
-    <button class="btn btn-primary" type="submit" style="height:44px; border-radius:12px;">등록</button>
-  </form>
-  {% else %}
-  <div style="padding:12px 14px; border:1px solid #e1e7f5; border-radius:12px; background:#f6f8ff;">
-    댓글을 작성하려면 <a href="{{ url_for('login', next=url_for('board_detail', post_id=post.id)) }}">로그인</a> 해주세요.
-  </div>
-  {% endif %}
-
-  {% if user %}
-  <div style="display:flex; gap:10px; align-items:center; margin-top:14px;">
-    <button
-  id="upvoteBtn"
-  class="btn btn-primary"
-  type="button"
-  {% if user_has_upvoted %}disabled{% endif %}
-  style="{% if user_has_upvoted %}opacity:.6; cursor:not-allowed;{% endif %}"
->
-  추천 <span id="upvoteCount">{{ post.upvotes or 0 }}</span>
-</button>
-
-<div id="upvoteMsg" style="font-size:13px; color:#60708a;">
-  {% if user_has_upvoted %}
-    이미 추천한 글이에요.
-  {% else %}
-    추천은 글당 1회만 가능합니다.
-  {% endif %}
-</div>
-
-  </div>
-{% else %}
-  <div style="margin-top:14px; padding:12px 14px; border:1px solid #e1e7f5; border-radius:12px; background:#f6f8ff;">
-    추천하려면 <a href="{{ url_for('login', next=url_for('board_detail', post_id=post.id)) }}">로그인</a> 해주세요.
-  </div>
-{% endif %}
-
-
-  <script>
-  const btn = document.getElementById("upvoteBtn");
-  const countEl = document.getElementById("upvoteCount");
-  const msgEl = document.getElementById("upvoteMsg");
-
-  if (btn) {
-    btn.addEventListener("click", async () => {
-      // 이미 disabled면 아무 것도 안 함
-      if (btn.disabled) return;
-
-      msgEl.textContent = "처리 중...";
-      btn.disabled = true;               // ✅ 연타 방지
-      btn.style.opacity = "0.6";
-      btn.style.cursor = "not-allowed";
-
-      try {
-        const res = await fetch(`/board/{{ post.id }}/upvote`, { method: "POST" });
-        const data = await res.json().catch(() => ({}));
-
-        if (data.upvotes !== undefined) countEl.textContent = data.upvotes;
-
-        if (res.ok && data.ok) {
-          msgEl.textContent = data.msg || "추천 완료!";
-          // ✅ 성공했으면 계속 잠금 유지(1회 제한)
-          btn.disabled = true;
-        } else {
-          // 이미 추천/공지/권한없음 등: 역시 잠금 유지
-          msgEl.textContent = data.msg || "추천할 수 없어요.";
-          btn.disabled = true;
-        }
-      } catch (e) {
-        // 네트워크 오류만 예외적으로 다시 누를 수 있게 할지 선택 가능
-        msgEl.textContent = "오류가 발생했어요. 새로고침 후 다시 시도해주세요.";
-        // 여기서는 1회 정책을 UX로도 강하게 유지하려고 잠금 유지
-        btn.disabled = true;
-      }
-    });
+  .bd-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    gap:16px; margin-bottom:14px;
   }
-</script>
+  .bd-title{
+    margin:0; font-size:26px; font-weight:900; letter-spacing:-0.2px;
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  }
+  .bd-meta{
+    margin-top:8px;
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    color:#667085; font-size:13px;
+  }
+  .bd-meta .dot{ color:#cbd5e1; }
 
+  .bd-actions{
+    display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+  }
+  .bd-actions .btn{ border-radius:12px; height:40px; padding:0 12px; }
 
-  <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
-    {% if comments and comments|length > 0 %}
-      {% for c in comments %}
-        <div style="padding:12px 14px; border:1px solid #e6ebf7; border-radius:14px; background:#fff;">
-          <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span class="badge" style="padding:4px 10px; border-radius:999px; background:#eef4ff; border:1px solid #cfe0ff; font-size:12px;">
-                {{ c.author_grade }}
-              </span>
-              <strong>{{ c.author_nickname }}</strong>
-              <span style="color:#7b879d; font-size:12px;">
-                {% set dt = (c.created_at or '') %}
-<span style="color:#7b879d; font-size:12px;">
-  {{ dt[5:7] }}/{{ dt[8:10] }} {{ dt[11:16] }}
-</span>
+  .bd-card{
+    background:#fff;
+    border:1px solid #e6ebf7;
+    border-radius:18px;
+    box-shadow: 0 10px 30px rgba(16,24,40,.06);
+    overflow:hidden;
+  }
+  .bd-card-inner{ padding:18px; }
 
-              </span>
-            </div>
+  .bd-thumb{
+    margin-bottom:14px;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid #e5e7eb;
+    max-width: 640px;
+  }
+  .bd-thumb img{ display:block; width:100%; height:auto; }
 
-            {% if c.is_owner %}
-            <form method="POST" action="{{ url_for('board_comment_delete', comment_id=c.id) }}"
-                  onsubmit="return confirm('댓글을 삭제할까요?');">
-              <button type="submit" class="btn" style="padding:6px 10px; border-radius:10px;">삭제</button>
-            </form>
+  .bd-content{
+    white-space:pre-wrap;
+    line-height:1.8;
+    font-size:15px;
+    color:#101828;
+    word-break:break-word;
+  }
+
+  .bd-divider{
+    margin:18px 0;
+    border:none;
+    border-top:1px solid #e9edf5;
+  }
+
+  .bd-section-title{
+    margin:0 0 10px;
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:-0.2px;
+  }
+
+  /* 댓글 작성 */
+  .cmt-box{
+    background:#fff;
+    border:1px solid #e6ebf7;
+    border-radius:16px;
+    padding:14px;
+  }
+  .cmt-form{
+    display:flex; gap:10px; align-items:flex-start;
+  }
+  .cmt-form textarea{
+    flex:1;
+    resize:none;
+    padding:12px 14px;
+    border-radius:12px;
+    border:1px solid #d7deee;
+    outline:none;
+    line-height:1.6;
+    font-size:14px;
+    background:#fbfdff;
+  }
+  .cmt-form textarea:focus{
+    border-color:#bcd3ff;
+    box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+    background:#fff;
+  }
+  .cmt-form .btn{
+    height:44px; border-radius:12px; padding:0 14px;
+    white-space:nowrap;
+  }
+
+  /* 추천 영역 */
+  .upvote-row{
+    margin-top:12px;
+    display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+  }
+  .upvote-row #upvoteBtn{
+    height:40px;
+    border-radius:999px;
+    padding:0 14px;
+    font-weight:800;
+  }
+  .upvote-hint{
+    font-size:13px; color:#60708a;
+    padding:10px 12px;
+    border-radius:12px;
+    background:#f6f8ff;
+    border:1px solid #e1e7f5;
+  }
+
+  /* 댓글 리스트 */
+  .cmt-list{
+    margin-top:12px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .cmt-item{
+    padding:12px 14px;
+    border:1px solid #e6ebf7;
+    border-radius:16px;
+    background:#fff;
+  }
+  .cmt-head{
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+  }
+  .cmt-who{
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+    min-width:0;
+  }
+  .cmt-grade{
+    padding:4px 10px;
+    border-radius:999px;
+    background:#eef4ff;
+    border:1px solid #cfe0ff;
+    font-size:12px;
+    font-weight:800;
+    color:#1d4ed8;
+    flex:0 0 auto;
+  }
+  .cmt-nick{ font-weight:900; color:#101828; }
+  .cmt-time{ color:#7b879d; font-size:12px; white-space:nowrap; }
+  .cmt-body{
+    margin-top:8px;
+    white-space:pre-wrap;
+    line-height:1.6;
+    color:#101828;
+    word-break:break-word;
+    font-size:14px;
+  }
+  .cmt-del .btn{
+    padding:6px 10px;
+    border-radius:10px;
+    height:32px;
+  }
+
+  /* 공지 안내 */
+  .notice-lock{
+    padding:14px 16px;
+    border:1px solid #e1e7f5;
+    border-radius:14px;
+    background:#f6f8ff;
+    color:#475467;
+    font-weight:700;
+  }
+
+  @media (max-width: 760px){
+    .bd-top{ flex-direction:column; }
+    .bd-actions{ width:100%; justify-content:flex-start; }
+    .bd-title{ font-size:22px; }
+    .bd-wrap{ padding: 0 2px; }
+  }
+</style>
+
+<div class="bd-wrap">
+
+  <!-- =========================
+       상단: 제목 + 메타 + 버튼
+       ========================= -->
+  <div class="bd-top">
+    <div style="min-width:0; flex:1;">
+      <h1 class="bd-title">
+        {% if post.is_notice == 1 %}
+          <span class="pill" style="background:#fff7ed; border:1px solid #fdba74; color:#9a3412;">공지</span>
+        {% endif %}
+        <span style="min-width:0; overflow:hidden; text-overflow:ellipsis;">{{ post.title }}</span>
+      </h1>
+
+      <div class="bd-meta">
+        <span class="grade">{{ post.author_grade }}</span>
+        <span class="nick" style="font-weight:900;">{{ post.author_nickname }}</span>
+        <span class="dot">·</span>
+        <span>{{ post.created_at|mmdd }}</span>
+        <span class="dot">·</span>
+        <span>조회 {{ post.views }}</span>
+      </div>
+    </div>
+
+    <div class="bd-actions">
+  <a class="btn" href="{{ url_for('board') }}">목록</a>
+
+  {% if is_owner %}
+    <a class="btn btn-primary" href="{{ url_for('board_edit', post_id=post.id) }}">수정</a>
+
+    <form method="POST" action="{{ url_for('board_delete', post_id=post.id) }}"
+          onsubmit="return confirm('정말 삭제할까요?');" style="display:inline;">
+      <button type="submit" class="btn btn-danger">
+        삭제
+      </button>
+    </form>
+  {% endif %}
+</div>
+
+  </div>
+
+  <!-- =========================
+       본문 카드
+       ========================= -->
+  <div class="bd-card">
+    <div class="bd-card-inner">
+
+      {% if post.thumb_url %}
+        <div class="bd-thumb">
+          <img src="{{ post.thumb_url }}" alt="image">
+        </div>
+      {% endif %}
+
+      <div class="bd-content">{{ post.content | e }}</div>
+
+    </div>
+  </div>
+
+  {# =========================
+     공지글이면 댓글/추천 비활성화(아예 안 보이게)
+     ========================= #}
+
+  {% if post.is_notice == 1 %}
+
+    <hr class="bd-divider">
+
+    <div class="notice-lock">
+      공지글에는 댓글을 작성할 수 없습니다.
+    </div>
+
+  {% else %}
+
+    <hr class="bd-divider">
+
+    <h3 class="bd-section-title">댓글</h3>
+
+    <!-- 댓글 작성 박스 -->
+    <div class="cmt-box">
+      {% if user %}
+        <form method="POST" action="{{ url_for('board_comment_create', post_id=post.id) }}" class="cmt-form">
+          <textarea name="content" rows="2" placeholder="댓글을 입력하세요"></textarea>
+          <button class="btn btn-primary" type="submit">등록</button>
+        </form>
+      {% else %}
+        <div class="upvote-hint">
+          댓글을 작성하려면
+          <a href="{{ url_for('login', next=url_for('board_detail', post_id=post.id)) }}">로그인</a>
+          해주세요.
+        </div>
+      {% endif %}
+
+      <!-- 추천 -->
+      {% if user %}
+        <div class="upvote-row">
+          <button
+            id="upvoteBtn"
+            class="btn btn-primary"
+            type="button"
+            {% if user_has_upvoted %}disabled{% endif %}
+            style="{% if user_has_upvoted %}opacity:.6; cursor:not-allowed;{% endif %}"
+          >
+            👍 추천 <span id="upvoteCount">{{ post.upvotes or 0 }}</span>
+          </button>
+
+          <div id="upvoteMsg" class="upvote-hint" style="margin:0;">
+            {% if user_has_upvoted %}
+              이미 추천한 글이에요.
+            {% else %}
+              추천은 글당 1회만 가능합니다.
             {% endif %}
           </div>
-
-          <div style="margin-top:8px; white-space:pre-wrap; line-height:1.5;">{{ c.content }}</div>
         </div>
-      {% endfor %}
-    {% else %}
-      <div style="padding:14px; border:1px dashed #d9e2f5; border-radius:14px; color:#6b7a99;">
-        아직 댓글이 없습니다.
-      </div>
-    {% endif %}
-  </div>
+      {% else %}
+        <div class="upvote-hint" style="margin-top:12px;">
+          추천하려면
+          <a href="{{ url_for('login', next=url_for('board_detail', post_id=post.id)) }}">로그인</a>
+          해주세요.
+        </div>
+      {% endif %}
+    </div>
 
-{% endif %}
+    <script>
+      const btn = document.getElementById("upvoteBtn");
+      const countEl = document.getElementById("upvoteCount");
+      const msgEl = document.getElementById("upvoteMsg");
+
+      if (btn) {
+        btn.addEventListener("click", async () => {
+          if (btn.disabled) return;
+
+          msgEl.textContent = "처리 중...";
+          btn.disabled = true;
+          btn.style.opacity = "0.6";
+          btn.style.cursor = "not-allowed";
+
+          try {
+            const res = await fetch(`/board/{{ post.id }}/upvote`, { method: "POST" });
+            const data = await res.json().catch(() => ({}));
+
+            if (data.upvotes !== undefined) countEl.textContent = data.upvotes;
+
+            if (res.ok && data.ok) {
+              msgEl.textContent = data.msg || "추천 완료!";
+              btn.disabled = true;
+            } else {
+              msgEl.textContent = data.msg || "추천할 수 없어요.";
+              btn.disabled = true;
+            }
+          } catch (e) {
+            msgEl.textContent = "오류가 발생했어요. 새로고침 후 다시 시도해주세요.";
+            btn.disabled = true;
+          }
+        });
+      }
+    </script>
+
+    <!-- 댓글 리스트 -->
+    <div class="cmt-list">
+      {% if comments and comments|length > 0 %}
+        {% for c in comments %}
+          <div class="cmt-item">
+            <div class="cmt-head">
+              <div class="cmt-who">
+                <span class="cmt-grade">{{ c.author_grade }}</span>
+                <span class="cmt-nick">{{ c.author_nickname }}</span>
+
+                {% set dt = (c.created_at or '') %}
+                <span class="cmt-time">
+                  {{ dt[5:7] }}/{{ dt[8:10] }} {{ dt[11:16] }}
+                </span>
+              </div>
+
+              {% if c.is_owner %}
+                <form class="cmt-del" method="POST" action="{{ url_for('board_comment_delete', comment_id=c.id) }}"
+                      onsubmit="return confirm('댓글을 삭제할까요?');">
+                  <button type="submit" class="btn">삭제</button>
+                </form>
+              {% endif %}
+            </div>
+
+            <div class="cmt-body">{{ c.content }}</div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div style="padding:14px; border:1px dashed #d9e2f5; border-radius:14px; color:#6b7a99; background:#fff;">
+          아직 댓글이 없습니다.
+        </div>
+      {% endif %}
+    </div>
+
+  {% endif %}
+
+</div>
 
 {% endblock %}
