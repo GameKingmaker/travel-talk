@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% set page_title = "회원 관리 | 관리자" %}
+
+{% block content %}
+<div style="max-width:1080px; margin:0 auto; padding:22px 18px 48px;">
+
+  <div style="display:flex; justify-content:space-between; align-items:end; gap:16px; margin-bottom:14px;">
+    <div>
+      <h1 style="margin:0; font-size:32px; font-weight:900;">회원 관리</h1>
+      <p style="margin:6px 0 0; color:#667085;">검색 / 등급 변경 / 강제 탈퇴</p>
+    </div>
+    <a class="btn" href="{{ url_for('admin_dashboard') }}">← 대시보드</a>
+  </div>
+
+  <form method="GET" action="{{ url_for('admin_users') }}"
+        style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:14px;">
+    <input name="q" value="{{ q }}" placeholder="닉네임 또는 이메일 검색"
+           style="flex:1; min-width:220px; padding:12px 14px; border-radius:12px; border:1px solid #d7deee;">
+    <select name="grade"
+            style="height:44px; padding:0 12px; border-radius:12px; border:1px solid #d7deee;">
+      <option value="">전체 등급</option>
+      {% for g in grades %}
+        <option value="{{ g }}" {% if grade == g %}selected{% endif %}>{{ g }}</option>
+      {% endfor %}
+    </select>
+    <button class="btn btn-primary" type="submit" style="height:44px; border-radius:12px;">검색</button>
+  </form>
+
+  <div style="background:#fff; border:1px solid #e6ebf7; border-radius:16px; overflow:hidden;">
+    <div style="padding:12px 14px; background:#f7f9ff; border-bottom:1px solid #e6ebf7; font-weight:800;">
+      회원 목록 ({{ users|length }})
+    </div>
+
+    <div style="overflow:auto;">
+      <table style="width:100%; border-collapse:collapse; min-width:860px;">
+        <thead>
+          <tr style="background:#fbfcff; border-bottom:1px solid #eef2ff;">
+            <th style="text-align:left; padding:10px 12px;">ID</th>
+            <th style="text-align:left; padding:10px 12px;">닉네임</th>
+            <th style="text-align:left; padding:10px 12px;">이메일</th>
+            <th style="text-align:left; padding:10px 12px;">가입일</th>
+            <th style="text-align:left; padding:10px 12px;">등급</th>
+            <th style="text-align:left; padding:10px 12px;">관리</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for u in users %}
+          <tr style="border-bottom:1px solid #f0f3ff;">
+            <td style="padding:10px 12px;">{{ u.id }}</td>
+            <td style="padding:10px 12px; font-weight:800;">{{ u.nickname }}</td>
+            <td style="padding:10px 12px;">{{ u.email }}</td>
+            <td style="padding:10px 12px; color:#667085;">{{ u.created_at }}</td>
+
+            <td style="padding:10px 12px;">
+  <form method="POST" action="{{ url_for('admin_user_change_points', user_id=u.id) }}"
+        style="display:flex; gap:8px; align-items:center;">
+    <div style="min-width:92px; font-weight:800;">
+      {{ u.points }}점
+    </div>
+
+    <input name="delta" placeholder="+50 / -30"
+           style="height:38px; width:120px; padding:0 10px; border-radius:10px; border:1px solid #d7deee;">
+    <button class="btn btn-primary" type="submit"
+            style="height:38px; border-radius:10px; padding:0 12px;">적용</button>
+  </form>
+</td>
+
+
+            <td style="padding:10px 12px;">
+              {% if u.id == 1 %}
+                <span style="color:#98a2b3;">(관리자)</span>
+              {% else %}
+                <form method="POST" action="{{ url_for('admin_user_delete', user_id=u.id) }}"
+                      onsubmit="return confirm('정말 강제 탈퇴 처리할까요?\\n(작성 글/댓글도 함께 삭제됩니다)');"
+                      style="display:inline;">
+                  <button class="btn" type="submit"
+                          style="background:#fff; border:1px solid #f04438; color:#f04438; height:38px; border-radius:10px;">
+                    강제탈퇴
+                  </button>
+                </form>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+
+          {% if users|length == 0 %}
+          <tr>
+            <td colspan="6" style="padding:16px; color:#667085;">검색 결과가 없습니다.</td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
