@@ -80,21 +80,66 @@
 
     <hr style="margin:14px 0; border:none; border-top:1px solid #e9edf5;">
 
-    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;">
-      <div style="border:1px solid #e6ebf7; border-radius:14px; padding:12px; background:#fff;">
-        <div style="color:#667085; font-size:12px;">작성 글</div>
-        <div style="font-size:20px; font-weight:900; margin-top:4px;">{{ post_cnt or 0 }}</div>
-      </div>
-      <div style="border:1px solid #e6ebf7; border-radius:14px; padding:12px; background:#fff;">
-        <div style="color:#667085; font-size:12px;">작성 댓글</div>
-        <div style="font-size:20px; font-weight:900; margin-top:4px;">{{ comment_cnt or 0 }}</div>
-      </div>
-      <div style="border:1px solid #e6ebf7; border-radius:14px; padding:12px; background:#fff;">
-        <div style="color:#667085; font-size:12px;">내 글 댓글</div>
-        <div style="font-size:20px; font-weight:900; margin-top:4px;">{{ received_cnt or 0 }}</div>
-      </div>
+<div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:10px;">
+
+  <div style="border:1px solid #e6ebf7; border-radius:14px; padding:12px; background:#fff;">
+    <div style="color:#667085; font-size:12px;">작성 글</div>
+    <div style="font-size:20px; font-weight:900; margin-top:4px;">
+      {{ post_cnt or 0 }}
     </div>
   </div>
+
+  <div style="border:1px solid #e6ebf7; border-radius:14px; padding:12px; background:#fff;">
+    <div style="color:#667085; font-size:12px;">작성 댓글</div>
+    <div style="font-size:20px; font-weight:900; margin-top:4px;">
+      {{ comment_cnt or 0 }}
+    </div>
+  </div>
+
+  <div style="border:1px solid #e6ebf7; border-radius:14px; padding:12px; background:#fff;">
+    <div style="color:#667085; font-size:12px;">내 글 댓글</div>
+    <div style="font-size:20px; font-weight:900; margin-top:4px;">
+      {{ received_cnt or 0 }}
+    </div>
+  </div>
+
+  <!-- ✅ 경험치 추가 -->
+  <div style="border:1px solid #e6ebf7; border-radius:14px; padding:12px; background:#fff;">
+    <div style="color:#667085; font-size:12px;">경험치</div>
+    <div style="font-size:20px; font-weight:900; margin-top:4px;">
+      {{ score or 0 }}
+    </div>
+  </div>
+  {% if not is_admin(user) %}
+  <!-- 기존 진행바 카드(다음 계급/남은 경험치/진행률) -->
+  ... 지금 넣어둔 prog UI 그대로 ...
+{% else %}
+  <div style="margin-top:10px; border:1px dashed #cbd5e1; border-radius:16px; padding:12px; background:#f8fafc; color:#334155; font-size:13px; font-weight:800;">
+    관리자 계정은 승급/경험치 시스템이 적용되지 않습니다.
+  </div>
+{% endif %}
+
+  <div style="margin-top:10px; border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
+  <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+    <div style="font-size:12px; color:#667085;">다음 계급: <b>{{ prog.next_grade or "최고등급" }}</b></div>
+    <div style="font-size:12px; color:#667085;">남은 경험치: <b>{{ prog.remain }}</b></div>
+  </div>
+  <div style="margin-top:8px; height:10px; background:#eef2ff; border-radius:999px; overflow:hidden;">
+    <div style="height:100%; width:{{ prog.pct }}%; background:#2563eb;"></div>
+  </div>
+  <div style="margin-top:6px; font-size:12px; color:#667085;">진행률: <b>{{ prog.pct }}%</b></div>
+</div>
+<div class="mp-stats"></div>
+
+<!-- ✅ 모바일에서 3칸이 너무 빡세면 2칸으로 자동 변경 -->
+<style>
+@media (max-width: 520px){
+  #memberCardModal div[style*="grid-template-columns:repeat(3"]{
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  }
+}
+</style>
+</div>
 
   <!-- ✅ 알림 카드 -->
   <div class="board-wrap" style="padding:18px;">
