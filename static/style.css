@@ -1332,3 +1332,17 @@ a.btn-primary{
   border-color: rgba(249,115,22,.35);
 }
 
+.mp-stats{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap:10px;
+}
+@media (max-width: 520px){
+  .mp-stats{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+.seo-intro{
+  margin: 10px 0 18px;
+  line-height: 1.6;
+  opacity: .9;
+  font-size: 0.98rem;
+}
