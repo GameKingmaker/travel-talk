@@ -40,9 +40,9 @@
 <body data-logged-in="{% if user %}1{% else %}0{% endif %}">
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="{{ url_for('index') }}">
-        <img src="/static/logo.png" class="site-logo" alt="일본어 회화 공부방">
-      </a>
+     <a class="brand" href="{{ url_for('index') }}">
+  <img src="/static/logo.png" class="site-logo" alt="일본어 회화 공부방">
+</a>
 
       <nav class="nav">
         <a href="{{ url_for('situations') }}" class="{% if request.path.startswith('/situations') %}active{% endif %}">
@@ -72,48 +72,74 @@
         {% endif %}
       </nav>
 
-      {% if user %}
-        <div class="nav-item" style="position:relative;">
-          <button id="notifBtn" class="btn" type="button" style="height:44px; border-radius:12px;">
-            <span class="nav-txt">
-              <span class="t1">🔔</span>
-              <span class="t2">알림</span>
-            </span>
-            {% if g.unread_cnt and g.unread_cnt > 0 %}
-              <span class="pill" style="margin-left:8px;">NEW {{ g.unread_cnt }}</span>
-            {% endif %}
-          </button>
+      <!-- ✅ 오른쪽: 알림 + 닉네임(옆에 관리자칩) + 로그아웃/로그인버튼 한줄 -->
+      <div class="topbar-right">
 
-          <div id="notifBox"
-               style="display:none; position:absolute; right:0; top:52px; width:360px; z-index:1000;
-                      background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:12px; box-shadow:0 10px 30px rgba(16,24,40,.12);">
-            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px;">
-              <strong>최근 알림</strong>
-            </div>
-            <div id="notifList" style="display:flex; flex-direction:column; gap:8px;"></div>
-            <div style="margin-top:10px;">
-              <a class="btn btn-primary" href="{{ url_for('mypage') }}" style="width:100%; text-align:center;">나의 정보에서 보기</a>
+        {% if user %}
+          <!-- 알림 -->
+          <div class="nav-item notif-wrap">
+            <button id="notifBtn" class="btn notif-btn" type="button">
+              <span class="nav-txt">
+                <span class="t1">🔔</span>
+                <span class="t2">알림</span>
+              </span>
+              {% if g.unread_cnt and g.unread_cnt > 0 %}
+                <span class="pill">NEW {{ g.unread_cnt }}</span>
+              {% endif %}
+            </button>
+
+            <div id="notifBox" class="notif-box" style="display:none;">
+              <div class="notif-head">
+                <strong>최근 알림</strong>
+              </div>
+              <div id="notifList" class="notif-list"></div>
+              <div class="notif-foot">
+                <a class="btn btn-primary" href="{{ url_for('mypage') }}" style="width:100%; text-align:center;">
+                  나의 정보에서 보기
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      {% endif %}
-
-      <div class="auth">
-        {% if user %}
-          <span class="hello">
-            <span class="nav-txt">
-              <span class="t1">{{ user["nickname"] }}</span>
-              <span class="t2">님</span>
-            </span>
-          </span>
-          <a class="btn btn-ghost" href="{{ url_for('logout') }}">로그아웃</a>
-        {% else %}
-          <a class="btn btn-ghost" href="{{ url_for('login') }}">로그인</a>
-          <a class="btn btn-primary" href="{{ url_for('register') }}">회원가입</a>
         {% endif %}
+
+        <div class="auth">
+  {% if user %}
+
+    {% set _role = (user.get('role') if user is mapping else '') %}
+    {% set _grade = (user.get('grade') if user is mapping else '') %}
+    {% set _is_admin = (
+        (user.get('is_admin', 0) if user is mapping else 0) or
+        (_role == 'admin') or
+        ('관리자' in (_grade or '')) or
+        ((user.get('id', 0) if user is mapping else 0) == 1)
+      )
+    %}
+
+    <div class="user-block">
+
+  <div class="user-top">
+    <span class="hello">
+      <span class="nav-txt">
+        <span class="t1">{{ user["nickname"] }}</span>
+        <span class="t2">님</span>
+      </span>
+    </span>
+
+    <a class="btn btn-ghost" href="{{ url_for('logout') }}">로그아웃</a>
+  </div>
+</div>
+
+  {% else %}
+    <a class="btn btn-ghost" href="{{ url_for('login') }}">로그인</a>
+    <a class="btn btn-primary" href="{{ url_for('register') }}">회원가입</a>
+  {% endif %}
+</div>
+
+
       </div>
     </div>
   </header>
+
 
   <main class="page">
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -325,7 +351,6 @@
     return "🙂";
   }
 
-  // ✅ (중요) calcProgress는 openMemberCard보다 위에 있어야 안전함
   function calcProgress(score){
     const steps = [
       { name: "입문 🌱",   start: 0,    next: 11 },
@@ -362,7 +387,6 @@
   function openMemberCard(nick){
     if (!overlay) return;
 
-    // 초기화
     $("mcNick").textContent = nick || "-";
     $("mcAvatar").textContent = "-";
     $("mcUser").textContent = "";
@@ -399,6 +423,7 @@
         $("mcUser").textContent = m.username ? `아이디: ${m.username}` : "";
         $("mcGrade").textContent = m.grade || "일반";
         $("mcAvatar").textContent = gradeToIcon(m.grade);
+
         const gradeText = String(m.grade || "");
         const isAdminGrade =
           gradeText.includes("총관리자") ||
@@ -412,19 +437,14 @@
         const grid3 = document.getElementById("mcGrid3");
 
         if (isAdminGrade) {
-          // ✅ 경험치/진행바 숨김
           if (expBox) expBox.style.display = "none";
           if (progCard) progCard.style.display = "none";
           if (adminNote) adminNote.style.display = "block";
-
-          // ✅ 그리드 3칸→2칸으로 보기 좋게
           if (grid3) grid3.style.gridTemplateColumns = "repeat(2, 1fr)";
         } else {
-          // ✅ 일반 회원은 표시
           if (expBox) expBox.style.display = "block";
           if (progCard) progCard.style.display = "block";
           if (adminNote) adminNote.style.display = "none";
-
           if (grid3) grid3.style.gridTemplateColumns = "repeat(3, 1fr)";
         }
 
@@ -432,7 +452,6 @@
         $("mcComments").textContent = String(m.comment_cnt ?? 0);
         if ($("mcScore")) $("mcScore").textContent = String(m.score ?? 0);
 
-        // 진행률 계산
         const prog = calcProgress(Number(m.score ?? 0));
         if ($("mcNextGrade")) $("mcNextGrade").textContent = prog.nextGrade;
         if ($("mcRemain")) $("mcRemain").textContent = String(prog.remain);
@@ -468,7 +487,6 @@
     });
   }
 
-  // ✅ 게시판 닉네임 클릭: data-member / data-nick 둘 다 지원
   document.addEventListener("click", (e) => {
     const el = e.target.closest("[data-member],[data-nick]");
     if (!el) return;
