@@ -27,55 +27,6 @@ body{
 }
 
 
-/* topbar */
-.topbar{
-  position:sticky; top:0; z-index:50;
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(10px);
-  border-bottom:1px solid var(--stroke);
-}
-.topbar-inner{
-  max-width:1100px; margin:0 auto;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 18px;
-  gap:14px;
-}
-.brand{
-  display:flex; align-items:center; gap:10px;
-  text-decoration:none; color:var(--text);
-  font-weight:800;
-}
-.brand-dot{
-  width:10px; height:10px; border-radius:999px;
-  background: linear-gradient(135deg,#60a5fa,#a78bfa);
-  box-shadow:0 0 0 4px rgba(59,130,246,0.12);
-}
-.nav{ display:flex; gap:18px; }
-.nav a{
-  text-decoration:none; color:var(--muted);
-  font-weight:700; padding:8px 10px; border-radius:12px;
-}
-.nav a.active{ color:var(--text); background:rgba(59,130,246,0.10); }
-
-.auth{ display:flex; align-items:center; gap:10px; }
-.hello{ color:var(--muted); font-weight:700; }
-
-.btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:10px 14px; border-radius:999px;
-  text-decoration:none; font-weight:800;
-  border:1px solid var(--stroke);
-  background: rgba(255,255,255,0.7);
-  color:var(--text);
-  cursor:pointer;
-}
-.btn-primary{
-  border:none;
-  background: linear-gradient(135deg,#60a5fa,#3b82f6);
-  color:white;
-}
-.btn-ghost{ background: rgba(255,255,255,0.45); }
-
 /* layout */
 .page{
   max-width:1100px;
@@ -769,82 +720,6 @@ body{
   color:#334155;
 }
 
-/* ===== 상단 메뉴 2줄 텍스트(크기 업그레이드) ===== */
-.nav-txt{
-  display:inline-flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  line-height:1.05;
-  gap:3px;
-  text-align:center;
-  white-space:nowrap;
-}
-.nav-txt .t1{
-  font-size:16px;
-  font-weight:1000;
-  letter-spacing:-0.2px;
-}
-.nav-txt .t2{
-  font-size:16px;
-  font-weight:1000;
-  color:#667085;
-  letter-spacing:-0.1px;
-}
-.brand .brand-txt .t1{ font-size:17px; }
-.brand .brand-txt .t2{ font-size:17px; }
-
-.topbar-inner{ align-items:center; }
-
-.topbar .nav a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:0 8px;
-  min-height:52px;
-}
-
-.topbar .btn{
-  min-height:52px;
-  border-radius:14px;
-}
-
-.topbar .auth .btn-ghost,
-.topbar .auth .btn-primary{
-  font-size:14px;
-  font-weight:800;
-  padding:10px 12px;
-}
-
-.topbar .hello{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:52px;
-  font-weight:900;
-}
-
-/* ===== 상단 메뉴 활성화 강조 ===== */
-.nav a.active{
-  position: relative;
-  font-weight: 900;
-}
-.nav a.active::after{
-  content:"";
-  position:absolute;
-  bottom:4px;
-  left:8px;
-  right:8px;
-  height:2px;
-  background:#4f6df5;
-  border-radius:2px;
-}
-
-/* ===== 알림 버튼 톤다운 ===== */
-#notifBtn{
-  background:#f8fafc;
-  border:1px solid #e5e7eb;
-}
 
 /* ===== 홈 퀵 카드 높이 통일 ===== */
 .quick-grid{
@@ -1081,12 +956,6 @@ body{
   .today-box .row{ grid-template-columns: 80px 1fr; }
   .tts-btn{ grid-column: 1 / -1; justify-self: start; }
 }
-.site-logo{
-  height:80px;              /* 실제 화면에서 적당한 크기 */
-  width:auto;
-  object-fit: contain;
-  display:block;
-}
 
 /* =========================
    UI 선명도 업그레이드 (추가/덮어쓰기)
@@ -1110,12 +979,6 @@ html, body{
   background: var(--bg);
 }
 
-/* 상단바를 더 선명하게 */
-.topbar{
-  background: rgba(255,255,255,0.86);
-  border-bottom: 1px solid rgba(15,23,42,0.12);
-  box-shadow: 0 10px 28px rgba(2,8,23,0.06);
-}
 
 /* 본문 컨테이너(가운데 영역) 대비 상승 */
 .page{
@@ -1345,4 +1208,556 @@ a.btn-primary{
   line-height: 1.6;
   opacity: .9;
   font-size: 0.98rem;
+}
+
+/* =========================
+   TOPBAR (정렬 고정 완성본)
+========================= */
+
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,.88);
+  border-bottom: 1px solid rgba(15,23,42,.12);
+}
+
+.topbar-inner{
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 12px 18px;
+
+  display: grid;
+   grid-template-columns: 70px 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+/* 가운데 메뉴 */
+.nav{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+}
+.nav a{
+  text-decoration:none;
+  color: rgba(15,23,42,0.65);
+  font-weight:900;
+  padding:10px 10px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  height:44px;
+}
+.nav a:hover{ background: rgba(59,130,246,0.06); }
+.nav a.active{ color:#0f172a; background: rgba(59,130,246,0.10); }
+
+/* 오른쪽 영역: 한 줄 고정 */
+.topbar-right{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:12px;
+  white-space:nowrap;
+  flex-wrap:nowrap;
+}
+
+/* 알림 드롭다운 위치 */
+.notif-wrap{ position:relative; }
+.notif-btn{
+  height:44px;
+  padding:0 12px;
+  border-radius:14px;
+}
+.pill{ margin-left:8px; }
+
+/* 드롭다운 박스는 기존 스타일 유지하되 클래스화 */
+.notif-box{
+  position:absolute;
+  right:0;
+  top:52px;
+  width:360px;
+  z-index:1000;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  padding:12px;
+  box-shadow:0 10px 30px rgba(16,24,40,.12);
+}
+.notif-head{ display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px; }
+.notif-list{ display:flex; flex-direction:column; gap:8px; }
+.notif-foot{ margin-top:10px; }
+
+/* auth 한 줄 */
+.auth{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:nowrap;
+}
+
+/* 닉네임 + 관리자칩도 한 줄 */
+.user-inline{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* 닉네임(44px 통일) */
+.hello{
+  height:44px;
+  padding:0 12px;
+  display:inline-flex;
+  align-items:center;
+  border-radius:14px;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  font-weight:900;
+}
+
+/* ✅ 관리자/회원관리: 작고 귀엽게 한 줄 */
+.admin-chips{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:nowrap;
+}
+.admin-chip{
+  height:22px;
+  padding:0 8px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.admin-chip.admin{
+  color:#2563eb;
+  background:#eef2ff;
+  border:1px solid rgba(37,99,235,.25);
+}
+.admin-chip.users{
+  color:#0f766e;
+  background:#ecfeff;
+  border:1px solid rgba(13,148,136,.25);
+}
+
+/* 모바일: 메뉴 숨김 */
+@media (max-width:980px){
+  .nav{ display:none; }
+  .topbar-inner{ grid-template-columns: 1fr auto; }
+}
+
+/* =========================
+   LOGO SIZE & POSITION FIX
+========================= */
+
+/* 로고 링크(클릭 영역) */
+.brand{
+  display:flex;
+  align-items:center;          /* ✅ 세로 중앙 */
+  justify-content:flex-start;  /* ✅ 왼쪽 정렬 */
+  gap:10px;
+  height: 56px;                /* ✅ topbar 높이 안에서 안정 */
+  padding-left: 0;             /* ✅ 왼쪽 여백 필요하면 4~6px로 */
+  line-height: 1;              /* ✅ 위로 뜨는 현상 방지 */
+  text-decoration:none;
+}
+
+/* 로고 이미지 */
+.site-logo{
+  width: 120px;                 /* ✅ 로고 적당히 크게(원하면 48도 가능) */
+  height: 120px;
+  display:block;
+  object-fit:contain;
+  border-radius: 12px;
+}
+
+
+/* =========================
+   LOGO ALIGN FIX (강제 정렬)
+========================= */
+
+/* topbar 자체 높이/정렬 기준을 안정화 */
+.topbar-inner{
+  min-height: 72px;          /* ✅ 로고 56px + 패딩에도 흔들림 없게 */
+  align-items: center;
+}
+
+/* 로고를 감싸는 링크/영역이 inline이면 삐뚤어질 수 있어서 강제 */
+.brand,
+.brand:link,
+.brand:visited{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+
+  /* ✅ baseline/line-height 때문에 위로 뜨는 현상 방지 */
+  line-height: 1;
+}
+
+/* 로고 이미지 기본 inline 특성 제거 + 중앙 정렬 */
+.site-logo{
+  display: block;
+  flex: 0 0 auto;
+}
+
+/* 혹시 사이트명 텍스트가 있다면(brand-text) 높이 맞추기 */
+.brand .brand-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.1;
+}
+/* =========================
+   BRAND (로고 + 텍스트 2줄)
+========================= */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:inherit;
+  line-height:1;         /* ✅ baseline 떠보임 방지 */
+  min-width:0;
+}
+
+.brand-text{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:2px;
+  line-height:1.05;
+  min-width:0;
+}
+
+.brand-title{
+  font-weight:1000;
+  font-size:14px;
+  color:#2563eb;
+  letter-spacing:-0.2px;
+}
+
+.brand-subtitle{
+  font-weight:1000;
+  font-size:14px;
+  color:rgba(15,23,42,.92);
+  letter-spacing:-0.2px;
+}
+
+/* =========================
+   TOP NAV: 전부 한 줄 + 노트만 2줄(단어 단위로)
+========================= */
+
+/* ✅ 메뉴 글자가 세로로 쪼개지는 원인 차단 */
+.nav a,
+.nav .nav-txt,
+.nav .nav-txt .t1,
+.nav .nav-txt .t2{
+  word-break: keep-all;     /* ✅ 한글 글자 쪼개서 줄바꿈 금지 */
+  overflow-wrap: normal;    /* ✅ break-word 같은 동작 방지 */
+}
+
+/* ✅ 기본: 모든 메뉴는 한 줄 고정 */
+.nav a{
+  white-space: nowrap;      /* ✅ 줄바꿈 금지 */
+}
+
+/* ✅ 기본: nav-txt는 가로(한 줄) */
+.nav .nav-txt{
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
+  white-space: nowrap;      /* ✅ 줄바꿈 금지 */
+}
+
+/* ✅ 기본: 대부분 메뉴는 t1만 쓰니까 t2는 숨김 */
+.nav .nav-txt .t2{
+  display: none;
+}
+
+/* =========================
+   ✅ 예외: "나만의 학습노트"만 2줄
+========================= */
+
+/* note 링크만 2줄 레이아웃 */
+.nav a[href*="/note"] .nav-txt{
+  display: flex;
+  flex-direction: column;   /* ✅ 위/아래 2줄 */
+  align-items: center;
+  gap: 2px;
+
+  white-space: normal;      /* ✅ 2줄 허용(단, keep-all 때문에 글자쪼개기 X) */
+  min-width: 74px;          /* ✅ 폭을 줘서 '나만의'가 1글자씩 세로로 안 떨어지게 */
+}
+
+/* note는 t2도 보여줌 */
+.nav a[href*="/note"] .nav-txt .t2{
+  display: block;
+}
+
+/* note의 각 줄은 '단어 통째로' 한 줄 고정 */
+.nav a[href*="/note"] .nav-txt .t1,
+.nav a[href*="/note"] .nav-txt .t2{
+  white-space: nowrap;      /* ✅ '나만의' / '학습노트' 각각 한 줄 */
+  font-size: 14px;
+  line-height: 1.05;
+}
+
+/* =========================
+   USER BLOCK (오른쪽 정렬 정돈)
+========================= */
+
+.user-block{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;   /* 오른쪽 정렬 */
+  gap:6px;
+}
+
+/* 닉네임 + 로그아웃 가로줄 */
+.user-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* 관리자 버튼 줄 */
+.admin-chips.under{
+  display:flex;
+  gap:6px;
+}
+
+/* 버튼들이 줄 폭 튀지 않게 */
+.admin-chip{
+  white-space: nowrap;
+}
+/* =========================
+   RIGHT AUTH: 일반회원 줄은 "메뉴와 같은 높이"로 정렬
+   관리자 칩은 작게 + 아래에 살짝 붙이기
+========================= */
+
+/* 전체 묶음: 오른쪽 정렬 */
+.user-block{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap:4px; /* ✅ 아래칩과 간격 최소화 */
+}
+
+/* ✅ 일반회원이 보는 줄(닉네임 + 로그아웃) = 메뉴 높이(44px)로 맞춤 */
+.user-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  height:44px;            /* ✅ 메뉴 링크 높이와 동일 */
+}
+
+/* 닉네임 박스(hello)가 너무 커 보이면 살짝 "메뉴 느낌"으로 */
+.hello{
+  height:44px;
+  padding:0 10px;
+  border-radius:14px;
+  background: transparent;   /* ✅ 카드처럼 붕 뜨는 느낌 제거 */
+  border:1px solid rgba(15,23,42,0.10);
+}
+
+/* 로그아웃 버튼도 메뉴 높이 맞춤 */
+.user-top .btn{
+  height:44px;
+  display:inline-flex;
+  align-items:center;
+  padding:0 10px;
+  border-radius:14px;
+}
+
+/* =========================
+   ✅ 관리자/회원관리: 더 작게 + 갭 줄이기
+========================= */
+.admin-chips.under{
+  display:flex;
+  align-items:center;
+  gap:6px;                 /* ✅ 간격 축소 */
+  margin-top:-6px;         /* ✅ 위 줄에 더 붙여서 폭/높이 튀는 느낌 감소 */
+}
+
+/* 관리자 칩 크기 줄이기 */
+.admin-chips.under .admin-chip{
+  height:20px;             /* ✅ 작게 */
+  padding:0 8px;
+  font-size:11px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+.hello{
+  background: transparent;
+  border: none;
+}
+/* =========================
+   MYPAGE: Admin Panel (ADDED)
+========================= */
+.admin-panel{
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(15,23,42,0.12);
+  border-radius: 18px;
+  padding: 14px 14px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+}
+
+.admin-panel-title{
+  font-weight: 1000;
+  font-size: 14px;
+  color: rgba(15,23,42,0.78);
+  margin-bottom: 10px;
+}
+
+.admin-panel-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
+.admin-panel-actions .btn{
+  height: 40px;
+  border-radius: 12px;
+  padding: 0 14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* 로그인/회원가입 정렬 통일 */
+
+.auth .btn-ghost{
+  border:1px solid #d0d5dd;
+  padding:8px 14px;
+  border-radius:12px;
+  font-weight:600;
+  background:#fff;
+}
+
+.auth .btn-ghost:hover{
+  background:#f4f6fb;
+}
+
+/* 회원가입 강조 유지 */
+.auth .btn-primary{
+  padding:8px 16px;
+  border-radius:12px;
+  font-weight:700;
+}
+.auth .btn-ghost{
+  border:none;
+  background:transparent;
+  font-weight:600;
+}
+/* =========================
+   LOGIN PAGE - 버튼 꾸미기
+   (로그인 폼 안 버튼/링크 통일)
+   ========================= */
+
+/* 로그인 카드(폼) 안에서 버튼 줄 찾기: 보통 form 내부 마지막 줄 */
+form .btn,
+form a.btn,
+form button,
+form a {
+  border-radius: 12px;
+}
+
+/* 로그인 폼 안 "버튼들만" 예쁘게 정렬되게
+   - 로그인/회원가입/비번찾기 줄이 보통 form 안에 붙어있어서 form 기준으로 적용 */
+form .btn,
+form a.btn,
+form button.btn,
+form a.btn-ghost,
+form a.btn-primary {
+  height: 38px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1;
+  gap: 6px;
+}
+
+/* ✅ 메인(로그인) 버튼 - 파란색 */
+form .btn-primary,
+form button.btn-primary {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+}
+form .btn-primary:hover,
+form button.btn-primary:hover {
+  filter: brightness(0.97);
+}
+
+/* ✅ 보조(회원가입/비밀번호찾기) 버튼 - 아웃라인 */
+form .btn-ghost,
+form a.btn-ghost {
+  background: #fff;
+  color: #111827;
+  border-color: #d0d5dd;
+}
+form .btn-ghost:hover,
+form a.btn-ghost:hover {
+  background: #f4f6fb;
+}
+
+/* ✅ 링크가 "그냥 a태그"로 되어있는 경우를 대비
+   로그인 폼 안에서, 버튼 줄에 있는 a태그를 버튼처럼 보이게 */
+form .actions a,
+form .btn-row a,
+form .form-actions a,
+form a[href*="register"],
+form a[href*="forgot"],
+form a[href*="reset"] {
+  height: 38px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 12px;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+  color: #111827;
+  text-decoration: none;
+  margin-left: 8px;
+}
+form .actions a:hover,
+form .btn-row a:hover,
+form .form-actions a:hover,
+form a[href*="register"]:hover,
+form a[href*="forgot"]:hover,
+form a[href*="reset"]:hover {
+  background: #f4f6fb;
+}
+
+/* 버튼들 간격/줄맞춤(혹시 붙어보이면) */
+form .actions,
+form .btn-row,
+form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
 }
