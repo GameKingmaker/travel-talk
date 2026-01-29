@@ -166,52 +166,6 @@
 
     <div class="muted">총 {{ (rows or [])|length }}개</div>
   </div>
-<script>
-(() => {
-  function toast(msg){
-    if (typeof window.showToast === "function") window.showToast(msg);
-    else alert(msg);
-  }
-
-  // 즐겨찾기 토글
-  document.addEventListener("click", async (e) => {
-    const btn = e.target.closest(".fav-btn");
-    if (!btn) return;
-
-    if (!window.IS_LOGGED_IN){
-      toast("로그인 후 즐겨찾기를 사용할 수 있어요.");
-      return;
-    }
-
-    const cat_key = btn.getAttribute("data-cat");
-    const jp = btn.getAttribute("data-jp");
-    const on = btn.classList.contains("on");
-
-    try{
-      const res = await fetch("/api/word_fav", {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({
-          action: on ? "remove" : "add",
-          cat_key,
-          jp
-        })
-      });
-
-      const data = await res.json();
-      if (!res.ok || !data.ok){
-        toast("처리 실패(로그인/서버 상태 확인)");
-        return;
-      }
-
-      btn.classList.toggle("on", !on);
-      btn.textContent = (!on) ? "★" : "☆";
-    }catch(err){
-      toast("네트워크 오류");
-    }
-  });
-})();
-</script>
 
 </div>
 
