@@ -189,172 +189,298 @@
   </script>
 
   <!-- =========================
-       회원정보(모달)
-       ========================= -->
-  <div id="memberCardOverlay" style="display:none; position:fixed; inset:0; background:rgba(16,24,40,.50); z-index:9999;">
-    <div id="memberCardModal"
-         style="width:380px; max-width:calc(100vw - 28px); margin:10vh auto 0; background:#fff; border-radius:20px;
-                border:1px solid #e6ebf7; box-shadow:0 18px 70px rgba(16,24,40,.22); overflow:hidden;">
+     회원정보(모달)
+     ========================= -->
+<div id="memberCardOverlay" style="display:none; position:fixed; inset:0; background:rgba(16,24,40,.50); z-index:9999;">
+  <div id="memberCardModal"
+       style="width:380px; max-width:calc(100vw - 28px); margin:10vh auto 0; background:#fff; border-radius:20px;
+              border:1px solid #e6ebf7; box-shadow:0 18px 70px rgba(16,24,40,.22); overflow:hidden;">
 
-      <div style="padding:14px 16px; display:flex; justify-content:space-between; align-items:center; background:#0b1220; color:#fff;">
-        <div style="display:flex; gap:10px; align-items:center;">
-          <span style="display:inline-flex; width:10px; height:10px; border-radius:50%; background:#22c55e;"></span>
-          <div style="font-weight:900;">회원정보</div>
-        </div>
-        <button id="memberCardClose" class="btn" type="button"
-                style="padding:6px 10px; border-radius:10px; background:#111b30; border:1px solid rgba(255,255,255,.15); color:#fff;">
-          닫기
-        </button>
+    <div style="padding:14px 16px; display:flex; justify-content:space-between; align-items:center; background:#0b1220; color:#fff;">
+      <div style="display:flex; gap:10px; align-items:center;">
+        <span style="display:inline-flex; width:10px; height:10px; border-radius:50%; background:#22c55e;"></span>
+        <div style="font-weight:900;">회원정보</div>
       </div>
-
-      <div style="padding:16px;">
-        <div style="display:flex; gap:12px; align-items:center;">
-          <div id="mcAvatar"
-               style="width:54px; height:54px; border-radius:18px; background:#eef4ff; border:1px solid #cfe0ff;
-                      display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; color:#2563eb;">
-            -
-          </div>
-
-          <div style="min-width:0; flex:1;">
-            <div style="display:flex; align-items:center; gap:10px; min-width:0;">
-              <div id="mcNick" style="font-size:18px; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">-</div>
-              <div id="mcGrade"
-                   style="font-size:12px; padding:6px 10px; border-radius:999px;
-                          background:#fff7ed; border:1px solid #fdba74; color:#9a3412; font-weight:900;">
-                -
-              </div>
-            </div>
-            <div id="mcUser" style="color:#98a2b3; font-size:13px; margin-top:3px;">-</div>
-          </div>
-        </div>
-
-        <div style="margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-          <div style="border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
-            <div style="font-size:12px; color:#667085;">작성글</div>
-            <div id="mcPosts" style="font-size:20px; font-weight:900; margin-top:2px;">0</div>
-          </div>
-          <div style="border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
-            <div style="font-size:12px; color:#667085;">작성댓글</div>
-            <div id="mcComments" style="font-size:20px; font-weight:900; margin-top:2px;">0</div>
-          </div>
-        </div>
-
-        <div style="margin-top:10px; border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
-          <div style="font-size:12px; color:#667085;">최근 접속</div>
-          <div id="mcLastSeen" style="font-weight:900; margin-top:2px;">-</div>
-        </div>
-
-        <div style="margin-top:12px; display:flex; gap:10px;">
-          <a id="mcPostsBtn" class="btn btn-primary" href="#"
-             style="flex:1; text-align:center; border-radius:14px;">
-            작성글 보기
-          </a>
-        </div>
-
-        {% if user and is_admin(user) %}
-        <div id="mcAdminRow" style="margin-top:10px;">
-          <button id="mcAdminBtn" class="btn" type="button" style="width:100%; border-radius:14px;">
-            관리자: 회원관리
-          </button>
-        </div>
-        {% endif %}
-
-        <div id="mcMsg" style="margin-top:10px; font-size:13px; color:#60708a;"></div>
-      </div>
+      <button id="memberCardClose" class="btn" type="button"
+              style="padding:6px 10px; border-radius:10px; background:#111b30; border:1px solid rgba(255,255,255,.15); color:#fff;">
+        닫기
+      </button>
     </div>
+
+    <div style="padding:16px;">
+      <!-- 상단 프로필 -->
+      <div style="display:flex; gap:12px; align-items:center;">
+        <div id="mcAvatar"
+             style="width:54px; height:54px; border-radius:18px; background:#eef4ff; border:1px solid #cfe0ff;
+                    display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; color:#2563eb;">
+          -
+        </div>
+
+        <div style="min-width:0; flex:1;">
+          <div style="display:flex; align-items:center; gap:10px; min-width:0;">
+            <div id="mcNick" style="font-size:18px; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">-</div>
+            <div id="mcGrade"
+                 style="font-size:12px; padding:6px 10px; border-radius:999px;
+                        background:#fff7ed; border:1px solid #fdba74; color:#9a3412; font-weight:900;">
+              -
+            </div>
+          </div>
+          <div id="mcUser" style="color:#98a2b3; font-size:13px; margin-top:3px;"></div>
+        </div>
+      </div>
+
+      <!-- (1) 3칸 그리드 -->
+<div id="mcGrid3" class="mc-grid3" style="margin-top:14px; display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;">
+
+  <div style="border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
+    <div style="font-size:12px; color:#667085;">작성글</div>
+    <div id="mcPosts" style="font-size:20px; font-weight:900; margin-top:2px;">0</div>
   </div>
 
-  <script>
-  (function(){
-    const overlay = document.getElementById("memberCardOverlay");
-    const closeBtn = document.getElementById("memberCardClose");
+  <div style="border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
+    <div style="font-size:12px; color:#667085;">작성댓글</div>
+    <div id="mcComments" style="font-size:20px; font-weight:900; margin-top:2px;">0</div>
+  </div>
 
-    const $ = (id) => document.getElementById(id);
+  <!-- ✅ 경험치 박스: 관리자면 숨길 영역 -->
+  <div id="mcExpBox" style="border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
+    <div style="font-size:12px; color:#667085;">경험치</div>
+    <div id="mcScore" style="font-size:20px; font-weight:900; margin-top:2px;">0</div>
+  </div>
 
-    function gradeToIcon(grade){
-      grade = (grade || "").trim();
-      if (grade.includes("총관리자")) return "👑";
-      if (grade.includes("관리자")) return "🛡️";
-      if (grade.includes("마스터")) return "🎖️";
-      if (grade.includes("다이아")) return "💎";
-      if (grade.includes("골드")) return "🥇";
-      if (grade.includes("실버")) return "🥈";
-      if (grade.includes("브론즈")) return "🥉";
-      if (grade.includes("입문")) return "🌱";
-      return "🙂";
+</div>
+
+<!-- ✅ 진행바 카드: 관리자면 숨길 영역 -->
+<div id="mcProgressCard" style="margin-top:10px; border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
+  <div style="display:flex; justify-content:space-between; gap:10px; font-size:12px; color:#667085;">
+    <div>다음 계급: <b id="mcNextGrade">-</b></div>
+    <div>남은 경험치: <b id="mcRemain">-</b></div>
+  </div>
+
+  <div style="margin-top:8px; height:10px; background:#eef2ff; border-radius:999px; overflow:hidden;">
+    <div id="mcProgBar" style="height:100%; width:0%; background:#2563eb;"></div>
+  </div>
+
+  <div style="margin-top:6px; font-size:12px; color:#667085;">
+    진행률: <b><span id="mcProgPct">0</span>%</b>
+  </div>
+</div>
+
+<!-- ✅ 관리자용 안내(기본 숨김) -->
+<div id="mcAdminOnlyNote"
+     style="display:none; margin-top:10px; border:1px dashed #cbd5e1; border-radius:16px; padding:12px; background:#f8fafc; color:#334155; font-size:13px; font-weight:800;">
+  관리자 계정은 승급/경험치 시스템이 적용되지 않습니다.
+</div>
+
+      <!-- 최근 접속 -->
+      <div style="margin-top:10px; border:1px solid #e6ebf7; border-radius:16px; padding:12px; background:#fff;">
+        <div style="font-size:12px; color:#667085;">최근 접속</div>
+        <div id="mcLastSeen" style="font-weight:900; margin-top:2px;">-</div>
+      </div>
+
+      <!-- 버튼 -->
+      <div style="margin-top:12px; display:flex; gap:10px;">
+        <a id="mcPostsBtn" class="btn btn-primary" href="#"
+           style="flex:1; text-align:center; border-radius:14px;">
+          작성글 보기
+        </a>
+      </div>
+
+      {% if user and is_admin(user) %}
+      <div id="mcAdminRow" style="margin-top:10px;">
+        <button id="mcAdminBtn" class="btn" type="button" style="width:100%; border-radius:14px;">
+          관리자: 회원관리
+        </button>
+      </div>
+      {% endif %}
+
+      <div id="mcMsg" style="margin-top:10px; font-size:13px; color:#60708a;"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @media (max-width:520px){
+    .mc-grid3{ grid-template-columns:repeat(2, minmax(0,1fr)) !important; }
+  }
+</style>
+
+<script>
+(function(){
+  const overlay = document.getElementById("memberCardOverlay");
+  const closeBtn = document.getElementById("memberCardClose");
+  const $ = (id) => document.getElementById(id);
+
+  // ✅ 등급 아이콘
+  function gradeToIcon(grade){
+    grade = (grade || "").trim();
+    if (grade.includes("총관리자")) return "👑";
+    if (grade.includes("관리자")) return "🛡️";
+    if (grade.includes("마스터")) return "🎖️";
+    if (grade.includes("다이아")) return "💎";
+    if (grade.includes("골드")) return "🥇";
+    if (grade.includes("실버")) return "🥈";
+    if (grade.includes("브론즈")) return "🥉";
+    if (grade.includes("입문")) return "🌱";
+    return "🙂";
+  }
+
+  // ✅ (중요) calcProgress는 openMemberCard보다 위에 있어야 안전함
+  function calcProgress(score){
+    const steps = [
+      { name: "입문 🌱",   start: 0,    next: 11 },
+      { name: "브론즈 🥉", start: 11,   next: 51 },
+      { name: "실버 🥈",   start: 51,   next: 201 },
+      { name: "골드 🥇",   start: 201,  next: 501 },
+      { name: "다이아 💎", start: 501,  next: 1001 },
+      { name: "마스터 🎖️", start: 1001, next: null },
+    ];
+
+    if (score >= 1001){
+      return { nextGrade: "최고등급", remain: 0, pct: 100 };
     }
 
-    function openMemberCard(nick){
-      if (!overlay) return;
-
-      $("mcNick").textContent = nick || "-";
-      $("mcAvatar").textContent = "-";
-      $("mcUser").textContent = "";
-      $("mcGrade").textContent = "";
-      $("mcPosts").textContent = "0";
-      $("mcComments").textContent = "0";
-      $("mcLastSeen").textContent = "-";
-      $("mcMsg").textContent = "불러오는 중...";
-      overlay.style.display = "block";
-
-      fetch(`/api/member_card?nick=${encodeURIComponent(nick)}`)
-        .then(r => r.json())
-        .then(data => {
-          if (!data || !data.ok){
-            $("mcMsg").textContent = "회원 정보를 찾을 수 없어요.";
-            return;
-          }
-
-          const m = data.member || {};
-          $("mcNick").textContent = m.nickname || nick || "-";
-          $("mcUser").textContent = m.username ? `아이디: ${m.username}` : "";
-          $("mcGrade").textContent = m.grade || "일반";
-          $("mcAvatar").textContent = gradeToIcon(m.grade);
-
-          $("mcPosts").textContent = String(m.post_cnt ?? 0);
-          $("mcComments").textContent = String(m.comment_cnt ?? 0);
-
-          const ls = m.last_seen_at || "";
-          $("mcLastSeen").textContent = ls ? ls.slice(0,16).replace("T"," ") : "-";
-
-          const postsBtn = $("mcPostsBtn");
-          if (postsBtn){
-            postsBtn.href = `/board?q=${encodeURIComponent(m.nickname || nick)}`;
-          }
-
-          $("mcMsg").textContent = "";
-        })
-        .catch(() => {
-          $("mcMsg").textContent = "오류가 발생했어요.";
-        });
+    let cur = steps[0];
+    for (let i = 0; i < steps.length; i++){
+      if (score >= steps[i].start) cur = steps[i];
     }
 
-    function closeMemberCard(){
-      if (!overlay) return;
-      overlay.style.display = "none";
+    const nextNeed = cur.next;
+    const remain = Math.max(0, nextNeed - score);
+    const span = nextNeed - cur.start;
+    const done = score - cur.start;
+    const pct = span > 0 ? Math.max(0, Math.min(100, Math.floor((done / span) * 100))) : 0;
+
+    let nextGrade = "-";
+    for (let i = 0; i < steps.length; i++){
+      if (steps[i].start === nextNeed) nextGrade = steps[i].name;
     }
 
-    if (closeBtn) closeBtn.addEventListener("click", closeMemberCard);
+    return { nextGrade, remain, pct };
+  }
 
-    if (overlay){
-      overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) closeMemberCard();
+  function openMemberCard(nick){
+    if (!overlay) return;
+
+    // 초기화
+    $("mcNick").textContent = nick || "-";
+    $("mcAvatar").textContent = "-";
+    $("mcUser").textContent = "";
+    $("mcGrade").textContent = "";
+    $("mcPosts").textContent = "0";
+    $("mcComments").textContent = "0";
+    if ($("mcScore")) $("mcScore").textContent = "0";
+
+    if ($("mcNextGrade")) $("mcNextGrade").textContent = "-";
+    if ($("mcRemain")) $("mcRemain").textContent = "-";
+    if ($("mcProgBar")) $("mcProgBar").style.width = "0%";
+    if ($("mcProgPct")) $("mcProgPct").textContent = "0";
+
+    $("mcLastSeen").textContent = "-";
+    $("mcMsg").textContent = "불러오는 중...";
+    overlay.style.display = "block";
+
+    fetch(`/api/member_card?nick=${encodeURIComponent(nick)}`)
+      .then(async (r) => {
+        if (!r.ok) {
+          const t = await r.text();
+          throw new Error(`HTTP ${r.status} ${r.statusText} :: ${t.slice(0,200)}`);
+        }
+        return r.json();
+      })
+      .then((data) => {
+        if (!data || !data.ok){
+          $("mcMsg").textContent = "회원 정보를 찾을 수 없어요.";
+          return;
+        }
+
+        const m = data.member || {};
+        $("mcNick").textContent = m.nickname || nick || "-";
+        $("mcUser").textContent = m.username ? `아이디: ${m.username}` : "";
+        $("mcGrade").textContent = m.grade || "일반";
+        $("mcAvatar").textContent = gradeToIcon(m.grade);
+        const gradeText = String(m.grade || "");
+        const isAdminGrade =
+          gradeText.includes("총관리자") ||
+          gradeText.includes("관리자") ||
+          gradeText.includes("👑") ||
+          gradeText.includes("🛡️");
+
+        const expBox = document.getElementById("mcExpBox");
+        const progCard = document.getElementById("mcProgressCard");
+        const adminNote = document.getElementById("mcAdminOnlyNote");
+        const grid3 = document.getElementById("mcGrid3");
+
+        if (isAdminGrade) {
+          // ✅ 경험치/진행바 숨김
+          if (expBox) expBox.style.display = "none";
+          if (progCard) progCard.style.display = "none";
+          if (adminNote) adminNote.style.display = "block";
+
+          // ✅ 그리드 3칸→2칸으로 보기 좋게
+          if (grid3) grid3.style.gridTemplateColumns = "repeat(2, 1fr)";
+        } else {
+          // ✅ 일반 회원은 표시
+          if (expBox) expBox.style.display = "block";
+          if (progCard) progCard.style.display = "block";
+          if (adminNote) adminNote.style.display = "none";
+
+          if (grid3) grid3.style.gridTemplateColumns = "repeat(3, 1fr)";
+        }
+
+        $("mcPosts").textContent = String(m.post_cnt ?? 0);
+        $("mcComments").textContent = String(m.comment_cnt ?? 0);
+        if ($("mcScore")) $("mcScore").textContent = String(m.score ?? 0);
+
+        // 진행률 계산
+        const prog = calcProgress(Number(m.score ?? 0));
+        if ($("mcNextGrade")) $("mcNextGrade").textContent = prog.nextGrade;
+        if ($("mcRemain")) $("mcRemain").textContent = String(prog.remain);
+        if ($("mcProgBar")) $("mcProgBar").style.width = prog.pct + "%";
+        if ($("mcProgPct")) $("mcProgPct").textContent = String(prog.pct);
+
+        const ls = m.last_seen_at || "";
+        $("mcLastSeen").textContent = ls ? ls.slice(0,16).replace("T"," ") : "-";
+
+        const postsBtn = $("mcPostsBtn");
+        if (postsBtn){
+          postsBtn.href = `/board?q=${encodeURIComponent(m.nickname || nick)}`;
+        }
+
+        $("mcMsg").textContent = "";
+      })
+      .catch((err) => {
+        console.error(err);
+        $("mcMsg").textContent = "오류: " + (err.message || "unknown");
       });
-    }
+  }
 
-    // ✅ 게시판 닉네임 클릭: data-member / data-nick 둘 다 지원
-    document.addEventListener("click", (e) => {
-      const el = e.target.closest("[data-member],[data-nick]");
-      if (!el) return;
+  function closeMemberCard(){
+    if (!overlay) return;
+    overlay.style.display = "none";
+  }
 
-      e.preventDefault();
-      const nick = el.getAttribute("data-member") || el.getAttribute("data-nick") || "";
-      if (!nick) return;
+  if (closeBtn) closeBtn.addEventListener("click", closeMemberCard);
 
-      openMemberCard(nick);
+  if (overlay){
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeMemberCard();
     });
-  })();
-  </script>
+  }
+
+  // ✅ 게시판 닉네임 클릭: data-member / data-nick 둘 다 지원
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-member],[data-nick]");
+    if (!el) return;
+
+    e.preventDefault();
+    const nick = el.getAttribute("data-member") || el.getAttribute("data-nick") || "";
+    if (!nick) return;
+
+    openMemberCard(nick);
+  });
+})();
+</script>
 
 </body>
 </html>
