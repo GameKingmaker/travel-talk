@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% set page_title = "관리자 대시보드 | 일본 여행 회화 공부방" %}
+
+{% block content %}
+
+<div style="max-width:1100px; margin:0 auto; padding:22px 18px 48px;">
+  <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom:18px;">
+    <div>
+      <h1 style="margin:0; font-size:28px; font-weight:900; letter-spacing:-0.3px;">관리자 대시보드</h1>
+      <div style="margin-top:6px; color:#667085; font-size:13px;">
+        기준일: {{ today }}
+      </div>
+    </div>
+    <div style="color:#667085; font-size:13px;">
+      관리자: <strong style="color:#101828;">{{ user.nickname or user.email or ("#" ~ user.id) }}</strong>
+    </div>
+  </div>
+
+  <!-- ✅ KPI 카드 -->
+  <div style="display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap:12px; margin-bottom:18px;">
+    <div style="background:#fff; border:1px solid #e7ecf6; border-radius:14px; padding:14px 14px;">
+      <div style="color:#667085; font-size:12px;">전체 회원</div>
+      <div style="font-size:22px; font-weight:900; margin-top:6px;">{{ total_users }}</div>
+    </div>
+    <div style="background:#fff; border:1px solid #e7ecf6; border-radius:14px; padding:14px 14px;">
+      <div style="color:#667085; font-size:12px;">오늘 가입</div>
+      <div style="font-size:22px; font-weight:900; margin-top:6px;">{{ today_users }}</div>
+    </div>
+    <div style="background:#fff; border:1px solid #e7ecf6; border-radius:14px; padding:14px 14px;">
+      <div style="color:#667085; font-size:12px;">전체 게시글</div>
+      <div style="font-size:22px; font-weight:900; margin-top:6px;">{{ total_posts }}</div>
+    </div>
+    <div style="background:#fff; border:1px solid #e7ecf6; border-radius:14px; padding:14px 14px;">
+      <div style="color:#667085; font-size:12px;">전체 댓글</div>
+      <div style="font-size:22px; font-weight:900; margin-top:6px;">{{ total_comments }}</div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+    <!-- ✅ 최근 가입자 -->
+    <section style="background:#fff; border:1px solid #e7ecf6; border-radius:16px; padding:16px;">
+      <h2 style="margin:0 0 12px; font-size:16px; font-weight:900;">최근 가입자</h2>
+
+      {% if recent_users and recent_users|length > 0 %}
+        <div style="overflow:auto;">
+          <table style="width:100%; border-collapse:collapse; font-size:13px;">
+            <thead>
+              <tr style="text-align:left; color:#667085;">
+                <th style="padding:10px 8px; border-bottom:1px solid #eef2ff;">ID</th>
+                <th style="padding:10px 8px; border-bottom:1px solid #eef2ff;">닉네임</th>
+                <th style="padding:10px 8px; border-bottom:1px solid #eef2ff;">이메일</th>
+                <th style="padding:10px 8px; border-bottom:1px solid #eef2ff;">가입일</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for u in recent_users %}
+                <tr>
+                  <td style="padding:10px 8px; border-bottom:1px solid #f3f5ff;">{{ u.id }}</td>
+                  <td style="padding:10px 8px; border-bottom:1px solid #f3f5ff;">{{ u.nickname }}</td>
+                  <td style="padding:10px 8px; border-bottom:1px solid #f3f5ff;">{{ u.email }}</td>
+                  <td style="padding:10px 8px; border-bottom:1px solid #f3f5ff;">{{ u.created_at }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div style="padding:12px 14px; border:1px dashed #d9e2f5; border-radius:12px; color:#667085;">
+          최근 가입자가 없습니다.
+        </div>
+      {% endif %}
+    </section>
+
+    <!-- ✅ 최근 글 -->
+    <section style="background:#fff; border:1px solid #e7ecf6; border-radius:16px; padding:16px;">
+      <h2 style="margin:0 0 12px; font-size:16px; font-weight:900;">최근 게시글</h2>
+
+      <div style="color:#667085; font-size:12px; margin-bottom:10px;">
+        오늘 작성 글: <strong style="color:#101828;">{{ today_posts }}</strong>
+      </div>
+
+      {% if recent_posts and recent_posts|length > 0 %}
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          {% for p in recent_posts %}
+            <a href="{{ url_for('board_detail', post_id=p.id) }}"
+               style="display:block; padding:12px 14px; border:1px solid #eef2ff; border-radius:14px; text-decoration:none; color:#101828;">
+              <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start;">
+                <div style="min-width:0;">
+                  <div style="display:flex; gap:8px; align-items:center;">
+                    {% if p.is_notice == 1 %}
+                      <span style="padding:3px 8px; border-radius:999px; background:#fff7ed; border:1px solid #fdba74; color:#9a3412; font-size:12px; font-weight:800;">공지</span>
+                    {% endif %}
+                    <div style="font-weight:900; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                      {{ p.title }}
+                    </div>
+                  </div>
+                  <div style="margin-top:6px; font-size:12px; color:#667085;">
+                    작성자 {{ p.author_nickname }} · {{ p.created_at }}
+                  </div>
+                </div>
+
+                <div style="flex:0 0 auto; display:flex; gap:10px; color:#667085; font-size:12px; white-space:nowrap;">
+                  <span>조회 {{ p.views }}</span>
+                  <span>추천 {{ p.upvotes }}</span>
+                </div>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div style="padding:12px 14px; border:1px dashed #d9e2f5; border-radius:12px; color:#667085;">
+          최근 글이 없습니다.
+        </div>
+      {% endif %}
+    </section>
+  </div>
+</div>
+
+{% endblock %}
