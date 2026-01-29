@@ -20,6 +20,7 @@ from functools import wraps
 from typing import Any, Dict, List, Tuple, Optional
 from flask import send_from_directory
 from flask import Response
+from time import time
 
 from flask import (
     Flask, render_template, request, redirect, url_for,
@@ -2699,12 +2700,14 @@ def mypage():
     # ✅ 공통 로직으로 통일
     grade = get_user_grade_label(user)
     score = get_user_score(user)
+    prog = score_progress_info(score)
 
     return render_template(
         "mypage.html",
         user=user,
         grade=grade,
         score=score,   # ✅ 템플릿에서 보여주고 싶으면 사용
+        prog=prog,
         post_cnt=post_cnt,
         comment_cnt=comment_cnt,
         received_cnt=received_cnt,
@@ -2779,6 +2782,63 @@ def score_to_grade(score: int) -> str:
         return "브론즈 🥉"
     else:
         return "입문 🌱"
+
+def score_progress_info(score: int) -> dict:
+    """
+    현재 점수(score)를 기준으로
+    - 현재 계급 / 다음 계급 / 다음 계급까지 남은 점수 / 진행률(0~100)
+    을 계산해서 dict로 반환
+    """
+    # (구간, 라벨) : "해당 점수 이상이면 이 계급"
+    tiers = [
+        (0, "입문 🌱"),
+        (11, "브론즈 🥉"),
+        (51, "실버 🥈"),
+        (201, "골드 🥇"),
+        (501, "다이아 💎"),
+        (1001, "마스터 🎖️"),
+    ]
+
+    score = int(score or 0)
+
+    # 현재 구간 찾기
+    cur_idx = 0
+    for i in range(len(tiers) - 1, -1, -1):
+        if score >= tiers[i][0]:
+            cur_idx = i
+            break
+
+    cur_floor, cur_label = tiers[cur_idx]
+
+    # 이미 최종 계급이면
+    if cur_idx == len(tiers) - 1:
+        return {
+            "cur_grade": cur_label,
+            "next_grade": None,
+            "cur_floor": cur_floor,
+            "next_threshold": None,
+            "remain": 0,
+            "pct": 100,
+            "score": score,
+        }
+
+    next_threshold, next_label = tiers[cur_idx + 1]
+
+    span = max(1, next_threshold - cur_floor)
+    progressed = min(span, max(0, score - cur_floor))
+    pct = int(round((progressed / span) * 100))
+
+    remain = max(0, next_threshold - score)
+
+    return {
+        "cur_grade": cur_label,
+        "next_grade": next_label,
+        "cur_floor": cur_floor,
+        "next_threshold": next_threshold,
+        "remain": remain,
+        "pct": pct,
+        "score": score,
+    }
 
 def get_user_grade_label(user: dict) -> str:
     """
@@ -3097,80 +3157,96 @@ def words_detail(cat_key):
 
 
 
-@app.route("/situations")
+@app.get("/situations")
 def situations():
-    user = current_user()
+    user = current_user()   # ✅ 이거 추가
+
+    ctx = seo(
+        title="상황별 일본 여행 회화 | 공항·호텔·교통·식당·응급",
+        desc="공항, 호텔, 교통, 음식점 등 상황별 일본 여행 필수 회화를 모아 쉽고 재미있게 학습하세요.",
+        keywords="상황별 일본어, 일본 여행 회화, 공항 일본어, 호텔 일본어, 식당 일본어"
+    )
+    ctx["page_intro"] = "공항, 호텔, 교통, 음식점 등 일본 여행에서 자주 마주치는 상황별 일본어 회화를 한 곳에 정리했습니다."
+
     return render_template(
-        "situation.html",          # ✅ 파일명 정확히
-        user=user,
-        situations=SITUATIONS,     # ✅ 이게 없으면 목록 안나옴
-        **seo(
-            title="일본 여행 상황별 회화 모음 | 공항 · 식당 · 호텔 일본어 표현",
-            desc="공항, 식당, 호텔, 쇼핑 등 일본 여행에서 자주 쓰는 상황별 일본어 회화를 한눈에 학습하세요. 실전 대화 중심 회화 연습 사이트입니다.",
-            keywords="일본 여행 회화, 상황별 일본어, 공항 일본어, 식당 일본어, 호텔 일본어"
-        )
+        "situation.html",
+        user=user,                 # ✅ 핵심!!
+        **ctx,
+        situations=SITUATIONS
     )
 
 
+@app.get("/situations/<main_key>/<sub_key>")
+def situation_detail(main_key: str, sub_key: str):
+    user = current_user()   # ✅ 추가
 
-
-
-@app.route("/situations/<cat>/<sub>")
-def situation_detail(cat: str, sub: str):
-    user = current_user()
-
-    cat_obj = SITUATIONS.get(cat)
-    if not cat_obj:
+    cat = SITUATIONS.get(main_key)
+    if not cat:
         abort(404)
 
-    sub_obj = cat_obj["subs"].get(sub)
-    if not sub_obj:
+    sub = (cat.get("subs") or {}).get(sub_key)
+    if not sub:
         abort(404)
-
-    fav_set = set()
-    if user:
-        conn = db()
-        rows = conn.execute(
-            "SELECT phrase_key FROM favorites WHERE user_id=?",
-            (user["id"],),
-        ).fetchall()
-        conn.close()
-        fav_set = {r["phrase_key"] for r in rows}
 
     items = []
-    for i, item in enumerate(sub_obj.get("items", []), start=1):
-        jp, pron, ko = item[:3]
-        phrase_key = f"{cat}:{sub}:{i}"
+    for i, t in enumerate(sub.get("items", [])):
         items.append({
-            "phrase_key": phrase_key,
-            "jp": jp,
-            "pron": pron,
-            "ko": ko,
-            "is_fav": (phrase_key in fav_set),
+            "phrase_key": f"{main_key}:{sub_key}:{i}",
+            "jp": t[0],
+            "pron": t[1],
+            "ko": t[2],
+            "source": None,
+            "is_fav": False,
         })
-
-    # ✅ SEO 자동 생성 (상세페이지 제목/설명/키워드)
-    cat_title = cat_obj["title"]
-    sub_title = sub_obj["title"]
-
-    seo_title = f"{cat_title} - {sub_title} | 일본 여행 상황별 회화"
-    seo_desc = (
-        f"{cat_title}에서 '{sub_title}' 상황에 바로 쓰는 일본어 회화를 정리했습니다. "
-        f"실전 표현/발음/뜻을 빠르게 학습하고 퀴즈로 복습하세요."
-    )
-    seo_keywords = f"{cat_title} 일본어, {sub_title} 일본어, 일본 여행 회화, 상황별 일본어, 일본어 표현"
 
     return render_template(
         "situation_detail.html",
-        user=user,
-        cat=cat,
-        sub=sub,
-        cat_title=cat_title,
-        sub_title=sub_title,
+        user=user,                # ✅ 이것도 핵심
+        cat_title=cat["title"],
+        sub_title=sub["title"],
+        main_key=main_key,
+        sub_key=sub_key,
         items=items,
-        **seo(title=seo_title, desc=seo_desc, keywords=seo_keywords),
     )
 
+
+def build_situation_seo(main_key: str, sub_key: str | None = None):
+    """
+    SITUATIONS 기반으로 페이지마다 고유 title/desc/keywords/intro 자동 생성
+    """
+    main = SITUATIONS.get(main_key)
+    if not main:
+        # fallback
+        title = "상황별 일본 여행 회화 | 일본여행 회화 공부방"
+        intro = "일본 여행 중 자주 사용하는 상황별 일본어 회화 표현을 정리했습니다. 실전 문장과 발음, 뜻을 함께 학습할 수 있습니다."
+        return title, intro
+
+    main_title_ko = main.get("title", "상황별 회화")
+
+    # sub(세부상황) 있을 때
+    sub_title_ko = None
+    if sub_key:
+        sub = (main.get("subs") or {}).get(sub_key)
+        if sub:
+            sub_title_ko = sub.get("title")
+
+    # 1) 고유 Title 생성
+    if sub_title_ko:
+        # 예: "일본 호텔 체크인 일본어 회화 | 여행 필수 표현"
+        title = f"일본 {main_title_ko} {sub_title_ko} 일본어 회화 | 여행 필수 표현"
+        intro = (
+            f"일본 여행 중 {main_title_ko}에서 {sub_title_ko} 상황에 자주 사용하는 일본어 회화 표현을 정리했습니다. "
+            f"현지에서 바로 쓸 수 있는 실전 문장과 발음, 뜻을 함께 학습할 수 있습니다."
+        )
+    else:
+        # 예: "일본 공항 일본어 회화 | 상황별 필수 표현"
+        title = f"일본 {main_title_ko} 일본어 회화 | 상황별 필수 표현"
+        intro = (
+            f"일본 여행 중 {main_title_ko} 상황에서 자주 사용하는 일본어 회화 표현을 정리했습니다. "
+            f"필수 문장과 발음, 뜻을 상황별로 쉽고 빠르게 학습할 수 있습니다."
+        )
+
+    return title, intro
 
 @app.route("/quiz")
 def quiz():
@@ -3335,26 +3411,44 @@ def board_detail(post_id: int):
             conn_tmp.close()
 
     conn = db()
-    post = conn.execute(
-    """
-    SELECT
-      id, user_id, title, content, author_grade, author_nickname,
-      created_at, views, upvotes, thumb_url,
-      COALESCE(is_notice,0) AS is_notice
-    FROM board_posts
-    WHERE id=?
-    """,
-    (post_id,),
-).fetchone()
 
+    # ✅ 조회수 중복 방지: 같은 세션에서 10분(600초) 내 재조회는 카운트 X
+    now = int(time())
+    key = f"viewed_post_{post_id}"
+    last = session.get(key)
+
+    if not last or (now - int(last)) > 600:
+        conn.execute(
+            "UPDATE board_posts SET views = COALESCE(views,0) + 1 WHERE id=?",
+            (post_id,),
+        )
+        conn.commit()
+        session[key] = now
+
+    post = conn.execute(
+        """
+        SELECT
+          id, user_id, title, content, author_grade, author_nickname,
+          created_at, views, upvotes, thumb_url,
+          COALESCE(is_notice,0) AS is_notice
+        FROM board_posts
+        WHERE id=?
+        """,
+        (post_id,),
+    ).fetchone()
 
     if not post:
         conn.close()
         abort(404)
 
-    # (선택) 조회수 증가가 있다면 여기서 실행 (너 코드에 이미 있으면 유지)
-    # conn.execute("UPDATE board_posts SET views = views + 1 WHERE id=?", (post_id,))
-    # conn.commit()
+    # ✅ (추천 UX용) 내가 이미 추천했는지 체크해서 템플릿에 전달
+    user_has_upvoted = False
+    if user:
+        r = conn.execute(
+            "SELECT 1 FROM board_upvotes WHERE post_id=? AND user_id=?",
+            (post_id, user["id"]),
+        ).fetchone()
+        user_has_upvoted = bool(r)
 
     comments_rows = conn.execute(
         """
@@ -3389,6 +3483,7 @@ def board_detail(post_id: int):
         post=post,
         comments=comments,
         is_owner=is_owner,
+        user_has_upvoted=user_has_upvoted,  # ✅ 추가
     )
 
 
@@ -3848,11 +3943,17 @@ def word_game_ranking_page():
 
 
 @app.post("/board/<int:post_id>/upvote")
+@login_required
 def board_upvote(post_id: int):
+    user = current_user()
+    if user and not isinstance(user, dict):
+        user = dict(user)
+
     conn = db()
     try:
         post = conn.execute(
-            "SELECT id, COALESCE(is_notice,0) AS is_notice, COALESCE(upvotes,0) AS upvotes FROM board_posts WHERE id=?",
+            "SELECT id, COALESCE(is_notice,0) AS is_notice, COALESCE(upvotes,0) AS upvotes "
+            "FROM board_posts WHERE id=?",
             (post_id,),
         ).fetchone()
 
@@ -3862,8 +3963,26 @@ def board_upvote(post_id: int):
         if post["is_notice"] == 1:
             return jsonify(ok=False, msg="공지글은 추천할 수 없어요.", upvotes=post["upvotes"]), 403
 
-        # 여기부터는 기존 업보트 로직 그대로
-        conn.execute("UPDATE board_posts SET upvotes = COALESCE(upvotes,0) + 1 WHERE id=?", (post_id,))
+        # ✅ 이미 추천했는지 체크
+        already = conn.execute(
+            "SELECT 1 FROM board_upvotes WHERE post_id=? AND user_id=?",
+            (post_id, user["id"]),
+        ).fetchone()
+
+        if already:
+            return jsonify(ok=False, msg="이미 추천한 글이에요.", upvotes=post["upvotes"]), 400
+
+        # ✅ 추천 기록 저장 (UNIQUE로 2중 방어)
+        conn.execute(
+            "INSERT INTO board_upvotes (post_id, user_id, created_at) VALUES (?,?,?)",
+            (post_id, user["id"], kst_now_iso()),
+        )
+
+        # ✅ 게시글 추천수 +1
+        conn.execute(
+            "UPDATE board_posts SET upvotes = COALESCE(upvotes,0) + 1 WHERE id=?",
+            (post_id,),
+        )
         conn.commit()
 
         row = conn.execute(
@@ -3872,6 +3991,18 @@ def board_upvote(post_id: int):
         ).fetchone()
 
         return jsonify(ok=True, msg="추천 완료!", upvotes=row["upvotes"])
+
+    except Exception as e:
+        conn.rollback()
+        # UNIQUE 위반이면 이미 추천한 상태
+        if "UNIQUE" in str(e).upper():
+            row = conn.execute(
+                "SELECT COALESCE(upvotes,0) AS upvotes FROM board_posts WHERE id=?",
+                (post_id,),
+            ).fetchone()
+            return jsonify(ok=False, msg="이미 추천한 글이에요.", upvotes=row["upvotes"] if row else 0), 400
+
+        return jsonify(ok=False, msg="서버 오류가 발생했습니다."), 500
 
     finally:
         conn.close()
@@ -4403,10 +4534,10 @@ def api_member_card():
             ).fetchone()
             comment_cnt = int(row["cnt"] or 0) if row else 0
 
-        # ---- 계급: 네 기존 로직 그대로 사용 ----
+        # ---- 계급/경험치 ----
         grade = get_user_grade_label({"id": u["id"], "username": u.get("username")})
+        score = get_user_score({"id": u["id"], "username": u.get("username")})
 
-        # ✅ JS가 data.member로 읽으니 member로 내려줌
         return jsonify(
             ok=True,
             member={
@@ -4414,12 +4545,14 @@ def api_member_card():
                 "username": u.get("username"),
                 "nickname": u.get("nickname"),
                 "grade": grade,
+                "score": score,
                 "post_cnt": post_cnt,
                 "comment_cnt": comment_cnt,
                 "last_login_at": u.get("last_login_at"),
                 "last_seen_at": u.get("last_seen_at"),
             }
         )
+
 
     finally:
         conn.close()
