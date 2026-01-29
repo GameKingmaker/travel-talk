@@ -86,6 +86,245 @@ def login_required(view):
         return view(*args, **kwargs)
     return wrapped
 
+# ✅ KST 날짜 문자열(YYYY-MM-DD) 만들기
+def kst_today_ymd() -> str:
+    kst = timezone(timedelta(hours=9))
+    return datetime.now(kst).strftime("%Y-%m-%d")
+
+# ✅ 관리자 판별 (너 프로젝트에 맞게 유연하게)
+def is_admin_user(user: dict) -> bool:
+    if not user:
+        return False
+
+    # 1) DB에 is_admin 컬럼이 있는 경우(가장 흔함)
+    if str(user.get("is_admin", 0)) in ("1", "true", "True"):
+        return True
+
+    # 2) role/grade 같은 값으로 관리자를 구분하는 경우
+    role = (user.get("role") or "").lower()
+    if role in ("admin", "administrator"):
+        return True
+
+    grade = (user.get("grade") or user.get("author_grade") or "").lower()
+    if "관리" in grade or "admin" in grade:
+        return True
+
+    # 3) 특정 user_id를 관리자 고정으로 쓰는 경우(예: 1번)
+    try:
+        if int(user.get("id", 0)) == 1:
+            return True
+    except:
+        pass
+
+    # 4) 환경변수로 관리자 id 목록 지정 (옵션)
+    # Render 환경변수에 ADMIN_IDS="1,2,3" 이렇게 넣으면 됨
+    ids = os.environ.get("ADMIN_IDS", "").strip()
+    if ids:
+        try:
+            admin_ids = {int(x.strip()) for x in ids.split(",") if x.strip().isdigit()}
+            if int(user.get("id", 0)) in admin_ids:
+                return True
+        except:
+            pass
+
+    return False
+
+# ✅ 관리자 전용 데코레이터
+def admin_required(view_func):
+    from functools import wraps
+    @wraps(view_func)
+    def wrapper(*args, **kwargs):
+        user = current_user()
+        if not user:
+            # 로그인부터
+            return redirect(url_for("login", next=request.path))
+        if not isinstance(user, dict):
+            user = dict(user)
+
+        if not is_admin_user(user):
+            abort(403)
+
+        return view_func(*args, **kwargs)
+    return wrapper
+
+
+@app.get("/admin")
+@admin_required
+def admin_dashboard():
+    user = current_user()
+    if user and not isinstance(user, dict):
+        user = dict(user)
+
+    today = kst_today_ymd()  # "2026-01-29" 같은 형태
+
+    conn = db()
+    try:
+        # ✅ 전체 회원 수
+        total_users = conn.execute("SELECT COUNT(*) AS c FROM users").fetchone()["c"]
+
+        # ✅ 오늘 가입자 수 (users.created_at 이 ISO 문자열이라고 가정: 'YYYY-MM-DD ...')
+        # created_at 컬럼명이 다르면 여기만 바꿔주면 됨.
+        today_users = conn.execute(
+            "SELECT COUNT(*) AS c FROM users WHERE COALESCE(created_at,'') LIKE ?",
+            (today + "%",),
+        ).fetchone()["c"]
+
+        # ✅ 전체 게시글/댓글 수
+        total_posts = conn.execute("SELECT COUNT(*) AS c FROM board_posts").fetchone()["c"]
+        total_comments = conn.execute("SELECT COUNT(*) AS c FROM board_comments").fetchone()["c"]
+
+        # ✅ 오늘 작성 게시글 수
+        today_posts = conn.execute(
+            "SELECT COUNT(*) AS c FROM board_posts WHERE COALESCE(created_at,'') LIKE ?",
+            (today + "%",),
+        ).fetchone()["c"]
+
+        # ✅ 최근 가입자 (최신 10명)
+        recent_users = conn.execute(
+            """
+            SELECT id,
+                   COALESCE(nickname,'') AS nickname,
+                   COALESCE(email,'') AS email,
+                   COALESCE(created_at,'') AS created_at
+            FROM users
+            ORDER BY id DESC
+            LIMIT 10
+            """
+        ).fetchall()
+
+        # ✅ 최근 글 (최신 10개) - 공지 포함
+        recent_posts = conn.execute(
+            """
+            SELECT id,
+                   COALESCE(title,'') AS title,
+                   COALESCE(author_nickname,'') AS author_nickname,
+                   COALESCE(created_at,'') AS created_at,
+                   COALESCE(views,0) AS views,
+                   COALESCE(upvotes,0) AS upvotes,
+                   COALESCE(is_notice,0) AS is_notice
+            FROM board_posts
+            ORDER BY id DESC
+            LIMIT 10
+            """
+        ).fetchall()
+
+    finally:
+        conn.close()
+
+    return render_template(
+        "admin_dashboard.html",
+        user=user,
+        total_users=total_users,
+        today_users=today_users,
+        total_posts=total_posts,
+        total_comments=total_comments,
+        today_posts=today_posts,
+        recent_users=recent_users,
+        recent_posts=recent_posts,
+        today=today,
+    )
+
+
+
+@app.get("/admin/users")
+@admin_required
+def admin_users():
+    q = (request.args.get("q") or "").strip()
+
+    conn = db()
+
+    where = []
+    params = []
+
+    if q:
+        where.append("(nickname LIKE ? OR email LIKE ?)")
+        params += [f"%{q}%", f"%{q}%"]
+
+    where_sql = ("WHERE " + " AND ".join(where)) if where else ""
+
+    rows = conn.execute(
+        f"""
+        SELECT id, nickname, email, created_at, COALESCE(points,0) AS points
+        FROM users
+        {where_sql}
+        ORDER BY id DESC
+        LIMIT 300
+        """,
+        params,
+    ).fetchall()
+    conn.close()
+
+    users = []
+    for r in rows:
+        u = dict(r)
+        u["grade_label"] = score_to_grade(u["points"])  # ✅ 네 기존 함수 그대로 사용
+        users.append(u)
+
+    return render_template("admin_users.html", user=current_user(), users=users, q=q)
+
+@app.post("/admin/users/<int:user_id>/points")
+@admin_required
+def admin_user_change_points(user_id: int):
+    delta_raw = (request.form.get("delta") or "").strip()
+
+    try:
+        delta = int(delta_raw)
+    except:
+        flash("점수는 숫자로 입력해 주세요. 예) 50, -30", "error")
+        return redirect(request.referrer or url_for("admin_users"))
+
+    # 관리자 본인/고정 관리자 보호(원하면 정책 변경)
+    if user_id == 1:
+        flash("관리자 계정 점수는 변경할 수 없습니다.", "error")
+        return redirect(request.referrer or url_for("admin_users"))
+
+    conn = db()
+    try:
+        # 현재 점수 조회
+        row = conn.execute("SELECT COALESCE(points,0) AS p FROM users WHERE id=?", (user_id,)).fetchone()
+        if not row:
+            flash("유저를 찾을 수 없습니다.", "error")
+            return redirect(url_for("admin_users"))
+
+        new_points = int(row["p"]) + delta
+        if new_points < 0:
+            new_points = 0  # 음수 방지(원하면 허용 가능)
+
+        conn.execute("UPDATE users SET points=? WHERE id=?", (new_points, user_id))
+        conn.commit()
+    finally:
+        conn.close()
+
+    flash(f"점수 변경 완료: {delta:+d} → 현재 {new_points}점", "success")
+    return redirect(request.referrer or url_for("admin_users"))
+
+
+@app.post("/admin/users/<int:user_id>/delete")
+@admin_required
+def admin_user_delete(user_id: int):
+    if user_id == 1:
+        flash("관리자 계정은 삭제할 수 없습니다.", "error")
+        return redirect(url_for("admin_users"))
+
+    conn = db()
+    try:
+        # 사용자가 쓴 글/댓글을 어떻게 할지 정책 선택:
+        # 1) 완전 삭제(깔끔)  2) 작성자만 익명처리(데이터 유지)
+        # 여기선 “완전 삭제”로 구성
+
+        conn.execute("DELETE FROM board_comments WHERE user_id=?", (user_id,))
+        conn.execute("DELETE FROM board_posts WHERE user_id=?", (user_id,))
+        conn.execute("DELETE FROM board_upvotes WHERE user_id=?", (user_id,))
+        conn.execute("DELETE FROM notifications WHERE user_id=?", (user_id,))
+        conn.execute("DELETE FROM favorites WHERE user_id=?", (user_id,))  # 있으면
+        conn.execute("DELETE FROM users WHERE id=?", (user_id,))
+        conn.commit()
+    finally:
+        conn.close()
+
+    flash("회원이 강제 탈퇴 처리되었습니다.", "success")
+    return redirect(url_for("admin_users"))
+
 # -------------------------
 # Validation rules
 # -------------------------
