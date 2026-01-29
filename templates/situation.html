@@ -179,17 +179,18 @@
           </div>
 
           <div class="chip-row">
-            {% for sub_key, sub in (subs|dictsort) %}
-              {% set items = (sub.get("items") or []) %}
-              <a class="chip" href="{{ url_for('situation_detail', cat=cat_key, sub=sub_key) }}">
-                <div class="chip-left">
-                  <span class="dot"></span>
-                  <span class="chip-title">{{ (sub["title"] or "") | e }}</span>
-                </div>
-                <span class="badge">{{ items|length }}</span>
-              </a>
-            {% endfor %}
-          </div>
+          {% for sub_key, sub in (subs|dictsort) %}
+            {% set items = (sub.get("items") or []) %}
+            <a class="chip" href="{{ url_for('situation_detail', main_key=cat_key, sub_key=sub_key) }}">
+              <div class="chip-left">
+                <span class="dot"></span>
+                <span class="chip-title">{{ (sub["title"] or "") | e }}</span>
+              </div>
+              <span class="badge">{{ items|length }}</span>
+            </a>
+          {% endfor %}
+        </div>
+
 
           <div class="hint">※ 버튼을 누르면 해당 소분류 문장이 열려요.</div>
         </section>
