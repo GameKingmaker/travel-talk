@@ -86,10 +86,24 @@
 
   {% if user %}
   <div style="display:flex; gap:10px; align-items:center; margin-top:14px;">
-    <button id="upvoteBtn" class="btn btn-primary" type="button">
-      추천 <span id="upvoteCount">{{ post.upvotes or 0 }}</span>
-    </button>
-    <div id="upvoteMsg" style="font-size:13px; color:#60708a;"></div>
+    <button
+  id="upvoteBtn"
+  class="btn btn-primary"
+  type="button"
+  {% if user_has_upvoted %}disabled{% endif %}
+  style="{% if user_has_upvoted %}opacity:.6; cursor:not-allowed;{% endif %}"
+>
+  추천 <span id="upvoteCount">{{ post.upvotes or 0 }}</span>
+</button>
+
+<div id="upvoteMsg" style="font-size:13px; color:#60708a;">
+  {% if user_has_upvoted %}
+    이미 추천한 글이에요.
+  {% else %}
+    추천은 글당 1회만 가능합니다.
+  {% endif %}
+</div>
+
   </div>
 {% else %}
   <div style="margin-top:14px; padding:12px 14px; border:1px solid #e1e7f5; border-radius:12px; background:#f6f8ff;">
@@ -99,22 +113,45 @@
 
 
   <script>
-    const btn = document.getElementById("upvoteBtn");
-    const countEl = document.getElementById("upvoteCount");
-    const msgEl = document.getElementById("upvoteMsg");
+  const btn = document.getElementById("upvoteBtn");
+  const countEl = document.getElementById("upvoteCount");
+  const msgEl = document.getElementById("upvoteMsg");
 
+  if (btn) {
     btn.addEventListener("click", async () => {
-      msgEl.textContent = "";
+      // 이미 disabled면 아무 것도 안 함
+      if (btn.disabled) return;
+
+      msgEl.textContent = "처리 중...";
+      btn.disabled = true;               // ✅ 연타 방지
+      btn.style.opacity = "0.6";
+      btn.style.cursor = "not-allowed";
+
       try {
         const res = await fetch(`/board/{{ post.id }}/upvote`, { method: "POST" });
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
+
         if (data.upvotes !== undefined) countEl.textContent = data.upvotes;
-        msgEl.textContent = data.msg || (data.ok ? "완료" : "실패");
+
+        if (res.ok && data.ok) {
+          msgEl.textContent = data.msg || "추천 완료!";
+          // ✅ 성공했으면 계속 잠금 유지(1회 제한)
+          btn.disabled = true;
+        } else {
+          // 이미 추천/공지/권한없음 등: 역시 잠금 유지
+          msgEl.textContent = data.msg || "추천할 수 없어요.";
+          btn.disabled = true;
+        }
       } catch (e) {
-        msgEl.textContent = "오류가 발생했어요.";
+        // 네트워크 오류만 예외적으로 다시 누를 수 있게 할지 선택 가능
+        msgEl.textContent = "오류가 발생했어요. 새로고침 후 다시 시도해주세요.";
+        // 여기서는 1회 정책을 UX로도 강하게 유지하려고 잠금 유지
+        btn.disabled = true;
       }
     });
-  </script>
+  }
+</script>
+
 
   <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
     {% if comments and comments|length > 0 %}
