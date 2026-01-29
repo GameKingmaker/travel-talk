@@ -1761,3 +1761,55 @@ form .form-actions {
   margin-top: 10px;
   flex-wrap: wrap;
 }
+/* =========================
+   Unified button system
+   ========================= */
+
+.btn {
+  height: 42px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid #d7deee;
+  background: #fff;
+  color: #344054;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.btn:hover {
+  background: #f4f7ff;
+}
+
+.btn-primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #1e4fd8;
+}
+
+.btn-danger {
+  background: #f04438;
+  border-color: #f04438;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #d92d20;
+}
+
+/* 작은 버튼도 동일 비율 */
+.btn-sm {
+  height: 34px;
+  font-size: 13px;
+  padding: 0 12px;
+  border-radius: 10px;
+}
