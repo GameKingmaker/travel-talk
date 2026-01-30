@@ -3945,6 +3945,26 @@ def board_delete(post_id):
     finally:
         conn.close()
 
+@app.route("/privacy")
+def privacy():
+    user = current_user()
+    return render_template("privacy.html", user=user)
+
+@app.route("/terms")
+def terms():
+    user = current_user()
+    return render_template("terms.html", user=user)
+
+@app.route("/about")
+def about():
+    user = current_user()
+    return render_template("about.html", user=user)
+
+@app.route("/contact")
+def contact():
+    user = current_user()
+    return render_template("contact.html", user=user)
+
 # -------------------------
 # Auth: register/login/logout
 # -------------------------
@@ -5775,4 +5795,3 @@ if __name__ == "__main__":
 
 with app.app_context():
     init_db()
-
