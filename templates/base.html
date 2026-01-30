@@ -152,8 +152,12 @@
       {% endif %}
     {% endwith %}
 
-    {% block content %}{% endblock %}
-  </main>
+    <div id="app-scale">
+        {% block content %}{% endblock %}
+    </div>
+
+</main>
+
 
   <footer class="footer">
     <div class="footer-inner">© 무료 커뮤니티형 공부방 </div>
@@ -501,4 +505,5 @@
 </script>
 
 </body>
+
 </html>
