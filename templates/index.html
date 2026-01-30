@@ -10,6 +10,10 @@
 {# ✅ daily가 없을 때도 깨지지 않게 안전 기본값 #}
 {% set d = daily if daily is defined and daily else {"jp":"", "pron":"", "ko":""} %}
 
+<title>{{ seo_title }}</title>
+<meta name="description" content="{{ seo_desc }}">
+<meta name="keywords" content="{{ seo_keywords }}">
+
 <!-- ✅ 오늘의 회화 -->
 <section class="today-wrap">
   <div class="today-card">
