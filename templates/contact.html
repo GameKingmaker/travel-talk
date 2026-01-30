@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}문의하기 | JapaneseStudyRoom{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 900px; margin: 0 auto; padding: 24px;">
+  <h1>문의하기</h1>
+
+  <p>
+    사이트 이용 중 오류 제보, 기능 제안, 콘텐츠 관련 문의가 있다면 아래 이메일로 연락해주세요.
+  </p>
+
+  <div style="margin: 16px 0; padding: 16px; border: 1px solid #eee; border-radius: 12px;">
+    <p style="margin:0;"><strong>문의 이메일</strong></p>
+    <p style="margin:8px 0 0 0; font-size: 18px;">
+      <a href="mailto:cjswoaostk@naver.com" style="text-decoration:none;">
+        cjswoaostk@naver.com
+      </a>
+    </p>
+    <p style="margin:10px 0 0 0; color:#666; font-size: 14px;">
+      가능한 빠르게 확인 후 답변드릴게요.
+    </p>
+  </div>
+
+  <h2>문의 시 포함하면 좋은 내용</h2>
+  <ul>
+    <li>문제가 발생한 페이지 주소(URL)</li>
+    <li>사용 기기/브라우저(예: PC 크롬, 모바일 사파리 등)</li>
+    <li>오류 메시지 또는 화면 캡처</li>
+  </ul>
+
+  <hr>
+  <p style="color:#666;">
+    개인정보 관련 문의는 <a href="/privacy">개인정보처리방침</a>을 참고해주세요.
+  </p>
+</div>
+{% endblock %}
