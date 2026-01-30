@@ -33,6 +33,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.environ.get("DB_PATH", "/var/data/app.db")
 
 app = Flask(__name__)
+with app.app_context():
+    init_db()
 app.secret_key = os.environ.get("SECRET_KEY") or "a9f3c1f8f2d64b7f9f2c7e1a5d8b3c2f__CHANGE_ME_ONCE"
 
 
