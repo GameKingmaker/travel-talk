@@ -1813,3 +1813,14 @@ form .form-actions {
   padding: 0 12px;
   border-radius: 10px;
 }
+/* ✅ 레이아웃은 그대로, 화면이 좁아지면 전체를 축소 */
+#app-scale {
+  transform-origin: top left;
+}
+
+@media (max-width: 1200px) {
+  #app-scale {
+    transform: scale(calc(100vw / 1200));
+    width: 1200px; /* 기준 폭 */
+  }
+}
