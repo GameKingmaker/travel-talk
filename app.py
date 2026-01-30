@@ -30,11 +30,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# ✅ Render 디스크 우선(/var/data), 로컬은 프로젝트 폴더 phrases.db 사용
+DEFAULT_DB = os.path.join(BASE_DIR, "phrases.db")
 DB_PATH = os.environ.get("DB_PATH", "/var/data/app.db")
 
+# ✅ 로컬에서 /var/data가 없으면 자동으로 DEFAULT_DB로
+if DB_PATH.startswith("/var/data") and not os.path.isdir("/var/data"):
+    DB_PATH = DEFAULT_DB
+
 app = Flask(__name__)
-with app.app_context():
-    init_db()
+
 app.secret_key = os.environ.get("SECRET_KEY") or "a9f3c1f8f2d64b7f9f2c7e1a5d8b3c2f__CHANGE_ME_ONCE"
 
 
@@ -381,9 +387,15 @@ def ensure_word_favorites_table(conn):
 # DB helpers
 # -------------------------
 def db() -> sqlite3.Connection:
-    conn = sqlite3.connect(DB_PATH)
+    # /var/data면 폴더 생성 시도(로컬에서도 안전)
+    db_dir = os.path.dirname(DB_PATH)
+    if db_dir:
+        os.makedirs(db_dir, exist_ok=True)
+
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     return conn
+
 
 def mark_attendance(user_id: int):
     today = datetime.now().strftime("%Y-%m-%d")
@@ -5583,4 +5595,6 @@ if __name__ == "__main__":
     init_db()
     app.run(debug=True)
 
+with app.app_context():
+    init_db()
 
