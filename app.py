@@ -53,14 +53,18 @@ import os, smtplib
 from email.mime.text import MIMEText
 
 def send_reset_code_email(to_email: str, code: str):
-    smtp_host = os.getenv("SMTP_HOST", "")
-    smtp_port = int(os.getenv("SMTP_PORT", "587"))
+    import os, smtplib
+    from email.mime.text import MIMEText
+
+    smtp_host = os.getenv("SMTP_HOST", "smtp.naver.com")
     smtp_user = os.getenv("SMTP_USER", "")
     smtp_pass = os.getenv("SMTP_PASS", "")
     from_email = os.getenv("FROM_EMAIL", smtp_user)
 
+    # 기본 포트는 465(SSL) 우선
+    smtp_port = int(os.getenv("SMTP_PORT", "465"))
+
     if not (smtp_host and smtp_user and smtp_pass):
-        # 설정이 안 되어 있으면 개발모드처럼 콘솔 출력만
         print("[EMAIL] SMTP env not set. Skipping real send.")
         return False
 
@@ -79,6 +83,14 @@ def send_reset_code_email(to_email: str, code: str):
     msg["To"] = to_email
 
     try:
+        # 1) 465 SSL 방식 (네이버에서 성공률 높음)
+        if smtp_port == 465:
+            with smtplib.SMTP_SSL(smtp_host, smtp_port, timeout=10) as s:
+                s.login(smtp_user, smtp_pass)
+                s.sendmail(from_email, [to_email], msg.as_string())
+            return True
+
+        # 2) 587 STARTTLS 방식 (대안)
         with smtplib.SMTP(smtp_host, smtp_port, timeout=10) as s:
             s.ehlo()
             s.starttls()
@@ -86,16 +98,16 @@ def send_reset_code_email(to_email: str, code: str):
             s.login(smtp_user, smtp_pass)
             s.sendmail(from_email, [to_email], msg.as_string())
         return True
+
     except Exception as e:
-        print(f"[EMAIL ERROR] {e}")
+        print(f"[EMAIL ERROR] {repr(e)}")
         return False
 
-def seo(title=None, desc=None, keywords=None, author="Japanese Study Room"):
+def seo(title="", desc="", keywords=""):
     return {
-        "page_title": title,
-        "page_desc": desc,
-        "page_keywords": keywords,
-        "page_author": author,
+        "seo_title": title,
+        "seo_desc": desc,
+        "seo_keywords": keywords
     }
 
 def mark_attendance_today(user: dict):
@@ -655,6 +667,29 @@ def migrate_favorites_table(conn: sqlite3.Connection) -> None:
     cur.execute("DROP TABLE favorites_old")
     conn.commit()
 
+def migrate_password_resets_table(conn):
+    cur = conn.cursor()
+    cols = table_columns(conn, "password_resets")
+
+    # used_at
+    if "used_at" not in cols:
+        cur.execute("ALTER TABLE password_resets ADD COLUMN used_at TEXT")
+
+    # request_ip
+    cols = table_columns(conn, "password_resets")
+    if "request_ip" not in cols:
+        cur.execute("ALTER TABLE password_resets ADD COLUMN request_ip TEXT")
+
+    # ✅ fail_count
+    cols = table_columns(conn, "password_resets")
+    if "fail_count" not in cols:
+        cur.execute("ALTER TABLE password_resets ADD COLUMN fail_count INTEGER NOT NULL DEFAULT 0")
+
+    # ✅ locked_until
+    cols = table_columns(conn, "password_resets")
+    if "locked_until" not in cols:
+        cur.execute("ALTER TABLE password_resets ADD COLUMN locked_until TEXT")
+
 
 # -------------------------
 # DB init (FIXED)
@@ -857,6 +892,8 @@ def init_db() -> None:
 
         # 12) word_favorites
         ensure_word_favorites_table(conn)
+        migrate_password_resets_table(conn)
+
 
         conn.commit()
     finally:
@@ -4055,82 +4092,97 @@ def forgot_password():
             return redirect(url_for("forgot_password"))
 
         conn = db()
+        try:
+            # 1) 계정 확인
+            u = conn.execute(
+                "SELECT * FROM users WHERE username=? AND email=?",
+                (username, email),
+            ).fetchone()
 
-        # 1) 계정 확인
-        u = conn.execute(
-            "SELECT * FROM users WHERE username=? AND email=?",
-            (username, email),
-        ).fetchone()
+            if not u:
+                flash("일치하는 계정을 찾을 수 없습니다.", "error")
+                return redirect(url_for("forgot_password"))
 
-        if not u:
+            now = datetime.now(timezone.utc).astimezone(_KST)
+
+            # 2) 쿨다운(60초)
+            latest = conn.execute(
+                """
+                SELECT created_at FROM password_resets
+                WHERE username=? AND email=?
+                ORDER BY id DESC LIMIT 1
+                """,
+                (username, email),
+            ).fetchone()
+
+            if latest:
+                try:
+                    last_time = datetime.fromisoformat(latest["created_at"])
+                    if (now - last_time).total_seconds() < 60:
+                        flash("잠시 후 다시 시도해주세요. (재요청 대기 60초)", "error")
+                        return redirect(url_for("forgot_password"))
+                except Exception:
+                    pass
+
+            # 3) 요청 제한(예: email 기준 5회/5분)
+            five_min_ago = (now - timedelta(minutes=5)).isoformat()
+            cnt = conn.execute(
+                """
+                SELECT COUNT(*) AS c FROM password_resets
+                WHERE email=? AND created_at >= ?
+                """,
+                (email, five_min_ago),
+            ).fetchone()["c"]
+
+            if cnt >= 5:
+                flash("요청이 너무 많습니다. 5분 후 다시 시도해주세요.", "error")
+                return redirect(url_for("forgot_password"))
+
+            # ✅ 3.5) 이전 미사용 인증코드 전부 무효화(가장 중요)
+            conn.execute(
+                """
+                UPDATE password_resets
+                SET used_at=?
+                WHERE username=? AND email=? AND used_at IS NULL
+                """,
+                (now.isoformat(), username, email),
+            )
+
+            # 4) 코드 발급/저장
+            code = f"{random.randint(0, 999999):06d}"
+            code_hash = generate_password_hash(code)
+            expires_at = (now + timedelta(minutes=10)).isoformat()
+            request_ip = request.headers.get("X-Forwarded-For", request.remote_addr)
+
+            conn.execute(
+                """
+                INSERT INTO password_resets(username, email, code_hash, expires_at, created_at, request_ip)
+                VALUES(?,?,?,?,?,?)
+                """,
+                (username, email, code_hash, expires_at, now.isoformat(), request_ip),
+            )
+            conn.commit()
+
+        finally:
             conn.close()
-            flash("일치하는 계정을 찾을 수 없습니다.", "error")
-            return redirect(url_for("forgot_password"))
 
-        now = datetime.now(timezone.utc).astimezone(_KST)
-
-        # 2) 쿨다운(예: 60초) - 같은 username/email로 너무 자주 요청 방지
-        latest = conn.execute(
-            """
-            SELECT created_at FROM password_resets
-            WHERE username=? AND email=?
-            ORDER BY id DESC LIMIT 1
-            """,
-            (username, email),
-        ).fetchone()
-
-        if latest:
-            try:
-                last_time = datetime.fromisoformat(latest["created_at"])
-                if (now - last_time).total_seconds() < 60:
-                    conn.close()
-                    flash("잠시 후 다시 시도해주세요. (재요청 대기 60초)", "error")
-                    return redirect(url_for("forgot_password"))
-            except Exception:
-                pass
-
-        # 3) 시간당 요청 제한(예: email 기준 5회/1시간)
-        one_hour_ago = (now - timedelta(hours=1)).isoformat()
-        cnt = conn.execute(
-            """
-            SELECT COUNT(*) AS c FROM password_resets
-            WHERE email=? AND created_at >= ?
-            """,
-            (email, one_hour_ago),
-        ).fetchone()["c"]
-
-        if cnt >= 5:
-            conn.close()
-            flash("요청이 너무 많습니다. 1시간 후 다시 시도해주세요.", "error")
-            return redirect(url_for("forgot_password"))
-
-        # 4) 코드 발급/저장
-        code = f"{random.randint(0, 999999):06d}"
-        code_hash = generate_password_hash(code)
-        expires_at = (now + timedelta(minutes=10)).isoformat()
-        request_ip = request.headers.get("X-Forwarded-For", request.remote_addr)
-
-        conn.execute(
-            "INSERT INTO password_resets(username, email, code_hash, expires_at, created_at, request_ip) VALUES(?,?,?,?,?,?)",
-            (username, email, code_hash, expires_at, now.isoformat(), request_ip),
-        )
-        conn.commit()
-        conn.close()
-
-        # 5) 이메일 전송
+        # 5) 이메일 전송 (DB 닫은 뒤에 해도 OK)
         sent = send_reset_code_email(email, code)
 
         if sent:
             flash("인증코드를 이메일로 발송했습니다. (유효시간 10분)", "success")
+            return redirect(url_for("reset_password"))
         else:
-            # SMTP 설정이 없거나 실패하면 개발모드처럼 로그 확인 유도
-            print(f"[RESET CODE] username={username} email={email} code={code} (expires 10m)")
-            flash("인증코드를 발급했습니다. (현재: 이메일 발송 설정이 없어 서버 콘솔에 표시)", "success")
+            print(f"[EMAIL SEND FAIL] username={username} email={email}")
+            flash("이메일 발송에 실패했습니다. 잠시 후 다시 시도해주세요.", "error")
+            return redirect(url_for("forgot_password"))
 
-        return redirect(url_for("reset_password"))
-
+    # ✅ GET 요청은 항상 템플릿 반환
     return render_template("forgot.html", user=None)
 
+
+MAX_CODE_FAILS = 5
+LOCK_MINUTES = 5
 
 @app.route("/reset-password", methods=["GET", "POST"])
 def reset_password():
@@ -4162,12 +4214,13 @@ def reset_password():
             return redirect(url_for("reset_password"))
 
         conn = db()
+        now = datetime.now(timezone.utc).astimezone(_KST)
 
-        # ✅ (변경 1) 아직 사용되지 않은 최신 인증요청만 가져오기
+        # ✅ 아직 사용되지 않은 최신 인증 요청만
         row = conn.execute(
             """
             SELECT * FROM password_resets
-            WHERE username=? AND email=? AND (used_at IS NULL OR used_at = '')
+            WHERE username=? AND email=? AND used_at IS NULL
             ORDER BY id DESC
             LIMIT 1
             """,
@@ -4176,33 +4229,60 @@ def reset_password():
 
         if not row:
             conn.close()
-            flash("인증 요청 기록이 없습니다. 먼저 인증코드를 받아주세요.", "error")
+            flash("사용 가능한 인증코드가 없습니다. 먼저 인증코드를 다시 받아주세요.", "error")
             return redirect(url_for("forgot_password"))
 
-        expires_at = datetime.fromisoformat(row["expires_at"])
-        now = datetime.now(timezone.utc).astimezone(_KST)
+        # ✅ 잠금 상태 체크
+        locked_until_raw = row["locked_until"] if "locked_until" in row.keys() else None
+        if locked_until_raw:
+            try:
+                locked_until = datetime.fromisoformat(locked_until_raw)
+                if now < locked_until:
+                    conn.close()
+                    flash("인증 시도가 너무 많습니다. 5분 후 다시 시도해주세요.", "error")
+                    return redirect(url_for("reset_password"))
+            except Exception:
+                pass
 
+        # ✅ 만료 체크
+        expires_at = datetime.fromisoformat(row["expires_at"])
         if now > expires_at:
+            conn.execute("UPDATE password_resets SET used_at=? WHERE id=?", (now.isoformat(), row["id"]))
+            conn.commit()
             conn.close()
             flash("인증코드가 만료되었습니다. 다시 요청해주세요.", "error")
             return redirect(url_for("forgot_password"))
 
+        # ✅ 코드 불일치면 fail_count 증가 + 5회면 5분 잠금
         if not check_password_hash(row["code_hash"], code):
+            new_fail = int(row["fail_count"] or 0) + 1
+            locked_until = None
+            if new_fail >= MAX_CODE_FAILS:
+                locked_until = (now + timedelta(minutes=LOCK_MINUTES)).isoformat()
+
+            conn.execute(
+                "UPDATE password_resets SET fail_count=?, locked_until=? WHERE id=?",
+                (new_fail, locked_until, row["id"]),
+            )
+            conn.commit()
             conn.close()
-            flash("인증코드가 올바르지 않습니다.", "error")
+
+            if new_fail >= MAX_CODE_FAILS:
+                flash("인증코드 입력을 5회 실패했습니다. 5분 후 다시 시도해주세요.", "error")
+            else:
+                flash(f"인증코드가 올바르지 않습니다. (실패 {new_fail}/{MAX_CODE_FAILS})", "error")
             return redirect(url_for("reset_password"))
 
-        # ✅ (변경 2) 비밀번호 업데이트
+        # ✅ 성공: 비밀번호 변경 + 인증코드 1회용 처리
         pw_hash = generate_password_hash(new_password)
+
         conn.execute(
             "UPDATE users SET password_hash=? WHERE username=? AND email=?",
             (pw_hash, username, email),
         )
-
-        # ✅ (변경 3) 성공한 인증코드는 즉시 사용 처리(재사용 방지)
         conn.execute(
-            "UPDATE password_resets SET used_at=? WHERE id=?",
-            (now.isoformat(), row["id"]),
+            "UPDATE password_resets SET used_at=?, fail_count=?, locked_until=? WHERE id=?",
+            (now.isoformat(), 0, None, row["id"]),
         )
 
         conn.commit()
