@@ -1813,14 +1813,21 @@ form .form-actions {
   padding: 0 12px;
   border-radius: 10px;
 }
-/* ✅ 레이아웃은 그대로, 화면이 좁아지면 전체를 축소 */
-#app-scale {
-  transform-origin: top left;
+/* PC 기준 화면 폭 (네 사이트 구조상 1100이 딱 맞아 보임) */
+:root {
+  --pcw: 1100px;
 }
 
-@media (max-width: 1200px) {
+/* 모바일에서만 전체 축소 */
+@media (max-width: 1100px) {
   #app-scale {
-    transform: scale(calc(100vw / 1200));
-    width: 1200px; /* 기준 폭 */
+    width: var(--pcw);
+    transform-origin: top left;
+    transform: scale(calc(100vw / 1100));
+  }
+
+  /* 스케일로 줄어든 높이 보정 */
+  main.page {
+    min-height: calc(100vh * (1100 / 100vw));
   }
 }
