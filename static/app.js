@@ -492,3 +492,49 @@ document.addEventListener("click", function (e) {
     window.location.href = href;
   }
 }, true); // ← 캡처링 단계에서 먼저 가로채기
+
+// ===== 일본어 TTS 고정 (모바일 대응) =====
+let _jaVoice = null;
+
+function pickJapaneseVoice() {
+  const voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+  if (!voices || voices.length === 0) return null;
+
+  // 1순위: ja-JP 정확히
+  let v = voices.find(x => (x.lang || "").toLowerCase().startsWith("ja"));
+
+  // 2순위: 이름에 Japanese/日本語 포함
+  if (!v) v = voices.find(x => /japanese|日本語|にほんご/i.test(x.name || ""));
+
+  return v || null;
+}
+
+// voices 로딩이 늦게 되는 모바일/크롬 대응
+if ("speechSynthesis" in window) {
+  speechSynthesis.onvoiceschanged = () => {
+    _jaVoice = pickJapaneseVoice();
+  };
+  // 초기 1회
+  _jaVoice = pickJapaneseVoice();
+}
+
+function speakJP(text) {
+  if (!("speechSynthesis" in window)) {
+    alert("이 기기/브라우저는 음성 읽기를 지원하지 않습니다.");
+    return;
+  }
+
+  // 재생 중이면 끊고 다시
+  speechSynthesis.cancel();
+
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "ja-JP";          // ✅ 언어 강제
+  u.rate = 1.0;
+  u.pitch = 1.0;
+
+  // ✅ 일본어 음성 강제 선택(가능할 때)
+  _jaVoice = _jaVoice || pickJapaneseVoice();
+  if (_jaVoice) u.voice = _jaVoice;
+
+  speechSynthesis.speak(u);
+}
