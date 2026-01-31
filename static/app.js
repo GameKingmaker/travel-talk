@@ -478,3 +478,17 @@ document.addEventListener("DOMContentLoaded", () => {
   initWordFavButtons();
   initRegisterValidation();
 });
+// ✅ 로그인/회원가입 새창(팝업) 방지: 항상 현재 창에서 열기
+document.addEventListener("click", function (e) {
+  const a = e.target.closest('a[href]');
+  if (!a) return;
+
+  const href = a.getAttribute("href") || "";
+
+  // 로그인/회원가입 링크만 대상으로 잡기
+  if (href.includes("/login") || href.includes("/register")) {
+    // 혹시 target이나 window.open 로직이 있어도 막고 현재 창 이동
+    e.preventDefault();
+    window.location.href = href;
+  }
+}, true); // ← 캡처링 단계에서 먼저 가로채기
