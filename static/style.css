@@ -1818,16 +1818,150 @@ form .form-actions {
   --pcw: 1100px;
 }
 
-/* 모바일에서만 전체 축소 */
-@media (max-width: 1100px) {
-  #app-scale {
-    width: var(--pcw);
-    transform-origin: top left;
-    transform: scale(calc(100vw / 1100));
+/* ===== 모바일 반응형 ===== */
+@media (max-width: 768px) {
+
+  body {
+    padding: 0;
   }
 
-  /* 스케일로 줄어든 높이 보정 */
-  main.page {
-    min-height: calc(100vh * (1100 / 100vw));
+  .container, 
+  .content, 
+  .main-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px;
+  }
+
+  /* 카드들 세로 정렬 */
+  .card-grid,
+  .menu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* 이미지 자동 줄이기 */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 문제 화면 폭 조정 */
+  .quiz-box,
+  .dialog-box {
+    width: 100% !important;
+  }
+
+  /* 버튼 크기 터치용 확대 */
+  button {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+
+  /* 상단 메뉴 줄바꿈 */
+  .nav {
+    flex-wrap: wrap;
+  }
+
+  .nav a {
+    margin: 6px;
+  }
+
+}
+/* =========================
+   MOBILE FIX (PC 유지 + 모바일 자연 반응형)
+   - #app-scale 강제 스케일링 제거 후 사용
+========================= */
+
+/* 공통: 컨테이너는 화면을 넘지 않게 */
+.page,
+.quiz-wrap,
+.today-wrap, .menu-wrap{
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* 이미지/카드가 뚫고 나가는 문제 방지 */
+img, video, canvas{
+  max-width: 100%;
+  height: auto;
+}
+
+/* 퀴즈 페이지: 모바일에서 패딩/폰트/카드 정리 */
+@media (max-width: 768px){
+
+  .page{ padding: 14px; }
+
+  .quiz-wrap{
+    padding: 16px 14px 40px;
+  }
+
+  .quiz-title{
+    font-size: 22px;
+    line-height: 1.2;
+  }
+  .quiz-sub{
+    font-size: 13px;
+  }
+
+  /* 네가 이미 900px에서 1열로 바꾸고 있는데,
+     모바일에선 gap/여백을 더 줄여서 꽉 차게 */
+  .quiz-grid{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* 문제 카드/본문이 화면 꽉 차게 */
+  .today-card,
+  .hero-card,
+  .s-card,
+  .phrase-card,
+  .board-wrap{
+    border-radius: 16px;
+  }
+
+  /* 퀴즈 이미지가 너무 크거나 좌우 여백 생기면 이걸로 정리 */
+  .quiz-hero,
+  .game-card,
+  .dialog-translation{
+    width: 100%;
+  }
+
+  /* 오늘의 회화 표(행) */
+  .today-box .row{
+    grid-template-columns: 80px 1fr;
+  }
+  .tts-btn{
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  /* 메뉴 그리드: 이미 680에서 2열인데,
+     모바일에선 카드 패딩을 살짝 줄여서 보기 좋게 */
+  .menu-card{
+    padding: 14px 12px;
+    min-height: 84px;
+  }
+}
+/* #app-scale을 썼다면: 모바일에서 스케일/고정폭 무력화 */
+@media (max-width: 768px){
+  #app-scale{
+    transform: none !important;
+    zoom: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+/* ✅ 로고 영역만 조금 넓히기 (가운데 메뉴/오른쪽 영역은 그대로) */
+.topbar-inner{
+  grid-template-columns: 110px 1fr auto; /* 70 -> 110 */
+}
+
+/* 모바일에서는 너무 커지지 않게 */
+@media (max-width: 768px){
+  .topbar-inner{
+    grid-template-columns: 78px 1fr auto;
   }
 }
