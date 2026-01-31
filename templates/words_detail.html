@@ -108,7 +108,13 @@
 <div class="wrap">
 
 <section class="page-head">
-  <h1>{{ title }}</h1>
+  <h1>일본 여행 필수 일본어 단어 모음 · {{ title }}</h1>
+
+  {% if page_intro %}
+    <p class="page-guide">{{ page_intro }}</p>
+  {% else %}
+    <p class="page-guide">일본 여행 중 자주 쓰는 {{ title }} 필수 일본어 단어를 정리했습니다.</p>
+  {% endif %}
 
   <p class="page-guide">
     일본어 / 발음 / 한국어 뜻 3줄로 확인하세요.<br>
@@ -119,6 +125,7 @@
     <a class="back-btn" href="{{ url_for('words_categories') }}">← 분류 목록</a>
   </div>
 </section>
+
 
 
     <div class="card phrase-list">
