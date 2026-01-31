@@ -1347,11 +1347,54 @@ a.btn-primary{
   border:1px solid rgba(13,148,136,.25);
 }
 
-/* 모바일: 메뉴 숨김 */
+/* 모바일/태블릿: 메뉴 숨기지 말고 2번째 줄로 내리기 + 가로 스크롤 */
 @media (max-width:980px){
-  .nav{ display:none; }
-  .topbar-inner{ grid-template-columns: 1fr auto; }
+  /* 2줄 레이아웃: (1줄) 로고+우측버튼, (2줄) 메뉴 */
+  .topbar-inner{
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  /* 로고(왼쪽) */
+  .brand{
+    grid-column: 1 / 2;
+    grid-row: 1;
+  }
+
+  /* 로그인/회원가입/알림(오른쪽) */
+  .topbar-right{
+    grid-column: 2 / 3;
+    grid-row: 1;
+  }
+
+  /* ✅ 메뉴를 다시 보이게 */
+  .nav{
+    grid-column: 1 / -1;   /* 두 칸 다 먹게 */
+    grid-row: 2;
+    display: flex !important;
+    justify-content: flex-start;
+    gap: 8px;
+
+    overflow-x: auto;              /* 가로 스크롤 */
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    padding-bottom: 6px;
+  }
+
+  .nav a{
+    flex: 0 0 auto;
+    height: 40px;
+    padding: 8px 10px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  /* (선택) 스크롤바 보기 싫으면 */
+  .nav::-webkit-scrollbar{ height: 6px; }
 }
+
 
 /* =========================
    LOGO SIZE & POSITION FIX
@@ -1963,5 +2006,95 @@ img, video, canvas{
 @media (max-width: 768px){
   .topbar-inner{
     grid-template-columns: 78px 1fr auto;
+  }
+}
+/* =========================
+   게시판 모바일 최적화
+   ========================= */
+@media (max-width: 768px){
+
+  /* 테이블 폭 문제 방지 */
+  .board-wrap table{
+    width:100%;
+    table-layout: fixed;
+  }
+
+  /* 제목 컬럼 넓히기 */
+  .board-wrap td.title,
+  .board-wrap th.title{
+    width: 100%;
+  }
+
+  /* 모바일에서 중요도 낮은 컬럼 숨기기 */
+  .board-wrap th.num,
+  .board-wrap td.num,
+  .board-wrap th.recommend,
+  .board-wrap td.recommend,
+  .board-wrap th.view,
+  .board-wrap td.view{
+    display:none;
+  }
+
+  /* 작성자는 작게 유지 */
+  .board-wrap th.author,
+  .board-wrap td.author{
+    width: 80px;
+    font-size: 12px;
+    color:#666;
+  }
+
+  /* 제목 줄바꿈 자연스럽게 */
+  .board-wrap td.title{
+    white-space: normal;
+    word-break: break-word;
+    font-size: 15px;
+    line-height: 1.3;
+  }
+}
+/* ===== Board (일반게시판) : Mobile Fix ===== */
+@media (max-width: 768px){
+
+  /* 테이블은 그대로 두되, 모바일에서 불필요 컬럼 숨겨서 제목 칸 확보 */
+  .board-table col:nth-child(4),
+  .board-table col:nth-child(5),
+  .board-table col:nth-child(6){
+    display:none;
+  }
+
+  /* th/td도 같이 숨김: 추천/조회/등록일 */
+  .board-table th:nth-child(4),
+  .board-table td:nth-child(4),
+  .board-table th:nth-child(5),
+  .board-table td:nth-child(5),
+  .board-table th:nth-child(6),
+  .board-table td:nth-child(6){
+    display:none;
+  }
+
+  /* 번호/작성자 폭 줄여서 제목 공간 더 확보 */
+  .board-table col:nth-child(1){ width:56px !important; }
+  .board-table col:nth-child(3){ width:120px !important; }
+
+  /* 셀 패딩도 조금 줄이기 */
+  .board-table th,
+  .board-table td{
+    padding:10px 10px;
+  }
+
+  /* 제목을 1줄 말고 2줄까지 보이게 */
+  .title-link{
+    white-space:normal !important;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+
+  /* 작성자 영역 뭉침 방지 */
+  .author-box{
+    gap:6px;
+  }
+  .pill{
+    flex:0 0 auto;
   }
 }
