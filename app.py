@@ -981,7 +981,7 @@ Item = Tuple[str, str, str]
 SITUATIONS: Dict[str, Dict[str, Any]] = {
     # 1) 공항
     "airport": {
-        "title": "공항",
+        "title": "공항 필수 일본어 회화 문장 모음",
         "subs": {
             "checkin": {
                 "title": "체크인/수하물",
@@ -1018,7 +1018,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
 
     # 2) 호텔
     "hotel": {
-        "title": "호텔",
+        "title": "호텔 필수 일본어 회화 문장 모음",
         "subs": {
             "checkin": {
                 "title": "체크인/입실",
@@ -1055,7 +1055,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
 
     # 3) 교통
     "transport": {
-        "title": "교통",
+        "title": "교통 필수 일본어 회화 문장 모음",
         "subs": {
             "train": {
                 "title": "전철/지하철",
@@ -1092,7 +1092,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
 
     # 4) 음식점
     "restaurant": {
-        "title": "음식점",
+        "title": "식당 필수 일본어 회화 문장 모음",
         "subs": {
             "order": {
                 "title": "입장/주문",
@@ -1133,7 +1133,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
 
     # 5) 관광/명소
     "sightseeing": {
-        "title": "관광",
+        "title": "관광 필수 일본어 회화 문장 모음",
         "subs": {
             "tickets": {
                 "title": "티켓/입장",
@@ -1170,7 +1170,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
 
     # 6) 카페
     "cafe": {
-        "title": "카페",
+        "title": "카페 필수 일본어 회화 문장 모음",
         "subs": {
             "order": {
                 "title": "주문",
@@ -1207,7 +1207,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
 
     # 7) 편의점/마트
     "convenience": {
-        "title": "편의점/마트",
+        "title": "편의점/마트 필수 일본어 회화 문장 모음",
         "subs": {
             "buy": {
                 "title": "구매/결제",
@@ -1244,7 +1244,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
 
     # 8) 응급/병원
     "emergency": {
-        "title": "응급/병원",
+        "title": "응급/병원 필수 일본어 회화 문장 모음",
         "subs": {
             "pharmacy": {
                 "title": "약국",
@@ -1281,7 +1281,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
 
     # 9) 길거리/도움요청
     "help": {
-        "title": "도움요청",
+        "title": "도움요청 필수 일본어 회화 문장 모음",
         "subs": {
             "lost": {
                 "title": "길잃음",
@@ -1318,7 +1318,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
 
     # 10) 통신/인터넷
     "internet": {
-        "title": "통신/인터넷",
+        "title": "통신/인터넷 필수 일본어 회화 문장 모음",
         "subs": {
             "sim": {
                 "title": "유심/데이터",
@@ -1357,7 +1357,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
     #  추가 11) 쇼핑/백화점
     # ---------------------------
     "shopping": {
-        "title": "쇼핑/백화점",
+        "title": "쇼핑/백화점 필수 일본어 회화 문장 모음",
         "subs": {
             "clothes": {
                 "title": "의류/사이즈",
@@ -1396,7 +1396,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
     #  추가 12) 길찾기/관광안내
     # ---------------------------
     "directions": {
-        "title": "길찾기/관광안내",
+        "title": "길찾기/관광안내 필수 일본어 회화 문장 모음",
         "subs": {
             "ask": {
                 "title": "길 묻기",
@@ -1435,7 +1435,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
     #  추가 13) 대중교통(버스/정류장)
     # ---------------------------
     "bus": {
-        "title": "버스/정류장",
+        "title": "버스/정류장 필수 일본어 회화 문장 모음",
         "subs": {
             "ride": {
                 "title": "탑승/요금",
@@ -1474,7 +1474,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
     #  추가 14) 경찰/분실신고
     # ---------------------------
     "police": {
-        "title": "경찰/분실신고",
+        "title": "경찰/분실신고 필수 일본어 회화 문장 모음",
         "subs": {
             "lost": {
                 "title": "분실/도난",
@@ -1513,7 +1513,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
     #  추가 15) 놀이공원/테마파크
     # ---------------------------
     "themepark": {
-        "title": "놀이공원",
+        "title": "놀이공원 필수 일본어 회화 문장 모음",
         "subs": {
             "entry": {
                 "title": "입장/티켓",
@@ -1552,7 +1552,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
     #  추가 16) 영화관
     # ---------------------------
     "cinema": {
-        "title": "영화관",
+        "title": "영화관 필수 일본어 회화 문장 모음",
         "subs": {
             "ticket": {
                 "title": "예매/좌석",
@@ -1591,7 +1591,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
     #  추가 17) 코인락커/보관
     # ---------------------------
     "locker": {
-        "title": "보관/코인락커",
+        "title": "보관/코인락커 필수 일본어 회화 문장 모음",
         "subs": {
             "use": {
                 "title": "사용/결제",
@@ -1630,7 +1630,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
     #  추가 18) 세탁소/코인세탁
     # ---------------------------
     "laundry": {
-        "title": "세탁/코인세탁",
+        "title": "세탁/코인세탁 필수 일본어 회화 문장 모음",
         "subs": {
             "wash": {
                 "title": "세탁/건조",
@@ -1669,7 +1669,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
     #  추가 19) 바/이자카야
     # ---------------------------
     "izakaya": {
-        "title": "술집/이자카야",
+        "title": "술집/이자카야 필수 일본어 회화 문장 모음",
         "subs": {
             "order": {
                 "title": "주문/추천",
@@ -1708,7 +1708,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
     #  추가 20) 숙소 체크아웃/이동
     # ---------------------------
     "checkout": {
-        "title": "체크아웃/이동",
+        "title": "체크아웃/이동 필수 일본어 회화 문장 모음",
         "subs": {
             "leave": {
                 "title": "체크아웃",
@@ -1743,7 +1743,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
         },
     },
     "travel_type": {
-        "title": "여행 유형별 회화",
+        "title": "여행 유형별 회화 필수 일본어 회화 문장 모음",
         "subs": {
             "solo": {
                 "title": "혼자 여행중일때",
@@ -1779,7 +1779,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
         },
     },
     "path_time": {
-        "title": "길찾기/소요시간",
+        "title": "길찾기/소요시간 필수 일본어 회화 문장 모음",
         "subs": {
             "direction": {
                 "title": "길 물어보기",
@@ -1819,7 +1819,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
         },
     },
     "reservation_change": {
-        "title": "예약변경/취소",
+        "title": "예약변경/취소 필수 일본어 회화 문장 모음",
         "subs": {
             "modify": {
                 "title": "예약 수정",
@@ -1839,7 +1839,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
         },
     },
     "food_request": {
-        "title": "음식 요청/제한",
+        "title": "음식 요청/제한 필수 일본어 회화 문장 모음",
         "subs": {
             "allergy": {
                 "title": "알레르기/요청",
@@ -1859,7 +1859,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
         },
     },
     "complaint": {
-        "title": "문제/클레임",
+        "title": "문제/클레임 필수 일본어 회화 문장 모음",
         "subs": {
             "problem": {
                 "title": "문제 발생",
@@ -1879,7 +1879,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
         },
     },
     "photo_plus": {
-        "title": "사진 요청 심화",
+        "title": "사진 요청 심화 필수 일본어 회화 문장 모음",
         "subs": {
             "request": {
                 "title": "사진 부탁",
@@ -1899,7 +1899,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
         },
     },
     "local_recommend": {
-        "title": "현지 추천",
+        "title": "현지 추천 필수 일본어 회화 문장 모음",
         "subs": {
             "tips": {
                 "title": "추천 받기",
@@ -1919,7 +1919,7 @@ SITUATIONS: Dict[str, Dict[str, Any]] = {
         },
     },
     "weather_response": {
-        "title": "날씨 대응",
+        "title": "날씨 대응 필수 일본어 회화 문장 모음",
         "subs": {
             "forecast": {
                 "title": "날씨 대처",
@@ -3510,7 +3510,7 @@ def situations():
 
 @app.get("/situations/<main_key>/<sub_key>")
 def situation_detail(main_key: str, sub_key: str):
-    user = current_user()   # ✅ 추가
+    user = current_user()
 
     cat = SITUATIONS.get(main_key)
     if not cat:
@@ -3531,15 +3531,27 @@ def situation_detail(main_key: str, sub_key: str):
             "is_fav": False,
         })
 
+    # ✅ 분류별 소개문
+    cat_title = cat.get("title", "")
+    sub_title = sub.get("title", "")
+
+    # ✅ 애니 명대사는 intro 제외
+    if main_key == "anime_quotes":
+        page_intro = None
+    else:
+        page_intro = f"일본 여행 중 {cat_title}에서 {sub_title} 상황에 자주 사용하는 일본어 회화 표현을 정리했습니다."
+
     return render_template(
         "situation_detail.html",
-        user=user,                # ✅ 이것도 핵심
-        cat_title=cat["title"],
-        sub_title=sub["title"],
+        user=user,
+        cat_title=cat_title,
+        sub_title=sub_title,
         main_key=main_key,
         sub_key=sub_key,
         items=items,
+        page_intro=page_intro,
     )
+
 
 
 def build_situation_seo(main_key: str, sub_key: str | None = None):
