@@ -37,9 +37,17 @@
 <div class="sit-wrap">
   <div class="sit-head">
     <div>
-      <h1 class="sit-title">단어</h1>
-      <p class="sit-sub">분류를 선택하면 단어 목록을 볼 수 있어요.</p>
-    </div>
+  <h1 class="sit-title">일본 여행 필수 일본어 단어 모음</h1>
+
+  {% if page_intro %}
+    <p class="sit-sub">{{ page_intro }}</p>
+  {% else %}
+    <p class="sit-sub">일본 여행에서 자주 쓰는 필수 일본어 단어를 분류별로 정리했습니다.</p>
+  {% endif %}
+
+  <p class="sit-sub">분류를 선택하면 단어 목록을 볼 수 있어요.</p>
+</div>
+
   </div>
 
   <div class="sit-grid">
