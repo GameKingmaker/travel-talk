@@ -2098,3 +2098,7 @@ img, video, canvas{
     flex:0 0 auto;
   }
 }
+/* 홈: 오늘의 회화 ↔ 학습메뉴 사이 간격 */
+.today-card{
+  margin-bottom: 26px;  /* 원하는 만큼 조절 */
+}
