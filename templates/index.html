@@ -52,14 +52,20 @@
   <p class="menu-sub">원하는 학습을 선택해서 바로 시작해요.</p>
 
   <div class="menu-grid">
-    {# ⚠️ 네 코드에선 이름이 "상황별 회화"인데 링크는 quiz_dialog_list로 되어있음.
-       상황별 회화(실전 문장) 페이지가 따로 있다면 url_for('situations')로 바꾸는 걸 추천.
-       지금은 네가 연결해둔 그대로 유지. #}
+        <!-- ✅ 상황별 회화 카드 추가 -->
+    <a class="menu-card" href="{{ url_for('situations') }}">
+      <div class="menu-name">상황별 회화</div>
+      <div class="menu-desc">공항·호텔·교통·식당 등 상황별 핵심 회화 모음</div>
+    </a>
     <a class="menu-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황별 회화로 이동">
       <div class="menu-name">회화 퀴즈</div>
       <div class="menu-desc">공항·호텔·교통·식당 등 실전 대화 퀴즈</div>
     </a>
 
+    <a class="menu-card" href="{{ url_for('words_categories') }}" aria-label="단어모음으로 이동">
+      <div class="menu-name">단어모음</div>
+      <div class="menu-desc">자주 쓰는 단어를 모아 바로 암기</div>
+    </a>
     <a class="menu-card" href="{{ url_for('note') }}" aria-label="학습노트로 이동">
       <div class="menu-name">나만의 학습노트</div>
       <div class="menu-desc">외운 문장 저장 + 복습 체크로 기억 강화</div>
@@ -75,10 +81,6 @@
       <div class="menu-desc">질문·후기·정보 공유로 같이 성장하기</div>
     </a>
 
-    <a class="menu-card" href="{{ url_for('words_categories') }}" aria-label="단어모음으로 이동">
-      <div class="menu-name">단어모음</div>
-      <div class="menu-desc">자주 쓰는 단어를 모아 바로 암기</div>
-    </a>
   </div>
 </section>
 
