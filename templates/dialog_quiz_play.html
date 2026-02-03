@@ -219,15 +219,17 @@
     <div class="actions">
       <button id="checkBtn" class="btn primary" disabled>정답 확인</button>
 
-      {% if next_id %}
-        <a id="nextBtn" class="btn" href="{{ url_for('dialog_quiz_play', quiz_id=next_id) }}" style="display:none;">
-          다음 문제 →
-        </a>
-      {% else %}
-        <a id="nextBtn" class="btn" href="{{ url_for('quiz_dialog_list') }}" style="display:none;">
-          목록으로 →
-        </a>
-      {% endif %}
+      {% if next_id is not none %}
+  <a id="nextBtn" class="btn" href="{{ url_for('dialog_quiz_play', quiz_id=next_id) }}" style="display:none;">
+    다음 문제 풀기 →
+  </a>
+{% else %}
+  <a id="nextBtn" class="btn" href="{{ url_for('quiz_dialog_list') }}" style="display:none;">
+    (마지막 문제) 목록으로 →
+  </a>
+{% endif %}
+
+
     </div>
   </div>
 </div>
