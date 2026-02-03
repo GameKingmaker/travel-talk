@@ -11,6 +11,7 @@
   .wrap{ max-width:860px; margin:0 auto; padding:22px 18px 48px; }
   .title{ font-size:28px; font-weight:900; margin:0; letter-spacing:-.3px; }
   .sub{ margin:8px 0 18px; color:#64748b; font-size:14px; }
+
   .list{ display:flex; flex-direction:column; gap:10px; }
   .item{
     display:flex; justify-content:space-between; align-items:center;
@@ -23,9 +24,56 @@
   .name{ font-size:16px; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .desc{ font-size:13px; color:#475569; }
   .go{ font-weight:900; color:#1d4ed8; }
+
   .empty{
     padding:14px 16px; border:1px dashed #d9e2f5; border-radius:14px;
     color:#64748b; background:#fbfdff;
+  }
+
+  /* ✅ pager */
+  .pager{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin:18px 0 0;
+  }
+  .pager .info{
+    font-weight:900;
+    color:#334155;
+    padding:8px 10px;
+    border-radius:12px;
+    background:#f1f5ff;
+    border:1px solid rgba(37,99,235,.18);
+    line-height:1;
+  }
+  .pager .btn-like{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:10px 12px;
+    border-radius:12px;
+    border:1px solid rgba(15,23,42,0.10);
+    background:#fff;
+    color:#0f172a;
+    text-decoration:none;
+    font-weight:900;
+  }
+  .pager .btn-like:hover{
+    border-color:rgba(37,99,235,.25);
+    box-shadow:0 6px 18px rgba(37,99,235,.10);
+  }
+  .pager .btn-primary-like{
+    border-color:rgba(37,99,235,.25);
+    background:#2563eb;
+    color:#fff;
+  }
+  .pager .btn-primary-like:hover{
+    box-shadow:0 8px 22px rgba(37,99,235,.18);
+  }
+  .pager .disabled{
+    opacity:.45;
+    pointer-events:none;
   }
 </style>
 
@@ -47,6 +95,26 @@
         </a>
       {% endfor %}
     </div>
+
+    {# ✅ 페이지 버튼 (page/total_pages는 라우트에서 넘겨줘야 함) #}
+    {% if total_pages and total_pages > 1 %}
+      <div class="pager">
+        {% if page > 1 %}
+          <a class="btn-like" href="{{ url_for('quiz_dialog_list', page=page-1) }}">← 이전</a>
+        {% else %}
+          <span class="btn-like disabled">← 이전</span>
+        {% endif %}
+
+        <span class="info">{{ page }} / {{ total_pages }}</span>
+
+        {% if page < total_pages %}
+          <a class="btn-like btn-primary-like" href="{{ url_for('quiz_dialog_list', page=page+1) }}">다음 →</a>
+        {% else %}
+          <span class="btn-like btn-primary-like disabled">다음 →</span>
+        {% endif %}
+      </div>
+    {% endif %}
+
   {% else %}
     <div class="empty">
       아직 등록된 대화 퀴즈가 없어요. (관리자가 퀴즈를 추가하면 여기에 표시됩니다.)
