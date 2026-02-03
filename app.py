@@ -21,6 +21,7 @@ from typing import Any, Dict, List, Tuple, Optional
 from flask import send_from_directory
 from flask import Response
 from time import time
+from math import ceil
 
 from flask import (
     Flask, render_template, request, redirect, url_for,
@@ -7083,12 +7084,34 @@ def sitemap_xml():
 @app.get("/quiz/dialog")
 def quiz_dialog_list():
     user = current_user()
-    quizzes = [{"id": q["id"], "title": q["title"]} for q in DIALOG_SCENE_QUIZZES]
+
+    # ✅ 1번부터 오름차순 (id 기준 정렬)
+    items = sorted(DIALOG_SCENE_QUIZZES, key=lambda x: x["id"])
+    quizzes_all = [{"id": q["id"], "title": q["title"]} for q in items]
+
+    # ✅ 페이지네이션
+    per_page = 20
+    page = request.args.get("page", 1, type=int)
+
+    total = len(quizzes_all)
+    total_pages = max(1, ceil(total / per_page))
+
+    # ✅ page 범위 보정
+    if page < 1:
+        page = 1
+    if page > total_pages:
+        page = total_pages
+
+    start = (page - 1) * per_page
+    end = start + per_page
+    quizzes = quizzes_all[start:end]
 
     return render_template(
         "dialog_quiz_list.html",
         user=user,
         quizzes=quizzes,
+        page=page,
+        total_pages=total_pages,
         **seo(
             title="일본 여행 상황별 회화 퀴즈 | 실전 일본어 대화 연습",
             desc="일본 여행에서 바로 쓰는 상황별 일본어 회화를 퀴즈로 재미있게 연습하세요. 실전 대화 중심 일본어 공부 사이트입니다.",
@@ -7100,9 +7123,19 @@ def quiz_dialog_list():
 @app.get("/quiz/dialog/<int:quiz_id>")
 def dialog_quiz_play(quiz_id: int):
     user = current_user()
-    q = next((x for x in DIALOG_SCENE_QUIZZES if x["id"] == quiz_id), None)
-    if not q:
+
+    # ✅ id 순서 보장 (중요)
+    quizzes = sorted(DIALOG_SCENE_QUIZZES, key=lambda x: x["id"])
+
+    # ✅ 현재 퀴즈 찾기 + index 찾기
+    idx = next((i for i, x in enumerate(quizzes) if x["id"] == quiz_id), None)
+    if idx is None:
         abort(404)
+
+    q = quizzes[idx]
+
+    # ✅ 다음 문제 id 계산
+    next_id = quizzes[idx + 1]["id"] if (idx + 1) < len(quizzes) else None
 
     title = f"{q['title']} 일본어 회화 퀴즈 | 여행 일본어 실전 연습"
     desc = f"{q['title']} 상황에서 사용하는 일본어 회화를 퀴즈로 연습하세요. 일본 여행에서 바로 써먹는 실전 표현을 쉽게 익힐 수 있습니다."
@@ -7112,6 +7145,7 @@ def dialog_quiz_play(quiz_id: int):
         "dialog_quiz_play.html",
         user=user,
         quiz=q,
+        next_id=next_id,  # ✅ 이 줄 추가
         **seo(
             title=title,
             desc=desc,
