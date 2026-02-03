@@ -5957,8 +5957,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘お腹が痛いです’는 배가 아프다는 뜻으로, 약사에게 증상을 설명하는 상황입니다."
     },
     {
-    "id": 8,
-    "title": "- 8번문제 -",
+    "id": 10,
+    "title": "- 10번문제 -",
     "image": "dialog_quiz/park_bench_seat.png",
 
     "lines": [
@@ -5994,8 +5994,8 @@ DIALOG_SCENE_QUIZZES = [
     "explain_ko": "‘ここに座ってもいいですか？’는 상대방에게 자리에 앉아도 되는지 정중하게 허락을 구할 때 쓰는 표현입니다."
     },
     {
-    "id": 8,
-    "title": "- 8번문제 -",
+    "id": 11,
+    "title": "- 11번문제 -",
     "image": "dialog_quiz/park_bench_seat.png",
 
     "lines": [
@@ -6031,8 +6031,8 @@ DIALOG_SCENE_QUIZZES = [
     "explain_ko": "‘ここに座ってもいいですか？’는 상대방에게 자리에 앉아도 되는지 정중하게 허락을 구할 때 쓰는 표현입니다."
     },
     {
-        "id": 9,
-        "title": "- 9번문제 -",
+        "id": 12,
+        "title": "- 12번문제 -",
         "image": "dialog_quiz/amusement_ticket.png",
 
         "lines": [
@@ -6068,8 +6068,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘チケットはどこで買えますか？’는 티켓을 어디에서 살 수 있는지 묻는 표현으로, 놀이공원 입장 상황과 잘 맞는 질문입니다."
     },
     {
-        "id": 10,
-        "title": "- 10번문제 -",
+        "id": 13,
+        "title": "- 13번문제 -",
         "image": "dialog_quiz/hotel_change_room.png",
 
         "lines": [
@@ -6105,8 +6105,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘部屋を変えられますか？’는 방을 바꿀 수 있는지 묻는 표현으로, 객실 변경 요청 상황입니다."
     },
     {
-        "id": 11,
-        "title": "- 11번문제 -",
+        "id": 14,
+        "title": "- 14번문제 -",
         "image": "dialog_quiz/airport_security.png",
 
         "lines": [
@@ -6142,8 +6142,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘保安検査はどこですか？’는 공항에서 보안 검색 장소를 묻는 표현입니다."
     },
     {
-        "id": 12,
-        "title": "- 12번문제 -",
+        "id": 15,
+        "title": "- 15번문제 -",
         "image": "dialog_quiz/train_transfer.png",
 
         "lines": [
@@ -6179,8 +6179,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘乗り換えはどこですか？’는 기차나 지하철에서 환승 위치를 묻는 표현입니다."
     },
     {
-        "id": 13,
-        "title": "- 13번문제 -",
+        "id": 16,
+        "title": "- 16번문제 -",
         "image": "dialog_quiz/taxi_fare.png",
 
         "lines": [
@@ -6216,8 +6216,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘いくらぐらいかかりますか？’는 비용이 얼마나 드는지 물을 때 쓰는 표현으로, 택시 요금을 묻는 상황입니다."
     },
     {
-        "id": 14,
-        "title": "- 14번문제 -",
+        "id": 17,
+        "title": "- 17번문제 -",
         "image": "dialog_quiz/no_spicy_order.png",
 
         "lines": [
@@ -6253,8 +6253,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘辛くしないでください’는 음식이 맵지 않게 해달라는 뜻으로, 매운 정도를 조절해달라고 요청하는 상황입니다."
     },
     {
-        "id": 15,
-        "title": "- 15번문제 -",
+        "id": 18,
+        "title": "- 18번문제 -",
         "image": "dialog_quiz/ask_for_bill.png",
 
         "lines": [
@@ -6284,8 +6284,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘お会計お願いします’는 식사 후 계산을 요청할 때 쓰는 대표적인 표현입니다."
     },
     {
-        "id": 16,
-        "title": "- 16번문제 -",
+        "id": 19,
+        "title": "- 19번문제 -",
         "image": "dialog_quiz/ask_about_product.png",
 
         "lines": [
@@ -6327,8 +6327,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘これは何ですか？’는 물건을 가리키며 ‘이건 무엇인가요?’라고 물을 때 사용하는 기본 표현입니다."
     },
     {
-        "id": 17,
-        "title": "- 17번문제 -",
+        "id": 20,
+        "title": "- 20번문제 -",
         "image": "dialog_quiz/ask_how_long.png",
 
         "lines": [
@@ -6370,8 +6370,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘どのくらいかかりますか？’는 시간이나 거리 등 소요 시간을 물을 때 사용하는 표현입니다."
     },
     {
-        "id": 18,
-        "title": "- 18번문제 -",
+        "id": 21,
+        "title": "- 21번문제 -",
         "image": "dialog_quiz/buy_sim_card.png",
 
         "lines": [
@@ -6413,8 +6413,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘何日間使えますか？’는 서비스나 물건을 며칠 동안 사용할 수 있는지 기간을 물을 때 쓰는 표현입니다."
     },
     {
-        "id": 19,
-        "title": "- 19번문제 -",
+        "id": 22,
+        "title": "- 22번문제 -",
         "image": "dialog_quiz/choose_movie_seat.png",
 
         "lines": [
@@ -6456,8 +6456,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘真ん中がいいです’는 좌석이나 위치를 고를 때 ‘가운데가 좋아요’라고 선택 의사를 표현하는 말입니다."
     },
     {
-        "id": 20,
-        "title": "- 20번문제 -",
+        "id": 23,
+        "title": "- 23번문제 -",
         "image": "dialog_quiz/forgot_password_locker.png",
 
         "lines": [
@@ -6499,8 +6499,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘暗証番号を忘れました’는 비밀번호나 PIN 번호를 잊어버렸을 때 사용하는 표현입니다."
     },
     {
-        "id": 21,
-        "title": "- 21번문제 -",
+        "id": 24,
+        "title": "- 24번문제 -",
         "image": "dialog_quiz/ask_discount_museum.png",
 
         "lines": [
@@ -6542,8 +6542,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘割引はありますか？’는 요금이나 티켓에 할인 혜택이 있는지 물을 때 사용하는 표현입니다."
     },
     {
-        "id": 22,
-        "title": "- 22번문제 -",
+        "id": 25,
+        "title": "- 25번문제 -",
         "image": "dialog_quiz/ask_exit_festival.png",
 
         "lines": [
@@ -6585,8 +6585,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘出口はどこですか？’는 건물이나 행사장에서 나가는 길, 즉 출구 위치를 물을 때 사용하는 표현입니다."
     },
     {
-        "id": 23,
-        "title": "- 23번문제 -",
+        "id": 26,
+        "title": "- 26번문제 -",
         "image": "dialog_quiz/ask_spicy_food.png",
 
         "lines": [
@@ -6628,8 +6628,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘辛いですか？’는 음식의 매운 정도를 물을 때 사용하는 아주 기본적인 표현입니다."
     },
     {
-        "id": 24,
-        "title": "- 24번문제 -",
+        "id": 27,
+        "title": "- 27번문제 -",
         "image": "dialog_quiz/no_toilet_paper.png",
 
         "lines": [
@@ -6671,8 +6671,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘紙がありません’는 화장실 휴지나 종이가 없을 때 부족함을 알리는 기본 표현입니다."
     },
     {
-        "id": 25,
-        "title": "- 25번문제 -",
+        "id": 28,
+        "title": "- 28번문제 -",
         "image": "dialog_quiz/ask_current_location.png",
 
         "lines": [
@@ -6714,8 +6714,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘今どこですか？’는 전화나 메시지에서 상대방의 현재 위치를 물을 때 가장 많이 쓰는 표현입니다."
     },
     {
-        "id": 26,
-        "title": "- 26번문제 -",
+        "id": 29,
+        "title": "- 29번문제 -",
         "image": "dialog_quiz/no_smoking_area_notice.png",
 
         "lines": [
@@ -6757,8 +6757,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "대화에서 흡연이 금지된 장소임을 알리고 ‘禁煙ですか？’로 금연 여부를 확인하는 상황입니다."
     },
     {
-        "id": 27,
-        "title": "- 27번문제 -",
+        "id": 30,
+        "title": "- 30번문제 -",
         "image": "dialog_quiz/ask_weather_window.png",
 
         "lines": [
@@ -6800,8 +6800,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "대화에서 날씨를 묻고 따뜻해서 야외 활동하기 좋다는 상황을 이야기하고 있습니다."
     },
     {
-        "id": 28,
-        "title": "- 28번문제 -",
+        "id": 31,
+        "title": "- 31번문제 -",
         "image": "dialog_quiz/ask_hidden_spot_park.png",
 
         "lines": [
@@ -6843,8 +6843,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘穴場はありますか？’는 사람들이 잘 모르는 숨은 명소나 좋은 장소를 물을 때 쓰는 표현입니다."
     },
     {
-        "id": 29,
-        "title": "- 29번문제 -",
+        "id": 32,
+        "title": "- 32번문제 -",
         "image": "dialog_quiz/wrong_order_restaurant.png",
 
         "lines": [
@@ -6886,8 +6886,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘注文と違います’는 식당에서 나온 음식이 주문한 것과 다를 때 정중하게 말하는 표현입니다."
     },
     {
-    "id": 30,
-        "title": "- 30번문제 -",
+    "id": 33,
+        "title": "- 33번문제 -",
         "image": "dialog_quiz/restaurant_reservation_name.png",
 
         "lines": [
@@ -6929,8 +6929,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘名前で予約しています’는 식당이나 호텔에서 이름으로 예약했음을 알릴 때 사용하는 자연스러운 표현입니다."
     },
     {
-        "id": 31,
-        "title": "- 31번문제 -",
+        "id": 34,
+        "title": "- 34번문제 -",
         "image": "dialog_quiz/luggage_not_found_airport.png",
 
         "lines": [
@@ -6972,8 +6972,8 @@ DIALOG_SCENE_QUIZZES = [
         "explain_ko": "‘荷物が見つかりません’는 공항에서 수하물이 보이지 않을 때 도움을 요청하는 기본 표현입니다."
     },
     {
-        "id": 32,
-        "title": "- 32번문제 -",
+        "id": 35,
+        "title": "- 35번문제 -",
         "image": "dialog_quiz/check_opposite_direction_map.png",
 
         "lines": [
