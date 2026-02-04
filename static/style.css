@@ -544,8 +544,6 @@ body{
 .title-text .t{
   font-weight: 1000;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .grade{
