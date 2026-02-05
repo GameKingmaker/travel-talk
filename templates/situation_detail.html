@@ -22,6 +22,30 @@
   </div>
 </section>
 
+<form method="GET" style="display:flex; gap:10px; margin:12px 0 18px;">
+  <input
+    type="text"
+    name="q"
+    value="{{ q or '' }}"
+    placeholder="일본어 / 발음 / 한국어로 검색 (예: 今, 이마, 지금)"
+    style="flex:1; height:44px; border-radius:14px; border:1px solid rgba(15, 23, 42, 0.10); padding:0 14px; outline:none;"
+  >
+  <button
+    type="submit"
+    style="height:44px; padding:0 16px; border-radius:14px; border:none; background:#2563eb; color:#fff; font-weight:800; cursor:pointer;">
+    검색
+  </button>
+</form>
+
+{% if q %}
+  <p style="margin:-6px 0 16px; color:#6b7280; font-size:13px; font-weight:700;">
+    검색어: <b>{{ q|e }}</b>
+    · <a href="{{ url_for('situation_detail', main_key=main_key, sub_key=sub_key) }}"
+         style="color:#2563eb; text-decoration:underline; text-underline-offset:3px;">전체 보기</a>
+    · 결과: <b>{{ items|length }}</b>개
+  </p>
+{% endif %}
+
 <section class="phrase-list">
   {% if items and (items|length) > 0 %}
     {% for item in items %}
@@ -62,7 +86,7 @@
     {% endfor %}
   {% else %}
     <div style="padding:14px 16px; border:1px dashed #d9e2f5; border-radius:14px; color:#64748b; background:#fbfdff;">
-      아직 문장이 준비되지 않았어요. 곧 업데이트할게요!
+      검색 결과가 없습니다.
     </div>
   {% endif %}
 </section>
