@@ -48,6 +48,19 @@
   <p class="sit-sub">분류를 선택하면 단어 목록을 볼 수 있어요.</p>
 </div>
 
+<form method="GET" action="{{ url_for('words_search') }}"
+      style="display:flex; gap:10px; align-items:center;">
+  <input type="text" name="q" value="{{ q or '' }}"
+         placeholder="일본어 / 발음 / 한국어로 검색"
+         style="width:320px; max-width:45vw; height:44px; border-radius:14px;
+                border:1px solid rgba(15,23,42,.10); padding:0 14px; outline:none;">
+  <button type="submit"
+          style="height:44px; padding:0 16px; border-radius:14px; border:none;
+                 background:#2563eb; color:#fff; font-weight:800; cursor:pointer;">
+    검색
+  </button>
+</form>
+
   </div>
 
   <div class="sit-grid">
