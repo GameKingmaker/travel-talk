@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="max-width:1080px; margin:0 auto; padding:22px 18px 48px;">
+  <section class="page-head">
+    <h1>상황별 회화 전체 검색</h1>
+
+    <form method="GET" action="{{ url_for('situations_search') }}"
+          style="display:flex; gap:10px; margin:12px 0 18px;">
+      <input type="text" name="q" value="{{ q or '' }}"
+             placeholder="일본어 / 발음 / 한국어로 검색 (예: 今, 이마, 지금)"
+             style="flex:1; height:44px; border-radius:14px; border:1px solid rgba(15,23,42,.10); padding:0 14px; outline:none;">
+      <button type="submit"
+              style="height:44px; padding:0 16px; border-radius:14px; border:none; background:#2563eb; color:#fff; font-weight:800; cursor:pointer;">
+        검색
+      </button>
+    </form>
+
+    {% if q %}
+      <p style="color:#6b7280; font-size:13px; font-weight:700;">
+        검색어: <b>{{ q|e }}</b> · 결과: <b>{{ results|length }}</b>개
+      </p>
+    {% endif %}
+
+    <div style="margin-top:10px;">
+      <a href="{{ url_for('situations') }}" style="color:#2563eb; text-decoration:underline; text-underline-offset:3px;">
+        ← 상황별 회화 목록
+      </a>
+    </div>
+  </section>
+
+  <div style="margin-top:16px; background:#fff; border:1px solid rgba(15,23,42,.08); border-radius:16px; padding:14px;">
+    {% if results and results|length > 0 %}
+      <table style="width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:14px;">
+        <thead>
+          <tr>
+            <th style="text-align:left; padding:10px 12px; background:#f8fafc; font-weight:900; width:220px;">분류</th>
+            <th style="text-align:left; padding:10px 12px; background:#f8fafc; font-weight:900; width:25%;">일본어</th>
+            <th style="text-align:left; padding:10px 12px; background:#f8fafc; font-weight:900; width:25%;">발음</th>
+            <th style="text-align:left; padding:10px 12px; background:#f8fafc; font-weight:900;">뜻</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for r in results %}
+          <tr>
+            <td style="padding:10px 12px; border-bottom:1px solid rgba(15,23,42,.06);">
+              <a href="{{ url_for('situation_detail', main_key=r.main_key, sub_key=r.sub_key) }}"
+   class="result-link">
+
+                {{ r.cat_title|e }} · {{ r.sub_title|e }}
+              </a>
+            </td>
+            <td style="padding:10px 12px; border-bottom:1px solid rgba(15,23,42,.06);">{{ r.jp|e }}</td>
+            <td style="padding:10px 12px; border-bottom:1px solid rgba(15,23,42,.06);">{{ r.pron|e }}</td>
+            <td style="padding:10px 12px; border-bottom:1px solid rgba(15,23,42,.06);">{{ r.ko|e }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      {% if q %}
+        <div style="padding:14px 16px; border:1px dashed #d9e2f5; border-radius:14px; color:#64748b; background:#fbfdff;">
+          검색 결과가 없습니다.
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
