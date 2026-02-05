@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 48px; }
+  .search-row{ display:flex; gap:10px; margin-top:14px; }
+  .search-row input{
+    flex:1; height:44px; border-radius:14px; border:1px solid rgba(15, 23, 42, 0.10);
+    padding:0 14px; outline:none;
+  }
+  .search-row button{
+    height:44px; padding:0 16px; border-radius:14px; border:none;
+    background:#2563eb; color:#fff; font-weight:800; cursor:pointer;
+  }
+  .card{
+    margin-top:16px; background:#ffffff; border:1px solid rgba(15, 23, 42, 0.08);
+    border-radius:16px; padding:14px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  }
+  table{ width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:14px; }
+  th, td{ text-align:left; padding:10px 12px; border-bottom:1px solid rgba(15, 23, 42, 0.06); font-size:14px; }
+  th{ background:#f8fafc; font-weight:900; }
+  tr:last-child td{ border-bottom:none; }
+  .muted{ color:#6b7280; font-size:12px; margin-top:10px; }
+</style>
+
+<div class="wrap">
+  <section class="page-head">
+    <h1>단어모음 전체 검색</h1>
+    <p class="page-guide">일본어 / 발음 / 한국어로 검색할 수 있어요.</p>
+
+    <form method="GET" action="{{ url_for('words_search') }}" class="search-row">
+      <input type="text" name="q" value="{{ q or '' }}" placeholder="예: 今 / 이마 / 지금">
+      <button type="submit">검색</button>
+    </form>
+
+    {% if q %}
+      <p class="muted">검색어: <b>{{ q|e }}</b> · 결과: <b>{{ results|length }}</b>개</p>
+    {% endif %}
+
+    <div style="margin-top:10px;">
+      <a href="{{ url_for('words_categories') }}" style="color:#2563eb; text-decoration:underline; text-underline-offset:3px;">← 단어모음 목록</a>
+    </div>
+  </section>
+
+  <div class="card">
+    {% if results and results|length > 0 %}
+      <table>
+        <thead>
+          <tr>
+            <th style="width:160px;">분류</th>
+            <th style="width:25%;">일본어</th>
+            <th style="width:25%;">발음</th>
+            <th>뜻</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for r in results %}
+          <tr>
+            <td>
+             <a href="{{ url_for('words_detail', cat_key=r.cat_key) }}"
+   class="result-link">
+
+                {{ r.cat_title|e }}
+              </a>
+            </td>
+            <td>{{ r.jp|e }}</td>
+            <td>{{ r.pron|e }}</td>
+            <td>{{ r.ko|e }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      {% if q %}
+        <div style="padding:14px 16px; border:1px dashed #d9e2f5; border-radius:14px; color:#64748b; background:#fbfdff;">
+          검색 결과가 없습니다.
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
