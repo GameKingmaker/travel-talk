@@ -144,10 +144,11 @@
 {% if q %}
   <p style="margin:-6px 0 16px; color:#6b7280; font-size:13px; font-weight:700;">
     검색어: <b>{{ q|e }}</b>
-    · <a href="{{ url_for('situation_detail', main_key=main_key, sub_key=sub_key) }}"
-         style="color:#2563eb; text-decoration:underline; text-underline-offset:3px;">전체 보기</a>
-    · 결과: <b>{{ items|length }}</b>개
-  </p>
+    · <a href="{{ url_for('words_detail', cat_key=cat_key) }}"
+   style="color:#2563eb; text-decoration:underline; text-underline-offset:3px;">
+  전체 보기
+</a>
+
 {% endif %}
 
 
