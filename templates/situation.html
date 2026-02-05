@@ -7,6 +7,7 @@
 
 {% block content %}
 
+
 <style>
   .sit-wrap{
     max-width: 1080px;
@@ -162,6 +163,17 @@
       <h1 class="sit-title">상황별 회화</h1>
       <p class="sit-sub">상황을 선택하면, 소분류별 핵심 문장을 볼 수 있어요.</p>
     </div>
+  
+    <form method="GET" action="{{ url_for('situations_search') }}"
+          style="display:flex; gap:10px; margin:12px 0 18px;">
+      <input type="text" name="q" value="{{ q or '' }}"
+             placeholder="일본어 / 발음 / 한국어로 검색 (예: 今, 이마, 지금)"
+             style="flex:1; height:44px; border-radius:14px; border:1px solid rgba(15,23,42,.10); padding:0 14px; outline:none;">
+      <button type="submit"
+              style="height:44px; padding:0 16px; border-radius:14px; border:none; background:#2563eb; color:#fff; font-weight:800; cursor:pointer;">
+        검색
+      </button>
+    </form>
   </div>
 
   {% if situations and (situations|length) > 0 %}
