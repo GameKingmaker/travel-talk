@@ -2100,3 +2100,21 @@ img, video, canvas{
 .today-card{
   margin-bottom: 26px;  /* 원하는 만큼 조절 */
 }
+.result-link{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  background:#eef2ff;
+  border:1px solid rgba(99,102,241,.25);
+  color:#4338ca;
+  font-weight:800;
+  font-size:13px;
+  text-decoration:none;
+  transition:.15s ease;
+}
+
+.result-link:hover{
+  background:#e0e7ff;
+  box-shadow:0 4px 12px rgba(99,102,241,.25);
+  transform:translateY(-1px);
+}
