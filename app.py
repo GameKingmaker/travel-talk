@@ -4213,10 +4213,10 @@ def words_categories():
 @app.route("/words/<cat_key>")
 def words_detail(cat_key):
     user = current_user()
+    q = (request.args.get("q") or "").strip()  # ✅ 검색어
 
     cat = (WORDS or {}).get(cat_key)
     if not cat:
-        # 없는 카테고리도 SEO는 기본으로
         ctx = build_words_seo("단어")
         return render_template(
             "words_detail.html",
@@ -4225,11 +4225,29 @@ def words_detail(cat_key):
             cat_key=cat_key,
             rows=[],
             fav_jp_set=set(),
+            q=q,  # ✅ 템플릿에서 값 유지
             **ctx
         )
 
     title = cat.get("title", cat_key)
-    rows = cat.get("items", [])
+    rows_all = cat.get("items", [])
+
+    # ✅ rows 필터링: jp/pron/ko 중 하나라도 q 포함하면 통과
+    if q:
+        qq = q.lower()
+        rows = []
+        for r in rows_all:
+            # items가 [jp, pron, ko] 형태일 가능성이 높음
+            jp = r[0] if len(r) > 0 else ""
+            pron = r[1] if len(r) > 1 else ""
+            ko = r[2] if len(r) > 2 else ""
+
+            if (qq in (jp or "").lower()
+                or qq in (pron or "").lower()
+                or qq in (ko or "").lower()):
+                rows.append(r)
+    else:
+        rows = rows_all
 
     fav_jp_set = set()
     if user:
@@ -4244,7 +4262,11 @@ def words_detail(cat_key):
         finally:
             conn.close()
 
-    ctx = build_words_seo(title)
+    # ✅ SEO: 검색 중이면 타이틀/설명도 검색형으로(선택 but 추천)
+    if q:
+        ctx = build_words_seo(f"{title} 검색: {q}")
+    else:
+        ctx = build_words_seo(title)
 
     return render_template(
         "words_detail.html",
@@ -4253,8 +4275,36 @@ def words_detail(cat_key):
         cat_key=cat_key,
         rows=rows,
         fav_jp_set=fav_jp_set,
+        q=q,  # ✅ 템플릿에서 값 유지
         **ctx
     )
+@app.get("/words/search")
+def words_search():
+    user = current_user()
+    q = (request.args.get("q") or "").strip()
+
+    results = []
+    if q:
+        qq = q.lower()
+        for cat_key, cat in (WORDS or {}).items():
+            cat_title = cat.get("title", cat_key)
+            for row in (cat.get("items", []) or []):
+                jp = row[0] if len(row) > 0 else ""
+                pron = row[1] if len(row) > 1 else ""
+                ko = row[2] if len(row) > 2 else ""
+
+                if (qq in (jp or "").lower()
+                    or qq in (pron or "").lower()
+                    or qq in (ko or "").lower()):
+                    results.append({
+                        "cat_key": cat_key,
+                        "cat_title": cat_title,
+                        "jp": jp,
+                        "pron": pron,
+                        "ko": ko,
+                    })
+
+    return render_template("words_search.html", user=user, q=q, results=results)
 
 
 def build_words_seo(cat_title: str | None = None):
@@ -4280,7 +4330,7 @@ def build_words_seo(cat_title: str | None = None):
         title = "일본 여행 필수 일본어 단어 모음 | 숫자·시간·교통·쇼핑 단어"
         desc = "일본 여행에서 바로 쓰는 필수 일본어 단어를 분류별로 모았습니다. 숫자, 시간, 교통, 쇼핑 등 핵심 단어를 빠르게 학습하세요."
         keywords = "일본어 단어, 일본 여행 단어, 일본어 단어 모음, 여행 일본어 단어, 일본어 발음"
-        page_intro = "일본 여행에서 자주 쓰는 필수 일본어 단어를 분류별로 한 곳에 정리했습니다. 원하는 분류를 선택해 단어/발음/뜻을 빠르게 학습하세요."
+        page_intro = "일본 여행에서 자주 쓰는 필수 일본어 단어를 분류별로 한 곳에 정리했습니다."
 
     ctx = seo(title=title, desc=desc, keywords=keywords)
     ctx["page_intro"] = page_intro
@@ -4310,6 +4360,8 @@ def situations():
 def situation_detail(main_key: str, sub_key: str):
     user = current_user()
 
+    q = (request.args.get("q") or "").strip()   # ✅ 검색어
+
     cat = SITUATIONS.get(main_key)
     if not cat:
         abort(404)
@@ -4320,20 +4372,30 @@ def situation_detail(main_key: str, sub_key: str):
 
     items = []
     for i, t in enumerate(sub.get("items", [])):
+        jp = t[0]
+        pron = t[1]
+        ko = t[2]
+
+        # ✅ 검색 필터: jp/pron/ko 중 하나라도 포함되면 통과
+        if q:
+            qq = q.lower()
+            if (qq not in (jp or "").lower()
+                and qq not in (pron or "").lower()
+                and qq not in (ko or "").lower()):
+                continue
+
         items.append({
             "phrase_key": f"{main_key}:{sub_key}:{i}",
-            "jp": t[0],
-            "pron": t[1],
-            "ko": t[2],
+            "jp": jp,
+            "pron": pron,
+            "ko": ko,
             "source": None,
             "is_fav": False,
         })
 
-    # ✅ 분류별 소개문
     cat_title = cat.get("title", "")
     sub_title = sub.get("title", "")
 
-    # ✅ 애니 명대사는 intro 제외
     if main_key == "anime_quotes":
         page_intro = None
     else:
@@ -4348,8 +4410,44 @@ def situation_detail(main_key: str, sub_key: str):
         sub_key=sub_key,
         items=items,
         page_intro=page_intro,
+        q=q,  # ✅ 템플릿에서 검색창 값 유지용
     )
 
+
+@app.get("/situations/search")
+def situations_search():
+    user = current_user()
+    q = (request.args.get("q") or "").strip()
+
+    results = []
+    if q:
+        qq = q.lower()
+
+        for main_key, cat in (SITUATIONS or {}).items():
+            cat_title = cat.get("title", main_key)
+            subs = (cat.get("subs") or {})
+            for sub_key, sub in subs.items():
+                sub_title = sub.get("title", sub_key)
+
+                for t in (sub.get("items", []) or []):
+                    jp = t[0] if len(t) > 0 else ""
+                    pron = t[1] if len(t) > 1 else ""
+                    ko = t[2] if len(t) > 2 else ""
+
+                    if (qq in (jp or "").lower()
+                        or qq in (pron or "").lower()
+                        or qq in (ko or "").lower()):
+                        results.append({
+                            "main_key": main_key,
+                            "sub_key": sub_key,
+                            "cat_title": cat_title,
+                            "sub_title": sub_title,
+                            "jp": jp,
+                            "pron": pron,
+                            "ko": ko,
+                        })
+
+    return render_template("situations_search.html", user=user, q=q, results=results)
 
 
 def build_situation_seo(main_key: str, sub_key: str | None = None):
