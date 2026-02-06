@@ -5224,7 +5224,7 @@ def find_id():
             flash("메일 전송에 실패했습니다. 잠시 후 다시 시도해주세요.", "error")
     else:
         # 계정 존재 여부 노출 방지
-        flash("입력한 이메일로 아이디를 전송했습니다. (스팸함도 확인해주세요)", "success")
+        flash("입력한 이메일로 아이디를 전송했습니다.", "success")
 
     return redirect(url_for("find_id"))
 
