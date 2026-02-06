@@ -5117,14 +5117,25 @@ def login():
             (username,)
         ).fetchone()
 
+        # ❌ 계정 없음 or 비밀번호 틀림
         if not u or not check_password_hash(u["password_hash"], password):
             conn.close()
             flash("아이디 또는 비밀번호가 올바르지 않습니다.", "error")
             return redirect(url_for("login"))
 
+        # 🚫 탈퇴 또는 비활성 계정 차단
+        deleted_at = u["deleted_at"] if ("deleted_at" in u.keys()) else None
+        is_active = u["is_active"] if ("is_active" in u.keys()) else 1
+
+        if (is_active == 0) or (deleted_at is not None and str(deleted_at).strip() != ""):
+            conn.close()
+            flash("탈퇴 처리된 계정입니다.", "error")
+            return redirect(url_for("login"))
+
+
         session["user_id"] = u["id"]
 
-        mark_attendance(u["id"])  # ✅ 여기 추가 (로그인 성공 시 1일 1회 출석)
+        mark_attendance(u["id"])
 
         conn.execute(
             "UPDATE users SET last_login_at=? WHERE id=?",
@@ -5138,6 +5149,7 @@ def login():
         return redirect(next_url or url_for("index"))
 
     return render_template("login.html", user=None)
+
 
 def send_username_email(to_email: str, username: str):
     import os, smtplib
@@ -5209,9 +5221,16 @@ def find_id():
     conn = db()
     try:
         row = conn.execute(
-            "SELECT username FROM users WHERE lower(email)=?",
-            (email,)
-        ).fetchone()
+        """
+        SELECT username
+        FROM users
+        WHERE lower(email)=?
+        AND (is_active=1 OR is_active IS NULL)
+        AND (deleted_at IS NULL OR deleted_at='')
+        """,
+        (email,)
+    ).fetchone()
+
     finally:
         conn.close()
 
@@ -5343,6 +5362,75 @@ def forgot_password():
 MAX_CODE_FAILS = 5
 LOCK_MINUTES = 5
 
+
+@app.route("/change-password", methods=["GET", "POST"])
+def change_password():
+    user = current_user()
+    if not user:
+        flash("로그인이 필요합니다.", "error")
+        return redirect(url_for("login"))
+
+    # users 테이블의 비밀번호 컬럼 자동 탐색
+    def _get_pw_col(conn):
+        cols = [r["name"] for r in conn.execute("PRAGMA table_info(users)").fetchall()]
+        for cand in ("password", "password_hash", "pw_hash", "pass_hash", "hashed_password"):
+            if cand in cols:
+                return cand
+        return None
+
+    if request.method == "POST":
+        current_pw = request.form.get("current_password", "")
+        new_pw = request.form.get("new_password", "")
+        confirm_pw = request.form.get("confirm_password", "")
+
+        if not current_pw or not new_pw or not confirm_pw:
+            flash("모든 항목을 입력해주세요.", "error")
+            return redirect(url_for("change_password"))
+
+        if new_pw != confirm_pw:
+            flash("새 비밀번호가 일치하지 않습니다.", "error")
+            return redirect(url_for("change_password"))
+
+        if len(new_pw) < 8:
+            flash("새 비밀번호는 8자 이상으로 설정해주세요.", "error")
+            return redirect(url_for("change_password"))
+
+        conn = db()
+        try:
+            pw_col = _get_pw_col(conn)
+            if not pw_col:
+                flash("서버 설정 문제로 비밀번호 변경을 진행할 수 없습니다.", "error")
+                return redirect(url_for("change_password"))
+
+            row = conn.execute(
+                f"SELECT {pw_col} AS pw FROM users WHERE id=?",
+                (user["id"],)
+            ).fetchone()
+
+            if not row or not row["pw"]:
+                flash("계정 정보를 찾을 수 없습니다.", "error")
+                return redirect(url_for("change_password"))
+
+            if not check_password_hash(row["pw"], current_pw):
+                flash("현재 비밀번호가 올바르지 않습니다.", "error")
+                return redirect(url_for("change_password"))
+
+            new_hash = generate_password_hash(new_pw)
+            conn.execute(
+                f"UPDATE users SET {pw_col}=? WHERE id=?",
+                (new_hash, user["id"])
+            )
+            conn.commit()
+
+        finally:
+            conn.close()
+
+        flash("비밀번호가 변경되었습니다.", "success")
+        return redirect(url_for("mypage"))
+
+    return render_template("change_password.html", user=user)
+
+
 @app.route("/reset-password", methods=["GET", "POST"])
 def reset_password():
     user = current_user()
@@ -5452,6 +5540,113 @@ def reset_password():
 
     return render_template("reset_password.html", user=None)
 
+@app.route("/withdraw", methods=["GET", "POST"])
+def withdraw():
+    user = current_user()
+    if not user:
+        flash("로그인이 필요합니다.", "error")
+        return redirect(url_for("login"))
+
+    # (선택) 관리자 탈퇴 막기 - 원하면 유지
+    try:
+        if is_admin(user):
+            flash("관리자 계정은 회원탈퇴가 제한됩니다.", "error")
+            return redirect(url_for("mypage"))
+    except Exception:
+        pass
+
+    def _cols(conn):
+        return [r["name"] for r in conn.execute("PRAGMA table_info(users)").fetchall()]
+
+    def _ensure_columns(conn):
+        cols = _cols(conn)
+        if "deleted_at" not in cols:
+            conn.execute("ALTER TABLE users ADD COLUMN deleted_at TEXT")
+        if "is_active" not in cols:
+            conn.execute("ALTER TABLE users ADD COLUMN is_active INTEGER DEFAULT 1")
+        conn.commit()
+
+    def _pick_first(cols, candidates):
+        for c in candidates:
+            if c in cols:
+                return c
+        return None
+
+    if request.method == "POST":
+        confirm_pw = request.form.get("password", "")
+        agree = request.form.get("agree", "")
+
+        if agree != "yes":
+            flash("안내 사항에 동의해 주세요.", "error")
+            return redirect(url_for("withdraw"))
+
+        conn = db()
+        try:
+            _ensure_columns(conn)
+            cols = _cols(conn)
+
+            pw_col = _pick_first(cols, ("password", "password_hash", "pw_hash", "pass_hash", "hashed_password"))
+            if not pw_col:
+                flash("서버 설정 문제로 회원탈퇴를 진행할 수 없습니다. (비밀번호 컬럼 없음)", "error")
+                return redirect(url_for("withdraw"))
+
+            email_col = _pick_first(cols, ("email", "user_email"))
+            public_col = _pick_first(cols, ("nickname", "display_name", "name"))
+
+            row = conn.execute(
+                f"SELECT id, {pw_col} AS pw FROM users WHERE id=?",
+                (user["id"],)
+            ).fetchone()
+
+            if not row or not row["pw"]:
+                flash("계정 정보를 찾을 수 없습니다.", "error")
+                return redirect(url_for("withdraw"))
+
+            if not check_password_hash(row["pw"], confirm_pw):
+                flash("비밀번호가 올바르지 않습니다.", "error")
+                return redirect(url_for("withdraw"))
+
+            now = datetime.now(timezone.utc).isoformat()
+            dead_hash = generate_password_hash(f"deleted:{user['id']}:{now}")
+
+            updates = []
+            params = []
+
+            # 탈퇴 처리 + 비활성화
+            updates.append("deleted_at=?")
+            params.append(now)
+            updates.append("is_active=0")
+
+            # 비밀번호 무력화
+            updates.append(f"{pw_col}=?")
+            params.append(dead_hash)
+
+            # 닉네임/이름이 있으면 '탈퇴회원' 처리
+            if public_col:
+                updates.append(f"{public_col}=?")
+                params.append("탈퇴회원")
+
+            # 이메일이 있으면 마스킹(아이디찾기/비번찾기 차단)
+            if email_col:
+                updates.append(f"{email_col}=?")
+                params.append(f"deleted+{user['id']}@invalid.local")
+
+            params.append(user["id"])
+            conn.execute(
+                f"UPDATE users SET {', '.join(updates)} WHERE id=?",
+                tuple(params)
+            )
+            conn.commit()
+
+        finally:
+            conn.close()
+
+        # 로그아웃
+        session.pop("user_id", None)
+        flash("회원탈퇴가 완료되었습니다.", "success")
+        return redirect(url_for("index"))
+
+    return render_template("withdraw.html", user=user)
 
 @app.route("/word_game/ranking")
 def word_game_ranking():
