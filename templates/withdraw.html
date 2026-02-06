@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% set page_title = "회원탈퇴 | 일본 여행 회화 공부방" %}
+{% set page_desc = "회원탈퇴를 진행합니다." %}
+{% set page_robots = "noindex,nofollow" %}
+
+{% block content %}
+
+<div class="page-head">
+  <h1 class="page-title">회원탈퇴</h1>
+  <p class="page-sub">탈퇴 시 계정은 비활성화되며, 복구가 어려울 수 있습니다.</p>
+</div>
+
+<div class="form-wrap">
+  <form class="form-card" method="post" autocomplete="off">
+
+    <div class="help-note" style="line-height:1.7;">
+      ⚠️ 아래 내용을 확인해 주세요.<br>
+      - 탈퇴 후 로그인할 수 없습니다.<br>
+      - 작성한 글/댓글은 서비스 운영상 남을 수 있으며, 작성자 표시는 “탈퇴회원”으로 바뀔 수 있습니다.<br>
+      - 아이디/이메일 찾기 기능에서도 계정 식별이 어렵도록 처리됩니다.
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-wrap">
+          {% for category, msg in messages %}
+            <div class="flash {{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="field">
+      <label class="label" for="password">비밀번호 확인</label>
+      <input class="input"
+             id="password"
+             type="password"
+             name="password"
+             required
+             autocomplete="current-password"
+             placeholder="비밀번호 입력">
+    </div>
+
+    <label style="display:flex; gap:10px; align-items:center; margin:10px 0 0;">
+      <input type="checkbox" name="agree" value="yes" required>
+      <span style="font-size:13px; color:#334155;">
+        위 안내사항을 확인했으며, 회원탈퇴에 동의합니다.
+      </span>
+    </label>
+
+    <div class="form-actions" style="margin-top:14px;">
+      <button class="btn primary" type="submit"
+              onclick="return confirm('정말로 회원탈퇴를 진행할까요? 이 작업은 되돌리기 어렵습니다.');">
+        회원탈퇴
+      </button>
+      <a class="btn ghost" href="{{ url_for('mypage') }}">취소</a>
+    </div>
+
+  </form>
+</div>
+
+{% endblock %}
