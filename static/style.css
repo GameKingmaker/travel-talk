@@ -2118,3 +2118,43 @@ img, video, canvas{
   box-shadow:0 4px 12px rgba(99,102,241,.25);
   transform:translateY(-1px);
 }
+
+.flash-wrap {
+    margin: 14px 0;
+}
+
+.flash {
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 500;
+    animation: flashFade 0.4s ease;
+}
+
+/* 성공 메시지 */
+.flash.success {
+    background: #ecfdf3;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.12);
+}
+
+/* 에러 메시지 */
+.flash.error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.12);
+}
+
+@keyframes flashFade {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
