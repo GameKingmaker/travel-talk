@@ -25,7 +25,8 @@
              type="text"
              name="username"
              required
-             autocomplete="username">
+             autocomplete="username"
+             placeholder="아이디 입력">
     </div>
 
     <div class="field">
@@ -39,15 +40,27 @@
              autocomplete="email">
     </div>
 
+    {# ✅ flash 메시지 표시 #}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-wrap">
+          {% for category, msg in messages %}
+            <div class="flash {{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
     <div class="help-note">
-      🔒 인증코드는 본인 확인용으로 사용됩니다.<br>
-      (현재 개발 단계에서는 서버 로그에 표시됩니다 — 추후 이메일 발송 연동 예정)
+      🔒 인증코드는 이메일로 발송되며, 유효시간은 10분입니다.<br>
+      메일이 오지 않으면 스팸함도 확인해 주세요.
     </div>
 
     <div class="form-actions">
       <button class="btn primary" type="submit">인증코드 받기</button>
-      <a class="btn" href="{{ url_for('login') }}">로그인으로</a>
+      <a class="btn ghost" href="{{ url_for('login') }}">로그인으로</a>
     </div>
+
   </form>
 </div>
 
