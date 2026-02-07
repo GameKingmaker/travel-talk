@@ -8655,3 +8655,12 @@ if __name__ == "__main__":
 
 with app.app_context():
     init_db()
+
+@app.route("/favicon.ico")
+@app.route("/favicon.png")
+def favicon():
+    return send_from_directory(
+        app.static_folder,
+        "favicon.png",
+        mimetype="image/png"
+    )
