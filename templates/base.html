@@ -1,42 +1,59 @@
 <!doctype html>
 <html lang="ko">
+  
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="google-site-verification" content="lJGGrId4qzFbD11UUdYWvSqrsSCJM8Mmd6IWdWF1pmE" />
 
-  <title>{{ page_title or "일본 여행 회화 공부방 | 상황별 회화 · 단어 · 퀴즈로 배우기" }}</title>
-  <meta name="description" content="{{ page_desc or "일본 여행을 위한 필수 회화와 단어를 상황별로 쉽고 재미있게 학습하세요. 퀴즈 게임과 학습노트로 빠르게 일본어를 익힐 수 있는 무료 공부방입니다." }}">
-  <meta name="keywords" content="{{ page_keywords or "일본어 회화,일본어 필수 단어,일본어 단어모음, 일본어 회화 모음, 기초 일본어, 일본어 필수 회화, 일본 여행 일본어, 여행 일본어 표현, 일본어 공부, 일본어 퀴즈" }}">
-  <meta name="author" content="{{ page_author or "Japanese Study Room" }}">
-  <meta name="robots" content="{{ page_robots or 'index,follow' }}">
-
   {% set canonical_url = request.url.split('?')[0] %}
   <link rel="canonical" href="{{ canonical_url }}"/>
 
-  <meta property="og:site_name" content="일본 여행 회화 공부방">
+  <title>{{ page_title or "일본어 회화 공부방 | 일본 여행 회화·단어·퀴즈 무료 학습" }}</title>
+  <meta name="description" content="{{ page_desc or "일본 여행을 위한 필수 회화와 단어를 상황별로 쉽고 재미있게 학습하세요. 퀴즈 게임과 학습노트로 빠르게 일본어를 익힐 수 있는 무료 공부방입니다." }}">
+  <meta name="keywords" content="{{ page_keywords or "일본어 회화,일본어 필수 단어,일본어 단어모음,일본어 회화 모음,기초 일본어,일본어 필수 회화,일본 여행 일본어,여행 일본어 표현,일본어 공부,일본어 퀴즈" }}">
+  <meta name="author" content="{{ page_author or "Japanese Study Room" }}">
+  <meta name="robots" content="{{ page_robots or "index,follow" }}">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="일본어 회화 공부방">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ canonical_url }}">
-  <meta property="og:title" content="{{ page_title or '일본 여행 회화 공부방 | 상황별 회화 · 단어 · 퀴즈로 배우기' }}">
-  <meta property="og:description" content="{{ page_desc or '일본 여행을 위한 필수 회화와 단어를 상황별로 쉽고 재미있게 학습하세요.' }}">
+  <meta property="og:title" content="{{ page_title or "일본어 회화 공부방 | 일본 여행 회화·단어·퀴즈 무료 학습" }}">
+  <meta property="og:description" content="{{ page_desc or "일본 여행을 위한 필수 회화와 단어를 상황별로 쉽고 재미있게 학습하세요." }}">
   <meta property="og:image" content="{{ url_for('static', filename='logo.png', _external=True) }}">
-  <meta property="og:image:alt" content="일본 여행 회화 공부방">
+  <meta property="og:image:alt" content="일본어 회화 공부방">
 
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ page_title or '일본 여행 회화 공부방 | 상황별 회화 · 단어 · 퀴즈로 배우기' }}">
-  <meta name="twitter:description" content="{{ page_desc or '일본 여행을 위한 필수 회화와 단어를 상황별로 쉽고 재미있게 학습하세요.' }}">
+  <meta name="twitter:title" content="{{ page_title or "일본어 회화 공부방 | 일본 여행 회화·단어·퀴즈 무료 학습" }}">
+  <meta name="twitter:description" content="{{ page_desc or "일본 여행을 위한 필수 회화와 단어를 상황별로 쉽고 재미있게 학습하세요." }}">
+
+  <!-- Site name signals -->
+  <meta property="og:site_name" content="일본어 회화 공부방">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "일본어 회화 공부방",
+    "alternateName": "Japanese Study Room",
+    "url": "https://japanesestudyroom.com"
+  }
+  </script>
 
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
   <link rel="apple-touch-icon" href="{{ url_for('static', filename='favicon.png') }}">
-
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
   <script>
     window.IS_LOGGED_IN = {{ (user is not none) | tojson }};
   </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
      crossorigin="anonymous"></script>
+
   {% block extra_head %}{% endblock %}
 </head>
 
