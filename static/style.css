@@ -2158,3 +2158,115 @@ img, video, canvas{
         transform: translateY(0);
     }
 }
+/* ✅ 스샷 느낌 카드 */
+.wcard{
+  background:#fff;
+  border:1px solid rgba(15,23,42,.08);
+  border-radius:18px;
+  padding:16px;
+  box-shadow:0 6px 18px rgba(15,23,42,.06);
+}
+
+.wcard-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.wtitle{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:-0.3px;
+  margin:0;
+}
+
+.wmeta{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#6b7280;
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.wpill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:34px;
+  height:26px;
+  padding:0 10px;
+  border-radius:999px;
+  background:#f1f5ff;
+  border:1px solid rgba(37,99,235,.18);
+  color:#1d4ed8;
+  font-weight:900;
+  font-size:12px;
+}
+.wpill.small{
+  height:24px;
+  min-width:32px;
+  padding:0 10px;
+  font-size:12px;
+}
+
+/* 리스트(스샷처럼 버튼 2~3개 들어갈 자리) */
+.wlist{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.witem{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius:14px;
+  background:#f8fafc;
+  border:1px solid rgba(15,23,42,.08);
+  text-decoration:none;
+  color:#0f172a;
+  font-weight:900;
+  transition: background .12s ease, border-color .12s ease, transform .08s ease, box-shadow .12s ease;
+}
+.witem:hover{
+  background:#fff;
+  border-color: rgba(37,99,235,.20);
+  box-shadow:0 8px 18px rgba(37,99,235,.10);
+  transform: translateY(-1px);
+}
+
+.wdot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background: rgba(37,99,235,.90);
+  box-shadow:0 0 0 4px rgba(37,99,235,.12);
+  flex:0 0 auto;
+}
+
+.witem-text{
+  flex:1;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.whint{
+  margin-top:12px;
+  color:#94a3b8;
+  font-size:12px;
+  font-weight:800;
+}
+.wdesc{
+  margin: 6px 0 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #475569;
+  font-weight: 700;
+}
