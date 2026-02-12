@@ -749,6 +749,11 @@ def init_db() -> None:
         cols = table_columns(conn, "users")
         if "last_seen_at" not in cols:
             cur.execute("ALTER TABLE users ADD COLUMN last_seen_at TEXT")
+         # ✅ (여기에 추가) 닉네임 대소문자 무시 유니크 인덱스
+        cur.execute("""
+            CREATE UNIQUE INDEX IF NOT EXISTS idx_users_nickname_nocase
+            ON users(nickname COLLATE NOCASE)
+        """)
 
         # 3) daily_phrase
         cur.execute(
@@ -3966,7 +3971,17 @@ WORDS: Dict[str, Dict[str, Any]] = {
         },
 
 }
-
+# ✅ WORDS 정의 끝난 다음(들여쓰기 0칸)
+WORDS_CAT_DESC = {
+    "numbers": "숫자·가격·인원·개수 단위까지, 일본 여행에서 가장 자주 쓰는 기본 표현",
+    "time": "시간·날짜·요일 그리고 약속과 일정 대화에 꼭 필요한 단어",
+    "date": "오늘·내일·이번 주 일정 확인에 필수 표현",
+    "transport": "역·지하철·버스 등 교통 이용 시 바로 쓰는 단어",
+    "location": "오른쪽·왼쪽·근처 등 길 찾기 핵심 표현",
+    "daily": "가다·오다·먹다 같은 기본 동작 단어",
+    "shopping": "가격·사이즈·결제 상황에서 자주 쓰는 쇼핑 단어",
+    "feelings": "아파요·괜찮아요 같은 상태·감정 표현",
+}
 
 
 
@@ -4097,21 +4112,8 @@ ADMIN_USERNAME = "cjswoaostk"
 def is_admin(user):
     if not user:
         return False
-    un = (user.get("username") or "").strip()
-    nn = (user.get("nickname") or "").strip()
-    cg = (user.get("custom_grade") or "").strip()
+    return (user.get("username") or "").lower() == "cjswoaostk"
 
-    # ✅ 기존 관리자 아이디 + 너가 쓰는 ADMIN 계정 + 닉네임 SW + custom_grade에 관리자 계열 들어가면 관리자 처리
-    if un == ADMIN_USERNAME:
-        return True
-    if un.upper() == "ADMIN":
-        return True
-    if nn == "SW":
-        return True
-    if ("관리자" in cg) or ("총관리자" in cg) or ("왕관리" in cg):
-        return True
-
-    return False
 
 
 def get_user_score(user: dict) -> int:
@@ -4410,6 +4412,23 @@ def username_exists(username: str) -> bool:
     conn.close()
     return row is not None
 
+def nickname_exists(nickname: str) -> bool:
+    conn = db()
+    row = conn.execute(
+        "SELECT 1 FROM users WHERE nickname = ? COLLATE NOCASE",
+        (nickname,)
+    ).fetchone()
+    conn.close()
+    return row is not None
+
+
+    conn = db()
+    row = conn.execute(
+        "SELECT 1 FROM users WHERE LOWER(nickname) = LOWER(?)",
+        (n,)
+    ).fetchone()
+    conn.close()
+    return row is not None
 
 def email_exists(email: str) -> bool:
     conn = db()
@@ -4493,16 +4512,13 @@ def words_categories():
             "key": k,
             "title": v.get("title", k),
             "count": len(items),
+            "desc": WORDS_CAT_DESC.get(k, "일본 여행과 일상 회화에서 자주 쓰는 핵심 단어 모음"),
         })
 
     ctx = build_words_seo()
+    return render_template("words_categories.html", user=user, categories=categories, **ctx)
 
-    return render_template(
-        "words_categories.html",
-        user=user,
-        categories=categories,
-        **ctx
-    )
+
 
 
 @app.route("/words/<cat_key>")
@@ -5206,6 +5222,18 @@ def register():
             errors["nickname"] = "닉네임은 2~8자 이내로 입력해주세요."
         elif not nickname_allowed(nickname):
             errors["nickname"] = "사용할 수 없는 닉네임입니다. (정치/욕설/성적/반사회/특정 사이트 언급 금지)"
+        elif nickname_exists(nickname):
+            errors["nickname"] = "이미 사용 중인 닉네임입니다."
+
+        else:
+            conn = db()
+            dup_nick = conn.execute(
+                "SELECT id FROM users WHERE nickname = ? COLLATE NOCASE",
+                (nickname,)
+            ).fetchone()
+            conn.close()
+            if dup_nick:
+                errors["nickname"] = "이미 사용 중인 닉네임입니다. (대소문자 구분 없이 중복 불가)"
 
         if email != email2:
             errors["email2"] = "이메일 주소가 서로 일치하지 않습니다."
@@ -6296,12 +6324,42 @@ def api_validate_nickname():
     nickname = (request.args.get("n") or "").strip()
 
     if not (2 <= len(nickname) <= 8):
-        return jsonify({"ok": False, "msg": "닉네임은 2~8자 이내로 입력해주세요.", "available": False})
+        return jsonify({
+            "ok": False,
+            "msg": "닉네임은 2~8자 이내로 입력해주세요.",
+            "available": False
+        })
 
     if not nickname_allowed(nickname):
-        return jsonify({"ok": False, "msg": "사용할 수 없는 닉네임입니다.", "available": False})
+        return jsonify({
+            "ok": False,
+            "msg": "사용할 수 없는 닉네임입니다.",
+            "available": False
+        })
 
-    return jsonify({"ok": True, "msg": "사용 가능한 닉네임입니다.", "available": True})
+    # ✅ DB 중복 체크 (대소문자 무시)
+    conn = db()
+    try:
+        row = conn.execute(
+            "SELECT 1 FROM users WHERE nickname = ? COLLATE NOCASE",
+            (nickname,)
+        ).fetchone()
+    finally:
+        conn.close()
+
+    if row:
+        return jsonify({
+            "ok": False,
+            "msg": "이미 사용 중인 닉네임입니다.",
+            "available": False
+        })
+
+    return jsonify({
+        "ok": True,
+        "msg": "사용 가능한 닉네임입니다.",
+        "available": True
+    })
+
 
 
 @app.get("/api/validate/email")
