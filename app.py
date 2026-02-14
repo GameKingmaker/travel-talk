@@ -14,6 +14,8 @@ import random
 import sqlite3
 import re
 import unicodedata
+import json
+from uuid import uuid4
 from flask import g
 from datetime import datetime, timezone, timedelta
 from functools import wraps
@@ -4908,7 +4910,6 @@ def api_game_words():
     return jsonify({"ok": True, "items": items})
 
 
-
 @app.route("/board/write", methods=["GET", "POST"])
 @login_required
 def board_write():
@@ -4920,15 +4921,23 @@ def board_write():
         title = (request.form.get("title") or "").strip()
         content = (request.form.get("content") or "").strip()
 
-        #  관리자만 공지 설정 가능
+        # 관리자만 공지 설정 가능
         is_notice = 0
-        if user and (user["nickname"] == "SW" or user["id"] == 1):
+        if user and (user.get("nickname") == "SW" or user.get("id") == 1):
             is_notice = 1 if (request.form.get("is_notice") == "1") else 0
 
-        file = request.files.get("image")
-        thumb_url = None
+        if not title or not content:
+            flash("제목과 내용을 입력해주세요.", "error")
+            return render_template("board_write.html", user=user, form=request.form)
 
-        if file and file.filename:
+        # ✅ 여러 파일 받기 (name="images" multiple)
+        files = request.files.getlist("images")
+        urls = []
+
+        for file in files:
+            if not file or not file.filename:
+                continue
+
             if not allowed_file(file.filename):
                 flash("이미지 파일(png/jpg/jpeg/gif/webp)만 업로드할 수 있어요.", "error")
                 return render_template("board_write.html", user=user, form=request.form)
@@ -4938,25 +4947,35 @@ def board_write():
             save_name = f"user{user['id']}_{stamp}_{filename}"
             save_path = os.path.join(UPLOAD_FOLDER, save_name)
             file.save(save_path)
-            thumb_url = f"/static/uploads/{save_name}"
 
-        if not title or not content:
-            flash("제목과 내용을 입력해주세요.", "error")
-            return render_template("board_write.html", user=user, form=request.form)
+            urls.append(f"/static/uploads/{save_name}")
+
+        # ✅ thumb_url은 첫 이미지(없으면 None)
+        thumb_url = urls[0] if urls else None
 
         author_grade = normalize_author_grade(get_user_grade_label(user))
         author_nickname = user["nickname"]
-
 
         conn = db()
         try:
             conn.execute(
                 """
                 INSERT INTO board_posts
-                (user_id, author_grade, author_nickname, title, content, thumb_url, upvotes, views, created_at, is_notice)
-                VALUES (?,?,?,?,?,?,0,0,?,?)
+                (user_id, author_grade, author_nickname, title, content,
+                 thumb_url, images_json, upvotes, views, created_at, is_notice)
+                VALUES (?,?,?,?,?,?,?,0,0,?,?)
                 """,
-                (user["id"], author_grade, author_nickname, title, content, thumb_url, kst_now_iso(), is_notice),
+                (
+                    user["id"],
+                    author_grade,
+                    author_nickname,
+                    title,
+                    content,
+                    thumb_url,
+                    json.dumps(urls, ensure_ascii=False),
+                    kst_now_iso(),
+                    is_notice,
+                ),
             )
             conn.commit()
         finally:
@@ -4968,12 +4987,16 @@ def board_write():
     return render_template("board_write.html", user=user, form={})
 
 
+
 def get_post_or_404(post_id: int):
     conn = db()
     row = conn.execute(
         """
-        SELECT id, user_id, title, content, thumb_url,
-               COALESCE(is_notice,0) AS is_notice
+        SELECT
+          id, user_id, title, content,
+          thumb_url,
+          images_json,                 -- ✅ 추가 (여러 이미지)
+          COALESCE(is_notice,0) AS is_notice
         FROM board_posts
         WHERE id=?
         """,
@@ -4985,7 +5008,6 @@ def get_post_or_404(post_id: int):
         abort(404)
 
     return dict(row)
-
 
 
 @app.get("/board/<int:post_id>")
@@ -5024,6 +5046,7 @@ def board_detail(post_id: int):
         SELECT
           id, user_id, title, content, author_grade, author_nickname,
           created_at, views, upvotes, thumb_url,
+          images_json,
           COALESCE(is_notice,0) AS is_notice
         FROM board_posts
         WHERE id=?
@@ -5034,6 +5057,16 @@ def board_detail(post_id: int):
     if not post:
         conn.close()
         abort(404)
+
+    # ✅ 여러 이미지 JSON 파싱 (sqlite3.Row는 dict처럼 get이 안 될 수 있어서 []로 접근)
+    images = []
+    try:
+        raw = post["images_json"]  # None or str
+        if raw:
+            images = json.loads(raw) or []
+            images = [u for u in images if isinstance(u, str) and u.strip()]
+    except Exception:
+        images = []
 
     # ✅ (추천 UX용) 내가 이미 추천했는지 체크해서 템플릿에 전달
     user_has_upvoted = False
@@ -5075,15 +5108,19 @@ def board_detail(post_id: int):
         "board_detail.html",
         user=user,
         post=post,
+        images=images,
         comments=comments,
         is_owner=is_owner,
-        user_has_upvoted=user_has_upvoted,  # ✅ 추가
+        user_has_upvoted=user_has_upvoted,
     )
+
 
 
 @app.route("/board/<int:post_id>/edit", methods=["GET", "POST"])
 @login_required
 def board_edit(post_id: int):
+    import json
+
     user = current_user()
     if user and not isinstance(user, dict):
         user = dict(user)
@@ -5094,79 +5131,123 @@ def board_edit(post_id: int):
     is_notice = int(post.get("is_notice") or 0)
 
     # 공지글이면 "관리자만" 수정 가능
-    is_admin = bool(user and (user.get("nickname") == "SW" or user.get("id") == 1))
-    if is_notice == 1 and not is_admin:
+    is_admin_user = bool(user and (user.get("nickname") == "SW" or user.get("id") == 1))
+    if is_notice == 1 and not is_admin_user:
         abort(403)
 
-    # 수정 화면에서 체크박스 보여주기/변경 가능은 관리자만
-    show_notice_toggle = is_admin
+    # ---- 현재 저장된 이미지 리스트 만들기 (thumb_url + images_json 통합) ----
+    images = []
+    try:
+        if post.get("images_json"):
+            images = json.loads(post["images_json"]) or []
+    except Exception:
+        images = []
 
-    if request.method == "POST":
-        title = (request.form.get("title") or "").strip()
-        content = (request.form.get("content") or "").strip()
+    # 혹시 섞인 값 정리
+    images = [u for u in images if isinstance(u, str) and u.strip()]
 
-        if not title or not content:
-            flash("제목과 내용을 입력해주세요.", "error")
+    # thumb_url이 따로 있으면 리스트에 포함(중복 방지)
+    if post.get("thumb_url"):
+        tu = post["thumb_url"]
+        if tu and tu not in images:
+            images.insert(0, tu)
+
+    # ✅ GET이면: 템플릿에 images 넘겨서 "여러 장" 미리보기 뜨게
+    if request.method == "GET":
+        return render_template(
+            "board_edit.html",
+            user=user,
+            post=post,
+            images=images,  # ✅ 핵심
+            show_notice_toggle=is_admin_user,
+            is_notice=is_notice,
+        )
+
+    # -------------------------
+    # POST: 수정 저장
+    # -------------------------
+    title = (request.form.get("title") or "").strip()
+    content = (request.form.get("content") or "").strip()
+
+    if not title or not content:
+        flash("제목과 내용을 입력해주세요.", "error")
+        return render_template(
+            "board_edit.html",
+            user=user,
+            post=post,
+            images=images,
+            show_notice_toggle=is_admin_user,
+            is_notice=is_notice,
+        )
+
+    # 1) X로 제외한(삭제) 이미지 반영
+    remove_raw = request.form.get("remove_images_json") or "[]"
+    try:
+        remove_list = json.loads(remove_raw) or []
+    except Exception:
+        remove_list = []
+
+    remove_set = set([u for u in remove_list if isinstance(u, str) and u.strip()])
+    if remove_set:
+        images = [u for u in images if u not in remove_set]
+
+    # 2) 새로 추가한 이미지 업로드(여러 장)
+    files = request.files.getlist("images")  # ✅ name="images" multiple
+    new_urls = []
+
+    for f in files:
+        if not f or not f.filename:
+            continue
+
+        if not allowed_file(f.filename):
+            flash("이미지 파일(png/jpg/jpeg/gif/webp)만 업로드할 수 있어요.", "error")
             return render_template(
                 "board_edit.html",
                 user=user,
                 post=post,
-                show_notice_toggle=show_notice_toggle,
+                images=images,
+                show_notice_toggle=is_admin_user,
                 is_notice=is_notice,
             )
 
-        # 이미지 변경(선택)
-        file = request.files.get("image")
-        thumb_url = post.get("thumb_url")
+        filename = secure_filename(f.filename)
+        stamp = datetime.now(timezone.utc).astimezone(_KST).strftime("%Y%m%d%H%M%S")
+        save_name = f"user{user['id']}_{stamp}_{filename}"
+        save_path = os.path.join(UPLOAD_FOLDER, save_name)
+        f.save(save_path)
+        new_urls.append(f"/static/uploads/{save_name}")
 
-        if file and file.filename:
-            if not allowed_file(file.filename):
-                flash("이미지 파일(png/jpg/jpeg/gif/webp)만 업로드할 수 있어요.", "error")
-                return render_template(
-                    "board_edit.html",
-                    user=user,
-                    post=post,
-                    show_notice_toggle=show_notice_toggle,
-                    is_notice=is_notice,
-                )
+    # 추가 업로드는 기존 뒤에 붙임
+    for u in new_urls:
+        if u not in images:
+            images.append(u)
 
-            filename = secure_filename(file.filename)
-            stamp = datetime.now(timezone.utc).astimezone(_KST).strftime("%Y%m%d%H%M%S")
-            save_name = f"user{user['id']}_{stamp}_{filename}"
-            save_path = os.path.join(UPLOAD_FOLDER, save_name)
-            file.save(save_path)
-            thumb_url = f"/static/uploads/{save_name}"
+    # 3) 공지글 토글은 관리자만
+    new_is_notice = is_notice
+    if is_admin_user:
+        new_is_notice = 1 if request.form.get("is_notice") == "1" else 0
 
-        # 공지글 체크는 관리자만 반영
-        new_is_notice = is_notice
-        if is_admin:
-            new_is_notice = 1 if request.form.get("is_notice") == "1" else 0
+    # 4) thumb_url은 첫 이미지로(없으면 None)
+    thumb_url = images[0] if images else None
 
-        conn = db()
-        try:
-            conn.execute(
-                """
-                UPDATE board_posts
-                SET title=?, content=?, thumb_url=?, is_notice=?
-                WHERE id=?
-                """,
-                (title, content, thumb_url, new_is_notice, post_id),
-            )
-            conn.commit()
-        finally:
-            conn.close()
+    # 5) DB 저장: images_json + thumb_url 같이 업데이트
+    conn = db()
+    try:
+        conn.execute(
+            """
+            UPDATE board_posts
+            SET title=?, content=?, thumb_url=?, images_json=?, is_notice=?
+            WHERE id=?
+            """,
+            (title, content, thumb_url, json.dumps(images, ensure_ascii=False), new_is_notice, post_id),
+        )
+        conn.commit()
+    finally:
+        conn.close()
 
-        flash("수정되었습니다.", "success")
-        return redirect(url_for("board_detail", post_id=post_id))
+    flash("수정되었습니다.", "success")
+    return redirect(url_for("board_detail", post_id=post_id))
 
-    # GET
-    return render_template(
-        "board_edit.html",
-        user=user,
-        post=post,
-        show_notice_toggle=show_notice_toggle,
-        is_notice=is_notice,
-    )
 
 
 @app.post("/board/<int:post_id>/delete")
