@@ -1,0 +1,540 @@
+{# templates/travel/convenience_1.html #}
+{% extends "base.html" %}
+
+{% set page_title = "편의점 | 일본 여행 시뮬레이션" %}
+{% set page_desc = "편의점에서 쇼핑하고 계산하며 일본어를 학습하는 상황" %}
+{% set page_robots = "noindex,nofollow" %}
+
+{% block content %}
+<style>
+  .travel-wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 48px; }
+  .stage{
+    position:relative; width:100%; aspect-ratio:16/9;
+    border-radius:18px; overflow:hidden;
+    box-shadow: 0 18px 40px rgba(2,8,23,.20);
+    background:#0b1220;
+  }
+  .bg{
+    position:absolute; inset:0;
+    background: url("{{ url_for('static', filename='travel/bg/convenience.png') }}") center/cover no-repeat;
+  }
+  .char{
+    position:absolute; left:50%; bottom:14%;
+    transform: translateX(-50%);
+    width: clamp(320px, 42%, 520px);
+    max-height: 84%;
+    object-fit: contain;
+    pointer-events:none;
+    filter: drop-shadow(0 18px 30px rgba(0,0,0,.35));
+    z-index:4;
+  }
+  .hud{ position:absolute; left:16px; top:14px; display:flex; gap:10px; z-index:6; }
+  .chip{
+    background: rgba(255,255,255,.90);
+    border: 1px solid rgba(226,232,240,.9);
+    border-radius:999px;
+    padding:8px 12px;
+    font-weight:900; font-size:13px; color:#0f172a;
+  }
+
+  /* 상단 쇼핑 패널 */
+  .panel{
+    position:absolute; left:16px; right:16px; top:54px;
+    display:grid; grid-template-columns: 1.2fr .8fr;
+    gap:12px;
+    z-index:6;
+  }
+  .card{
+    background: rgba(255,255,255,.90);
+    border: 1px solid rgba(226,232,240,.9);
+    border-radius:16px;
+    padding:12px;
+    box-shadow: 0 10px 22px rgba(2,8,23,.12);
+    overflow:hidden;
+  }
+  .card h3{
+    margin:0 0 8px 0;
+    font-size:14px; font-weight:1000; color:#0f172a;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:10px;
+  }
+  .sub{ font-size:12px; color:#334155; font-weight:800; opacity:.9; }
+
+  .items{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:10px;
+
+  /* ✅ 추가 */
+  max-height: 300px;   /* 원하는 높이로 조절 */
+  overflow: auto;
+  padding-right: 4px;
+}
+
+  .item{
+    border-radius:14px;
+    padding:10px 10px;
+    border:1px solid rgba(15,23,42,.10);
+    background: rgba(255,255,255,.75);
+    cursor:pointer;
+    transition: transform .08s ease, background .12s ease;
+    user-select:none;
+  }
+  .item:hover{ transform: translateY(-1px); background: rgba(255,255,255,.95); }
+  .jp{ font-weight:1000; font-size:14px; color:#0f172a; }
+  .kana{ font-size:12px; color:#334155; font-weight:900; margin-top:2px; }
+  .ko{ font-size:12px; color:#0f172a; opacity:.85; margin-top:2px; font-weight:900; }
+
+  .cart{
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .cart-list{
+    display:flex; flex-direction:column; gap:8px;
+    max-height: 240px;
+    overflow:auto;
+    padding-right:4px;
+  }
+  .cart-row{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:8px 10px;
+    border-radius:14px;
+    border:1px solid rgba(15,23,42,.10);
+    background: rgba(255,255,255,.78);
+  }
+  .cart-left{ display:flex; flex-direction:column; gap:2px; }
+  .qty{ font-size:12px; font-weight:1000; color:#0f172a; }
+  .rm{
+    background: rgba(15,23,42,.10);
+    border:1px solid rgba(15,23,42,.12);
+    border-radius:12px;
+    padding:6px 10px;
+    cursor:pointer;
+    font-weight:1000;
+  }
+  .rm:hover{ background: rgba(15,23,42,.16); }
+
+  .cart-actions{ display:flex; gap:8px; justify-content:flex-end; }
+  .smallbtn{
+    background: rgba(15,23,42,.08);
+    border:1px solid rgba(15,23,42,.12);
+    border-radius:12px;
+    padding:8px 10px;
+    cursor:pointer;
+    font-weight:1000;
+    color:#0f172a;
+  }
+  .smallbtn:hover{ background: rgba(15,23,42,.12); }
+
+  /* 하단 대사 박스 */
+  .box{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:16px 18px 18px;
+    background: rgba(54, 17, 92, .88);
+    backdrop-filter: blur(6px);
+    z-index:7; min-height: 170px;
+  }
+  .name{ font-weight:900; color:#fff; margin:0 0 8px 0; font-size:16px; }
+  .line{ color:#fff; font-size:16px; line-height:1.55; white-space:pre-line; margin:0; }
+  .right-hint{ position:absolute; right:18px; top:16px; color: rgba(255,255,255,.75); font-size:12px; font-weight:800; }
+
+  .choices{ margin-top:12px; display:flex; flex-wrap:wrap; gap:10px; }
+  .choice-btn{
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.22);
+    color:#fff; border-radius:12px;
+    padding:10px 12px; font-weight:900;
+    cursor:pointer; transition: transform .08s ease, background .12s ease;
+  }
+  .choice-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.16); }
+
+  .controls{ position:absolute; right:16px; bottom:16px; display:flex; gap:10px; }
+  .navbtn{
+    background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.22);
+    color:#fff; border-radius:12px;
+    padding:10px 14px; font-weight:900; cursor:pointer;
+  }
+  .navbtn:disabled{ opacity:.45; cursor:not-allowed; }
+
+  /* 체크아웃 모드에서는 쇼핑 패널 숨김 */
+  .hidden{ display:none !important; }
+
+  /* 작은 안내 */
+  .pill{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:6px 10px; border-radius:999px;
+    background: rgba(15,23,42,.06);
+    border:1px solid rgba(15,23,42,.10);
+    font-size:12px; font-weight:1000; color:#0f172a;
+  }
+  .worldmap-btn{
+  position:absolute;
+  top:14px;
+  right:16px;
+  z-index:20;
+}
+
+.worldmap-btn button{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background: rgba(255,255,255,.92);
+  border:1px solid rgba(226,232,240,.95);
+  box-shadow: 0 10px 18px rgba(2,8,23,.12);
+  font-size:13px;
+  font-weight:1000;
+  color:#0f172a;
+  cursor:pointer;
+  transition: transform .1s ease, box-shadow .12s ease;
+}
+
+.worldmap-btn button:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(2,8,23,.18);
+}
+
+</style>
+
+<div class="travel-wrap">
+  <div class="stage" id="stage">
+    <div class="bg"></div>
+<!-- ✅ 월드맵 복귀 버튼 -->
+<div class="worldmap-btn">
+  <button onclick="goWorldMap()">🗺️ 월드맵으로</button>
+</div>
+
+    <div class="hud">
+      <div class="chip">편의점</div>
+      <div class="chip" id="count">쇼핑</div>
+    </div>
+
+    <img class="char" src="{{ url_for('static', filename='travel/char/convenience_staff.png') }}" alt="convenience_staff">
+
+    <!-- ✅ 쇼핑 패널(단어 클릭 → 장바구니) : 처음엔 숨김(배경만 보이게) -->
+    <div class="panel hidden" id="shopPanel">
+      <div class="card">
+        <h3>
+          편의점 단어(클릭하면 담김)
+          <span class="pill">일본어 / 발음 / 한국어</span>
+        </h3>
+        <div class="items" id="items"></div>
+      </div>
+
+      <div class="card cart">
+        <h3>
+          내 쇼핑바구니
+          <span class="sub" id="cartCount">0개</span>
+        </h3>
+        <div class="cart-list" id="cartList"></div>
+        <div class="cart-actions">
+          <button class="smallbtn" id="clearBtn">비우기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ 대사/문제 박스 -->
+    <div class="box">
+      <div class="right-hint" id="hint">클릭 또는 다음 버튼으로 진행</div>
+      <p class="name" id="speaker">직원</p>
+      <p class="line" id="line"></p>
+
+      <div class="choices" id="choices" style="display:none;"></div>
+
+      <div class="controls">
+        <button class="navbtn" id="prevBtn">이전</button>
+        <button class="navbtn" id="nextBtn">다음</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function fmt(jp, kana, ko){
+    return `${jp}\n${kana}\n(${ko})`;
+  }
+
+  // ✅ 편의점 단어 리스트(중복 없이 총 20개)
+  // (기존 9개는 제외하고, 새로 20개로 구성)
+  const WORDS = [
+    {id:"riceball", jp:"おにぎり", kana:"오니기리", ko:"주먹밥"},
+    {id:"sandwich", jp:"サンドイッチ", kana:"산도이치", ko:"샌드위치"},
+    {id:"cupnoodle", jp:"カップ麺", kana:"캅푸멘", ko:"컵라면"},
+    {id:"ramen", jp:"ラーメン", kana:"라-멘", ko:"라면"},
+    {id:"chicken", jp:"からあげ", kana:"카라아게", ko:"치킨(가라아게)"},
+    {id:"salad", jp:"サラダ", kana:"사라다", ko:"샐러드"},
+    {id:"yogurt", jp:"ヨーグルト", kana:"요-구루토", ko:"요거트"},
+    {id:"chocolate", jp:"チョコレート", kana:"초코레-토", ko:"초콜릿"},
+    {id:"bento", jp:"弁当", kana:"벤토-", ko:"도시락" },
+    {id:"bread", jp:"パン", kana:"팡", ko:"빵" },
+    {id:"water", jp:"水", kana:"미즈", ko:"물" },
+    {id:"juice", jp:"ジュース", kana:"쥬-스", ko:"주스" },
+    {id:"coffee", jp:"コーヒー", kana:"코-히-", ko:"커피" },
+    {id:"snack", jp:"お菓子", kana:"오카시", ko:"과자" },
+    {id:"icecream", jp:"アイスクリーム", kana:"아이스쿠리-무", ko:"아이스크림" },
+    {id:"magazine", jp:"雑誌", kana:"자-시", ko:"잡지책" },
+    {id:"gum", jp:"ガム", kana:"가무", ko:"껌"},
+    {id:"candy", jp:"飴", kana:"아메", ko:"사탕"},
+    {id:"chips", jp:"ポテトチップス", kana:"포테토 칫푸스", ko:"감자칩"},
+    {id:"tissue", jp:"ティッシュ", kana:"팃슈", ko:"티슈"},
+    {id:"umbrella", jp:"傘", kana:"카사", ko:"우산"},
+    {id:"battery", jp:"電池", kana:"덴치", ko:"건전지"},
+    {id:"charger", jp:"充電器", kana:"쥬-덴키", ko:"충전기"},
+    {id:"mask", jp:"マスク", kana:"마스쿠", ko:"마스크"},
+    {id:"medicine", jp:"薬", kana:"쿠스리", ko:"약"},
+    {id:"shampoo", jp:"シャンプー", kana:"샴푸-", ko:"샴푸"},
+    {id:"toothpaste", jp:"歯みがき粉", kana:"하미가키코", ko:"치약"},
+    {id:"socks", jp:"靴下", kana:"쿠츠시타", ko:"양말"},
+  ];
+  
+
+  const cart = new Map(); // id -> qty
+
+  const elItems = document.getElementById("items");
+  const elCartList = document.getElementById("cartList");
+  const elCartCount = document.getElementById("cartCount");
+  const elClear = document.getElementById("clearBtn");
+
+  function renderItems(){
+    elItems.innerHTML = "";
+    WORDS.forEach(w=>{
+      const d = document.createElement("div");
+      d.className = "item";
+      d.innerHTML = `
+        <div class="jp">${w.jp}</div>
+        <div class="kana">${w.kana}</div>
+        <div class="ko">${w.ko}</div>
+      `;
+      d.onclick = (e)=>{
+        e.stopPropagation();
+        cart.set(w.id, (cart.get(w.id) || 0) + 1);
+        renderCart();
+      };
+      elItems.appendChild(d);
+    });
+  }
+
+  function renderCart(){
+    elCartList.innerHTML = "";
+    let total = 0;
+
+    WORDS.forEach(w=>{
+      const qty = cart.get(w.id) || 0;
+      if(qty <= 0) return;
+      total += qty;
+
+      const row = document.createElement("div");
+      row.className = "cart-row";
+      row.innerHTML = `
+        <div class="cart-left">
+          <div class="jp">${w.jp} <span class="qty">x${qty}</span></div>
+          <div class="kana">${w.kana}</div>
+          <div class="ko">${w.ko}</div>
+        </div>
+        <button class="rm">빼기</button>
+      `;
+      row.querySelector(".rm").onclick = (e)=>{
+        e.stopPropagation();
+        const cur = cart.get(w.id) || 0;
+        if(cur <= 1) cart.delete(w.id);
+        else cart.set(w.id, cur - 1);
+        renderCart();
+      };
+      elCartList.appendChild(row);
+    });
+
+    elCartCount.textContent = `${total}개`;
+  }
+
+  elClear.onclick = (e)=>{
+    e.stopPropagation();
+    cart.clear();
+    renderCart();
+  };
+
+  renderItems();
+  renderCart();
+
+  // --------------------------
+  // ✅ 대사/문제 진행
+  // idx=0: 어서오세요(패널 숨김)
+  // idx=1~2: 쇼핑(패널 보임)
+  // idx>=3: 체크아웃(패널 숨김)
+  // --------------------------
+  const shopPanel = document.getElementById("shopPanel");
+
+  const SCRIPT = [
+    { type:"line", speaker:"직원",
+      jp:"いらっしゃいませ！",
+      kana:"이라샤이마세!",
+      ko:"어서 오세요!"
+    },
+    { type:"line", speaker:"내레이션",
+      jp:"上の単語をクリックするとカゴに入ります。選び終わったら「次へ」でお会計へ。",
+      kana:"우에노 탄고오 쿠릭쿠스루토 카고니 하이리마스. 에라비오와타라 '츠기'데 오카이케-에.",
+      ko:"위 단어를 클릭하면 장바구니에 담겨. 다 골랐으면 '다음'을 눌러 계산으로 가자."
+    },
+
+    // ✅ 체크아웃 장면 시작
+    { type:"line", speaker:"내레이션",
+      jp:"レジに並びました。",
+      kana:"레지니 나라비마시타.",
+      ko:"계산대에 줄을 섰습니다."
+    },
+    { type:"line", speaker:"직원",
+      jp:"袋にお入れしましょうか？",
+      kana:"후쿠로니 오이레 시마쇼-카?",
+      ko:"봉투에 담아드릴까요?"
+    },
+    { type:"choice", speaker:"나",
+      question_ko:"(문제) “네, 봉투에 담아주세요”를 가장 자연스럽게 말하면?",
+      choices:[
+        { jp:"はい、袋に入れてください。",
+          kana:"하이, 후쿠로니 이레테 쿠다사이.",
+          ko:"네, 봉투에 담아주세요.",
+          correct:true
+        },
+        { jp:"はい、ここで食べます。",
+          kana:"하이, 코코데 타베마스.",
+          ko:"네, 먹고 갈게요.",
+          correct:false
+        },
+        { jp:"はい、お釣りをください。",
+          kana:"하이, 오츠리오 쿠다사이.",
+          ko:"네, 거스름돈 주세요.",
+          correct:false
+        },
+      ]
+    },
+    { type:"line", speaker:"직원",
+      jp:"ありがとうございます。こちらがレシートです。",
+      kana:"아리가토- 고자이마스. 코치라가 레시-토 데스.",
+      ko:"감사합니다. 영수증 여기 있습니다."
+    },
+    { type:"line", speaker:"내레이션",
+      jp:"買い物が終わりました。次はどこへ行ってみましょうか？",
+      kana:"카이모노가 오와리마시타. 츠기와 도코에 잇테미마쇼-카?",
+      ko:"장보기가 끝났다. 다음은 어디로 가볼까?",
+      goto:"/travel/worldmap?current=convenience"
+    },
+  ];
+
+  let idx = 0;
+  let locked = false;
+
+  const elSpeaker = document.getElementById("speaker");
+  const elLine = document.getElementById("line");
+  const elChoices = document.getElementById("choices");
+  const elPrev = document.getElementById("prevBtn");
+  const elNext = document.getElementById("nextBtn");
+  const stage = document.getElementById("stage");
+
+  function setShopVisible(on){
+    shopPanel.classList.toggle("hidden", !on);
+  }
+
+  function setMode(){
+    // idx=0: 패널 숨김
+    // idx=1~2: 쇼핑 패널 표시
+    // idx>=3: 체크아웃이므로 숨김
+    const showShop = (idx >= 1 && idx <= 2);
+    setShopVisible(showShop);
+
+    const isCheckout = (idx >= 3);
+    document.getElementById("count").textContent = isCheckout ? "계산" : "쇼핑";
+  }
+
+  function render(){
+    const step = SCRIPT[idx];
+    if(!step) return;
+
+    setMode();
+
+    // 이전 버튼
+    elPrev.disabled = (idx <= 0) || locked;
+
+    // choices reset
+    elChoices.style.display = "none";
+    elChoices.innerHTML = "";
+    elNext.disabled = locked;
+
+    if(step.type === "line"){
+      elSpeaker.textContent = step.speaker || "";
+      elLine.textContent = fmt(step.jp || "", step.kana || "", step.ko || "");
+      elNext.disabled = false;
+      return;
+    }
+
+    if(step.type === "choice"){
+      elSpeaker.textContent = step.speaker || "";
+      elLine.textContent = step.question_ko || "선택지를 골라주세요.";
+      locked = true;
+      elNext.disabled = true;
+
+      elChoices.style.display = "flex";
+      step.choices.forEach((c)=>{
+        const b = document.createElement("button");
+        b.className = "choice-btn";
+        b.textContent = `${c.jp}  /  ${c.kana}`;
+        b.onclick = (e)=>{
+          e.stopPropagation();
+          elLine.textContent = `${c.jp}\n${c.kana}\n(${c.ko})`;
+
+          if(c.correct){
+            locked = false;
+            elNext.disabled = false;
+            elPrev.disabled = (idx <= 0);
+            elChoices.style.display = "none";
+          }else{
+            elChoices.innerHTML = "";
+            const retry = document.createElement("button");
+            retry.className = "choice-btn";
+            retry.textContent = "다시 선택하기";
+            retry.onclick = (ev)=>{
+              ev.stopPropagation();
+              locked = true;
+              render();
+            };
+            elChoices.appendChild(retry);
+          }
+        };
+        elChoices.appendChild(b);
+      });
+    }
+  }
+
+  function goPrev(){
+    if(idx > 0){
+      idx--;
+      locked = false;
+      render();
+    }
+  }
+
+  function goNext(){
+    const step = SCRIPT[idx];
+    if(step && step.goto){
+      window.location.href = step.goto;
+      return;
+    }
+    if(idx < SCRIPT.length - 1){
+      idx++;
+      render();
+    }
+  }
+
+  elNext.addEventListener("click", (e)=>{ e.stopPropagation(); if(!locked) goNext(); });
+  elPrev.addEventListener("click", (e)=>{ e.stopPropagation(); if(!locked) goPrev(); });
+  stage.addEventListener("click", ()=>{ if(!locked) goNext(); });
+
+  render();
+  function goWorldMap(){
+  // 현재 씬 id를 worldmap에 전달
+  // 예: department, convenience, hospital 등
+  const CURRENT_PLACE = "{{ current_place|default('convenience') }}";
+  window.location.href = `/travel/worldmap?current=${CURRENT_PLACE}`;
+}
+
+</script>
+{% endblock %}
