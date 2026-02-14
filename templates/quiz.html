@@ -14,7 +14,9 @@
   .quiz-title{ font-size:34px; font-weight:900; letter-spacing:-0.5px; margin:0; }
   .quiz-sub{ margin:6px 0 0; color:#6b7280; font-size:14px; line-height:1.4; }
 
-  .game-grid{ display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:16px; margin-top:16px; }
+  /* ✅ 카드 3개 대응: PC 3열 → 태블릿 2열 → 모바일 1열 */
+  .game-grid{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:16px; margin-top:16px; }
+  @media (max-width: 1024px){ .game-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 860px){ .game-grid{ grid-template-columns: 1fr; } }
 
   .game-card{
@@ -97,6 +99,22 @@
         <span class="go">시작하러 가기 →</span>
       </div>
     </a>
+
+    <!-- 일본 여행 시뮬레이션 -->
+<a class="game-card" href="{{ url_for('travel_start') }}" aria-label="일본여행시뮬레이션 시작">
+  <div class="game-top">
+    <h2 class="game-name">일본여행시뮬레이션</h2>
+    <span class="pill">월드맵 · 스토리</span>
+  </div>
+  <p class="game-desc">
+    입국심사부터 시작해서 월드맵을 이동하며<br>
+    상황별 회화/단어를 게임처럼 익혀요.
+  </p>
+  <div class="game-foot">
+    <span class="go">시작하러 가기 →</span>
+  </div>
+</a>
+
 
   </div>
 </div>
