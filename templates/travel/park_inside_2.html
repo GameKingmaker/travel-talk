@@ -1,0 +1,291 @@
+{# templates/travel/park_inside_2.html #}
+{% extends "base.html" %}
+
+{% set page_title = "놀이공원 내부 2 | 일본 여행 시뮬레이션" %}
+{% set page_desc = "놀이기구 대기시간을 물어보는 상황" %}
+{% set page_robots = "noindex,nofollow" %}
+
+{% block content %}
+<style>
+  .travel-wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 48px; }
+  .stage{
+    position:relative; width:100%; aspect-ratio:16/9;
+    border-radius:18px; overflow:hidden;
+    box-shadow: 0 18px 40px rgba(2,8,23,.20);
+    background:#0b1220;
+  }
+  .bg{
+    position:absolute; inset:0;
+    background: url("{{ url_for('static', filename='travel/bg/park_inside.png') }}") center/cover no-repeat;
+  }
+  .char{
+    position:absolute; left:50%; bottom:14%;
+    transform: translateX(-50%);
+    width: clamp(340px, 46%, 520px);
+    max-height: 84%;
+    object-fit: contain;
+    pointer-events:none;
+    filter: drop-shadow(0 18px 30px rgba(0,0,0,.35));
+  }
+  .hud{ position:absolute; left:16px; top:14px; display:flex; gap:10px; z-index:5; }
+  .chip{
+    background: rgba(255,255,255,.90);
+    border: 1px solid rgba(226,232,240,.9);
+    border-radius:999px;
+    padding:8px 12px;
+    font-weight:900; font-size:13px; color:#0f172a;
+  }
+  .box{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:16px 18px 18px;
+    background: rgba(54, 17, 92, .88);
+    backdrop-filter: blur(6px);
+    z-index:6; min-height: 170px;
+  }
+  .name{ font-weight:900; color:#fff; margin:0 0 8px 0; font-size:16px; }
+  .line{ color:#fff; font-size:16px; line-height:1.55; white-space:pre-line; margin:0; }
+  .right-hint{ position:absolute; right:18px; top:16px; color: rgba(255,255,255,.75); font-size:12px; font-weight:800; }
+  .choices{ margin-top:12px; display:flex; flex-wrap:wrap; gap:10px; }
+  .choice-btn{
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.22);
+    color:#fff; border-radius:12px;
+    padding:10px 12px; font-weight:900;
+    cursor:pointer; transition: transform .08s ease, background .12s ease;
+  }
+  .choice-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.16); }
+  .controls{ position:absolute; right:16px; bottom:16px; display:flex; gap:10px; }
+  .navbtn{
+    background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.22);
+    color:#fff; border-radius:12px;
+    padding:10px 14px; font-weight:900; cursor:pointer;
+  }
+  .navbtn:disabled{ opacity:.45; cursor:not-allowed; }
+  .worldmap-btn{
+  position:absolute;
+  top:14px;
+  right:16px;
+  z-index:20;
+}
+
+.worldmap-btn button{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background: rgba(255,255,255,.92);
+  border:1px solid rgba(226,232,240,.95);
+  box-shadow: 0 10px 18px rgba(2,8,23,.12);
+  font-size:13px;
+  font-weight:1000;
+  color:#0f172a;
+  cursor:pointer;
+  transition: transform .1s ease, box-shadow .12s ease;
+}
+
+.worldmap-btn button:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(2,8,23,.18);
+}
+
+</style>
+
+<div class="travel-wrap">
+  <div class="stage" id="stage">
+    <div class="bg"></div>
+<!-- ✅ 월드맵 복귀 버튼 -->
+<div class="worldmap-btn">
+  <button onclick="goWorldMap()">🗺️ 월드맵으로</button>
+</div>
+
+    <div class="hud">
+      <div class="chip">놀이공원 내부</div>
+      <div class="chip" id="count">1 / 1</div>
+    </div>
+
+    <img class="char" src="{{ url_for('static', filename='travel/char/park_staff_female.png') }}" alt="park_staff_female">
+
+    <div class="box">
+      <div class="right-hint" id="hint">클릭 또는 다음 버튼으로 진행</div>
+      <p class="name" id="speaker">직원</p>
+      <p class="line" id="line"></p>
+
+      <div class="choices" id="choices" style="display:none;"></div>
+
+      <div class="controls">
+        <button class="navbtn" id="prevBtn">이전</button>
+        <button class="navbtn" id="nextBtn">다음</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function fmt(jp, kana, ko){
+    return `${jp}\n${kana}\n(${ko})`;
+  }
+
+  const SCRIPT = [
+    { type:"line", speaker:"내레이션",
+      jp:"人気のアトラクションの前に来ました。",
+      kana:"닌키노 아토라쿠숀노 마에니 키마시타.",
+      ko:"인기 있는 놀이기구 앞에 왔습니다."
+    },
+    { type:"line", speaker:"직원",
+      jp:"いらっしゃいませ。こちらは列にお並びください。",
+      kana:"이라샤이마세. 코치라와 레츠니 오나라비 쿠다사이.",
+      ko:"어서 오세요. 이쪽 줄에 서 주세요."
+    },
+
+    // ✅ 문제: 대기시간 질문
+{ type:"choice", speaker:"나",
+  question_ko:"(문제) 대기시간이 얼마나 걸리는지 물어보려면?",
+  choices:[
+    { jp:"背が低くても乗れますか？",
+      kana:"세가 히쿠쿠테모 노레마스카?",
+      ko:"키가 작아도 탈 수 있나요?",
+      correct:false
+    },
+    { jp:"怖い乗り物ですか？",
+      kana:"코와이 노리모노 데스카?",
+      ko:"무서운 놀이기구인가요?",
+      correct:false
+    },
+    { jp:"待ち時間はどのくらいですか？",
+      kana:"마치지칸와 도노쿠라이 데스카?",
+      ko:"대기시간은 얼마나 걸리나요?",
+      correct:true
+    },
+  ]
+},
+
+    { type:"line", speaker:"직원",
+      jp:"今はだいたい10分くらいです。",
+      kana:"이마와 다이타이 쥿푼 쿠라이 데스.",
+      ko:"지금은 대략 10분 정도예요."
+    },
+    { type:"line", speaker:"직원",
+    jp:"ちょうど次の回になります。こちらへどうぞ。",
+kana:"쵸-도 츠기노 카이니 나리마스. 코치라에 도-조.",
+ko:"마침 다음 차례입니다. 이쪽으로 오세요.",
+},
+
+
+    // ✅ 기구 탑승 → 즐겁게 체험 → 다음 장소 선택(월드맵)
+    { type:"line", speaker:"내레이션",
+    jp:"係員に続いて、乗り場へ向かいます。",
+    kana:"카카리인니 츠즈이테, 노리바에 무카이마스.",
+    ko:"직원을 따라 탑승장으로 이동합니다."
+    },
+    { type:"line", speaker:"내레이션",
+  jp:"遊園地も本当に楽しかったです。次はどこへ行ってみましょうか？",
+  kana:"유-엔치모 혼토-니 타노시캇타 데스. 츠기와 도코에 잇테미마쇼-카?",
+  ko:"놀이공원도 정말 재밌었어. 다음은 어디로 가볼까?",
+  goto:"/travel/worldmap?current=park"
+},
+
+
+  ];
+
+  let idx = 0;
+  let locked = false;
+
+  const elSpeaker = document.getElementById("speaker");
+  const elLine = document.getElementById("line");
+  const elChoices = document.getElementById("choices");
+  const elPrev = document.getElementById("prevBtn");
+  const elNext = document.getElementById("nextBtn");
+  const elCount = document.getElementById("count");
+  const stage = document.getElementById("stage");
+
+  function render(){
+    elCount.textContent = `${Math.min(idx+1, SCRIPT.length)} / ${SCRIPT.length}`;
+    elPrev.disabled = (idx <= 0) || locked;
+
+    const step = SCRIPT[idx];
+    if(!step) return;
+
+    elChoices.style.display = "none";
+    elChoices.innerHTML = "";
+    elNext.disabled = locked;
+
+    if(step.type === "line"){
+      elSpeaker.textContent = step.speaker || "";
+      elLine.textContent = fmt(step.jp || "", step.kana || "", step.ko || "");
+      elNext.disabled = false;
+      return;
+    }
+
+    if(step.type === "choice"){
+      elSpeaker.textContent = step.speaker || "";
+      elLine.textContent = step.question_ko ? step.question_ko : "선택지를 골라주세요.";
+      locked = true;
+      elNext.disabled = true;
+
+      elChoices.style.display = "flex";
+      step.choices.forEach((c)=>{
+        const b = document.createElement("button");
+        b.className = "choice-btn";
+        b.textContent = `${c.jp}  /  ${c.kana}`;
+        b.onclick = (e)=>{
+          e.stopPropagation();
+          elLine.textContent = `${c.jp}\n${c.kana}\n(${c.ko})`;
+
+          if(c.correct){
+            locked = false;
+            elNext.disabled = false;
+            elPrev.disabled = (idx <= 0);
+            elChoices.style.display = "none";
+          }else{
+            elChoices.innerHTML = "";
+            const retry = document.createElement("button");
+            retry.className = "choice-btn";
+            retry.textContent = "다시 선택하기";
+            retry.onclick = (ev)=>{
+              ev.stopPropagation();
+              locked = true;
+              render();
+            };
+            elChoices.appendChild(retry);
+          }
+        };
+        elChoices.appendChild(b);
+      });
+    }
+  }
+
+  function goPrev(){
+    if(idx > 0){
+      idx--;
+      locked = false;
+      render();
+    }
+  }
+
+  function goNext(){
+    const step = SCRIPT[idx];
+    if(step && step.goto){
+      window.location.href = step.goto;
+      return;
+    }
+    if(idx < SCRIPT.length - 1){
+      idx++;
+      render();
+    }
+  }
+
+  elNext.addEventListener("click", (e)=>{ e.stopPropagation(); if(!locked) goNext(); });
+  elPrev.addEventListener("click", (e)=>{ e.stopPropagation(); if(!locked) goPrev(); });
+  stage.addEventListener("click", ()=>{ if(!locked) goNext(); });
+
+  render();
+   function goWorldMap(){
+  // 현재 씬 id를 worldmap에 전달
+  // 예: department, convenience, hospital 등
+  const CURRENT_PLACE = "{{ current_place|default('park_inside') }}";
+  window.location.href = `/travel/worldmap?current=${CURRENT_PLACE}`;
+}
+</script>
+{% endblock %}
