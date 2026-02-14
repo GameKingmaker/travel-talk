@@ -1,0 +1,317 @@
+{# templates/travel/hospital_1.html #}
+{% extends "base.html" %}
+
+{% set page_title = "병원 | 일본 여행 시뮬레이션" %}
+{% set page_desc = "병원에서 증상을 말하고 도움을 받는 일본어 회화 상황" %}
+{% set page_robots = "noindex,nofollow" %}
+
+{% block content %}
+<style>
+  .travel-wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 48px; }
+  .stage{
+    position:relative; width:100%; aspect-ratio:16/9;
+    border-radius:18px; overflow:hidden;
+    box-shadow:0 18px 40px rgba(2,8,23,.20);
+    background:#0b1220;
+  }
+  .bg{
+    position:absolute; inset:0;
+    background:url('{{ url_for("static", filename="travel/bg/hospital.png") }}') center/cover no-repeat;
+  }
+  .char{
+    position:absolute; left:50%; bottom:14%;
+    transform:translateX(-50%);
+    width:clamp(340px,46%,520px);
+    max-height:84%;
+    object-fit:contain;
+    pointer-events:none;
+    filter:drop-shadow(0 18px 30px rgba(0,0,0,.35));
+  }
+  .hud{ position:absolute; left:16px; top:14px; display:flex; gap:10px; z-index:5; }
+  .chip{
+    background:rgba(255,255,255,.90);
+    border:1px solid rgba(226,232,240,.9);
+    border-radius:999px;
+    padding:8px 12px;
+    font-weight:900; font-size:13px; color:#0f172a;
+  }
+  .box{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:16px 18px 18px;
+    background:rgba(54,17,92,.88);
+    backdrop-filter:blur(6px);
+    z-index:6; min-height:170px;
+  }
+  .name{ font-weight:900; color:#fff; margin:0 0 8px 0; font-size:16px; }
+  .line{ color:#fff; font-size:16px; line-height:1.55; white-space:pre-line; margin:0; }
+  .right-hint{ position:absolute; right:18px; top:16px; color:rgba(255,255,255,.75); font-size:12px; font-weight:800; }
+  .choices{ margin-top:12px; display:flex; flex-wrap:wrap; gap:10px; }
+  .choice-btn{
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.22);
+    color:#fff; border-radius:12px;
+    padding:10px 12px; font-weight:900;
+    cursor:pointer; transition:transform .08s ease, background .12s ease;
+  }
+  .choice-btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.16); }
+  .controls{ position:absolute; right:16px; bottom:16px; display:flex; gap:10px; }
+  .navbtn{
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.22);
+    color:#fff; border-radius:12px;
+    padding:10px 14px; font-weight:900; cursor:pointer;
+  }
+  .navbtn:disabled{ opacity:.45; cursor:not-allowed; }
+  .worldmap-btn{
+  position:absolute;
+  top:14px;
+  right:16px;
+  z-index:20;
+}
+
+.worldmap-btn button{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background: rgba(255,255,255,.92);
+  border:1px solid rgba(226,232,240,.95);
+  box-shadow: 0 10px 18px rgba(2,8,23,.12);
+  font-size:13px;
+  font-weight:1000;
+  color:#0f172a;
+  cursor:pointer;
+  transition: transform .1s ease, box-shadow .12s ease;
+}
+
+.worldmap-btn button:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(2,8,23,.18);
+}
+
+</style>
+
+<div class="travel-wrap">
+  <div class="stage" id="stage">
+    <div class="bg"></div>
+<!-- ✅ 월드맵 복귀 버튼 -->
+<div class="worldmap-btn">
+  <button onclick="goWorldMap()">🗺️ 월드맵으로</button>
+</div>
+
+    <div class="hud">
+      <div class="chip">병원</div>
+      <div class="chip" id="count">1 / 1</div>
+    </div>
+
+    <img class="char"
+         src="{{ url_for('static', filename='travel/char/hospital_staff.png') }}"
+         alt="hospital_staff">
+
+    <div class="box">
+      <div class="right-hint" id="hint">클릭 또는 다음 버튼으로 진행</div>
+      <p class="name" id="speaker">내레이션</p>
+      <p class="line" id="line"></p>
+
+      <div class="choices" id="choices" style="display:none;"></div>
+
+      <div class="controls">
+        <button class="navbtn" id="prevBtn">이전</button>
+        <button class="navbtn" id="nextBtn">다음</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function fmt(jp, kana, ko){
+    return `${jp}\n${kana}\n(${ko})`;
+  }
+
+  // ✅ 병원: 증상 말하기 → 약/진료 → 엔딩
+  const SCRIPT = [
+    { type:"line", speaker:"내레이션",
+      jp:"体調が悪くて、病院に来ました。",
+      kana:"타이초-가 와루쿠테, 뵤-인니 키마시타.",
+      ko:"몸이 안 좋아서 병원에 왔습니다."
+    },
+    { type:"line", speaker:"직원",
+      jp:"こんにちは。どうされましたか？",
+      kana:"콘니치와. 도-사레마시타카?",
+      ko:"안녕하세요. 어디가 안 좋으신가요?"
+    },
+
+    // ✅ 문제 1: 배가 아파요
+{ type:"choice", speaker:"나",
+  question_ko:"(문제) “배가 아파요”를 가장 자연스럽게 말하면?",
+  choices:[
+    { jp:"足が痛いです。",
+      kana:"아시가 이타이 데스.",
+      ko:"다리가 아파요.",
+      correct:false
+    },
+    { jp:"頭が痛いです。",
+      kana:"아타마가 이타이 데스.",
+      ko:"머리가 아파요.",
+      correct:false
+    },
+    { jp:"お腹が痛いです。",
+      kana:"오나카가 이타이 데스.",
+      ko:"배가 아파요.",
+      correct:true
+    },
+  ]
+},
+
+
+    { type:"line", speaker:"직원",
+      jp:"わかりました。こちらにお名前をご記入ください。",
+      kana:"와카리마시타. 코치라니 오나마에오 고키뉴- 쿠다사이.",
+      ko:"알겠습니다. 여기 이름을 작성해주세요."
+    },
+    { type:"line", speaker:"내레이션",
+      jp:"少し待って、診察を受けました。",
+      kana:"스코시 맛테, 신사츠오 우케마시타.",
+      ko:"조금 기다린 뒤 진료를 받았습니다."
+    },
+
+    // ✅ 문제 2: 약 있나요?
+{ type:"choice", speaker:"나",
+  question_ko:"(문제) “약이 있나요?”를 정중하게 물어보려면?",
+  choices:[
+    { jp:"注射を打ちますか？",
+      kana:"츄-샤오 우치마스카?",
+      ko:"주사를 맞나요?",
+      correct:false
+    },
+    { jp:"薬はありますか？",
+      kana:"쿠스리와 아리마스카?",
+      ko:"약이 있나요?",
+      correct:true
+    },
+    { jp:"明日も来たほうがいいですか？",
+      kana:"아시타모 키타 호-가 이이 데스카?",
+      ko:"내일도 와야 하나요?",
+      correct:false
+    },
+  ]
+},
+
+
+    { type:"line", speaker:"직원",
+      jp:"はい。お薬をお出しします。お大事に。",
+      kana:"하이. 오쿠스리오 오다시 시마스. 오다이지니.",
+      ko:"네. 약을 처방해드릴게요. 몸조리하세요."
+    },
+
+    // ✅ 엔딩
+    { type:"line", speaker:"내레이션",
+      jp:"少し安心しました。次はどこへ行ってみましょうか？",
+      kana:"스코시 안신시마시타. 츠기와 도코에 잇테미마쇼-카?",
+      ko:"조금 안심이 됐어. 다음은 어디로 가볼까?",
+      goto:"/travel/worldmap?current=hospital"
+    },
+  ];
+
+  let idx = 0;
+  let locked = false;
+
+  const elSpeaker = document.getElementById("speaker");
+  const elLine = document.getElementById("line");
+  const elChoices = document.getElementById("choices");
+  const elPrev = document.getElementById("prevBtn");
+  const elNext = document.getElementById("nextBtn");
+  const elCount = document.getElementById("count");
+  const stage = document.getElementById("stage");
+
+  function render(){
+    elCount.textContent = `${Math.min(idx+1, SCRIPT.length)} / ${SCRIPT.length}`;
+    elPrev.disabled = (idx <= 0) || locked;
+
+    const step = SCRIPT[idx];
+    if(!step) return;
+
+    elChoices.style.display = "none";
+    elChoices.innerHTML = "";
+    elNext.disabled = locked;
+
+    if(step.type === "line"){
+      elSpeaker.textContent = step.speaker || "";
+      elLine.textContent = fmt(step.jp || "", step.kana || "", step.ko || "");
+      elNext.disabled = false;
+      return;
+    }
+
+    if(step.type === "choice"){
+      elSpeaker.textContent = step.speaker || "";
+      elLine.textContent = step.question_ko ? step.question_ko : "선택지를 골라주세요.";
+      locked = true;
+      elNext.disabled = true;
+
+      elChoices.style.display = "flex";
+      step.choices.forEach((c)=>{
+        const b = document.createElement("button");
+        b.className = "choice-btn";
+        b.textContent = `${c.jp}  /  ${c.kana}`;
+        b.onclick = (e)=>{
+          e.stopPropagation();
+          elLine.textContent = `${c.jp}\n${c.kana}\n(${c.ko})`;
+
+          if(c.correct){
+            locked = false;
+            elNext.disabled = false;
+            elPrev.disabled = (idx <= 0);
+            elChoices.style.display = "none";
+          }else{
+            elChoices.innerHTML = "";
+            const retry = document.createElement("button");
+            retry.className = "choice-btn";
+            retry.textContent = "다시 선택하기";
+            retry.onclick = (ev)=>{
+              ev.stopPropagation();
+              locked = true;
+              render();
+            };
+            elChoices.appendChild(retry);
+          }
+        };
+        elChoices.appendChild(b);
+      });
+    }
+  }
+
+  function goPrev(){
+    if(idx > 0){
+      idx--;
+      locked = false;
+      render();
+    }
+  }
+
+  function goNext(){
+    const step = SCRIPT[idx];
+    if(step && step.goto){
+      window.location.href = step.goto;
+      return;
+    }
+    if(idx < SCRIPT.length - 1){
+      idx++;
+      render();
+    }
+  }
+
+  elNext.addEventListener("click", (e)=>{ e.stopPropagation(); if(!locked) goNext(); });
+  elPrev.addEventListener("click", (e)=>{ e.stopPropagation(); if(!locked) goPrev(); });
+  stage.addEventListener("click", ()=>{ if(!locked) goNext(); });
+
+  render();
+  function goWorldMap(){
+  // 현재 씬 id를 worldmap에 전달
+  // 예: department, convenience, hospital 등
+  const CURRENT_PLACE = "{{ current_place|default('hospital') }}";
+  window.location.href = `/travel/worldmap?current=${CURRENT_PLACE}`;
+}
+
+</script>
+{% endblock %}
