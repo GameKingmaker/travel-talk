@@ -10,11 +10,12 @@
 </section>
 
 <div class="board-wrap" style="padding:18px;">
-  <form method="POST" enctype="multipart/form-data">
-    {# CSRF 쓰는 경우에만 활성화 (app.py에서 csrf_token 제공 필요) #}
+  <form method="POST" enctype="multipart/form-data" id="editForm">
+    {# CSRF 쓰는 경우에만 활성화 #}
     {# <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> #}
 
     <div style="display:flex; flex-direction:column; gap:14px; max-width:820px;">
+
       <div>
         <label style="display:block; margin-bottom:6px; font-weight:600;">글 제목</label>
         <input type="text" name="title" value="{{ post.title | e }}" required
@@ -29,23 +30,187 @@
 
       <div>
         <label style="display:block; margin-bottom:6px; font-weight:600;">글 이미지(선택)</label>
-        {% if post.thumb_url %}
-          <div style="margin:8px 0 10px;">
-            <img src="{{ post.thumb_url }}" alt="current"
-                 style="max-width:260px; width:100%; border-radius:14px; border:1px solid #e5e7eb;">
-            <div style="margin-top:6px; color:#667085; font-size:13px;">이미지 바꾸려면 아래에서 새 파일을 선택하세요.</div>
-          </div>
-        {% endif %}
-        <input type="file" name="image" accept=".png,.jpg,.jpeg,.gif,.webp">
-        <div style="margin-top:6px; color:#667085; font-size:13px;">png / jpg / jpeg / gif / webp 업로드 가능</div>
+
+        <div style="margin:6px 0 10px; color:#667085; font-size:13px; line-height:1.5;">
+          이미지는 유지됩니다. 잘못 올린 이미지는 <b>X로 제외</b>할 수 있어요.<br>
+          새로 추가/교체하려면 아래에서 여러 장 선택하세요.
+        </div>
+
+        {# ✅ 서버에 “삭제할 기존 이미지” 전달용 (JSON 문자열로 보냄) #}
+        <input type="hidden" name="remove_images_json" id="removeImagesJson" value="[]">
+
+        {# ✅ 기존 이미지(저장되어 있는 것) 미리보기 #}
+        <div style="font-weight:700; margin:6px 0 8px;">현재 등록된 이미지</div>
+
+        <div id="existingPreview"
+             style="display:flex; gap:10px; flex-wrap:wrap; align-items:flex-start;">
+          {# thumb_url도 포함해서 보여주고 싶으면 라우트에서 images에 합쳐서 넘기는 걸 추천 #}
+
+          {% if images and images|length > 0 %}
+            {% for url in images %}
+              {% if url %}
+                <div class="img-item" data-url="{{ url }}"
+                     style="position:relative; width:140px; height:105px; border-radius:12px;
+                            overflow:hidden; border:1px solid rgba(229,231,235,1);
+                            box-shadow:0 6px 14px rgba(2,8,23,.08); background:#fff;">
+                  <a href="{{ url }}" target="_blank" style="display:block; width:100%; height:100%;">
+                    <img src="{{ url }}" alt="image"
+                         style="width:100%; height:100%; object-fit:cover; display:block;">
+                  </a>
+
+                  <button type="button" class="img-x existing-x"
+                          title="이 이미지 제외"
+                          style="position:absolute; top:6px; right:6px;
+                                 width:26px; height:26px; border-radius:999px;
+                                 border:none; cursor:pointer; font-weight:900;
+                                 background:#2563eb; color:#fff;
+                                 box-shadow:0 8px 18px rgba(37,99,235,.35);">
+                    ×
+                  </button>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <div style="color:#98a2b3; font-size:13px;">등록된 이미지가 없습니다.</div>
+          {% endif %}
+        </div>
+
+        <hr style="border:none; border-top:1px solid #eef2f7; margin:14px 0;">
+
+        {# ✅ 새 이미지 업로드 input #}
+        <input type="file"
+               id="imagesInput"
+               name="images"
+               accept=".png,.jpg,.jpeg,.gif,.webp"
+               multiple>
+
+        <div style="margin-top:6px; color:#667085; font-size:13px;">
+          png / jpg / jpeg / gif / webp 업로드 가능 (여러 장 선택 가능)
+        </div>
+
+        {# ✅ 새로 선택한 이미지 미리보기 영역 (글쓰기처럼) #}
+        <div id="newPreview"
+             style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:flex-start;"></div>
       </div>
 
       <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:4px;">
         <a class="btn" href="{{ url_for('board_detail', post_id=post.id) }}">취소</a>
         <button class="btn btn-primary" type="submit">저장</button>
       </div>
+
     </div>
   </form>
 </div>
+
+<script>
+  // -----------------------------
+  // 1) 기존 이미지 X로 제외하기
+  // -----------------------------
+  const removeHidden = document.getElementById("removeImagesJson");
+  const existingWrap = document.getElementById("existingPreview");
+
+  function getRemoveList(){
+    try { return JSON.parse(removeHidden.value || "[]"); } catch(e){ return []; }
+  }
+  function setRemoveList(arr){
+    removeHidden.value = JSON.stringify(arr || []);
+  }
+
+  existingWrap?.addEventListener("click", (e) => {
+    const btn = e.target.closest(".existing-x");
+    if(!btn) return;
+
+    const item = btn.closest(".img-item");
+    const url = item?.dataset?.url;
+    if(!url) return;
+
+    // 목록에 추가
+    const arr = getRemoveList();
+    if(!arr.includes(url)) arr.push(url);
+    setRemoveList(arr);
+
+    // 화면에서 제거(미리보기에서 빠짐)
+    item.remove();
+  });
+
+  // -----------------------------
+  // 2) 새로 선택한 파일 미리보기 + X로 선택 취소
+  //    (DataTransfer로 input files 재구성)
+  // -----------------------------
+  const input = document.getElementById("imagesInput");
+  const newPreview = document.getElementById("newPreview");
+
+  function clearNewPreview(){
+    newPreview.innerHTML = "";
+  }
+
+  function rebuildInputFiles(keepFiles){
+    const dt = new DataTransfer();
+    keepFiles.forEach(f => dt.items.add(f));
+    input.files = dt.files;
+  }
+
+  function renderNewPreview(files){
+    clearNewPreview();
+    if(!files || files.length === 0) return;
+
+    [...files].forEach((file, idx) => {
+      if(!file.type.startsWith("image/")) return;
+
+      const wrap = document.createElement("div");
+      wrap.className = "new-img-item";
+      wrap.dataset.index = String(idx);
+      wrap.style.position = "relative";
+      wrap.style.width = "140px";
+      wrap.style.height = "105px";
+      wrap.style.borderRadius = "12px";
+      wrap.style.overflow = "hidden";
+      wrap.style.border = "1px solid rgba(229,231,235,1)";
+      wrap.style.boxShadow = "0 6px 14px rgba(2,8,23,.08)";
+      wrap.style.background = "#fff";
+
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(file);
+      img.style.width = "100%";
+      img.style.height = "100%";
+      img.style.objectFit = "cover";
+      img.style.display = "block";
+      img.onload = () => URL.revokeObjectURL(img.src);
+
+      const x = document.createElement("button");
+      x.type = "button";
+      x.title = "선택 취소";
+      x.textContent = "×";
+      x.style.position = "absolute";
+      x.style.top = "6px";
+      x.style.right = "6px";
+      x.style.width = "26px";
+      x.style.height = "26px";
+      x.style.borderRadius = "999px";
+      x.style.border = "none";
+      x.style.cursor = "pointer";
+      x.style.fontWeight = "900";
+      x.style.background = "#2563eb";
+      x.style.color = "#fff";
+      x.style.boxShadow = "0 8px 18px rgba(37,99,235,.35)";
+
+      x.addEventListener("click", () => {
+        const current = [...input.files];
+        // idx 번째 제거
+        current.splice(idx, 1);
+        rebuildInputFiles(current);
+        renderNewPreview(input.files);
+      });
+
+      wrap.appendChild(img);
+      wrap.appendChild(x);
+      newPreview.appendChild(wrap);
+    });
+  }
+
+  input?.addEventListener("change", (e) => {
+    renderNewPreview(e.target.files);
+  });
+</script>
 
 {% endblock %}
