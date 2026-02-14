@@ -452,6 +452,29 @@ def db() -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     return conn
 
+def ensure_board_schema():
+    conn = db()
+    try:
+        # board_posts 테이블 존재 여부 체크
+        row = conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='board_posts'"
+        ).fetchone()
+        if not row:
+            return  # 테이블이 없다면 여기선 건드리지 않음(네 프로젝트에 이미 있을 거라 보통 안 탐)
+
+        cols = [r["name"] for r in conn.execute("PRAGMA table_info(board_posts)").fetchall()]
+
+        # ✅ 공지글 컬럼
+        if "is_notice" not in cols:
+            conn.execute("ALTER TABLE board_posts ADD COLUMN is_notice INTEGER DEFAULT 0")
+
+        # ✅ 여러 이미지 저장 컬럼
+        if "images_json" not in cols:
+            conn.execute("ALTER TABLE board_posts ADD COLUMN images_json TEXT")
+
+        conn.commit()
+    finally:
+        conn.close()
 
 def mark_attendance(user_id: int):
     today = datetime.now().strftime("%Y-%m-%d")
@@ -4913,6 +4936,7 @@ def api_game_words():
 @app.route("/board/write", methods=["GET", "POST"])
 @login_required
 def board_write():
+    ensure_board_schema()
     user = current_user()
     if user and not isinstance(user, dict):
         user = dict(user)
@@ -4989,14 +5013,14 @@ def board_write():
 
 
 def get_post_or_404(post_id: int):
+    ensure_board_schema()  # ✅ 추가(안전)
+
     conn = db()
     row = conn.execute(
         """
-        SELECT
-          id, user_id, title, content,
-          thumb_url,
-          images_json,                 -- ✅ 추가 (여러 이미지)
-          COALESCE(is_notice,0) AS is_notice
+        SELECT id, user_id, title, content, thumb_url,
+               images_json,
+               COALESCE(is_notice,0) AS is_notice
         FROM board_posts
         WHERE id=?
         """,
@@ -5012,6 +5036,7 @@ def get_post_or_404(post_id: int):
 
 @app.get("/board/<int:post_id>")
 def board_detail(post_id: int):
+    ensure_board_schema()
     user = current_user()
 
     n_id = request.args.get("n")
@@ -5120,7 +5145,7 @@ def board_detail(post_id: int):
 @login_required
 def board_edit(post_id: int):
     import json
-
+    ensure_board_schema()
     user = current_user()
     if user and not isinstance(user, dict):
         user = dict(user)
