@@ -2270,3 +2270,17 @@ img, video, canvas{
   color: #475569;
   font-weight: 700;
 }
+.footer-sub{
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(51,65,85,.55);
+}
+
+/* 모바일에서는 더 작게 */
+@media (max-width: 768px){
+  .footer-sub{
+    font-size: 11px;
+    color: rgba(51,65,85,.5);
+  }
+}
