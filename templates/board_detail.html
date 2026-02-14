@@ -40,14 +40,27 @@
   }
   .bd-card-inner{ padding:18px; }
 
-  .bd-thumb{
-    margin-bottom:14px;
+  /* ✅ 여러 이미지: 무조건 1줄 1장(세로 정렬) */
+  .bd-images{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin: 0 0 14px;
+  }
+  .bd-image-item{
+    width:100%;
     border-radius:14px;
     overflow:hidden;
     border:1px solid #e5e7eb;
-    max-width: 640px;
+    box-shadow: 0 10px 24px rgba(2,8,23,.08);
+    background:#fff;
+    display:block;
   }
-  .bd-thumb img{ display:block; width:100%; height:auto; }
+  .bd-image-item img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
 
   .bd-content{
     white-space:pre-wrap;
@@ -181,6 +194,7 @@
     .bd-actions{ width:100%; justify-content:flex-start; }
     .bd-title{ font-size:22px; }
     .bd-wrap{ padding: 0 2px; }
+    .bd-images{ gap:10px; }
   }
 </style>
 
@@ -209,20 +223,17 @@
     </div>
 
     <div class="bd-actions">
-  <a class="btn" href="{{ url_for('board') }}">목록</a>
+      <a class="btn" href="{{ url_for('board') }}">목록</a>
 
-  {% if is_owner %}
-    <a class="btn btn-primary" href="{{ url_for('board_edit', post_id=post.id) }}">수정</a>
+      {% if is_owner %}
+        <a class="btn btn-primary" href="{{ url_for('board_edit', post_id=post.id) }}">수정</a>
 
-    <form method="POST" action="{{ url_for('board_delete', post_id=post.id) }}"
-          onsubmit="return confirm('정말 삭제할까요?');" style="display:inline;">
-      <button type="submit" class="btn btn-danger">
-        삭제
-      </button>
-    </form>
-  {% endif %}
-</div>
-
+        <form method="POST" action="{{ url_for('board_delete', post_id=post.id) }}"
+              onsubmit="return confirm('정말 삭제할까요?');" style="display:inline;">
+          <button type="submit" class="btn btn-danger">삭제</button>
+        </form>
+      {% endif %}
+    </div>
   </div>
 
   <!-- =========================
@@ -231,9 +242,27 @@
   <div class="bd-card">
     <div class="bd-card-inner">
 
-      {% if post.thumb_url %}
-        <div class="bd-thumb">
-          <img src="{{ post.thumb_url }}" alt="image">
+      {# ✅ 이미지 출력 규칙
+         1) images가 있으면 images만 출력 (thumb_url은 중복 방지 위해 안 보여줌)
+         2) images가 없으면 thumb_url 1장만 출력
+      #}
+      {% if images and images|length > 0 %}
+        {% set shown = [] %}
+        <div class="bd-images">
+          {% for url in images %}
+            {% if url and (url not in shown) %}
+              {% set _ = shown.append(url) %}
+              <a href="{{ url }}" target="_blank" class="bd-image-item">
+                <img src="{{ url }}" alt="image">
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% elif post.thumb_url %}
+        <div class="bd-images">
+          <a href="{{ post.thumb_url }}" target="_blank" class="bd-image-item">
+            <img src="{{ post.thumb_url }}" alt="image">
+          </a>
         </div>
       {% endif %}
 
