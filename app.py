@@ -8974,7 +8974,7 @@ def quiz_dialog_check():
     )
 @app.route("/travel-phrases-50")
 def travel_phrases_50():
-    user = current_user()  # ✅ 이거 추가
+    user = current_user()
 
     q = (request.args.get("q") or "").strip()
 
@@ -9012,154 +9012,210 @@ def travel_phrases_50():
         items=items,
     )
 
+
 @app.route("/travel/scene/<scene_id>")
 def travel_scene(scene_id):
-    # 씬 매핑
+    user = current_user()
+
     SCENES = {
         "airport_1": "travel/airport_1.html",
         "department_1": "travel/department_1.html",
-         "park_1": "travel/park_1.html",
-         "park_inside_1": "travel/park_inside_1.html",
-         "toilet_1" : "travel/toilet_1.html",
-         "park_inside_2": "travel/park_inside_2.html",
-         "festival_1": "travel/festival_1.html",
-         "tourist_1": "travel/tourist_1.html",
-         "hotel_1": "travel/hotel_1.html",
-         "movie_1": "travel/movie_1.html",
-         "restaurant_1": "travel/restaurant_1.html",
-         "exchange_1": "travel/exchange_1.html",
-         "cafe_1": "travel/cafe_1.html",
-         "movie_1": "travel/movie_1.html",
-         "hospital_1": "travel/hospital_1.html",
-         "onsen_1": "travel/onsen_1.html",
-         "convenience_1": "travel/convenience_1.html",
+        "park_1": "travel/park_1.html",
+        "park_inside_1": "travel/park_inside_1.html",
+        "toilet_1": "travel/toilet_1.html",
+        "park_inside_2": "travel/park_inside_2.html",
+        "festival_1": "travel/festival_1.html",
+        "tourist_1": "travel/tourist_1.html",
+        "hotel_1": "travel/hotel_1.html",
+        "movie_1": "travel/movie_1.html",
+        "restaurant_1": "travel/restaurant_1.html",
+        "exchange_1": "travel/exchange_1.html",
+        "cafe_1": "travel/cafe_1.html",
+        "hospital_1": "travel/hospital_1.html",
+        "onsen_1": "travel/onsen_1.html",
+        "convenience_1": "travel/convenience_1.html",
     }
 
     tpl = SCENES.get(scene_id)
     if not tpl:
-        return render_template("travel/scene_not_found.html", scene_id=scene_id), 404
-    return render_template(tpl)
+        return render_template("travel/scene_not_found.html", user=user, scene_id=scene_id), 404
+
+    return render_template(tpl, user=user)
+
 
 @app.route("/travel/worldmap")
 def travel_worldmap():
-    return render_template("travel/travel_map.html")
+    user = current_user()
+    return render_template("travel/travel_map.html", user=user)
+
 
 @app.route("/travel/start")
 def travel_start():
+    user = current_user()
     return render_template(
         "travel/travel_start.html",
-        start_url="/travel/scene/airport_1",   # ✅ 여기로 수정
+        user=user,
+        start_url="/travel/scene/airport_1",
         list_url="/quiz"
     )
 
+
 @app.route("/travel/scene/department_1")
 def department_scene():
+    user = current_user()
     return render_template(
         "travel/department_1.html",
+        user=user,
         current_place="department"
     )
+
+
 @app.route("/travel/scene/airport_1")
 def airport_scene():
+    user = current_user()
     return render_template(
         "travel/airport_1.html",
+        user=user,
         current_place="airport"
     )
 
+
 @app.route("/travel/scene/cafe_1")
 def cafe_scene():
+    user = current_user()
     return render_template(
         "travel/cafe_1.html",
+        user=user,
         current_place="cafe"
     )
 
+
 @app.route("/travel/scene/convenience_1")
 def convenience_scene():
+    user = current_user()
     return render_template(
         "travel/convenience_1.html",
+        user=user,
         current_place="convenience"
     )
 
+
 @app.route("/travel/scene/exchange_1")
 def exchange_scene():
+    user = current_user()
     return render_template(
         "travel/exchange_1.html",
+        user=user,
         current_place="exchange"
     )
 
+
 @app.route("/travel/scene/festival_1")
 def festival_scene():
+    user = current_user()
     return render_template(
         "travel/festival_1.html",
+        user=user,
         current_place="festival"
     )
 
+
 @app.route("/travel/scene/hospital_1")
 def hospital_scene():
+    user = current_user()
     return render_template(
         "travel/hospital_1.html",
+        user=user,
         current_place="hospital"
     )
 
+
 @app.route("/travel/scene/hotel_1")
 def hotel_scene():
+    user = current_user()
     return render_template(
         "travel/hotel_1.html",
+        user=user,
         current_place="hotel"
     )
 
+
 @app.route("/travel/scene/movie_1")
 def movie_scene():
+    user = current_user()
     return render_template(
         "travel/movie_1.html",
+        user=user,
         current_place="movie"
     )
 
+
 @app.route("/travel/scene/onsen_1")
 def onsen_scene():
+    user = current_user()
     return render_template(
         "travel/onsen_1.html",
+        user=user,
         current_place="onsen"
     )
 
+
 @app.route("/travel/scene/park_1")
 def park_scene():
+    user = current_user()
     return render_template(
         "travel/park_1.html",
+        user=user,
         current_place="park"
     )
+
 
 @app.route("/travel/scene/park_inside_1")
 def park_inside_1_scene():
+    user = current_user()
     return render_template(
         "travel/park_inside_1.html",
+        user=user,
         current_place="park"
     )
+
 
 @app.route("/travel/scene/park_inside_2")
 def park_inside_2_scene():
+    user = current_user()
     return render_template(
         "travel/park_inside_2.html",
+        user=user,
         current_place="park"
     )
+
 
 @app.route("/travel/scene/restaurant_1")
 def restaurant_scene():
+    user = current_user()
     return render_template(
         "travel/restaurant_1.html",
+        user=user,
         current_place="restaurant"
     )
 
+
 @app.route("/travel/scene/toilet_1")
 def toilet_scene():
+    user = current_user()
     return render_template(
         "travel/toilet_1.html",
+        user=user,
         current_place="park"
     )
 
+
 @app.route("/travel/scene/tourist_1")
 def tourist_scene():
+    user = current_user()
     return render_template(
         "travel/tourist_1.html",
+        user=user,
         current_place="tourist"
     )
 
