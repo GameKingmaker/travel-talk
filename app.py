@@ -2943,6 +2943,13 @@ WORDS: Dict[str, Dict[str, Any]] = {
                 ("終電", "슈덴", "막차"),
                 ("時刻表", "지코쿠효", "시간표"),
                 ("急行", "큐코", "급행열차"),
+                ("ICカード", "아이시-카-도", "교통카드(IC카드)"),
+                ("チャージ", "차-지", "충전"),
+                ("乗車券", "죠-샤켄", "승차권"),
+                ("特急", "토큐-", "특급"),
+                ("各駅停車", "카쿠에키테-샤", "각역정차/완행"),
+                ("遅れる", "오쿠레루", "늦다/지연되다"),
+
             ],
         },
 
@@ -2962,6 +2969,14 @@ WORDS: Dict[str, Dict[str, Any]] = {
                 ("近く", "치카쿠", "근처"),
                 ("遠い", "토오이", "멀다"),
                 ("地図", "치즈", "지도"),
+                ("まっすぐ", "맛스구", "쭉/곧장"),
+                ("角", "카도", "모퉁이/코너"),
+                ("交差点", "코-사텐", "교차로"),
+                ("信号", "신고-", "신호등"),
+                ("横断歩道", "오-단호도", "횡단보도"),
+                ("渡る", "와타루", "건너다"),
+                ("近道", "치카미치", "지름길"),
+
             ],
         },
 
@@ -2981,6 +2996,7 @@ WORDS: Dict[str, Dict[str, Any]] = {
                 ("寝る", "네루", "자다"),
                 ("起きる", "오키루", "일어나다"),
                 ("歩く", "아루쿠", "걷다"),
+                
             ],
         },
 
@@ -2998,6 +3014,12 @@ WORDS: Dict[str, Dict[str, Any]] = {
                 ("怖い", "코와이", "무서워요"),
                 ("うれしい", "우레시", "기뻐요"),
                 ("悲しい", "카나시", "슬퍼요"),
+                ("眠い", "네무이", "졸리다"),
+                ("だるい", "다루이", "몸이 무겁다/나른하다"),
+                ("疲れる", "츠카레루", "피곤해지다"),
+                ("心配", "신파이", "걱정"),
+                ("安心", "안신", "안심"),
+
             ],
         },
 
@@ -3458,6 +3480,13 @@ WORDS: Dict[str, Dict[str, Any]] = {
                 ("支払い", "시하라이", "결제/지불"),
                 ("小銭", "코제니", "동전"),
                 ("両替", "료-가에", "환전/거슬러주기"),
+                ("ストロー", "스토로-", "빨대"),
+                ("レジ袋", "레지부쿠로", "비닐봉투/쇼핑백"),
+                ("レンジ", "렌지", "전자레인지"),
+                ("ATM", "에-티-에무", "ATM/현금인출기"),
+                ("コピー機", "코피-키", "복사기"),
+                ("支払い方法", "시하라이호-호-", "결제 방법"),
+
             ],
         },
         # 28) 시설/장소
@@ -3659,6 +3688,8 @@ WORDS: Dict[str, Dict[str, Any]] = {
                 ("肉", "니쿠", "고기"),
                 ("魚", "사카나", "생선"),
                 ("飲み物", "노미모노", "음료"),
+                ("支払い方法", "시하라이호-호-", "결제 방법"),
+                ("レジ袋", "레지부쿠로", "비닐봉투/쇼핑백"),
             ],
         },
         # 38) 술/이자카야
@@ -3912,6 +3943,18 @@ WORDS: Dict[str, Dict[str, Any]] = {
                 ("片付ける", "카타즈케루", "정리하다"),
                 ("入れ替える", "이레카에루", "바꾸다"),
                 ("確認できる", "카쿠닌데키루", "확인할 수 있다"),
+                ("やっぱり", "얏파리", "역시/역시나"),
+                ("たぶん", "타분", "아마"),
+                ("けっこう", "켁코-", "꽤/의외로"),
+                ("ちゃんと", "찬토", "제대로"),
+                ("なんか", "난카", "뭔가/왠지"),
+                ("いちおう", "이치오-", "일단/형식상"),
+                ("まだ", "마다", "아직"),
+                ("もう", "모-", "벌써/이미"),
+                ("なるほど", "나루호도", "아하/그렇군요"),
+                ("そうなんだ", "소-난다", "그렇구나"),
+                ("ほんとう？", "혼토-?", "진짜?"),
+
             ],
         },
         # 동물원
@@ -8888,7 +8931,156 @@ def travel_phrases_50():
         items=items,
     )
 
+@app.route("/travel/scene/<scene_id>")
+def travel_scene(scene_id):
+    # 씬 매핑
+    SCENES = {
+        "airport_1": "travel/airport_1.html",
+        "department_1": "travel/department_1.html",
+         "park_1": "travel/park_1.html",
+         "park_inside_1": "travel/park_inside_1.html",
+         "toilet_1" : "travel/toilet_1.html",
+         "park_inside_2": "travel/park_inside_2.html",
+         "festival_1": "travel/festival_1.html",
+         "tourist_1": "travel/tourist_1.html",
+         "hotel_1": "travel/hotel_1.html",
+         "movie_1": "travel/movie_1.html",
+         "restaurant_1": "travel/restaurant_1.html",
+         "exchange_1": "travel/exchange_1.html",
+         "cafe_1": "travel/cafe_1.html",
+         "movie_1": "travel/movie_1.html",
+         "hospital_1": "travel/hospital_1.html",
+         "onsen_1": "travel/onsen_1.html",
+         "convenience_1": "travel/convenience_1.html",
+    }
 
+    tpl = SCENES.get(scene_id)
+    if not tpl:
+        return render_template("travel/scene_not_found.html", scene_id=scene_id), 404
+    return render_template(tpl)
+
+@app.route("/travel/worldmap")
+def travel_worldmap():
+    return render_template("travel/travel_map.html")
+
+@app.route("/travel/start")
+def travel_start():
+    return render_template(
+        "travel/travel_start.html",
+        start_url="/travel/scene/airport_1",   # ✅ 여기로 수정
+        list_url="/quiz"
+    )
+
+@app.route("/travel/scene/department_1")
+def department_scene():
+    return render_template(
+        "travel/department_1.html",
+        current_place="department"
+    )
+@app.route("/travel/scene/airport_1")
+def airport_scene():
+    return render_template(
+        "travel/airport_1.html",
+        current_place="airport"
+    )
+
+@app.route("/travel/scene/cafe_1")
+def cafe_scene():
+    return render_template(
+        "travel/cafe_1.html",
+        current_place="cafe"
+    )
+
+@app.route("/travel/scene/convenience_1")
+def convenience_scene():
+    return render_template(
+        "travel/convenience_1.html",
+        current_place="convenience"
+    )
+
+@app.route("/travel/scene/exchange_1")
+def exchange_scene():
+    return render_template(
+        "travel/exchange_1.html",
+        current_place="exchange"
+    )
+
+@app.route("/travel/scene/festival_1")
+def festival_scene():
+    return render_template(
+        "travel/festival_1.html",
+        current_place="festival"
+    )
+
+@app.route("/travel/scene/hospital_1")
+def hospital_scene():
+    return render_template(
+        "travel/hospital_1.html",
+        current_place="hospital"
+    )
+
+@app.route("/travel/scene/hotel_1")
+def hotel_scene():
+    return render_template(
+        "travel/hotel_1.html",
+        current_place="hotel"
+    )
+
+@app.route("/travel/scene/movie_1")
+def movie_scene():
+    return render_template(
+        "travel/movie_1.html",
+        current_place="movie"
+    )
+
+@app.route("/travel/scene/onsen_1")
+def onsen_scene():
+    return render_template(
+        "travel/onsen_1.html",
+        current_place="onsen"
+    )
+
+@app.route("/travel/scene/park_1")
+def park_scene():
+    return render_template(
+        "travel/park_1.html",
+        current_place="park"
+    )
+
+@app.route("/travel/scene/park_inside_1")
+def park_inside_1_scene():
+    return render_template(
+        "travel/park_inside_1.html",
+        current_place="park"
+    )
+
+@app.route("/travel/scene/park_inside_2")
+def park_inside_2_scene():
+    return render_template(
+        "travel/park_inside_2.html",
+        current_place="park"
+    )
+
+@app.route("/travel/scene/restaurant_1")
+def restaurant_scene():
+    return render_template(
+        "travel/restaurant_1.html",
+        current_place="restaurant"
+    )
+
+@app.route("/travel/scene/toilet_1")
+def toilet_scene():
+    return render_template(
+        "travel/toilet_1.html",
+        current_place="park"
+    )
+
+@app.route("/travel/scene/tourist_1")
+def tourist_scene():
+    return render_template(
+        "travel/tourist_1.html",
+        current_place="tourist"
+    )
 
 
 @app.context_processor
