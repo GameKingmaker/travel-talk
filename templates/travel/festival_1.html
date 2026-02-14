@@ -1,0 +1,277 @@
+{# templates/travel/festival_1.html #}
+{% extends "base.html" %}
+
+{% set page_title = "축제 야시장 | 일본 여행 시뮬레이션" %}
+{% set page_desc = "야시장에서 음식을 사며 일본어로 가격을 묻는 상황" %}
+{% set page_robots = "noindex,nofollow" %}
+
+{% block content %}
+<style>
+  .travel-wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 48px; }
+  .stage{
+    position:relative; width:100%; aspect-ratio:16/9;
+    border-radius:18px; overflow:hidden;
+    box-shadow:0 18px 40px rgba(2,8,23,.20);
+    background:#0b1220;
+  }
+  .bg{
+    position:absolute; inset:0;
+    background:url('{{ url_for("static", filename="travel/bg/festival.png") }}') center/cover no-repeat;
+  }
+  .char{
+    position:absolute; left:50%; bottom:14%;
+    transform:translateX(-50%);
+    width:clamp(340px,46%,520px);
+    max-height:84%;
+    object-fit:contain;
+    pointer-events:none;
+    filter:drop-shadow(0 18px 30px rgba(0,0,0,.35));
+  }
+  .hud{ position:absolute; left:16px; top:14px; display:flex; gap:10px; z-index:5; }
+  .chip{
+    background:rgba(255,255,255,.9);
+    border:1px solid rgba(226,232,240,.9);
+    border-radius:999px;
+    padding:8px 12px;
+    font-weight:900; font-size:13px; color:#0f172a;
+  }
+  .box{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:16px 18px 18px;
+    background:rgba(54,17,92,.88);
+    backdrop-filter:blur(6px);
+    min-height:170px; z-index:6;
+  }
+  .name{ font-weight:900; color:#fff; margin-bottom:8px; }
+  .line{ color:#fff; line-height:1.55; white-space:pre-line; }
+  .right-hint{ position:absolute; right:18px; top:16px; color:rgba(255,255,255,.75); font-size:12px; font-weight:800; }
+  .choices{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+  .choice-btn{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.22);
+    color:#fff; padding:10px 12px;
+    border-radius:12px; font-weight:900;
+    cursor:pointer;
+  }
+  .controls{ position:absolute; right:16px; bottom:16px; display:flex; gap:10px; }
+  .navbtn{
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.22);
+    color:#fff; padding:10px 14px;
+    border-radius:12px; font-weight:900;
+  }
+  .navbtn:disabled{ opacity:.45; cursor:not-allowed; }
+  .worldmap-btn{
+  position:absolute;
+  top:14px;
+  right:16px;
+  z-index:20;
+}
+
+.worldmap-btn button{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background: rgba(255,255,255,.92);
+  border:1px solid rgba(226,232,240,.95);
+  box-shadow: 0 10px 18px rgba(2,8,23,.12);
+  font-size:13px;
+  font-weight:1000;
+  color:#0f172a;
+  cursor:pointer;
+  transition: transform .1s ease, box-shadow .12s ease;
+}
+
+.worldmap-btn button:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(2,8,23,.18);
+}
+
+</style>
+
+<div class="travel-wrap">
+  <div class="stage" id="stage">
+    <div class="bg"></div>
+<!-- ✅ 월드맵 복귀 버튼 -->
+<div class="worldmap-btn">
+  <button onclick="goWorldMap()">🗺️ 월드맵으로</button>
+</div>
+
+    <!-- HUD -->
+    <div class="hud">
+      <div class="chip">축제 야시장</div>
+      <div class="chip" id="count">1 / 1</div>
+    </div>
+
+    <!-- 야시장 판매원 -->
+    <img class="char"
+         src="{{ url_for('static', filename='travel/char/festival_vendor_male.png') }}">
+
+    <div class="box">
+      <div class="right-hint">클릭 또는 다음 버튼으로 진행</div>
+      <p class="name" id="speaker"></p>
+      <p class="line" id="line"></p>
+
+      <div class="choices" id="choices" style="display:none"></div>
+
+      <div class="controls">
+        <button class="navbtn" id="prevBtn">이전</button>
+        <button class="navbtn" id="nextBtn">다음</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function fmt(jp,kana,ko){ return `${jp}\n${kana}\n(${ko})`; }
+
+const SCRIPT = [
+  { type:"line", speaker:"내레이션",
+    jp:"夜祭りの屋台にやって来ました。",
+    kana:"요마츠리노 야타이니 얏테 키마시타.",
+    ko:"밤 축제의 야시장에 왔습니다."
+  },
+  { type:"line", speaker:"직원",
+    jp:"いらっしゃい！焼きそばどう？",
+    kana:"이라샤이! 야키소바 도-?",
+    ko:"어서 와! 야키소바 어때?"
+  },
+
+  // ✅ 문제: 가격 묻기
+  { type:"choice", speaker:"나",
+    question_ko:"(문제) 이거 얼마인지 물어보려면?",
+    choices:[
+      { jp:"これはいくらですか？",
+        kana:"코레와 이쿠라 데스카?",
+        ko:"이거 얼마예요?",
+        correct:true
+      },
+      { jp:"これは高いです。",
+        kana:"코레와 타카이 데스.",
+        ko:"이건 비싸요.",
+        correct:false
+      },
+      { jp:"食べます。",
+        kana:"타베마스.",
+        ko:"먹을게요.",
+        correct:false
+      }
+    ]
+  },
+
+  { type:"line", speaker:"직원",
+    jp:"500円だよ。",
+    kana:"고햐쿠엔 다요.",
+    ko:"500엔이야."
+  },
+  { type:"line", speaker:"내레이션",
+    jp:"出来立ての料理を受け取りました。",
+    kana:"데키타테노 료-리오 우케토리마시타.",
+    ko:"갓 만든 음식을 받았습니다."
+  },
+
+  // 엔딩
+  { type:"line", speaker:"내레이션",
+    jp:"とても美味しかったです！",
+    kana:"토테모 오이시캇타 데스!",
+    ko:"정말 맛있었어요!"
+  },
+  { type:"line", speaker:"내레이션",
+    jp:"次はどこへ行ってみましょうか？",
+    kana:"츠기와 도코에 잇테미마쇼-카?",
+    ko:"정말 재밌었어. 다음은 어디로 가볼까?",
+    goto:"/travel/worldmap?current=festival"
+  }
+];
+
+let idx=0, locked=false;
+const sp=document.getElementById("speaker");
+const ln=document.getElementById("line");
+const ch=document.getElementById("choices");
+const prev=document.getElementById("prevBtn");
+const next=document.getElementById("nextBtn");
+const cnt=document.getElementById("count");
+const stage=document.getElementById("stage");
+
+function render(){
+  cnt.textContent=`${Math.min(idx+1,SCRIPT.length)} / ${SCRIPT.length}`;
+  prev.disabled=(idx<=0)||locked;
+  const s=SCRIPT[idx];
+  ch.style.display="none"; ch.innerHTML="";
+  next.disabled=locked;
+
+  if(s.type==="line"){
+    sp.textContent=s.speaker;
+    ln.textContent=fmt(s.jp,s.kana,s.ko);
+    next.disabled=false;
+    return;
+  }
+
+  if(s.type==="choice"){
+    sp.textContent=s.speaker;
+    ln.textContent=s.question_ko;
+    locked=true; next.disabled=true;
+    ch.style.display="flex";
+    s.choices.forEach(c=>{
+      const b=document.createElement("button");
+      b.className="choice-btn";
+      b.textContent=`${c.jp} / ${c.kana}`;
+      b.onclick=()=>{
+        ln.textContent=fmt(c.jp,c.kana,c.ko);
+        if(c.correct){
+          locked=false; next.disabled=false; ch.style.display="none";
+        }else{
+          ch.innerHTML="";
+          const r=document.createElement("button");
+          r.className="choice-btn";
+          r.textContent="다시 선택";
+          r.onclick=()=>render();
+          ch.appendChild(r);
+        }
+      };
+      ch.appendChild(b);
+    });
+  }
+}
+
+function goPrev(){
+  if(idx > 0){
+    idx--;
+    locked = false;
+    render();
+  }
+}
+
+function goNext(){
+  const s = SCRIPT[idx];
+
+  // ✅ goto는 '다음' 버튼에서만 이동하도록 (여기서만 처리)
+  if(s && s.goto){
+    location.href = s.goto;
+    return;
+  }
+
+  if(idx < SCRIPT.length - 1){
+    idx++;
+    locked = false;
+    render();
+  }
+}
+
+prev.onclick = (e) => { e.stopPropagation(); if(!locked) goPrev(); };
+next.onclick = (e) => { e.stopPropagation(); if(!locked) goNext(); };
+stage.onclick = () => { if(!locked) goNext(); };
+
+render();
+function goWorldMap(){
+  // 현재 씬 id를 worldmap에 전달
+  // 예: department, convenience, hospital 등
+  const CURRENT_PLACE = "{{ current_place|default('festival') }}";
+  window.location.href = `/travel/worldmap?current=${CURRENT_PLACE}`;
+}
+
+
+</script>
+{% endblock %}
