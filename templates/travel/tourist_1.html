@@ -1,0 +1,256 @@
+{# templates/travel/tourist_1.html #}
+{% extends "base.html" %}
+
+{% set page_title = "관광지 | 일본 여행 시뮬레이션" %}
+{% set page_desc = "관광지에서 안내 직원에게 길을 묻는 상황" %}
+{% set page_robots = "noindex,nofollow" %}
+
+{% block content %}
+<style>
+  .travel-wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 48px; }
+  .stage{
+    position:relative; width:100%; aspect-ratio:16/9;
+    border-radius:18px; overflow:hidden;
+    box-shadow:0 18px 40px rgba(2,8,23,.20);
+    background:#0b1220;
+  }
+  .bg{
+    position:absolute; inset:0;
+    background:url('{{ url_for("static", filename="travel/bg/tourist.png") }}') center/cover no-repeat;
+  }
+  .char{
+    position:absolute; left:50%; bottom:14%;
+    transform:translateX(-50%);
+    width:clamp(340px,46%,520px);
+    max-height:84%;
+    object-fit:contain;
+    pointer-events:none;
+    filter:drop-shadow(0 18px 30px rgba(0,0,0,.35));
+  }
+  .hud{ position:absolute; left:16px; top:14px; display:flex; gap:10px; z-index:5; }
+  .chip{
+    background:rgba(255,255,255,.9);
+    border:1px solid rgba(226,232,240,.9);
+    border-radius:999px;
+    padding:8px 12px;
+    font-weight:900; font-size:13px; color:#0f172a;
+  }
+  .box{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:16px 18px 18px;
+    background:rgba(54,17,92,.88);
+    backdrop-filter:blur(6px);
+    min-height:170px; z-index:6;
+  }
+  .name{ font-weight:900; color:#fff; margin-bottom:8px; }
+  .line{ color:#fff; line-height:1.55; white-space:pre-line; }
+  .right-hint{ position:absolute; right:18px; top:16px; color:rgba(255,255,255,.75); font-size:12px; font-weight:800; }
+  .choices{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+  .choice-btn{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.22);
+    color:#fff; padding:10px 12px;
+    border-radius:12px; font-weight:900;
+    cursor:pointer;
+    transition: transform .08s ease, background .12s ease;
+  }
+  .choice-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.16); }
+  .controls{ position:absolute; right:16px; bottom:16px; display:flex; gap:10px; }
+  .navbtn{
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.22);
+    color:#fff; padding:10px 14px;
+    border-radius:12px; font-weight:900;
+  }
+  .navbtn:disabled{ opacity:.45; cursor:not-allowed; }
+  .worldmap-btn{
+  position:absolute;
+  top:14px;
+  right:16px;
+  z-index:20;
+}
+
+.worldmap-btn button{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background: rgba(255,255,255,.92);
+  border:1px solid rgba(226,232,240,.95);
+  box-shadow: 0 10px 18px rgba(2,8,23,.12);
+  font-size:13px;
+  font-weight:1000;
+  color:#0f172a;
+  cursor:pointer;
+  transition: transform .1s ease, box-shadow .12s ease;
+}
+
+.worldmap-btn button:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(2,8,23,.18);
+}
+
+</style>
+
+<div class="travel-wrap">
+  <div class="stage" id="stage">
+    <div class="bg"></div>
+<!-- ✅ 월드맵 복귀 버튼 -->
+<div class="worldmap-btn">
+  <button onclick="goWorldMap()">🗺️ 월드맵으로</button>
+</div>
+
+    <div class="hud">
+      <div class="chip">관광지</div>
+      <div class="chip" id="count">1 / 1</div>
+    </div>
+
+    <img class="char" src="{{ url_for('static', filename='travel/char/tourist_staff.png') }}" alt="tourist_staff">
+
+    <div class="box">
+      <div class="right-hint">클릭 또는 다음 버튼으로 진행</div>
+      <p class="name" id="speaker"></p>
+      <p class="line" id="line"></p>
+
+      <div class="choices" id="choices" style="display:none"></div>
+
+      <div class="controls">
+        <button class="navbtn" id="prevBtn">이전</button>
+        <button class="navbtn" id="nextBtn">다음</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function fmt(jp,kana,ko){ return `${jp}\n${kana}\n(${ko})`; }
+
+const SCRIPT = [
+  { type:"line", speaker:"내레이션",
+    jp:"有名な観光地に到着しました。",
+    kana:"유-메-나 칸코-치니 토-차쿠 시마시타.",
+    ko:"유명한 관광지에 도착했습니다."
+  },
+  { type:"line", speaker:"직원",
+    jp:"こんにちは。ご案内しましょうか？",
+    kana:"콘니치와. 고안나이 시마쇼-카?",
+    ko:"안녕하세요. 안내해드릴까요?"
+  },
+
+  // ✅ 문제: 전망대 위치 묻기
+{ type:"choice", speaker:"나",
+  question_ko:"(문제) 전망대가 어디인지 정중하게 물어보려면?",
+  choices:[
+    { jp:"歩いて行きますか？",
+      kana:"아루이테 이키마스카?",
+      ko:"걸어서 가야 하나요?",
+      correct:false
+    },
+    { jp:"展望台はどこですか？",
+      kana:"텐보-다이와 도코 데스카?",
+      ko:"전망대는 어디인가요?",
+      correct:true
+    },
+    { jp:"写真を撮ってもいいですか？",
+      kana:"샤신오 톳테모 이이 데스카?",
+      ko:"사진 찍어도 되나요?",
+      correct:false
+    }
+  ]
+},
+
+  { type:"line", speaker:"직원",
+    jp:"ここをまっすぐ行って、左に曲がると見えます。",
+    kana:"코코오 맛스구 잇테, 히다리니 마가루토 미에마스.",
+    ko:"여길 곧장 가서 왼쪽으로 꺾으면 보여요."
+  },
+  { type:"line", speaker:"내레이션",
+    jp:"案内された道を歩いていきます。",
+    kana:"안나이사레타 미치오 아루이테 이키마스.",
+    ko:"안내받은 길로 걸어갑니다."
+  },
+  { type:"line", speaker:"내레이션",
+    jp:"景色がとてもきれいでした。",
+    kana:"케시키가 토테모 키레이 데시타.",
+    ko:"풍경이 정말 아름다웠어요."
+  },
+
+  // ✅ 엔딩
+  { type:"line", speaker:"내레이션",
+    jp:"本当に楽しかったです！次はどこへ行ってみましょうか？",
+    kana:"혼토-니 타노시캇타 데스! 츠기와 도코에 잇테미마쇼-카?",
+    ko:"정말 재밌었어. 다음은 어디로 가볼까?",
+    goto:"/travel/worldmap?current=tourist"
+  }
+];
+
+let idx=0, locked=false;
+const sp=document.getElementById("speaker");
+const ln=document.getElementById("line");
+const ch=document.getElementById("choices");
+const prev=document.getElementById("prevBtn");
+const next=document.getElementById("nextBtn");
+const cnt=document.getElementById("count");
+const stage=document.getElementById("stage");
+
+function render(){
+  cnt.textContent=`${Math.min(idx+1,SCRIPT.length)} / ${SCRIPT.length}`;
+  prev.disabled=(idx<=0)||locked;
+  const s=SCRIPT[idx];
+  ch.style.display="none"; ch.innerHTML="";
+  next.disabled=locked;
+
+  if(s.type==="line"){
+    sp.textContent=s.speaker;
+    ln.textContent=fmt(s.jp,s.kana,s.ko);
+    next.disabled=false;
+    return;
+  }
+
+  if(s.type==="choice"){
+    sp.textContent=s.speaker;
+    ln.textContent=s.question_ko;
+    locked=true; next.disabled=true;
+    ch.style.display="flex";
+    s.choices.forEach(c=>{
+      const b=document.createElement("button");
+      b.className="choice-btn";
+      b.textContent=`${c.jp} / ${c.kana}`;
+      b.onclick=(e)=>{
+        e.stopPropagation();
+        ln.textContent=fmt(c.jp,c.kana,c.ko);
+        if(c.correct){
+          locked=false; next.disabled=false; ch.style.display="none";
+        }else{
+          ch.innerHTML="";
+          const r=document.createElement("button");
+          r.className="choice-btn";
+          r.textContent="다시 선택";
+          r.onclick=(ev)=>{ ev.stopPropagation(); render(); };
+          ch.appendChild(r);
+        }
+      };
+      ch.appendChild(b);
+    });
+  }
+}
+
+prev.onclick=()=>{ if(idx>0){ idx--; locked=false; render(); } };
+next.onclick=()=>{
+  const s=SCRIPT[idx];
+  if(s.goto){ location.href=s.goto; return; }
+  if(!locked && idx<SCRIPT.length-1){ idx++; render(); }
+};
+stage.onclick=()=>{ if(!locked) next.onclick(); };
+
+render();
+function goWorldMap(){
+  // 현재 씬 id를 worldmap에 전달
+  // 예: department, convenience, hospital 등
+  const CURRENT_PLACE = "{{ current_place|default('tourist') }}";
+  window.location.href = `/travel/worldmap?current=${CURRENT_PLACE}`;
+}
+
+</script>
+{% endblock %}
