@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 
-{# ✅ 글쓰기 페이지는 검색 노출 필요 없음 #}
 {% set page_title = "글쓰기 | 일반게시판 - 일본 여행 회화 공부방" %}
-{% set page_desc = "일반게시판 글쓰기 페이지입니다." %}
+{% set page_desc  = "일반게시판 글쓰기 페이지입니다." %}
 {% set page_robots = "noindex,nofollow" %}
 
 {% block content %}
@@ -17,8 +16,6 @@
 
 <div class="board-wrap" style="padding:18px;">
   <form method="POST" enctype="multipart/form-data">
-    {# CSRF 쓰는 경우에만 활성화 (app.py에서 csrf_token 제공 필요) #}
-    {# <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> #}
 
     <div style="display:flex; flex-direction:column; gap:14px; max-width:820px;">
 
@@ -28,7 +25,6 @@
                style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid #e5e7eb;">
       </div>
 
-      {# ✅ 관리자만 보이는 공지 체크박스 (템플릿 하드코딩 제거) #}
       {% if user and is_admin(user) %}
         <div style="margin-top:-6px; padding:10px 12px; border:1px solid #e5e7eb; border-radius:12px; background:#fff;">
           <label style="display:flex; gap:10px; align-items:center; font-weight:900;">
@@ -50,9 +46,20 @@
 
       <div>
         <label style="display:block; margin-bottom:6px; font-weight:600;">글 이미지(선택)</label>
-        <input type="file" name="image" accept=".png,.jpg,.jpeg,.gif,.webp">
-        <div style="margin-top:6px; color:#667085; font-size:13px;">png / jpg / jpeg / gif / webp 업로드 가능</div>
-      </div>
+
+<input id="imagesInput"
+       type="file"
+       name="images"
+       accept=".png,.jpg,.jpeg,.gif,.webp"
+       multiple>
+
+<div style="margin-top:6px; color:#667085; font-size:13px;">
+  png / jpg / jpeg / gif / webp 업로드 가능 (여러 장 선택 가능)
+</div>
+
+<!-- ✅ 미리보기 영역 -->
+<div id="imagesPreview" style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;"></div>
+
 
       <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:4px;">
         <a class="btn" href="{{ url_for('board') }}">취소</a>
@@ -62,5 +69,93 @@
     </div>
   </form>
 </div>
+
+<script>
+  const input = document.getElementById("imagesInput");
+  const preview = document.getElementById("imagesPreview");
+
+  let dt = new DataTransfer();
+
+  function syncInputFiles(){
+    input.files = dt.files;
+  }
+
+  function fileKey(f){
+    return `${f.name}_${f.size}_${f.lastModified}`;
+  }
+
+  function renderPreview(){
+    preview.innerHTML = "";
+    [...dt.files].forEach((file, idx) => {
+      if(!file.type.startsWith("image/")) return;
+
+      const item = document.createElement("div");
+      item.style.width = "130px";
+      item.style.height = "96px";
+      item.style.borderRadius = "12px";
+      item.style.overflow = "hidden";
+      item.style.border = "1px solid #e5e7eb";
+      item.style.boxShadow = "0 6px 14px rgba(2,8,23,.08)";
+      item.style.background = "#fff";
+      item.style.position = "relative";
+
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(file);
+      img.style.width = "100%";
+      img.style.height = "100%";
+      img.style.objectFit = "cover";
+      img.onload = () => URL.revokeObjectURL(img.src);
+
+      // ✅ X 삭제 버튼
+      const x = document.createElement("button");
+      x.type = "button";
+      x.textContent = "×";
+      x.title = "선택 취소";
+      x.style.position = "absolute";
+      x.style.top = "6px";
+      x.style.right = "6px";
+      x.style.width = "26px";
+      x.style.height = "26px";
+      x.style.borderRadius = "999px";
+      x.style.border = "1px solid rgba(0,0,0,.15)";
+      x.style.background = "rgba(255,255,255,.92)";
+      x.style.cursor = "pointer";
+      x.style.fontSize = "18px";
+      x.style.lineHeight = "22px";
+      x.style.fontWeight = "900";
+
+      x.addEventListener("click", () => {
+        const newDT = new DataTransfer();
+        [...dt.files].forEach((f, i) => { if(i !== idx) newDT.items.add(f); });
+        dt = newDT;
+        syncInputFiles();
+        renderPreview();
+      });
+
+      item.appendChild(img);
+      item.appendChild(x);
+      preview.appendChild(item);
+    });
+  }
+
+  input.addEventListener("change", () => {
+    // ✅ 사용자가 선택한 파일들
+    const picked = [...input.files];
+
+    // ✅ 중복 방지(같은 파일 여러번 추가 방지)
+    const existing = new Set([...dt.files].map(fileKey));
+    picked.forEach(f => {
+      if(!existing.has(fileKey(f))) dt.items.add(f);
+    });
+
+    syncInputFiles();
+    renderPreview();
+
+    // ⚠️ 여기서 input.value="" 절대 넣지 마세요.
+    // 넣으면 파일 선택이 지워져서 "선택된 파일 없음"이 될 수 있어요.
+  });
+</script>
+
+
 
 {% endblock %}
