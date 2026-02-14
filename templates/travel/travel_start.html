@@ -7,6 +7,33 @@
 
 {% block content %}
 <style>
+    .page-head{
+  max-width: 980px;
+  margin: 8px auto 16px;
+  padding: 6px 6px 0;
+}
+
+.page-title{
+  font-size: 34px;
+  font-weight: 1000;
+  letter-spacing: -0.04em;
+  margin: 0 0 8px;
+  color: #0f172a;
+}
+
+.page-desc{
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: rgba(51,65,85,.9);
+  font-weight: 700;
+}
+
+@media (max-width: 860px){
+  .page-title{ font-size: 26px; }
+  .page-desc{ font-size: 13.5px; }
+}
+
   .start-wrap{
     max-width: 1080px;
     margin: 0 auto;
@@ -93,13 +120,14 @@
     font-size: 12px;
   }
 
-  .title{
-    margin: 14px 0 10px;
-    font-size: 34px;
-    font-weight: 900;
-    letter-spacing: -.03em;
-    color:#0f172a;
-  }
+  .card-title{
+  margin: 14px 0 10px;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -.03em;
+  color:#0f172a;
+}
+
 
   .desc{
     margin: 0 auto 18px;
@@ -168,7 +196,14 @@
     .btn{ min-width: 160px; }
   }
 </style>
-
+<!-- ✅ travel_start 전용 제목/소개 -->
+<div class="page-head">
+  <h2 class="card-title">일본 여행 시뮬레이션</h2>
+  <p class="page-desc">
+    공항·호텔·식당·편의점·백화점·축제·온천까지, 일본 여행에서 가장 많이 쓰는 필수 일본어 회화를
+    시뮬레이션 게임으로 연습해보세요. 초보자도 바로 따라 할 수 있는 실전 여행 일본어 학습입니다.
+  </p>
+</div>
 <div class="start-wrap">
   <div class="hero">
     <div class="map-grid"></div>
