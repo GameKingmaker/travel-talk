@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>입국심사 - 일본여행 시뮬레이션</title>
+  <style>
+    :root{
+      --ink:#0f172a;
+      --muted:#94a3b8;
+      --box: rgba(88, 28, 135, .78);   /* 보라 반투명 */
+      --box2: rgba(88, 28, 135, .55);
+      --white: rgba(255,255,255,.95);
+      --shadow: 0 18px 40px rgba(2,8,23,.24);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
+      background:#0b1220;
+      color:#fff;
+    }
+
+    /* 16:9 게임 화면 컨테이너 */
+    .stage-wrap{
+      max-width: 1080px;
+      margin: 18px auto;
+      padding: 0 14px;
+    }
+    .stage{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: 22px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      user-select:none;
+    }
+
+    /* 배경 */
+    .bg{
+      position:absolute; inset:0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: saturate(1.02) contrast(1.02);
+      transform: scale(1.02);
+    }
+
+    /* 캐릭터 스탠딩 */
+    .char{
+      position:absolute;
+      left: 62%;
+      bottom: 110px; /* 대화창 위로 */
+      transform: translateX(-50%);
+      width: min(38%, 420px);
+      max-height: 78%;
+      object-fit: contain;
+      pointer-events:none;
+      filter: drop-shadow(0 18px 22px rgba(0,0,0,.35));
+    }
+
+    /* 상단 HUD */
+    .hud{
+      position:absolute; left:16px; top:14px;
+      display:flex; gap:10px; align-items:center;
+      z-index:5;
+    }
+    .pill{
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(6px);
+      color: rgba(255,255,255,.92);
+      font-weight: 800;
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    /* 대화 박스 */
+    .dialog{
+      position:absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 16px 16px 18px;
+      z-index: 10;
+      cursor:pointer;
+    }
+    .dialog-inner{
+      background: var(--box);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 20px;
+      padding: 14px 14px 12px;
+      box-shadow: 0 12px 22px rgba(0,0,0,.25);
+    }
+    .name-row{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
+    }
+    .name{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight: 900;
+      font-size: 15px;
+      color: rgba(255,255,255,.95);
+    }
+    .hint{
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(255,255,255,.75);
+    }
+
+    .line{
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: -0.2px;
+      line-height: 1.35;
+      margin: 0;
+    }
+    .subline{
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* 선택지 영역 */
+    .choices{
+      margin-top: 12px;
+      display:none;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .choices.on{ display:flex; }
+
+    .choice-btn{
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.95);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-weight: 900;
+      cursor:pointer;
+      transition: transform .08s ease, background .12s ease, border-color .12s ease;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width: 210px;
+    }
+    .choice-btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.28);
+    }
+    .jp{ font-size: 15px; }
+    .kana{ font-size: 12px; color: rgba(255,255,255,.78); }
+
+    /* 정답/오답 피드백 */
+    .feedback{
+      margin-top: 10px;
+      display:none;
+      background: var(--box2);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-weight: 900;
+    }
+    .feedback.on{ display:block; }
+    .feedback small{
+      display:block;
+      margin-top: 6px;
+      font-size: 12px;
+      color: rgba(255,255,255,.82);
+      font-weight: 800;
+    }
+
+    .actions{
+      margin-top: 10px;
+      display:flex;
+      gap:10px;
+      justify-content:flex-end;
+    }
+    .mini{
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.95);
+      border-radius: 12px;
+      padding: 9px 12px;
+      font-weight: 900;
+      cursor:pointer;
+    }
+
+    /* 모바일 대응 */
+    @media (max-width: 640px){
+      .line{ font-size: 15px; }
+      .choice-btn{ min-width: 100%; }
+      .char{ left: 60%; width: min(55%, 360px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage-wrap">
+    <div class="stage" id="stage">
+      <!-- ✅ 배경: 너 파일 경로로 바꾸기 -->
+      <div class="bg" id="bg" style="background-image:url('/static/travel/bg/airport.png')"></div>
+
+      <!-- ✅ 캐릭터: 투명 PNG 추천 -->
+      <img class="char" id="char" src="/static/travel/char/immigration.png" alt="immigration">
+
+      <div class="hud">
+        <div class="pill" id="scenePill">장면 1/1</div>
+      </div>
+
+      <!-- 대화 박스 -->
+      <div class="dialog" id="dialog">
+        <div class="dialog-inner">
+          <div class="name-row">
+            <div class="name" id="speaker">심사관</div>
+            <div class="hint" id="tapHint">클릭으로 진행</div>
+          </div>
+
+          <p class="line" id="lineJp">ようこそ。パスポートを見せてください。</p>
+          <div class="subline" id="lineKana">요코소. 파스포토오 미세테 쿠다사이</div>
+
+          <!-- 선택지 -->
+          <div class="choices" id="choices"></div>
+
+          <!-- 피드백 -->
+          <div class="feedback" id="feedback"></div>
+
+          <div class="actions" id="actions" style="display:none;">
+            <button class="mini" id="retryBtn" type="button">다시 선택하기</button>
+            <button class="mini" id="nextBtn" type="button">다음</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * ✅ 원하는 방식
+     * - 평소엔 대사 클릭 → 다음 줄 진행
+     * - 특정 줄에서 choices가 뜸
+     * - 선택지는 "일본어 + 발음"만 표시
+     * - 클릭 후에만 한국어 뜻(및 정답/오답) 표시
+     * - 정답이면 다음 대사 진행, 마지막이면 월드맵으로 이동
+     */
+
+    // ====== 장면 데이터 ======
+    const SCENE = {
+      id: "airport_1",
+      bg: "/static/travel/bg/airport.png",
+      char: "/static/travel/char/immigration.png",
+      script: [
+        { speaker: "심사관",
+          jp: "ようこそ。パスポートを見せてください。",
+          kana: "요코소. 파스포토오 미세테 쿠다사이",
+          ko: "어서 오세요. 여권을 보여주세요."
+        },
+        { speaker: "나",
+          jp: "はい、こちらです。",
+          kana: "하이, 코치라데스",
+          ko: "네, 여기 있습니다."
+        },
+        { speaker: "심사관",
+          jp: "日本に来た目的は何ですか？",
+          kana: "니혼니 키타 모쿠테키와 난데스카",
+          ko: "일본에 온 목적은 무엇인가요?",
+          choices: [
+            { jp:"観光です。", kana:"칸코-데스", ko:"관광입니다.", correct:true },
+            { jp:"韓国から来ました。", kana:"칸코쿠카라 키마시타", ko:"한국에서 왔습니다.", correct:false },
+            { jp:"私の名前はキムチョルスです。", kana:"와타시노 나마에와 키무초루스데스", ko:"제 이름은 김철수입니다.", correct:false }
+          ]
+        },
+        { speaker: "심사관",
+          jp: "確認しました。良い旅を！",
+          kana: "카쿠닌시마시타. 요이 타비오!",
+          ko: "확인했습니다. 좋은 여행 되세요!"
+        },
+        { speaker: "system",
+          jp: "（월드맵으로 이동합니다…）",
+          kana: "",
+          ko: ""
+        }
+      ],
+      // ✅ 마지막 이동 (너의 월드맵 URL로 바꿔)
+      onFinishRedirect: "/travel/worldmap"
+    };
+
+    // ====== DOM ======
+    const bgEl = document.getElementById("bg");
+    const charEl = document.getElementById("char");
+    const dialogEl = document.getElementById("dialog");
+    const speakerEl = document.getElementById("speaker");
+    const lineJpEl = document.getElementById("lineJp");
+    const lineKanaEl = document.getElementById("lineKana");
+    const choicesEl = document.getElementById("choices");
+    const feedbackEl = document.getElementById("feedback");
+    const actionsEl = document.getElementById("actions");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const tapHintEl = document.getElementById("tapHint");
+
+    // ====== 상태 ======
+    let idx = 0;
+    let locked = false; // 선택지 처리 중 클릭 진행 방지
+
+    function applySceneAssets(){
+      bgEl.style.backgroundImage = `url('${SCENE.bg}')`;
+      charEl.src = SCENE.char;
+    }
+
+    function clearChoiceUI(){
+      choicesEl.classList.remove("on");
+      choicesEl.innerHTML = "";
+      feedbackEl.classList.remove("on");
+      feedbackEl.textContent = "";
+      actionsEl.style.display = "none";
+      retryBtn.style.display = "none";
+      nextBtn.style.display = "none";
+      tapHintEl.textContent = "클릭으로 진행";
+      locked = false;
+    }
+
+    function renderLine(){
+      const line = SCENE.script[idx];
+      if(!line) return;
+
+      clearChoiceUI();
+
+      // speaker
+      speakerEl.textContent = line.speaker === "system" ? " " : line.speaker;
+
+      // text
+      lineJpEl.textContent = line.jp || "";
+      lineKanaEl.textContent = line.kana || "";
+
+      // system line이면 캐릭터/이름 감추고 싶으면 여기서 조정 가능
+      if(line.speaker === "system"){
+        speakerEl.textContent = "-";
+        lineKanaEl.textContent = "";
+      }
+
+      // 선택지 라인 처리
+      if(line.choices && line.choices.length){
+        locked = true;
+        tapHintEl.textContent = "선택지를 고르세요";
+        choicesEl.classList.add("on");
+        choicesEl.innerHTML = line.choices.map((c, i) => `
+          <button class="choice-btn" type="button" data-i="${i}">
+            <div class="jp">${c.jp}</div>
+            <div class="kana">${c.kana}</div>
+          </button>
+        `).join("");
+
+        choicesEl.querySelectorAll(".choice-btn").forEach(btn=>{
+          btn.addEventListener("click", (e)=>{
+            e.stopPropagation();
+            const pick = line.choices[Number(btn.dataset.i)];
+            onPickChoice(pick);
+          });
+        });
+      }
+    }
+
+    function onPickChoice(pick){
+      // 선택 후: 한국어 뜻 + 정답/오답 보여주기
+      feedbackEl.classList.add("on");
+
+      if(pick.correct){
+        feedbackEl.textContent = `✅ 정답!  ${pick.ko}`;
+        feedbackEl.insertAdjacentHTML("beforeend", `<small>다음 대사로 진행할 수 있어요.</small>`);
+        actionsEl.style.display = "flex";
+        nextBtn.style.display = "inline-block";
+        retryBtn.style.display = "none";
+      }else{
+        feedbackEl.textContent = `❌ 엉뚱한 대답이에요.  ${pick.ko}`;
+        feedbackEl.insertAdjacentHTML("beforeend", `<small>입국심사 상황에 맞는 답을 다시 골라보세요.</small>`);
+        actionsEl.style.display = "flex";
+        retryBtn.style.display = "inline-block";
+        nextBtn.style.display = "none";
+      }
+    }
+
+    function next(){
+      // 선택지 라인일 때는 버튼으로만 진행(오답 방지)
+      const line = SCENE.script[idx];
+      if(line?.choices?.length){
+        return;
+      }
+
+      idx++;
+
+      // 끝 처리
+      if(idx >= SCENE.script.length){
+        window.location.href = SCENE.onFinishRedirect;
+        return;
+      }
+
+      // 마지막 system 라인 처리 후 자동 이동하고 싶으면:
+      const now = SCENE.script[idx];
+      if(now?.speaker === "system"){
+        renderLine();
+        setTimeout(()=> window.location.href = SCENE.onFinishRedirect, 700);
+        return;
+      }
+
+      renderLine();
+    }
+
+    // ====== 이벤트 ======
+    dialogEl.addEventListener("click", ()=>{
+      if(locked) return;
+      next();
+    });
+
+    retryBtn.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      // 선택지 다시 보여주기(현재 idx 그대로)
+      renderLine();
+    });
+
+    nextBtn.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      // 정답이면 다음 줄로 진행
+      idx++;
+      renderLine();
+      locked = false;
+    });
+
+    // ====== init ======
+    applySceneAssets();
+    renderLine();
+  </script>
+</body>
+</html>
