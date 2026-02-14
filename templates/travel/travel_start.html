@@ -1,0 +1,212 @@
+{# templates/travel/travel_start.html #}
+{% extends "base.html" %}
+
+{% set page_title = "일본 여행 시뮬레이션 | 시작" %}
+{% set page_desc  = "게임 시작 화면" %}
+{% set page_robots = "noindex,nofollow" %}
+
+{% block content %}
+<style>
+  .start-wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 26px 16px 56px;
+  }
+
+  .hero{
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(2,8,23,.18);
+    min-height: 520px;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(99,102,241,.22), transparent 48%),
+      radial-gradient(circle at 75% 35%, rgba(14,165,233,.18), transparent 48%),
+      radial-gradient(circle at 60% 80%, rgba(34,197,94,.18), transparent 55%),
+      linear-gradient(180deg, #f6f9ff, #eaf1ff);
+  }
+
+  /* 종이 지도 느낌 패턴 */
+  .map-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(to right, rgba(15,23,42,.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15,23,42,.06) 1px, transparent 1px);
+    background-size: 42px 42px;
+    opacity: .35;
+    pointer-events:none;
+  }
+
+  /* 비행기 & 경로 */
+  .plane{
+    position:absolute;
+    right: 10%;
+    top: 18%;
+    width: 120px;
+    height: 120px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.85);
+    display:grid;
+    place-items:center;
+    box-shadow: 0 12px 30px rgba(2,8,23,.14);
+    border: 1px solid rgba(226,232,240,.9);
+    transform: rotate(12deg);
+  }
+  .plane span{ font-size: 52px; }
+
+  .route{
+    position:absolute;
+    left: -10%;
+    top: 8%;
+    width: 120%;
+    height: 120%;
+    pointer-events:none;
+    opacity:.6;
+  }
+
+  /* 메인 카드 */
+  .card{
+    position: relative;
+    z-index: 2;
+    width: min(560px, 92%);
+    margin: 0 auto;
+    padding: 28px 24px 24px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.86);
+    border: 1px solid rgba(226,232,240,.92);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 18px 40px rgba(2,8,23,.10);
+    text-align:center;
+    top: 110px;
+  }
+
+  .badge{
+    display:inline-flex;
+    gap:8px;
+    align-items:center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(59,130,246,.10);
+    border: 1px solid rgba(59,130,246,.16);
+    font-weight: 900;
+    color: rgba(30,58,138,.95);
+    font-size: 12px;
+  }
+
+  .title{
+    margin: 14px 0 10px;
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: -.03em;
+    color:#0f172a;
+  }
+
+  .desc{
+    margin: 0 auto 18px;
+    color: rgba(51,65,85,.85);
+    font-weight: 700;
+    line-height: 1.55;
+    max-width: 40ch;
+  }
+
+  .btns{
+    display:flex;
+    gap: 12px;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .btn{
+    border: 0;
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    display:inline-flex;
+    gap:10px;
+    align-items:center;
+    min-width: 180px;
+    justify-content:center;
+  }
+
+  .btn-primary{
+    background: linear-gradient(180deg, #3b82f6, #2563eb);
+    color: #fff;
+    box-shadow: 0 12px 26px rgba(37,99,235,.22);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(37,99,235,.28); }
+
+  .btn-ghost{
+    background: rgba(15,23,42,.06);
+    color:#0f172a;
+    border: 1px solid rgba(148,163,184,.35);
+  }
+  .btn-ghost:hover{ transform: translateY(-2px); background: rgba(15,23,42,.08); }
+
+  /* 하단 작은 안내 */
+  .footer-note{
+    position:absolute;
+    left: 18px;
+    bottom: 14px;
+    z-index:2;
+    font-size: 12px;
+    font-weight: 800;
+    color: rgba(51,65,85,.65);
+    background: rgba(255,255,255,.55);
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(226,232,240,.7);
+    backdrop-filter: blur(6px);
+  }
+
+  @media (max-width: 720px){
+    .hero{ min-height: 560px; }
+    .card{ top: 90px; }
+    .title{ font-size: 28px; }
+    .btn{ min-width: 160px; }
+  }
+</style>
+
+<div class="start-wrap">
+  <div class="hero">
+    <div class="map-grid"></div>
+
+    <!-- 점선 경로(비행기/지도 느낌) -->
+    <svg class="route" viewBox="0 0 1200 700" aria-hidden="true">
+      <path d="M80,520 C240,420 320,280 520,310 C700,340 720,140 920,170 C1080,195 1140,120 1180,80"
+            fill="none" stroke="rgba(37,99,235,.45)" stroke-width="6"
+            stroke-linecap="round" stroke-dasharray="10 18"/>
+      <circle cx="80" cy="520" r="10" fill="rgba(34,197,94,.65)"/>
+      <circle cx="520" cy="310" r="10" fill="rgba(14,165,233,.65)"/>
+      <circle cx="1180" cy="80" r="10" fill="rgba(99,102,241,.65)"/>
+    </svg>
+
+    <div class="plane"><span>✈️</span></div>
+
+    <div class="card">
+      <div class="badge">🧩 상황별 일본어 회화 · 시뮬레이션</div>
+      <div class="title">일본 여행 시뮬레이션</div>
+      <p class="desc">
+        공항부터 관광지까지, 실제 여행 상황을 대화·문제로 연습해요.
+        준비되면 바로 시작!
+      </p>
+
+      <div class="btns">
+        <!-- ✅ 시작 버튼: 첫 씬(또는 월드맵)으로 이동 -->
+        <button class="btn btn-primary" onclick="location.href='{{ start_url|default('/travel/scene/airport_1') }}'">
+          🎮 게임 시작
+        </button>
+
+        <!-- ✅ 목록으로: 네가 말한 “퀴즈게임 목록” 페이지로 연결 -->
+        <button class="btn btn-ghost" onclick="location.href='{{ list_url|default('/quiz') }}'">
+          📋 목록으로 가기
+        </button>
+      </div>
+    </div>
+
+    <div class="footer-note">Tip: 게임이 시작되면 공항에서 입국 심사 후 맵에서 장소를 선택 할 수 있습니다.</div>
+  </div>
+</div>
+{% endblock %}
