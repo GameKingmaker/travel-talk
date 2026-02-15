@@ -75,11 +75,44 @@
     opacity:.45;
     pointer-events:none;
   }
+  .quiz-intro{
+  margin: 14px 0 18px;
+  padding: 16px 18px;
+  background:#ffffff;
+  border-radius:16px;
+  border:1px solid rgba(15,23,42,0.08);
+}
+
+.quiz-intro h2{
+  margin:0 0 8px;
+  font-size:18px;
+  font-weight:900;
+}
+
+.quiz-intro p{
+  margin:6px 0;
+  font-size:14px;
+  line-height:1.6;
+  color:#475569;
+}
+
 </style>
 
 <div class="wrap">
   <h1 class="title">상황 대화 퀴즈</h1>
   <p class="sub">그림과 대화를 보고, 지금 상황에 알맞은 문장을 골라 맞혀보세요.</p>
+<div class="quiz-intro">
+  <h2>상황 대화 퀴즈란?</h2>
+  <p>
+    실제 일본 여행과 일상에서 자주 등장하는 대화 상황을 보고,
+    문맥에 가장 자연스러운 일본어 표현을 고르는 퀴즈입니다.
+  </p>
+  <p>
+    일본어 문장, 발음, 한국어 뜻을 함께 비교하며
+    <b>읽기 이해력과 상황 판단 능력</b>을 집중적으로 연습할 수 있어요.
+  </p>
+</div>
+
 
   {% if quizzes and quizzes|length > 0 %}
     <div class="list">
