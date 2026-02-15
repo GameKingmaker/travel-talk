@@ -43,8 +43,25 @@
         </div>
       {% endif %}
     </div>
+
+    <!-- ✅ intro-box는 today-box 밖으로! -->
+    <div class="intro-box">
+      <h2>일본어 회화 공부방이란?</h2>
+      <p>
+        일본어 회화 공부방은 일본 여행과 일상에서 바로 사용할 수 있는
+        필수 일본어 표현과 회화를 쉽게 학습할 수 있는 무료 학습 사이트입니다.
+      </p>
+      <p>
+        공항, 호텔, 식당, 쇼핑, 교통 등 실제 여행 상황을 기반으로 한
+        상황별 회화와 단어 학습, 퀴즈, 시뮬레이션 게임을 통해
+        초보자도 부담 없이 일본어 회화를 익힐 수 있습니다.
+      </p>
+    </div>
+
   </div>
 </section>
+
+
 
 <!-- ✅ 메뉴 섹션 -->
 <section class="menu-wrap">
@@ -62,8 +79,8 @@
       <div class="menu-desc">공항·호텔·교통·식당 등 상황별 핵심 회화 모음</div>
     </a>
     <a class="menu-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황별 회화로 이동">
-      <div class="menu-name">회화 퀴즈</div>
-      <div class="menu-desc">공항·호텔·교통·식당 등 실전 대화 퀴즈</div>
+      <div class="menu-name">🎮상황별 회화 퀴즈</div>
+      <div class="menu-desc">공항·호텔·교통·식당 등 실전 대화 퀴즈 [시작하기]</div>
     </a>
 
     <a class="menu-card" href="{{ url_for('words_categories') }}" aria-label="단어모음으로 이동">
@@ -76,13 +93,13 @@
     </a>
 
     <a class="menu-card" href="{{ url_for('travel_start') }}" aria-label="퀴즈 게임으로 이동">
-      <div class="menu-name">일본 여행 시뮬레이션</div>
-      <div class="menu-desc">일본 여행 시뮬레이션 게임</div>
+      <div class="menu-name">🎮일본여행 시뮬레이션</div>
+      <div class="menu-desc">실제 여행 상황처럼 이동하며 일본어를 공부해보세요 [시작하기]</div>
     </a>
 
     <a class="menu-card" href="{{ url_for('quiz') }}" aria-label="퀴즈 게임으로 이동">
-      <div class="menu-name">퀴즈 게임</div>
-      <div class="menu-desc">재미있게 푸는 일본어 퀴즈</div>
+      <div class="menu-name">🎮퀴즈 게임</div>
+      <div class="menu-desc">재미있게 푸는 일본어 퀴즈 [시작하기]</div>
     </a>
 
     <a class="menu-card" href="{{ url_for('board') }}" aria-label="일반게시판으로 이동">
