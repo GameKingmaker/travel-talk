@@ -4039,16 +4039,50 @@ WORDS: Dict[str, Dict[str, Any]] = {
         },
 
 }
-# ✅ WORDS 정의 끝난 다음(들여쓰기 0칸)
+# ✅ 카테고리별 소개 문구 (단어 상세 페이지용)
 WORDS_CAT_DESC = {
     "numbers": "숫자·가격·인원·개수 단위까지, 일본 여행에서 가장 자주 쓰는 기본 표현",
     "time": "시간·날짜·요일 그리고 약속과 일정 대화에 꼭 필요한 단어",
-    "date": "오늘·내일·이번 주 일정 확인에 필수 표현",
-    "transport": "역·지하철·버스 등 교통 이용 시 바로 쓰는 단어",
-    "location": "오른쪽·왼쪽·근처 등 길 찾기 핵심 표현",
-    "daily": "가다·오다·먹다 같은 기본 동작 단어",
-    "shopping": "가격·사이즈·결제 상황에서 자주 쓰는 쇼핑 단어",
-    "feelings": "아파요·괜찮아요 같은 상태·감정 표현",
+    "date": "오늘·내일·이번 주 일정 확인에 바로 쓰는 날짜·요일 표현",
+    "transport": "역·지하철·버스 등 교통 이용 시 바로 쓰는 필수 단어",
+    "location": "오른쪽·왼쪽·근처 등 길 찾기에 꼭 필요한 위치·방향 표현",
+    "actions": "가다·오다·먹다·보다 등 여행과 일상에서 가장 많이 쓰는 기본 동사",
+    "feelings": "아파요·괜찮아요·피곤해요 등 상태와 감정을 전하는 표현",
+    "shopping": "가격·사이즈·결제·할인 상황에서 자주 쓰는 쇼핑 단어",
+    "food": "일본 음식 주문과 식사 상황에서 꼭 알아두면 좋은 단어",
+    "cafe": "카페·음료 주문 시 바로 쓸 수 있는 기본 표현",
+    "hotel": "체크인·객실·와이파이 등 숙소 이용에 필요한 단어",
+    "hotel_trouble": "숙소에서 발생하는 문제나 요청 상황에 쓰는 표현",
+    "restaurant": "메뉴 주문·추천·계산 등 식당에서 자주 쓰는 단어",
+    "airplane": "공항·탑승·수하물·비행기 이용 시 필수 표현",
+    "money": "현금·카드·환전·결제 등 돈과 관련된 기본 단어",
+    "phone_camera": "사진 촬영·카메라·스마트폰 사용 시 필요한 단어",
+    "fashion": "옷·신발·사이즈·시착 등 쇼핑과 패션 관련 표현",
+    "emergency": "병원·약국·아픔 등 기본적인 응급·건강 표현",
+    "emergency_plus": "위급한 상황에서 도움을 요청할 때 쓰는 핵심 표현",
+    "weather": "날씨·기온·우산 등 여행 중 자주 확인하는 날씨 표현",
+    "polite": "인사·감사·부탁 등 일본어 기본 예의 표현",
+    "sns_internet": "와이파이·QR·앱·로그인 등 인터넷·SNS 관련 단어",
+    "nature_spots": "공원·신사·온천·관광지 등 자연·명소 관련 단어",
+    "japan_manners": "일본 여행 중 알아두면 좋은 문화·매너 표현",
+    "trouble": "분실·고장·지연 등 문제 상황에서 쓰는 단어",
+    "convenience_store": "편의점에서 계산·포장·전자결제 시 자주 쓰는 표현",
+    "facility_place": "화장실·출입구·엘리베이터 등 시설·장소 관련 단어",
+    "solo_travel": "혼자 여행할 때 자주 쓰는 표현과 상황 단어",
+    "school": "학교·수업·시험 등 학습·교육 관련 기본 단어",
+    "office": "회사·회의·업무·출퇴근 등 직장 생활 표현",
+    "amusement_park": "놀이공원에서 티켓·기구·대기 상황에 쓰는 단어",
+    "aquarium": "수족관 관람·전시·촬영 시 자주 쓰는 단어",
+    "travel_spots": "관광지·명소·입장료·운영시간 관련 표현",
+    "supermarket": "마트·세일·계산·포장 등 쇼핑 실전 표현",
+    "izakaya": "이자카야에서 술·안주·주문·계산에 쓰는 단어",
+    "toilet_hygiene": "화장실·위생·비데·손 씻기 관련 표현",
+    "lost_found": "물건을 잃어버렸거나 찾을 때 쓰는 표현",
+    "drugstore_cosmetics": "약·화장품·면세·드럭스토어 쇼핑 표현",
+    "family": "아이·가족과 함께 여행할 때 쓰는 단어",
+    "family_relatives": "가족·친척을 부르거나 소개할 때 쓰는 표현",
+    "travel_verbs": "여행 중 가장 많이 쓰이는 핵심 동사 표현",
+    "zoo": "동물원 관람과 체험 시 자주 쓰는 단어",
 }
 
 
@@ -4597,6 +4631,8 @@ def words_detail(cat_key):
     cat = (WORDS or {}).get(cat_key)
     if not cat:
         ctx = build_words_seo("단어")
+        ctx.pop("page_intro", None)  # ✅ 중복 키 제거
+
         return render_template(
             "words_detail.html",
             user=user,
@@ -4605,18 +4641,21 @@ def words_detail(cat_key):
             rows=[],
             fav_jp_set=set(),
             q=q,  # ✅ 템플릿에서 값 유지
+            page_intro=None,
             **ctx
         )
 
     title = cat.get("title", cat_key)
     rows_all = cat.get("items", [])
 
+    # ✅ 카테고리별 소개 문구(없으면 None)
+    page_intro = WORDS_CAT_DESC.get(cat_key)
+
     # ✅ rows 필터링: jp/pron/ko 중 하나라도 q 포함하면 통과
     if q:
         qq = q.lower()
         rows = []
         for r in rows_all:
-            # items가 [jp, pron, ko] 형태일 가능성이 높음
             jp = r[0] if len(r) > 0 else ""
             pron = r[1] if len(r) > 1 else ""
             ko = r[2] if len(r) > 2 else ""
@@ -4641,11 +4680,9 @@ def words_detail(cat_key):
         finally:
             conn.close()
 
-    # ✅ SEO: 검색 중이면 타이틀/설명도 검색형으로(선택 but 추천)
-    if q:
-        ctx = build_words_seo(f"{title} 검색: {q}")
-    else:
-        ctx = build_words_seo(title)
+    # ✅ SEO
+    ctx = build_words_seo(f"{title} 검색: {q}") if q else build_words_seo(title)
+    ctx.pop("page_intro", None)  # ✅ 중복 키 제거(여기가 핵심!)
 
     return render_template(
         "words_detail.html",
@@ -4655,8 +4692,10 @@ def words_detail(cat_key):
         rows=rows,
         fav_jp_set=fav_jp_set,
         q=q,  # ✅ 템플릿에서 값 유지
+        page_intro=page_intro,  # ✅ 우리가 직접 주는 소개문
         **ctx
     )
+
 @app.get("/words/search")
 def words_search():
     user = current_user()
