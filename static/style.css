@@ -2284,3 +2284,25 @@ img, video, canvas{
     color: rgba(51,65,85,.5);
   }
 }
+.intro-box {
+  margin: 20px auto;
+  padding: 20px 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(15,23,42,0.08);
+  box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+}
+
+
+.intro-box h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.intro-box p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+}
