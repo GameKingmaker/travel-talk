@@ -54,41 +54,213 @@
     padding:3px 9px;
     flex:0 0 auto;
   }
+ .board-hero{
+  margin: 12px 0 14px;
+  padding: 14px;
+  border-radius: 18px;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(37,99,235,.30), rgba(34,197,94,.25), rgba(99,102,241,.25)) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 10px 30px rgba(15,23,42,0.06);
+}
+
+.bh-top{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.bh-icon{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(37,99,235,0.10);
+  border: 1px solid rgba(37,99,235,0.18);
+  font-size:20px;
+  flex: 0 0 auto;
+}
+
+.bh-title{
+  font-size:16px;
+  font-weight:900;
+  color:#0f172a;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.bh-pill{
+  font-size:12px;
+  font-weight:900;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#f1f5ff;
+  border:1px solid rgba(37,99,235,.18);
+  color:#1d4ed8;
+}
+
+.bh-desc{
+  margin-top:6px;
+  color:#475569;
+  font-size:13.5px;
+  line-height:1.6;
+  font-weight:700;
+}
+
+.bh-desc2{
+  display:block;
+  margin-top:4px;
+  color:#64748b;
+  font-weight:700;
+}
+
+.bh-actions{
+  margin-top:10px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.bh-link{
+  font-size:13px;
+  font-weight:900;
+  color:#2563eb;
+  text-decoration:none;
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid rgba(37,99,235,.18);
+  background:#ffffff;
+}
+
+.bh-link:hover{
+  box-shadow: 0 8px 20px rgba(37,99,235,.12);
+  border-color: rgba(37,99,235,.28);
+}
+/* 왼쪽/오른쪽 기본 */
+.board-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:24px;
+}
+
+/* 왼쪽 */
+.bh-left{ flex:1; min-width:0; }
+
+/* 오른쪽: 인트로 박스(.board-hero) 상단 라인에 맞추기 */
+.bh-right{
+  width:320px;                /* 오른쪽 폭 고정(예쁘게) */
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;        /* input/button이 같은 폭 */
+  gap:10px;
+
+  margin-top:52px;            /* ✅ 이 값으로 "인트로박스 상단" 라인 맞춤 */
+}
+
+/* 검색 폼을 세로폭 꽉 쓰기 */
+.board-search{
+  display:flex;
+  gap:8px;
+}
+
+.board-search input{
+  flex:1;                     /* ✅ 220px 고정 대신 꽉 차게 */
+  width:auto;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid #d9e2ef;
+  background:#fff;
+  font-size:14px;
+}
+
+.board-search button{
+  padding:10px 14px;
+  border-radius:12px;
+  border:none;
+  background:#2563eb;
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+
+/* 글쓰기 버튼도 검색창과 동일 폭 */
+.write-btn{
+  width:100%;
+  text-align:center;
+  padding:12px 14px;
+  border-radius:12px;
+}
+
+
 </style>
 
-<section class="page-head" style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px;">
-  <div>
+<section class="page-head board-head">
+  <!-- 🔹 왼쪽 영역 -->
+  <div class="bh-left">
     <h1>일반게시판</h1>
 
-    <form method="GET" action="{{ url_for('board') }}"
-          style="display:flex; gap:10px; align-items:center; margin-top:12px;">
+    <!-- 게시판 안내 배너 -->
+    <div class="board-hero">
+      <div class="bh-top">
+        <div class="bh-icon" aria-hidden="true">💬</div>
+
+        <div class="bh-text">
+          <div class="bh-title">
+            일본어 학습 커뮤니티 게시판
+            <span class="bh-pill">질문 · 후기 · 꿀팁</span>
+          </div>
+          <div class="bh-desc">
+            일본어 회화 공부방 이용자들이 <b>여행 회화 경험</b>, <b>공부 방법</b>, <b>추천 표현</b>을 공유하는 공간이에요.
+            <span class="bh-desc2">
+              일본어 회화·단어·여행 표현 등 학습 주제로 자유롭게 참여해 주세요.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if q %}
+      <p class="bh-query">
+        검색어: <b>{{ q | e }}</b>
+        · <a href="{{ url_for('board') }}">전체 보기</a>
+      </p>
+    {% else %}
+      <p class="bh-query">자유롭게 글을 남겨보세요.</p>
+    {% endif %}
+  </div>
+
+  <!-- 🔹 오른쪽 영역 -->
+  <div class="bh-right">
+    <!-- 검색 -->
+    <form method="GET" action="{{ url_for('board') }}" class="board-search">
       <input
         type="text"
         name="q"
         value="{{ (q or '') | e }}"
-        placeholder="제목 또는 내용 검색"
-        style="flex:1; max-width:420px; padding:10px 12px; border-radius:12px; border:1px solid #d9e2ef; background:#fff;">
-      <button class="btn btn-primary" type="submit">검색</button>
+        placeholder="제목 또는 내용 검색">
+      <button type="submit">검색</button>
     </form>
 
-    {% if q %}
-      <p style="margin:8px 0 0; color:#667085;">
-        검색어: <b>{{ q | e }}</b>
-        · <a href="{{ url_for('board') }}" style="color:#2563eb; text-decoration:underline; text-underline-offset:3px;">전체 보기</a>
-      </p>
-    {% else %}
-      <p style="margin:8px 0 0; color:#667085;">자유롭게 글을 남겨보세요.</p>
-    {% endif %}
-  </div>
-
-  <div>
+    <!-- 글쓰기 -->
     {% if user %}
-      <a class="btn btn-primary" href="{{ url_for('board_write') }}">글쓰기</a>
+      <a class="btn btn-primary write-btn" href="{{ url_for('board_write') }}">
+        글쓰기
+      </a>
     {% else %}
-      <a class="btn" href="{{ url_for('login', next=url_for('board')) }}">로그인 후 글쓰기</a>
+      <a class="btn write-btn" href="{{ url_for('login', next=url_for('board')) }}">
+        로그인 후 글쓰기
+      </a>
     {% endif %}
   </div>
 </section>
+
+
 
 <div class="board-wrap" style="padding:0; overflow:hidden;">
   <table class="board-table">
