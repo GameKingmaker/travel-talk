@@ -53,12 +53,58 @@
     font-size:13px;
   }
   .hint a{ color:#2563eb; text-decoration:underline; text-underline-offset:3px; }
+  .quiz-intro{
+  margin: 6px 0 18px;
+  padding: 18px 18px;
+  background:#fff;
+  border:1px solid rgba(15,23,42,0.08);
+  border-radius:16px;
+  box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+}
+.quiz-intro h2{
+  margin:0 0 10px;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:-.2px;
+}
+.quiz-intro p{
+  margin:6px 0 12px;
+  font-size:14px;
+  color:#475569;
+  line-height:1.65;
+}
+.quiz-intro-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:10px;
+}
+.qibox{
+  border:1px solid rgba(15,23,42,0.08);
+  background:#fbfdff;
+  border-radius:14px;
+  padding:12px 12px;
+}
+.qititle{
+  font-weight:900;
+  font-size:13px;
+  color:#0f172a;
+  margin-bottom:6px;
+}
+.qitxt{
+  font-size:13px;
+  color:#475569;
+  line-height:1.55;
+}
+@media (max-width: 860px){
+  .quiz-intro-grid{ grid-template-columns:1fr; }
+}
+
 </style>
 
 <div class="quiz-wrap">
   <div class="quiz-head">
     <div>
-      <h1 class="quiz-title">퀴즈 · 게임</h1>
+      <h1 class="quiz-title">🎮 퀴즈 · 게임</h1>
       <p class="quiz-sub">게임을 선택해서 바로 시작해보세요.</p>
 
       {% if not user %}
@@ -68,6 +114,28 @@
       {% endif %}
     </div>
   </div>
+<section class="quiz-intro">
+  <h2>퀴즈로 일본어를 더 빨리 익혀보세요</h2>
+  <p>
+    단순 암기보다 <b>문제 풀이 → 반복 복습</b>이 기억에 오래 남습니다.
+    여행에서 많이 쓰는 표현/단어를 퀴즈로 풀면서 자연스럽게 익혀보세요.
+  </p>
+
+  <div class="quiz-intro-grid">
+    <div class="qibox">
+      <div class="qititle">추천 루틴 (3분)</div>
+      <div class="qitxt">1) 오늘의 회화 1개 → 2) 퀴즈 1개 → 3) 틀린 표현만 다시 보기</div>
+    </div>
+    <div class="qibox">
+      <div class="qititle">초보자 팁</div>
+      <div class="qitxt">정답보다 “왜 틀렸는지”를 1번만 확인해도 실력이 빨리 늘어요.</div>
+    </div>
+    <div class="qibox">
+      <div class="qititle">여행 직전 추천</div>
+      <div class="qitxt">공항/호텔/식당부터 먼저 풀면 체감 효과가 가장 큽니다.</div>
+    </div>
+  </div>
+</section>
 
   <div class="game-grid">
 
@@ -103,11 +171,11 @@
     <!-- 일본 여행 시뮬레이션 -->
 <a class="game-card" href="{{ url_for('travel_start') }}" aria-label="일본여행시뮬레이션 시작">
   <div class="game-top">
-    <h2 class="game-name">일본여행시뮬레이션</h2>
-    <span class="pill">월드맵 · 스토리</span>
+    <h2 class="game-name">일본 여행 시뮬레이션</h2>
+    <span class="pill">시뮬레이션게임</span>
   </div>
   <p class="game-desc">
-    입국심사부터 시작해서 월드맵을 이동하며<br>
+    입국심사부터 시작해서 장소를 이동하며<br>
     상황별 회화/단어를 게임처럼 익혀요.
   </p>
   <div class="game-foot">
