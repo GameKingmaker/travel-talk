@@ -248,13 +248,44 @@
   #wgCats{ grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
   .wg-overlay{ padding:12px; }
 }
+.wg-intro{
+  margin: 12px 0 14px;
+  padding: 14px 16px;
+  background:#fff;
+  border:1px solid rgba(15,23,42,.08);
+  border-radius:14px;
+}
+
+.wg-intro-title{
+  font-size:14px;
+  font-weight:900;
+  margin:0 0 6px;
+  color:#0f172a;
+}
+
+.wg-intro-desc{
+  font-size:13px;
+  line-height:1.6;
+  color:#475569;
+  margin:0 0 10px;
+}
+
+.wg-intro-list{
+  margin:0;
+  padding-left:16px;
+  color:#475569;
+  font-size:12.5px;
+}
+
+.wg-intro-list li{ margin:4px 0; }
+
 
 </style>
 
 <div class="wg-wrap">
   <div class="wg-head">
     <div>
-      <h1 class="wg-title">단어 게임</h1>
+      <h1 class="wg-title">🎮 단어 게임</h1>
       <p class="wg-sub">
         화면에 나타나는 <b>발음</b>을 보고, 아래 입력칸에 <b>한국어 뜻</b>을 입력하세요.<br>
         단어가 오른쪽 <b>빨간 선</b>을 넘으면 게임오버!
@@ -268,7 +299,18 @@
       <button class="btn primary" id="wgStartBtn" type="button">단어 선택</button>
     </div>
   </div>
-
+ <div class="wg-intro">
+    <div class="wg-intro-title">게임 팁</div>
+    <div class="wg-intro-desc">
+      제한 시간 안에 <b>일본어 발음 → 한국어 뜻</b>을 빠르게 떠올리는 훈련이에요.
+      모르면 과감히 넘기고, 틀린 단어는 단어모음에서 복습하면 효과가 좋아요.
+    </div>
+    <ul class="wg-intro-list">
+      <li>✔ 모르면 오래 고민하지 말고 빠르게 넘기기</li>
+      <li>✔ 자주 틀리는 단어는 반복해서 외우기</li>
+      <li>✔ 하루 1~2판만 해도 기억 유지에 도움</li>
+    </ul>
+  </div>
   <div class="wg-panel">
     <div class="wg-chip"><b>점수</b> <span id="wgScore">0</span></div>
     <div class="wg-chip"><b>남은 풀</b> <span id="wgPool">-</span></div>
