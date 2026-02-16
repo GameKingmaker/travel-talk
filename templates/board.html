@@ -196,6 +196,107 @@
   padding:12px 14px;
   border-radius:12px;
 }
+/* =========================
+   ✅ Board mobile card view
+   PC 테이블 유지 / 모바일만 카드형
+   ========================= */
+@media (max-width: 640px){
+
+  /* 상단 헤더(왼쪽/오른쪽) 세로 정렬 */
+  .board-head{
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+  }
+  .bh-right{
+    width: 100% !important;
+    margin-top: 0 !important;
+  }
+
+  /* 검색폼 모바일 폭 100% */
+  .board-search{
+    width: 100%;
+  }
+  .board-search input{
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .write-btn{
+    width: 100% !important;
+  }
+
+  /* 테이블 → 카드형 */
+  .board-table thead{
+    display: none;
+  }
+  .board-table, .board-table tbody, .board-table tr, .board-table td{
+    display: block;
+    width: 100%;
+  }
+
+  .board-table{
+    border-collapse: separate;
+    border-spacing: 0 10px; /* 카드 사이 간격 */
+  }
+
+  .board-table tr{
+    background: #fff;
+    border: 1px solid rgba(15,23,42,0.08);
+    border-radius: 14px;
+    padding: 12px 12px;
+    box-shadow: 0 8px 20px rgba(15,23,42,0.06);
+    overflow: hidden;
+  }
+
+  /* 번호(공지/ID)는 상단 메타로 */
+  .board-table td{
+    border-bottom: none;
+    padding: 6px 0;
+  }
+
+  /* 제목 줄 */
+  .board-table td:nth-child(2) .title-line{
+    font-size: 16px;
+    line-height: 1.3;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .title-link{
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+
+  /* 작성자/추천/조회/날짜를 한 줄 메타로 묶어 보이게 */
+  .board-table td:nth-child(3),
+  .board-table td:nth-child(4),
+  .board-table td:nth-child(5),
+  .board-table td:nth-child(6){
+    display: inline-block;
+    width: auto;
+    padding: 0;
+    margin-right: 10px;
+    font-size: 13px;
+    color: #475569;
+    font-weight: 800;
+  }
+
+  /* 라벨 느낌 추가 */
+  .board-table td:nth-child(4)::before{ content:"👍 "; }
+  .board-table td:nth-child(5)::before{ content:"👁️ "; }
+  .board-table td:nth-child(6)::before{ content:"🗓️ "; }
+
+  /* 번호칸은 작게 */
+  .board-table td:nth-child(1){
+    font-size: 12px;
+    color:#64748b;
+    font-weight: 900;
+    padding: 0 0 6px;
+  }
+
+  /* td-center 강제 가운데 정렬 무력화(모바일 카드에서) */
+  .td-center{ text-align:left; }
+}
 
 
 </style>
