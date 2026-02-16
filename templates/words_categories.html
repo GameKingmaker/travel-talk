@@ -51,6 +51,92 @@
 .intro-box{
   margin: 16px 0 6px;   /* 위16 / 좌우0 / 아래8 */
 }
+/* =========================
+   ✅ Words page mobile fix
+   (PC 유지 / 모바일만 정리)
+   ========================= */
+@media (max-width: 600px){
+
+  .sit-wrap{
+    padding: 18px 14px 36px;
+  }
+
+  /* ✅ 헤더 전체: 가로 → 세로 */
+  .sit-head{
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    margin-bottom: 14px;
+  }
+
+  .sit-left, .sit-right{
+    width: 100%;
+  }
+
+  /* ✅ 제목/설명/인트로 글자 세로찢김 방지 */
+  .sit-title, .sit-sub, .intro-box, .intro-box h2, .intro-box p{
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .sit-title{
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .sit-sub{
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ✅ 인트로 박스: 모바일에서 여백 최적화 */
+  .intro-box{
+    margin: 12px 0 4px;
+  }
+  .intro-box h2{
+    font-size: 16px;
+    line-height: 1.3;
+    margin: 0 0 8px;
+  }
+
+  /* ✅ 검색폼: 가로폭 꽉 */
+  .sit-right form{
+    width: 100% !important;
+    display: flex !important;
+    gap: 10px !important;
+    align-items: center !important;
+    margin: 0 !important;
+  }
+
+  /* ✅ 인라인 width/max-width를 모바일에서 덮어쓰기 */
+  .sit-right form input{
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  .sit-right form button{
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
+  /* ✅ 카드 제목도 깨지지 않게 */
+  .cat-name, .chip-title, .wtitle{
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  /* (선택) 칩/항목 제목이 길면 2줄까지 허용 */
+  .chip-title{
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
 
 
 </style>
