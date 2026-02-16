@@ -187,6 +187,85 @@
   font-size:13px;
   color:#64748b;
 }
+/* =========================
+   ✅ Mobile fix (PC 유지)
+   ========================= */
+@media (max-width: 600px){
+
+  /* 전체 패딩 약간 줄이기 */
+  .sit-wrap{
+    padding: 18px 14px 36px;
+  }
+
+  /* ✅ 헤더: 좌(제목) + 우(검색) → 세로로 쌓기 */
+  .sit-head{
+    flex-direction: column;
+    align-items: stretch;     /* ✅ 가로 꽉 차게 */
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  /* ✅ 제목/설명 텍스트가 한 글자씩 찢어지는 현상 방지 */
+  .sit-title,
+  .sit-sub,
+  .sit-intro h2,
+  .sit-intro p,
+  .sit-intro li{
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .sit-title{
+    font-size: 28px;          /* 모바일에서 조금만 줄이기 */
+    line-height: 1.15;
+  }
+
+  .sit-sub{
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ✅ 검색폼: 한 줄로 꽉 차게 + 버튼/인풋 비율 조정 */
+  .sit-head form{
+    width: 100%;
+    margin: 0 !important;
+  }
+  .sit-head form input{
+    width: 100%;
+    min-width: 0;
+  }
+  .sit-head form button{
+    white-space: nowrap;
+  }
+
+  /* ✅ 인트로 박스 패딩 살짝 줄이기 */
+  .sit-intro{
+    padding: 16px 14px;
+  }
+  .sit-intro ul{
+    padding-left: 18px;
+  }
+
+  /* ✅ 카드 내부 타이틀 줄바꿈 자연스럽게 */
+  .cat-name{
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  /* ✅ 칩 제목이 너무 길면 … 대신 2줄까지 허용 (원하면) */
+  .chip-title{
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;      /* 2줄까지 */
+    -webkit-box-orient: vertical;
+  }
+}
+@media (max-width: 600px){
+  .sit-head form{ display:flex !important; gap:10px !important; }
+}
+
 
 </style>
 
