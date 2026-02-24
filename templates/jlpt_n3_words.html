@@ -1,0 +1,404 @@
+jlpt_n3_words.html
+
+{% extends "base.html" %}
+{% block title %}JLPT N3 단어 | 모음{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jlpt.css') }}">
+
+  <style>
+  :root{
+    --bg:#f6f8ff;
+    --card:#ffffff;
+    --text:#0b1f4b;
+    --muted:#6b7280;
+    --line:rgba(15,23,42,.10);
+    --shadow:0 12px 30px rgba(15,23,42,.06);
+    --shadow2:0 10px 24px rgba(15,23,42,.08);
+    --blue:#2563eb;
+    --blue2:#1d4ed8;
+    --chip:#eef2ff;
+    --chipLine:#dbe7ff;
+    --focus:rgba(37,99,235,.18);
+  }
+
+  .s5-search-wrap{
+    display:flex; gap:10px; align-items:center;
+    padding:12px;
+    background:linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.02));
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow: var(--shadow);
+  }
+  .s5-search{
+    flex:1;
+    width:100%;
+    min-width:520px;
+    height:46px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:0 14px;
+    outline:none;
+    font-size:14px;
+    background:#fff;
+    transition:.18s ease;
+  }
+  .s5-search::placeholder{ color:#94a3b8; }
+  .s5-search:focus{
+    border-color:rgba(37,99,235,.40);
+    box-shadow:0 0 0 4px var(--focus);
+  }
+
+  .s5-btn{
+    height:46px;
+    padding:0 16px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:#fff;
+    font-weight:900;
+    cursor:pointer;
+    transition:.18s ease;
+    white-space:nowrap;
+  }
+  .s5-btn:hover{ transform:translateY(-1px); box-shadow: var(--shadow2); }
+  .s5-btn:active{ transform:translateY(0px); box-shadow:none; }
+  .s5-btn-primary{
+    background:linear-gradient(180deg, rgba(37,99,235,1), rgba(29,78,216,1));
+    border:1px solid rgba(29,78,216,.35);
+    color:#fff;
+  }
+
+  .s5-count{
+    margin-top:10px;
+    font-size:13px;
+    color:var(--muted);
+    font-weight:900;
+  }
+
+  .tabs-row{
+    display:flex; gap:8px; flex-wrap:wrap;
+  }
+  .jlpt-chip{
+    display:inline-flex;
+    align-items:center;
+    height:34px;
+    padding:0 12px;
+    border-radius:999px;
+    border:1px solid rgba(15,23,42,.12);
+    background:#fff;
+    font-weight:900;
+    cursor:pointer;
+    transition:.15s ease;
+    color:#0b1f4b;
+    font-size:12.5px;
+    user-select:none;
+  }
+  .jlpt-chip:hover{ transform:translateY(-1px); box-shadow:0 8px 16px rgba(15,23,42,.08); }
+  .jlpt-chip.is-on{
+    background:var(--chip);
+    border-color:var(--chipLine);
+    color:var(--blue2);
+  }
+
+  .jlpt-words .word-table-wrap{ width:100%; overflow:auto; }
+  .jlpt-words table{ border-collapse:separate; border-spacing:0; width:100%; min-width:980px; }
+  .jlpt-words tr{ display:table-row !important; }
+  .jlpt-words th, .jlpt-words td{ display:table-cell !important; }
+  .jlpt-words .word-table{ table-layout:fixed; }
+
+  .jlpt-words .word-table thead th{
+    background:#f9fafb;
+    font-size:13px;
+    color:#374151;
+    font-weight:950;
+    padding:12px 14px;
+    border-bottom:1px solid #e5e7eb;
+    text-align:left;
+    white-space:nowrap;
+  }
+
+  .jlpt-words .word-table tbody td{
+    padding:14px 14px;
+    border-bottom:1px solid #eef2f7;
+    vertical-align:middle;
+    font-size:14px;
+    background:#fff;
+  }
+  .jlpt-words .word-table tbody tr:hover td{ background:#fbfdff; }
+
+  .jlpt-words .col-fav{ width:88px; text-align:center; }
+  .jlpt-words .col-kanji{ width:200px; }
+  .jlpt-words .col-kana{ width:220px; }
+  .jlpt-words .col-pron{ width:220px; }
+  .jlpt-words .col-ko{ width:auto; }
+
+  .jp-cell{
+    display:flex; align-items:center; gap:10px; min-width:0;
+  }
+  .jp-text{
+    font-weight:950;
+    font-size:16px;
+    color:#0b1f4b;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .fav-btn{
+    width:42px; height:42px;
+    border-radius:12px;
+    border:1px solid rgba(15,23,42,.12);
+    background:#fff;
+    cursor:pointer;
+    font-size:18px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    transition:.16s ease;
+  }
+  .fav-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 18px rgba(15,23,42,.08); }
+  .fav-btn.on, .fav-btn.is-on{
+    background:rgba(255, 215, 0, .14);
+    border-color:rgba(255, 215, 0, .35);
+  }
+
+  .tts-mini{
+    width:40px; height:40px;
+    border-radius:999px;
+    border:1px solid rgba(15,23,42,.12);
+    background:#fff;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    transition:.16s ease;
+    flex:0 0 auto;
+  }
+  .tts-mini:hover{ background:#f9fafb; transform:translateY(-1px); }
+
+  .pron-text{ font-weight:850; color:#111827; }
+  .ko-text{ font-weight:750; color:#111827; line-height:1.55; }
+
+  .empty{
+    padding:18px 16px;
+    color:#64748b;
+    background:#fbfdff;
+    border-top:1px solid #eef2f7;
+    font-weight:800;
+    display:none;
+  }
+
+  @media (max-width: 900px){
+    .s5-search{ min-width:0; }
+  }
+  @media (max-width: 520px){
+    .s5-search-wrap{ flex-direction:column; align-items:stretch; }
+    .s5-btn{ width:100%; }
+  }
+
+  .jlpt-words tr.is-hidden { display:none !important; }
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="jlpt-card">
+  <h1 class="jlpt-h1">JLPT N3 필수 단어</h1>
+  <p class="jlpt-subtext">
+    자주 출제되는 N3 핵심 단어를 모아둔 목록입니다. 🔊 버튼으로 발음을 듣고, ☆로 즐겨찾기를 표시해 둘 수 있어요.
+    <br>※ 즐겨찾기 저장(나만의 학습노트)은 추후 연결 예정입니다.
+  </p>
+
+  <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+    <a class="btn btn-outline" href="{{ url_for('jlpt_n3_home') }}">← N3 홈으로</a>
+  </div>
+</div>
+
+<div class="jlpt-words">
+
+  <!-- 검색 -->
+  <div class="jlpt-card" style="padding:16px;">
+    <div class="s5-search-wrap">
+      <input id="sSearch" class="s5-search" type="text"
+             placeholder="한자/가나/발음/뜻으로 검색 (예: 私, わたし, 와타시, 나)"
+             autocomplete="off">
+      <button id="searchBtn" class="s5-btn s5-btn-primary" type="button">검색</button>
+    </div>
+    <div class="s5-count" id="sCount"></div>
+  </div>
+
+  <!-- 섹션 탭 -->
+  <div class="jlpt-card" style="margin-top:10px;">
+    <div class="tabs-row">
+      <button class="jlpt-chip is-on" type="button" data-sec="all">전체</button>
+      {% for s in sections %}
+        <button class="jlpt-chip" type="button" data-sec="{{ s.key }}">
+          {{ loop.index }}) {{ s.title }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <div style="margin-top:10px; color:#64748b; font-weight:800; font-size:13px;">
+      표시: <span id="countNow">0</span> / <span id="countAll">{{ words|length }}</span>
+    </div>
+  </div>
+
+  <!-- 테이블 -->
+  <div class="jlpt-card" style="padding:0; overflow:hidden;">
+    <div class="word-table-wrap">
+      <table class="word-table" aria-label="JLPT N3 단어 목록">
+        <thead>
+          <tr>
+            <th class="col-fav">즐겨찾기</th>
+            <th class="col-kanji">한자/표기</th>
+            <th class="col-kana">가나</th>
+            <th class="col-pron">발음</th>
+            <th class="col-ko">뜻</th>
+          </tr>
+        </thead>
+
+        <tbody id="wordTableBody">
+          {% for w in words %}
+          <tr class="word-row"
+              data-sec="{{ w.sec_key }}"
+              data-kanji="{{ (w.kanji or '')|e }}"
+              data-kana="{{ (w.kana or '')|e }}"
+              data-pron="{{ (w.pron or '')|e }}"
+              data-ko="{{ (w.ko or '')|e }}">
+
+            <td class="col-fav">
+              <button class="fav-btn"
+                data-cat="jlpt:N3:words"
+                data-jp="{{ (w.kanji or w.kana or '')|e }}"
+                data-kana="{{ (w.kana or '')|e }}"
+                aria-label="즐겨찾기">☆</button>
+            </td>
+
+            <td class="col-kanji">
+              <div class="jp-cell">
+                <span class="jp-text">{{ w.kanji if w.kanji else w.kana }}</span>
+                <button class="tts-mini" type="button"
+                        data-tts="{{ (w.tts_text or w.kana or w.kanji)|e }}"
+                        aria-label="발음 듣기">🔊</button>
+              </div>
+            </td>
+
+            <td class="col-kana">
+              <span class="jp-text" style="font-size:15px; font-weight:900;">
+                {{ w.kana }}
+              </span>
+            </td>
+
+            <td class="col-pron">
+              <span class="pron-text">{{ w.pron }}</span>
+            </td>
+
+            <td class="col-ko">
+              <span class="ko-text">{{ w.ko }}</span>
+            </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div id="noResultBox" class="empty">
+      검색 결과가 없습니다. 다른 키워드로 다시 검색해보세요.
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  function pickJapaneseVoice() {
+    const voices = window.speechSynthesis?.getVoices?.() || [];
+    return voices.find(v => v.lang === "ja-JP")
+      || voices.find(v => (v.lang || "").toLowerCase().startsWith("ja"))
+      || null;
+  }
+
+  function speakJP(text) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    let t = (text || "").trim();
+    if (!t) return;
+    if (t.length === 1) t = t + "。";
+    const u = new SpeechSynthesisUtterance(t);
+    u.lang = "ja-JP";
+    u.rate = 0.95;
+    const v = pickJapaneseVoice();
+    if (v) u.voice = v;
+    window.speechSynthesis.speak(u);
+  }
+
+  try { window.speechSynthesis.getVoices(); } catch(e) {}
+
+  document.addEventListener("click", (e) => {
+    const ttsBtn = e.target.closest(".tts-mini[data-tts]");
+    if (ttsBtn) speakJP(ttsBtn.getAttribute("data-tts"));
+  });
+
+  const input = document.getElementById("sSearch");
+  const searchBtn = document.getElementById("searchBtn");
+  const tbody = document.getElementById("wordTableBody");
+  const sCount = document.getElementById("sCount");
+  const countNow = document.getElementById("countNow");
+  const countAll = document.getElementById("countAll");
+  const noBox = document.getElementById("noResultBox");
+  const tabBtns = Array.from(document.querySelectorAll(".jlpt-chip[data-sec]"));
+
+  if (!input || !searchBtn || !tbody || !sCount || !countNow || !countAll || !noBox) return;
+
+  let activeSec = "all";
+  const norm = (s) => (s || "").toString().trim().toLowerCase();
+
+  function rowHay(tr){
+    const a = tr.dataset.kanji || "";
+    const b = tr.dataset.kana || "";
+    const c = tr.dataset.pron || "";
+    const d = tr.dataset.ko || "";
+    return norm(a + " " + b + " " + c + " " + d);
+  }
+
+  function apply(){
+    const q = norm(input.value);
+    const rows = Array.from(tbody.querySelectorAll("tr.word-row"));
+    let visible = 0;
+
+    rows.forEach(tr => {
+      const secOk = (activeSec === "all") || (tr.dataset.sec === activeSec);
+      const qOk = (!q) || rowHay(tr).includes(q);
+      const ok = secOk && qOk;
+
+      tr.classList.toggle("is-hidden", !ok);
+      if (ok) visible++;
+    });
+
+    countNow.textContent = String(visible);
+    sCount.textContent = `표시: ${visible} / ${rows.length}`;
+    noBox.style.display = (visible === 0) ? "block" : "none";
+  }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      tabBtns.forEach(b => b.classList.remove("is-on"));
+      btn.classList.add("is-on");
+      activeSec = btn.getAttribute("data-sec") || "all";
+      apply();
+    });
+  });
+
+  input.addEventListener("input", apply);
+  searchBtn.addEventListener("click", apply);
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") apply(); });
+
+  apply();
+});
+</script>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+{% endblock %}
