@@ -1,0 +1,418 @@
+{% extends "base.html" %}
+{% block title %}JLPT N4 문장모음 | 분류별 70{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jlpt.css') }}">
+
+  <style>
+  :root{
+    --bg:#f6f8ff;
+    --card:#ffffff;
+    --text:#0b1f4b;
+    --muted:#6b7280;
+    --line:rgba(15,23,42,.10);
+    --shadow:0 12px 30px rgba(15,23,42,.06);
+    --shadow2:0 10px 24px rgba(15,23,42,.08);
+    --blue:#2563eb;
+    --blue2:#1d4ed8;
+    --chip:#eef2ff;
+    --chipLine:#dbe7ff;
+    --focus:rgba(37,99,235,.18);
+  }
+
+  /* 검색바 영역 */
+  .s5-search-wrap{
+    display:flex; gap:10px; align-items:center;
+    padding:12px;
+    background:linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.02));
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow: var(--shadow);
+  }
+
+  /* 검색창 */
+  .s5-search{
+    flex:1;
+    width:100%;
+    min-width:0;
+    height:46px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:0 14px;
+    outline:none;
+    font-size:14px;
+    background:#fff;
+    transition:.18s ease;
+  }
+  .s5-search::placeholder{ color:#94a3b8; }
+  .s5-search:focus{
+    border-color:rgba(37,99,235,.40);
+    box-shadow:0 0 0 4px var(--focus);
+  }
+
+  .s5-btn{
+    height:46px;
+    padding:0 16px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:#fff;
+    font-weight:900;
+    cursor:pointer;
+    transition:.18s ease;
+    white-space:nowrap;
+  }
+  .s5-btn:hover{ transform:translateY(-1px); box-shadow: var(--shadow2); }
+  .s5-btn:active{ transform:translateY(0px); box-shadow:none; }
+
+  .s5-btn-primary{
+    background:linear-gradient(180deg, rgba(37,99,235,1), rgba(29,78,216,1));
+    border:1px solid rgba(29,78,216,.35);
+    color:#fff;
+  }
+
+  /* 칩바 카드 */
+  .s5-chipbar{
+    margin-top:12px;
+    display:flex; gap:8px; flex-wrap:wrap;
+    padding:10px;
+    border:1px solid rgba(15,23,42,.08);
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 10px 24px rgba(15,23,42,.05);
+  }
+
+  .s5-chip{
+    height:34px;
+    padding:0 12px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:#fff;
+    cursor:pointer;
+    font-weight:950;
+    font-size:12px;
+    color:var(--text);
+    transition:.16s ease;
+  }
+  .s5-chip:hover{ transform:translateY(-1px); box-shadow: var(--shadow); }
+  .s5-chip.is-on{
+    background:var(--chip);
+    border-color:var(--chipLine);
+    color:var(--blue2);
+  }
+
+  .s5-count{
+    margin-top:10px;
+    font-size:13px;
+    color:var(--muted);
+    font-weight:900;
+  }
+
+  /* 섹션 헤더 */
+  .s5-sec-head{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+    padding:14px 14px;
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(255,255,255,1), rgba(248,250,255,1));
+    border-radius:18px;
+    box-shadow: var(--shadow);
+    margin:14px 0 14px;
+  }
+  .s5-sec-title{
+    margin:0;
+    font-size:18px;
+    font-weight:950;
+    color:var(--text);
+    letter-spacing:-.01em;
+  }
+  .s5-sec-desc{
+    margin:6px 0 0;
+    color:var(--muted);
+    font-weight:750;
+    font-size:13px;
+    line-height:1.45;
+  }
+  .s5-sec-meta{
+    font-size:12px;
+    font-weight:950;
+    color:var(--blue2);
+    background:var(--chip);
+    border:1px solid var(--chipLine);
+    padding:7px 12px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+
+  /* 리스트/카드 */
+  .s5-list{ display:flex; flex-direction:column; gap:12px; }
+
+  .s5-card{
+    display:flex;
+    gap:14px;
+    align-items:center;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:var(--card);
+    padding:14px 14px;
+    box-shadow: var(--shadow);
+    transition:.18s ease;
+  }
+  .s5-card:hover{
+    transform:translateY(-1px);
+    box-shadow: var(--shadow2);
+  }
+
+  /* 즐겨찾기 버튼 */
+  .fav-btn{
+    width:46px; height:46px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:#fff;
+    cursor:pointer;
+    font-size:18px;
+    display:flex; align-items:center; justify-content:center;
+    transition:.16s ease;
+  }
+  .fav-btn:hover{ transform:translateY(-1px); }
+  .fav-btn.on{
+    background:rgba(255, 215, 0, .14);
+    border-color:rgba(255, 215, 0, .35);
+  }
+
+  /* 본문 */
+  .s5-main{ flex:1; min-width:0; }
+  .s5-row{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    padding:4px 0;
+  }
+  .s5-row .label{
+    width:92px;
+    font-weight:900;
+    color:#334155;
+    flex:0 0 auto;
+  }
+  .s5-row .value{
+    font-weight:750;
+    color:#111827;
+    line-height:1.7;
+  }
+  .s5-row .value.jp{
+    font-weight:950;
+    color:var(--text);
+    font-size:16px;
+    letter-spacing:-.01em;
+  }
+
+  /* 발음 듣기 버튼 */
+  .tts-btn{
+    width:112px;
+    height:46px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:#fff;
+    cursor:pointer;
+    font-weight:950;
+    transition:.16s ease;
+    box-shadow:0 6px 16px rgba(15,23,42,.05);
+  }
+  .tts-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 12px 22px rgba(15,23,42,.10);
+  }
+  .tts-btn:active{ transform:translateY(0px); }
+
+  @media (max-width: 720px){
+    .s5-search-wrap{ padding:10px; border-radius:16px; }
+    .s5-card{ flex-direction:column; align-items:stretch; }
+    .tts-btn{ width:100%; }
+    .s5-row .label{ width:80px; }
+  }
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="jlpt-card">
+  <h1 class="jlpt-h1">JLPT N4 문장모음</h1>
+  <p class="jlpt-subtext">
+    N4에서 자주 나오는 문장을 <b>분류별 10개씩</b> 모았습니다. (총 {{ sections|length }}개 분류)
+    <br>🔊 발음 듣기(TTS) + ☆ 즐겨찾기(토글) 지원
+  </p>
+
+  <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+    <a class="btn btn-outline" href="{{ url_for('jlpt_n4_home') }}">← N4 홈으로</a>
+  </div>
+</div>
+
+<div class="jlpt-card" style="padding:16px;">
+  <div class="s5-search-wrap">
+    <input id="sSearch" class="s5-search" type="text"
+           placeholder="일본어/발음/뜻으로 검색 (예: られる, つもり, ので, ことがあります)"
+           autocomplete="off">
+    <button id="searchBtn" class="s5-btn s5-btn-primary" type="button">검색</button>
+  </div>
+
+  <div class="s5-chipbar" id="sChipbar">
+    <button class="s5-chip is-on" type="button" data-filter="all">전체</button>
+    {% for sec in sections %}
+      <button class="s5-chip" type="button" data-filter="{{ sec['key'] }}">{{ sec['title'] }}</button>
+    {% endfor %}
+  </div>
+
+  <div class="s5-count" id="sCount"></div>
+</div>
+
+<div id="sWrap">
+  {% for sec in sections %}
+  <div class="jlpt-card s5-section" data-group="{{ sec['key'] }}">
+    <div class="s5-sec-head">
+      <div>
+        <h2 class="s5-sec-title">{{ sec['title'] }}</h2>
+        <p class="s5-sec-desc">{{ sec['desc'] }}</p>
+      </div>
+      <div class="s5-sec-meta">10문장</div>
+    </div>
+
+    <div class="s5-list">
+      {% for item in sec["items"] %}
+      <div class="s5-card sentence-row phrase-card"
+           data-key="jlpt:N4:sentences:{{ item.jp|e }}"
+           data-level="N4"
+           data-section="sentences"
+           data-jp="{{ item.jp|e }}"
+           data-pron="{{ item.pron|e }}"
+           data-ko="{{ item.ko|e }}">
+
+        {# ✅ 즐겨찾기 저장/상태 반영은 jlpt_fav.js 단독 #}
+        <button type="button" class="fav-btn" aria-label="즐겨찾기">☆</button>
+
+        <div class="s5-main">
+          <div class="s5-row">
+            <div class="label">일본어:</div>
+            <div class="value jp">{{ item.jp }}</div>
+          </div>
+
+          <div class="s5-row">
+            <div class="label">발음:</div>
+            <div class="value">{{ item.pron }}</div>
+          </div>
+
+          <div class="s5-row">
+            <div class="label">한국어 뜻:</div>
+            <div class="value">{{ item.ko }}</div>
+          </div>
+        </div>
+
+        <button class="tts-btn" type="button" data-tts="{{ item.jp|e }}" aria-label="발음 듣기">
+          발음 듣기
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="jlpt-card" id="noResultBox" style="display:none;">
+  <div class="jlpt-note">
+    검색 결과가 없습니다. 다른 키워드로 다시 검색해보세요.
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+  {# ✅ 1) TTS + 검색/분류 필터 (이 페이지 전용) #}
+  <script>
+  (function () {
+    // ---------- TTS ----------
+    function pickJapaneseVoice() {
+      const voices = window.speechSynthesis?.getVoices?.() || [];
+      return voices.find(v => v.lang === "ja-JP")
+        || voices.find(v => (v.lang||"").toLowerCase().startsWith("ja"))
+        || null;
+    }
+    function speakJP(text) {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      let t = (text || "").trim();
+      if (!t) return;
+      if (t.length === 1) t = t + "。";
+      const u = new SpeechSynthesisUtterance(t);
+      u.lang = "ja-JP";
+      u.rate = 0.95;
+      const v = pickJapaneseVoice();
+      if (v) u.voice = v;
+      window.speechSynthesis.speak(u);
+    }
+    try { window.speechSynthesis.getVoices(); } catch(e) {}
+
+    document.addEventListener("click", function(e){
+      const tts = e.target.closest(".tts-btn[data-tts]");
+      if (tts) speakJP(tts.getAttribute("data-tts"));
+    });
+
+    // ---------- 검색/칩 필터 ----------
+    const input   = document.getElementById("sSearch");
+    const searchBtn = document.getElementById("searchBtn");
+    const chipbar = document.getElementById("sChipbar");
+    const chips   = Array.from(chipbar.querySelectorAll(".s5-chip"));
+    const sections = Array.from(document.querySelectorAll(".s5-section"));
+    const noBox   = document.getElementById("noResultBox");
+    const count   = document.getElementById("sCount");
+
+    let active = "all";
+    const norm = (s) => (s || "").toString().trim().toLowerCase();
+
+    function setActive(key){
+      active = key;
+      chips.forEach(c => c.classList.toggle("is-on", c.dataset.filter === key));
+      apply();
+    }
+
+    function apply(){
+      const q = norm(input.value);
+      let totalVisibleRows = 0;
+      let totalRows = 0;
+      let visibleSections = 0;
+
+      sections.forEach(sec => {
+        const key = sec.dataset.group;
+        const passGroup = (active === "all") || (key === active);
+
+        const rows = Array.from(sec.querySelectorAll(".sentence-row"));
+        let visibleInThisSection = 0;
+
+        rows.forEach(r => {
+          totalRows++;
+          const hay = norm((r.dataset.jp||"") + " " + (r.dataset.pron||"") + " " + (r.dataset.ko||""));
+          const ok = (!q || hay.includes(q)) && passGroup;
+          r.style.display = ok ? "" : "none";
+          if (ok) { visibleInThisSection++; totalVisibleRows++; }
+        });
+
+        const showSection = visibleInThisSection > 0;
+        sec.style.display = showSection ? "" : "none";
+        if (showSection) visibleSections++;
+      });
+
+      count.textContent = `표시: ${totalVisibleRows} / ${totalRows} 문장 · ${visibleSections}개 분류`;
+      noBox.style.display = (totalVisibleRows === 0) ? "" : "none";
+    }
+
+    // 실시간 검색 + 버튼 검색 + 엔터 검색
+    input.addEventListener("input", apply);
+    searchBtn.addEventListener("click", apply);
+    input.addEventListener("keydown", (e) => { if (e.key === "Enter") apply(); });
+
+    // 칩 클릭
+    chips.forEach(c => c.addEventListener("click", () => setActive(c.dataset.filter)));
+
+    // 최초 1회
+    apply();
+  })();
+  </script>
+
+
+{% endblock %}
