@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+{% block title %}JLPT N1 시험 진행 | 테스트{% endblock %}
+
+{# ✅ JLPT 전용 CSS를 base.html 위에 추가 로드 #}
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jlpt.css') }}">
+{% endblock %}
+
+{% block content %}
+<style>
+  .test-wrap{max-width:980px; margin:0 auto;}
+  .test-top{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .test-meta{color:#475569; font-weight:800;}
+  .progress{
+    height:10px; background:#eef2f7; border-radius:999px; overflow:hidden; flex:1; min-width:220px;
+    border:1px solid #e5e7eb;
+  }
+  .bar{height:100%; width:0%; background:#3b82f6;}
+  .q-card{border:1px solid #e5e7eb; border-radius:14px; padding:16px; background:#fff; box-shadow:0 8px 20px rgba(0,0,0,.04); margin-top:12px;}
+  .q-title{font-size:16px; font-weight:950; color:#0b1f4b; margin:0;}
+  .q-sub{margin-top:6px; color:#475569; font-weight:800; font-size:13px;}
+  .q-jp{margin-top:12px; font-size:18px; font-weight:950; letter-spacing:-.2px; line-height:1.6; white-space:pre-wrap;}
+  .choices{margin-top:12px; display:grid; gap:10px;}
+  .choice{
+    border:1px solid #e5e7eb; border-radius:12px; padding:12px 12px; cursor:pointer;
+    display:flex; gap:10px; align-items:flex-start; background:#fff;
+  }
+  .choice:hover{background:#f8fafc;}
+  .choice input{margin-top:3px;}
+  .choice.is-selected{border-color:#93c5fd; background:#f1f7ff;}
+  .nav{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; align-items:center; justify-content:space-between;}
+  .btnx{
+    height:40px; padding:0 14px; border-radius:12px; border:1px solid #e5e7eb;
+    background:#fff; font-weight:900; cursor:pointer;
+  }
+  .btnx.primary{background:#3b82f6; color:#fff; border-color:#3b82f6;}
+  .btnx:disabled{opacity:.5; cursor:not-allowed;}
+  .tts-btn{
+    height:36px; padding:0 12px; border-radius:999px; border:1px solid #dbe7ff;
+    background:#f1f5ff; color:#0b1f4b; font-weight:900; font-size:13px; cursor:pointer;
+    white-space:nowrap;
+  }
+  .pill{font-size:12px; font-weight:900; padding:6px 10px; border-radius:999px; border:1px solid #dbe7ff; background:#f1f5ff; color:#0b1f4b;}
+  .result{margin-top:12px;}
+  .score{font-size:22px; font-weight:1000; color:#0b1f4b;}
+  .wrong-item{border-top:1px dashed #e5e7eb; padding-top:12px; margin-top:12px;}
+  .small{font-size:13px; color:#64748b; font-weight:800;}
+  .explain-box{margin-top:10px; padding:12px; border-radius:12px; background:#fbfdff; border:1px dashed #e5e7eb;}
+  .explain-box b{color:#0b1f4b;}
+  .ko-box{margin-top:10px; padding:12px; border-radius:12px; background:#f6fff7; border:1px solid #bbf7d0;}
+  .ko-box .k-title{font-weight:1000; color:#14532d; margin-bottom:6px;}
+  .ko-box .k-line{font-size:13px; color:#14532d; font-weight:900; line-height:1.6; white-space:pre-wrap;}
+</style>
+
+<div class="test-wrap">
+  <div class="jlpt-card">
+    <div class="test-top">
+      <div class="test-meta">
+        <b>N1 실전 테스트</b> · <span id="posText">1 / {{ total_questions }}</span>
+      </div>
+
+      <div class="progress" aria-label="progress">
+        <div class="bar" id="bar"></div>
+      </div>
+
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span class="pill" id="typePill">PART</span>
+        <!-- ✅ PART4에서만 보이게 JS에서 토글 -->
+        <button class="tts-btn" type="button" id="ttsBtn" style="display:none;">発音を聞く</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="qCard"></div>
+
+  <div class="nav">
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <button class="btnx" id="prevBtn">← 이전</button>
+      <button class="btnx" id="nextBtn">다음 →</button>
+    </div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <button class="btnx" id="finishBtn">채점/결과 보기</button>
+      <a class="btnx" href="{{ url_for('jlpt_n1_test') }}">홈으로 돌아가기</a>
+    </div>
+  </div>
+
+  <div class="q-card result" id="resultCard" style="display:none;"></div>
+</div>
+
+<script>
+  // ====== 데이터 주입 ======
+  const QUESTIONS = {{ (questions or [])|tojson|safe }};
+  const TOTAL = QUESTIONS.length;
+  const PART = {{ part|default(0) }};
+
+  // ====== 상태 ======
+  const answers = new Array(TOTAL).fill(null);
+  let idx = 0;
+
+  // ====== 유틸 ======
+  function escapeHtml(str) {
+    const s = String(str ?? "");
+    return s.replace(/[&<>"']/g, (m) => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    }[m]));
+  }
+  function nl2brSafe(str){
+    return escapeHtml(str).replace(/\n/g, "<br>");
+  }
+
+  // ====== TTS (PART4 전용) ======
+  function pickJapaneseVoice() {
+    const voices = window.speechSynthesis?.getVoices?.() || [];
+    return (
+      voices.find(v => v.lang === "ja-JP") ||
+      voices.find(v => (v.lang || "").toLowerCase().startsWith("ja")) ||
+      null
+    );
+  }
+  function speakJP(text) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    let t = (text || "").trim();
+    if (!t) return;
+    const u = new SpeechSynthesisUtterance(t);
+    u.lang = "ja-JP";
+    u.volume = 1;
+    u.rate = 0.95;
+    u.pitch = 1;
+    const v = pickJapaneseVoice();
+    if (v) u.voice = v;
+    window.speechSynthesis.speak(u);
+  }
+  try { window.speechSynthesis.getVoices(); } catch(e) {}
+
+  // ====== 렌더 ======
+  const qCard = document.getElementById("qCard");
+  const posText = document.getElementById("posText");
+  const bar = document.getElementById("bar");
+  const typePill = document.getElementById("typePill");
+  const ttsBtn = document.getElementById("ttsBtn");
+
+  function partLabel(p){
+    if (p === 1) return "PART 1 文字・語彙";
+    if (p === 2) return "PART 2 文法";
+    if (p === 3) return "PART 3 読解";
+    if (p === 4) return "PART 4 聴解";
+    return "TEST";
+  }
+
+  function renderQuestion() {
+    const q = QUESTIONS[idx] || {};
+    const p = Number(q.part || PART || 0);
+
+    posText.textContent = `${idx+1} / ${TOTAL}`;
+    bar.style.width = `${Math.round(((idx+1)/TOTAL)*100)}%`;
+    typePill.textContent = partLabel(p);
+
+    const chosen = answers[idx];
+
+    const qText = q.q || "";
+    const choices = Array.isArray(q.choices) ? q.choices : [];
+    const choicesHtml = choices.map((c, i) => {
+      const checked = (chosen === i);
+      return `
+        <div class="choice ${checked ? "is-selected" : ""}" data-i="${i}">
+          <input type="radio" name="c" ${checked ? "checked" : ""} />
+          <div><b>${i+1}.</b> ${escapeHtml(c)}</div>
+        </div>
+      `;
+    }).join("");
+
+    qCard.innerHTML = `
+      <div class="q-title">${escapeHtml(partLabel(p))}</div>
+      <div class="q-jp">${nl2brSafe(qText)}</div>
+      <div class="choices">${choicesHtml}</div>
+      <div class="small" style="margin-top:10px;">
+        ※ 正しい答えを選んで「次へ」。最後に採点します。
+      </div>
+    `;
+
+    qCard.querySelectorAll(".choice").forEach(box => {
+      box.addEventListener("click", () => {
+        const i = Number(box.getAttribute("data-i"));
+        answers[idx] = i;
+        renderQuestion();
+        updateNav();
+      });
+    });
+
+    // ✅ PART4에서만 TTS 버튼 표시 + 동작
+    if (p === 4) {
+      ttsBtn.style.display = "";
+      ttsBtn.onclick = () => {
+        const t = (q.meta && q.meta.tts) ? q.meta.tts : (q.meta && q.meta.jp) ? q.meta.jp : qText;
+        speakJP(t);
+      };
+    } else {
+      ttsBtn.style.display = "none";
+      ttsBtn.onclick = null;
+    }
+  }
+
+  // ====== 네비게이션 ======
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const finishBtn = document.getElementById("finishBtn");
+
+  function updateNav() {
+    prevBtn.disabled = (idx === 0);
+    nextBtn.disabled = (idx === TOTAL - 1);
+  }
+
+  prevBtn.addEventListener("click", () => {
+    if (idx > 0) { idx--; renderQuestion(); updateNav(); }
+  });
+  nextBtn.addEventListener("click", () => {
+    if (idx < TOTAL-1) { idx++; renderQuestion(); updateNav(); }
+  });
+
+  // ====== 결과/오답노트 ======
+  const resultCard = document.getElementById("resultCard");
+
+  finishBtn.addEventListener("click", async () => {
+    // ✅ 서버 채점 사용 (N1)
+    const res = await fetch(`/api/jlpt/n1/test/grade/${PART || 1}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ answers })
+    });
+    const data = await res.json();
+
+    const correct = Number(data.correct ?? 0);
+    const total = Number(data.total ?? TOTAL);
+    const score = Number(data.score ?? (total ? Math.round((correct/total)*100) : 0));
+    const items = Array.isArray(data.items) ? data.items : [];
+
+    let wrongHtml = "";
+    const wrongItems = items.filter(it => !it.is_correct);
+
+    if (wrongItems.length === 0) {
+      wrongHtml = `<div style="margin-top:12px; font-weight:950; color:#16a34a;">완벽합니다! 🎉</div>`;
+    } else {
+      wrongHtml = wrongItems.map(it => {
+        const no = it.no ?? 0;
+        const userIndex = it.user_index;
+        const ansIndex = it.answer_index ?? 0;
+
+        const q = QUESTIONS[(no-1)] || {};
+        const choices = Array.isArray(q.choices) ? q.choices : [];
+        const chosenText = (userIndex === null || userIndex === undefined) ? "미선택" : (choices[userIndex] ?? "");
+        const correctText = choices[ansIndex] ?? "";
+
+        const koQ = it.q_ko || "";
+        const koChoices = Array.isArray(it.choices_ko) ? it.choices_ko : [];
+        const koExplain = it.explain_ko || "";
+        const koChoicesHtml = koChoices.length ? koChoices.map((c, i) => `${i+1}. ${c}`).join("\n") : "";
+
+        const koBox = (koQ || koChoicesHtml || koExplain) ? `
+          <div class="ko-box">
+            <div class="k-title">🟩 해설(한국어)</div>
+            ${koQ ? `<div class="k-line"><b>문제:</b>\n${escapeHtml(koQ)}</div>` : ""}
+            ${koChoicesHtml ? `<div class="k-line" style="margin-top:6px;"><b>보기:</b>\n${escapeHtml(koChoicesHtml)}</div>` : ""}
+            ${koExplain ? `<div class="k-line" style="margin-top:6px;"><b>설명:</b>\n${escapeHtml(koExplain)}</div>` : ""}
+          </div>
+        ` : "";
+
+        return `
+          <div class="wrong-item">
+            <div class="small"><b>#${no}</b> (${escapeHtml(partLabel(Number(q.part || PART || 0)))})</div>
+
+            <div class="q-jp" style="font-size:16px; margin-top:8px;">${nl2brSafe(q.q || "")}</div>
+
+            <div class="small" style="margin-top:10px;">내 답: <b>${escapeHtml(chosenText || "미선택")}</b></div>
+            <div class="small">정답: <b style="color:#2563eb;">${escapeHtml(correctText)}</b></div>
+
+            ${koBox}
+          </div>
+        `;
+      }).join("");
+    }
+
+    resultCard.innerHTML = `
+      <div class="score">점수: ${score}점 (${correct} / ${total})</div>
+      <div class="small" style="margin-top:6px;">오답: ${total - correct}개</div>
+      <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btnx primary" onclick="location.reload()">다시 풀기</button>
+        <a class="btnx" href="/jlpt/n1">N1로</a>
+        <a class="btnx" href="/jlpt">JLPT 홈</a>
+      </div>
+      <div style="margin-top:14px; font-weight:950; color:#0b1f4b;">오답 노트</div>
+      ${wrongHtml}
+    `;
+
+    document.getElementById("qCard").style.display = "none";
+    document.querySelector(".nav").style.display = "none";
+    resultCard.style.display = "";
+    window.scrollTo({top: 0, behavior: "smooth"});
+  });
+
+  // 초기 렌더
+  renderQuestion();
+  updateNav();
+</script>
+{% endblock %}
