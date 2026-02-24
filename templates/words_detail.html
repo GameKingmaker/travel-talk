@@ -156,46 +156,58 @@
 
     <div class="card phrase-list">
     <table>
-      <thead>
-  <tr>
-    <th style="width:90px;">즐겨찾기</th>
-    <th style="width:25%;">일본어</th>
-    <th style="width:25%;">발음</th>
-    <th>뜻</th>
-  </tr>
-</thead>
+  <thead>
+    <tr>
+      <th style="width:90px;">즐겨찾기</th>
+      <th style="width:25%;">한자/표기</th>
+      <th style="width:18%;">가나</th>
+      <th style="width:18%;">발음</th>
+      <th>뜻</th>
+    </tr>
+  </thead>
 
+  <tbody id="wordTableBody">
+  {% for w in (rows or []) %}
+    {# rows가 dict든 tuple/list든 대응 (구버전도 안전) #}
+    {% set kanji = w.kanji if w.kanji is defined else (w.jp if w.jp is defined else w[0]) %}
+    {% set kana  = w.kana  if w.kana  is defined else (w.kana if w.kana is defined else "") %}
+    {% set pron  = w.pron  if w.pron  is defined else w[1] %}
+    {% set ko    = w.ko    if w.ko    is defined else w[2] %}
 
-      <tbody>
-      {% for row in (rows or []) %}
-        {# rows가 dict든 tuple/list든 대응 #}
-        {% set jp   = row.jp   if row.jp   is defined else row[0] %}
-        {% set pron = row.pron if row.pron is defined else row[1] %}
-        {% set ko   = row.ko   if row.ko   is defined else row[2] %}
+    {% set keyjp = kanji or kana or "" %}
+    {% set is_fav = (fav_jp_set and (keyjp in fav_jp_set)) %}
 
-        {% set is_fav = (fav_jp_set and (jp in fav_jp_set)) %}
+    <tr class="word-row"
+        data-cat="{{ cat_key }}"
+        data-kanji="{{ (kanji or '')|e }}"
+        data-kana="{{ (kana or '')|e }}"
+        data-pron="{{ (pron or '')|e }}"
+        data-ko="{{ (ko or '')|e }}">
 
-        <tr>
-          <td>
-            <button type="button"
-                    class="fav-btn {% if is_fav %}on{% endif %}"
-                    data-cat="{{ cat_key }}"
-                    data-jp="{{ jp }}">
-              {% if is_fav %}★{% else %}☆{% endif %}
-            </button>
-          </td>
+      <td>
+        <button type="button"
+                class="fav-btn {% if is_fav %}on{% endif %}"
+                data-cat="{{ cat_key }}"
+                data-jp="{{ keyjp|e }}"
+                data-kana="{{ (kana or '')|e }}"
+                aria-label="즐겨찾기">
+          {% if is_fav %}★{% else %}☆{% endif %}
+        </button>
+      </td>
 
-          <td>
-            <span class="jp-text">{{ jp }}</span>
-            <button type="button" class="tts-btn" data-tts="{{ jp }}">🔊</button>
-          </td>
+      <td>
+        <span class="jp-text">{{ kanji }}</span>
+        <button type="button" class="tts-btn" data-tts="{{ keyjp|e }}">🔊</button>
+      </td>
 
-          <td><span class="p-pron">{{ pron }}</span></td>
-          <td><span class="p-ko">{{ ko }}</span></td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+      <td><span class="p-kana">{{ kana or "-" }}</span></td>
+      <td><span class="p-pron">{{ pron or "-" }}</span></td>
+      <td><span class="p-ko">{{ ko or "-" }}</span></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+      
 
     <div class="muted">총 {{ (rows or [])|length }}개</div>
   </div>
@@ -203,3 +215,5 @@
 </div>
 
 {% endblock %}
+
+
