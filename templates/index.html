@@ -36,16 +36,32 @@
 <meta name="description" content="{{ seo_desc }}">
 <meta name="keywords" content="{{ seo_keywords }}">
 <div class="site-summary-box">
-  <h3>일본어 회화 공부방은 이런 사이트예요</h3>
+  <h3>일본어 공부방은 이런 사이트예요</h3>
+
   <p>
-    일본어 회화 공부방은 일본어를 처음 배우는 학습자부터 여행 회화를 익히고 싶은 사용자까지,
-    </p>
-    <p>
-    누구나 상황별로 일본어 표현을 쉽고 체계적으로 연습할 수 있도록 만든 무료 학습 사이트입니다.
-  </p>
+  일본어 공부방은 <b>일본어 회화 공부방</b>과 <b>JLPT 공부방</b> 두 가지 학습 공간을 제공하는
+  커뮤니티형 일본어 공부 사이트입니다.
+  <br>
+  단순 회화 연습부터 JLPT N5~N1 단어·문장·문법 학습까지,
+  <br>
+  <b>학습 목적에 맞춰 원하는 공부를 선택</b>할 수 있도록 구성되어 있습니다.
+</p>
+
+<p>
+  <b>일본어 회화 공부방</b> 
+  <br>
+  일본 여행과 일상 회화를 목적으로, 실제 상황에서 바로 사용할 수 있는 표현들을 중심으로 학습할 수 있는 공간입니다.
+</p>
+
+<p>
+  <b>JLPT 공부방</b>
+  <br>
+  히라가나·가타카나 기초부터 시작해 JLPT N5~N1까지 단계별 단어·문장·문법 학습과 실전 테스트까지 준비된 시험 학습 공간입니다.
+</p>
+
   <p>
-    단어 학습, 상황별 회화, 퀴즈와 시뮬레이션 콘텐츠를 통해
-    단순 암기가 아닌 실제 사용 중심의 일본어 회화를 단계적으로 익히는 것을 목표로 합니다.
+    또한 <b>저장 기능(학습노트)</b>을 통해 내가 필요한 단어/문장/문법을 모아 관리하고,
+    복습할 때는 <b>발음/뜻 가리기</b>로 빠르게 자기 점검할 수 있습니다.
   </p>
 </div>
 
@@ -116,24 +132,34 @@
       <div class="menu-name">📘단어모음</div>
       <div class="menu-desc">자주 쓰는 단어를 모아 바로 암기</div>
     </a>
-    <a class="menu-card" href="{{ url_for('note') }}" aria-label="학습노트로 이동">
-      <div class="menu-name">📝나만의 학습노트</div>
-      <div class="menu-desc">외운 문장 저장 + 복습 체크로 기억 강화</div>
-    </a>
-
     <a class="menu-card" href="{{ url_for('travel_start') }}" aria-label="퀴즈 게임으로 이동">
       <div class="menu-name">🎮일본여행 시뮬레이션</div>
       <div class="menu-desc">실제 여행 상황처럼 이동하며 일본어를 공부해보세요 [시작하기]</div>
     </a>
 
-    <a class="menu-card" href="{{ url_for('quiz') }}" aria-label="퀴즈 게임으로 이동">
-      <div class="menu-name">🎮퀴즈 게임</div>
-      <div class="menu-desc">재미있게 푸는 일본어 퀴즈 [시작하기]</div>
+    <a class="menu-card" href="{{ url_for('jlpt_n1_home') }}" aria-label="JLPT N1으로 이동">
+      <div class="menu-name">📝JLPT N1 공부</div>
+      <div class="menu-desc">N1 단어,문장,문법,테스트 </div>
     </a>
 
-    <a class="menu-card" href="{{ url_for('board') }}" aria-label="일반게시판으로 이동">
-      <div class="menu-name">💬일반게시판</div>
-      <div class="menu-desc">질문·후기·정보 공유로 같이 성장하기</div>
+    <a class="menu-card" href="{{ url_for('jlpt_n2_home') }}" aria-label="JLPT N2으로 이동">
+      <div class="menu-name">📝JLPT N2 공부</div>
+      <div class="menu-desc">N2 단어,문장,문법,테스트</div>
+    </a>
+
+    <a class="menu-card" href="{{ url_for('jlpt_n3_home') }}" aria-label="JLPT N3으로 이동">
+      <div class="menu-name">📝JLPT N3 공부</div>
+      <div class="menu-desc">N3 단어,문장,문법,테스트</div>
+    </a>
+
+    <a class="menu-card" href="{{ url_for('jlpt_n4_home') }}" aria-label="JLPT N4으로 이동">
+      <div class="menu-name">📝JLPT N4 공부</div>
+      <div class="menu-desc">N4 단어,문장,문법,테스트</div>
+    </a>
+
+    <a class="menu-card" href="{{ url_for('jlpt_n5_home') }}" aria-label="JLPT N5으로 이동">
+      <div class="menu-name">📝JLPT N5 공부</div>
+      <div class="menu-desc">N5 단어,문장,문법,테스트</div>
     </a>
 
   </div>
