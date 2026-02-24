@@ -215,7 +215,7 @@ def admin_dashboard():
     if user and not isinstance(user, dict):
         user = dict(user)
 
-    today = kst_today_ymd()  # "2026-01-29" 같은 형태
+    today = kst_today_key()  # "2026-01-29" 같은 형태
 
     conn = db()
     try:
