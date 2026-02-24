@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+{% block title %}JLPT N1 시험 | 테스트{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jlpt.css') }}">
+{% endblock %}
+
+{% block content %}
+<style>
+  :root{
+    --bg:#f6f8ff;
+    --card:#ffffff;
+    --text:#0b1f4b;
+    --muted:#64748b;
+    --line:rgba(15,23,42,.10);
+    --shadow:0 16px 34px rgba(15,23,42,.08);
+    --shadow2:0 12px 26px rgba(15,23,42,.10);
+    --blue:#2563eb;
+    --blue2:#1d4ed8;
+    --chip:#eef2ff;
+    --chipLine:#dbe7ff;
+  }
+
+  .wrap{max-width:980px;margin:0 auto;padding:0 14px;}
+  .hero{
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:linear-gradient(180deg, rgba(37,99,235,.07), rgba(255,255,255,1) 55%);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .hero-in{padding:22px;}
+  .title{
+    font-size:22px;
+    font-weight:950;
+    color:var(--text);
+    letter-spacing:-.02em;
+  }
+  .sub{
+    margin-top:8px;
+    color:var(--muted);
+    font-weight:800;
+    line-height:1.65;
+    font-size:14px;
+  }
+
+  .meta-row{
+    margin-top:14px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 12px;
+    border-radius:999px;
+    background:var(--chip);
+    border:1px solid var(--chipLine);
+    color:var(--blue2);
+    font-weight:950;
+    font-size:12px;
+    white-space:nowrap;
+  }
+  .pill b{color:var(--text);}
+
+  .btnx{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:44px;
+    padding:0 16px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:#fff;
+    font-weight:950;
+    cursor:pointer;
+    transition:.16s ease;
+    text-decoration:none;
+    color:var(--text);
+  }
+  .btnx:hover{transform:translateY(-1px);box-shadow:var(--shadow2);}
+  .btnx-primary{
+    background:linear-gradient(180deg, rgba(37,99,235,1), rgba(29,78,216,1));
+    border:1px solid rgba(29,78,216,.35);
+    color:#fff;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:12px;
+    margin-top:16px;
+  }
+  .cardx{
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:var(--card);
+    padding:16px;
+    box-shadow:0 10px 22px rgba(15,23,42,.06);
+    transition:.16s ease;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    min-height:170px;
+  }
+  .cardx:hover{
+    transform:translateY(-1px);
+    box-shadow:0 16px 30px rgba(15,23,42,.10);
+    border-color:rgba(37,99,235,.22);
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .card-title{
+    font-weight:950;
+    color:var(--text);
+    font-size:16px;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  .tag{
+    font-size:12px;
+    font-weight:950;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid rgba(15,23,42,.10);
+    background:#f8fafc;
+    color:#334155;
+  }
+
+  .card-desc{
+    margin:0;
+    color:var(--muted);
+    font-weight:800;
+    line-height:1.6;
+    font-size:13.5px;
+  }
+
+  .bullets{
+    margin:0;
+    padding-left:18px;
+    color:#334155;
+    font-weight:800;
+    font-size:13px;
+    line-height:1.6;
+  }
+  .bullets li{margin:4px 0;}
+
+  .card-actions{
+    margin-top:auto;
+  }
+
+  .note{
+    margin-top:14px;
+    border:1px dashed rgba(15,23,42,.18);
+    background:rgba(255,255,255,.75);
+    border-radius:18px;
+    padding:14px 16px;
+    color:#475569;
+    font-weight:800;
+    line-height:1.7;
+    font-size:13px;
+  }
+
+  @media (max-width:720px){
+    .grid{grid-template-columns:1fr;}
+    .hero-in{padding:18px;}
+  }
+</style>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-in">
+      <div class="title">JLPT N1 실전 테스트</div>
+      <div class="sub">
+        논설·비평·공식 문서를 중심으로 한 <b>최상급 난이도</b> 예시 문제입니다.
+        <b>채점은 마지막에</b> 진행하며, 해설은 <b>문항 클릭</b>으로 개별 확인할 수 있어요.
+      </div>
+
+      <div class="meta-row">
+        <span class="pill">🧠 <b>중점</b> 논리 전개·뉘앙스</span>
+        <span class="pill">📘 <b>독해</b> 문장 구조 파악</span>
+        <span class="pill">🎯 <b>목표</b> 고난도 문제 대응력</span>
+      </div>
+
+      <div style="margin-top:14px;">
+        <a class="btnx" href="{{ url_for('jlpt_n1_home') }}">← N1 홈으로</a>
+      </div>
+
+      <div class="grid">
+        <!-- PART 1 -->
+        <div class="cardx">
+          <div class="card-top">
+            <h3 class="card-title">PART 1 文字・語彙</h3>
+            <span class="tag">고급 어휘</span>
+          </div>
+          <p class="card-desc">
+            추상어·전문 용어·관용 표현을 정확히 구분하는 파트예요.
+          </p>
+          <ul class="bullets">
+            <li>고급 한자·표현 의미</li>
+            <li>유사 어휘 미묘한 차이</li>
+            <li>문맥 기반 정확한 선택</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btnx btnx-primary" href="{{ url_for('jlpt_n1_test_start', part=1) }}">시작</a>
+          </div>
+        </div>
+
+        <!-- PART 2 -->
+        <div class="cardx">
+          <div class="card-top">
+            <h3 class="card-title">PART 2 文法</h3>
+            <span class="tag">문어·논리</span>
+          </div>
+          <p class="card-desc">
+            문어체·논리 연결·단정 표현 등 고급 문형을 정확히 판단하는 파트예요.
+          </p>
+          <ul class="bullets">
+            <li>원인·대조·추론 문형</li>
+            <li>문장 뉘앙스 판단</li>
+            <li>공식/논설체 표현</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btnx btnx-primary" href="{{ url_for('jlpt_n1_test_start', part=2) }}">시작</a>
+          </div>
+        </div>
+
+        <!-- PART 3 -->
+        <div class="cardx">
+          <div class="card-top">
+            <h3 class="card-title">PART 3 読解</h3>
+            <span class="tag">논설 독해</span>
+          </div>
+          <p class="card-desc">
+            긴 논설문·비평문을 읽고 논지와 결론을 정확히 파악하는 파트예요.
+          </p>
+          <ul class="bullets">
+            <li>주장·근거 구조 분석</li>
+            <li>접속·지시어 추적</li>
+            <li>시간 관리 + 집중력</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btnx btnx-primary" href="{{ url_for('jlpt_n1_test_start', part=3) }}">시작</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        🎧 안내: 이 테스트는 <b>PART 1~PART 3</b>에 집중한 구성입니다.
+        <b>PART 4(청해)</b>는 제공하지 않으며,
+        대신 고급 어휘·문법·독해를 통해 <b>N1 실전 대응력</b>을 강화합니다.
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
