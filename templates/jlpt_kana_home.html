@@ -1,0 +1,630 @@
+{% extends "base.html" %}
+
+{% block title %}JLPT 기초 | 히라가나·가타카나{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jlpt.css') }}">
+
+  <style>
+  :root{
+    --bg:#f6f8ff;
+    --card:#ffffff;
+    --text:#0b1f4b;
+    --muted:#64748b;
+    --line:rgba(15,23,42,.10);
+    --shadow:0 12px 30px rgba(15,23,42,.06);
+    --shadow2:0 10px 24px rgba(15,23,42,.10);
+    --blue:#2563eb;
+    --blue2:#1d4ed8;
+    --chip:#eef2ff;
+    --chipLine:#dbe7ff;
+    --focus:rgba(37,99,235,.18);
+    --ok:#16a34a;
+    --warn:#f59e0b;
+    --danger:#ef4444;
+  }
+
+  /* 전체 레이아웃 보정 */
+  .kana-wrap{ display:flex; flex-direction:column; gap:12px; }
+  .jlpt-card{ box-shadow: var(--shadow); border:1px solid var(--line); border-radius:18px; background:var(--card); }
+
+  .hero{
+    padding:18px;
+    background:
+      radial-gradient(1200px 600px at 10% 0%, rgba(37,99,235,.12), transparent 55%),
+      radial-gradient(1200px 600px at 90% 0%, rgba(99,102,241,.10), transparent 55%),
+      linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.02));
+  }
+  .hero-top{
+    display:flex; gap:14px; align-items:flex-start; justify-content:space-between;
+    flex-wrap:wrap;
+  }
+  .hero h1{ margin:0; font-size:22px; font-weight:950; color:var(--text); letter-spacing:-.2px; }
+  .hero p{ margin:8px 0 0 0; color:var(--muted); font-weight:800; line-height:1.55; }
+  .hero-badges{ display:flex; gap:8px; flex-wrap:wrap; }
+  .badge{
+    display:inline-flex; align-items:center; gap:6px;
+    height:34px; padding:0 12px;
+    border-radius:999px;
+    border:1px solid rgba(15,23,42,.12);
+    background:#fff;
+    font-weight:950;
+    font-size:12.5px;
+    color:var(--text);
+  }
+  .badge b{ color:var(--blue2); }
+  .hero-actions{ margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
+
+  /* 빠른 이동 */
+  .quick-nav{
+    padding:14px 16px;
+    display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+  }
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    height:34px;
+    padding:0 12px;
+    border-radius:999px;
+    border:1px solid rgba(15,23,42,.12);
+    background:#fff;
+    font-weight:950;
+    cursor:pointer;
+    transition:.15s ease;
+    color:var(--text);
+    font-size:12.5px;
+    user-select:none;
+    text-decoration:none;
+  }
+  .chip:hover{ transform:translateY(-1px); box-shadow: var(--shadow2); }
+  .chip.is-on{
+    background:var(--chip);
+    border-color:var(--chipLine);
+    color:var(--blue2);
+  }
+
+  /* 정보 카드 그리드 */
+  .info-grid{
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap:12px;
+    padding:14px;
+  }
+  .info-card{
+    grid-column: span 6;
+    padding:16px;
+    border-radius:16px;
+    border:1px solid rgba(15,23,42,.10);
+    background:#fff;
+  }
+  .info-card h3{
+    margin:0 0 8px 0;
+    font-size:16px;
+    font-weight:950;
+    color:var(--text);
+    letter-spacing:-.2px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .info-card p{
+    margin:0;
+    color:var(--muted);
+    font-weight:800;
+    line-height:1.6;
+    font-size:13.5px;
+  }
+  .info-list{
+    margin:10px 0 0 0;
+    padding-left:18px;
+    color:#111827;
+    font-weight:850;
+    line-height:1.7;
+    font-size:13.5px;
+  }
+  .hint{
+    margin-top:10px;
+    padding:10px 12px;
+    border-radius:14px;
+    border:1px dashed rgba(37,99,235,.35);
+    background: rgba(37,99,235,.05);
+    color:#0b1f4b;
+    font-weight:900;
+    font-size:13px;
+  }
+
+  @media (max-width: 980px){
+    .info-card{ grid-column: span 12; }
+  }
+
+  /* 규칙 카드 */
+  .rule-grid{
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap:12px;
+    padding:14px;
+  }
+  .rule{
+    grid-column: span 6;
+    padding:16px;
+    border-radius:16px;
+    border:1px solid rgba(15,23,42,.10);
+    background:#fff;
+  }
+  .rule h4{
+    margin:0 0 8px 0;
+    font-size:15px;
+    font-weight:950;
+    color:var(--text);
+    display:flex; align-items:center; gap:8px;
+  }
+  .tag{
+    display:inline-flex; align-items:center;
+    height:24px; padding:0 10px;
+    border-radius:999px;
+    border:1px solid rgba(15,23,42,.12);
+    background:#fff;
+    font-weight:950;
+    font-size:12px;
+    color:#111827;
+  }
+  .tag.ok{ border-color: rgba(22,163,74,.25); background: rgba(22,163,74,.07); }
+  .tag.warn{ border-color: rgba(245,158,11,.28); background: rgba(245,158,11,.08); }
+  .tag.danger{ border-color: rgba(239,68,68,.25); background: rgba(239,68,68,.08); }
+
+  .rule p{
+    margin:0;
+    color:var(--muted);
+    font-weight:850;
+    line-height:1.65;
+    font-size:13.5px;
+  }
+  .ex{
+    margin-top:10px;
+    padding:10px 12px;
+    border-radius:14px;
+    background:#fbfdff;
+    border:1px solid rgba(15,23,42,.08);
+    font-weight:900;
+    color:#0b1f4b;
+    font-size:13.5px;
+    line-height:1.7;
+  }
+  .ex code{
+    background:rgba(37,99,235,.08);
+    border:1px solid rgba(37,99,235,.15);
+    padding:2px 6px;
+    border-radius:10px;
+    font-weight:950;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+  @media (max-width: 980px){
+    .rule{ grid-column: span 12; }
+  }
+
+  /* 미니표: 요음/장음 규칙 */
+  .mini-table-wrap{ padding:14px; overflow:auto; }
+  table.mini{
+    width:100%;
+    min-width:880px;
+    border-collapse:separate;
+    border-spacing:0;
+    border:1px solid rgba(15,23,42,.10);
+    border-radius:14px;
+    overflow:hidden;
+    background:#fff;
+  }
+  table.mini th, table.mini td{
+    padding:12px 12px;
+    border-bottom:1px solid rgba(15,23,42,.08);
+    text-align:left;
+    vertical-align:top;
+  }
+  table.mini thead th{
+    background:#f9fafb;
+    font-size:13px;
+    color:#374151;
+    font-weight:950;
+    white-space:nowrap;
+  }
+  table.mini tbody td{
+    font-size:13.5px;
+    font-weight:850;
+    color:#0b1f4b;
+    line-height:1.7;
+  }
+  table.mini tbody tr:last-child td{ border-bottom:none; }
+
+  /* 가나 표 섹션: 기존 구조 유지 + 헤더 개선 */
+  .kana-head{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:10px; flex-wrap:wrap;
+    padding:14px 16px 6px 16px;
+  }
+  .kana-title{
+    margin:0; font-size:18px; font-weight:950; color:var(--text);
+  }
+  .kana-tip{
+    color:var(--muted);
+    font-weight:900;
+    font-size:13px;
+  }
+
+  /* 히라/가타 표(네 스타일 유지하면서 살짝 업) */
+  .kana-grid{
+    padding:14px 16px 16px 16px;
+    display:grid;
+    grid-template-columns: repeat(5, minmax(0,1fr));
+    gap:10px;
+  }
+  .kana-cell{
+    border:1px solid rgba(15,23,42,.10);
+    border-radius:16px;
+    background:#fff;
+    min-height:86px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    transition:.15s ease;
+  }
+  .kana-cell:hover{ transform:translateY(-1px); box-shadow: var(--shadow2); }
+  .kana-cell.is-empty{
+    background:transparent;
+    border:1px dashed rgba(148,163,184,.55);
+    box-shadow:none;
+  }
+  .kana-char{
+    font-size:34px;
+    font-weight:950;
+    color:#0b1f4b;
+    line-height:1;
+  }
+  .kana-pron{
+    font-size:13px;
+    font-weight:950;
+    color:#475569;
+  }
+
+  @media (max-width: 780px){
+    .kana-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+  }
+
+  /* 접기/펼치기 */
+  details{
+    border:1px solid rgba(15,23,42,.10);
+    background:#fff;
+    border-radius:16px;
+    padding:12px 14px;
+  }
+  summary{
+    cursor:pointer;
+    font-weight:950;
+    color:#0b1f4b;
+    list-style:none;
+  }
+  summary::-webkit-details-marker{ display:none; }
+  .details-body{
+    margin-top:10px;
+    color:var(--muted);
+    font-weight:850;
+    line-height:1.7;
+    font-size:13.5px;
+  }
+
+  </style>
+{% endblock %}
+
+{% block content %}
+<div class="kana-wrap">
+
+  <!-- HERO -->
+  <div class="jlpt-card hero" id="top">
+    <div class="hero-top">
+      <div>
+        <h1>📌 JLPT 기초(가나) — “처음 보는 사람”도 읽게 만들기</h1>
+        <p>
+          히라가나/가타카나 표를 **눈에 익히는 것**이 1순위예요.  
+          그 다음은 <b>촉음(っ)</b>, <b>장음(ー)</b>, <b>요음(ゃゅょ)</b>, <b>탁음/반탁음(゛゜)</b> 규칙만 잡으면
+          “일본어가 갑자기 읽히기 시작”합니다.
+        </p>
+      </div>
+
+      <div class="hero-badges">
+        <div class="badge">✅ 목표: <b>읽기 속도</b> 올리기</div>
+        <div class="badge">✅ 핵심: <b>규칙 4개</b>만 기억</div>
+        <div class="badge">✅ 추천: <b>매일 3분</b></div>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a class="btn btn-outline" href="#guide">학습 방법</a>
+      <a class="btn btn-outline" href="#rules">읽는 규칙</a>
+      <a class="btn btn-outline" href="#hira">히라가나</a>
+      <a class="btn btn-outline" href="#kata">가타카나</a>
+      <a class="btn btn-outline" href="#table">추가 규칙 정리</a>
+    </div>
+  </div>
+
+  <!-- QUICK NAV -->
+  <div class="jlpt-card quick-nav">
+    <a class="chip is-on" href="#top">맨위</a>
+    <a class="chip" href="#guide">학습 가이드</a>
+    <a class="chip" href="#rules">규칙 4종</a>
+    <a class="chip" href="#hira">히라가나 표</a>
+    <a class="chip" href="#kata">가타카나 표</a>
+    <a class="chip" href="#table">추가 규칙 정리</a>
+  </div>
+
+  <!-- GUIDE -->
+  <div class="jlpt-card" id="guide">
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>🧠 “왜 글자가 두 개(히라/가타)예요?”</h3>
+        <p>
+          소리는 같지만 **쓰임이 달라서** 글자도 두 가지예요.
+          처음에는 “쓰임”은 몰라도 되고, **소리만 정확히** 익히면 됩니다.
+        </p>
+        <ul class="info-list">
+          <li><b>히라가나</b>: 기본 단어/조사/문법에 많이 사용</li>
+          <li><b>가타카나</b>: 외래어/강조/이름표기 등에 자주 사용</li>
+        </ul>
+        <div class="hint">Tip: 먼저 “소리(읽기)”만 잡으면, 쓰임은 자연스럽게 따라와요.</div>
+      </div>
+
+      <div class="info-card">
+        <h3>📈 초보자용 “가장 빠른 학습 루트”</h3>
+        <p>
+          하루 3~5분으로도 충분해요. 핵심은 “기억”보다 **반복 노출**입니다.
+        </p>
+        <ul class="info-list">
+          <li>1단계: 표를 <b>한 줄(5글자)</b>씩 눈으로 읽기</li>
+          <li>2단계: い/う/え 같은 <b>가운데 열</b>부터 속도 올리기</li>
+          <li>3단계: 아래 <b>규칙 4개</b>(촉음/장음/요음/탁음)만 익히기</li>
+          <li>4단계: 단어에서 “규칙 찾기 게임”처럼 적용하기</li>
+        </ul>
+        <div class="hint">Tip: “천천히 정확하게 → 점점 빠르게”가 정석이에요.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RULES -->
+  <div class="jlpt-card" id="rules">
+    <div style="padding:14px 16px 0 16px;">
+      <h2 class="kana-title" style="font-size:18px;">📌 읽는 규칙 (이 4개만 알면 갑자기 읽혀요)</h2>
+      <div class="kana-tip">아래 예시를 “그대로 소리내기”만 해도 효과가 커요.</div>
+    </div>
+
+    <div class="rule-grid">
+      <div class="rule">
+        <h4>1) 작은 っ (촉음) <span class="tag warn">잠깐 멈춤</span></h4>
+        <p>작은 <b>っ</b>는 소리를 “꽉!” 막고 다음 자음을 강하게 시작해요.</p>
+        <div class="ex">
+          예) <code>がっこう</code> → 가<span style="opacity:.6"> (멈춤)</span>코오<br>
+          예) <code>きっぷ</code> → 킷푸<br>
+          예) <code>さっき</code> → 삿키
+        </div>
+        <div class="hint">Tip: ‘멈춤’ 자체가 소리예요. (가-코오가 아니라 가(멈춤)코오)</div>
+      </div>
+
+      <div class="rule">
+        <h4>2) 장음 (길게) <span class="tag ok">길~게</span></h4>
+        <p>소리를 길게 늘려요. 가타카나는 보통 <b>ー</b>로 표시합니다.</p>
+        <div class="ex">
+          예) <code>コーヒー</code> → 코—히—<br>
+          예) <code>スーパー</code> → 스—파—<br>
+          예) <code>おかあさん</code> → 오카아상(あ가 늘어남)
+        </div>
+        <div class="hint">Tip: 장음은 “글자 1개 더” 있다고 생각하면 쉬워요.</div>
+      </div>
+
+      <div class="rule">
+        <h4>3) 요음 (ゃ/ゅ/ょ) <span class="tag ok">합쳐서 1소리</span></h4>
+        <p>큰 글자 + 작은 <b>ゃ/ゅ/ょ</b>는 “두 글자를 합쳐 한 소리”로 읽어요.</p>
+        <div class="ex">
+          예) <code>きゃ</code> = き(키) + ゃ(야) → 캬<br>
+          예) <code>しゅ</code> = し(시) + ゅ(유) → 슈<br>
+          예) <code>りょこう</code> → 료코오(りょ=료)
+        </div>
+        <div class="hint">Tip: 작은 ゃゅょ는 “야/유/요”가 아니라 “ㅑ/ㅠ/ㅛ” 느낌!</div>
+      </div>
+
+      <div class="rule">
+        <h4>4) 탁음/반탁음 (゛゜) <span class="tag danger">소리 바뀜</span></h4>
+        <p>같은 글자에 점(゛)이나 동그라미(゜)가 붙으면 소리가 바뀌어요.</p>
+        <div class="ex">
+          탁음(゛): <code>か→が</code>(카→가), <code>さ→ざ</code>(사→자), <code>た→だ</code>(타→다)<br>
+          반탁음(゜): <code>は→ぱ</code>(하→파), <code>ひ→ぴ</code>(히→피)
+        </div>
+        <div class="hint">Tip: “점=더 무겁게(가/자/다/바)” “동그라미=파행(파/피/푸/페/포)”</div>
+      </div>
+    </div>
+
+    <div style="padding:0 14px 14px 14px;">
+      <details>
+        <summary>✅ (추가 팁) ん(ん/ン)은 왜 “응”처럼 들리나요?</summary>
+        <div class="details-body">
+          ん은 단독으로 “응/ㄴ” 느낌 소리예요. 다음 자음에 따라 살짝 달라지지만<br>
+          초보 단계에서는 그냥 “응”으로 통일해도 충분합니다.<br><br>
+          예) <b>こんにちは</b> → 콘니치와 / <b>さんぽ</b> → 산포 / <b>しんぶん</b> → 신분(가까운 느낌)
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- HIRAGANA TABLE (유지) -->
+  <div class="jlpt-card" id="hira">
+    <div class="kana-head">
+      <h2 class="kana-title">히라가나 표</h2>
+      <div class="kana-tip">TIP: い/う/え 같은 “가운데 열”부터 빠르게 읽는 연습을 해보세요.</div>
+    </div>
+
+    <div class="kana-grid">
+      {% for row in hira %}
+        {% for cell in row %}
+          {% if cell.jp %}
+            <div class="kana-cell">
+              <div class="kana-char">{{ cell.jp }}</div>
+              <div class="kana-pron">{{ cell.pron }}</div>
+            </div>
+          {% else %}
+            <div class="kana-cell is-empty"></div>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- KATAKANA TABLE (유지) -->
+  <div class="jlpt-card" id="kata">
+    <div class="kana-head">
+      <h2 class="kana-title">가타카나 표</h2>
+      <div class="kana-tip">외래어(커피/호텔/슈퍼 등)에 정말 자주 나와요.</div>
+    </div>
+
+    <div class="kana-grid">
+      {% for row in kata %}
+        {% for cell in row %}
+          {% if cell.jp %}
+            <div class="kana-cell">
+              <div class="kana-char">{{ cell.jp }}</div>
+              <div class="kana-pron">{{ cell.pron }}</div>
+            </div>
+          {% else %}
+            <div class="kana-cell is-empty"></div>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+<!-- ✅ 추가 규칙 정리: 탁음/반탁음 + 소문자 + 요음(きゃ류) -->
+<div class="jlpt-card" id="table" style="margin-top:12px;">
+  <div style="padding:14px 16px 0 16px;">
+    <h2 class="kana-title">📌 추가 규칙 정리 (탁음/반탁음 · 소문자 · 요음)</h2>
+    <div class="kana-tip">
+      히라/가타 표를 눈에 익힌 뒤, 아래 규칙만 알면 단어가 훨씬 빨리 읽혀요.
+    </div>
+  </div>
+
+  <div style="padding:14px; display:grid; grid-template-columns: repeat(12, 1fr); gap:12px;">
+    <!-- 탁음/반탁음 -->
+    <div style="grid-column: span 6; padding:16px; border:1px solid rgba(15,23,42,.10); border-radius:16px; background:#fff;">
+      <h3 style="margin:0 0 8px 0; font-size:15px; font-weight:950; color:#0b1f4b;">
+        1) 탁음(゛) / 반탁음(゜)
+      </h3>
+      <p style="margin:0; color:#64748b; font-weight:850; line-height:1.65; font-size:13.5px;">
+        같은 글자에 <b>점(゛)</b>이나 <b>동그라미(゜)</b>가 붙으면 소리가 바뀌어요.
+      </p>
+
+      <div style="margin-top:10px; padding:10px 12px; border-radius:14px; background:#fbfdff; border:1px solid rgba(15,23,42,.08);
+                  font-weight:900; color:#0b1f4b; font-size:13.5px; line-height:1.7;">
+        <div><b>が行</b>: が=가 / ぎ=기 / ぐ=구 / げ=게 / ご=고</div>
+        <div><b>ざ行</b>: ざ=자 / じ=지 / ず=즈 / ぜ=제 / ぞ=조</div>
+        <div><b>だ行</b>: だ=다 / ぢ=지 / づ=즈 / で=데 / ど=도</div>
+        <div><b>ば行</b>: ば=바 / び=비 / ぶ=부 / べ=베 / ぼ=보</div>
+        <div style="margin-top:6px;"><b>ぱ行(반탁음)</b>: ぱ=파 / ぴ=피 / ぷ=푸 / ぺ=페 / ぽ=포</div>
+      </div>
+
+      <div style="margin-top:10px; padding:10px 12px; border-radius:14px;
+                  border:1px dashed rgba(37,99,235,.35); background: rgba(37,99,235,.05);
+                  color:#0b1f4b; font-weight:900; font-size:13px;">
+        Tip: “점(゛)=더 무겁게(가/자/다/바)” “동그라미(゜)=파행(파/피/푸/페/포)”
+      </div>
+    </div>
+
+    <!-- 소문자 -->
+    <div style="grid-column: span 6; padding:16px; border:1px solid rgba(15,23,42,.10); border-radius:16px; background:#fff;">
+      <h3 style="margin:0 0 8px 0; font-size:15px; font-weight:950; color:#0b1f4b;">
+        2) 소문자(ぁぃぅぇぉ / ゃゅょ / ゎ) & 가타카나 소문자(ァィゥェォ / ャュョ / ヮ)
+      </h3>
+      <p style="margin:0; color:#64748b; font-weight:850; line-height:1.65; font-size:13.5px;">
+        소문자는 “작게 쓰는 글자”로, 보통 <b>요음(ゃゅょ)</b>을 만들거나 발음을 조절할 때 사용돼요.
+      </p>
+
+      <div style="margin-top:10px; padding:10px 12px; border-radius:14px; background:#fbfdff; border:1px solid rgba(15,23,42,.08);
+                  font-weight:900; color:#0b1f4b; font-size:13.5px; line-height:1.7;">
+        <div><b>히라가나 소문자</b>: ぁ=아, ぃ=이, ぅ=우, ぇ=에, ぉ=오</div>
+        <div><b>요음 소문자</b>: ゃ=야, ゅ=유, ょ=요</div>
+        <div><b>작은 ゎ</b>: ゎ=와</div>
+        <div style="margin-top:6px;"><b>가타카나 소문자</b>: ァ=아, ィ=이, ゥ=우, ェ=에, ォ=오</div>
+        <div><b>요음 소문자</b>: ャ=야, ュ=유, ョ=요, ヮ=와</div>
+      </div>
+
+      <div style="margin-top:10px; padding:10px 12px; border-radius:14px;
+                  border:1px dashed rgba(245,158,11,.35); background: rgba(245,158,11,.08);
+                  color:#0b1f4b; font-weight:900; font-size:13px;">
+        Tip: 작은 ゃゅょ는 “야/유/요”라기보다 “ㅑ/ㅠ/ㅛ” 느낌(합쳐서 한 소리)
+      </div>
+    </div>
+
+    <!-- 요음(きゃ 류) 표 -->
+    <div style="grid-column: span 12; padding:16px; border:1px solid rgba(15,23,42,.10); border-radius:16px; background:#fff;">
+      <h3 style="margin:0 0 8px 0; font-size:15px; font-weight:950; color:#0b1f4b;">
+        3) 요음(きゃ/しゃ/ちゃ …) = “두 글자를 합쳐 한 소리”
+      </h3>
+      <p style="margin:0; color:#64748b; font-weight:850; line-height:1.65; font-size:13.5px;">
+        큰 글자(き/し/ち/に/ひ/み/り…) + 작은 ゃゅょ 를 합쳐 읽어요.
+      </p>
+
+      <div style="margin-top:12px; overflow:auto;">
+        <table style="width:100%; min-width:980px; border-collapse:separate; border-spacing:0;
+                      border:1px solid rgba(15,23,42,.10); border-radius:14px; overflow:hidden;">
+          <thead>
+            <tr>
+              <th style="background:#f9fafb; padding:12px; font-size:13px; font-weight:950; color:#374151; border-bottom:1px solid rgba(15,23,42,.08);">그룹</th>
+              <th style="background:#f9fafb; padding:12px; font-size:13px; font-weight:950; color:#374151; border-bottom:1px solid rgba(15,23,42,.08);">ゃ</th>
+              <th style="background:#f9fafb; padding:12px; font-size:13px; font-weight:950; color:#374151; border-bottom:1px solid rgba(15,23,42,.08);">ゅ</th>
+              <th style="background:#f9fafb; padding:12px; font-size:13px; font-weight:950; color:#374151; border-bottom:1px solid rgba(15,23,42,.08);">ょ</th>
+              <th style="background:#f9fafb; padding:12px; font-size:13px; font-weight:950; color:#374151; border-bottom:1px solid rgba(15,23,42,.08);">예시 단어</th>
+            </tr>
+          </thead>
+          <tbody style="font-weight:900; color:#0b1f4b; font-size:13.5px; line-height:1.7;">
+            <tr>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">きゃ/きゅ/きょ</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">きゃ = 캬</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">きゅ = 큐</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">きょ = 쿄</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">きょう(쿄오), きゅう(큐우)</td>
+            </tr>
+            <tr>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">しゃ/しゅ/しょ</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">しゃ = 샤</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">しゅ = 슈</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">しょ = 쇼</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">しゅくだい(슈쿠다이)</td>
+            </tr>
+            <tr>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">ちゃ/ちゅ/ちょ</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">ちゃ = 챠</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">ちゅ = 츄</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">ちょ = 쵸</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">ちょっと(춋토: 촉음 포함)</td>
+            </tr>
+            <tr>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">にゃ/にゅ/にょ</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">にゃ = 냐</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">にゅ = 뉴</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">にょ = 뇨</td>
+              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">にゅうがく(뉴우가쿠)</td>
+            </tr>
+            <tr>
+              <td style="padding:12px;">りゃ/りゅ/りょ</td>
+              <td style="padding:12px;">りゃ = 랴</td>
+              <td style="padding:12px;">りゅ = 류</td>
+              <td style="padding:12px;">りょ = 료</td>
+              <td style="padding:12px;">りょこう(료코오)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:10px; padding:10px 12px; border-radius:14px;
+                  border:1px dashed rgba(37,99,235,.35); background: rgba(37,99,235,.05);
+                  color:#0b1f4b; font-weight:900; font-size:13px;">
+        ✅ 가타카나 요음도 동일: キャ/キュ/キョ, シャ/シュ/ショ … (발음 규칙 똑같아요)
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+{% endblock %}
