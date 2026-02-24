@@ -127,20 +127,18 @@
           <span class="nh-pill">즐겨찾기 · 복습</span>
         </div>
         <div class="nh-desc">
-          <b>상황별 회화</b>에서 저장한 문장과 <b>단어 모음</b>에서 저장한 단어를 여기서 한 번에 관리할 수 있어요.
-          복습할 때는 <b>발음/뜻 가리기</b>로 빠르게 테스트해보세요.
-        </div>
+  <b>상황별 회화</b> , <b>N5~N1문장</b>에서 저장한 문장과 <b>단어 모음</b> , <b>N5~N1단어</b>에서 저장한 단어를 여기서 한 번에 관리할 수 있어요.
+  <br>
+  복습할 때는 <b>발음/뜻 가리기</b>로 빠르게 테스트해보세요.
+</div>
+<br>
         <div class="nh-tip">
-          Tip: 단어를 익혔다면 <b>퀴즈 게임</b>에서 단어 퀴즈로 바로 실력 체크해보는 것도 좋아요.
+          Tip: 문장과 단어를 익혔다면 <b>퀴즈 게임</b>에서 퀴즈 또는 게임으로 바로 실력 체크해보는 것도 좋아요.
         </div>
       </div>
     </div>
 
     <div class="nh-actions">
-      <div class="btnrow">
-        <a class="btn ghost" href="{{ url_for('situations') }}">상황별 회화</a>
-        <a class="btn ghost" href="{{ url_for('words_categories') }}">단어 모음</a>
-      </div>
       <div class="btnrow">
         <a class="btn" href="{{ url_for('quiz') }}">퀴즈 게임</a>
       </div>
@@ -191,13 +189,13 @@
           {% endfor %}
         </section>
       {% else %}
-        <div class="empty">아직 즐겨찾기한 문장이 없습니다. <b>상황별 회화</b>에서 ⭐ 버튼으로 저장해보세요.</div>
+        <div class="empty">아직 즐겨찾기한 문장이 없습니다. <b>상황별 회화</b> 또는 <b>N문장</b>에서 ⭐ 버튼으로 저장해보세요.</div>
       {% endif %}
     </div>
 
     <hr class="note-divider" />
 
-    <!-- ✅ 단어 즐겨찾기 -->
+        <!-- ✅ 단어 즐겨찾기 -->
     <div class="note-section">
       <div class="note-sec-head">
         <h2 class="note-sec-title">
@@ -211,26 +209,47 @@
           {% for w in word_fav_items %}
             <div class="phrase-card" style="align-items:center;"
                  data-cat="{{ w.cat_key }}"
-                 data-jp="{{ w.jp }}">
+                 data-kanji="{{ (w.kanji or w.jp or '')|e }}"
+                 data-kana="{{ (w.kana or '')|e }}"
+                 data-pron="{{ (w.pron or '')|e }}"
+                 data-ko="{{ (w.ko or '')|e }}">
 
-              <button class="fav-btn on" data-cat="{{ w.cat_key }}" data-jp="{{ w.jp }}" title="즐겨찾기 해제">★</button>
+              <button class="fav-btn on"
+                      data-cat="{{ w.cat_key }}"
+                      data-jp="{{ (w.kanji or w.jp or '')|e }}"
+                      title="즐겨찾기 해제">★</button>
 
               <div class="phrase-body">
                 <div class="p-line">
-                  <span class="p-label">분류:</span>
-                  <span class="p-jp"><a href="{{ url_for('words_detail', cat_key=w.cat_key) }}">{{ w.cat_title }}</a></span>
+                  <span class="p-label">한자/표기:</span>
+                  <span class="p-jp">{{ w.kanji or w.jp }}</span>
                 </div>
-                <div class="p-line"><span class="p-label">일본어:</span> <span class="p-jp">{{ w.jp }}</span></div>
-                <div class="p-line"><span class="p-label">발음:</span> <span class="p-pron">{{ w.pron }}</span></div>
-                <div class="p-line"><span class="p-label">뜻:</span> <span class="p-ko">{{ w.ko }}</span></div>
+
+                <div class="p-line">
+                  <span class="p-label">가나:</span>
+                  <span class="p-pron">{{ w.kana or "-" }}</span>
+                </div>
+
+                <div class="p-line">
+                  <span class="p-label">발음:</span>
+                  <span class="p-pron">{{ w.pron or "-" }}</span>
+                </div>
+
+                <div class="p-line">
+                  <span class="p-label">뜻:</span>
+                  <span class="p-ko">{{ w.ko or "-" }}</span>
+                </div>
               </div>
 
-              <button class="speak-btn" data-tts="{{ w.jp }}">발음 듣기</button>
+              <button class="speak-btn"
+                      data-tts="{{ (w.tts_text or w.kanji or w.kana or w.jp or '')|e }}">
+                발음 듣기
+              </button>
             </div>
           {% endfor %}
         </section>
       {% else %}
-        <div class="empty">아직 즐겨찾기한 단어가 없습니다. <b>단어 모음</b>에서 ★로 저장해보세요.</div>
+        <div class="empty">아직 즐겨찾기한 단어가 없습니다. <b>단어 모음</b> 또는 <b>N단어</b>에서 ★로 저장해보세요.</div>
       {% endif %}
     </div>
 
