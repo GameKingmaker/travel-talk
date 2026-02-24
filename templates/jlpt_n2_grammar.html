@@ -1,0 +1,544 @@
+{% extends "base.html" %}
+
+{% block title %}JLPT N2 문법 | 고급 문법 정리{% endblock %}
+
+{# ✅ JLPT 전용 CSS를 base.html 위에 추가 로드 #}
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jlpt.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ✅ 상단 소개 -->
+<div class="jlpt-card jlpt-intro">
+  <h2 class="jlpt-intro-title">📌 JLPT N2 문법</h2>
+  <p class="jlpt-intro-desc">
+    N2 문법은 <b>논리 전개(원인·결과·대조)</b>, <b>강한 단정/추측</b>, <b>공식·문어체 표현</b>이 많아져
+    “문장 뉘앙스 + 문장 구조”가 점수에 직접 연결됩니다. <br>
+    아래 분류를 눌러서 필요한 문법만 골라 반복하세요.
+  </p>
+
+  <ul class="jlpt-intro-list">
+    <li><b>추천 루틴</b>: 문법 2개 → 예문 듣기 → 상황(1줄) → 변형 2개 → 내 문장 1개</li>
+    <li><b>Tip</b>: N2는 <b>문어체/공식표현</b>이 많아서 “언제 쓰는지(상황)”가 더 중요합니다.</li>
+  </ul>
+
+  <p class="jlpt-intro-tip">※ 발음 듣기는 버튼을 누르면 일본어 음성으로 재생됩니다.</p>
+
+  <!-- ✅ 상단 이동 버튼 -->
+  <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+    <a class="btn btn-outline" href="{{ url_for('jlpt_n2_home') }}">← N2 홈으로</a>
+  </div>
+</div>
+
+<!-- ✅ 분류(칩) : N2 추천 10분류 -->
+<div class="jlpt-card" style="display:flex; gap:8px; flex-wrap:wrap;">
+  <button class="jlpt-chip is-on" type="button" data-filter="all">전체</button>
+  <button class="jlpt-chip" type="button" data-filter="contrast">대조/양보</button>
+  <button class="jlpt-chip" type="button" data-filter="reason">원인/결과</button>
+  <button class="jlpt-chip" type="button" data-filter="limit">한정/강조</button>
+  <button class="jlpt-chip" type="button" data-filter="judgement">단정/평가</button>
+  <button class="jlpt-chip" type="button" data-filter="guess">추측/전언</button>
+  <button class="jlpt-chip" type="button" data-filter="time">시간/순서</button>
+  <button class="jlpt-chip" type="button" data-filter="change">변화/계기</button>
+  <button class="jlpt-chip" type="button" data-filter="relation">관계/기준</button>
+  <button class="jlpt-chip" type="button" data-filter="formal">문어/공식</button>
+</div>
+
+<div class="jlpt-card jlpt-note" style="margin-top:12px;">
+  <div style="color:#475569; font-weight:700;">
+    🔎 N2는 “비슷한 표현 구분”이 자주 나옵니다. <b>주의</b>를 꼭 같이 보세요.
+  </div>
+</div>
+
+<!-- =========================
+     스타일(페이지 전용) - N4/N3와 동일
+========================= -->
+<style>
+  .g-card{border:1px solid #e5e7eb; border-radius:14px; padding:16px; background:#fff; box-shadow:0 8px 20px rgba(0,0,0,.04); margin-bottom:12px;}
+  .g-head{display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
+  .g-title{font-size:18px; font-weight:950; color:#0b1f4b; margin:0;}
+  .g-tag{font-size:12px; font-weight:900; color:#334155; background:#f1f5ff; border:1px solid #dbe7ff; padding:6px 10px; border-radius:999px; white-space:nowrap;}
+  .g-desc{margin:8px 0 0; color:#374151; line-height:1.7; font-weight:650; font-size:14px;}
+  .g-rule{margin:10px 0 0; padding:10px 12px; border:1px dashed #e5e7eb; border-radius:12px; background:#fbfdff; color:#475569; font-size:13px; line-height:1.7;}
+  .g-warn{margin:10px 0 0; padding:10px 12px; border-radius:12px; background:#f8fafc; border:1px solid #e5e7eb; color:#475569; font-size:13px; line-height:1.7;}
+
+  .g-extra{margin:12px 0 0; padding:12px 12px; border:1px solid #e5e7eb; border-radius:12px; background:#ffffff;}
+  .g-extra .x-row{display:flex; gap:10px; align-items:flex-start; padding:6px 0; border-bottom:1px dashed #eef2f7;}
+  .g-extra .x-row:last-child{border-bottom:none;}
+  .g-extra .x-k{min-width:60px; font-weight:950; color:#0b1f4b; font-size:13px;}
+  .g-extra .x-v{color:#334155; font-weight:750; font-size:13px; line-height:1.7;}
+  .x-badge{display:inline-block; margin-right:6px; font-size:12px; font-weight:950; color:#0b1f4b; background:#eef2ff; border:1px solid #dbe7ff; padding:2px 8px; border-radius:999px;}
+
+  .ex{margin-top:12px; padding-top:12px; border-top:1px solid #eef2f7;}
+  .ex-row{display:flex; gap:10px; align-items:flex-start; justify-content:space-between; padding:10px 0; border-bottom:1px dashed #eef2f7;}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-left{flex:1;}
+  .ex-jp{font-size:16px; font-weight:900; color:#111827;}
+  .ex-pron{margin-top:4px; color:#64748b; font-weight:700; font-size:13px;}
+  .ex-ko{margin-top:4px; color:#334155; font-weight:700; font-size:13px;}
+
+  .ex-use{
+    margin-top:6px;
+    color:#475569;
+    font-weight:800;
+    font-size:12.5px;
+    line-height:1.55;
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    padding:6px 10px;
+    border-radius:10px;
+    display:inline-block;
+  }
+
+  .hl{
+    display:inline-block;
+    padding:1px 6px;
+    border-radius:8px;
+    border:1px solid #fde68a;
+    background:#fffbeb;
+    color:#92400e;
+    font-weight:950;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+
+  .tts-btn{
+    height:36px; padding:0 12px; border-radius:999px; border:1px solid #dbe7ff;
+    background:#f1f5ff; color:#0b1f4b; font-weight:900; font-size:13px; cursor:pointer;
+    white-space:nowrap;
+  }
+  .tts-btn:hover{background:#eaf0ff;}
+</style>
+
+<!-- ✅ 문법 카드 출력 -->
+<div id="grammarList"></div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+/* ==========================================================
+  ✅ N2 문법 데이터(빈출 위주 22개)
+========================================================== */
+const grammarData = [
+  /* =======================
+     contrast: 대조/양보
+  ======================= */
+  {
+    cat:"contrast", tag:"대조/양보", title:"～とはいえ (…라고 해도)",
+    desc:"사실이지만, 그럼에도(양보/대조)",
+    rule:"普通形 + <span class='hl'>とはいえ</span>",
+    warn:"문어·설명문에서 빈출. ‘그렇다 해도’ 뉘앙스.",
+    extra:{
+      core:"<span class='x-badge'>양보</span> “~라고는 해도”",
+      situation:"인정하지만 반대/제한을 말할 때",
+      breakdown:"便利だ(편리) + とはいえ(그렇다 해도) + 高い",
+      caution:"회화보다 독해/기사문에서 더 자주",
+      variation:"忙しいとはいえ、少しは休んでください。"
+    },
+    examples:[
+      {jp:"便利とはいえ、値段が高すぎます。", pron:"벤리 토와이에, 네단가 타카스기마스", ko:"편리하다고 해도 가격이 너무 비싸요.", use:"✅ 상황: 평가/비판", highlight:["とはいえ"]},
+      {jp:"子どもとはいえ、約束は守るべきです。", pron:"코도모 토와이에, 야쿠소쿠와 마모루베키데스", ko:"아이라 해도 약속은 지켜야 해요.", use:"✅ 상황: 원칙 강조", highlight:["とはいえ"]},
+      {jp:"知っているとはいえ、説明が必要です。", pron:"싯테이루 토와이에, 세츠메이가 히츠요오데스", ko:"알고 있다고 해도 설명이 필요해요.", use:"✅ 상황: 업무/안내", highlight:["とはいえ"]}
+    ]
+  },
+  {
+    cat:"contrast", tag:"대조/양보", title:"～ながらも (…하면서도)",
+    desc:"앞뒤 내용이 반대(양보/대조)",
+    rule:"動詞ます形/形容詞語幹 + <span class='hl'>ながらも</span>",
+    warn:"‘A인데도 B’의 문어체 느낌.",
+    extra:{
+      core:"<span class='x-badge'>대조</span> “~하면서도”",
+      situation:"앞은 인정, 뒤는 반대 결과",
+      breakdown:"残念ながらも(유감이지만) + 受け入れる",
+      caution:"‘ながら’(동시)와 달리 ‘대조’가 핵심",
+      variation:"知りながらも黙っていた。"
+    },
+    examples:[
+      {jp:"知りながらも黙っていました。", pron:"시리나가라모 다맛테이마시타", ko:"알면서도 말하지 않았어요.", use:"✅ 상황: 비판/책임", highlight:["ながらも"]},
+      {jp:"少ないながらも貯金しています。", pron:"스쿠나이나가라모 초킨시테이마스", ko:"적지만 저축하고 있어요.", use:"✅ 상황: 양보 + 긍정", highlight:["ながらも"]},
+      {jp:"不安ながらも挑戦します。", pron:"후안나가라모 초오센시마스", ko:"불안하지만 도전할게요.", use:"✅ 상황: 결심", highlight:["ながらも"]}
+    ]
+  },
+
+  /* =======================
+     reason: 원인/결과
+  ======================= */
+  {
+    cat:"reason", tag:"원인/결과", title:"～あまり (너무 …해서)",
+    desc:"정도가 지나쳐 부정적 결과",
+    rule:"動詞る/ない + <span class='hl'>あまり</span>",
+    warn:"결과가 보통 ‘나쁨/문제’로 이어짐.",
+    extra:{
+      core:"<span class='x-badge'>과도</span> “너무 ~해서”",
+      situation:"과한 행동/상태로 문제가 생길 때",
+      breakdown:"心配する(걱정하다) + あまり(너무) + 眠れない",
+      caution:"비슷한 ‘～すぎる’와 구분(문장 구조)",
+      variation:"嬉しさのあまり泣いた(명사형도 자주)"
+    },
+    examples:[
+      {jp:"心配するあまり、眠れませんでした。", pron:"신파이스루 아마리, 네무레마센데시타", ko:"너무 걱정해서 잠을 못 잤어요.", use:"✅ 상황: 과도한 감정", highlight:["あまり"]},
+      {jp:"緊張するあまり、失敗しました。", pron:"킨초오스루 아마리, 싯파이시마시타", ko:"너무 긴장해서 실패했어요.", use:"✅ 상황: 결과가 나쁨", highlight:["あまり"]},
+      {jp:"嬉しさのあまり泣きました。", pron:"우레시사노 아마리 나키마시타", ko:"너무 기뻐서 울었어요.", use:"✅ 상황: 감정 폭발", highlight:["あまり"]}
+    ]
+  },
+  {
+    cat:"reason", tag:"원인/결과", title:"～おそれがある (…할 우려가 있다)",
+    desc:"나쁜 가능성(공식/문어)",
+    rule:"動詞る/名詞 + の + <span class='hl'>おそれがある</span>",
+    warn:"안내문/기사/보고서에서 빈출.",
+    extra:{
+      core:"<span class='x-badge'>우려</span> “~할 우려”",
+      situation:"위험/리스크를 공식적으로 말할 때",
+      breakdown:"崩れる(무너지다) + おそれがある(우려)",
+      caution:"‘かもしれない’보다 훨씬 문어/공식",
+      variation:"事故のおそれがある。／悪化するおそれがある。"
+    },
+    examples:[
+      {jp:"このままだと事故のおそれがあります。", pron:"코노 마마다토 지코노 오소레가 아리마스", ko:"이대로면 사고 우려가 있어요.", use:"✅ 상황: 경고/안내", highlight:["おそれが"]},
+      {jp:"台風で被害が広がるおそれがあります。", pron:"타이후우데 히가이가 히로가루 오소레가 아리마스", ko:"태풍으로 피해가 커질 우려가 있어요.", use:"✅ 상황: 뉴스/방송", highlight:["おそれがある"]},
+      {jp:"放置すると悪化するおそれがあります。", pron:"호오치스루토 악카스루 오소레가 아리마스", ko:"방치하면 악화할 우려가 있어요.", use:"✅ 상황: 건강/설명", highlight:["おそれがある"]}
+    ]
+  },
+
+  /* =======================
+     limit: 한정/강조
+  ======================= */
+  {
+    cat:"limit", tag:"한정/강조", title:"～に限って (…에 한해서/…만은)",
+    desc:"유독 그때만/그 사람만(예외 강조)",
+    rule:"名詞 + <span class='hl'>に限って</span>",
+    warn:"‘하필 그때’ 뉘앙스로 자주 씁니다.",
+    extra:{
+      core:"<span class='x-badge'>예외</span> “~만은/하필 ~만”",
+      situation:"평소와 달리 ‘그때만’ 안 좋을 때",
+      breakdown:"今日に限って(오늘만은) + 忙しい",
+      caution:"‘限り’와 다른 표현(범위/조건과 구분)",
+      variation:"こんな日に限って雨が降る。"
+    },
+    examples:[
+      {jp:"今日に限って忙しいです。", pron:"쿄오니 카깃테 이소가시이데스", ko:"하필 오늘만 바빠요.", use:"✅ 상황: 하필/예외", highlight:["に限って"]},
+      {jp:"こういう時に限って失敗します。", pron:"코오이우 토키니 카깃테 싯파이시마스", ko:"이럴 때만 실패해요.", use:"✅ 상황: 아쉬움", highlight:["に限って"]},
+      {jp:"彼に限ってそんなことはしません。", pron:"카레니 카깃테 손나 코토와 시마센", ko:"그 사람만은 그런 일을 안 해요.", use:"✅ 상황: 예외/신뢰", highlight:["に限って"]}
+    ]
+  },
+  {
+    cat:"limit", tag:"한정/강조", title:"～に限らず (…뿐만 아니라)",
+    desc:"A뿐만 아니라 B도(범위 확대)",
+    rule:"名詞 + <span class='hl'>に限らず</span>",
+    warn:"문어체 느낌. ‘뿐만 아니라’ 확장.",
+    extra:{
+      core:"<span class='x-badge'>확대</span> “~뿐만 아니라”",
+      situation:"대상을 넓혀 말할 때(공식/설명)",
+      breakdown:"学生に限らず(학생뿐만 아니라) + 誰でも",
+      caution:"‘だけでなく’와 유사(문맥에 맞게 선택)",
+      variation:"日本に限らず世界で人気です。"
+    },
+    examples:[
+      {jp:"学生に限らず、誰でも参加できます。", pron:"가쿠세이니 카기라즈, 다레데모 산카데키마스", ko:"학생뿐만 아니라 누구나 참가할 수 있어요.", use:"✅ 상황: 모집/안내", highlight:["に限らず"]},
+      {jp:"この問題は日本に限らず世界で起きています。", pron:"코노 몬다이와 니혼니 카기라즈 세카이데 오키테이마스", ko:"이 문제는 일본뿐 아니라 세계에서 일어나고 있어요.", use:"✅ 상황: 기사/설명", highlight:["に限らず"]},
+      {jp:"子どもに限らず大人にも人気です。", pron:"코도모니 카기라즈 오토나니모 닌키데스", ko:"아이뿐 아니라 어른에게도 인기예요.", use:"✅ 상황: 대상 확대", highlight:["に限らず"]}
+    ]
+  },
+
+  /* =======================
+     judgement: 단정/평가
+  ======================= */
+  {
+    cat:"judgement", tag:"단정/평가", title:"～に違いない (틀림없이 …이다)",
+    desc:"강한 확신(단정)",
+    rule:"普通形 + <span class='hl'>に違いない</span>",
+    warn:"강한 단정. 근거가 있다고 느껴지는 표현.",
+    extra:{
+      core:"<span class='x-badge'>확신</span> “틀림없다”",
+      situation:"정황상 거의 확실할 때",
+      breakdown:"彼が犯人だ(범인) + に違いない(틀림없다)",
+      caution:"확신 낮으면 ‘かもしれない/ようだ’ 사용",
+      variation:"きっと～に違いない。"
+    },
+    examples:[
+      {jp:"彼が犯人に違いない。", pron:"카레가 한닌니 치가이나이", ko:"그가 범인임에 틀림없어.", use:"✅ 상황: 추리/단정", highlight:["に違いない"]},
+      {jp:"これは本物に違いない。", pron:"코레와 혼모노니 치가이나이", ko:"이건 진품임이 틀림없어.", use:"✅ 상황: 감정/판단", highlight:["に違いない"]},
+      {jp:"あの店は人気に違いない。", pron:"아노 미세와 닌키니 치가이나이", ko:"저 가게는 인기일 게 틀림없어.", use:"✅ 상황: 근거 기반 확신", highlight:["に違いない"]}
+    ]
+  },
+  {
+    cat:"judgement", tag:"단정/평가", title:"～に過ぎない (…에 불과하다)",
+    desc:"가치를 낮춰 말함(한정)",
+    rule:"名詞/普通形 + <span class='hl'>に過ぎない</span>",
+    warn:"문어체. “그 정도뿐” 뉘앙스.",
+    extra:{
+      core:"<span class='x-badge'>축소</span> “~에 불과”",
+      situation:"과대평가를 낮추거나 객관화할 때",
+      breakdown:"噂に過ぎない(소문에 불과) + 信じない",
+      caution:"상대 비난처럼 들릴 수 있어 말투 주의",
+      variation:"一例に過ぎない。／ただの噂に過ぎない。"
+    },
+    examples:[
+      {jp:"それはただの噂に過ぎません。", pron:"소레와 타다노 우와사니 스기마센", ko:"그건 مجرد 소문에 불과해요.", use:"✅ 상황: 과장 부정", highlight:["に過ぎない"]},
+      {jp:"これは一例に過ぎません。", pron:"코레와 이치레이니 스기마센", ko:"이건 한 예시에 불과합니다.", use:"✅ 상황: 설명/발표", highlight:["に過ぎない"]},
+      {jp:"彼はまだ子どもに過ぎない。", pron:"카레와 마다 코도モ니 스기나이", ko:"그는 아직 아이에 불과해.", use:"✅ 상황: 평가 축소", highlight:["に過ぎない"]}
+    ]
+  },
+
+  /* =======================
+     guess: 추측/전언
+  ======================= */
+  {
+    cat:"guess", tag:"추측/전언", title:"～とのことだ (…라고 한다: 전언/공식)",
+    desc:"전언(문어·뉴스·공지 느낌)",
+    rule:"普通形 + <span class='hl'>とのことだ</span>",
+    warn:"보고서/기사체에서 자주 보입니다.",
+    extra:{
+      core:"<span class='x-badge'>전언</span> “~라고 한다(공식)”",
+      situation:"소식/공지/전달을 격식 있게",
+      breakdown:"中止だ(중지) + とのことだ(라고 한다)",
+      caution:"회화에서는 そうです/らしい가 더 자연스러움",
+      variation:"延期するとのことです。"
+    },
+    examples:[
+      {jp:"会議は中止とのことです。", pron:"카이기와 츄우시 토노 코토데스", ko:"회의는 중지라고 합니다.", use:"✅ 상황: 공지 전달", highlight:["とのこと"]},
+      {jp:"社長は出張中とのことだ。", pron:"샤초오와 슛쵸오츄우 토노 코토다", ko:"사장은 출장 중이라고 한다.", use:"✅ 상황: 회사 전달", highlight:["とのことだ"]},
+      {jp:"明日は休みになるとのことです。", pron:"아시타와 야스미니 나루 토노 코토데스", ko:"내일은 휴일이 된다고 합니다.", use:"✅ 상황: 안내", highlight:["とのこと"]},
+    ]
+  },
+
+  /* =======================
+     time: 시간/순서
+  ======================= */
+  {
+    cat:"time", tag:"시간/순서", title:"～に先立って (…에 앞서)",
+    desc:"어떤 일 전에 먼저(공식/문어)",
+    rule:"名詞 + <span class='hl'>に先立って</span>",
+    warn:"안내문/식순/발표에서 빈출.",
+    extra:{
+      core:"<span class='x-badge'>사전</span> “~에 앞서”",
+      situation:"행사/회의/발표 시작 전에",
+      breakdown:"開会に先立って(개회에 앞서) + 説明します",
+      caution:"회화에선 ‘前に’가 더 자연스럽지만 N2는 이 표현 빈출",
+      variation:"出発に先立って確認します。"
+    },
+    examples:[
+      {jp:"出発に先立って、持ち物を確認します。", pron:"슈파츠니 사키닷테, 모치모노오 카쿠닌시마스", ko:"출발에 앞서 준비물을 확인합니다.", use:"✅ 상황: 안내/준비", highlight:["に先立って"]},
+      {jp:"開会に先立って、ご挨拶申し上げます。", pron:"카이카이니 사키닷테, 고아이사츠 모오시아게마스", ko:"개회에 앞서 인사드립니다.", use:"✅ 상황: 행사 멘트", highlight:["に先立って"]},
+      {jp:"工事に先立って説明会を行います。", pron:"코오지니 사키닷테 세츠메에카이오 오코나이마스", ko:"공사에 앞서 설명회를 진행합니다.", use:"✅ 상황: 공지", highlight:["に先立って"]}
+    ]
+  },
+
+  /* =======================
+     change: 변화/계기
+  ======================= */
+  {
+    cat:"change", tag:"변화/계기", title:"～をきっかけに (…을 계기로)",
+    desc:"어떤 사건 이후 변화/시작",
+    rule:"名詞 + <span class='hl'>をきっかけに</span>",
+    warn:"원인이라기보다 ‘전환점’ 느낌.",
+    extra:{
+      core:"<span class='x-badge'>계기</span> “~을 계기로”",
+      situation:"새로 시작/변화가 생긴 출발점",
+      breakdown:"就職をきっかけに(취업 계기) + 引っ越した",
+      caution:"‘原因’보다 ‘변화의 출발점’",
+      variation:"事故をきっかけに考え方が変わった。"
+    },
+    examples:[
+      {jp:"就職をきっかけに、東京へ引っ越しました。", pron:"슈우쇼쿠오 킥카케니, 토오쿄오에 힛코시마시타", ko:"취업을 계기로 도쿄로 이사했어요.", use:"✅ 상황: 인생 변화", highlight:["をきっかけに"]},
+      {jp:"病気をきっかけに、健康に気をつけるようになりました。", pron:"뵤오키오 킥카케니, 켕코오니 키오 츠케루 요오니 나리마시타", ko:"병을 계기로 건강을 신경 쓰게 됐어요.", use:"✅ 상황: 습관 변화", highlight:["をきっかけに"]},
+      {jp:"その映画をきっかけに日本語に興味を持ちました。", pron:"소노 에이가오 킥카케니 니혼고니 쿄오미오 모치마시타", ko:"그 영화를 계기로 일본어에 흥미가 생겼어요.", use:"✅ 상황: 취미 시작", highlight:["をきっかけに"]}
+    ]
+  },
+
+  /* =======================
+     relation: 관계/기준
+  ======================= */
+  {
+    cat:"relation", tag:"관계/기준", title:"～に関して (…에 관해서)",
+    desc:"주제/관련(공식/설명문)",
+    rule:"名詞 + <span class='hl'>に関して</span>",
+    warn:"보고서/메일/안내에서 자주 나옵니다.",
+    extra:{
+      core:"<span class='x-badge'>주제</span> “~에 관해”",
+      situation:"문의/설명/공식 문장",
+      breakdown:"手続きに関して(절차에 관해) + 説明します",
+      caution:"회화: について가 더 자연스럽지만 N2는 に関して 빈출",
+      variation:"この件に関してご連絡します。"
+    },
+    examples:[
+      {jp:"手続きに関してご説明します。", pron:"테츠즈키니 칸시테 고세츠메에시마스", ko:"절차에 관해 설명드리겠습니다.", use:"✅ 상황: 안내/고지", highlight:["に関して"]},
+      {jp:"その問題に関しては、後で話しましょう。", pron:"소노 몬다이니 칸시테와, 아토데 하나시마쇼오", ko:"그 문제에 관해서는 나중에 이야기해요.", use:"✅ 상황: 주제 전환", highlight:["に関して"]},
+      {jp:"商品に関して質問があります。", pron:"쇼오힌니 칸시테 시츠몬가 아리마스", ko:"상품에 관해 질문이 있어요.", use:"✅ 상황: 문의", highlight:["に関して"]}
+    ]
+  },
+  {
+    cat:"relation", tag:"관계/기준", title:"～に基づいて (…에 근거하여)",
+    desc:"근거/기준(문어)",
+    rule:"名詞 + <span class='hl'>に基づいて</span>",
+    warn:"법/규정/데이터 근거를 말할 때 빈출.",
+    extra:{
+      core:"<span class='x-badge'>근거</span> “~에 근거”",
+      situation:"규정/데이터/사실을 근거로 결정",
+      breakdown:"規則に基づいて(규칙 근거) + 判断する",
+      caution:"‘によって’(원인/수단)과 혼동 주의",
+      variation:"データに基づいて改善します。"
+    },
+    examples:[
+      {jp:"規則に基づいて判断します。", pron:"키소쿠니 모토즈이테 한단시마스", ko:"규칙에 근거해 판단합니다.", use:"✅ 상황: 규정/업무", highlight:["に基づいて"]},
+      {jp:"データに基づいて計画を立てます。", pron:"데에타니 모토즈이테 케에카쿠오 타테마스", ko:"데이터에 근거해 계획을 세웁니다.", use:"✅ 상황: 분석/계획", highlight:["に基づいて"]},
+      {jp:"事実に基づいて話してください。", pron:"지지츠니 모토즈이테 하나시테 쿠다사이", ko:"사실에 근거해 말해 주세요.", use:"✅ 상황: 논쟁/확인", highlight:["に基づいて"]}
+    ]
+  },
+
+  /* =======================
+     formal: 문어/공식
+  ======================= */
+  {
+    cat:"formal", tag:"문어/공식", title:"～に伴って (…에 따라/…와 함께)",
+    desc:"변화/동시에 생기는 변화(문어)",
+    rule:"名詞/動詞る + <span class='hl'>に伴って</span>",
+    warn:"기사/보고서에서 빈출.",
+    extra:{
+      core:"<span class='x-badge'>동반</span> “~에 따라/함께”",
+      situation:"한 변화와 함께 다른 변화도 생길 때",
+      breakdown:"人口が増える(증가) + に伴って(따라) + 問題も増える",
+      caution:"일상회화보다 설명문/기사체에 더 많음",
+      variation:"成長に伴って責任も増える。"
+    },
+    examples:[
+      {jp:"人口が増えるに伴って、問題も増えます。", pron:"진코오가 후에루니 토모낫테, 몬다이모 후에마스", ko:"인구가 늘어남에 따라 문제도 늘어요.", use:"✅ 상황: 설명/기사", highlight:["に伴って"]},
+      {jp:"技術の進歩に伴って生活が変わりました。", pron:"기주츠노 신포니 토모낫테 세이카츠가 카와리마시타", ko:"기술 발전에 따라 생활이 바뀌었어요.", use:"✅ 상황: 설명문", highlight:["に伴って"]},
+      {jp:"引っ越しに伴って住所が変わります。", pron:"힛코시니 토모낫테 쥬우쇼가 카와리마스", ko:"이사와 함께 주소가 바뀝니다.", use:"✅ 상황: 공지", highlight:["に伴って"]}
+    ]
+  },
+];
+
+/* ==========================================================
+  하이라이트/렌더 유틸
+========================================================== */
+function escapeHtml(s){
+  return String(s)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#39;");
+}
+function applyHighlight(jp, highlightArr){
+  let safe = escapeHtml(jp);
+  const hs = (highlightArr || []).filter(Boolean).sort((a,b)=>b.length-a.length);
+  hs.forEach(h => {
+    const hh = escapeHtml(h);
+    safe = safe.split(hh).join(`<span class="hl">${hh}</span>`);
+  });
+  return safe;
+}
+function renderCard(item){
+  const exHtml = (item.examples || []).map(ex => {
+    const jpHtml = applyHighlight(ex.jp, ex.highlight);
+    return `
+      <div class="ex-row">
+        <div class="ex-left">
+          <div class="ex-jp">${jpHtml}</div>
+          <div class="ex-pron">${escapeHtml(ex.pron || "")}</div>
+          <div class="ex-ko">${escapeHtml(ex.ko || "")}</div>
+          ${ex.use ? `<div class="ex-use">${escapeHtml(ex.use)}</div>` : ``}
+        </div>
+        <button class="tts-btn" type="button" data-tts="${escapeHtml(ex.jp)}">발음 듣기</button>
+      </div>
+    `;
+  }).join("");
+
+  const extra = item.extra || {};
+  const extraHtml = `
+    <div class="g-extra">
+      <div class="x-row"><div class="x-k">핵심</div><div class="x-v">${extra.core || ""}</div></div>
+      <div class="x-row"><div class="x-k">상황</div><div class="x-v">${escapeHtml(extra.situation || "")}</div></div>
+      <div class="x-row"><div class="x-k">분해</div><div class="x-v">${escapeHtml(extra.breakdown || "")}</div></div>
+      <div class="x-row"><div class="x-k">주의</div><div class="x-v">${escapeHtml(extra.caution || "")}</div></div>
+      <div class="x-row"><div class="x-k">변형</div><div class="x-v">${escapeHtml(extra.variation || "")}</div></div>
+    </div>
+  `;
+
+  return `
+    <div class="g-card" data-cat="${escapeHtml(item.cat)}">
+      <div class="g-head">
+        <h3 class="g-title">${escapeHtml(item.title)}</h3>
+        <div class="g-tag">${escapeHtml(item.tag || "")}</div>
+      </div>
+      <p class="g-desc"><b>의미:</b> ${escapeHtml(item.desc || "")}</p>
+      <div class="g-rule"><b>접속:</b> ${item.rule || ""}</div>
+      <div class="g-warn"><b>포인트:</b> ${escapeHtml(item.warn || "")}</div>
+      ${extraHtml}
+      <div class="ex">${exHtml}</div>
+    </div>
+  `;
+}
+
+/* 초기 렌더 */
+(function init(){
+  const root = document.getElementById("grammarList");
+  root.innerHTML = grammarData.map(renderCard).join("");
+})();
+
+/* 칩 필터 */
+(function(){
+  const chips = Array.from(document.querySelectorAll('.jlpt-chip[data-filter]'));
+  function setOn(btn){
+    chips.forEach(c => c.classList.remove('is-on'));
+    btn.classList.add('is-on');
+  }
+  function applyFilter(key){
+    const cards = Array.from(document.querySelectorAll('#grammarList .g-card'));
+    cards.forEach(card => {
+      const cat = (card.getAttribute('data-cat') || '').trim();
+      card.style.display = (key === 'all' || cat === key) ? '' : 'none';
+    });
+  }
+  chips.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-filter');
+      setOn(btn);
+      applyFilter(key);
+    });
+  });
+})();
+
+/* TTS */
+(function () {
+  function pickJapaneseVoice() {
+    const voices = window.speechSynthesis?.getVoices?.() || [];
+    return (
+      voices.find(v => v.lang === "ja-JP") ||
+      voices.find(v => (v.lang || "").toLowerCase().startsWith("ja")) ||
+      null
+    );
+  }
+
+  function speakJP(text) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+
+    let t = (text || "").trim();
+    if (!t) return;
+    if (t.length === 1) t = t + "。";
+
+    const u = new SpeechSynthesisUtterance(t);
+    u.lang = "ja-JP";
+    u.volume = 1;
+    u.rate = 0.95;
+    u.pitch = 1;
+
+    const v = pickJapaneseVoice();
+    if (v) u.voice = v;
+
+    window.speechSynthesis.speak(u);
+  }
+
+  try { window.speechSynthesis.getVoices(); } catch(e) {}
+
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".tts-btn[data-tts]");
+    if (!btn) return;
+    speakJP(btn.getAttribute("data-tts"));
+  });
+})();
+</script>
+{% endblock %}
