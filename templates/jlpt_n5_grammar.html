@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block title %}JLPT N5 문법 | 고급 문법 정리{% endblock %}
+
+{# ✅ JLPT 전용 CSS를 base.html 위에 추가 로드 #}
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jlpt.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ✅ 상단 소개 -->
+<div class="jlpt-card jlpt-intro">
+  <h2 class="jlpt-intro-title">📌 JLPT N5 문법</h2>
+  <p class="jlpt-intro-desc">
+    N5 문법은 <b>조사</b>, <b>정중체(です/ます)</b>, <b>부정/과거</b>, <b>て형</b>, <b>희망/능력</b>처럼
+    “문장을 만드는 틀”을 익히는 단계입니다. <br>
+    아래 분류를 눌러서 필요한 문법만 골라 반복하세요.
+  </p>
+
+  <ul class="jlpt-intro-list">
+    <li><b>추천 루틴</b>: 오늘 1분 → 문법 2~3개 → 예문 듣기 → 변형 2개 말해보기</li>
+    <li><b>Tip</b>: 예문을 그냥 외우기보다, <b>상황/분해/변형</b>을 함께 보면 “문장 만들기”가 됩니다.</li>
+  </ul>
+
+  <p class="jlpt-intro-tip">※ 발음 듣기는 버튼을 누르면 일본어 음성으로 재생됩니다.</p>
+  <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+    <a class="btn btn-outline" href="{{ url_for('jlpt_n5_home') }}">← N5 홈으로</a>
+  </div>
+</div>
+
+<!-- ✅ 분류(칩) : 추천 최종 8분류 -->
+<div class="jlpt-card" style="display:flex; gap:8px; flex-wrap:wrap;">
+  <button class="jlpt-chip is-on" type="button" data-filter="all">전체</button>
+  <button class="jlpt-chip" type="button" data-filter="basics">기본문장</button>
+  <button class="jlpt-chip" type="button" data-filter="particles">조사</button>
+  <button class="jlpt-chip" type="button" data-filter="exist">존재/위치</button>
+  <button class="jlpt-chip" type="button" data-filter="teform">て형</button>
+  <button class="jlpt-chip" type="button" data-filter="tense">부정/과거</button>
+  <button class="jlpt-chip" type="button" data-filter="connect">이유/연결</button>
+  <button class="jlpt-chip" type="button" data-filter="desire">희망/능력</button>
+  <button class="jlpt-chip" type="button" data-filter="timefreq">시간/빈도</button>
+</div>
+
+<div class="jlpt-card jlpt-note" style="margin-top:12px;">
+  <div style="color:#475569; font-weight:700;">
+    🔎 문법 카드는 <b>예문(듣기)</b> + <b>상황(1줄)</b> + <b>핵심/분해/변형</b>까지 같이 보면 문장이 훨씬 빨리 만들어집니다.
+  </div>
+</div>
+
+<!-- =========================
+     문법 카드 스타일(페이지 전용)
+========================= -->
+<style>
+  .g-card{border:1px solid #e5e7eb; border-radius:14px; padding:16px; background:#fff; box-shadow:0 8px 20px rgba(0,0,0,.04); margin-bottom:12px;}
+  .g-head{display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
+  .g-title{font-size:18px; font-weight:950; color:#0b1f4b; margin:0;}
+  .g-tag{font-size:12px; font-weight:900; color:#334155; background:#f1f5ff; border:1px solid #dbe7ff; padding:6px 10px; border-radius:999px; white-space:nowrap;}
+  .g-desc{margin:8px 0 0; color:#374151; line-height:1.7; font-weight:650; font-size:14px;}
+  .g-rule{margin:10px 0 0; padding:10px 12px; border:1px dashed #e5e7eb; border-radius:12px; background:#fbfdff; color:#475569; font-size:13px; line-height:1.7;}
+  .g-warn{margin:10px 0 0; padding:10px 12px; border-radius:12px; background:#f8fafc; border:1px solid #e5e7eb; color:#475569; font-size:13px; line-height:1.7;}
+
+  /* ✅ (추가) 핵심/상황/분해/주의/변형 블록 */
+  .g-extra{margin:12px 0 0; padding:12px 12px; border:1px solid #e5e7eb; border-radius:12px; background:#ffffff;}
+  .g-extra .x-row{display:flex; gap:10px; align-items:flex-start; padding:6px 0; border-bottom:1px dashed #eef2f7;}
+  .g-extra .x-row:last-child{border-bottom:none;}
+  .g-extra .x-k{min-width:60px; font-weight:950; color:#0b1f4b; font-size:13px;}
+  .g-extra .x-v{color:#334155; font-weight:750; font-size:13px; line-height:1.7;}
+  .x-badge{display:inline-block; margin-right:6px; font-size:12px; font-weight:950; color:#0b1f4b; background:#eef2ff; border:1px solid #dbe7ff; padding:2px 8px; border-radius:999px;}
+
+  /* ✅ 예문 */
+  .ex{margin-top:12px; padding-top:12px; border-top:1px solid #eef2f7;}
+  .ex-row{display:flex; gap:10px; align-items:flex-start; justify-content:space-between; padding:10px 0; border-bottom:1px dashed #eef2f7;}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-left{flex:1;}
+  .ex-jp{font-size:16px; font-weight:900; color:#111827;}
+  .ex-pron{margin-top:4px; color:#64748b; font-weight:700; font-size:13px;}
+  .ex-ko{margin-top:4px; color:#334155; font-weight:700; font-size:13px;}
+
+  /* ✅ (추가) 예문 상황 1줄 */
+  .ex-use{
+    margin-top:6px;
+    color:#475569;
+    font-weight:800;
+    font-size:12.5px;
+    line-height:1.55;
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    padding:6px 10px;
+    border-radius:10px;
+    display:inline-block;
+  }
+
+  /* ✅ (추가) 문법 포인트 하이라이트 */
+  .hl{
+    display:inline-block;
+    padding:1px 6px;
+    border-radius:8px;
+    border:1px solid #fde68a;
+    background:#fffbeb;
+    color:#92400e;
+    font-weight:950;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+
+  .tts-btn{
+    height:36px; padding:0 12px; border-radius:999px; border:1px solid #dbe7ff;
+    background:#f1f5ff; color:#0b1f4b; font-weight:900; font-size:13px; cursor:pointer;
+    white-space:nowrap;
+  }
+  .tts-btn:hover{background:#eaf0ff;}
+</style>
+
+<!-- ✅ 문법 카드 출력 영역 -->
+<div id="grammarList"></div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+/* ==========================================================
+  ✅ 서버(app.py)에서 주입되는 문법 데이터
+  - app.py에서 grammar_json으로 넘겨줌
+========================================================== */
+const grammarData = {{ grammar_json|safe }};
+
+/* ==========================================================
+  렌더 유틸: 예문 하이라이트
+  - highlight 배열에 들어있는 문자열을 <span class="hl">로 감쌉니다.
+========================================================== */
+function escapeHtml(s){
+  return String(s)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#39;");
+}
+function applyHighlight(jp, highlightArr){
+  let safe = escapeHtml(jp);
+  const hs = (highlightArr || []).filter(Boolean).sort((a,b)=>b.length-a.length);
+  hs.forEach(h => {
+    const hh = escapeHtml(h);
+    safe = safe.split(hh).join(`<span class="hl">${hh}</span>`);
+  });
+  return safe;
+}
+
+/* ==========================================================
+  카드 렌더
+========================================================== */
+function renderCard(item){
+  const exHtml = (item.examples || []).map(ex => {
+    const jpHtml = applyHighlight(ex.jp, ex.highlight);
+    return `
+      <div class="ex-row">
+        <div class="ex-left">
+          <div class="ex-jp">${jpHtml}</div>
+          <div class="ex-pron">${escapeHtml(ex.pron || "")}</div>
+          <div class="ex-ko">${escapeHtml(ex.ko || "")}</div>
+          ${ex.use ? `<div class="ex-use">✅ ${escapeHtml(ex.use)}</div>` : ``}
+        </div>
+        <button class="tts-btn" type="button" data-tts="${escapeHtml(ex.jp)}">발음 듣기</button>
+      </div>
+    `;
+  }).join("");
+
+  const extra = item.extra || {};
+  const extraHtml = `
+    <div class="g-extra">
+      <div class="x-row"><div class="x-k">핵심</div><div class="x-v">${extra.core || ""}</div></div>
+      <div class="x-row"><div class="x-k">상황</div><div class="x-v">${escapeHtml(extra.situation || "")}</div></div>
+      <div class="x-row"><div class="x-k">분해</div><div class="x-v">${escapeHtml(extra.breakdown || "")}</div></div>
+      <div class="x-row"><div class="x-k">주의</div><div class="x-v">${escapeHtml(extra.caution || "")}</div></div>
+      <div class="x-row"><div class="x-k">변형</div><div class="x-v">${escapeHtml(extra.variation || "")}</div></div>
+    </div>
+  `;
+
+  return `
+    <div class="g-card" data-cat="${escapeHtml(item.cat)}">
+      <div class="g-head">
+        <h3 class="g-title">${escapeHtml(item.title)}</h3>
+        <div class="g-tag">${escapeHtml(item.tag || "")}</div>
+      </div>
+      <p class="g-desc"><b>의미:</b> ${escapeHtml(item.desc || "")}</p>
+      <div class="g-rule"><b>접속:</b> ${escapeHtml(item.rule || "")}</div>
+      <div class="g-warn"><b>포인트:</b> ${escapeHtml(item.warn || "")}</div>
+      ${extraHtml}
+      <div class="ex">${exHtml}</div>
+    </div>
+  `;
+}
+
+/* ==========================================================
+  초기 렌더
+========================================================== */
+(function init(){
+  const root = document.getElementById("grammarList");
+  root.innerHTML = (grammarData || []).map(renderCard).join("");
+})();
+
+/* ==========================================================
+  ✅ 칩 필터
+========================================================== */
+(function(){
+  const chips = Array.from(document.querySelectorAll('.jlpt-chip[data-filter]'));
+  const cards = () => Array.from(document.querySelectorAll('#grammarList .g-card'));
+
+  function setOn(btn){
+    chips.forEach(c => c.classList.remove('is-on'));
+    btn.classList.add('is-on');
+  }
+
+  function applyFilter(key){
+    cards().forEach(card => {
+      const cat = (card.getAttribute('data-cat') || '').trim();
+      card.style.display = (key === 'all' || cat === key) ? '' : 'none';
+    });
+  }
+
+  chips.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-filter');
+      setOn(btn);
+      applyFilter(key);
+    });
+  });
+})();
+
+/* ==========================================================
+  ✅ TTS
+========================================================== */
+(function () {
+  function pickJapaneseVoice() {
+    const voices = window.speechSynthesis?.getVoices?.() || [];
+    return (
+      voices.find(v => v.lang === "ja-JP") ||
+      voices.find(v => (v.lang || "").toLowerCase().startsWith("ja")) ||
+      null
+    );
+  }
+
+  function speakJP(text) {
+    if (!window.speechSynthesis) return;
+
+    window.speechSynthesis.cancel();
+    let t = (text || "").trim();
+    if (!t) return;
+
+    if (t.length === 1) t = t + "。";
+
+    const u = new SpeechSynthesisUtterance(t);
+    u.lang = "ja-JP";
+    u.volume = 1;
+    u.rate = 0.95;
+    u.pitch = 1;
+
+    const v = pickJapaneseVoice();
+    if (v) u.voice = v;
+
+    window.speechSynthesis.speak(u);
+  }
+
+  try { window.speechSynthesis.getVoices(); } catch(e) {}
+
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".tts-btn[data-tts]");
+    if (!btn) return;
+    speakJP(btn.getAttribute("data-tts"));
+  });
+})();
+</script>
+{% endblock %}
