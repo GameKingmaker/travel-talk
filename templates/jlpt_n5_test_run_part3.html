@@ -1,0 +1,769 @@
+{% extends "base.html" %}
+{% block title %}JLPT N5 PART 3 시험 | 테스트{% endblock %}
+
+{# ✅ JLPT 전용 CSS를 base.html 위에 추가 로드 #}
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jlpt.css') }}">
+{% endblock %}
+
+{% block content %}
+<style>
+  :root{
+    --bg:#f6f8fc; --card:#fff; --ink:#0f172a; --muted:#64748b;
+    --primary:#2563eb; --primary-weak:#eaf1ff;
+    --good:#16a34a; --good-bg:#ecfdf3;
+    --bad:#dc2626; --bad-bg:#fff1f2;
+    --line:#e5e7eb; --shadow:0 12px 28px rgba(15,23,42,.08);
+
+    /* PART1 accents */
+    --soft:#f8fafc;
+    --soft2:#f1f5f9;
+    --chip:#ffffff;
+    --chip-line:#dbe3f3;
+    --focus: 0 0 0 3px rgba(37,99,235,.16);
+  }
+
+  body{ background:var(--bg); }
+
+  .card{
+    border:1px solid var(--line)!important;
+    box-shadow:var(--shadow);
+    border-radius:18px;
+    background:var(--card);
+    overflow:hidden;
+  }
+
+  /* header card spacing */
+  .top-card .card-body{ padding:18px 18px 16px; }
+  .solve-card .card-body{ padding:18px; }
+  .result-card .card-body{ padding:18px; }
+
+  .q-text{ white-space:pre-line; color:var(--ink); line-height:1.85; }
+  #questionText{ font-size:1.12rem; font-weight:900; letter-spacing:-0.2px; }
+  .muted{ color:var(--muted); font-size:.95rem; line-height:1.6; }
+
+  /* section labels */
+  .section-title{
+    font-size:.92rem;
+    font-weight:950;
+    color:var(--muted);
+    letter-spacing:-0.1px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .section-title .dot{
+    width:10px; height:10px; border-radius:999px;
+    background:rgba(37,99,235,.9);
+    box-shadow:0 6px 14px rgba(37,99,235,.22);
+  }
+
+  /* question box */
+  .question-box{
+    border:1px solid #dbeafe;
+    background:linear-gradient(180deg, #f5f9ff 0%, #ffffff 70%);
+    border-radius:16px;
+    padding:16px 16px;
+  }
+  .question-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+  }
+  .q-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 10px;
+    border-radius:999px;
+    border:1px solid #dbeafe;
+    background:#ffffff;
+    font-weight:950;
+    color:var(--ink);
+    font-size:.85rem;
+  }
+  .q-chip .ring{
+    width:10px; height:10px; border-radius:999px;
+    background:rgba(37,99,235,.95);
+    box-shadow:0 8px 18px rgba(37,99,235,.22);
+  }
+  .q-hint{
+    font-size:.9rem;
+    color:var(--muted);
+    font-weight:700;
+    white-space:pre-line;
+  }
+
+  /* choices */
+  .choices-panel{
+    border:1px solid var(--line);
+    background:var(--soft);
+    border-radius:16px;
+    padding:14px 14px 4px;
+  }
+  .choices-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .choices-head .t{
+    font-weight:950;
+    color:var(--ink);
+    letter-spacing:-0.1px;
+  }
+  .choices-head .sub{
+    color:var(--muted);
+    font-weight:700;
+    font-size:.9rem;
+  }
+
+  .choice-row{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px 14px;
+    margin-bottom:10px;
+    background:#fff;
+    transition:transform .08s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+  }
+  .choice-row:hover{
+    border-color:#cbd5e1;
+    box-shadow:0 10px 22px rgba(15,23,42,.06);
+    transform:translateY(-1px);
+    background:#fbfdff;
+  }
+  .choice-label{
+    cursor:pointer;
+    font-size:1.02rem;
+    font-weight:850;
+    letter-spacing:-0.1px;
+    color:var(--ink);
+  }
+  .choice-row input{ transform:translateY(2px) scale(1.05); }
+  .choice-row.selected{
+    border-color:rgba(37,99,235,.55);
+    background:linear-gradient(180deg, var(--primary-weak), #ffffff);
+    box-shadow: 0 10px 22px rgba(37,99,235,.10);
+  }
+
+  /* buttons */
+  .btn{
+    border-radius:12px !important;
+    font-weight:900 !important;
+    letter-spacing:-0.1px;
+  }
+  .btn-primary{
+    background:var(--primary)!important;
+    border-color:var(--primary)!important;
+    box-shadow:0 10px 20px rgba(37,99,235,.18);
+  }
+  .btn-outline-secondary, .btn-outline-primary{
+    border-width:1px !important;
+  }
+  .btn:focus{ box-shadow:var(--focus) !important; }
+
+  /* progress */
+  .progress{
+    background:#eef2ff;
+    border-radius:999px;
+    overflow:hidden;
+    border:1px solid #dde6ff;
+  }
+  .progress-bar{ background:var(--primary); }
+
+  /* nav dots */
+  .q-nav{ display:flex; flex-wrap:wrap; gap:8px; }
+  .q-dot{
+    width:34px; height:34px;
+    border-radius:999px;
+    border:1px solid var(--chip-line);
+    background:var(--chip);
+    color:var(--ink);
+    font-weight:950;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; user-select:none;
+    transition:transform .08s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+  }
+  .q-dot:hover{
+    transform:translateY(-1px);
+    box-shadow:0 10px 22px rgba(15,23,42,.08);
+    border-color:#cbd5e1;
+  }
+  .q-dot.active{
+    border-color:rgba(37,99,235,.7);
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+  }
+  .q-dot.done{
+    background:#dcfce7;
+    border-color:#86efac;
+    color:#14532d;
+  }
+  .q-dot.correct{ background:var(--good-bg); border-color:#86efac; color:#14532d; }
+  .q-dot.wrong{ background:var(--bad-bg); border-color:#fca5a5; color:#7f1d1d; }
+
+  /* badges */
+  .badge{
+    font-size:.78rem; font-weight:950; padding:6px 10px; border-radius:999px;
+    border:1px solid #dbe7ff; background:#f1f5ff; color:#0b1f4b;
+  }
+  .badge.good{ background:var(--good-bg); border-color:#bbf7d0; color:#166534; }
+  .badge.bad{ background:var(--bad-bg); border-color:#fecaca; color:#991b1b; }
+
+  /* divider spacing */
+  .divider{ height:1px; background:var(--line); margin:16px 0; }
+
+  /* review */
+  .review-card{
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:#fff;
+    padding:16px;
+  }
+  .review-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .jp-box{
+    margin-top:12px;
+    padding:14px 14px;
+    border-radius:16px;
+    border:1px solid #e2e8f0;
+    background:linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  }
+  .jp-box .t{
+    font-weight:950; color:var(--ink); margin-bottom:8px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .jp-box .t .mini{
+    width:9px; height:9px; border-radius:999px; background:#94a3b8;
+  }
+
+  .ans-grid{
+    margin-top:12px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:12px;
+  }
+  .ans-card{
+    border:1px solid #dbeafe;
+    background:#f8fbff;
+    border-radius:16px;
+    padding:14px 14px;
+  }
+  .ans-card .h{
+    font-weight:950;
+    color:var(--muted);
+    font-size:.85rem;
+    margin-bottom:8px;
+  }
+  .ans-card .v{
+    font-weight:950;
+    color:var(--ink);
+    line-height:1.6;
+    white-space:pre-line;
+  }
+  .ans-card.me{ border-color:#e2e8f0; background:#fbfcfe; }
+  .ans-card.ok{ border-color:#bbf7d0; background:#f6fff7; }
+
+  .ko-box{
+    margin-top:14px;
+    padding:14px 14px;
+    border-radius:18px;
+    border:1px solid #bbf7d0;
+    background:linear-gradient(180deg, #f6fff7 0%, #ffffff 100%);
+  }
+  .ko-box .t{
+    font-weight:950;
+    color:#14532d;
+    margin-bottom:10px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .ko-box .t .sq{
+    width:12px; height:12px; border-radius:3px;
+    background:#22c55e;
+    box-shadow:0 10px 20px rgba(34,197,94,.18);
+  }
+  .ko-box .line{
+    font-size:.98rem;
+    line-height:1.85;
+    color:#14532d;
+    font-weight:750;
+    white-space:pre-line;
+  }
+
+  /* result score area */
+  .score-pill{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+    border-radius:14px;
+    border:1px solid #dbeafe;
+    background:linear-gradient(180deg, #f4f8ff 0%, #ffffff 100%);
+  }
+  .score-pill .big{
+    font-weight:950;
+    font-size:1.05rem;
+    color:var(--ink);
+  }
+
+  /* footer buttons unify */
+  .btn-ghost{
+    background:#fff !important;
+    border:1px solid #e2e8f0 !important;
+    color:var(--ink) !important;
+    font-weight:900 !important;
+  }
+  .btn-ghost:hover{ background:#f8fafc !important; }
+
+  .btn-soft-primary{
+    background:rgba(37,99,235,.10) !important;
+    border:1px solid rgba(37,99,235,.35) !important;
+    color:#0b1f4b !important;
+    font-weight:950 !important;
+  }
+  .btn-soft-primary:hover{ background:rgba(37,99,235,.14) !important; }
+
+  @media (max-width: 720px){
+    .ans-grid{ grid-template-columns: 1fr; }
+    .top-card .card-body, .solve-card .card-body, .result-card .card-body{ padding:14px; }
+    .question-box{ padding:14px; }
+    .choices-panel{ padding:12px 12px 4px; }
+  }
+
+  /* =========================
+     Guide box (시험 안내문) – PART1 동일
+  ========================= */
+  .guide-box{
+    border:1px solid #dbeafe;
+    background:linear-gradient(180deg, #f5f9ff 0%, #ffffff 75%);
+    border-radius:18px;
+    padding:14px 14px;
+  }
+  .guide-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+  }
+  .guide-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:950;
+    color:var(--ink);
+    letter-spacing:-0.2px;
+  }
+  .guide-ic{
+    width:22px; height:22px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+    font-weight:950;
+    color:#0b1f4b;
+    border:1px solid #dbeafe;
+    background:#ffffff;
+    box-shadow:0 8px 18px rgba(37,99,235,.10);
+  }
+  .guide-pill{
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #dbeafe;
+    background:#ffffff;
+    font-weight:950;
+    color:#0b1f4b;
+    font-size:.82rem;
+  }
+  .guide-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+  }
+  .guide-item{
+    border:1px solid #e2e8f0;
+    background:#ffffff;
+    border-radius:14px;
+    padding:12px 12px;
+  }
+  .guide-item .k{
+    font-weight:950;
+    color:var(--muted);
+    font-size:.85rem;
+    margin-bottom:6px;
+  }
+  .guide-item .v{
+    color:var(--ink);
+    font-weight:700;
+    line-height:1.7;
+    font-size:.95rem;
+  }
+  @media (max-width: 720px){
+    .guide-grid{ grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="container n5-wrap" style="max-width:980px;">
+  <!-- TOP -->
+  <div class="card mb-4 top-card">
+    <div class="card-body">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+          <div class="n5-title" style="font-weight:950;">N5 실전 테스트 · PART 3 読解</div>
+          <span class="badge">진행: <span id="posText">1</span> / <span id="totalText">{{ total_questions }}</span></span>
+        </div>
+      </div>
+
+      <!-- ✅ 시험 안내문 -->
+      <div class="guide-box mt-3">
+        <div class="guide-head">
+          <div class="guide-title">
+            <span class="guide-ic">i</span>
+            <span>N5 PART 3 読解 시험 안내</span>
+          </div>
+          <span class="guide-pill">총 {{ total_questions }}문항</span>
+        </div>
+
+        <div class="guide-grid">
+    <div class="guide-item">
+      <div class="k">시험 방법</div>
+      <div class="v">문항을 풀면서 <b>다음/이전</b>으로 이동하거나, 위의 <b>문항 번호</b>를 눌러 빠르게 이동할 수 있어요.</div>
+    </div>
+    <div class="guide-item">
+      <div class="k">정답 제출</div>
+      <div class="v">마지막에 <b>채점/정답해설보기</b>를 누르면 점수와 해설이 표시됩니다. (미선택 문항도 제출 가능)</div>
+    </div>
+    <div class="guide-item">
+      <div class="k">정답 해설</div>
+      <div class="v">채점 후에는 문항 번호가 <b>정답(초록)/오답(빨강)</b>으로 표시되고, 번호를 클릭하면 <b>해당 문항 해설</b>이 아래에 나와요.</div>
+    </div>
+    <div class="guide-item">
+      <div class="k">표시 방식</div>
+      <div class="v"><b>내 답:</b> 1) 보기텍스트 / <b>정답:</b> 2) 보기텍스트 처럼 <b>번호 + 내용</b>이 함께 표시됩니다.</div>
+    </div>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <div class="muted" style="margin-bottom:8px;">문항 빠른 이동</div>
+        <div id="qNav" class="q-nav"></div>
+      </div>
+
+      <div class="progress mt-3" style="height:10px;">
+        <div id="progressBar" class="progress-bar" role="progressbar" style="width:0%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOLVE -->
+  <div class="card solve-card" id="solveCard">
+    <div class="card-body">
+      <div class="mb-3">
+        <div class="section-title">
+          <span class="dot"></span>
+          <span>문제</span>
+        </div>
+
+        <div class="question-box">
+          <div class="question-head">
+            <div class="q-chip"><span class="ring"></span><span id="qChipNo">문제 #1</span></div>
+            <div class="q-hint">※ 正しい答えを選んで「次へ」。最後に採点します。</div>
+          </div>
+          <div id="questionText" class="q-text"></div>
+        </div>
+      </div>
+
+      <div class="choices-panel mb-3">
+        <div class="choices-head">
+          <div class="t">보기</div>
+          <div class="sub">클릭하면 선택됩니다</div>
+        </div>
+        <div id="choicesWrap"></div>
+      </div>
+
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <div class="d-flex gap-2">
+          <button id="prevBtn" class="btn btn-ghost" type="button">← 이전</button>
+          <button id="nextBtn" class="btn btn-primary" type="button">다음 →</button>
+        </div>
+        <div class="d-flex gap-2">
+          <button id="gradeBtn" class="btn btn-soft-primary" type="button">채점/정답해설보기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="resultCard" class="card mt-4 d-none result-card">
+    <div class="card-body">
+      <div class="d-flex align-items-start justify-content-between flex-wrap gap-2">
+        <div class="fw-bold" style="font-size:1.1rem;">결과</div>
+        <div class="score-pill">
+          <div class="big" id="scoreText"></div>
+          <div class="muted">(총 {{ total_questions }}문항)</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="muted" style="margin-bottom:10px;">
+        ✅ 정답(초록) / ❌ 오답(빨강) 표시됨. <b>문항 번호를 클릭하면 해당 해설이 아래에 표시됩니다.</b>
+      </div>
+
+      <div id="reviewNav" class="q-nav"></div>
+
+      <div class="divider"></div>
+
+      <div id="reviewDetail" class="review-card"></div>
+
+      <div class="d-flex gap-2 flex-wrap mt-3">
+        <a class="btn btn-ghost" href="{{ url_for('jlpt_n5_test') }}" style="text-decoration:none;">홈으로</a>
+        <button class="btn btn-soft-primary" type="button" onclick="location.reload()">다시 풀기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const QUESTIONS = {{ (questions or [])|tojson|safe }};
+  const PART = {{ part|default(3) }};
+
+  let idx = 0;
+  const total = QUESTIONS.length;
+  const answers = new Array(total).fill(null);
+
+  let LAST_REVIEW = null;
+
+  const posText = document.getElementById("posText");
+  const totalText = document.getElementById("totalText");
+  const progressBar = document.getElementById("progressBar");
+  const questionText = document.getElementById("questionText");
+  const choicesWrap = document.getElementById("choicesWrap");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const gradeBtn = document.getElementById("gradeBtn");
+  const qChipNo = document.getElementById("qChipNo");
+
+  const qNav = document.getElementById("qNav");
+  const resultCard = document.getElementById("resultCard");
+  const scoreText = document.getElementById("scoreText");
+  const reviewNav = document.getElementById("reviewNav");
+  const reviewDetail = document.getElementById("reviewDetail");
+
+  function escapeHtml(str) {
+    return String(str ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function normalizeQuestion(q) {
+    const text = q?.q ?? q?.question ?? "";
+    const choices = Array.isArray(q?.choices) ? q.choices : [];
+    const answer = Number.isInteger(q?.answer) ? q.answer : 0;
+    return { ...q, q: text, choices, answer };
+  }
+
+  function navDotClass(i){
+    const cls = [];
+    if (answers[i] !== null) cls.push("done");
+    if (i === idx) cls.push("active");
+
+    if (LAST_REVIEW && Array.isArray(LAST_REVIEW.items)) {
+      const it = LAST_REVIEW.items[i];
+      if (it) cls.push(it.is_correct ? "correct" : "wrong");
+    }
+    return cls.join(" ");
+  }
+
+  function renderNav() {
+    qNav.innerHTML = "";
+    for (let i = 0; i < total; i++) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "q-dot " + navDotClass(i);
+      btn.textContent = String(i + 1);
+      btn.addEventListener("click", () => {
+        idx = i;
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      qNav.appendChild(btn);
+    }
+  }
+
+  function renderSingle(i) {
+    const q = normalizeQuestion(QUESTIONS[i]);
+
+    posText.textContent = String(i + 1);
+    totalText.textContent = String(total);
+    progressBar.style.width = Math.round(((i + 1) / total) * 100) + "%";
+
+    qChipNo.textContent = `문제 #${i + 1}`;
+
+    questionText.textContent = q.q || "(문제 텍스트가 없습니다)";
+    choicesWrap.innerHTML = "";
+
+    const picked = answers[i];
+
+    q.choices.forEach((choice, ci) => {
+      const row = document.createElement("div");
+      row.className = "choice-row d-flex align-items-center gap-2";
+      if (picked === ci) row.classList.add("selected");
+
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "choice";
+      radio.value = String(ci);
+      radio.checked = picked === ci;
+
+      const label = document.createElement("div");
+      label.className = "choice-label";
+      label.textContent = `${ci + 1}. ${choice}`;
+
+      row.addEventListener("click", () => {
+        answers[i] = ci;
+        render();
+      });
+
+      row.appendChild(radio);
+      row.appendChild(label);
+      choicesWrap.appendChild(row);
+    });
+  }
+
+  function render() {
+    if (!total) {
+      questionText.textContent = "문제가 없습니다. (데이터를 확인해주세요)";
+      choicesWrap.innerHTML = "";
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      renderNav();
+      return;
+    }
+
+    prevBtn.disabled = (idx === 0);
+    nextBtn.disabled = (idx === total - 1);
+
+    renderSingle(idx);
+    renderNav();
+  }
+
+  function renderReviewNav() {
+    reviewNav.innerHTML = "";
+    const items = Array.isArray(LAST_REVIEW?.items) ? LAST_REVIEW.items : [];
+    for (let i = 0; i < total; i++) {
+      const it = items[i];
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "q-dot " + (it?.is_correct ? "correct" : "wrong");
+      btn.textContent = String(i + 1);
+      btn.addEventListener("click", () => {
+        renderReviewDetail(i);
+        window.scrollTo({ top: resultCard.offsetTop - 10, behavior: "smooth" });
+      });
+      reviewNav.appendChild(btn);
+    }
+  }
+
+  function renderReviewDetail(i) {
+    const items = Array.isArray(LAST_REVIEW?.items) ? LAST_REVIEW.items : [];
+    const it = items[i];
+    const q = normalizeQuestion(QUESTIONS[i] || {});
+    if (!it) {
+      reviewDetail.innerHTML = `<div class="muted">해설 데이터가 없습니다.</div>`;
+      return;
+    }
+
+    const user = (it.user_index === null || it.user_index === undefined) ? null : Number(it.user_index);
+    const ans = Number(it.answer_index ?? 0);
+
+    const userText = (user === null)
+      ? "미선택"
+      : `${user + 1}) ${q.choices[user] ?? ""}`;
+
+    const ansText  = `${ans + 1}) ${q.choices[ans] ?? ""}`;
+
+    const koChoices = Array.isArray(it.choices_ko) ? it.choices_ko : [];
+    const koChoicesText = koChoices.length ? koChoices.map((c, idx) => `${idx+1}. ${c}`).join("\n") : "";
+
+    reviewDetail.innerHTML = `
+      <div class="review-head">
+        <div style="font-weight:950; color:var(--ink);">#${i+1}번 해설</div>
+        <span class="badge ${it.is_correct ? "good" : "bad"}">${it.is_correct ? "✅ 정답" : "❌ 오답"}</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="jp-box">
+        <div class="t"><span class="mini"></span><span>[문제(JP)]</span></div>
+        <div class="q-text">${escapeHtml(q.q || "")}</div>
+      </div>
+
+      <div class="ans-grid">
+        <div class="ans-card me">
+          <div class="h">내 답</div>
+          <div class="v">${escapeHtml(userText)}</div>
+        </div>
+        <div class="ans-card ok">
+          <div class="h">정답</div>
+          <div class="v">${escapeHtml(ansText)}</div>
+        </div>
+      </div>
+
+      ${(it.q_ko || koChoicesText || it.explain_ko) ? `
+        <div class="ko-box">
+          <div class="t"><span class="sq"></span><span>해설(한국어)</span></div>
+          ${it.q_ko ? `<div class="line"><b>번역:</b>\n${escapeHtml(it.q_ko)}</div>` : ""}
+          ${koChoicesText ? `<div class="line" style="margin-top:8px;"><b>보기:</b>\n${escapeHtml(koChoicesText)}</div>` : ""}
+          ${it.explain_ko ? `<div class="line" style="margin-top:8px;"><b>설명:</b>\n${escapeHtml(it.explain_ko)}</div>` : ""}
+        </div>
+      ` : `<div class="muted" style="margin-top:12px;">(한국어 해설 데이터가 없습니다)</div>`}
+    `;
+  }
+
+  prevBtn.addEventListener("click", () => {
+    if (idx > 0) { idx--; render(); }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (idx < total - 1) { idx++; render(); }
+  });
+
+  gradeBtn.addEventListener("click", async () => {
+    const res = await fetch(`/api/jlpt/n5/test/grade/${PART || 3}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ answers })
+    });
+
+    const data = await res.json();
+    LAST_REVIEW = data;
+
+    scoreText.textContent = `${data.correct} / ${data.total} (${data.score}점)`;
+
+    resultCard.classList.remove("d-none");
+    renderNav();
+    renderReviewNav();
+    renderReviewDetail(0);
+
+    window.scrollTo({ top: resultCard.offsetTop - 10, behavior: "smooth" });
+  });
+
+  render();
+</script>
+{% endblock %}
