@@ -1,0 +1,406 @@
+/* =========================
+   JLPT (base.html 통합용)
+   - ✅ 상단메뉴바(topnav) 유지
+   - ✅ kana(기초) 영역 CSS 유지 (절대 수정 X)
+   - ✅ N5~N1 스타일은 "공통 통합" (jlpt-level-*로만)
+   - ✅ 중복/불필요 코드 제거 (n5-nav, jlpt-nav 등 제거)
+========================= */
+
+/* ---------- Variables ---------- */
+:root{
+  --bg:#f3f5f7;
+  --card:#ffffff;
+  --navy:#0b1f3b;
+  --navy2:#12335f;
+  --text:#111827;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --shadow:0 6px 18px rgba(17,24,39,.06);
+  --radius:10px;
+}
+
+*{ box-sizing:border-box; }
+
+/* =========================
+   JLPT 공통: 컨테이너 폭(좁게)
+   (base.html을 쓰는 JLPT 페이지에서 적용)
+========================= */
+body[data-jlpt="1"] .container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* 카드 그리드도 같이 안정화 */
+body[data-jlpt="1"] .jlpt-grid{
+  max-width: 980px;
+  margin: 12px auto 0;
+}
+
+/* =========================
+   JLPT 상단(탭) 메뉴바 스타일 (유지)
+   ※ base.html topbar를 쓰는 전제
+========================= */
+body[data-jlpt="1"] .topnav{
+  display:flex;
+  gap:26px;
+  align-items:center;
+  justify-content:center;
+  flex:1;
+}
+
+body[data-jlpt="1"] .topnav a{
+  text-decoration:none;
+  color:#4b5563;
+  font-weight:700;
+  font-size:15px;
+  padding:10px 6px;
+  border-radius:10px;
+}
+
+body[data-jlpt="1"] .topnav a:hover{
+  background:#f3f4f6;
+  color:#111827;
+}
+
+body[data-jlpt="1"] .topnav a.is-active{
+  color:#0b1f4b;
+  background:#eef2ff;
+}
+
+/* =========================
+   JLPT 카드/타이포 (N5~N1 공통)
+========================= */
+.jlpt-card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:18px 18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.04);
+  margin-bottom:14px;
+}
+
+.jlpt-h1{
+  font-size:22px;
+  margin:0 0 8px 0;
+  font-weight:800;
+  color:#111827;
+}
+
+.jlpt-h2{
+  font-size:18px;
+  margin:0;
+  font-weight:800;
+  color:#111827;
+}
+
+.jlpt-subtext{
+  margin:0;
+  color:#4b5563;
+  line-height:1.7;
+  font-size:14px;
+}
+
+/* =========================
+   ✅ N5~N1 "공통 통합" 메뉴 UI
+   - 반드시 HTML에서 아래 클래스만 사용:
+     jlpt-level-nav / jlpt-level-nav-item / jlpt-level-nav-title / jlpt-level-nav-desc
+========================= */
+.jlpt-level-nav{
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+  gap:12px;
+  flex-wrap:nowrap;
+  width:100%;
+}
+
+.jlpt-level-nav-item{
+  flex:1;
+  max-width:220px;
+  min-width:0;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:16px 14px;
+  text-decoration:none;
+  color:#111827;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,.04);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:6px;
+
+  transition:transform .08s ease, border-color .12s ease, box-shadow .12s ease;
+}
+
+.jlpt-level-nav-item:hover{
+  transform:translateY(-2px);
+  border-color:#c7d2fe;
+  box-shadow:0 10px 22px rgba(0,0,0,.06);
+}
+
+.jlpt-level-nav-title{
+  font-size:16px;
+  font-weight:900;
+  color:#0b1f4b;
+  line-height:1.2;
+}
+
+.jlpt-level-nav-desc{
+  font-size:13px;
+  color:#6b7280;
+  font-weight:600;
+  line-height:1.35;
+}
+
+/* 준비중 상태 */
+.jlpt-level-nav-item.is-disabled{
+  opacity:.45;
+  cursor:default;
+  pointer-events:none;
+}
+
+/* 모바일 대응 */
+@media (max-width:640px){
+  .jlpt-level-nav{ flex-wrap:wrap; }
+  .jlpt-level-nav-item{ max-width:none; width:100%; }
+}
+
+/* 레이아웃 여백/폭 (선택적으로 wrapper에 사용) */
+.jlpt-level-wrap{
+  max-width: 880px;
+  padding-top: 34px;
+  padding-bottom: 56px;
+}
+
+/* 큰 화면에서 카드가 너무 꽉 차는 느낌 방지 */
+@media (min-width: 992px){
+  .jlpt-level-wrap{ padding-left: 18px; padding-right: 18px; }
+}
+
+/* 헤더 타이포 (선택적으로 사용) */
+.jlpt-level-title{
+  font-size: 1.25rem;
+  font-weight: 950;
+  letter-spacing: -0.3px;
+}
+
+.jlpt-level-sub{
+  color: var(--muted);
+  font-weight: 750;
+  margin-top: 6px;
+}
+
+/* 문제 번호 배지 (선택적으로 사용) */
+.jlpt-level-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#eef2ff;
+  border:1px solid #dbeafe;
+  color:#1e3a8a;
+  font-weight:900;
+  font-size:.88rem;
+}
+
+/* 버튼 업그레이드 (JLPT 영역에서만 영향) */
+body[data-jlpt="1"] .btn{
+  border-radius:14px !important;
+  font-weight:900 !important;
+  padding:10px 14px !important;
+}
+body[data-jlpt="1"] .btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 22px rgba(15,23,42,.08);
+}
+body[data-jlpt="1"] .btn:active{
+  transform:translateY(0);
+  box-shadow:none;
+}
+
+/* 하단 버튼 영역 간격 (선택적으로 사용) */
+.jlpt-level-actions{
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px dashed var(--line);
+}
+
+/* =========================
+   JLPT 단어/예문 박스 스타일 (유지)
+========================= */
+.jlpt-section-title{
+  font-size:20px;
+  font-weight:800;
+  margin-bottom:4px;
+}
+
+.jlpt-section-desc{
+  font-size:14px;
+  color:#6b7280;
+  margin-bottom:14px;
+}
+
+.jlpt-word-box{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:14px 16px;
+}
+
+.jlpt-word-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:1px dashed #e5e7eb;
+}
+
+.jlpt-word-row:last-child{ border-bottom:none; }
+
+.jlpt-label{
+  width:90px;
+  font-weight:700;
+  color:#374151;
+}
+
+.jlpt-value{
+  flex:1;
+  font-size:15px;
+}
+
+.jlpt-value.jp{
+  font-size:22px;
+  font-weight:900;
+  color:#0b1f4b;
+}
+
+.jlpt-word-example{
+  margin-top:14px;
+  padding:14px 16px;
+  background:#f9fafb;
+  border-radius:12px;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.jlpt-word-example .ko{
+  display:block;
+  margin-top:6px;
+  color:#4b5563;
+}
+
+.jlpt-note{
+  margin-top:12px;
+  padding:12px 14px;
+  background:#f1f5f9;
+  border-radius:10px;
+  font-size:13px;
+  color:#475569;
+}
+
+/* =========================
+   ✅ Kana(기초) CSS: 절대 건드리지 않음 (그대로 유지)
+========================= */
+.kana-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+.kana-title{
+  margin:0;
+  font-size:18px;
+  font-weight:900;
+  color:#0b1f4b;
+}
+.kana-tip{
+  font-size:13px;
+  color:#6b7280;
+  font-weight:600;
+}
+.kana-grid{
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:12px;
+  align-items:stretch;
+}
+.kana-cell{
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  background:#ffffff;
+  cursor:pointer;
+  user-select:none;
+
+  height:84px;
+  padding:10px 10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+
+  transition:transform .06s ease, border-color .12s ease, background .12s ease;
+  text-align:center;
+}
+.kana-char{
+  font-size:30px;
+  font-weight:950;
+  line-height:1;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#111827;
+}
+.kana-pron{
+  font-size:13px;
+  font-weight:900;
+  color:#6b7280;
+  line-height:1;
+  height:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.kana-cell.is-empty{
+  height:84px;
+  background:transparent;
+  border:1px dashed #e5e7eb;
+  cursor:default;
+}
+.kana-cell:hover{
+  background:#f9fafb;
+  border-color:#d1d5db;
+  transform:translateY(-1px);
+}
+.kana-cell:active{
+  transform:translateY(0);
+}
+.kana-cell.is-empty:hover{
+  transform:none;
+  background:transparent;
+  border-color:#e5e7eb;
+}
+@media (max-width:520px){
+  .kana-cell{ height:78px; border-radius:12px; }
+  .kana-char{ font-size:28px; height:32px; }
+}
+.kana-mini-list li{ line-height:1.7; }
+.kana-mini-list .ex{
+  display:block;
+  margin-top:4px;
+  color:#475569;
+  font-size:0.9rem;
+}
+
+/* Kana 페이지 소개 카드 텍스트 (유지) */
+.jlpt-intro-title{ font-size:18px; font-weight:800; margin:0 0 10px; }
+.jlpt-intro-desc{ color:#334155; margin:0 0 12px; line-height:1.7; }
+.jlpt-intro-list{ margin:0; padding-left:18px; color:#475569; line-height:1.8; }
+.jlpt-intro-tip{ margin-top:12px; color:#64748b; }
