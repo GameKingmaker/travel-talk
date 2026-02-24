@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+{% block title %}JLPT N4 시험 | 테스트{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jlpt.css') }}">
+{% endblock %}
+
+{% block content %}
+<style>
+  :root{
+    --bg:#f6f8ff;
+    --card:#ffffff;
+    --text:#0b1f4b;
+    --muted:#64748b;
+    --line:rgba(15,23,42,.10);
+    --shadow:0 16px 34px rgba(15,23,42,.08);
+    --shadow2:0 12px 26px rgba(15,23,42,.10);
+    --blue:#2563eb;
+    --blue2:#1d4ed8;
+    --chip:#eef2ff;
+    --chipLine:#dbe7ff;
+  }
+
+  .wrap{max-width:980px;margin:0 auto;padding:0 14px;}
+  .hero{
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:linear-gradient(180deg, rgba(37,99,235,.07), rgba(255,255,255,1) 55%);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .hero-in{padding:22px;}
+  .title{
+    font-size:22px;
+    font-weight:950;
+    color:var(--text);
+    letter-spacing:-.02em;
+  }
+  .sub{
+    margin-top:8px;
+    color:var(--muted);
+    font-weight:800;
+    line-height:1.65;
+    font-size:14px;
+  }
+  .meta-row{
+    margin-top:14px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 12px;
+    border-radius:999px;
+    background:var(--chip);
+    border:1px solid var(--chipLine);
+    color:var(--blue2);
+    font-weight:950;
+    font-size:12px;
+    white-space:nowrap;
+  }
+  .pill b{color:var(--text);}
+
+  .btnx{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:44px;
+    padding:0 16px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:#fff;
+    font-weight:950;
+    cursor:pointer;
+    transition:.16s ease;
+    text-decoration:none;
+    color:var(--text);
+  }
+  .btnx:hover{transform:translateY(-1px);box-shadow:var(--shadow2);}
+  .btnx:active{transform:translateY(0px);box-shadow:none;}
+
+  .btnx-primary{
+    background:linear-gradient(180deg, rgba(37,99,235,1), rgba(29,78,216,1));
+    border:1px solid rgba(29,78,216,.35);
+    color:#fff;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:12px;
+    margin-top:16px;
+  }
+  .cardx{
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:var(--card);
+    padding:16px;
+    box-shadow:0 10px 22px rgba(15,23,42,.06);
+    transition:.16s ease;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    min-height:160px;
+  }
+  .cardx:hover{
+    transform:translateY(-1px);
+    box-shadow:0 16px 30px rgba(15,23,42,.10);
+    border-color:rgba(37,99,235,.22);
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .card-title{
+    font-weight:950;
+    color:var(--text);
+    font-size:16px;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  .tag{
+    font-size:12px;
+    font-weight:950;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid rgba(15,23,42,.10);
+    background:#f8fafc;
+    color:#334155;
+    white-space:nowrap;
+  }
+
+  .card-desc{
+    margin:0;
+    color:var(--muted);
+    font-weight:800;
+    line-height:1.6;
+    font-size:13.5px;
+  }
+
+  .bullets{
+    margin:0;
+    padding-left:18px;
+    color:#334155;
+    font-weight:800;
+    font-size:13px;
+    line-height:1.6;
+  }
+  .bullets li{margin:4px 0;}
+
+  .card-actions{
+    margin-top:auto;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+
+  .note{
+    margin-top:14px;
+    border:1px dashed rgba(15,23,42,.18);
+    background:rgba(255,255,255,.75);
+    border-radius:18px;
+    padding:14px 16px;
+    color:#475569;
+    font-weight:800;
+    line-height:1.7;
+    font-size:13px;
+  }
+
+  @media (max-width: 720px){
+    .grid{grid-template-columns:1fr;}
+    .hero-in{padding:18px;}
+  }
+</style>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-in">
+      <div class="title">JLPT N4 실전 테스트</div>
+      <div class="sub">
+        PART 1~3 예시 문항으로 구성되어 있어요. <b>채점은 마지막에</b> 하고,
+        해설은 <b>문항을 클릭</b>하면 개별로 확인할 수 있습니다.
+      </div>
+
+      <div class="meta-row">
+        <span class="pill">✅ <b>진행</b> PART 선택 → 문제 풀이</span>
+        <span class="pill">🧠 <b>복습</b> 문항 클릭 → 해설 확인</span>
+        <span class="pill">🎯 <b>목표</b> 실전 감각 + 약점 체크</span>
+      </div>
+
+      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btnx" href="{{ url_for('jlpt_n4_home') }}">← N4 홈으로</a>
+      </div>
+
+      <div class="grid">
+        <!-- PART 1 -->
+        <div class="cardx">
+          <div class="card-top">
+            <h3 class="card-title">PART 1 文字・語彙</h3>
+            <span class="tag">읽기·어휘</span>
+          </div>
+          <p class="card-desc">
+            기본 한자/표기, 단어 의미, 문맥에서 자연스러운 표현을 고르는 파트예요.
+          </p>
+          <ul class="bullets">
+            <li>단어 뜻/용법 구분</li>
+            <li>문장 흐름에 맞는 어휘 선택</li>
+            <li>헷갈리는 표기 정리</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btnx btnx-primary" href="{{ url_for('jlpt_n4_test_start', part=1) }}">시작</a>
+          </div>
+        </div>
+
+        <!-- PART 2 -->
+        <div class="cardx">
+          <div class="card-top">
+            <h3 class="card-title">PART 2 文法</h3>
+            <span class="tag">문법·표현</span>
+          </div>
+          <p class="card-desc">
+            조사/활용/문형 등 기초 문법을 문장 속에서 정확히 적용하는 파트예요.
+          </p>
+          <ul class="bullets">
+            <li>조사/어미/활용 규칙</li>
+            <li>문형(～ながら, ～てしまう 등)</li>
+            <li>자주 틀리는 패턴 점검</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btnx btnx-primary" href="{{ url_for('jlpt_n4_test_start', part=2) }}">시작</a>
+          </div>
+        </div>
+
+        <!-- PART 3 -->
+        <div class="cardx">
+          <div class="card-top">
+            <h3 class="card-title">PART 3 読解</h3>
+            <span class="tag">독해</span>
+          </div>
+          <p class="card-desc">
+            짧은 글/안내문/메시지 등을 읽고 핵심 정보를 빠르게 찾는 파트예요.
+          </p>
+          <ul class="bullets">
+            <li>핵심 문장/요점 파악</li>
+            <li>질문에 맞는 정보 찾기</li>
+            <li>시간 압박 대비 연습</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btnx btnx-primary" href="{{ url_for('jlpt_n4_test_start', part=3) }}">시작</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        🎧 안내: 이 테스트는 <b>PART 1~PART 3</b>에 집중한 구성입니다.
+        <b>PART 4(청해)</b>는 제공하지 않으며,
+        대신 어휘·문법·독해를 통해 <b>실전 문제 해결력</b>을 탄탄히 다질 수 있어요.
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
