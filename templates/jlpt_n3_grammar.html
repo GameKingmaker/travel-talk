@@ -1,0 +1,562 @@
+{% extends "base.html" %}
+
+{% block title %}JLPT N3 문법 | 고급 문법 정리{% endblock %}
+
+{# ✅ JLPT 전용 CSS를 base.html 위에 추가 로드 #}
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jlpt.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ✅ 상단 소개 -->
+<div class="jlpt-card jlpt-intro">
+  <h2 class="jlpt-intro-title">📌 JLPT N3 문법</h2>
+  <p class="jlpt-intro-desc">
+    N3 문법은 <b>대조/양보</b>, <b>원인·결과</b>, <b>상황 판단</b>, <b>추측/전언</b>, <b>관용적 표현</b>이 많아져서
+    “문장의 뉘앙스”가 점점 중요해집니다. <br>
+    아래 분류를 눌러서 필요한 문법만 골라 반복하세요.
+  </p>
+
+  <ul class="jlpt-intro-list">
+    <li><b>추천 루틴</b>: 문법 2개 → 예문 듣기 → 상황 1줄 암기 → 변형 2개 말해보기</li>
+    <li><b>Tip</b>: N3부터는 “뜻”보다 <b>언제 쓰는지(상황)</b>가 기억을 잡아줍니다.</li>
+  </ul>
+
+  <p class="jlpt-intro-tip">※ 발음 듣기는 버튼을 누르면 일본어 음성으로 재생됩니다.</p>
+
+  <!-- ✅ 상단 이동 버튼 -->
+  <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+    <a class="btn btn-outline" href="{{ url_for('jlpt_n3_home') }}">← N3 홈으로</a>
+  </div>
+</div>
+
+<!-- ✅ 분류(칩) : N3 추천 9분류 -->
+<div class="jlpt-card" style="display:flex; gap:8px; flex-wrap:wrap;">
+  <button class="jlpt-chip is-on" type="button" data-filter="all">전체</button>
+  <button class="jlpt-chip" type="button" data-filter="contrast">대조/양보</button>
+  <button class="jlpt-chip" type="button" data-filter="reason">원인/결과</button>
+  <button class="jlpt-chip" type="button" data-filter="judgement">판단/평가</button>
+  <button class="jlpt-chip" type="button" data-filter="intention">의지/계획</button>
+  <button class="jlpt-chip" type="button" data-filter="guess">추측/전언</button>
+  <button class="jlpt-chip" type="button" data-filter="limit">한정/강조</button>
+  <button class="jlpt-chip" type="button" data-filter="tendency">습관/경향</button>
+  <button class="jlpt-chip" type="button" data-filter="connect">연결/진행</button>
+  <button class="jlpt-chip" type="button" data-filter="advice">충고/요구</button>
+</div>
+
+<div class="jlpt-card jlpt-note" style="margin-top:12px;">
+  <div style="color:#475569; font-weight:700;">
+    🔎 N3는 “문법 = 문장”이 아니라, <b>상황 + 뉘앙스</b>가 핵심입니다.
+  </div>
+</div>
+
+<!-- =========================
+     스타일(페이지 전용) - N4와 동일
+========================= -->
+<style>
+  .g-card{border:1px solid #e5e7eb; border-radius:14px; padding:16px; background:#fff; box-shadow:0 8px 20px rgba(0,0,0,.04); margin-bottom:12px;}
+  .g-head{display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
+  .g-title{font-size:18px; font-weight:950; color:#0b1f4b; margin:0;}
+  .g-tag{font-size:12px; font-weight:900; color:#334155; background:#f1f5ff; border:1px solid #dbe7ff; padding:6px 10px; border-radius:999px; white-space:nowrap;}
+  .g-desc{margin:8px 0 0; color:#374151; line-height:1.7; font-weight:650; font-size:14px;}
+  .g-rule{margin:10px 0 0; padding:10px 12px; border:1px dashed #e5e7eb; border-radius:12px; background:#fbfdff; color:#475569; font-size:13px; line-height:1.7;}
+  .g-warn{margin:10px 0 0; padding:10px 12px; border-radius:12px; background:#f8fafc; border:1px solid #e5e7eb; color:#475569; font-size:13px; line-height:1.7;}
+
+  .g-extra{margin:12px 0 0; padding:12px 12px; border:1px solid #e5e7eb; border-radius:12px; background:#ffffff;}
+  .g-extra .x-row{display:flex; gap:10px; align-items:flex-start; padding:6px 0; border-bottom:1px dashed #eef2f7;}
+  .g-extra .x-row:last-child{border-bottom:none;}
+  .g-extra .x-k{min-width:60px; font-weight:950; color:#0b1f4b; font-size:13px;}
+  .g-extra .x-v{color:#334155; font-weight:750; font-size:13px; line-height:1.7;}
+  .x-badge{display:inline-block; margin-right:6px; font-size:12px; font-weight:950; color:#0b1f4b; background:#eef2ff; border:1px solid #dbe7ff; padding:2px 8px; border-radius:999px;}
+
+  .ex{margin-top:12px; padding-top:12px; border-top:1px solid #eef2f7;}
+  .ex-row{display:flex; gap:10px; align-items:flex-start; justify-content:space-between; padding:10px 0; border-bottom:1px dashed #eef2f7;}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-left{flex:1;}
+  .ex-jp{font-size:16px; font-weight:900; color:#111827;}
+  .ex-pron{margin-top:4px; color:#64748b; font-weight:700; font-size:13px;}
+  .ex-ko{margin-top:4px; color:#334155; font-weight:700; font-size:13px;}
+
+  .ex-use{
+    margin-top:6px;
+    color:#475569;
+    font-weight:800;
+    font-size:12.5px;
+    line-height:1.55;
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    padding:6px 10px;
+    border-radius:10px;
+    display:inline-block;
+  }
+
+  .hl{
+    display:inline-block;
+    padding:1px 6px;
+    border-radius:8px;
+    border:1px solid #fde68a;
+    background:#fffbeb;
+    color:#92400e;
+    font-weight:950;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+
+  .tts-btn{
+    height:36px; padding:0 12px; border-radius:999px; border:1px solid #dbe7ff;
+    background:#f1f5ff; color:#0b1f4b; font-weight:900; font-size:13px; cursor:pointer;
+    white-space:nowrap;
+  }
+  .tts-btn:hover{background:#eaf0ff;}
+</style>
+
+<!-- ✅ 문법 카드 출력 -->
+<div id="grammarList"></div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+/* ==========================================================
+  ✅ N3 문법 데이터(빈출 위주)
+========================================================== */
+const grammarData = [
+  /* =======================
+     contrast: 대조/양보
+  ======================= */
+  {
+    cat:"contrast", tag:"대조/양보", title:"～ても (…해도)",
+    desc:"조건이 달라져도 결과는 변하지 않는 양보",
+    rule:"동사/い형(て形) + <span class='hl'>も</span> / な형·명사: でも",
+    warn:"N3에서 ‘양보’ 대표. 결과가 안 바뀌는 뉘앙스.",
+    extra:{
+      core:"<span class='x-badge'>양보</span> “~해도(상관없다)”",
+      situation:"상대가 걱정/조건을 말해도 ‘괜찮아’라고 할 때",
+      breakdown:"高くても(비싸도) + 買います(산다)",
+      caution:"‘てもいい’(허가)와 구분: N3 ‘ても’는 양보",
+      variation:"忙しくても行きます。／雨でもやります。"
+    },
+    examples:[
+      {jp:"高くても買います。", pron:"타카쿠테모 카이마스", ko:"비싸도 살게요.", use:"✅ 상황: 조건 상관없음", highlight:["ても"]},
+      {jp:"雨でも試合はあります。", pron:"아메데모 시아이와 아리마스", ko:"비가 와도 경기는 있어요.", use:"✅ 상황: 행사/일정 고정", highlight:["でも"]},
+      {jp:"遅くても大丈夫です。", pron:"오소쿠테모 다이죠오부데스", ko:"늦어도 괜찮아요.", use:"✅ 상황: 상대 안심시키기", highlight:["ても"]}
+    ]
+  },
+  {
+    cat:"contrast", tag:"대조/양보", title:"～のに (…인데도)",
+    desc:"예상과 반대되는 결과(불만/아쉬움 뉘앙스)",
+    rule:"普通形 + <span class='hl'>のに</span>",
+    warn:"N3는 감정 뉘앙스까지 잡는 게 포인트.",
+    extra:{
+      core:"<span class='x-badge'>역접</span> “~인데도”",
+      situation:"기대와 다르게 흘러갈 때(아쉬움/불만)",
+      breakdown:"頑張った(했는데) + のに + だめだった(안 됐다)",
+      caution:"뒤 문장이 ‘원치 않는 결과’가 오는 경우 많음",
+      variation:"安いのに高そうに見える。／行ったのに会えなかった。"
+    },
+    examples:[
+      {jp:"頑張ったのに、うまくいきませんでした。", pron:"간밧타노니, 우마쿠 이키마센데시타", ko:"열심히 했는데도 잘 안 됐어요.", use:"✅ 상황: 결과가 반대", highlight:["のに"]},
+      {jp:"行ったのに、会えませんでした。", pron:"잇타노니, 아에마센데시타", ko:"갔는데도 못 만났어요.", use:"✅ 상황: 허탕", highlight:["のに"]},
+      {jp:"寒いのに、彼は半袖です。", pron:"사무이노니, 카레와 한소데데스", ko:"추운데도 그는 반팔이에요.", use:"✅ 상황: 예상 밖", highlight:["のに"]}
+    ]
+  },
+  {
+    cat:"contrast", tag:"대조/양보", title:"～けれども / ～けど (…하지만)",
+    desc:"대조/전환(부드럽게 반대 내용으로 넘어감)",
+    rule:"普通形 + <span class='hl'>けれども</span> (회화: けど)",
+    warn:"문장 연결이 자연스러워져서 N3 독해에 자주 나옵니다.",
+    extra:{
+      core:"<span class='x-badge'>대조</span> “하지만”",
+      situation:"말을 부드럽게 꺾거나, 반대 내용을 덧붙일 때",
+      breakdown:"行きたい(싶다) + けど + 時間がない(시간없다)",
+      caution:"문장 끝에 けど로 여운 남겨 공손하게 마무리 가능",
+      variation:"行きたいけど…／好きだけど…"
+    },
+    examples:[
+      {jp:"行きたいけれども、時間がありません。", pron:"이키타이케레도모, 지칸가 아리마센", ko:"가고 싶지만 시간이 없어요.", use:"✅ 상황: 부드러운 거절", highlight:["けれども"]},
+      {jp:"この店は安いけど、人が多いです。", pron:"코노 미세와 야스이케도, 히토가 오오이데스", ko:"이 가게는 싸지만 사람이 많아요.", use:"✅ 상황: 장단점", highlight:["けど"]},
+      {jp:"雨だけど、出かけます。", pron:"아메다케도, 데카케마스", ko:"비지만 나갈게요.", use:"✅ 상황: 반전 행동", highlight:["けど"]}
+    ]
+  },
+
+  /* =======================
+     reason: 원인/결과
+  ======================= */
+  {
+    cat:"reason", tag:"원인/결과", title:"～せいで (…때문에: 나쁜 결과)",
+    desc:"원인 때문에 좋지 않은 결과가 생김(책임/불평)",
+    rule:"普通形 + <span class='hl'>せいで</span>",
+    warn:"대체로 ‘나쁜 결과’에 쓰는 게 자연스럽습니다.",
+    extra:{
+      core:"<span class='x-badge'>원인</span> “~때문에(부정적)”",
+      situation:"불편/실패 원인을 말할 때",
+      breakdown:"雨のせいで(비 때문에) + 遅れた(늦었다)",
+      caution:"좋은 이유는 ‘おかげで’와 대비",
+      variation:"渋滞のせいで遅れました。／病気のせいで休みました。"
+    },
+    examples:[
+      {jp:"雨のせいで遅れました。", pron:"아메노 세에데 오쿠레마시타", ko:"비 때문에 늦었어요.", use:"✅ 상황: 변명/원인", highlight:["せいで"]},
+      {jp:"渋滞のせいで間に合いませんでした。", pron:"주우타이노 세에데 마니아이마센데시타", ko:"정체 때문에 늦었어요.", use:"✅ 상황: 지각 사유", highlight:["せいで"]},
+      {jp:"彼のせいで失敗しました。", pron:"카레노 세에데 싯파이시마시타", ko:"그 때문에 실패했어요.", use:"✅ 상황: 책임 강조", highlight:["せいで"]}
+    ]
+  },
+  {
+    cat:"reason", tag:"원인/결과", title:"～おかげで (…덕분에: 좋은 결과)",
+    desc:"누군가/무언가 덕분에 좋은 결과가 생김",
+    rule:"普通形 + <span class='hl'>おかげで</span>",
+    warn:"감사/긍정 결과에 쓰는 대표 표현.",
+    extra:{
+      core:"<span class='x-badge'>긍정원인</span> “~덕분에”",
+      situation:"도움/조건 덕분에 잘 됐을 때",
+      breakdown:"先生のおかげで(선생님 덕분에) + 合格した(합격)",
+      caution:"아주 드물게 비꼼으로도 가능(문맥 주의)",
+      variation:"友達のおかげで助かりました。／天気のおかげで…"
+    },
+    examples:[
+      {jp:"先生のおかげで合格できました。", pron:"센세에노 오카게데 고오카쿠 데키마시타", ko:"선생님 덕분에 합격했어요.", use:"✅ 상황: 감사", highlight:["おかげで"]},
+      {jp:"友達のおかげで助かりました。", pron:"토모다치노 오카게데 타스카리마시타", ko:"친구 덕분에 살았어요(도움됐어요).", use:"✅ 상황: 도움 고마움", highlight:["おかげで"]},
+      {jp:"薬のおかげで元気になりました。", pron:"쿠스리노 오카게데 겡키니 나리마시타", ko:"약 덕분에 나아졌어요.", use:"✅ 상황: 회복", highlight:["おかげで"]}
+    ]
+  },
+  {
+    cat:"reason", tag:"원인/결과", title:"～ために (…하기 위해/…때문에)",
+    desc:"목적(위해) 또는 원인(때문에)로 사용",
+    rule:"동사辞書形 + <span class='hl'>ために</span> / 명사 + のために",
+    warn:"N3는 ‘목적’이 더 자주. 문맥 따라 ‘때문에’도 가능.",
+    extra:{
+      core:"<span class='x-badge'>목적</span> “~하기 위해”",
+      situation:"목표/목적을 말할 때(공부, 준비, 운동)",
+      breakdown:"合格する(합격하다) + ために(위해) + 勉強する",
+      caution:"원인 의미는 ‘事故のために’처럼 명사로 자주",
+      variation:"健康のために運動します。／合格するために…"
+    },
+    examples:[
+      {jp:"合格するために毎日勉強します。", pron:"고오카쿠스루 타메니 마이니치 벤쿄오시마스", ko:"합격하기 위해 매일 공부합니다.", use:"✅ 상황: 목표 설정", highlight:["ために"]},
+      {jp:"健康のために運動しています。", pron:"켕코오노 타메니 운도오시테이마스", ko:"건강을 위해 운동하고 있어요.", use:"✅ 상황: 목적", highlight:["ために"]},
+      {jp:"大雨のために電車が止まりました。", pron:"오오아메노 타메니 덴샤가 토마리마시타", ko:"폭우 때문에 전철이 멈췄어요.", use:"✅ 상황: 원인(공식 안내)", highlight:["ために"]}
+    ]
+  },
+
+  /* =======================
+     judgement: 판단/평가
+  ======================= */
+  {
+    cat:"judgement", tag:"판단/평가", title:"～はずです (…할 리예요/…해야 해요)",
+    desc:"강한 추측/당연한 결론(논리적)",
+    rule:"普通形 + <span class='hl'>はずです</span>",
+    warn:"‘당연히 그렇다’ 뉘앙스가 강합니다.",
+    extra:{
+      core:"<span class='x-badge'>논리추측</span> “~할 리다/해야 한다”",
+      situation:"정보를 근거로 ‘당연히’ 결론 낼 때",
+      breakdown:"もう出た(이미 나갔다) + はずです(당연)",
+      caution:"‘はずがない’(그럴 리 없다)도 함께 자주 등장",
+      variation:"もうすぐ来るはずです。／そんなはずがない。"
+    },
+    examples:[
+      {jp:"彼はもう家に着いたはずです。", pron:"카레와 모오 이에니 츠이타 하즈데스", ko:"그는 이미 집에 도착했을 거예요.", use:"✅ 상황: 논리 추측", highlight:["はずです"]},
+      {jp:"今日は休みのはずです。", pron:"쿄오와 야스미노 하즈데스", ko:"오늘은 쉬는 날일 거예요.", use:"✅ 상황: 일정 확신", highlight:["はずです"]},
+      {jp:"そんなはずがありません。", pron:"손나 하즈가 아리마센", ko:"그럴 리가 없어요.", use:"✅ 상황: 강한 부정", highlight:["はずが"]}  /* 하이라이트 키워드 단순 */
+    ]
+  },
+  {
+    cat:"judgement", tag:"판단/평가", title:"～かもしれません (…일지도 몰라요)",
+    desc:"불확실한 추측(가능성)",
+    rule:"普通形 + <span class='hl'>かもしれません</span>",
+    warn:"확신이 없을 때 가장 무난한 표현.",
+    extra:{
+      core:"<span class='x-badge'>가능성</span> “~일지도”",
+      situation:"정확히 모르지만 가능성 언급",
+      breakdown:"遅れる(늦다) + かもしれません(일지도)",
+      caution:"확신 낮음 → 안전한 표현(회사/일상 모두 OK)",
+      variation:"雨かもしれません。／来ないかもしれません。"
+    },
+    examples:[
+      {jp:"電車が遅れるかもしれません。", pron:"덴샤가 오쿠레루 카모시레마센", ko:"전철이 늦을지도 몰라요.", use:"✅ 상황: 불확실 안내", highlight:["かもしれません"]},
+      {jp:"明日は雨かもしれません。", pron:"아시타와 아메 카모시레마센", ko:"내일 비가 올지도 몰라요.", use:"✅ 상황: 날씨 가능성", highlight:["かもしれません"]},
+      {jp:"彼は来ないかもしれません。", pron:"카레와 코나이 카모시레마센", ko:"그는 안 올지도 몰라요.", use:"✅ 상황: 참석 불확실", highlight:["かもしれません"]}
+    ]
+  },
+  {
+    cat:"judgement", tag:"판단/평가", title:"～ようです (…인 것 같다: 관찰/추정)",
+    desc:"상황·근거로 판단(보니 그런 듯)",
+    rule:"普通形 + <span class='hl'>ようです</span>",
+    warn:"‘そうです(모양)’보다 조금 더 ‘근거 있는 추정’ 느낌.",
+    extra:{
+      core:"<span class='x-badge'>추정</span> “~인 것 같다”",
+      situation:"증거/상황을 보고 조심스럽게 판단",
+      breakdown:"誰もいない(아무도 없다) + ようです",
+      caution:"회화: ようだ/みたい(비슷한 느낌)",
+      variation:"雨が降るようです。／もう終わったようです。"
+    },
+    examples:[
+      {jp:"外は雨が降っているようです。", pron:"소토와 아메가 훗테이루 요오데스", ko:"밖은 비가 오는 것 같아요.", use:"✅ 상황: 관찰 기반", highlight:["ようです"]},
+      {jp:"彼はまだ寝ているようです。", pron:"카레와 마다 네테이루 요오데스", ko:"그는 아직 자고 있는 것 같아요.", use:"✅ 상황: 상황 판단", highlight:["ようです"]},
+      {jp:"もう終わったようです。", pron:"모오 오왓타 요오데스", ko:"이미 끝난 것 같아요.", use:"✅ 상황: 결과 추정", highlight:["ようです"]}
+    ]
+  },
+
+  /* =======================
+     intention: 의지/계획
+  ======================= */
+  {
+    cat:"intention", tag:"의지/계획", title:"～ようにします (…하도록 노력하다)",
+    desc:"의식적으로 습관/노력을 하다",
+    rule:"동사辞書形 + <span class='hl'>ようにします</span>",
+    warn:"N3에서 ‘노력/의식’ 뉘앙스 중요.",
+    extra:{
+      core:"<span class='x-badge'>노력</span> “~하도록 한다(습관화)”",
+      situation:"건강/공부/생활습관 개선",
+      breakdown:"早く寝る(일찍 자다) + ようにします",
+      caution:"‘ようになります’(자연 변화)와 구분: 여긴 ‘의지적’",
+      variation:"毎日歩くようにします。／忘れないようにします。"
+    },
+    examples:[
+      {jp:"早く寝るようにします。", pron:"하야쿠 네루 요오니 시마스", ko:"일찍 자도록 할게요.", use:"✅ 상황: 습관 만들기", highlight:["ようにします"]},
+      {jp:"忘れないようにメモします。", pron:"와스레나이 요오니 메모시마스", ko:"잊지 않도록 메모해요.", use:"✅ 상황: 예방", highlight:["ように"]},
+      {jp:"毎日運動するようにしています。", pron:"마이니치 운도오스루 요오니 시테이마스", ko:"매일 운동하려고 하고 있어요.", use:"✅ 상황: 지속 노력", highlight:["ようにしています"]}
+    ]
+  },
+
+  /* =======================
+     guess: 추측/전언
+  ======================= */
+  {
+    cat:"guess", tag:"추측/전언", title:"～らしい (…인 모양이다/…라고 하더라)",
+    desc:"전언+추측(들었거나 분위기로 그렇게 보임)",
+    rule:"普通形 + <span class='hl'>らしい</span>",
+    warn:"N3는 ‘전언/추측의 중간’ 느낌을 잡는 게 핵심.",
+    extra:{
+      core:"<span class='x-badge'>전언+추측</span> “~인 모양/~라더라”",
+      situation:"확정은 아니지만 ‘그렇다더라/그런 듯’",
+      breakdown:"彼は忙しい(바쁘다) + らしい",
+      caution:"전언(そうだ)보다 더 ‘추측’이 섞임",
+      variation:"雨らしいです。／彼は来ないらしい。"
+    },
+    examples:[
+      {jp:"明日は雨らしいです。", pron:"아시타와 아메라시이데스", ko:"내일은 비가 온대요/올 것 같아요.", use:"✅ 상황: 들은 정보", highlight:["らしい"]},
+      {jp:"彼は今、忙しいらしいです。", pron:"카레와 이마, 이소가시이라시이데스", ko:"그는 지금 바쁜 모양이에요.", use:"✅ 상황: 소문/분위기", highlight:["らしい"]},
+      {jp:"この店は人気があるらしいです。", pron:"코노 미세와 닌키가 아루라시이데스", ko:"이 가게는 인기 있는 것 같아요.", use:"✅ 상황: 평판", highlight:["らしい"]}
+    ]
+  },
+
+  /* =======================
+     limit: 한정/강조
+  ======================= */
+  {
+    cat:"limit", tag:"한정/강조", title:"～ばかり (방금/거의/만)",
+    desc:"(1) 방금 했다 (2) ~만 한다 (3) 거의 ~뿐",
+    rule:"동사た形 + <span class='hl'>ばかり</span> / 명사 + ばかり",
+    warn:"의미가 여러 개라 ‘문맥’이 포인트.",
+    extra:{
+      core:"<span class='x-badge'>한정/직후</span> “~만 / 방금”",
+      situation:"‘방금’은 たばかり / ‘~만’은 Nばかり",
+      breakdown:"食べた(먹었다) + ばかり(방금)",
+      caution:"‘だけ’와 비슷하지만 ‘ばかり’는 ‘거의’ 뉘앙스 가능",
+      variation:"来たばかりです。／文句ばかり言う。"
+    },
+    examples:[
+      {jp:"さっき食べたばかりです。", pron:"삿키 타베타 바카리데스", ko:"아까 막 먹었어요.", use:"✅ 상황: 직후 강조", highlight:["たばかり"]},
+      {jp:"彼は文句ばかり言います。", pron:"카레와 몽쿠 바카리 이이마스", ko:"그는 불평만 해요.", use:"✅ 상황: ‘~만’ 반복", highlight:["ばかり"]},
+      {jp:"最近、忙しいことばかりです。", pron:"사이킨, 이소가시이 코토 바카리데스", ko:"요즘 바쁜 일뿐이에요.", use:"✅ 상황: 거의 ~뿐", highlight:["ばかり"]}
+    ]
+  },
+
+  /* =======================
+     tendency: 습관/경향
+  ======================= */
+  {
+    cat:"tendency", tag:"습관/경향", title:"～がち (…하기 쉽다/…하는 경향)",
+    desc:"부정적 경향이 많음(자주 그러다)",
+    rule:"명사/동사ます형 어간 + <span class='hl'>がち</span>",
+    warn:"대체로 안 좋은 경향에 자주 씁니다.",
+    extra:{
+      core:"<span class='x-badge'>경향</span> “~하기 쉽다”",
+      situation:"자주 그런 일이 생길 때(부정적)",
+      breakdown:"遅れ(ます어간) + がち(경향)",
+      caution:"‘やすい’(하기 쉽다)와 비슷하지만 ‘경향’ 느낌 강함",
+      variation:"遅れがちです。／忘れがちです。"
+    },
+    examples:[
+      {jp:"雨の日は遅れがちです。", pron:"아메노 히와 오쿠레가치데스", ko:"비 오는 날은 늦기 쉬워요.", use:"✅ 상황: 경향 설명", highlight:["がち"]},
+      {jp:"最近、忘れがちです。", pron:"사이킨, 와스레가치데스", ko:"요즘 자꾸 잊어버려요.", use:"✅ 상황: 자주 발생", highlight:["がち"]},
+      {jp:"彼は病気がちです。", pron:"카레와 뵤오키가치데스", ko:"그는 병치레가 잦아요.", use:"✅ 상황: 상태 경향", highlight:["がち"]}
+    ]
+  },
+
+  /* =======================
+     connect: 연결/진행
+  ======================= */
+  {
+    cat:"connect", tag:"연결/진행", title:"～一方で (…하는 한편)",
+    desc:"두 가지를 대조/병행해서 말할 때",
+    rule:"普通形 + <span class='hl'>一方で</span>",
+    warn:"독해에서 대조 구조로 자주 등장합니다.",
+    extra:{
+      core:"<span class='x-badge'>대조/병행</span> “한편”",
+      situation:"A와 B를 비교하거나 동시에 말할 때",
+      breakdown:"便利だ(편리) + 一方で(한편) + 高い(비싸다)",
+      caution:"문장 구조를 한 번에 잡는 게 포인트",
+      variation:"便利な一方で高いです。／増える一方です(고급)"
+    },
+    examples:[
+      {jp:"この町は便利な一方で、家賃が高いです。", pron:"코노 마치와 벤리나 잇포오데, 야친가 타카이데스", ko:"이 동네는 편리한 한편 집세가 비싸요.", use:"✅ 상황: 장단점 비교", highlight:["一方で"]},
+      {jp:"彼は優しい一方で、厳しいところもあります。", pron:"카레와 야사시이 잇포오데, 키비시이 토코로모 아리마스", ko:"그는 다정한 한편 엄격한 면도 있어요.", use:"✅ 상황: 사람 성격 설명", highlight:["一方で"]},
+      {jp:"仕事が忙しい一方で、やりがいもあります。", pron:"시고토가 이소가시이 잇포오데, 야리가이모 아리마스", ko:"일이 바쁜 한편 보람도 있어요.", use:"✅ 상황: 현실 설명", highlight:["一方で"]}
+    ]
+  },
+
+  /* =======================
+     advice: 충고/요구
+  ======================= */
+  {
+    cat:"advice", tag:"충고/요구", title:"～たほうがいい (…하는 게 좋아요)",
+    desc:"충고/권유(상대에게)",
+    rule:"동사た形 + <span class='hl'>ほうがいい</span>",
+    warn:"시험/회화 둘 다 빈출. 부정형도 자주 나옵니다.",
+    extra:{
+      core:"<span class='x-badge'>충고</span> “~하는 게 좋아요”",
+      situation:"조언/권유(건강, 공부, 선택)",
+      breakdown:"早く寝た(た형) + ほうがいい",
+      caution:"부정: 行かないほうがいい(안 가는 게 좋다)",
+      variation:"病院へ行ったほうがいいです。／無理しないほうがいい。"
+    },
+    examples:[
+      {jp:"早く寝たほうがいいです。", pron:"하야쿠 네타 호오가 이이데스", ko:"일찍 자는 게 좋아요.", use:"✅ 상황: 건강 조언", highlight:["たほうがいい"]},
+      {jp:"病院へ行ったほうがいいです。", pron:"뵤오인에 잇타 호오가 이이데스", ko:"병원에 가는 게 좋아요.", use:"✅ 상황: 상태가 안 좋을 때", highlight:["たほうがいい"]},
+      {jp:"無理しないほうがいいです。", pron:"무리시나이 호오가 이이데스", ko:"무리하지 않는 게 좋아요.", use:"✅ 상황: 말리기", highlight:["ないほうがいい"]}
+    ]
+  },
+];
+
+/* ==========================================================
+  하이라이트/렌더 유틸
+========================================================== */
+function escapeHtml(s){
+  return String(s)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#39;");
+}
+function applyHighlight(jp, highlightArr){
+  let safe = escapeHtml(jp);
+  const hs = (highlightArr || []).filter(Boolean).sort((a,b)=>b.length-a.length);
+  hs.forEach(h => {
+    const hh = escapeHtml(h);
+    safe = safe.split(hh).join(`<span class="hl">${hh}</span>`);
+  });
+  return safe;
+}
+function renderCard(item){
+  const exHtml = (item.examples || []).map(ex => {
+    const jpHtml = applyHighlight(ex.jp, ex.highlight);
+    return `
+      <div class="ex-row">
+        <div class="ex-left">
+          <div class="ex-jp">${jpHtml}</div>
+          <div class="ex-pron">${escapeHtml(ex.pron || "")}</div>
+          <div class="ex-ko">${escapeHtml(ex.ko || "")}</div>
+          ${ex.use ? `<div class="ex-use">${escapeHtml(ex.use)}</div>` : ``}
+        </div>
+        <button class="tts-btn" type="button" data-tts="${escapeHtml(ex.jp)}">발음 듣기</button>
+      </div>
+    `;
+  }).join("");
+
+  const extra = item.extra || {};
+  const extraHtml = `
+    <div class="g-extra">
+      <div class="x-row"><div class="x-k">핵심</div><div class="x-v">${extra.core || ""}</div></div>
+      <div class="x-row"><div class="x-k">상황</div><div class="x-v">${escapeHtml(extra.situation || "")}</div></div>
+      <div class="x-row"><div class="x-k">분해</div><div class="x-v">${escapeHtml(extra.breakdown || "")}</div></div>
+      <div class="x-row"><div class="x-k">주의</div><div class="x-v">${escapeHtml(extra.caution || "")}</div></div>
+      <div class="x-row"><div class="x-k">변형</div><div class="x-v">${escapeHtml(extra.variation || "")}</div></div>
+    </div>
+  `;
+
+  return `
+    <div class="g-card" data-cat="${escapeHtml(item.cat)}">
+      <div class="g-head">
+        <h3 class="g-title">${escapeHtml(item.title)}</h3>
+        <div class="g-tag">${escapeHtml(item.tag || "")}</div>
+      </div>
+      <p class="g-desc"><b>의미:</b> ${escapeHtml(item.desc || "")}</p>
+      <div class="g-rule"><b>접속:</b> ${item.rule || ""}</div>
+      <div class="g-warn"><b>포인트:</b> ${escapeHtml(item.warn || "")}</div>
+      ${extraHtml}
+      <div class="ex">${exHtml}</div>
+    </div>
+  `;
+}
+
+/* 초기 렌더 */
+(function init(){
+  const root = document.getElementById("grammarList");
+  root.innerHTML = grammarData.map(renderCard).join("");
+})();
+
+/* 칩 필터 */
+(function(){
+  const chips = Array.from(document.querySelectorAll('.jlpt-chip[data-filter]'));
+  function setOn(btn){
+    chips.forEach(c => c.classList.remove('is-on'));
+    btn.classList.add('is-on');
+  }
+  function applyFilter(key){
+    const cards = Array.from(document.querySelectorAll('#grammarList .g-card'));
+    cards.forEach(card => {
+      const cat = (card.getAttribute('data-cat') || '').trim();
+      card.style.display = (key === 'all' || cat === key) ? '' : 'none';
+    });
+  }
+  chips.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-filter');
+      setOn(btn);
+      applyFilter(key);
+    });
+  });
+})();
+
+/* TTS */
+(function () {
+  function pickJapaneseVoice() {
+    const voices = window.speechSynthesis?.getVoices?.() || [];
+    return (
+      voices.find(v => v.lang === "ja-JP") ||
+      voices.find(v => (v.lang || "").toLowerCase().startsWith("ja")) ||
+      null
+    );
+  }
+
+  function speakJP(text) {
+    if (!window.speechSynthesis) return;
+
+    window.speechSynthesis.cancel();
+    let t = (text || "").trim();
+    if (!t) return;
+    if (t.length === 1) t = t + "。";
+
+    const u = new SpeechSynthesisUtterance(t);
+    u.lang = "ja-JP";
+    u.volume = 1;
+    u.rate = 0.95;
+    u.pitch = 1;
+
+    const v = pickJapaneseVoice();
+    if (v) u.voice = v;
+
+    window.speechSynthesis.speak(u);
+  }
+
+  try { window.speechSynthesis.getVoices(); } catch(e) {}
+
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".tts-btn[data-tts]");
+    if (!btn) return;
+    speakJP(btn.getAttribute("data-tts"));
+  });
+})();
+</script>
+{% endblock %}
