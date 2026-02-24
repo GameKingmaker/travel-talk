@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+{% block title %}JLPT N2 | 단어 문장 문법 테스트{% endblock %}
+
+{# ✅ JLPT 전용 CSS를 base.html 위에 추가 로드 #}
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jlpt.css') }}">
+{% endblock %}
+
+{% block content %}
+<style>
+  /* ===== N2 Menu (단어/문장/문법/테스트) ===== */
+  .n2-nav{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  /* 반응형 */
+  @media (max-width: 992px){
+    .n2-nav{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 520px){
+    .n2-nav{ grid-template-columns: 1fr; }
+  }
+
+  .n2-nav-item{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 18px 18px;
+    border-radius: 16px;
+
+    background: #fff;
+    border: 1px solid #e6ebf4;
+
+    text-decoration: none;
+    color: #0f172a;
+
+    transition: transform .10s ease, box-shadow .18s ease, border-color .18s ease;
+    box-shadow: 0 10px 22px rgba(15,23,42,.05);
+    overflow: hidden;
+  }
+
+  /* 위쪽 얇은 포인트 라인 */
+  .n2-nav-item::before{
+    content:"";
+    position:absolute;
+    left:0; right:0; top:0;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb 0%, #60a5fa 60%, #93c5fd 100%);
+    opacity: .0;
+    transition: opacity .18s ease;
+  }
+
+  .n2-nav-item:hover{
+    transform: translateY(-2px);
+    border-color: #cfe1ff;
+    box-shadow: 0 16px 34px rgba(15,23,42,.10);
+  }
+  .n2-nav-item:hover::before{ opacity: 1; }
+
+  .n2-nav-title{
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: -0.2px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+
+  /* (선택) 작은 아이콘 원 */
+  .n2-nav-title .ic{
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    background: #f3f7ff;
+    border: 1px solid #dbeafe;
+    color: #1d4ed8;
+    font-size: 15px;
+    font-weight: 950;
+  }
+
+  .n2-nav-desc{
+    font-size: .92rem;
+    color: #64748b;
+    font-weight: 750;
+    line-height: 1.45;
+  }
+
+  /* 클릭(포커스) 접근성 */
+  .n2-nav-item:focus{
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37,99,235,.20), 0 16px 34px rgba(15,23,42,.10);
+    border-color: rgba(37,99,235,.55);
+  }
+
+  /* (선택) “추천” 느낌의 우측 화살표 */
+  .n2-nav-item::after{
+    content:"→";
+    position:absolute;
+    right: 16px;
+    top: 16px;
+    font-weight: 950;
+    color: rgba(37,99,235,.55);
+    transform: translateX(4px);
+    opacity: 0;
+    transition: opacity .18s ease, transform .18s ease;
+  }
+  .n2-nav-item:hover::after{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .jlpt-card{
+  max-width: 980px;
+  margin: 0 auto 18px;
+  padding: 22px 22px;
+  border-radius: 18px;
+  background:#fff;
+  border:1px solid #e6ebf4;
+  box-shadow: 0 12px 28px rgba(15,23,42,.06);
+}
+</style>
+<div class="jlpt-card">
+  <h1 class="jlpt-h1">JLPT N2</h1>
+
+  <p class="jlpt-subtext">
+    JLPT 중고급 단계인 <b>N2</b>를 준비하기 위한 학습 공간입니다.<br>
+    시험에 <b>자주 출제되는 단어·문장·문법</b>을 중심으로,
+    이해 → 연습 → 확인의 흐름으로 공부할 수 있도록 구성되어 있습니다.
+  </p>
+
+  <p class="jlpt-subtext" style="margin-top:10px;">
+    각 카테고리에서는 실제 시험과 일상에서 자주 쓰이는 표현을 학습할 수 있으며,
+    <b>발음 듣기 기능</b>을 통해 읽기뿐 아니라 듣기·발음 연습도 함께 할 수 있습니다.
+  </p>
+
+  <p class="jlpt-subtext" style="margin-top:10px;">
+    학습이 끝난 후에는 <b>실전 테스트</b>를 통해 이해도를 점검해보세요.<br>
+    테스트는 <b>PART 1 ~ PART 4</b>로 구성되어 있어,
+    영역별로 나누어 차근차근 실력을 확인할 수 있습니다.
+  </p>
+
+  <p class="jlpt-subtext" style="margin-top:10px;">
+    📌 추천 학습 순서<br>
+    <b>단어 → 문장 → 문법 → 테스트</b> 순으로 진행하면
+    JLPT N5 핵심을 가장 효율적으로 익힐 수 있습니다.
+  </p>
+</div>
+
+<div class="jlpt-card" style="padding:20px 16px;">
+  <nav class="n2-nav">
+    <a href="{{ url_for('jlpt_n2_words') }}" class="n2-nav-item">
+  <span class="n2-nav-title"><span class="ic">単</span>단어</span>
+  <span class="n2-nav-desc">자주 나오는 필수 어휘</span>
+</a>
+
+<a href="{{ url_for('jlpt_n2_sentences') }}" class="n2-nav-item">
+  <span class="n2-nav-title"><span class="ic">文</span>문장</span>
+  <span class="n2-nav-desc">기본 문장 익히기</span>
+</a>
+
+<a href="{{ url_for('jlpt_n2_grammar') }}" class="n2-nav-item">
+  <span class="n2-nav-title"><span class="ic">法</span>문법</span>
+  <span class="n2-nav-desc">조사 · 활용 핵심</span>
+</a>
+
+<a href="{{ url_for('jlpt_n2_test') }}" class="n2-nav-item">
+  <span class="n2-nav-title"><span class="ic">試</span>테스트</span>
+  <span class="n2-nav-desc">실전 형식 연습</span>
+</a>
+  </nav>
+</div>
+{% endblock %}
+
+{% block head %}
+<style>
+/* =========================
+   JLPT N2 메뉴바 (1줄/가운데)
+========================= */
+.n2-nav{
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+  gap:12px;
+  flex-wrap:nowrap;
+}
+
+.n2-nav-item{
+  flex:1;
+  max-width:220px;
+  background:#ffffff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:16px 14px;
+  text-decoration:none;
+  color:#111827;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,.04);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:6px;
+
+  transition:transform .08s ease, border-color .12s ease, box-shadow .12s ease;
+}
+
+.n2-nav-item:hover{
+  transform:translateY(-2px);
+  border-color:#c7d2fe;
+  box-shadow:0 10px 22px rgba(0,0,0,.06);
+}
+
+.n2-nav-title{
+  font-size:16px;
+  font-weight:900;
+  color:#0b1f4b;
+}
+
+.n2-nav-desc{
+  font-size:13px;
+  color:#6b7280;
+  font-weight:600;
+}
+
+.n2-nav-item.is-disabled{
+  opacity:.45;
+  cursor:default;
+  pointer-events:none;
+}
+
+@media (max-width:640px){
+  .n2-nav{ flex-wrap:wrap; }
+  .n2-nav-item{ max-width:none; width:100%; }
+}
+</style>
+{% endblock %}
