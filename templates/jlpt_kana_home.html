@@ -310,7 +310,119 @@
     line-height:1.7;
     font-size:13.5px;
   }
+/* ✅ 추가 규칙 정리(모바일 잘림 방지) */
+.addr-wrap{
+  padding:14px;
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:12px;
+}
 
+/* 카드 공통 */
+.addr-card{
+  padding:16px;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:16px;
+  background:#fff;
+
+  /* ✅ 모바일에서 긴 문자열/슬래시/일본어 때문에 잘리는 문제 방지 */
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+
+/* 2열 → 모바일 1열 */
+.addr-col-6{ grid-column: span 6; }
+.addr-col-12{ grid-column: span 12; }
+
+@media (max-width: 980px){
+  .addr-col-6{ grid-column: span 12; }
+}
+
+/* 박스(예시) */
+.addr-box{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:14px;
+  background:#fbfdff;
+  border:1px solid rgba(15,23,42,.08);
+  font-weight:900;
+  color:#0b1f4b;
+  font-size:13.5px;
+  line-height:1.7;
+
+  /* ✅ 여기도 줄바꿈 보장 */
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+
+/* 팁 박스 */
+.addr-tip-blue{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px dashed rgba(37,99,235,.35);
+  background: rgba(37,99,235,.05);
+  color:#0b1f4b;
+  font-weight:900;
+  font-size:13px;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+.addr-tip-amber{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px dashed rgba(245,158,11,.35);
+  background: rgba(245,158,11,.08);
+  color:#0b1f4b;
+  font-weight:900;
+  font-size:13px;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+
+/* ✅ 요음 표: 가로 스크롤 자연스럽게 + 끝까지 보기 */
+.addr-table-wrap{
+  margin-top:12px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border-radius:14px;
+}
+
+/* 표 */
+table.addr-table{
+  width:100%;
+  min-width:720px; /* ✅ 980 → 720으로 줄여서 모바일 부담 완화 */
+  border-collapse:separate;
+  border-spacing:0;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+}
+
+table.addr-table th{
+  background:#f9fafb;
+  padding:12px;
+  font-size:13px;
+  font-weight:950;
+  color:#374151;
+  border-bottom:1px solid rgba(15,23,42,.08);
+  white-space:nowrap;
+}
+table.addr-table td{
+  padding:12px;
+  font-weight:900;
+  color:#0b1f4b;
+  font-size:13.5px;
+  line-height:1.7;
+  border-bottom:1px solid rgba(15,23,42,.06);
+
+  /* ✅ 셀 텍스트도 줄바꿈 되게 */
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+table.addr-table tbody tr:last-child td{ border-bottom:none; }
   </style>
 {% endblock %}
 
@@ -505,9 +617,9 @@
     </div>
   </div>
 
-  <div style="padding:14px; display:grid; grid-template-columns: repeat(12, 1fr); gap:12px;">
-    <!-- 탁음/반탁음 -->
-    <div style="grid-column: span 6; padding:16px; border:1px solid rgba(15,23,42,.10); border-radius:16px; background:#fff;">
+  <div class="addr-wrap">
+    <!-- 1) 탁음/반탁음 -->
+    <div class="addr-card addr-col-6">
       <h3 style="margin:0 0 8px 0; font-size:15px; font-weight:950; color:#0b1f4b;">
         1) 탁음(゛) / 반탁음(゜)
       </h3>
@@ -515,8 +627,7 @@
         같은 글자에 <b>점(゛)</b>이나 <b>동그라미(゜)</b>가 붙으면 소리가 바뀌어요.
       </p>
 
-      <div style="margin-top:10px; padding:10px 12px; border-radius:14px; background:#fbfdff; border:1px solid rgba(15,23,42,.08);
-                  font-weight:900; color:#0b1f4b; font-size:13.5px; line-height:1.7;">
+      <div class="addr-box">
         <div><b>が行</b>: が=가 / ぎ=기 / ぐ=구 / げ=게 / ご=고</div>
         <div><b>ざ行</b>: ざ=자 / じ=지 / ず=즈 / ぜ=제 / ぞ=조</div>
         <div><b>だ行</b>: だ=다 / ぢ=지 / づ=즈 / で=데 / ど=도</div>
@@ -524,15 +635,13 @@
         <div style="margin-top:6px;"><b>ぱ行(반탁음)</b>: ぱ=파 / ぴ=피 / ぷ=푸 / ぺ=페 / ぽ=포</div>
       </div>
 
-      <div style="margin-top:10px; padding:10px 12px; border-radius:14px;
-                  border:1px dashed rgba(37,99,235,.35); background: rgba(37,99,235,.05);
-                  color:#0b1f4b; font-weight:900; font-size:13px;">
+      <div class="addr-tip-blue">
         Tip: “점(゛)=더 무겁게(가/자/다/바)” “동그라미(゜)=파행(파/피/푸/페/포)”
       </div>
     </div>
 
-    <!-- 소문자 -->
-    <div style="grid-column: span 6; padding:16px; border:1px solid rgba(15,23,42,.10); border-radius:16px; background:#fff;">
+    <!-- 2) 소문자 -->
+    <div class="addr-card addr-col-6">
       <h3 style="margin:0 0 8px 0; font-size:15px; font-weight:950; color:#0b1f4b;">
         2) 소문자(ぁぃぅぇぉ / ゃゅょ / ゎ) & 가타카나 소문자(ァィゥェォ / ャュョ / ヮ)
       </h3>
@@ -540,8 +649,7 @@
         소문자는 “작게 쓰는 글자”로, 보통 <b>요음(ゃゅょ)</b>을 만들거나 발음을 조절할 때 사용돼요.
       </p>
 
-      <div style="margin-top:10px; padding:10px 12px; border-radius:14px; background:#fbfdff; border:1px solid rgba(15,23,42,.08);
-                  font-weight:900; color:#0b1f4b; font-size:13.5px; line-height:1.7;">
+      <div class="addr-box">
         <div><b>히라가나 소문자</b>: ぁ=아, ぃ=이, ぅ=우, ぇ=에, ぉ=오</div>
         <div><b>요음 소문자</b>: ゃ=야, ゅ=유, ょ=요</div>
         <div><b>작은 ゎ</b>: ゎ=와</div>
@@ -549,15 +657,13 @@
         <div><b>요음 소문자</b>: ャ=야, ュ=유, ョ=요, ヮ=와</div>
       </div>
 
-      <div style="margin-top:10px; padding:10px 12px; border-radius:14px;
-                  border:1px dashed rgba(245,158,11,.35); background: rgba(245,158,11,.08);
-                  color:#0b1f4b; font-weight:900; font-size:13px;">
+      <div class="addr-tip-amber">
         Tip: 작은 ゃゅょ는 “야/유/요”라기보다 “ㅑ/ㅠ/ㅛ” 느낌(합쳐서 한 소리)
       </div>
     </div>
 
-    <!-- 요음(きゃ 류) 표 -->
-    <div style="grid-column: span 12; padding:16px; border:1px solid rgba(15,23,42,.10); border-radius:16px; background:#fff;">
+    <!-- 3) 요음 표 -->
+    <div class="addr-card addr-col-12">
       <h3 style="margin:0 0 8px 0; font-size:15px; font-weight:950; color:#0b1f4b;">
         3) 요음(きゃ/しゃ/ちゃ …) = “두 글자를 합쳐 한 소리”
       </h3>
@@ -565,66 +671,62 @@
         큰 글자(き/し/ち/に/ひ/み/り…) + 작은 ゃゅょ 를 합쳐 읽어요.
       </p>
 
-      <div style="margin-top:12px; overflow:auto;">
-        <table style="width:100%; min-width:980px; border-collapse:separate; border-spacing:0;
-                      border:1px solid rgba(15,23,42,.10); border-radius:14px; overflow:hidden;">
+      <div class="addr-table-wrap">
+        <table class="addr-table">
           <thead>
             <tr>
-              <th style="background:#f9fafb; padding:12px; font-size:13px; font-weight:950; color:#374151; border-bottom:1px solid rgba(15,23,42,.08);">그룹</th>
-              <th style="background:#f9fafb; padding:12px; font-size:13px; font-weight:950; color:#374151; border-bottom:1px solid rgba(15,23,42,.08);">ゃ</th>
-              <th style="background:#f9fafb; padding:12px; font-size:13px; font-weight:950; color:#374151; border-bottom:1px solid rgba(15,23,42,.08);">ゅ</th>
-              <th style="background:#f9fafb; padding:12px; font-size:13px; font-weight:950; color:#374151; border-bottom:1px solid rgba(15,23,42,.08);">ょ</th>
-              <th style="background:#f9fafb; padding:12px; font-size:13px; font-weight:950; color:#374151; border-bottom:1px solid rgba(15,23,42,.08);">예시 단어</th>
+              <th>그룹</th>
+              <th>ゃ</th>
+              <th>ゅ</th>
+              <th>ょ</th>
+              <th>예시 단어</th>
             </tr>
           </thead>
-          <tbody style="font-weight:900; color:#0b1f4b; font-size:13.5px; line-height:1.7;">
+
+          <tbody>
             <tr>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">きゃ/きゅ/きょ</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">きゃ = 캬</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">きゅ = 큐</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">きょ = 쿄</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">きょう(쿄오), きゅう(큐우)</td>
+              <td>きゃ/きゅ/きょ</td>
+              <td>きゃ = 캬</td>
+              <td>きゅ = 큐</td>
+              <td>きょ = 쿄</td>
+              <td>きょう(쿄오), きゅう(큐우)</td>
             </tr>
             <tr>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">しゃ/しゅ/しょ</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">しゃ = 샤</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">しゅ = 슈</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">しょ = 쇼</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">しゅくだい(슈쿠다이)</td>
+              <td>しゃ/しゅ/しょ</td>
+              <td>しゃ = 샤</td>
+              <td>しゅ = 슈</td>
+              <td>しょ = 쇼</td>
+              <td>しゅくだい(슈쿠다이)</td>
             </tr>
             <tr>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">ちゃ/ちゅ/ちょ</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">ちゃ = 챠</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">ちゅ = 츄</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">ちょ = 쵸</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">ちょっと(춋토: 촉음 포함)</td>
+              <td>ちゃ/ちゅ/ちょ</td>
+              <td>ちゃ = 챠</td>
+              <td>ちゅ = 츄</td>
+              <td>ちょ = 쵸</td>
+              <td>ちょっと(춋토: 촉음 포함)</td>
             </tr>
             <tr>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">にゃ/にゅ/にょ</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">にゃ = 냐</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">にゅ = 뉴</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">にょ = 뇨</td>
-              <td style="padding:12px; border-bottom:1px solid rgba(15,23,42,.06);">にゅうがく(뉴우가쿠)</td>
+              <td>にゃ/にゅ/にょ</td>
+              <td>にゃ = 냐</td>
+              <td>にゅ = 뉴</td>
+              <td>にょ = 뇨</td>
+              <td>にゅうがく(뉴우가쿠)</td>
             </tr>
             <tr>
-              <td style="padding:12px;">りゃ/りゅ/りょ</td>
-              <td style="padding:12px;">りゃ = 랴</td>
-              <td style="padding:12px;">りゅ = 류</td>
-              <td style="padding:12px;">りょ = 료</td>
-              <td style="padding:12px;">りょこう(료코오)</td>
+              <td>りゃ/りゅ/りょ</td>
+              <td>りゃ = 랴</td>
+              <td>りゅ = 류</td>
+              <td>りょ = 료</td>
+              <td>りょこう(료코오)</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div style="margin-top:10px; padding:10px 12px; border-radius:14px;
-                  border:1px dashed rgba(37,99,235,.35); background: rgba(37,99,235,.05);
-                  color:#0b1f4b; font-weight:900; font-size:13px;">
+      <div class="addr-tip-blue" style="margin-top:10px;">
         ✅ 가타카나 요음도 동일: キャ/キュ/キョ, シャ/シュ/ショ … (발음 규칙 똑같아요)
       </div>
     </div>
   </div>
-</div>
-
 </div>
 {% endblock %}
