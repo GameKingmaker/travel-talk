@@ -178,6 +178,48 @@
   }
 
   .jlpt-words tr.is-hidden { display:none !important; }
+  @media (max-width: 768px) {
+  .jlpt-words table,
+  .jlpt-words thead,
+  .jlpt-words tbody,
+  .jlpt-words tr,
+  .jlpt-words th,
+  .jlpt-words td {
+    display: block;
+    width: 100%;
+  }
+
+  .jlpt-words thead {
+    display: none;
+  }
+
+  .jlpt-words tr {
+    margin-bottom: 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 12px;
+    background: #fff;
+  }
+
+  .jlpt-words td {
+    display: flex;
+    gap: 10px;
+    padding: 6px 0;
+    border: none;
+  }
+
+  .jlpt-words td::before {
+    content: attr(data-label);
+    min-width: 80px;
+    font-weight: 900;
+    color: #475569;
+    flex-shrink: 0;
+  }
+
+  .col-fav {
+    justify-content: flex-start;
+  }
+}
   </style>
 {% endblock %}
 
@@ -245,39 +287,46 @@ JLPT 시험 대비와 기본 어휘력 향상에 도움이 되도록 설계되�
         <tbody id="wordTableBody">
           {% for w in words %}
           <tr class="word-row"
-              data-sec="{{ w.sec_key }}"
-              data-kanji="{{ (w.kanji or '')|e }}"
-              data-kana="{{ (w.kana or '')|e }}"
-              data-pron="{{ (w.pron or '')|e }}"
-              data-ko="{{ (w.ko or '')|e }}">
+    data-sec="{{ w.sec_key }}"
+    data-kanji="{{ (w.kanji or '')|e }}"
+    data-kana="{{ (w.kana or '')|e }}"
+    data-pron="{{ (w.pron or '')|e }}"
+    data-ko="{{ (w.ko or '')|e }}">
 
-            <td class="col-fav">
-              <button class="fav-btn"
-                data-cat="jlpt:N1:words"
-                data-jp="{{ (w.kanji or w.kana or '')|e }}"
-                data-kana="{{ (w.kana or '')|e }}"
-                aria-label="즐겨찾기">☆</button>
-            </td>
+  <td class="col-fav" data-label="즐겨찾기">
+    <button class="fav-btn"
+      data-cat="jlpt:N1:words"
+      data-jp="{{ (w.kanji or w.kana or '')|e }}"
+      data-kana="{{ (w.kana or '')|e }}"
+      aria-label="즐겨찾기">☆</button>
+  </td>
 
-            <td class="col-kanji">
-              <div class="jp-cell">
-                <span class="jp-text">{{ w.kanji if w.kanji else w.kana }}</span>
-                <button class="tts-mini" type="button"
-                        data-tts="{{ (w.tts_text or w.kana or w.kanji)|e }}"
-                        aria-label="발음 듣기">🔊</button>
-              </div>
-            </td>
+  <td class="col-kanji" data-label="한자/표기">
+    <div class="jp-cell">
+      <span class="jp-text">
+        {{ w.kanji if w.kanji else w.kana }}
+      </span>
+      <button class="tts-mini" type="button"
+              data-tts="{{ (w.tts_text or w.kana or w.kanji)|e }}"
+              aria-label="발음 듣기">🔊</button>
+    </div>
+  </td>
 
-            <td class="col-kana">
-              <span class="jp-text" style="font-size:15px; font-weight:900;">
-                {{ w.kana }}
-              </span>
-            </td>
+  <td class="col-kana" data-label="가나">
+    <span class="jp-text" style="font-size:15px; font-weight:900;">
+      {{ w.kana }}
+    </span>
+  </td>
 
-            <td class="col-pron"><span class="pron-text">{{ w.pron }}</span></td>
-            <td class="col-ko"><span class="ko-text">{{ w.ko }}</span></td>
+  <td class="col-pron" data-label="발음">
+    <span class="pron-text">{{ w.pron }}</span>
+  </td>
 
-          </tr>
+  <td class="col-ko" data-label="뜻">
+    <span class="ko-text">{{ w.ko }}</span>
+  </td>
+
+</tr>
           {% endfor %}
         </tbody>
       </table>
