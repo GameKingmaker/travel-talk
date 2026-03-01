@@ -126,9 +126,73 @@
   border:1px solid #e6ebf4;
   box-shadow: 0 12px 28px rgba(15,23,42,.06);
 }
+/* n1-layout도 jlpt-card와 같은 폭/정렬 규칙 적용 */
+.n1-layout{
+  max-width: 980px;
+  margin: 0 auto 18px;
+}
+
+/* 이미지도 카드처럼 보이게(위/아래 박스 선 규격 동일) */
+.n1-illust-card{
+  width: 100%;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid #e6ebf4;
+  box-shadow: 0 12px 28px rgba(15,23,42,.06);
+  overflow: hidden; /* 이미지가 모서리 밖으로 안 튀게 */
+}
+
+/* ✅ 핵심: 이미지 2:1 비율 + 축소(높이 줄이기) */
+.n1-illust-card img{
+  width: 100%;
+  aspect-ratio: 2 / 1;   /* 가로:세로 = 2:1 */
+  object-fit: cover;      /* 비율 맞추면서 꽉 채움(잘림 가능) */
+  display: block;
+}
+/* =========================
+   N1 일러스트 공통
+========================= */
+.n1-illust{
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto 22px;
+}
+
+.n1-illust img{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;          /* ⭐ 2:1 고정 */
+  object-fit: cover;            /* 넘치는 부분만 자연스럽게 크롭 */
+  border-radius: 18px;
+  display: block;
+  background: #f8fafc;          /* 로딩 중 흰 여백 방지 */
+}
+
+/* =========================
+   모바일 대응
+========================= */
+@media (max-width: 768px){
+
+  .n1-illust{
+    margin: 0 auto 16px;
+  }
+
+  .n1-illust img{
+    aspect-ratio: 16 / 9;       /* ⭐ 모바일은 16:9가 더 안정적 */
+    border-radius: 14px;
+  }
+}
+
+/* 아주 작은 모바일 */
+@media (max-width: 420px){
+
+  .n1-illust img{
+    aspect-ratio: 4 / 3;        /* 초소형 화면 깨짐 방지 */
+  }
+}
 </style>
 <div class="jlpt-card">
-  <h1 class="jlpt-h1">JLPT N1</h1>
+  <h1 class="jlpt-h1">✏️ JLPT N1</h1>
 
   <p class="jlpt-subtext">
     JLPT 고급 단계인 <b>N1</b>를 준비하기 위한 학습 공간입니다.<br>
@@ -153,7 +217,15 @@
     JLPT N5 핵심을 가장 효율적으로 익힐 수 있습니다.
   </p>
 </div>
+<!-- =========================
+     N1 전체 레이아웃 래퍼
+========================= -->
+<div class="n1-layout">
 
+  <!-- 이미지 박스(카드) -->
+  <div class="n1-illust-card">
+    <img src="/static/img/n1-study-illustration.png" alt="JLPT N1 공부 일러스트">
+  </div>
 <div class="jlpt-card" style="padding:20px 16px;">
   <nav class="n1-nav">
     <a href="{{ url_for('jlpt_n1_words') }}" class="n1-nav-item">
