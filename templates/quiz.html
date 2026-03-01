@@ -98,7 +98,21 @@
 @media (max-width: 860px){
   .quiz-intro-grid{ grid-template-columns:1fr; }
 }
+.game-thumb{
+  width:100%;
+  aspect-ratio: 16 / 9;   /* ⭐ 모바일 안전 */
+  background:#f1f5f9;
+  overflow:hidden;
+  border-radius:14px;
+  margin-bottom:14px;
+}
 
+.game-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;       /* 깨짐 방지 핵심 */
+  display:block;
+}
 </style>
 
 <div class="quiz-wrap">
@@ -152,6 +166,10 @@
 
     <!-- 단어 게임 -->
     <a class="game-card" href="{{ url_for('word_game') }}" aria-label="단어 게임 시작">
+      <!-- 🔽 게임 이미지 -->
+    <div class="game-thumb">
+      <img src="/static/img/game_word_play.png" alt="단어 게임 플레이 화면">
+    </div>
       <div class="game-top">
         <h2 class="game-name">단어 게임</h2>
         <span class="pill">연습 · 랭킹</span>
@@ -167,6 +185,9 @@
 
     <!-- 상황 대화 퀴즈 -->
     <a class="game-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황 대화 퀴즈 시작">
+      <div class="game-thumb">
+      <img src="/static/img/game_dialog_play.png" alt="상황 대화 퀴즈 화면">
+    </div>
       <div class="game-top">
         <h2 class="game-name">상황 대화 퀴즈</h2>
         <span class="pill">상황 퀴즈</span>
@@ -181,6 +202,9 @@
 
     <!-- 일본 여행 시뮬레이션 -->
 <a class="game-card" href="{{ url_for('travel_start') }}" aria-label="일본여행시뮬레이션 시작">
+  <div class="game-thumb">
+      <img src="/static/img/game_travel_play.png" alt="일본 여행 시뮬레이션 화면">
+    </div>
   <div class="game-top">
     <h2 class="game-name">일본 여행 시뮬레이션</h2>
     <span class="pill">시뮬레이션게임</span>
