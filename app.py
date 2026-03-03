@@ -7743,7 +7743,6 @@ def words_detail(cat_key):
 
     # ✅ row(튜플/리스트/딕트) → 통일 dict 변환
     def to_word_dict(r):
-        # dict 형태가 이미 들어오면 최대한 그대로 살림
         if isinstance(r, dict):
             kanji = r.get("kanji", "") or r.get("jp", "") or ""
             kana  = r.get("kana", "") or ""
@@ -7751,23 +7750,34 @@ def words_detail(cat_key):
             ko    = r.get("ko", "") or ""
             sec_key = r.get("sec_key", "") or ""
         else:
-            # (jp, pron, ko) 튜플/리스트 형태
             jp   = r[0] if len(r) > 0 else ""
             pron = r[1] if len(r) > 1 else ""
             ko   = r[2] if len(r) > 2 else ""
             kanji = jp
-            kana  = ""   # ✅ 회화단어모음은 보통 kana 없음 → 빈칸
+            kana  = ""
             sec_key = ""
 
-        # ✅ 템플릿(note/words 공용)에서 쓰기 좋은 필드까지 맞춰줌
+        # ✅ 여기만 추가 (리스트/None 대응)
+        def norm(v):
+            if v is None:
+                return ""
+            if isinstance(v, list):
+                return " ".join(str(x) for x in v if x is not None)
+            return str(v)
+
+        kanji = norm(kanji)
+        kana  = norm(kana)
+        pron  = norm(pron)
+        ko    = norm(ko)
+
         return {
             "sec_key": sec_key,
             "kanji": kanji,
             "kana": kana,
             "pron": pron,
             "ko": ko,
-            "jp": kanji or kana,      # fallback용
-            "tts_text": kanji or kana # TTS용
+            "jp": kanji or kana,
+            "tts_text": kanji or kana
         }
 
     cat = (WORDS or {}).get(cat_key)
@@ -7848,25 +7858,69 @@ def words_search():
     user = current_user()
     q = (request.args.get("q") or "").strip()
 
+    # ✅ row(튜플/리스트/딕트) → 통일 dict 변환 (detail과 동일 컨셉)
+    def to_word_dict(r):
+        if isinstance(r, dict):
+            kanji = r.get("kanji", "") or r.get("jp", "") or ""
+            kana  = r.get("kana", "") or ""
+            pron  = r.get("pron", "") or ""
+            ko    = r.get("ko", "") or ""
+            sec_key = r.get("sec_key", "") or ""
+        else:
+            jp   = r[0] if len(r) > 0 else ""
+            pron = r[1] if len(r) > 1 else ""
+            ko   = r[2] if len(r) > 2 else ""
+            kanji = jp
+            kana  = ""
+            sec_key = ""
+
+        # ✅ ko/pron/kana/kanji가 혹시 리스트면 문자열로 변환
+        def norm(v):
+            if v is None:
+                return ""
+            if isinstance(v, list):
+                return " ".join(str(x) for x in v if x is not None)
+            return str(v)
+
+        kanji = norm(kanji)
+        kana  = norm(kana)
+        pron  = norm(pron)
+        ko    = norm(ko)
+
+        return {
+            "sec_key": sec_key,
+            "kanji": kanji,
+            "kana": kana,
+            "pron": pron,
+            "ko": ko,
+            "jp": kanji or kana,
+        }
+
     results = []
     if q:
         qq = q.lower()
+
         for cat_key, cat in (WORDS or {}).items():
             cat_title = cat.get("title", cat_key)
-            for row in (cat.get("items", []) or []):
-                jp = row[0] if len(row) > 0 else ""
-                pron = row[1] if len(row) > 1 else ""
-                ko = row[2] if len(row) > 2 else ""
 
-                if (qq in (jp or "").lower()
-                    or qq in (pron or "").lower()
-                    or qq in (ko or "").lower()):
+            for row in (cat.get("items", []) or []):
+                w = to_word_dict(row)
+
+                # ✅ 4필드 어디든 검색되면 통과
+                if (qq in w["kanji"].lower()
+                    or qq in w["kana"].lower()
+                    or qq in w["pron"].lower()
+                    or qq in w["ko"].lower()):
                     results.append({
                         "cat_key": cat_key,
                         "cat_title": cat_title,
-                        "jp": jp,
-                        "pron": pron,
-                        "ko": ko,
+                        # ✅ 검색 결과 화면에서 보여줄 값들
+                        "kanji": w["kanji"],
+                        "kana": w["kana"],
+                        "pron": w["pron"],
+                        "ko": w["ko"],
+                        # 기존 템플릿이 jp/pron/ko만 쓰면 호환용으로도 같이 제공
+                        "jp": w["jp"],
                     })
 
     return render_template("words_search.html", user=user, q=q, results=results)
