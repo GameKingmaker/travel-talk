@@ -26,10 +26,10 @@
 <div class="wrap">
   <section class="page-head">
     <h1>단어모음 전체 검색</h1>
-    <p class="page-guide">일본어 / 발음 / 한국어로 검색할 수 있어요.</p>
+    <p class="page-guide">한자 / 가나 / 발음 / 뜻으로 검색할 수 있어요.</p>
 
     <form method="GET" action="{{ url_for('words_search') }}" class="search-row">
-      <input type="text" name="q" value="{{ q or '' }}" placeholder="예: 今 / 이마 / 지금">
+      <input type="text" name="q" value="{{ q or '' }}" placeholder="예: 今 / いま / 이마 / 지금">
       <button type="submit">검색</button>
     </form>
 
@@ -48,8 +48,9 @@
         <thead>
           <tr>
             <th style="width:160px;">분류</th>
-            <th style="width:25%;">일본어</th>
-            <th style="width:25%;">발음</th>
+            <th style="width:22%;">한자</th>
+            <th style="width:22%;">가나</th>
+            <th style="width:22%;">발음</th>
             <th>뜻</th>
           </tr>
         </thead>
@@ -57,15 +58,15 @@
         {% for r in results %}
           <tr>
             <td>
-             <a href="{{ url_for('words_detail', cat_key=r.cat_key) }}"
-   class="result-link">
-
+              <a href="{{ url_for('words_detail', cat_key=r.cat_key) }}"
+                 class="result-link">
                 {{ r.cat_title|e }}
               </a>
             </td>
-            <td>{{ r.jp|e }}</td>
-            <td>{{ r.pron|e }}</td>
-            <td>{{ r.ko|e }}</td>
+            <td>{{ (r.kanji or r.jp or '')|e }}</td>
+            <td>{{ (r.kana or '')|e }}</td>
+            <td>{{ (r.pron or '')|e }}</td>
+            <td>{{ (r.ko or '')|e }}</td>
           </tr>
         {% endfor %}
         </tbody>
