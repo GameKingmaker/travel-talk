@@ -1,0 +1,706 @@
+{% extends "base.html" %}
+
+{# ✅ SEO (노출 OK) #}
+{% set page_title = "일본어 표현 뜻 | JapaneseStudyRoom" %}
+{% set page_desc = "갑자기 궁금한 일본어 표현을 발음(한글)로 빠르게 검색하고 뜻을 확인하세요." %}
+{% set page_robots = "index,follow" %}
+
+{% block content %}
+<style>
+  :root{
+    --bg: #eef3ff;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --line: rgba(15,23,42,.10);
+    --pri: #2563eb;
+    --pri2:#1d4ed8;
+    --chipbg:#f8fafc;
+    --shadow: 0 12px 28px rgba(15,23,42,.06);
+    --good: #16a34a;
+    --good2:#0f7a34;
+    --warn: #f59e0b;
+  }
+
+  .mean-wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 22px 18px 48px;
+  }
+
+  .mean-hero{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow:hidden;
+  }
+
+  .mean-hero-top{
+    padding: 22px 22px 18px;
+    border-top: 4px solid rgba(37,99,235,.65);
+    position: relative;
+    background:
+      radial-gradient(900px 320px at 20% 0%, rgba(37,99,235,.10), transparent 60%),
+      radial-gradient(760px 260px at 90% 10%, rgba(99,102,241,.08), transparent 55%),
+      #fff;
+  }
+
+  .mean-title{
+    margin:0;
+    font-size: 32px;
+    font-weight: 950;
+    letter-spacing: -.6px;
+    color: var(--text);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .mean-desc{
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+  .mean-desc b{ color: var(--text); }
+
+  /* ✅ 상단 “사용법” 미니 카드 */
+  .hero-guide{
+    margin-top: 14px;
+    display:grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 12px;
+  }
+  @media (max-width: 860px){
+    .hero-guide{ grid-template-columns: 1fr; }
+  }
+
+  .guide-card{
+    border: 1px solid rgba(15,23,42,.08);
+    background: rgba(248,250,252,.9);
+    border-radius: 16px;
+    padding: 14px 14px;
+  }
+  .guide-title{
+    margin:0;
+    font-weight: 950;
+    color: var(--text);
+    letter-spacing: -.2px;
+    font-size: 14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .guide-list{
+    margin: 10px 0 0;
+    padding: 0 0 0 18px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .guide-list li{ margin: 4px 0; }
+  .kbd{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding: 0 8px;
+    height: 22px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid rgba(15,23,42,.10);
+    color: var(--text);
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: -.2px;
+  }
+  .ex-badges{
+    margin-top: 10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 8px;
+  }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 950;
+    border: 1px solid rgba(37,99,235,.18);
+    background: rgba(37,99,235,.06);
+    color: var(--pri2);
+    white-space: nowrap;
+  }
+
+  /* ✅ 검색 */
+  .mean-search{
+    margin-top: 14px;
+    display:flex;
+    gap: 10px;
+    align-items:center;
+  }
+
+  .mean-input{
+    flex:1;
+    height: 46px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    padding: 0 14px;
+    outline: none;
+    font-size: 15px;
+    background:#fff;
+  }
+  .mean-input:focus{
+    border-color: rgba(37,99,235,.55);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+  }
+
+  .mean-btn{
+    height:46px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 14px;
+    background: var(--pri);
+    color: #fff;
+    font-weight: 900;
+    cursor:pointer;
+    transition: transform .08s ease, background .12s ease;
+    white-space: nowrap;
+  }
+  .mean-btn:hover{ background: var(--pri2); transform: translateY(-1px); }
+
+  /* ✅ 상단 홈 이동 CTA 영역 (요청사항) */
+  .hero-cta{
+    margin-top: 14px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap: 12px;
+    padding: 14px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(22,163,74,.18);
+    background: linear-gradient(180deg, rgba(22,163,74,.08), rgba(22,163,74,.03));
+  }
+  .cta-text{
+    min-width:0;
+  }
+  .cta-title{
+    margin:0;
+    font-size: 14px;
+    font-weight: 950;
+    color: var(--text);
+    letter-spacing: -.2px;
+    display:flex;
+    align-items:center;
+    gap: 8px;
+  }
+  .cta-desc{
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    word-break: keep-all;
+  }
+  .cta-actions{
+    flex: 0 0 auto;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  .home-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 12px;
+    background: var(--good);
+    color: #fff;
+    font-weight: 950;
+    text-decoration:none;
+    border: none;
+    cursor:pointer;
+    transition: transform .08s ease, background .12s ease;
+    white-space: nowrap;
+  }
+  .home-btn:hover{ background: var(--good2); transform: translateY(-1px); }
+  .ghost-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 12px;
+    background: #fff;
+    color: var(--pri2);
+    font-weight: 950;
+    text-decoration:none;
+    border: 1px solid rgba(37,99,235,.22);
+    cursor:pointer;
+    transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease;
+    white-space: nowrap;
+  }
+  .ghost-btn:hover{
+    transform: translateY(-1px);
+    border-color: rgba(37,99,235,.35);
+    box-shadow: 0 10px 22px rgba(37,99,235,.10);
+  }
+
+  /* ✅ ㄱ~ㅎ 바로가기 */
+  .mean-letters{
+    padding: 14px 22px 18px;
+    border-top: 1px solid rgba(15,23,42,.06);
+    background: linear-gradient(180deg, rgba(37,99,235,.05), rgba(37,99,235,0));
+  }
+
+  .letters-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 8px;
+    align-items:center;
+  }
+
+  .letter{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width: 40px;
+    height: 34px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background:#fff;
+    border: 1px solid rgba(37,99,235,.20);
+    color: var(--pri2);
+    font-weight: 950;
+    text-decoration:none;
+    transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease;
+  }
+  .letter:hover{
+    transform: translateY(-1px);
+    border-color: rgba(37,99,235,.35);
+    box-shadow: 0 10px 22px rgba(37,99,235,.12);
+  }
+
+  .mean-body{
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .box{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow:hidden;
+  }
+
+  .box-head{
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(15,23,42,.06);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+
+  .box-title{
+    margin:0;
+    font-size: 18px;
+    font-weight: 950;
+    letter-spacing: -.2px;
+    color: var(--text);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: #eef2ff;
+    border: 1px solid rgba(99,102,241,.25);
+    color: #4338ca;
+    font-weight: 900;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .chip-grid{
+    padding: 16px 18px 18px;
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 10px;
+  }
+  @media (max-width: 860px){
+    .chip-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ✅ 발음만 크게 보이게 */
+  .chip{
+    border: 1px solid rgba(15,23,42,.08);
+    background: var(--chipbg);
+    border-radius: 14px;
+    padding: 12px 14px;
+    cursor:pointer;
+    transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .chip:hover{
+    transform: translateY(-1px);
+    background:#fff;
+    border-color: rgba(37,99,235,.22);
+    box-shadow: 0 10px 22px rgba(37,99,235,.10);
+  }
+
+  .chip-left{
+    min-width:0;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+
+  .dot{
+    width:10px; height:10px; border-radius:50%;
+    background: rgba(37,99,235,.85);
+    box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+    flex: 0 0 auto;
+  }
+
+  .yomi{
+    font-size: 16px;
+    font-weight: 950;
+    letter-spacing: -.2px;
+    color: var(--text);
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .chev{
+    flex: 0 0 auto;
+    color: rgba(37,99,235,.70);
+    font-weight: 950;
+  }
+
+  /* 펼침 영역 */
+  .chip-detail{
+    display:none;
+    margin-top: 10px;
+    padding: 12px 12px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid rgba(15,23,42,.08);
+    color: var(--text);
+  }
+
+  .d-row{
+    display:flex;
+    gap: 10px;
+    align-items:flex-start;
+    padding: 6px 2px;
+  }
+  .d-label{
+    width: 68px;
+    flex: 0 0 auto;
+    color: var(--muted);
+    font-weight: 900;
+    font-size: 12px;
+  }
+  .d-val{
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.5;
+    overflow-wrap:anywhere;
+  }
+
+  /* 검색결과 */
+  .results{
+    padding: 16px 18px 18px;
+  }
+  .r-list{
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+  }
+  .r-item{
+    border: 1px solid rgba(15,23,42,.08);
+    border-radius: 14px;
+    background:#fff;
+    padding: 12px 14px;
+  }
+  .r-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .r-yomi{
+    font-weight: 950;
+    letter-spacing: -.2px;
+    font-size: 16px;
+  }
+  .r-sub{
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .r-sub b{ color: var(--text); }
+
+  .empty{
+    padding: 14px 16px;
+    border: 1px dashed rgba(37,99,235,.25);
+    background: #fbfdff;
+    border-radius: 14px;
+    color: var(--muted);
+    font-weight: 800;
+  }
+
+  /* (선택) 아주 간단한 하단 한줄 */
+  .mini-foot{
+    margin-top: 16px;
+    color: rgba(100,116,139,.95);
+    font-size: 12.5px;
+    text-align:center;
+  }
+
+  /* 모바일 */
+  @media (max-width: 600px){
+    .mean-title{ font-size: 26px; }
+    .mean-search{ flex-direction: row; }
+    .hero-cta{
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .cta-actions{
+      width: 100%;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    .home-btn, .ghost-btn{
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<div class="mean-wrap">
+
+  <!-- ✅ HERO -->
+  <section class="mean-hero">
+    <div class="mean-hero-top">
+      <h1 class="mean-title">📘 일본어 미니 사전</h1>
+
+      <p class="mean-desc">
+        일본어를 공부하다 보면 “코레 뜻”, “이이데스카 뜻”, “데키마스카 뜻”처럼 특정 표현이 궁금해질 때가 많습니다.<br> 
+        이 페이지에서는 자주 쓰는 일본어 표현을 발음 기준으로 빠르게 검색하고 뜻을 확인할 수 있습니다.<br>
+        갑자기 궁금해진 일본어 표현을 <b>“발음(한글)”</b> 기준으로 빠르게 찾고, <b>일본어 표기</b>와 <b>한국어 뜻</b>까지 한 번에 확인하는 페이지예요.<br>
+        아래 검색창에는 <b>일본어(かな/漢字)</b>, <b>발음(한글)</b>, <b>뜻(한국어)</b> 중 <b>아무거나</b> 입력해도 검색됩니다.
+      </p>
+
+      <!-- ✅ 사용법/예시를 더 구체적으로 -->
+      <div class="hero-guide">
+        <div class="guide-card">
+          <p class="guide-title">✅ 이렇게 검색해보세요</p>
+          <ul class="guide-list">
+            <li><span class="kbd">발음</span> “이이데스카”, “데키마스카”, “스미마센” 처럼 한글로 입력</li>
+            <li><span class="kbd">일본어</span> “これ”, “いいですか”, “できますか” 처럼 일본어로 입력</li>
+            <li><span class="kbd">뜻</span> “괜찮아요”, “가능해요”, “죄송합니다” 처럼 한국어로 입력</li>
+          </ul>
+          <div class="ex-badges" aria-label="검색 예시">
+            <span class="badge">예) 코레 뜻</span>
+            <span class="badge">예) 이이데스카 뜻</span>
+            <span class="badge">예) 데키마스카 뜻</span>
+            <span class="badge">예) 스미마센 뜻</span>
+          </div>
+        </div>
+
+        <div class="guide-card">
+          <p class="guide-title">⚡ 빠르게 찾는 팁</p>
+          <ul class="guide-list">
+            <li>아래 <span class="kbd">ㄱ~ㅎ</span> 버튼으로 발음 분류를 바로 이동할 수 있어요</li>
+            <li>목록에서 발음을 누르면 <span class="kbd">일본어</span> / <span class="kbd">뜻</span>이 펼쳐집니다</li>
+            <li>검색 결과가 없으면, 띄어쓰기/철자만 살짝 바꿔서 다시 시도해보세요</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ✅ 검색 -->
+      <form class="mean-search" method="GET" action="/meaning/search">
+        <input class="mean-input" type="text" name="q" value="{{ q or '' }}"
+               placeholder="예) 이이데스카 / いいですか / 괜찮아요?">
+        <button class="mean-btn" type="submit">검색</button>
+      </form>
+
+      <!-- ✅ (요청) 홈 이동 버튼을 상단 박스 하단으로 이동 + 안내 문구 -->
+      <div class="hero-cta" role="note" aria-label="학습 안내">
+        <div class="cta-text">
+          <p class="cta-title">🏠 공부를 이어서 하고 싶다면</p>
+          <p class="cta-desc">
+            일본어 <b>회화</b>나 <b>JLPT</b> 공부를 하고 싶다면, <b>홈 화면</b>에서 원하는 목록을 선택해서 공부해 보세요.
+          </p>
+        </div>
+        <div class="cta-actions">
+          <a class="home-btn" href="/">홈화면으로 이동</a>
+          <a class="ghost-btn" href="#search-results">검색 결과로 이동</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ ㄱ~ㅎ 바로가기 -->
+    <div class="mean-letters" aria-label="자음 바로가기">
+      <div class="letters-row">
+        {% set letters = ["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"] %}
+        {% for L in letters %}
+          <a class="letter" href="#sec-{{ L }}">{{ L }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <div class="mean-body">
+
+    <!-- ✅ 검색 결과 박스 (results가 있을 때만 노출) -->
+    {% if results is defined and q is defined %}
+      <section class="box" id="search-results">
+        <div class="box-head">
+          <h2 class="box-title">🔎 검색 결과</h2>
+          <span class="pill">"{{ q }}" · {{ results|length }}</span>
+        </div>
+
+        <div class="results">
+          {% if (results|length) > 0 %}
+            <div class="r-list">
+              {% for it in results %}
+                <div class="r-item">
+                  <div class="r-top">
+                    <div class="r-yomi">{{ it.get("yomi","") }}</div>
+                    <span class="pill">뜻</span>
+                  </div>
+                  <div class="r-sub">
+                    <b>일본어:</b> {{ it.get("jp","") }}<br>
+                    <b>한국어:</b> {{ it.get("ko","") }}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="empty">해당 검색어로 찾지 못했어요. 다른 단어(발음/일본어/뜻)로 다시 검색해보세요.</div>
+          {% endif %}
+        </div>
+      </section>
+    {% endif %}
+
+    <!-- ✅ ㄱ~ㅎ 카테고리 섹션 -->
+    {% if meaning_categories is defined and (meaning_categories|length) > 0 %}
+      {% for cat in meaning_categories %}
+        {% set key = cat.get("key","") %}
+        {% set items = cat.get("items") or [] %}
+
+        <section class="box" id="sec-{{ key }}">
+          <div class="box-head">
+            <h2 class="box-title">🔤 {{ key }} 분류</h2>
+            <span class="pill">{{ items|length }}</span>
+          </div>
+
+          <div class="chip-grid">
+            {% if (items|length) > 0 %}
+              {% for it in items %}
+                <div>
+                  <div class="chip" role="button" tabindex="0"
+                       aria-label="{{ it.get('yomi','') }} 뜻 보기"
+                       data-open="0">
+                    <div class="chip-left">
+                      <span class="dot"></span>
+                      <div class="yomi">{{ it.get("yomi","") }}</div>
+                    </div>
+                    <div class="chev">▾</div>
+                  </div>
+
+                  <div class="chip-detail" aria-hidden="true">
+                    <div class="d-row">
+                      <div class="d-label">일본어</div>
+                      <div class="d-val">{{ it.get("jp","") }}</div>
+                    </div>
+                    <div class="d-row">
+                      <div class="d-label">뜻</div>
+                      <div class="d-val">{{ it.get("ko","") }}</div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="empty">아직 {{ key }} 분류 표현이 없어요.</div>
+            {% endif %}
+          </div>
+        </section>
+      {% endfor %}
+    {% else %}
+      <section class="box">
+        <div class="box-head">
+          <h2 class="box-title">📌 안내</h2>
+        </div>
+        <div class="results">
+          <div class="empty">
+            아직 표현 데이터가 없어요. app.py에서 meaning_categories(ㄱ~ㅎ) 데이터를 만들어서 넘겨주면 이 화면에 자동으로 표시됩니다.
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+  </div>
+
+  <!-- (선택) 하단은 깔끔하게 한 줄만 -->
+  <div class="mini-foot">
+    일본어에 관심 있으신 분들을 위해 만든 공간입니다.
+  </div>
+
+</div>
+
+<script>
+  // ✅ 칩 클릭/키보드(Enter/Space)로 상세 펼치기
+  function toggleDetail(chip){
+    const detail = chip.parentElement.querySelector(".chip-detail");
+    if(!detail) return;
+
+    const open = chip.getAttribute("data-open") === "1";
+    chip.setAttribute("data-open", open ? "0" : "1");
+    detail.style.display = open ? "none" : "block";
+    detail.setAttribute("aria-hidden", open ? "true" : "false");
+
+    const chev = chip.querySelector(".chev");
+    if(chev) chev.textContent = open ? "▾" : "▴";
+  }
+
+  document.querySelectorAll(".chip").forEach(chip => {
+    chip.addEventListener("click", () => toggleDetail(chip));
+    chip.addEventListener("keydown", (e) => {
+      if(e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        toggleDetail(chip);
+      }
+    });
+  });
+
+  // ✅ 검색 결과 섹션이 없을 때 "검색 결과로 이동" 버튼은 자연스럽게 숨김
+  (function(){
+    const btn = document.querySelector('.ghost-btn[href="#search-results"]');
+    const sec = document.getElementById('search-results');
+    if(btn && !sec){
+      btn.style.display = "none";
+    }
+  })();
+</script>
+
+{% endblock %}
