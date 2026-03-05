@@ -71,7 +71,7 @@
     gap: 10px;
   }
 
-  /* (선택) 작은 아이콘 원 */
+  /* 작은 아이콘 원 */
   .n1-nav-title .ic{
     width: 32px;
     height: 32px;
@@ -101,7 +101,7 @@
     border-color: rgba(37,99,235,.55);
   }
 
-  /* (선택) “추천” 느낌의 우측 화살표 */
+  /* “추천” 느낌의 우측 화살표 */
   .n1-nav-item::after{
     content:"→";
     position:absolute;
@@ -117,80 +117,112 @@
     opacity: 1;
     transform: translateX(0);
   }
+
   .jlpt-card{
-  max-width: 980px;
-  margin: 0 auto 18px;
-  padding: 22px 22px;
-  border-radius: 18px;
-  background:#fff;
-  border:1px solid #e6ebf4;
-  box-shadow: 0 12px 28px rgba(15,23,42,.06);
-}
-/* n1-layout도 jlpt-card와 같은 폭/정렬 규칙 적용 */
-.n1-layout{
-  max-width: 980px;
-  margin: 0 auto 18px;
-}
+    max-width: 980px;
+    margin: 0 auto 18px;
+    padding: 22px 22px;
+    border-radius: 18px;
+    background:#fff;
+    border:1px solid #e6ebf4;
+    box-shadow: 0 12px 28px rgba(15,23,42,.06);
+  }
 
-/* 이미지도 카드처럼 보이게(위/아래 박스 선 규격 동일) */
-.n1-illust-card{
-  width: 100%;
-  border-radius: 18px;
-  background: #fff;
-  border: 1px solid #e6ebf4;
-  box-shadow: 0 12px 28px rgba(15,23,42,.06);
-  overflow: hidden; /* 이미지가 모서리 밖으로 안 튀게 */
-}
+  /* n1-layout도 jlpt-card와 같은 폭/정렬 규칙 적용 */
+  .n1-layout{
+    max-width: 980px;
+    margin: 0 auto 18px;
+  }
 
-/* ✅ 핵심: 이미지 2:1 비율 + 축소(높이 줄이기) */
-.n1-illust-card img{
-  width: 100%;
-  aspect-ratio: 2 / 1;   /* 가로:세로 = 2:1 */
-  object-fit: cover;      /* 비율 맞추면서 꽉 채움(잘림 가능) */
-  display: block;
-}
-/* =========================
-   N1 일러스트 공통
-========================= */
-.n1-illust{
-  width: 100%;
-  max-width: 980px;
-  margin: 0 auto 22px;
-}
+  /* 이미지도 카드처럼 보이게 */
+  .n1-illust-card{
+    width: 100%;
+    border-radius: 18px;
+    background: #fff;
+    border: 1px solid #e6ebf4;
+    box-shadow: 0 12px 28px rgba(15,23,42,.06);
+    overflow: hidden;
+  }
 
-.n1-illust img{
-  width: 100%;
-  height: auto;
-  aspect-ratio: 2 / 1;          /* ⭐ 2:1 고정 */
-  object-fit: cover;            /* 넘치는 부분만 자연스럽게 크롭 */
-  border-radius: 18px;
-  display: block;
-  background: #f8fafc;          /* 로딩 중 흰 여백 방지 */
-}
+  .n1-illust-card img{
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    display: block;
+  }
 
-/* =========================
-   모바일 대응
-========================= */
-@media (max-width: 768px){
-
+  /* =========================
+     N1 일러스트 공통
+  ========================= */
   .n1-illust{
-    margin: 0 auto 16px;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto 22px;
   }
 
   .n1-illust img{
-    aspect-ratio: 16 / 9;       /* ⭐ 모바일은 16:9가 더 안정적 */
-    border-radius: 14px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+    background: #f8fafc;
   }
-}
 
-/* 아주 작은 모바일 */
-@media (max-width: 420px){
-
-  .n1-illust img{
-    aspect-ratio: 4 / 3;        /* 초소형 화면 깨짐 방지 */
+  @media (max-width: 768px){
+    .n1-illust{ margin: 0 auto 16px; }
+    .n1-illust img{
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+    }
   }
-}
+  @media (max-width: 420px){
+    .n1-illust img{ aspect-ratio: 4 / 3; }
+  }
+
+  /* ✅ 추가: N2 복습 돌아가기 버튼 */
+  .level-nav{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .level-btn{
+    flex:1 1 240px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+
+    padding:14px 14px;
+    border-radius:16px;
+    border:1px solid rgba(15,23,42,.10);
+    background: linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.02));
+    text-decoration:none;
+    color:#0b1f4b;
+    transition:.16s ease;
+  }
+
+  .level-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 12px 26px rgba(37,99,235,.12);
+    border-color:rgba(37,99,235,.25);
+  }
+
+  .level-btn .t{ font-weight:950; }
+  .level-btn .d{
+    font-size:13px;
+    color:#64748b;
+    font-weight:750;
+    margin-top:4px;
+  }
+  .level-btn .arrow{
+    font-weight:950;
+    color:rgba(37,99,235,.70);
+  }
 </style>
+
 <div class="jlpt-card">
   <h1 class="jlpt-h1">✏️ JLPT N1</h1>
 
@@ -214,9 +246,10 @@
   <p class="jlpt-subtext" style="margin-top:10px;">
     📌 추천 학습 순서<br>
     <b>단어 → 문장 → 문법 → 테스트</b> 순으로 진행하면
-    JLPT N5 핵심을 가장 효율적으로 익힐 수 있습니다.
+    JLPT N1 핵심을 가장 효율적으로 익힐 수 있습니다.
   </p>
 </div>
+
 <!-- =========================
      N1 전체 레이아웃 래퍼
 ========================= -->
@@ -226,28 +259,44 @@
   <div class="n1-illust-card">
     <img src="/static/img/n1-study-illustration.png" alt="JLPT N1 공부 일러스트">
   </div>
-<div class="jlpt-card" style="padding:20px 16px;">
-  <nav class="n1-nav">
-    <a href="{{ url_for('jlpt_n1_words') }}" class="n1-nav-item">
-  <span class="n1-nav-title"><span class="ic">単</span>N1 단어 학습</span>
-  <span class="n1-nav-desc">자주 나오는 필수 어휘</span>
-</a>
 
-<a href="{{ url_for('jlpt_n1_sentences') }}" class="n1-nav-item">
-  <span class="n1-nav-title"><span class="ic">文</span>N1 문장 학습</span>
-  <span class="n1-nav-desc">기본 문장 익히기</span>
-</a>
+  <div class="jlpt-card" style="padding:20px 16px;">
+    <nav class="n1-nav">
+      <a href="{{ url_for('jlpt_n1_words') }}" class="n1-nav-item">
+        <span class="n1-nav-title"><span class="ic">単</span>N1 단어 학습</span>
+        <span class="n1-nav-desc">자주 나오는 필수 어휘</span>
+      </a>
 
-<a href="{{ url_for('jlpt_n1_grammar') }}" class="n1-nav-item">
-  <span class="n1-nav-title"><span class="ic">法</span>N1 문법 학습</span>
-  <span class="n1-nav-desc">조사 · 활용 핵심</span>
-</a>
+      <a href="{{ url_for('jlpt_n1_sentences') }}" class="n1-nav-item">
+        <span class="n1-nav-title"><span class="ic">文</span>N1 문장 학습</span>
+        <span class="n1-nav-desc">기본 문장 익히기</span>
+      </a>
 
-<a href="{{ url_for('jlpt_n1_test') }}" class="n1-nav-item">
-  <span class="n1-nav-title"><span class="ic">試</span>N1 테스트</span>
-  <span class="n1-nav-desc">실전 형식 연습</span>
-</a>
-  </nav>
+      <a href="{{ url_for('jlpt_n1_grammar') }}" class="n1-nav-item">
+        <span class="n1-nav-title"><span class="ic">法</span>N1 문법 학습</span>
+        <span class="n1-nav-desc">조사 · 활용 핵심</span>
+      </a>
+
+      <a href="{{ url_for('jlpt_n1_test') }}" class="n1-nav-item">
+        <span class="n1-nav-title"><span class="ic">試</span>N1 테스트</span>
+        <span class="n1-nav-desc">실전 형식 연습</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- ✅ 추가된 카드: N2 복습하기/돌아가기 -->
+  <div class="jlpt-card" style="padding:16px 16px;">
+    <div class="level-nav">
+      <a class="level-btn" href="{{ url_for('jlpt_n2_home') }}">
+        <div>
+          <div class="t">← 이전 단계 · JLPT N2 복습</div>
+          <div class="d">N1이 어렵다면 N2 핵심 문법과 단어를 다시 정리해보세요</div>
+        </div>
+        <div class="arrow">←</div>
+      </a>
+    </div>
+  </div>
+
 </div>
 {% endblock %}
 
