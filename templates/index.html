@@ -114,55 +114,56 @@
   <p class="menu-sub">원하는 학습을 선택해서 바로 시작해요.</p>
 
   <div class="menu-grid">
-        <!-- ✅ 상황별 회화 카드 추가 -->
-    <a class="menu-card" href="{{ url_for('travel_phrases_50') }}">
-      <div class="menu-name">📘필수회화 50문장</div>
-      <div class="menu-desc">일본 여행 전 단기 암기용 필수 회화</div>
-    </a>
-    <a class="menu-card" href="{{ url_for('situations') }}">
-      <div class="menu-name">📍상황별 회화</div>
-      <div class="menu-desc">공항·호텔·교통·식당 등 상황별 핵심 회화 모음</div>
-    </a>
-    <a class="menu-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황별 회화로 이동">
-      <div class="menu-name">🎮상황별 회화 퀴즈</div>
-      <div class="menu-desc">공항·호텔·교통·식당 등 실전 대화 퀴즈 [시작하기]</div>
-    </a>
 
-    <a class="menu-card" href="{{ url_for('words_categories') }}" aria-label="단어모음으로 이동">
-      <div class="menu-name">📘단어모음</div>
-      <div class="menu-desc">자주 쓰는 단어를 모아 바로 암기</div>
-    </a>
-    <a class="menu-card" href="{{ url_for('travel_start') }}" aria-label="퀴즈 게임으로 이동">
-      <div class="menu-name">🎮일본여행 시뮬레이션</div>
-      <div class="menu-desc">실제 여행 상황처럼 이동하며 일본어를 공부해보세요 [시작하기]</div>
-    </a>
+  <!-- ✅ 필수회화 50문장 -->
+  <a class="menu-card" href="{{ url_for('travel_phrases_50') }}">
+    <div class="menu-name">📘 필수회화 50문장</div>
+    <div class="menu-desc">여행 전에 꼭 쓰는 문장만 50개로 빠르게 암기해요.</div>
+  </a>
 
-    <a class="menu-card" href="{{ url_for('jlpt_n1_home') }}" aria-label="JLPT N1으로 이동">
-      <div class="menu-name">📝JLPT N1 공부</div>
-      <div class="menu-desc">N1 단어,문장,문법,테스트 </div>
-    </a>
+  <!-- ✅ 상황별 회화 -->
+  <a class="menu-card" href="{{ url_for('situations') }}">
+    <div class="menu-name">📍 상황별 회화</div>
+    <div class="menu-desc">공항·호텔·교통·식당 등 상황별 핵심 표현을 모았어요.</div>
+  </a>
 
-    <a class="menu-card" href="{{ url_for('jlpt_n2_home') }}" aria-label="JLPT N2으로 이동">
-      <div class="menu-name">📝JLPT N2 공부</div>
-      <div class="menu-desc">N2 단어,문장,문법,테스트</div>
-    </a>
+  <!-- ✅ 단어모음 -->
+  <a class="menu-card" href="{{ url_for('words_categories') }}" aria-label="단어모음으로 이동">
+    <div class="menu-name">🧠 단어모음</div>
+    <div class="menu-desc">자주 쓰는 단어를 카테고리별로 정리해 바로 외워요.</div>
+  </a>
 
-    <a class="menu-card" href="{{ url_for('jlpt_n3_home') }}" aria-label="JLPT N3으로 이동">
-      <div class="menu-name">📝JLPT N3 공부</div>
-      <div class="menu-desc">N3 단어,문장,문법,테스트</div>
-    </a>
+  <!-- ✅ 일반게시판 -->
+  <a class="menu-card" href="{{ url_for('board') }}" aria-label="일반게시판으로 이동">
+    <div class="menu-name">💬 일반게시판</div>
+    <div class="menu-desc">질문·후기·정보 공유! 자유롭게 글을 남겨보세요.</div>
+  </a>
 
-    <a class="menu-card" href="{{ url_for('jlpt_n4_home') }}" aria-label="JLPT N4으로 이동">
-      <div class="menu-name">📝JLPT N4 공부</div>
-      <div class="menu-desc">N4 단어,문장,문법,테스트</div>
-    </a>
+  <!-- ✅ 일본어 표현 미니사전 -->
+  <a class="menu-card" href="{{ url_for('meaning') }}" aria-label="일본어표현뜻으로 이동">
+    <div class="menu-name">📖 일본어 표현 미니사전</div>
+    <div class="menu-desc">‘코레/이이데스카/데키마스카’ 뜻을 발음·일본어·뜻으로 빠르게 검색!</div>
+  </a>
 
-    <a class="menu-card" href="{{ url_for('jlpt_n5_home') }}" aria-label="JLPT N5으로 이동">
-      <div class="menu-name">📝JLPT N5 공부</div>
-      <div class="menu-desc">N5 단어,문장,문법,테스트</div>
-    </a>
+  <!-- ✅ 상황별 회화 퀴즈 -->
+  <a class="menu-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황별 회화 퀴즈로 이동">
+    <div class="menu-name">🎮 상황별 회화 퀴즈</div>
+    <div class="menu-desc">실전 대화 느낌으로 문제를 풀며 표현을 익혀요. [시작하기]</div>
+  </a>
 
-  </div>
+  <!-- ✅ 일본여행 시뮬레이션 -->
+  <a class="menu-card" href="{{ url_for('travel_start') }}" aria-label="일본여행 시뮬레이션으로 이동">
+    <div class="menu-name">🧳 일본여행 시뮬레이션</div>
+    <div class="menu-desc">여행 흐름대로 선택하며 회화를 자연스럽게 연습해요. [시작하기]</div>
+  </a>
+
+  <!-- ✅ 단어게임 -->
+  <a class="menu-card" href="{{ url_for('word_game') }}" aria-label="단어게임으로 이동">
+    <div class="menu-name">🕹️ 단어게임</div>
+    <div class="menu-desc">게임처럼 즐기면서 단어를 빠르게 익히고 기억해요. [시작하기]</div>
+  </a>
+
+</div>
 </section>
 
 {# ✅ TTS: 기본 브라우저 SpeechSynthesis (서버 없이도 동작)
