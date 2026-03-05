@@ -1,61 +1,109 @@
 {% extends "base.html" %}
 {% block content %}
 
+{# =========================
+   ✅ Words Detail (UI 개선 버전)
+   - 기능 로직/테이블은 그대로
+   - 상단 헤더만 카드형으로 정리 + 가이드 강화
+   ========================= #}
+
 <style>
+  /* 전체 래퍼 */
   .wrap{
     max-width: 1080px;
     margin: 0 auto;
-    padding: 22px 18px 48px;
+    padding: 18px 18px 48px;
   }
 
-  .head{
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    gap:16px;
-    margin-bottom:14px;
-  }
-  .title{
-    font-size:34px;
-    font-weight:900;
-    letter-spacing:-0.5px;
-    margin:0;
-  }
-  .sub{
-    margin:6px 0 0;
-    color:#6b7280;
-    font-size:14px;
-    line-height:1.4;
+  /* 상단 헤더 카드 */
+  .w-top{
+    margin: 8px 0 14px;
+    padding: 18px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(15,23,42,.10);
+    background: linear-gradient(180deg, rgba(37,99,235,.10), rgba(37,99,235,.02));
+    box-shadow: 0 12px 30px rgba(15,23,42,.06);
   }
 
-  .top-actions{
+  .w-title{
+    margin: 0;
+    font-size: 30px;
+    font-weight: 950;
+    letter-spacing: -0.02em;
+    color: #0b1f4b;
+    line-height: 1.2;
+    word-break: keep-all;
+  }
+
+  .w-sub{
+    margin: 10px 0 0;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.75;
+    white-space: pre-line;
+  }
+
+  .w-guide{
+    margin: 10px 0 0;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 1.65;
+  }
+
+  /* 상단 액션 */
+  .w-actions{
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .w-actions-left{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
-    margin-top:14px;
   }
-  .btn{
+
+  .w-btn{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    height:40px;
-    padding:0 14px;
-    border-radius:12px;
-    border:1px solid rgba(15,23,42,.10);
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(15,23,42,.12);
     background:#fff;
+    font-weight: 900;
+    color: #0b1f4b;
     text-decoration:none;
-    color:#0f172a;
-    font-weight:800;
+    transition: .16s ease;
   }
-  .btn:hover{
-    border-color: rgba(37,99,235,.22);
-    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.10);
+  .w-btn:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(15,23,42,.08);
+    border-color: rgba(37,99,235,.20);
   }
 
+  .w-count{
+    color:#64748b;
+    font-weight: 900;
+    font-size: 13px;
+    display:flex;
+    gap:6px;
+    align-items:center;
+    white-space:nowrap;
+  }
+  .w-count b{ color:#0b1f4b; }
+
+  /* 검색 */
   .search-row{
     display:flex;
     gap:10px;
-    margin-top:14px;
+    margin: 12px 0 12px;
   }
   .search-row input{
     flex:1;
@@ -72,12 +120,25 @@
     border:none;
     background:#2563eb;
     color:#fff;
-    font-weight:800;
+    font-weight:900;
     cursor:pointer;
   }
 
+  .q-hint{
+    margin: 0 0 14px;
+    color:#6b7280;
+    font-size:13px;
+    font-weight:800;
+  }
+  .q-hint a{
+    color:#2563eb;
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+
+  /* 테이블 카드 */
   .card{
-    margin-top:16px;
+    margin-top: 8px;
     background:#ffffff;
     border:1px solid rgba(15, 23, 42, 0.08);
     border-radius:16px;
@@ -97,118 +158,156 @@
     padding:10px 12px;
     border-bottom:1px solid rgba(15, 23, 42, 0.06);
     font-size:14px;
+    vertical-align: middle;
   }
   th{
     background:#f8fafc;
-    font-weight:900;
+    font-weight:950;
+    color:#0f172a;
   }
   tr:last-child td{ border-bottom:none; }
-  .muted{ color:#6b7280; font-size:12px; margin-top:10px; }
+
+  /* 텍스트 톤 */
+  .muted{
+    color:#6b7280;
+    font-size:12px;
+    font-weight:800;
+    margin-top:10px;
+  }
+
+  /* (선택) 모바일에서 컬럼 정리 */
+  @media (max-width: 640px){
+    .w-title{ font-size: 24px; }
+    th:nth-child(3), td:nth-child(3){ display:none; } /* 가나 숨김 */
+  }
 </style>
+
 <div class="wrap">
 
-<section class="page-head">
-  <h1>일본 여행 필수 일본어 단어 모음 · {{ title }}</h1>
+  {# =========================
+     ✅ 상단 헤더 카드
+     ========================= #}
+  <section class="w-top">
+    <h1 class="w-title">일본 여행 필수 일본어 단어 모음 · {{ title }}</h1>
 
-  {% if page_intro %}
-    <p class="page-guide">{{ page_intro }}</p>
-  {% else %}
-    <p class="page-guide">일본 여행 중 자주 쓰는 {{ title }} 필수 일본어 단어를 정리했습니다.</p>
+    {% if page_intro %}
+      <p class="w-sub">{{ page_intro }}</p>
+    {% else %}
+      <p class="w-sub">일본 여행 중 자주 쓰는 {{ title }} 필수 단어를 모아두었습니다.</p>
+    {% endif %}
+
+    <p class="w-guide">
+      한자/표기 · 가나 · 발음 · 한국어 뜻 <b>4줄</b>로 빠르게 확인하세요.<br>
+      ※ <b>★</b> 버튼을 누르면 즐겨찾기에 저장됩니다. · 🔊 버튼으로 발음도 바로 들을 수 있어요.
+    </p>
+
+    <p class="w-guide" style="margin-top:6px;">
+      👉 외웠다면 <a href="{{ url_for('word_game') }}"><b>단어 게임</b></a>으로 실력 체크해보세요.
+    </p>
+
+    <div class="w-actions">
+      <div class="w-actions-left">
+        <a class="w-btn" href="{{ url_for('words_categories') }}">← 분류 목록</a>
+
+        {# (옵션) 검색 중일 때 전체 보기 버튼 #}
+        {% if q %}
+          <a class="w-btn" href="{{ url_for('words_detail', cat_key=cat_key) }}">전체 보기</a>
+        {% endif %}
+      </div>
+
+      <div class="w-count">
+        표시:
+        <b>{{ (rows or [])|length }}</b>
+        /
+        <span>{{ total_count if total_count is defined else (rows or [])|length }}</span>
+      </div>
+    </div>
+  </section>
+
+  {# =========================
+     ✅ 검색
+     ========================= #}
+  <form method="GET" class="search-row">
+    <input
+      type="text"
+      name="q"
+      value="{{ q or '' }}"
+      placeholder="한자/가나/발음/뜻으로 검색 (예: 今, いま, 이마, 지금)"
+    >
+    <button type="submit">검색</button>
+  </form>
+
+  {% if q %}
+    <p class="q-hint">
+      검색어: <b>{{ q|e }}</b>
+      · 결과: <b>{{ (rows or [])|length }}</b>개
+      · <a href="{{ url_for('words_detail', cat_key=cat_key) }}">전체 보기</a>
+    </p>
   {% endif %}
 
-  <p class="page-guide">
-    한자/표기 · 가나 · 발음 · 한국어 뜻 4줄로 확인하세요.<br>
-    ※ ★ 버튼을 누르면 즐겨찾기에 저장됩니다.
-  </p>
-<p class="page-guide" style="margin-top:6px;">
-  👉 외웠다면 <a href="{{ url_for('word_game') }}"><b>단어 게임</b></a>으로 실력 체크해보세요.
-</p>
-  <div class="back-row">
-    <a class="back-btn" href="{{ url_for('words_categories') }}">← 분류 목록</a>
-  </div>
-</section>
-
-<form method="GET" style="display:flex; gap:10px; margin:12px 0 18px;">
-  <input
-    type="text"
-    name="q"
-    value="{{ q or '' }}"
-    placeholder="한자/가나/발음/뜻으로 검색 (예: 今, いま, 이마, 지금)"
-    style="flex:1; height:44px; border-radius:14px; border:1px solid rgba(15, 23, 42, 0.10); padding:0 14px; outline:none;"
-  >
-  <button
-    type="submit"
-    style="height:44px; padding:0 16px; border-radius:14px; border:none; background:#2563eb; color:#fff; font-weight:800; cursor:pointer;">
-    검색
-  </button>
-</form>
-
-{% if q %}
-  <p style="margin:-6px 0 16px; color:#6b7280; font-size:13px; font-weight:700;">
-    검색어: <b>{{ q|e }}</b>
-    · <a href="{{ url_for('words_detail', cat_key=cat_key) }}"
-   style="color:#2563eb; text-decoration:underline; text-underline-offset:3px;">
-  전체 보기
-</a>
-
-{% endif %}
-
-
-    <div class="card phrase-list">
+  {# =========================
+     ✅ 단어 테이블 (기존 로직 유지)
+     ========================= #}
+  <div class="card phrase-list">
     <table>
-  <thead>
-    <tr>
-      <th style="width:90px;">즐겨찾기</th>
-      <th style="width:25%;">한자/표기</th>
-      <th style="width:18%;">가나</th>
-      <th style="width:18%;">발음</th>
-      <th>뜻</th>
-    </tr>
-  </thead>
+      <thead>
+        <tr>
+          <th style="width:90px;">즐겨찾기</th>
+          <th style="width:25%;">한자/표기</th>
+          <th style="width:18%;">가나</th>
+          <th style="width:18%;">발음</th>
+          <th>뜻</th>
+        </tr>
+      </thead>
 
-  <tbody id="wordTableBody">
-  {% for w in (rows or []) %}
-    {# rows가 dict든 tuple/list든 대응 (구버전도 안전) #}
-    {% set kanji = w.kanji if w.kanji is defined else (w.jp if w.jp is defined else (w[0] if w is sequence and w|length>0 else "")) %}
-    {% set kana  = w.kana  if w.kana  is defined else "" %}
-    {% set pron  = w.pron  if w.pron  is defined else (w[1] if w is sequence and w|length>1 else "") %}
-    {% set ko    = w.ko    if w.ko    is defined else (w[2] if w is sequence and w|length>2 else "") %}
+      <tbody id="wordTableBody">
+      {% for w in (rows or []) %}
+        {# rows가 dict든 tuple/list든 대응 (구버전도 안전) #}
+        {% set kanji = w.kanji if w.kanji is defined else (w.jp if w.jp is defined else (w[0] if w is sequence and w|length>0 else "")) %}
+        {% set kana  = w.kana  if w.kana  is defined else "" %}
+        {% set pron  = w.pron  if w.pron  is defined else (w[1] if w is sequence and w|length>1 else "") %}
+        {% set ko    = w.ko    if w.ko    is defined else (w[2] if w is sequence and w|length>2 else "") %}
 
-    {% set keyjp = kanji or kana or "" %}
-    {% set is_fav = (fav_jp_set and (keyjp in fav_jp_set)) %}
+        {% set keyjp = kanji or kana or "" %}
+        {% set is_fav = (fav_jp_set and (keyjp in fav_jp_set)) %}
 
-    <tr class="word-row"
-        data-cat="{{ cat_key }}"
-        data-kanji="{{ (kanji or '')|e }}"
-        data-kana="{{ (kana or '')|e }}"
-        data-pron="{{ (pron or '')|e }}"
-        data-ko="{{ (ko or '')|e }}">
+        <tr class="word-row"
+            data-cat="{{ cat_key }}"
+            data-kanji="{{ (kanji or '')|e }}"
+            data-kana="{{ (kana or '')|e }}"
+            data-pron="{{ (pron or '')|e }}"
+            data-ko="{{ (ko or '')|e }}">
 
-      <td>
-        <button type="button"
-                class="fav-btn {% if is_fav %}on{% endif %}"
-                data-cat="{{ cat_key }}"
-                data-jp="{{ keyjp|e }}"
-                data-kana="{{ (kana or '')|e }}"
-                aria-label="즐겨찾기">
-          {% if is_fav %}★{% else %}☆{% endif %}
-        </button>
-      </td>
+          <td>
+            <button type="button"
+                    class="fav-btn {% if is_fav %}on{% endif %}"
+                    data-cat="{{ cat_key }}"
+                    data-jp="{{ keyjp|e }}"
+                    data-kana="{{ (kana or '')|e }}"
+                    aria-label="즐겨찾기">
+              {% if is_fav %}★{% else %}☆{% endif %}
+            </button>
+          </td>
 
-      <td>
-        <span class="jp-text">{{ kanji }}</span>
-        <button type="button" class="tts-btn" data-tts="{{ keyjp|e }}">🔊</button>
-      </td>
+          <td>
+            <span class="jp-text">{{ kanji }}</span>
+            <button type="button" class="tts-btn" data-tts="{{ keyjp|e }}">🔊</button>
+          </td>
 
-      <td><span class="p-kana">{{ kana or "-" }}</span></td>
-      <td><span class="p-pron">{{ pron or "-" }}</span></td>
-      <td><span class="p-ko">{{ ko or "-" }}</span></td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+          <td><span class="p-kana">{{ kana or "-" }}</span></td>
+          <td><span class="p-pron">{{ pron or "-" }}</span></td>
+          <td><span class="p-ko">{{ ko or "-" }}</span></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
 
-    <div class="muted">총 {{ (rows or [])|length }}개</div>
+    <div class="muted">
+      총 {{ (rows or [])|length }}개
+      {% if total_count is defined and total_count != (rows or [])|length %}
+        (전체: {{ total_count }}개)
+      {% endif %}
+    </div>
   </div>
 
 </div>
