@@ -44,7 +44,6 @@
     overflow: hidden;
   }
 
-  /* 위쪽 얇은 포인트 라인 */
   .n5-nav-item::before{
     content:"";
     position:absolute;
@@ -71,7 +70,6 @@
     gap: 10px;
   }
 
-  /* (선택) 작은 아이콘 원 */
   .n5-nav-title .ic{
     width: 32px;
     height: 32px;
@@ -94,14 +92,12 @@
     line-height: 1.45;
   }
 
-  /* 클릭(포커스) 접근성 */
   .n5-nav-item:focus{
     outline: none;
     box-shadow: 0 0 0 3px rgba(37,99,235,.20), 0 16px 34px rgba(15,23,42,.10);
     border-color: rgba(37,99,235,.55);
   }
 
-  /* (선택) “추천” 느낌의 우측 화살표 */
   .n5-nav-item::after{
     content:"→";
     position:absolute;
@@ -117,79 +113,95 @@
     opacity: 1;
     transform: translateX(0);
   }
+
   .jlpt-card{
-  max-width: 980px;
-  margin: 0 auto 18px;
-  padding: 22px 22px;
-  border-radius: 18px;
-  background:#fff;
-  border:1px solid #e6ebf4;
-  box-shadow: 0 12px 28px rgba(15,23,42,.06);
-}
-/* n5-layout도 jlpt-card와 같은 폭/정렬 규칙 적용 */
-.n5-layout{
-  max-width: 980px;
-  margin: 0 auto 18px;
-}
-
-/* 이미지도 카드처럼 보이게(위/아래 박스 선 규격 동일) */
-.n5-illust-card{
-  width: 100%;
-  border-radius: 18px;
-  background: #fff;
-  border: 1px solid #e6ebf4;
-  box-shadow: 0 12px 28px rgba(15,23,42,.06);
-  overflow: hidden; /* 이미지가 모서리 밖으로 안 튀게 */
-}
-
-/* ✅ 핵심: 이미지 2:1 비율 + 축소(높이 줄이기) */
-.n5-illust-card img{
-  width: 100%;
-  aspect-ratio: 2 / 1;   /* 가로:세로 = 2:1 */
-  object-fit: cover;      /* 비율 맞추면서 꽉 채움(잘림 가능) */
-  display: block;
-}
-/* =========================
-   N5 일러스트 공통
-========================= */
-.n5-illust{
-  width: 100%;
-  max-width: 980px;
-  margin: 0 auto 22px;
-}
-
-.n5-illust img{
-  width: 100%;
-  height: auto;
-  aspect-ratio: 2 / 1;          /* ⭐ 2:1 고정 */
-  object-fit: cover;            /* 넘치는 부분만 자연스럽게 크롭 */
-  border-radius: 18px;
-  display: block;
-  background: #f8fafc;          /* 로딩 중 흰 여백 방지 */
-}
-
-/* =========================
-   모바일 대응
-========================= */
-@media (max-width: 768px){
-
-  .n5-illust{
-    margin: 0 auto 16px;
+    max-width: 980px;
+    margin: 0 auto 18px;
+    padding: 22px 22px;
+    border-radius: 18px;
+    background:#fff;
+    border:1px solid #e6ebf4;
+    box-shadow: 0 12px 28px rgba(15,23,42,.06);
   }
 
-  .n5-illust img{
-    aspect-ratio: 16 / 9;       /* ⭐ 모바일은 16:9가 더 안정적 */
+  .n5-layout{
+    max-width: 980px;
+    margin: 0 auto 18px;
+  }
+
+  .n5-illust-card{
+    width: 100%;
+    border-radius: 18px;
+    background: #fff;
+    border: 1px solid #e6ebf4;
+    box-shadow: 0 12px 28px rgba(15,23,42,.06);
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+
+  .n5-illust-card img{
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: 768px){
+    .n5-illust-card img{ aspect-ratio: 16 / 9; }
+    .jlpt-card{ padding: 18px 16px; }
+  }
+  @media (max-width: 420px){
+    .n5-illust-card img{ aspect-ratio: 4 / 3; }
+  }
+
+  /* ✅ 다음 레벨 카드 */
+  .next-level{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding: 16px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(15,23,42,.10);
+    background: linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.02));
+  }
+  .next-level .txt{
+    min-width:0;
+  }
+  .next-level .h{
+    margin:0 0 6px;
+    font-size: 16px;
+    font-weight: 950;
+    color:#0b1f4b;
+    letter-spacing:-0.2px;
+  }
+  .next-level .p{
+    margin:0;
+    color:#64748b;
+    font-weight: 750;
+    line-height:1.5;
+    font-size: 13.5px;
+  }
+  .next-level .btn{
+    flex:0 0 auto;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:40px;
+    padding:0 14px;
     border-radius: 14px;
+    border: 1px solid rgba(37,99,235,.25);
+    background:#fff;
+    color:#1d4ed8;
+    font-weight: 900;
+    text-decoration:none;
+    transition: .16s ease;
   }
-}
-
-/* 아주 작은 모바일 */
-@media (max-width: 420px){
-
-  .n5-illust img{
-    aspect-ratio: 4 / 3;        /* 초소형 화면 깨짐 방지 */
+  .next-level .btn:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(37,99,235,.12);
+    border-color: rgba(37,99,235,.40);
   }
-}
 </style>
 
 <!-- =========================
@@ -221,6 +233,7 @@
     JLPT N5 핵심을 가장 효율적으로 익힐 수 있습니다.
   </p>
 </div>
+
 <!-- =========================
      N5 전체 레이아웃 래퍼
 ========================= -->
@@ -230,31 +243,52 @@
   <div class="n5-illust-card">
     <img src="/static/img/n5-study-illustration.png" alt="JLPT N5 공부 일러스트">
   </div>
-<!-- =========================
-     N5 메뉴바 (가운데 1줄)
-========================= -->
-<div class="jlpt-card" style="padding:20px 16px;">
-  <nav class="n5-nav">
-    <a href="{{ url_for('jlpt_n5_words') }}" class="n5-nav-item">
-  <span class="n5-nav-title"><span class="ic">単</span>N5 단어 학습</span>
-  <span class="n5-nav-desc">자주 나오는 필수 어휘</span>
-</a>
 
-<a href="{{ url_for('jlpt_n5_sentences') }}" class="n5-nav-item">
-  <span class="n5-nav-title"><span class="ic">文</span>N5 문장 학습</span>
-  <span class="n5-nav-desc">기본 문장 익히기</span>
-</a>
+  <!-- =========================
+       N5 메뉴바 (가운데 1줄)
+  ========================= -->
+  <div class="jlpt-card" style="padding:20px 16px;">
+    <nav class="n5-nav">
+      <a href="{{ url_for('jlpt_n5_words') }}" class="n5-nav-item">
+        <span class="n5-nav-title"><span class="ic">単</span>N5 단어 학습</span>
+        <span class="n5-nav-desc">자주 나오는 필수 어휘</span>
+      </a>
 
-<a href="{{ url_for('jlpt_n5_grammar') }}" class="n5-nav-item">
-  <span class="n5-nav-title"><span class="ic">法</span>N5 문법 학습</span>
-  <span class="n5-nav-desc">조사 · 활용 핵심</span>
-</a>
+      <a href="{{ url_for('jlpt_n5_sentences') }}" class="n5-nav-item">
+        <span class="n5-nav-title"><span class="ic">文</span>N5 문장 학습</span>
+        <span class="n5-nav-desc">기본 문장 익히기</span>
+      </a>
 
-<a href="{{ url_for('jlpt_n5_test') }}" class="n5-nav-item">
-  <span class="n5-nav-title"><span class="ic">試</span>N5 테스트</span>
-  <span class="n5-nav-desc">실전 형식 연습</span>
-</a>
-  </nav>
-</div>
+      <a href="{{ url_for('jlpt_n5_grammar') }}" class="n5-nav-item">
+        <span class="n5-nav-title"><span class="ic">法</span>N5 문법 학습</span>
+        <span class="n5-nav-desc">조사 · 활용 핵심</span>
+      </a>
+
+      <a href="{{ url_for('jlpt_n5_test') }}" class="n5-nav-item">
+        <span class="n5-nav-title"><span class="ic">試</span>N5 테스트</span>
+        <span class="n5-nav-desc">실전 형식 연습</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- =========================
+       ✅ 다음 레벨 CTA (여기에 추가)
+  ========================= -->
+  <div class="jlpt-card" style="padding:16px 16px;">
+    <div class="next-level">
+      <div class="txt">
+        <div class="h">다음 단계로 넘어가기 · JLPT N4</div>
+        <p class="p">
+          N5가 익숙해졌다면, N4에서는 문장 길이와 문법 패턴이 확 늘어요.<br>
+          지금 흐름 그대로 <b>단어 → 문장 → 문법 → 테스트</b>로 이어가면 가장 편합니다.
+        </p>
+      </div>
+
+      {# ✅ 여기 url_for 엔드포인트만 너의 라우트명으로 맞춰줘 #}
+      <a class="btn" href="{{ url_for('jlpt_n4_home') }}">N4 공부하기 →</a>
+    </div>
+  </div>
+
+</div> {# ✅ n5-layout 닫기 #}
 
 {% endblock %}
