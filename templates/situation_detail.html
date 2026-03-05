@@ -5,23 +5,287 @@
 {% set page_desc = "일본어/발음/뜻을 3줄로 빠르게 학습하고, 즐겨찾기로 복습하세요." %}
 {% set page_robots = "index,follow" %}
 
+{% block extra_head %}
+<style>
+/* ✅ 상단 박스(인트로만) */
+.sit-top-wrap{
+  margin: 6px 0 14px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* 카드 베이스 */
+.sit-card{
+  background:#fff;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(15,23,42,.06);
+  padding:18px 18px;
+}
+
+/* 제목 */
+.sit-card h1{
+  margin:0 0 10px;
+  font-size:28px;
+  font-weight:950;
+  letter-spacing:-0.02em;
+  color:#0b1f4b;
+}
+
+/* 인트로 텍스트 */
+.sit-intro{
+  margin:0;
+  color:#475569;
+  font-weight:750;
+  line-height:1.75;
+  white-space:pre-line;
+}
+
+/* 가이드 문구 */
+.sit-guide{
+  margin:10px 0 0;
+  color:#64748b;
+  font-size:13px;
+  font-weight:900;
+  line-height:1.6;
+}
+
+/* 뒤로가기 버튼 영역 */
+.sit-back-row{
+  margin-top:12px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.sit-back-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:42px;
+  padding:0 14px;
+  border-radius:14px;
+  border:1px solid rgba(15,23,42,.12);
+  background:#fff;
+  font-weight:900;
+  color:#0b1f4b;
+  text-decoration:none;
+  transition:.16s ease;
+}
+.sit-back-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 24px rgba(15,23,42,.08);
+}
+
+/* ✅ 예시 카드 */
+.sit-ex-title{
+  margin:0 0 10px;
+  font-size:16px;
+  font-weight:950;
+  color:#0b1f4b;
+}
+.sit-ex-desc{
+  margin:0 0 12px;
+  color:#475569;
+  font-weight:750;
+  line-height:1.75;
+  white-space:pre-line;
+}
+.sit-ex-lines{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.sit-ex-line{
+  padding:14px 14px;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:16px;
+  background:linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.02));
+}
+.sit-ex-jp{
+  font-weight:950;
+  color:#0b1f4b;
+  margin-bottom:4px;
+  font-size:15px;
+}
+.sit-ex-ko{
+  color:#64748b;
+  font-weight:800;
+  font-size:13.5px;
+  line-height:1.6;
+  margin-top:6px;
+}
+
+/* ✅ 하단 팁 박스 */
+.sit-tips-card{
+  background:#fff;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:18px;
+  padding:16px;
+  box-shadow:0 12px 30px rgba(15,23,42,.06);
+}
+.sit-tips-title{
+  margin:0 0 6px;
+  font-size:18px;
+  font-weight:950;
+  color:#0b1f4b;
+}
+.sit-tips-desc{
+  margin:0 0 12px;
+  color:#6b7280;
+  font-size:13.5px;
+  font-weight:750;
+  line-height:1.6;
+}
+.sit-tips-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.sit-tip-item{
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:14px;
+  padding:12px 12px;
+  background:linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.02));
+}
+.sit-tip-label{
+  display:inline-flex;
+  font-size:12px;
+  font-weight:900;
+  color:#1d4ed8;
+  background:#eef2ff;
+  border:1px solid #dbe7ff;
+  padding:4px 10px;
+  border-radius:999px;
+  margin-bottom:8px;
+}
+.sit-tip-jp{
+  font-size:15px;
+  font-weight:950;
+  color:#0b1f4b;
+  margin-bottom:4px;
+}
+.sit-tip-pron{
+  font-size:13px;
+  font-weight:800;
+  color:#334155;
+  margin-bottom:3px;
+}
+.sit-tip-ko{
+  font-size:13.5px;
+  font-weight:800;
+  color:#111827;
+}
+
+/* 발음 스타일 */
+.sit-ex-pron,
+.p-pron{
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #2563eb;
+}
+
+/* =========================
+   ✅ 섹션(스크롤 이동) 탭 UI
+========================= */
+.sit-sections{
+  position: sticky;
+  top: 74px; /* 상단 헤더 높이에 맞춰 조절 */
+  z-index: 20;
+  background: transparent;
+  margin: 8px 0 14px;
+}
+.sit-sections-card{
+  background:#fff;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(15,23,42,.06);
+  padding:12px;
+}
+.sit-sections-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.sit-sec-btn{
+  border:1px solid rgba(15,23,42,.12);
+  background:#fff;
+  height:36px;
+  padding:0 12px;
+  border-radius:999px;
+  font-weight:900;
+  color:#0b1f4b;
+  cursor:pointer;
+  transition:.15s ease;
+}
+.sit-sec-btn:hover{
+  transform: translateY(-1px);
+  box-shadow:0 10px 24px rgba(15,23,42,.08);
+}
+.sit-sec-btn.is-on{
+  border-color: rgba(37,99,235,.35);
+  background: rgba(37,99,235,.08);
+  color:#1d4ed8;
+}
+
+/* 섹션 제목(선택) */
+.sit-sec-title{
+  margin: 0 0 10px;
+  font-size:18px;
+  font-weight:950;
+  color:#0b1f4b;
+}
+</style>
+{% endblock %}
+
 {% block content %}
 
-<section class="page-head">
-  <h1>{{ (cat_title or "") | e }} · {{ (sub_title or "") | e }}</h1>
-  {% if page_intro %}
-  <p class="seo-intro">{{ page_intro }}</p>
-  {% endif %}
-  <p class="page-guide">
-    일본어 / 발음 / 한국어 뜻 3줄로 확인하세요.<br>
-    ※ ★ 버튼을 누르면 즐겨찾기에 저장됩니다.
-  </p>
+{# =========================
+   ✅ 인트로 카드
+   ========================= #}
+<div class="sit-top-wrap">
+  <section class="sit-card">
+    <h1>{{ (cat_title or "") | e }} · {{ (sub_title or "") | e }}</h1>
 
-  <div class="back-row">
-    <a class="back-btn" href="{{ url_for('situations') }}">← 분류 목록</a>
+    {% if page_intro %}
+      <p class="sit-intro">{{ page_intro }}</p>
+    {% endif %}
+
+    <p class="sit-guide">
+      일본어 / 발음 / 한국어 뜻 3줄로 확인하세요.<br>
+      ※ ★ 버튼을 누르면 즐겨찾기에 저장됩니다.
+    </p>
+
+    <div class="sit-back-row">
+      <a class="sit-back-btn" href="{{ url_for('situations') }}">← 분류 목록</a>
+    </div>
+  </section>
+</div>
+
+{# =========================
+   ✅ 섹션 탭 (스크롤 이동)
+   ========================= #}
+<div class="sit-sections">
+  <div class="sit-sections-card">
+    <div class="sit-sections-row">
+      <button class="sit-sec-btn is-on" type="button" data-target="#sec-phrases">1) 문장</button>
+
+      {% if example_box %}
+        <button class="sit-sec-btn" type="button" data-target="#sec-example">2) 예시상황</button>
+      {% endif %}
+
+      {% if tips_box and tips_box.tips and (tips_box.tips|length) > 0 %}
+        <button class="sit-sec-btn" type="button" data-target="#sec-tips">3) 추가팁</button>
+      {% endif %}
+    </div>
   </div>
-</section>
+</div>
 
+{# =========================
+   ✅ 검색
+   ========================= #}
 <form method="GET" style="display:flex; gap:10px; margin:12px 0 18px;">
   <input
     type="text"
@@ -45,6 +309,11 @@
     · 결과: <b>{{ items|length }}</b>개
   </p>
 {% endif %}
+
+{# =========================
+   ✅ 1) 문장 섹션
+   ========================= #}
+<div id="sec-phrases"></div>
 
 <section class="phrase-list">
   {% if items and (items|length) > 0 %}
@@ -90,5 +359,125 @@
     </div>
   {% endif %}
 </section>
+
+{# =========================
+   ✅ 2) 예시상황 섹션 (문장 아래)
+   ========================= #}
+{% if example_box %}
+<div id="sec-example"></div>
+
+<section class="sit-card" style="margin-top:14px;">
+  <div class="sit-ex-title">{{ (example_box.title or "현장 상황 예시") | e }}</div>
+
+  {% if example_box.desc %}
+    <p class="sit-ex-desc">{{ example_box.desc }}</p>
+  {% endif %}
+
+  {% if example_box.lines and (example_box.lines|length) > 0 %}
+    <div class="sit-ex-lines">
+      {% for ln in example_box.lines %}
+        <div class="sit-ex-line">
+          <div class="sit-ex-jp">{{ (ln[0] or "") | e }}</div>
+
+          {% if ln|length > 1 %}
+            <div class="sit-ex-pron">{{ (ln[1] or "") | e }}</div>
+          {% endif %}
+
+          {% if ln|length > 2 %}
+            <div class="sit-ex-ko">{{ (ln[2] or "") | e }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+{% endif %}
+
+{# =========================
+   ✅ 3) 추가팁 섹션
+   ========================= #}
+{% if tips_box and tips_box.tips and (tips_box.tips|length) > 0 %}
+<div id="sec-tips"></div>
+
+<section class="sit-tips-box" style="margin-top:14px;">
+  <div class="sit-tips-card">
+    <h3 class="sit-tips-title">{{ (tips_box.title or "상황 팁") | e }}</h3>
+    {% if tips_box.desc %}
+      <p class="sit-tips-desc">{{ (tips_box.desc or "") | e }}</p>
+    {% endif %}
+
+    <div class="sit-tips-list">
+      {% for t in tips_box.tips %}
+        <div class="sit-tip-item">
+          {% if t.label %}
+            <div class="sit-tip-label">{{ (t.label or "") | e }}</div>
+          {% endif %}
+
+          <div class="sit-tip-jp">{{ (t.jp or "") | e }}</div>
+          {% if t.pron %}
+            <div class="sit-tip-pron">{{ (t.pron or "") | e }}</div>
+          {% endif %}
+          {% if t.ko %}
+            <div class="sit-tip-ko">{{ (t.ko or "") | e }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# =========================
+   ✅ 섹션 탭 JS (부드러운 이동 + active 표시)
+   ========================= #}
+<script>
+(function(){
+  const btns = Array.from(document.querySelectorAll(".sit-sec-btn"));
+  if (!btns.length) return;
+
+  function setOn(btn){
+    btns.forEach(b => b.classList.remove("is-on"));
+    btn.classList.add("is-on");
+  }
+
+  function scrollToTarget(sel){
+    const el = document.querySelector(sel);
+    if (!el) return;
+
+    // sticky 탭 + 헤더 높이 보정
+    const y = el.getBoundingClientRect().top + window.pageYOffset - 120;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-target");
+      if (!target) return;
+      setOn(btn);
+      scrollToTarget(target);
+    });
+  });
+
+  // 스크롤 위치에 따라 자동 하이라이트(선택)
+  const targets = btns
+    .map(b => ({ btn: b, sel: b.getAttribute("data-target") }))
+    .filter(x => x.sel && document.querySelector(x.sel))
+    .map(x => ({ btn: x.btn, el: document.querySelector(x.sel) }));
+
+  function onScroll(){
+    const pos = window.pageYOffset + 140;
+    let current = targets[0]?.btn;
+
+    for (let i=0; i<targets.length; i++){
+      const top = targets[i].el.offsetTop;
+      if (top <= pos) current = targets[i].btn;
+    }
+    if (current) setOn(current);
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 
 {% endblock %}
