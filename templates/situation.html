@@ -7,7 +7,6 @@
 
 {% block content %}
 
-
 <style>
   .sit-wrap{
     max-width: 1080px;
@@ -15,12 +14,36 @@
     padding: 22px 18px 48px;
   }
 
+  /* ✅ 상단(헤더) 더 예쁘게 */
+  .sit-hero{
+    position: relative;
+    border-radius: 20px;
+    padding: 22px 22px;
+    border: 1px solid rgba(15,23,42,0.08);
+    background:
+      radial-gradient(1200px 240px at 0% 0%, rgba(37,99,235,.14), transparent 60%),
+      radial-gradient(900px 240px at 100% 0%, rgba(96,165,250,.14), transparent 55%),
+      linear-gradient(180deg, #ffffff, #fbfdff);
+    box-shadow: 0 14px 34px rgba(15,23,42,.06);
+    overflow: hidden;
+  }
+  .sit-hero::after{
+    content:"";
+    position:absolute;
+    right:-120px;
+    top:-120px;
+    width:320px;
+    height:320px;
+    border-radius:999px;
+    background: radial-gradient(circle at 30% 30%, rgba(37,99,235,.16), rgba(37,99,235,0) 70%);
+    pointer-events:none;
+  }
+
   .sit-head{
     display:flex;
     align-items:flex-end;
     justify-content:space-between;
     gap:16px;
-    margin-bottom:18px;
   }
   .sit-title{
     font-size:34px;
@@ -29,12 +52,89 @@
     margin:0;
   }
   .sit-sub{
-    margin:6px 0 0;
-    color:#6b7280;
+    margin:8px 0 0;
+    color:#475569;
     font-size:14px;
-    line-height:1.4;
+    line-height:1.65;
+    max-width: 760px;
   }
 
+  /* ✅ 검색폼을 카드형으로 */
+  .sit-search{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    padding:12px 12px;
+    border-radius:16px;
+    border:1px solid rgba(15,23,42,.10);
+    background:#fff;
+    box-shadow:0 10px 22px rgba(15,23,42,.05);
+    min-width: 380px;
+  }
+  .sit-search input{
+    flex:1;
+    height:44px;
+    border-radius:14px;
+    border:1px solid rgba(15,23,42,.10);
+    padding:0 14px;
+    outline:none;
+  }
+  .sit-search input:focus{
+    border-color: rgba(37,99,235,.55);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.18);
+  }
+  .sit-search button{
+    height:44px;
+    padding:0 16px;
+    border-radius:14px;
+    border:none;
+    background:#2563eb;
+    color:#fff;
+    font-weight:900;
+    cursor:pointer;
+    transition:.16s ease;
+    white-space:nowrap;
+  }
+  .sit-search button:hover{
+    filter: brightness(0.98);
+    transform: translateY(-1px);
+  }
+
+  /* ✅ 헤더 아래 “미니 가이드” 3칸 */
+  .sit-mini{
+    margin-top:14px;
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap:10px;
+  }
+  .mini-box{
+    border:1px solid rgba(15,23,42,0.08);
+    background:#ffffff;
+    border-radius:16px;
+    padding:12px 12px;
+  }
+  .mini-title{
+    font-weight:950;
+    font-size:13px;
+    color:#0f172a;
+    margin-bottom:6px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .mini-dot{
+    width:10px; height:10px; border-radius:50%;
+    background: rgba(37,99,235,.85);
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+    flex:0 0 auto;
+  }
+  .mini-txt{
+    font-size:13px;
+    color:#475569;
+    line-height:1.55;
+  }
+
+  /* ✅ 그리드/카드(기존 유지 + 살짝 다듬기) */
   .sit-grid{
     display:grid;
     grid-template-columns: repeat(2, minmax(0,1fr));
@@ -50,7 +150,7 @@
     border:1px solid rgba(15, 23, 42, 0.08);
     border-radius:16px;
     padding:16px 16px 14px;
-    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
   }
   .cat-top{
     display:flex;
@@ -61,7 +161,7 @@
   }
   .cat-name{
     font-size:18px;
-    font-weight:800;
+    font-weight:900;
     margin:0;
     letter-spacing:-0.3px;
   }
@@ -82,7 +182,7 @@
     background:#f1f5ff;
     border:1px solid rgba(37, 99, 235, 0.18);
     color:#1d4ed8;
-    font-weight:700;
+    font-weight:800;
     font-size:12px;
   }
 
@@ -111,7 +211,7 @@
     transform: translateY(-1px);
     background:#ffffff;
     border-color: rgba(37, 99, 235, 0.22);
-    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.10);
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.10);
   }
   .chip-left{
     display:flex;
@@ -128,7 +228,7 @@
     flex: 0 0 auto;
   }
   .chip-title{
-    font-weight:800;
+    font-weight:900;
     letter-spacing:-0.2px;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -145,7 +245,7 @@
     background:#eef2ff;
     border:1px solid rgba(99,102,241,.25);
     color:#4338ca;
-    font-weight:800;
+    font-weight:900;
     font-size:12px;
     flex: 0 0 auto;
   }
@@ -155,142 +255,121 @@
     color:#64748b;
     font-size:12px;
   }
+
+  /* ✅ 인트로 박스(기존 유지 + 톤만 살짝) */
   .sit-intro{
-  margin: 6px 0 18px;
-  padding: 18px 18px;
-  background:#fff;
-  border:1px solid rgba(15,23,42,0.08);
-  border-radius:16px;
-  box-shadow: 0 8px 28px rgba(15,23,42,0.06);
-}
-.sit-intro h2{
-  margin:0 0 10px;
-  font-size:18px;
-  font-weight:900;
-  letter-spacing:-.2px;
-}
-.sit-intro p{
-  margin:6px 0;
-  font-size:14px;
-  color:#475569;
-  line-height:1.65;
-}
-.sit-intro ul{
-  margin:10px 0 6px;
-  padding-left:18px;
-  color:#334155;
-  font-size:14px;
-  line-height:1.65;
-}
-.sit-intro .mini{
-  margin-top:10px;
-  font-size:13px;
-  color:#64748b;
-}
-/* =========================
-   ✅ Mobile fix (PC 유지)
-   ========================= */
-@media (max-width: 600px){
-
-  /* 전체 패딩 약간 줄이기 */
-  .sit-wrap{
-    padding: 18px 14px 36px;
+    margin: 14px 0 18px;
+    padding: 18px 18px;
+    background:#fff;
+    border:1px solid rgba(15,23,42,0.08);
+    border-radius:16px;
+    box-shadow: 0 8px 28px rgba(15,23,42,0.06);
   }
-
-  /* ✅ 헤더: 좌(제목) + 우(검색) → 세로로 쌓기 */
-  .sit-head{
-    flex-direction: column;
-    align-items: stretch;     /* ✅ 가로 꽉 차게 */
-    gap: 12px;
-    margin-bottom: 14px;
+  .sit-intro h2{
+    margin:0 0 10px;
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:-.2px;
   }
-
-  /* ✅ 제목/설명 텍스트가 한 글자씩 찢어지는 현상 방지 */
-  .sit-title,
-  .sit-sub,
-  .sit-intro h2,
-  .sit-intro p,
-  .sit-intro li{
-    word-break: keep-all;
-    overflow-wrap: anywhere;
-  }
-
-  .sit-title{
-    font-size: 28px;          /* 모바일에서 조금만 줄이기 */
-    line-height: 1.15;
-  }
-
-  .sit-sub{
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  /* ✅ 검색폼: 한 줄로 꽉 차게 + 버튼/인풋 비율 조정 */
-  .sit-head form{
-    width: 100%;
-    margin: 0 !important;
-  }
-  .sit-head form input{
-    width: 100%;
-    min-width: 0;
-  }
-  .sit-head form button{
-    white-space: nowrap;
-  }
-
-  /* ✅ 인트로 박스 패딩 살짝 줄이기 */
-  .sit-intro{
-    padding: 16px 14px;
+  .sit-intro p{
+    margin:6px 0;
+    font-size:14px;
+    color:#475569;
+    line-height:1.65;
   }
   .sit-intro ul{
-    padding-left: 18px;
+    margin:10px 0 6px;
+    padding-left:18px;
+    color:#334155;
+    font-size:14px;
+    line-height:1.65;
+  }
+  .sit-intro .mini{
+    margin-top:10px;
+    font-size:13px;
+    color:#64748b;
   }
 
-  /* ✅ 카드 내부 타이틀 줄바꿈 자연스럽게 */
-  .cat-name{
-    word-break: keep-all;
-    overflow-wrap: anywhere;
+  /* ✅ Mobile fix (PC 유지) */
+  @media (max-width: 600px){
+    .sit-wrap{ padding: 18px 14px 36px; }
+
+    .sit-head{
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+    }
+    .sit-title, .sit-sub, .sit-intro h2, .sit-intro p, .sit-intro li{
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+    .sit-title{ font-size: 28px; line-height: 1.15; }
+    .sit-sub{ font-size: 14px; line-height: 1.6; }
+
+    .sit-search{
+      width:100%;
+      min-width: 0;
+      padding:10px 10px;
+    }
+    .sit-search input{ width:100%; min-width:0; }
+    .sit-search button{ white-space:nowrap; }
+
+    .sit-mini{ grid-template-columns: 1fr; }
+
+    .sit-intro{ padding: 16px 14px; }
+
+    .cat-name{ word-break: keep-all; overflow-wrap: anywhere; }
+
+    .chip-title{
+      white-space: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
   }
-
-  /* ✅ 칩 제목이 너무 길면 … 대신 2줄까지 허용 (원하면) */
-  .chip-title{
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;      /* 2줄까지 */
-    -webkit-box-orient: vertical;
-  }
-}
-@media (max-width: 600px){
-  .sit-head form{ display:flex !important; gap:10px !important; }
-}
-
-
 </style>
 
 <div class="sit-wrap">
-  <div class="sit-head">
-    <div>
-      <h1 class="sit-title">📍 일본어 상황별 회화</h1>
-      <p class="sit-sub">이 페이지는 <b>일상생활과 여행 상황</b>에서 자주 사용되는 일본어 표현을 상황별로 정리한 학습 자료입니다.
-      </p>
-      <p class="sit-sub">표현이 사용되는 맥락을 함께 익힘으로써, 단순 암기가 아닌 실전 중심 학습을 목표로 합니다.
-      </p>
+
+  <!-- ✅ 상단 헤더(꾸밈) -->
+  <section class="sit-hero">
+    <div class="sit-head">
+      <div>
+        <h1 class="sit-title">📍 일본어 상황별 회화</h1>
+        <p class="sit-sub">
+          이 페이지는 <b>일상·여행 상황</b>에서 자주 쓰는 일본어 표현을 상황별로 정리한 자료예요.
+          표현이 사용되는 <b>맥락</b>을 같이 익혀서, 단순 암기가 아닌 실전 중심으로 학습할 수 있어요.
+        </p>
+      </div>
+
+      <form class="sit-search" method="GET" action="{{ url_for('situations_search') }}">
+        <input type="text" name="q" value="{{ q or '' }}"
+               placeholder="일본어 / 발음 / 한국어로 검색 (예: 今, 이마, 지금)">
+        <button type="submit">검색</button>
+      </form>
     </div>
-  
-    <form method="GET" action="{{ url_for('situations_search') }}"
-          style="display:flex; gap:10px; margin:12px 0 18px;">
-      <input type="text" name="q" value="{{ q or '' }}"
-             placeholder="일본어 / 발음 / 한국어로 검색 (예: 今, 이마, 지금)"
-             style="flex:1; height:44px; border-radius:14px; border:1px solid rgba(15,23,42,.10); padding:0 14px; outline:none;">
-      <button type="submit"
-              style="height:44px; padding:0 16px; border-radius:14px; border:none; background:#2563eb; color:#fff; font-weight:800; cursor:pointer;">
-        검색
-      </button>
-    </form>
-  </div>
-<section class="sit-intro">
+
+    <!-- ✅ 미니 가이드 -->
+    <div class="sit-mini">
+      <div class="mini-box">
+        <div class="mini-title"><span class="mini-dot"></span>빠른 학습</div>
+        <div class="mini-txt">오늘 필요한 상황 1개만 골라서 <b>문장 10개</b>부터 시작해보세요.</div>
+      </div>
+      <div class="mini-box">
+        <div class="mini-title"><span class="mini-dot"></span>발음까지</div>
+        <div class="mini-txt">발음(읽는 법)까지 같이 보고 <b>소리 내어</b> 따라 읽으면 기억이 오래가요.</div>
+      </div>
+      <div class="mini-box">
+        <div class="mini-title"><span class="mini-dot"></span>반복 검색</div>
+        <div class="mini-txt">“지금/오늘/얼마” 같은 표현을 검색창으로 반복하면 암기가 빨라져요.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- (기존) 인트로 카드 유지 -->
+  <section class="sit-intro">
     <h2>상황별 일본어 회화는 이렇게 공부하세요</h2>
     <p>
       일본 여행에서 자주 마주치는 상황(공항·호텔·식당·쇼핑·교통 등)을 기준으로
@@ -306,9 +385,9 @@
       Tip: 상황을 고른 뒤 문장을 저장해두면 <b>나만의 학습노트</b>에서 복습하기가 더 쉬워요.
     </p>
   </section>
+
   {% if situations and (situations|length) > 0 %}
     <div class="sit-grid">
-      {# ✅ dictsort로 키 기준 정렬 (원하는 순서가 따로 있으면 app.py에서 정렬해도 됨) #}
       {% for cat_key, cat in (situations|dictsort) %}
         {% set subs = (cat.get("subs") or {}) %}
         <section class="cat-card">
@@ -321,18 +400,17 @@
           </div>
 
           <div class="chip-row">
-          {% for sub_key, sub in (subs|dictsort) %}
-            {% set items = (sub.get("items") or []) %}
-            <a class="chip" href="{{ url_for('situation_detail', main_key=cat_key, sub_key=sub_key) }}">
-              <div class="chip-left">
-                <span class="dot"></span>
-                <span class="chip-title">{{ (sub["title"] or "") | e }}</span>
-              </div>
-              <span class="badge">{{ items|length }}</span>
-            </a>
-          {% endfor %}
-        </div>
-
+            {% for sub_key, sub in (subs|dictsort) %}
+              {% set items = (sub.get("items") or []) %}
+              <a class="chip" href="{{ url_for('situation_detail', main_key=cat_key, sub_key=sub_key) }}">
+                <div class="chip-left">
+                  <span class="dot"></span>
+                  <span class="chip-title">{{ (sub["title"] or "") | e }}</span>
+                </div>
+                <span class="badge">{{ items|length }}</span>
+              </a>
+            {% endfor %}
+          </div>
 
           <div class="hint">※ 버튼을 누르면 해당 소분류 문장이 열려요.</div>
         </section>
