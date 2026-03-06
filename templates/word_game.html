@@ -88,6 +88,7 @@
     height:420px;
     background: linear-gradient(180deg, #f8fbff, #f1f5ff);
     border-bottom:1px solid rgba(15,23,42,0.08);
+    overflow:hidden;
   }
 
   .wg-line{
@@ -172,114 +173,103 @@
     line-height:1.5;
   }
 
-  /* ✅ 오버레이는 화면 중앙 고정 + 바깥 스크롤 허용 */
-.wg-overlay{
-  position:fixed;          /* 기존 absolute면 fixed로 */
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:18px;            /* 가장자리 여백 */
-  background: rgba(2,6,23,0.35);
-  backdrop-filter: blur(6px);
-  z-index:9999;
+  .wg-overlay{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    background: rgba(2,6,23,0.35);
+    backdrop-filter: blur(6px);
+    z-index:9999;
+    overflow:auto;
+  }
 
-  overflow:auto;           /* ✅ 오버레이 자체 스크롤 가능 */
-}
+  .wg-modal{
+    width:min(900px, 96vw);
+    max-height: min(78vh, 720px);
+    background:#fff;
+    border-radius:18px;
+    border:1px solid rgba(15,23,42,0.10);
+    box-shadow:0 20px 60px rgba(2,8,23,0.22);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+  }
 
-/* ✅ 모달: 최대 높이 제한 + 내부 스크롤(드래그) */
-.wg-modal{
-  width:min(900px, 96vw);
-  max-height: min(78vh, 720px);
-  background:#fff;
-  border-radius:18px;
-  border:1px solid rgba(15,23,42,0.10);
-  box-shadow:0 20px 60px rgba(2,8,23,0.22);
+  .wg-modal-head{
+    padding:16px 16px 10px;
+    border-bottom:1px solid rgba(15,23,42,0.06);
+  }
+  .wg-modal h3{ margin:0; font-size:20px; font-weight:900; letter-spacing:-0.3px; }
+  .wg-modal p{ margin:8px 0 0; color:#6b7280; font-size:13px; line-height:1.5; }
 
-  display:flex;            /* ✅ 내부를 header/body/footer로 나누기 */
-  flex-direction:column;
-  overflow:hidden;         /* footer 고정 위해 hidden */
-}
+  .wg-modal-body{
+    padding:12px 16px 14px;
+    overflow:auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
-/* 모달 상단(제목/설명) 영역 */
-.wg-modal-head{
-  padding:16px 16px 10px;
-  border-bottom:1px solid rgba(15,23,42,0.06);
-}
-.wg-modal h3{ margin:0; font-size:20px; font-weight:900; letter-spacing:-0.3px; }
-.wg-modal p{ margin:8px 0 0; color:#6b7280; font-size:13px; line-height:1.5; }
+  .wg-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:12px;
+  }
 
-/* ✅ 모달 본문: 여기만 스크롤(드래그) */
-.wg-modal-body{
-  padding:12px 16px 14px;
-  overflow:auto;           /* ✅ 드래그/휠 스크롤 */
-  -webkit-overflow-scrolling: touch;
-}
+  #wgCats{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap:8px;
+    margin-top:12px;
+    align-items:stretch;
+  }
 
-/* ✅ 모드 선택 줄: 항상 보이게 */
-.wg-row{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:12px;
-}
+  .wg-modal-foot{
+    padding:12px 16px;
+    border-top:1px solid rgba(15,23,42,0.06);
+    background:#fff;
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+  }
 
-/* ✅ 카테고리: 그리드 유지 + 높이 자동 */
-#wgCats{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap:8px;
-  margin-top:12px;
-  align-items:stretch;
-}
+  @media (max-width: 560px){
+    #wgCats{ grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    .wg-overlay{ padding:12px; }
+  }
 
-/* ✅ 모달 하단 버튼: 항상 아래 고정 */
-.wg-modal-foot{
-  padding:12px 16px;
-  border-top:1px solid rgba(15,23,42,0.06);
-  background:#fff;
-  display:flex;
-  justify-content:flex-end;
-  gap:10px;
-}
+  .wg-intro{
+    margin: 12px 0 14px;
+    padding: 14px 16px;
+    background:#fff;
+    border:1px solid rgba(15,23,42,.08);
+    border-radius:14px;
+  }
 
-/* ✅ 작은 화면 대응 */
-@media (max-width: 560px){
-  #wgCats{ grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-  .wg-overlay{ padding:12px; }
-}
-.wg-intro{
-  margin: 12px 0 14px;
-  padding: 14px 16px;
-  background:#fff;
-  border:1px solid rgba(15,23,42,.08);
-  border-radius:14px;
-}
+  .wg-intro-title{
+    font-size:14px;
+    font-weight:900;
+    margin:0 0 6px;
+    color:#0f172a;
+  }
 
-.wg-intro-title{
-  font-size:14px;
-  font-weight:900;
-  margin:0 0 6px;
-  color:#0f172a;
-}
+  .wg-intro-desc{
+    font-size:13px;
+    line-height:1.6;
+    color:#475569;
+    margin:0 0 10px;
+  }
 
-.wg-intro-desc{
-  font-size:13px;
-  line-height:1.6;
-  color:#475569;
-  margin:0 0 10px;
-}
+  .wg-intro-list{
+    margin:0;
+    padding-left:16px;
+    color:#475569;
+    font-size:12.5px;
+  }
 
-.wg-intro-list{
-  margin:0;
-  padding-left:16px;
-  color:#475569;
-  font-size:12.5px;
-}
-
-.wg-intro-list li{ margin:4px 0; }
-
-
+  .wg-intro-list li{ margin:4px 0; }
 </style>
 
 <div class="wg-wrap">
@@ -288,10 +278,10 @@
       <h1 class="wg-title">🎮 단어 게임</h1>
       <p class="wg-sub">
         이 <b>단어 퀴즈</b>는 일본어 학습자가 자주 사용되는 단어를 빠르게 인식하고 의미를 떠올릴 수 있도록 설계된 학습 도구입니다.
-        </p>
-        <p class="wg-sub">
+      </p>
+      <p class="wg-sub">
         반복적인 연습을 통해 단어 인지 속도와 독해 능력을 함께 향상시키는 것을 목표로 합니다.
-        </p>
+      </p>
     </div>
 
     <div class="wg-actions">
@@ -301,7 +291,8 @@
       <button class="btn primary" id="wgStartBtn" type="button">단어 선택</button>
     </div>
   </div>
- <div class="wg-intro">
+
+  <div class="wg-intro">
     <div class="wg-intro-title">게임 팁</div>
     <div class="wg-intro-desc">
       제한 시간 안에 <b>일본어 발음 → 한국어 뜻</b>을 빠르게 떠올리는 훈련이에요.
@@ -313,54 +304,50 @@
       <li>✔ 하루 1~2판만 해도 기억 유지에 도움</li>
     </ul>
   </div>
+
   <div class="wg-panel">
     <div class="wg-chip"><b>점수</b> <span id="wgScore">0</span></div>
     <div class="wg-chip"><b>남은 풀</b> <span id="wgPool">-</span></div>
   </div>
 
   <div class="wg-box">
-  <div class="wg-arena" id="wgArena">
-    <div class="wg-line" id="wgLine"></div>
+    <div class="wg-arena" id="wgArena">
+      <div class="wg-line" id="wgLine"></div>
 
-    <div class="wg-overlay" id="wgOverlay">
-      <div class="wg-modal">
+      <div class="wg-overlay" id="wgOverlay">
+        <div class="wg-modal">
 
-        <!-- ✅ 상단(고정) -->
-        <div class="wg-modal-head">
-          <h3>단어 게임 설정</h3>
-          <p>카테고리를 선택하면 그 범위에서 단어가 나와요. (미선택 시 전체)</p>
-        </div>
-
-        <!-- ✅ 본문(스크롤/드래그 되는 영역) -->
-        <div class="wg-modal-body">
-          <div class="wg-row" style="margin-top:10px;">
-            <label class="wg-select">
-              <input type="radio" name="wgMode" value="practice" checked>
-              <b>연습 모드</b>
-              <span style="color:#64748b;font-size:12px;">(카테고리 선택 가능 / 풀 끝나면 클리어)</span>
-            </label>
-
-            <label class="wg-select">
-              <input type="radio" name="wgMode" value="rank">
-              <b>랭킹 모드</b>
-              <span style="color:#64748b;font-size:12px;">(전체 단어 / 점수 저장 / 무한)</span>
-            </label>
+          <div class="wg-modal-head">
+            <h3>단어 게임 설정</h3>
+            <p>카테고리를 선택하면 그 범위에서 단어가 나와요. (미선택 시 전체)</p>
           </div>
 
-          <div id="wgCats"></div>
-        </div>
+          <div class="wg-modal-body">
+            <div class="wg-row" style="margin-top:10px;">
+              <label class="wg-select">
+                <input type="radio" name="wgMode" value="practice" checked>
+                <b>연습 모드</b>
+                <span style="color:#64748b;font-size:12px;">(카테고리 선택 가능 / 풀 끝나면 클리어)</span>
+              </label>
 
-        <!-- ✅ 하단(고정) -->
-        <div class="wg-modal-foot">
-          <button class="btn" id="wgOverlayClose" type="button">닫기</button>
-          <button class="btn primary" id="wgOverlayStart" type="button">게임 시작</button>
-        </div>
+              <label class="wg-select">
+                <input type="radio" name="wgMode" value="rank">
+                <b>랭킹 모드</b>
+                <span style="color:#64748b;font-size:12px;">(전체 단어 / 점수 저장 / 무한)</span>
+              </label>
+            </div>
 
+            <div id="wgCats"></div>
+          </div>
+
+          <div class="wg-modal-foot">
+            <button class="btn" id="wgOverlayClose" type="button">닫기</button>
+            <button class="btn primary" id="wgOverlayStart" type="button">게임 시작</button>
+          </div>
+
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
 
     <div class="wg-bottom">
       <input class="wg-input" id="wgInput" type="text" placeholder="여기에 한국어 뜻을 입력하고 Enter!" autocomplete="off" />
@@ -368,8 +355,8 @@
     </div>
 
     <div class="wg-hint">
-      팁) 정답 비교는 <b>앞뒤 공백 제거</b> 후 정확히 일치하는지로 판단해요. (예: “화장실”)<br>
-      필요하면 뜻 데이터를 더 자연스럽게(동의어 처리) 확장해줄 수도 있어요.
+      팁) 정답 비교는 <b>앞뒤 공백 제거 + 띄어쓰기/하이픈 무시 + 영문 대소문자 무시</b>로 판단해요.<br>
+      숫자가 들어간 뜻은 <b>12시간 / 열두시간 / 십이시간</b>처럼 입력해도 정답 처리되도록 확장했습니다.
     </div>
   </div>
 </div>
@@ -397,48 +384,175 @@
     else alert(msg);
   };
 
-  let allCats = [];       // {key,title,count}
-  let currentCats = [];   // 마지막으로 적용된 카테고리(재시작에 사용)
-  let pool = [];          // {cat_key,cat_title,jp,pron,ko}
-  let active = [];        // {el,x,y,speed,word}
+  let allCats = [];
+  let currentCats = [];
+  let pool = [];
+  let active = [];
   let rafId = null;
   let running = false;
 
   let score = 0;
   let cleared = 0;
 
-  // ✅ 고정 속도/고정 스폰
-  const FIXED_SPEED = 5;     // px/sec (원하면 28~40 사이로 조절)
-  const FIXED_SPAWN = 1500;   // ms (원하면 900~1500 사이로 조절)
+  const FIXED_SPEED = 1;
+  const FIXED_SPAWN = 6000;
 
   let spawnEvery = FIXED_SPAWN;
   let spawnTimer = null;
-
   let scoreSaved = false;
 
-  function norm(s){ return String(s || "").trim(); }
+  // ✅ 겹침 완화용 레인 설정
+  let lastLaneIndex = -1;
+  const LANE_COUNT = 6;
 
-  function normAnswer(s){
-    let t = norm(s);
+  const COMMON_UNITS = [
+    "시간","시","분","초","개","명","살","층","번","월","일","년","원",
+    "kg","km","cm","mm","m","퍼센트","%"
+  ];
+
+  function norm(s){
+    return String(s || "").trim();
+  }
+
+  function escapeRegExp(str){
+    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function basicNormalize(s){
+    let t = String(s || "");
+
+    try { t = t.normalize("NFKC"); } catch(e) {}
+
+    t = t.trim().toLowerCase();
     t = t.replace(/\([^)]*\)/g, "");
-    t = t.replace(/[,\s]/g, "");
-    t = t.replace(/원/g, "");
-    if (t === "만") return "10000";
-    if (t === "만원") return "10000";
-
-    let m = t.match(/^(\d+)만$/);
-    if (m){
-      const n = parseInt(m[1], 10);
-      if (!Number.isNaN(n)) return String(n * 10000);
-    }
-
-    m = t.match(/^(\d+)만원$/);
-    if (m){
-      const n = parseInt(m[1], 10);
-      if (!Number.isNaN(n)) return String(n * 10000);
-    }
+    t = t.replace(/\s+/g, "");
+    t = t.replace(/[-‐-‒–—―﹘﹣－]/g, "");
+    t = t.replace(/[·・•.,/\\:;'"“”‘’`~!?\[\]{}]/g, "");
 
     return t;
+  }
+
+  function numberToNativeKorean(n){
+    if (!Number.isInteger(n) || n <= 0 || n >= 100) return null;
+
+    const ones = ["", "한", "두", "세", "네", "다섯", "여섯", "일곱", "여덟", "아홉"];
+    const tens = ["", "열", "스물", "서른", "마흔", "쉰", "예순", "일흔", "여든", "아흔"];
+
+    if (n === 20) return "스무";
+
+    const ten = Math.floor(n / 10);
+    const one = n % 10;
+
+    if (ten === 0) return ones[one];
+    if (ten === 1 && one === 0) return "열";
+    return tens[ten] + ones[one];
+  }
+
+  function numberToSinoKorean(n){
+    if (!Number.isInteger(n) || n < 0 || n > 9999) return null;
+    if (n === 0) return "영";
+
+    const nums = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"];
+    let result = "";
+
+    const thousands = Math.floor(n / 1000);
+    const hundreds = Math.floor((n % 1000) / 100);
+    const tens = Math.floor((n % 100) / 10);
+    const ones = n % 10;
+
+    if (thousands) result += (thousands === 1 ? "" : nums[thousands]) + "천";
+    if (hundreds) result += (hundreds === 1 ? "" : nums[hundreds]) + "백";
+    if (tens) result += (tens === 1 ? "" : nums[tens]) + "십";
+    if (ones) result += nums[ones];
+
+    return result;
+  }
+
+  function buildNativeReverseMap(){
+    const map = {};
+    for (let i = 1; i < 100; i++){
+      const k = numberToNativeKorean(i);
+      if (k) map[k] = i;
+    }
+    return map;
+  }
+
+  function buildSinoReverseMap(limit=9999){
+    const map = {};
+    for (let i = 0; i <= limit; i++){
+      const k = numberToSinoKorean(i);
+      if (k) map[k] = i;
+    }
+    return map;
+  }
+
+  const NATIVE_REVERSE = buildNativeReverseMap();
+  const SINO_REVERSE = buildSinoReverseMap(9999);
+
+  const NATIVE_FORMS = Object.keys(NATIVE_REVERSE).sort((a,b) => b.length - a.length);
+  const SINO_FORMS = Object.keys(SINO_REVERSE).sort((a,b) => b.length - a.length);
+
+  function replaceKoreanNumberWordsWithDigits(text){
+    let out = text;
+
+    for (const unit of COMMON_UNITS){
+      const unitRe = escapeRegExp(unit);
+
+      for (const form of NATIVE_FORMS){
+        const re = new RegExp(escapeRegExp(form) + unitRe, "g");
+        out = out.replace(re, String(NATIVE_REVERSE[form]) + unit);
+      }
+
+      for (const form of SINO_FORMS){
+        const re = new RegExp(escapeRegExp(form) + unitRe, "g");
+        out = out.replace(re, String(SINO_REVERSE[form]) + unit);
+      }
+    }
+
+    return out;
+  }
+
+  function expandDigitVariants(base){
+    const set = new Set([base]);
+
+    const matches = [...base.matchAll(/(\d+)(시간|시|분|초|개|명|살|층|번|월|일|년|원|kg|km|cm|mm|m|퍼센트|%)/g)];
+    for (const m of matches){
+      const full = m[0];
+      const num = parseInt(m[1], 10);
+      const unit = m[2] || "";
+
+      if (!Number.isNaN(num)){
+        const native = numberToNativeKorean(num);
+        const sino = numberToSinoKorean(num);
+
+        if (native){
+          set.add(base.replace(full, native + unit));
+        }
+        if (sino){
+          set.add(base.replace(full, sino + unit));
+        }
+      }
+    }
+
+    return set;
+  }
+
+  function generateAnswerVariants(s){
+    const raw = String(s || "");
+    const base = basicNormalize(raw);
+    const variants = new Set();
+
+    if (base) variants.add(base);
+
+    const replaced = basicNormalize(replaceKoreanNumberWordsWithDigits(raw));
+    if (replaced) variants.add(replaced);
+
+    for (const v of [...variants]){
+      const expanded = expandDigitVariants(v);
+      expanded.forEach(x => variants.add(basicNormalize(x)));
+    }
+
+    return variants;
   }
 
   function splitAnswers(s){
@@ -446,15 +560,23 @@
     t = t.replace(/\([^)]*\)/g, "");
     t = t.replace(/또는|or/gi, "/");
     t = t.replace(/[·,|]/g, "/");
-    return t.split("/").map(x => normAnswer(x)).filter(Boolean);
+    return t.split("/").map(x => x.trim()).filter(Boolean);
   }
 
   function isCorrectAnswer(userInput, answerRaw){
-    const u = normAnswer(userInput);
-    if (!u) return false;
-    const candidates = splitAnswers(answerRaw);
-    if (!candidates.length) return false;
-    return candidates.includes(u);
+    const userVariants = generateAnswerVariants(userInput);
+    if (!userVariants.size) return false;
+
+    const answerParts = splitAnswers(answerRaw);
+    if (!answerParts.length) return false;
+
+    for (const ans of answerParts){
+      const answerVariants = generateAnswerVariants(ans);
+      for (const uv of userVariants){
+        if (answerVariants.has(uv)) return true;
+      }
+    }
+    return false;
   }
 
   function getMode(){
@@ -563,6 +685,49 @@
     toast(`클리어! 점수: ${score}점 (총 ${cleared}개 정답)`);
   }
 
+  // ✅ 레인 배치 함수
+  function getLaneY(arenaHeight){
+    const topPadding = 18;
+    const bottomPadding = 80;
+    const usable = Math.max(120, arenaHeight - topPadding - bottomPadding);
+    const laneGap = usable / LANE_COUNT;
+
+    // 현재 화면에서 사용 중인 레인 확인
+    const usedLanes = new Set();
+    active.forEach(a => {
+      if (typeof a.laneIndex === "number") usedLanes.add(a.laneIndex);
+    });
+
+    let candidates = [];
+    for (let i = 0; i < LANE_COUNT; i++){
+      // 직전 레인과 같은 줄은 우선 피함
+      if (i === lastLaneIndex) continue;
+      candidates.push(i);
+    }
+
+    // 다 막히면 전체 허용
+    if (!candidates.length){
+      candidates = Array.from({length: LANE_COUNT}, (_, i) => i);
+    }
+
+    // 사용 중이지 않은 레인 우선 선택
+    let filtered = candidates.filter(i => !usedLanes.has(i));
+
+    // 전부 사용 중이면 후보 그대로 사용
+    if (!filtered.length){
+      filtered = candidates;
+    }
+
+    const laneIndex = filtered[Math.floor(Math.random() * filtered.length)];
+    lastLaneIndex = laneIndex;
+
+    const baseY = topPadding + laneGap * laneIndex;
+    const jitter = Math.min(12, laneGap * 0.18); // 같은 레인에서도 약간만 흔들기
+    const y = baseY + laneGap * 0.22 + (Math.random() * jitter * 2 - jitter);
+
+    return { y, laneIndex };
+  }
+
   function spawnWord(){
     if (!running) return;
 
@@ -585,19 +750,19 @@
     arena.appendChild(el);
 
     const arenaRect = arena.getBoundingClientRect();
-    const maxY = Math.max(20, arenaRect.height - 80);
-    const y = 18 + Math.random() * (maxY - 18);
-    const x = - (120 + Math.random() * 100);
+    const pos = getLaneY(arenaRect.height);
+    const x = -(140 + Math.random() * 80);
 
     active.push({
       el,
       x,
-      y,
-      speed: FIXED_SPEED + Math.random() * 2, // ✅ 거의 고정(약간의 자연스러움만)
+      y: pos.y,
+      laneIndex: pos.laneIndex,
+      speed: FIXED_SPEED + Math.random() * 2,
       word: it
     });
 
-    el.style.transform = `translate(${x}px, ${y}px)`;
+    el.style.transform = `translate(${x}px, ${pos.y}px)`;
   }
 
   function tick(){
@@ -676,6 +841,7 @@
     clearArenaWords();
     score = 0;
     cleared = 0;
+    lastLaneIndex = -1;
 
     spawnEvery = FIXED_SPAWN;
 
