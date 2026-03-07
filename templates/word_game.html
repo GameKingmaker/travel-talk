@@ -394,8 +394,8 @@
   let score = 0;
   let cleared = 0;
 
-  const FIXED_SPEED = 1;
-  const FIXED_SPAWN = 6000;
+  const FIXED_SPEED = 2;
+  const FIXED_SPAWN = 10000;
 
   let spawnEvery = FIXED_SPAWN;
   let spawnTimer = null;
@@ -685,14 +685,12 @@
     toast(`클리어! 점수: ${score}점 (총 ${cleared}개 정답)`);
   }
 
-  // ✅ 레인 배치 함수
   function getLaneY(arenaHeight){
     const topPadding = 18;
     const bottomPadding = 80;
     const usable = Math.max(120, arenaHeight - topPadding - bottomPadding);
     const laneGap = usable / LANE_COUNT;
 
-    // 현재 화면에서 사용 중인 레인 확인
     const usedLanes = new Set();
     active.forEach(a => {
       if (typeof a.laneIndex === "number") usedLanes.add(a.laneIndex);
@@ -700,20 +698,16 @@
 
     let candidates = [];
     for (let i = 0; i < LANE_COUNT; i++){
-      // 직전 레인과 같은 줄은 우선 피함
       if (i === lastLaneIndex) continue;
       candidates.push(i);
     }
 
-    // 다 막히면 전체 허용
     if (!candidates.length){
       candidates = Array.from({length: LANE_COUNT}, (_, i) => i);
     }
 
-    // 사용 중이지 않은 레인 우선 선택
     let filtered = candidates.filter(i => !usedLanes.has(i));
 
-    // 전부 사용 중이면 후보 그대로 사용
     if (!filtered.length){
       filtered = candidates;
     }
@@ -722,7 +716,7 @@
     lastLaneIndex = laneIndex;
 
     const baseY = topPadding + laneGap * laneIndex;
-    const jitter = Math.min(12, laneGap * 0.18); // 같은 레인에서도 약간만 흔들기
+    const jitter = Math.min(12, laneGap * 0.18);
     const y = baseY + laneGap * 0.22 + (Math.random() * jitter * 2 - jitter);
 
     return { y, laneIndex };
@@ -798,8 +792,6 @@
     if (!v){
       input.value = "";
       input.focus();
-      input.classList.add("shake");
-      setTimeout(()=>input.classList.remove("shake"), 220);
       return;
     }
 
@@ -807,25 +799,19 @@
     if (idx === -1){
       input.value = "";
       input.focus();
-
-      input.classList.add("shake");
-      setTimeout(()=>input.classList.remove("shake"), 240);
-
-      input.disabled = true;
-      setTimeout(()=>{ input.disabled = false; input.focus(); }, 180);
       return;
     }
 
     const a = active[idx];
-    a.el.classList.add("hit");
+
+    // ✅ 지연 없이 즉시 제거
+    if (a.el && a.el.parentNode){
+      a.el.parentNode.removeChild(a.el);
+    }
 
     score += 1;
     cleared += 1;
     setHUD();
-
-    setTimeout(() => {
-      if (a.el && a.el.parentNode) a.el.parentNode.removeChild(a.el);
-    }, 90);
 
     active.splice(idx, 1);
 
@@ -915,7 +901,10 @@
 
   submitBtn.addEventListener("click", tryHit);
   input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") tryHit();
+    if (e.key === "Enter") {
+      e.preventDefault();
+      tryHit();
+    }
   });
 
   openOverlay().catch(()=>{});
