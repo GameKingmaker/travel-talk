@@ -401,7 +401,6 @@
   let spawnTimer = null;
   let scoreSaved = false;
 
-  // ✅ 겹침 완화용 레인 설정
   let lastLaneIndex = -1;
   const LANE_COUNT = 6;
 
@@ -420,29 +419,22 @@
 
   function basicNormalize(s){
     let t = String(s || "");
-
     try { t = t.normalize("NFKC"); } catch(e) {}
-
     t = t.trim().toLowerCase();
     t = t.replace(/\([^)]*\)/g, "");
     t = t.replace(/\s+/g, "");
     t = t.replace(/[-‐-‒–—―﹘﹣－]/g, "");
     t = t.replace(/[·・•.,/\\:;'"“”‘’`~!?\[\]{}]/g, "");
-
     return t;
   }
 
   function numberToNativeKorean(n){
     if (!Number.isInteger(n) || n <= 0 || n >= 100) return null;
-
     const ones = ["", "한", "두", "세", "네", "다섯", "여섯", "일곱", "여덟", "아홉"];
     const tens = ["", "열", "스물", "서른", "마흔", "쉰", "예순", "일흔", "여든", "아흔"];
-
     if (n === 20) return "스무";
-
     const ten = Math.floor(n / 10);
     const one = n % 10;
-
     if (ten === 0) return ones[one];
     if (ten === 1 && one === 0) return "열";
     return tens[ten] + ones[one];
@@ -451,20 +443,16 @@
   function numberToSinoKorean(n){
     if (!Number.isInteger(n) || n < 0 || n > 9999) return null;
     if (n === 0) return "영";
-
     const nums = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"];
     let result = "";
-
     const thousands = Math.floor(n / 1000);
     const hundreds = Math.floor((n % 1000) / 100);
     const tens = Math.floor((n % 100) / 10);
     const ones = n % 10;
-
     if (thousands) result += (thousands === 1 ? "" : nums[thousands]) + "천";
     if (hundreds) result += (hundreds === 1 ? "" : nums[hundreds]) + "백";
     if (tens) result += (tens === 1 ? "" : nums[tens]) + "십";
     if (ones) result += nums[ones];
-
     return result;
   }
 
@@ -525,12 +513,8 @@
         const native = numberToNativeKorean(num);
         const sino = numberToSinoKorean(num);
 
-        if (native){
-          set.add(base.replace(full, native + unit));
-        }
-        if (sino){
-          set.add(base.replace(full, sino + unit));
-        }
+        if (native) set.add(base.replace(full, native + unit));
+        if (sino) set.add(base.replace(full, sino + unit));
       }
     }
 
@@ -784,27 +768,25 @@
     rafId = requestAnimationFrame(tick);
   }
 
+  let enterQueued = false;
+
   function tryHit(){
     if (!running) return;
 
     const v = norm(input.value);
-
     if (!v){
       input.value = "";
-      input.focus();
       return;
     }
 
     const idx = active.findIndex(a => isCorrectAnswer(v, a.word.ko));
     if (idx === -1){
       input.value = "";
-      input.focus();
       return;
     }
 
     const a = active[idx];
 
-    // ✅ 지연 없이 즉시 제거
     if (a.el && a.el.parentNode){
       a.el.parentNode.removeChild(a.el);
     }
@@ -816,9 +798,18 @@
     active.splice(idx, 1);
 
     input.value = "";
-    input.focus();
 
     spawnWord();
+  }
+
+  function queueTryHit(){
+    if (enterQueued) return;
+    enterQueued = true;
+
+    requestAnimationFrame(() => {
+      enterQueued = false;
+      tryHit();
+    });
   }
 
   function startGame(){
@@ -899,12 +890,15 @@
     if (e.target && e.target.name === "wgMode") toggleCatsUI();
   });
 
-  submitBtn.addEventListener("click", tryHit);
+  submitBtn.addEventListener("click", queueTryHit);
+
   input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      tryHit();
-    }
+    if (e.key !== "Enter") return;
+
+    if (e.isComposing || e.keyCode === 229) return;
+
+    e.preventDefault();
+    queueTryHit();
   });
 
   openOverlay().catch(()=>{});
