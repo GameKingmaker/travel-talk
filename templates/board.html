@@ -296,8 +296,70 @@
 
   /* td-center 강제 가운데 정렬 무력화(모바일 카드에서) */
   .td-center{ text-align:left; }
+  
+}
+.board-pagination{
+  margin: 18px 0 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
+.pg-numbers{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.pg-btn,
+.pg-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:42px;
+  height:42px;
+  padding:0 14px;
+  border-radius:12px;
+  border:1px solid rgba(15,23,42,0.10);
+  background:#fff;
+  color:#0f172a;
+  text-decoration:none;
+  font-weight:900;
+  box-shadow: 0 6px 16px rgba(15,23,42,0.05);
+  transition:.16s ease;
+}
+
+.pg-btn:hover,
+.pg-num:hover{
+  transform:translateY(-1px);
+  border-color: rgba(37,99,235,.22);
+  box-shadow: 0 10px 24px rgba(37,99,235,.10);
+}
+
+.pg-num.active{
+  background:#2563eb;
+  color:#fff;
+  border-color:#2563eb;
+  box-shadow: 0 10px 24px rgba(37,99,235,.18);
+}
+
+@media (max-width: 640px){
+  .board-pagination{
+    gap:8px;
+  }
+
+  .pg-btn,
+  .pg-num{
+    min-width:38px;
+    height:38px;
+    padding:0 12px;
+    border-radius:10px;
+    font-size:13px;
+  }
+}
 
 </style>
 
@@ -360,7 +422,6 @@
     {% endif %}
   </div>
 </section>
-
 
 
 <div class="board-wrap" style="padding:0; overflow:hidden;">
@@ -448,5 +509,25 @@
     </tbody>
   </table>
 </div>
+{% if total_pages > 1 %}
+<div class="board-pagination">
+  {% if page > 1 %}
+    <a class="pg-btn" href="{{ url_for('board', page=page-1, q=q) }}">← 이전</a>
+  {% endif %}
 
+  <div class="pg-numbers">
+    {% for pnum in range(1, total_pages + 1) %}
+      {% if pnum == page %}
+        <span class="pg-num active">{{ pnum }}</span>
+      {% else %}
+        <a class="pg-num" href="{{ url_for('board', page=pnum, q=q) }}">{{ pnum }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if page < total_pages %}
+    <a class="pg-btn" href="{{ url_for('board', page=page+1, q=q) }}">다음 →</a>
+  {% endif %}
+</div>
+{% endif %}
 {% endblock %}
