@@ -237,6 +237,11 @@
   font-weight:950;
   color:#0b1f4b;
 }
+.sit-back-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
 </style>
 {% endblock %}
 
@@ -261,6 +266,9 @@
     <div class="sit-back-row">
       <a class="sit-back-btn" href="{{ url_for('situations') }}">← 분류 목록</a>
     </div>
+    <a class="sit-back-btn" href="{{ url_for('note') }}">
+      📒 나만의 학습노트
+    </a>
   </section>
 </div>
 
