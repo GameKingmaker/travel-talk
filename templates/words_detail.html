@@ -8,96 +8,115 @@
    ========================= #}
 
 <style>
-  /* 전체 래퍼 */
-  .wrap{
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 18px 18px 48px;
-  }
+/* 상단 헤더 카드 */
+.w-top{
+  margin: 10px 0 16px;
+  padding: 24px 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(15,23,42,.08);
+  background:
+    radial-gradient(circle at top right, rgba(37,99,235,.12), transparent 60%),
+    linear-gradient(180deg, #f8fbff, #ffffff);
+  box-shadow: 0 16px 40px rgba(15,23,42,.08);
+  position: relative;
+}
 
-  /* 상단 헤더 카드 */
-  .w-top{
-    margin: 8px 0 14px;
-    padding: 18px 18px;
-    border-radius: 18px;
-    border: 1px solid rgba(15,23,42,.10);
-    background: linear-gradient(180deg, rgba(37,99,235,.10), rgba(37,99,235,.02));
-    box-shadow: 0 12px 30px rgba(15,23,42,.06);
-  }
+/* 제목 */
+.w-title{
+  margin: 0;
+  font-size: 32px;
+  font-weight: 1000;
+  letter-spacing: -0.03em;
+  color: #0b1f4b;
+  line-height: 1.2;
+  word-break: keep-all;
+}
 
-  .w-title{
-    margin: 0;
-    font-size: 30px;
-    font-weight: 950;
-    letter-spacing: -0.02em;
-    color: #0b1f4b;
-    line-height: 1.2;
-    word-break: keep-all;
-  }
+/* 설명 */
+.w-sub{
+  margin: 14px 0 0;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.8;
+  white-space: pre-line;
+}
 
-  .w-sub{
-    margin: 10px 0 0;
-    color: #475569;
-    font-size: 14px;
-    font-weight: 800;
-    line-height: 1.75;
-    white-space: pre-line;
-  }
+/* 설명 문단 간격 개선 */
+.w-sub p{
+  margin: 6px 0;
+}
 
-  .w-guide{
-    margin: 10px 0 0;
-    color: #64748b;
-    font-size: 13px;
-    font-weight: 900;
-    line-height: 1.65;
-  }
+/* 가이드 박스 */
+.w-guide{
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(37,99,235,.06);
+  border: 1px solid rgba(37,99,235,.12);
+  color: #334155;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.6;
+}
 
-  /* 상단 액션 */
-  .w-actions{
-    margin-top: 12px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-  }
+/* 링크 강조 */
+.w-guide a{
+  color:#2563eb;
+  font-weight:900;
+  text-decoration:none;
+}
 
-  .w-actions-left{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-  }
+.w-guide a:hover{
+  text-decoration:underline;
+}
 
-  .w-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    height: 40px;
-    padding: 0 14px;
-    border-radius: 14px;
-    border: 1px solid rgba(15,23,42,.12);
-    background:#fff;
-    font-weight: 900;
-    color: #0b1f4b;
-    text-decoration:none;
-    transition: .16s ease;
-  }
-  .w-btn:hover{
-    transform: translateY(-1px);
-    box-shadow: 0 10px 24px rgba(15,23,42,.08);
-    border-color: rgba(37,99,235,.20);
-  }
+/* 상단 액션 */
+.w-actions{
+  margin-top: 18px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+}
 
-  .w-count{
-    color:#64748b;
-    font-weight: 900;
-    font-size: 13px;
-    display:flex;
-    gap:6px;
-    align-items:center;
-    white-space:nowrap;
-  }
-  .w-count b{ color:#0b1f4b; }
+/* 버튼 */
+.w-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,.10);
+  background:#ffffff;
+  font-weight: 900;
+  color: #0b1f4b;
+  text-decoration:none;
+  transition: all .18s ease;
+}
+
+.w-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(37,99,235,.18);
+  border-color: rgba(37,99,235,.30);
+}
+
+/* 단어 개수 */
+.w-count{
+  color:#64748b;
+  font-weight:900;
+  font-size:13px;
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+
+.w-count b{
+  color:#2563eb;
+  font-size:14px;
+}
 
   /* 검색 */
   .search-row{
@@ -185,45 +204,46 @@
 <div class="wrap">
 
   {# =========================
-     ✅ 상단 헤더 카드
-     ========================= #}
-  <section class="w-top">
-    <h1 class="w-title">일본 여행 필수 일본어 단어 모음 · {{ title }}</h1>
+   ✅ 상단 헤더 카드
+   ========================= #}
+<section class="w-top">
+  <h1 class="w-title">일본 여행 필수 일본어 단어 모음 · {{ title }}</h1>
 
-    {% if page_intro %}
-      <p class="w-sub">{{ page_intro }}</p>
-    {% else %}
-      <p class="w-sub">일본 여행 중 자주 쓰는 {{ title }} 필수 단어를 모아두었습니다.</p>
-    {% endif %}
+  {% if page_intro %}
+    <p class="w-sub" style="white-space: pre-line;">{{ page_intro }}</p>
+  {% else %}
+    <p class="w-sub">일본 여행 중 자주 쓰는 {{ title }} 필수 단어를 모아두었습니다.</p>
+  {% endif %}
 
-    <p class="w-guide">
-      한자/표기 · 가나 · 발음 · 한국어 뜻 <b>4줄</b>로 빠르게 확인하세요.<br>
-      ※ <b>★</b> 버튼을 누르면 나만의 학습노트 즐겨찾기에 저장됩니다. · <br>
-      🔊 버튼으로 발음도 바로 들을 수 있어요.
-    </p>
+  <p class="w-guide">
+    한자/표기 · 가나 · 발음 · 한국어 뜻 <b>4줄</b>로 빠르게 확인하세요.<br>
+    ※ <b>★</b> 버튼을 누르면 나만의 학습노트 즐겨찾기에 저장됩니다.<br>
+    🔊 버튼으로 발음도 바로 들을 수 있어요.
+  </p>
 
-    <p class="w-guide" style="margin-top:6px;">
-      👉 외웠다면 <a href="{{ url_for('word_game') }}"><b>단어 게임</b></a>으로 실력 체크해보세요.
-    </p>
+  <p class="w-guide" style="margin-top:6px;">
+    👉 외웠다면 <a href="{{ url_for('word_game') }}"><b>🎮단어 게임</b></a>으로 실력 체크해보세요.
+  </p>
 
-    <div class="w-actions">
-      <div class="w-actions-left">
-        <a class="w-btn" href="{{ url_for('words_categories') }}">← 분류 목록</a>
-
-        {# (옵션) 검색 중일 때 전체 보기 버튼 #}
-        {% if q %}
-          <a class="w-btn" href="{{ url_for('words_detail', cat_key=cat_key) }}">전체 보기</a>
-        {% endif %}
-      </div>
-
-      <div class="w-count">
-        표시:
-        <b>{{ (rows or [])|length }}</b>
-        /
-        <span>{{ total_count if total_count is defined else (rows or [])|length }}</span>
-      </div>
+  <div class="w-actions">
+    <div class="w-actions-left">
+      <a class="w-btn" href="{{ url_for('words_categories') }}">← 분류 목록</a>
+        <a class="w-btn" href="{{ url_for('note') }}">
+          📒 나만의 학습노트
+        </a>
+      {% if q %}
+        <a class="w-btn" href="{{ url_for('words_detail', cat_key=cat_key) }}">전체 보기</a>
+      {% endif %}
     </div>
-  </section>
+
+    <div class="w-count">
+      표시:
+      <b>{{ (rows or [])|length }}</b>
+      /
+      <span>{{ total_count if total_count is defined else (rows or [])|length }}</span>
+    </div>
+  </div>
+</section>
 
   {# =========================
      ✅ 검색
