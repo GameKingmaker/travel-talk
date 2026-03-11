@@ -819,6 +819,15 @@ def init_db() -> None:
         if "best_word_score_at" not in cols:
             cur.execute("ALTER TABLE users ADD COLUMN best_word_score_at TEXT")
 
+        # 추가: 타이핑 마라톤 최고점
+        cols = table_columns(conn, "users")
+        if "best_word_marathon_score" not in cols:
+            cur.execute("ALTER TABLE users ADD COLUMN best_word_marathon_score INTEGER DEFAULT 0")
+
+        cols = table_columns(conn, "users")
+        if "best_word_marathon_score_at" not in cols:
+            cur.execute("ALTER TABLE users ADD COLUMN best_word_marathon_score_at TEXT")
+
         cols = table_columns(conn, "users")
         if "last_login_at" not in cols:
             cur.execute("ALTER TABLE users ADD COLUMN last_login_at TEXT")
@@ -826,7 +835,8 @@ def init_db() -> None:
         cols = table_columns(conn, "users")
         if "last_seen_at" not in cols:
             cur.execute("ALTER TABLE users ADD COLUMN last_seen_at TEXT")
-         # ✅ (여기에 추가) 닉네임 대소문자 무시 유니크 인덱스
+
+        # ✅ 닉네임 대소문자 무시 유니크 인덱스
         cur.execute("""
             CREATE UNIQUE INDEX IF NOT EXISTS idx_users_nickname_nocase
             ON users(nickname COLLATE NOCASE)
@@ -11675,7 +11685,7 @@ def api_game_words():
         cat_title = (cat or {}).get("title", cat_key)
 
         for row in (cat or {}).get("items", []) or []:
-            jp, pron, ko = row[:3]  # ✅ (jp, pron, ko, ...) 여분 있어도 안전
+            jp, pron, ko = row[:3]
             items.append({
                 "cat_key": cat_key,
                 "cat_title": cat_title,
@@ -12729,82 +12739,6 @@ def withdraw():
 
     return render_template("withdraw.html", user=user)
 
-@app.route("/word_game/ranking")
-def word_game_ranking():
-    return redirect(url_for("word_game_ranking_page"))
-
-
-
-@app.get("/quiz/word_game/ranking")
-def word_game_ranking_page():
-    user = current_user()
-
-    conn = db()
-
-    rows = conn.execute(
-        """
-        SELECT nickname, best_word_score, best_word_score_at
-        FROM users
-        WHERE best_word_score IS NOT NULL AND best_word_score > 0
-        ORDER BY best_word_score DESC, COALESCE(best_word_score_at, '') ASC
-        LIMIT 50
-        """
-    ).fetchall()
-
-    top = []
-    for r in rows:
-        # sqlite Row면 key 접근, 튜플이면 index 접근
-        if hasattr(r, "keys"):
-            nickname = r["nickname"]
-            score = r["best_word_score"]
-            at = r["best_word_score_at"]
-        else:
-            nickname = r[0]
-            score = r[1]
-            at = r[2]
-
-        top.append({
-            "nickname": str(nickname or ""),
-            "score": int(score or 0),
-            "at": str(at or "")
-        })
-
-    my_rank = None
-    my_best = 0
-    my_best_at = None
-
-    if user:
-        me = conn.execute(
-            "SELECT best_word_score, best_word_score_at FROM users WHERE id=?",
-            (user["id"],),
-        ).fetchone()
-
-        if me:
-            my_best = int(me["best_word_score"] or 0)
-            my_best_at = me["best_word_score_at"]
-
-        if my_best > 0:
-            r = conn.execute(
-                """
-                SELECT 1 + COUNT(*) AS rk
-                FROM users
-                WHERE best_word_score > ?
-                """,
-                (my_best,),
-            ).fetchone()
-            my_rank = int(r["rk"]) if r else None
-
-    conn.close()
-
-    return render_template(
-        "word_game_ranking.html",
-        user=user,
-        top=top,              
-        my_rank=my_rank,
-        my_best=my_best,
-        my_best_at=my_best_at,
-    )
-
 
 
 
@@ -12951,25 +12885,47 @@ def submit_word_game_score():
 
     data = request.get_json(silent=True) or {}
     score = int(data.get("score") or 0)
+    mode = str(data.get("mode") or "speed").strip().lower()
 
     if score < 0:
         score = 0
 
+    if mode not in ("speed", "marathon"):
+        mode = "speed"
+
+    if mode == "marathon":
+        score_col = "best_word_marathon_score"
+        at_col = "best_word_marathon_score_at"
+    else:
+        score_col = "best_word_score"
+        at_col = "best_word_score_at"
+
     conn = db()
-    row = conn.execute("SELECT best_word_score FROM users WHERE id=?", (user["id"],)).fetchone()
-    prev = int(row["best_word_score"] or 0) if row else 0
+
+    row = conn.execute(
+        f"SELECT {score_col} AS best_score FROM users WHERE id=?",
+        (user["id"],)
+    ).fetchone()
+
+    prev = int(row["best_score"] or 0) if row else 0
 
     updated = False
     if score > prev:
         conn.execute(
-            "UPDATE users SET best_word_score=?, best_word_score_at=? WHERE id=?",
+            f"UPDATE users SET {score_col}=?, {at_col}=? WHERE id=?",
             (score, kst_now_iso(), user["id"])
         )
         conn.commit()
         updated = True
 
     conn.close()
-    return jsonify({"ok": True, "updated": updated, "prev": prev, "best": max(prev, score)})
+    return jsonify({
+        "ok": True,
+        "updated": updated,
+        "prev": prev,
+        "best": max(prev, score),
+        "mode": mode
+    })
 
 def iter_jlpt_items(src):
     """
@@ -13354,29 +13310,83 @@ def api_jlpt_word_fav_post():
     finally:
         conn.close()
 
-@app.get("/api/word_game/rankings")
-def word_game_rankings():
-    conn = db()
-    rows = conn.execute("""
-        SELECT id, nickname, best_word_score, best_word_score_at
-        FROM users
-        WHERE COALESCE(best_word_score, 0) > 0
-        ORDER BY best_word_score DESC, best_word_score_at ASC
-        LIMIT 50
-    """).fetchall()
-    conn.close()
+@app.route("/word_game/ranking")
+def word_game_ranking():
+    return redirect(url_for("word_game_ranking_page"))
 
-    items = []
+
+@app.get("/quiz/word_game/ranking")
+def word_game_ranking_page():
+    user = current_user()
+    ranking_mode = (request.args.get("mode") or "speed").strip().lower()
+
+    if ranking_mode not in ("speed", "marathon"):
+        ranking_mode = "speed"
+
+    if ranking_mode == "marathon":
+        score_col = "best_word_marathon_score"
+        at_col = "best_word_marathon_score_at"
+    else:
+        score_col = "best_word_score"
+        at_col = "best_word_score_at"
+
+    conn = db()
+
+    rows = conn.execute(
+        f"""
+        SELECT id, nickname, {score_col} AS score, {at_col} AS at
+        FROM users
+        WHERE {score_col} IS NOT NULL AND {score_col} > 0
+        ORDER BY {score_col} DESC, COALESCE({at_col}, '') ASC
+        LIMIT 50
+        """
+    ).fetchall()
+
+    top = []
     for r in rows:
-        items.append({
+        top.append({
             "id": r["id"],
-            "nickname": r["nickname"],
-            "score": int(r["best_word_score"] or 0),
-            "at": r["best_word_score_at"]
+            "nickname": str(r["nickname"] or ""),
+            "score": int(r["score"] or 0),
+            "at": str(r["at"] or "")
         })
 
-    return jsonify(ok=True, items=items)
+    my_rank = None
+    my_best = 0
+    my_best_at = None
 
+    if user:
+        me = conn.execute(
+            f"SELECT {score_col} AS score, {at_col} AS at FROM users WHERE id=?",
+            (user["id"],),
+        ).fetchone()
+
+        if me:
+            my_best = int(me["score"] or 0)
+            my_best_at = me["at"]
+
+        if my_best > 0:
+            r = conn.execute(
+                f"""
+                SELECT 1 + COUNT(*) AS rk
+                FROM users
+                WHERE {score_col} > ?
+                """,
+                (my_best,),
+            ).fetchone()
+            my_rank = int(r["rk"]) if r else None
+
+    conn.close()
+
+    return render_template(
+        "word_game_ranking.html",
+        user=user,
+        top=top,
+        my_rank=my_rank,
+        my_best=my_best,
+        my_best_at=my_best_at,
+        ranking_mode=ranking_mode,
+    )
 
 # -------------------------
 # Live validation APIs (for register)
