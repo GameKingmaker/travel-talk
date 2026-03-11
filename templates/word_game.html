@@ -2,176 +2,490 @@
 {% block content %}
 
 <style>
-  .wg-wrap{
-    max-width:1080px;
-    margin:0 auto;
-    padding:22px 18px 56px;
+  :root{
+    --wg-bg1:#eef2ff;
+    --wg-bg2:#f8fbff;
+    --wg-panel:#ffffff;
+    --wg-text:#0f172a;
+    --wg-sub:#64748b;
+    --wg-line:#ef4444;
+    --wg-blue:#2563eb;
+    --wg-blue2:#3b82f6;
+    --wg-orange1:#ffbf47;
+    --wg-orange2:#ff8f1f;
+    --wg-orange3:#d96a00;
+    --wg-dark1:#121826;
+    --wg-dark2:#1c2436;
+    --wg-shadow:0 18px 38px rgba(15,23,42,0.10);
+    --wg-soft:0 10px 24px rgba(15,23,42,0.07);
   }
 
-  .wg-head{
+  .wg-page{
+    min-height:100%;
+    padding:26px 18px 60px;
+    background:
+      radial-gradient(circle at top left, rgba(59,130,246,.08), transparent 24%),
+      radial-gradient(circle at bottom right, rgba(99,102,241,.08), transparent 20%),
+      linear-gradient(180deg, var(--wg-bg1), var(--wg-bg2));
+  }
+
+  .wg-wrap{
+    max-width:1180px;
+    margin:0 auto;
+  }
+
+  .wg-hero{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:18px;
+    margin-bottom:18px;
+  }
+
+  .wg-panel-card{
+    background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(250,252,255,.96));
+    border:1px solid rgba(15,23,42,0.08);
+    border-radius:28px;
+    box-shadow:var(--wg-shadow);
+  }
+
+  .wg-hero-main{
+    padding:28px 30px 26px;
+  }
+
+  .wg-hero-side{
+    padding:24px 22px 22px;
     display:flex;
-    align-items:flex-end;
+    flex-direction:column;
     justify-content:space-between;
     gap:16px;
-    margin-bottom:14px;
-  }
-  .wg-title{
-    font-size:34px;
-    font-weight:900;
-    letter-spacing:-0.5px;
-    margin:0;
-  }
-  .wg-sub{
-    margin:6px 0 0;
-    color:#6b7280;
-    font-size:14px;
-    line-height:1.45;
   }
 
-  .wg-actions{
+  .wg-title-row{
     display:flex;
-    gap:10px;
+    align-items:flex-start;
+    gap:14px;
+  }
+
+  .wg-logo{
+    width:58px;
+    height:58px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    background:linear-gradient(180deg, #e8edff, #dfe9ff);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 10px 20px rgba(37,99,235,.08);
+  }
+
+  .wg-title{
+    margin:0;
+    font-size:42px;
+    line-height:1.05;
+    font-weight:950;
+    letter-spacing:-1px;
+    color:var(--wg-text);
+  }
+
+  .wg-sub{
+    margin:12px 0 0;
+    max-width:760px;
+    font-size:15px;
+    line-height:1.8;
+    color:var(--wg-sub);
+  }
+
+  .wg-mode-info.single{
+  grid-template-columns:1fr;
+}
+
+.wg-mode-info.single .wg-mode-card{
+  padding:16px 18px;
+}
+
+.wg-mode-info.single .wg-mode-card .t{
+  margin-bottom:8px;
+  font-size:14px;
+}
+
+.wg-mode-info.single .wg-mode-card .d{
+  font-size:14px;
+  line-height:1.75;
+  color:#475569;
+}
+
+  .wg-mode-card{
+    padding:14px 16px;
+    border-radius:18px;
+    background:linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+    border:1px solid rgba(37,99,235,.10);
+    box-shadow:0 8px 18px rgba(37,99,235,.06);
+  }
+
+  .wg-mode-card .t{
+    display:block;
+    margin-bottom:6px;
+    font-size:13px;
+    font-weight:950;
+    color:#1d4ed8;
+  }
+
+  .wg-mode-card .d{
+    display:block;
+    font-size:13px;
+    line-height:1.65;
+    color:#475569;
+  }
+
+  .wg-mini-row{
+    display:flex;
     flex-wrap:wrap;
+    gap:10px;
+    margin-top:16px;
+  }
+
+  .wg-mini-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    min-height:38px;
+    padding:0 14px;
+    border-radius:999px;
+    border:1px solid rgba(15,23,42,0.08);
+    background:#fff;
+    color:var(--wg-text);
+    font-size:13px;
+    font-weight:900;
+    box-shadow:var(--wg-soft);
+  }
+
+  .wg-side-title{
+    margin:0 0 12px;
+    font-size:20px;
+    font-weight:950;
+    color:var(--wg-text);
+    letter-spacing:-0.35px;
+  }
+
+  .wg-side-mode-list{
+    display:grid;
+    gap:12px;
+  }
+
+  .wg-side-mode-item{
+    position:relative;
+    padding:18px 18px 16px;
+    border-radius:22px;
+    background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(246,249,255,.96));
+    border:1px solid rgba(15,23,42,0.08);
+    box-shadow:var(--wg-soft);
+    overflow:hidden;
+  }
+
+  .wg-side-mode-item::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg, rgba(37,99,235,.18), rgba(59,130,246,.8), rgba(37,99,235,.18));
+  }
+
+  .wg-side-mode-item .k{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    font-weight:950;
+    color:#1d4ed8;
+  }
+
+  .wg-side-mode-item .d{
+    display:block;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--wg-sub);
+  }
+
+  .wg-side-note{
+    padding:14px 16px;
+    border-radius:18px;
+    background:linear-gradient(180deg, #ffffff, #f7f9ff);
+    border:1px solid rgba(15,23,42,0.08);
+    color:#475569;
+    font-size:13px;
+    line-height:1.7;
+    box-shadow:var(--wg-soft);
+  }
+
+  .wg-stats{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:12px;
+    margin-bottom:16px;
+  }
+
+  .wg-stat{
+    background:linear-gradient(180deg, #fff, #f8fbff);
+    border:1px solid rgba(15,23,42,0.08);
+    border-radius:22px;
+    padding:16px 18px;
+    box-shadow:var(--wg-soft);
+  }
+
+  .wg-stat .k{
+    font-size:12px;
+    color:var(--wg-sub);
+    font-weight:900;
+    margin-bottom:8px;
+  }
+
+  .wg-stat .v{
+    font-size:28px;
+    font-weight:950;
+    color:var(--wg-text);
+    letter-spacing:-0.7px;
+  }
+
+  .wg-stat .modev{
+    font-size:15px;
+    font-weight:950;
+    color:#1d4ed8;
+  }
+
+  .wg-shell{
+    background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(250,252,255,.97));
+    border:1px solid rgba(15,23,42,0.08);
+    border-radius:30px;
+    overflow:hidden;
+    box-shadow:var(--wg-shadow);
+  }
+
+  .wg-shell-top{
+    padding:18px 20px;
+    border-bottom:1px solid rgba(15,23,42,0.06);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    background:linear-gradient(180deg, #ffffff, #f7faff);
+  }
+
+  .wg-top-left{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .wg-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    min-height:34px;
+    padding:0 12px;
+    border-radius:999px;
+    background:#fff;
+    border:1px solid rgba(15,23,42,0.08);
+    font-size:13px;
+    font-weight:900;
+    color:var(--wg-text);
+    box-shadow:var(--wg-soft);
+  }
+
+  .wg-top-right{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
     justify-content:flex-end;
   }
-  .btn{
+
+  .wg-btn{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    height:40px;
-    padding:0 14px;
-    border-radius:12px;
-    border:1px solid rgba(15,23,42,0.10);
-    background:#fff;
-    text-decoration:none;
-    color:#0f172a;
-    font-weight:800;
+    height:44px;
+    padding:0 18px;
+    border:none;
     cursor:pointer;
-  }
-  .btn.primary{
-    background:#2563eb;
-    color:#fff;
-    border-color:rgba(37,99,235,0.22);
-  }
-  .btn.ghost{
-    background:#f8fafc;
-  }
-
-  .wg-panel{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-    margin:14px 0 12px;
-  }
-  .wg-chip{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:10px 12px;
+    text-decoration:none;
+    font-weight:950;
+    font-size:15px;
     border-radius:14px;
-    background:#fff;
-    border:1px solid rgba(15,23,42,0.10);
+    color:#fff;
+    background:linear-gradient(180deg, var(--wg-orange1), var(--wg-orange2) 56%, var(--wg-orange3));
+    box-shadow:
+      inset 0 2px 0 rgba(255,255,255,.35),
+      inset 0 -2px 0 rgba(0,0,0,.10),
+      0 12px 24px rgba(217,106,0,.22);
+    transition:transform .14s ease, box-shadow .14s ease;
   }
-  .wg-chip b{ font-weight:900; }
-  .wg-chip .muted{ color:#64748b; font-size:12px; }
 
-  .wg-box{
-    background:#fff;
-    border:1px solid rgba(15,23,42,0.10);
-    border-radius:18px;
-    box-shadow:0 10px 30px rgba(2,8,23,0.06);
-    overflow:hidden;
+  .wg-btn:hover{ transform:translateY(-1px); }
+
+  .wg-btn.ghost{
+    color:#0f172a;
+    background:linear-gradient(180deg, #ffffff, #eef2f7);
+    box-shadow:
+      inset 0 2px 0 rgba(255,255,255,.70),
+      inset 0 -2px 0 rgba(0,0,0,.05),
+      0 10px 22px rgba(15,23,42,.08);
+  }
+
+  .wg-btn.primary{
+    color:#fff;
+    background:linear-gradient(180deg, #4b8cff, #2f6fff 55%, #2158d6);
+    box-shadow:
+      inset 0 2px 0 rgba(255,255,255,.28),
+      inset 0 -2px 0 rgba(0,0,0,.10),
+      0 14px 26px rgba(37,99,235,.24);
+  }
+
+  .wg-btn.danger{
+    color:#fff;
+    background:linear-gradient(180deg, #ff7b7b, #ef4444 56%, #cf2e2e);
+    box-shadow:
+      inset 0 2px 0 rgba(255,255,255,.26),
+      inset 0 -2px 0 rgba(0,0,0,.12),
+      0 14px 26px rgba(239,68,68,.24);
   }
 
   .wg-arena{
     position:relative;
-    height:420px;
-    background: linear-gradient(180deg, #f8fbff, #f1f5ff);
-    border-bottom:1px solid rgba(15,23,42,0.08);
+    height:470px;
     overflow:hidden;
+    background:
+      radial-gradient(circle at top left, rgba(59,130,246,.12), transparent 24%),
+      radial-gradient(circle at bottom right, rgba(37,99,235,.10), transparent 20%),
+      linear-gradient(180deg, #f8fbff 0%, #eef3ff 100%);
+  }
+
+  .wg-arena::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(148,163,184,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,163,184,0.08) 1px, transparent 1px);
+    background-size:42px 42px;
+    pointer-events:none;
   }
 
   .wg-line{
     position:absolute;
-    top:0;
-    right:0;
-    width:10px;
-    height:100%;
-    background: rgba(239,68,68,0.20);
-    border-left:2px solid rgba(239,68,68,0.55);
+    top:20px;
+    right:18px;
+    width:8px;
+    height:calc(100% - 40px);
+    border-radius:999px;
+    background:linear-gradient(180deg, rgba(248,113,113,.20), rgba(248,113,113,.36));
+    border-left:2px solid rgba(239,68,68,.60);
+    box-shadow:0 0 20px rgba(239,68,68,.20);
+    z-index:2;
   }
+
   .wg-line::after{
-    content:"GAME OVER LINE";
+    content:"GAME OVER";
     position:absolute;
-    top:10px;
-    right:12px;
+    top:12px;
+    right:14px;
     font-size:11px;
-    font-weight:900;
-    color:rgba(239,68,68,0.75);
-    letter-spacing:0.5px;
+    font-weight:950;
+    letter-spacing:1px;
+    color:rgba(239,68,68,.78);
   }
 
   .wg-word{
     position:absolute;
     left:0;
     top:0;
-    padding:10px 12px;
-    border-radius:14px;
-    background:#ffffffcc;
-    border:1px solid rgba(37,99,235,0.18);
-    box-shadow:0 10px 18px rgba(37,99,235,0.08);
-    backdrop-filter: blur(6px);
-    user-select:none;
-    min-width:120px;
+    min-width:140px;
+    max-width:240px;
+    padding:12px 14px;
+    border-radius:18px;
+    background:rgba(255,255,255,.96);
+    border:1px solid rgba(37,99,235,.14);
+    box-shadow:0 12px 24px rgba(37,99,235,.10);
+    backdrop-filter: blur(8px);
+    z-index:3;
   }
+
   .wg-word .jp{
     font-size:12px;
     color:#64748b;
-    font-weight:700;
-    margin-bottom:2px;
+    font-weight:900;
+    margin-bottom:4px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
   }
+
   .wg-word .pron{
-    font-size:18px;
-    font-weight:900;
+    font-size:20px;
+    line-height:1.2;
+    font-weight:950;
     color:#0f172a;
     white-space:nowrap;
-  }
-  .wg-word.hit{
-    transform: scale(0.98);
-    opacity:0.5;
+    overflow:hidden;
+    text-overflow:ellipsis;
   }
 
-  .wg-bottom{
+  .wg-input-wrap{
+    padding:18px 20px 16px;
+    border-top:1px solid rgba(15,23,42,0.06);
+    background:linear-gradient(180deg, #ffffff, #f9fbff);
+  }
+
+  .wg-input-shell{
     display:flex;
     gap:10px;
     align-items:center;
-    padding:12px;
-    background:#fff;
+    padding:8px;
+    border-radius:22px;
+    background:linear-gradient(180deg, #ffffff, #f7faff);
+    border:1px solid rgba(37,99,235,.14);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.85), 0 10px 22px rgba(37,99,235,.06);
   }
 
   .wg-input{
     flex:1;
-    height:44px;
-    border-radius:14px;
-    border:1px solid rgba(15,23,42,0.12);
-    padding:0 14px;
-    font-size:15px;
+    height:56px;
+    border:none;
+    background:transparent;
     outline:none;
-  }
-  .wg-input:focus{
-    border-color: rgba(37,99,235,0.40);
-    box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+    font-size:18px;
+    color:#0f172a;
+    padding:0 14px;
   }
 
-  .wg-hint{
-    padding:10px 12px 14px;
-    color:#64748b;
-    font-size:12px;
-    line-height:1.5;
+  .wg-submit{
+    min-width:110px;
+    height:52px;
+    border:none;
+    cursor:pointer;
+    border-radius:16px;
+    color:#fff;
+    font-size:17px;
+    font-weight:950;
+    letter-spacing:-0.2px;
+    background:linear-gradient(180deg, #4b8cff, #2f6fff 55%, #2158d6);
+    box-shadow:
+      inset 0 2px 0 rgba(255,255,255,.28),
+      inset 0 -2px 0 rgba(0,0,0,.10),
+      0 14px 26px rgba(37,99,235,.24);
   }
+
+  .wg-help{
+    padding:12px 4px 0;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:10px;
+    font-size:12.5px;
+    line-height:1.65;
+    color:#64748b;
+  }
+
+  .wg-help strong{ color:#0f172a; }
 
   .wg-overlay{
     position:fixed;
@@ -179,184 +493,646 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:18px;
-    background: rgba(2,6,23,0.35);
-    backdrop-filter: blur(6px);
+    padding:20px;
+    background:rgba(7,12,24,.62);
+    backdrop-filter: blur(10px);
     z-index:9999;
-    overflow:auto;
   }
 
   .wg-modal{
-    width:min(900px, 96vw);
-    max-height: min(78vh, 720px);
-    background:#fff;
-    border-radius:18px;
-    border:1px solid rgba(15,23,42,0.10);
-    box-shadow:0 20px 60px rgba(2,8,23,0.22);
+    width:min(1080px, 96vw);
+    max-height:min(88vh, 860px);
     display:flex;
     flex-direction:column;
     overflow:hidden;
+    border-radius:28px;
+    background:
+      radial-gradient(circle at top center, rgba(88,126,255,.18), transparent 22%),
+      linear-gradient(180deg, var(--wg-dark2) 0%, var(--wg-dark1) 100%);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 34px 90px rgba(0,0,0,.42);
   }
 
   .wg-modal-head{
-    padding:16px 16px 10px;
-    border-bottom:1px solid rgba(15,23,42,0.06);
+    padding:24px 28px 16px;
+    border-bottom:1px solid rgba(255,255,255,.08);
   }
-  .wg-modal h3{ margin:0; font-size:20px; font-weight:900; letter-spacing:-0.3px; }
-  .wg-modal p{ margin:8px 0 0; color:#6b7280; font-size:13px; line-height:1.5; }
+
+  .wg-modal-head h3{
+    margin:0;
+    color:#fff;
+    font-size:36px;
+    font-weight:950;
+    letter-spacing:-0.9px;
+  }
+
+  .wg-modal-head p{
+    margin:10px 0 0;
+    color:rgba(226,232,240,.86);
+    font-size:14px;
+    line-height:1.7;
+  }
 
   .wg-modal-body{
-    padding:12px 16px 14px;
+    padding:22px 28px 18px;
     overflow:auto;
-    -webkit-overflow-scrolling: touch;
   }
 
-  .wg-row{
+  .wg-section{ margin-bottom:22px; }
+
+  .wg-section-title{
     display:flex;
+    align-items:center;
     gap:8px;
-    flex-wrap:wrap;
-    margin-top:12px;
+    margin:0 0 10px;
+    font-size:19px;
+    font-weight:950;
+    color:#fff;
+    letter-spacing:-0.25px;
+  }
+
+  .wg-section-desc{
+    margin:0 0 14px;
+    color:rgba(203,213,225,.86);
+    font-size:13px;
+    line-height:1.6;
+  }
+
+  .wg-mode-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:14px;
+  }
+
+  .wg-select{
+    position:relative;
+    display:block;
+    cursor:pointer;
+    border-radius:20px;
+    overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 10px 24px rgba(0,0,0,.18);
+    transition:all .16s ease;
+    min-height:118px;
+  }
+
+  .wg-select:hover{
+    transform:translateY(-2px);
+    border-color:rgba(96,165,250,.48);
+  }
+
+  .wg-select input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .wg-select .wg-check{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:26px;
+    height:26px;
+    border-radius:999px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);
+    color:transparent;
+    font-size:13px;
+    font-weight:950;
+    z-index:2;
+  }
+
+  .wg-select-body{ padding:20px 18px 16px; }
+
+  .wg-select b{
+    display:block;
+    margin:0 0 8px;
+    color:#fff;
+    font-size:18px;
+    font-weight:950;
+    letter-spacing:-0.35px;
+  }
+
+  .wg-select small{
+    display:block;
+    color:rgba(226,232,240,.86);
+    font-size:13px;
+    line-height:1.6;
+  }
+
+  .wg-select input:checked + .wg-check{
+    background:linear-gradient(180deg, #4b8cff, #2f6fff 55%, #2158d6);
+    border-color:rgba(96,165,250,.65);
+    color:#fff;
+    box-shadow:0 10px 20px rgba(37,99,235,.26);
+  }
+
+  .wg-select:has(input:checked){
+    border-color:#4b8cff;
+    box-shadow:
+      inset 0 0 0 1px rgba(75,140,255,.35),
+      0 20px 34px rgba(37,99,235,.16);
+    background:linear-gradient(180deg, rgba(59,130,246,.18), rgba(255,255,255,.06));
   }
 
   #wgCats{
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap:8px;
-    margin-top:12px;
-    align-items:stretch;
-  }
-
-  .wg-modal-foot{
-    padding:12px 16px;
-    border-top:1px solid rgba(15,23,42,0.06);
-    background:#fff;
-    display:flex;
-    justify-content:flex-end;
+    grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
     gap:10px;
   }
 
-  @media (max-width: 560px){
-    #wgCats{ grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-    .wg-overlay{ padding:12px; }
+  .wg-cat{
+    position:relative;
+    display:block;
+    min-height:82px;
+    cursor:pointer;
+    border-radius:16px;
+    overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+    border:1px solid rgba(255,255,255,.10);
+    transition:all .16s ease;
   }
 
-  .wg-intro{
-    margin: 12px 0 14px;
-    padding: 14px 16px;
-    background:#fff;
-    border:1px solid rgba(15,23,42,.08);
-    border-radius:14px;
+  .wg-cat:hover{
+    transform:translateY(-1px);
+    border-color:rgba(96,165,250,.38);
   }
 
-  .wg-intro-title{
+  .wg-cat input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .wg-cat .wg-check{
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:22px;
+    height:22px;
+    border-radius:999px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);
+    color:transparent;
+    font-size:11px;
+    font-weight:950;
+  }
+
+  .wg-cat-body{ padding:14px 12px 12px; }
+
+  .wg-cat-title{
+    padding-right:26px;
+    margin-bottom:10px;
+    color:#fff;
     font-size:14px;
+    font-weight:950;
+    line-height:1.35;
+    word-break:keep-all;
+    letter-spacing:-0.2px;
+  }
+
+  .wg-cat-count{
+    display:inline-flex;
+    align-items:center;
+    min-height:26px;
+    padding:0 9px;
+    border-radius:999px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    color:rgba(226,232,240,.92);
+    font-size:11.5px;
     font-weight:900;
-    margin:0 0 6px;
+  }
+
+  .wg-cat input:checked + .wg-check{
+    background:linear-gradient(180deg, #4b8cff, #2f6fff 55%, #2158d6);
+    border-color:rgba(96,165,250,.65);
+    color:#fff;
+  }
+
+  .wg-cat:has(input:checked){
+    border-color:#4b8cff;
+    background:linear-gradient(180deg, rgba(59,130,246,.16), rgba(255,255,255,.06));
+    box-shadow:0 16px 28px rgba(37,99,235,.12);
+  }
+
+  .wg-preview{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:12px;
+  }
+
+  .wg-preview-card{
+    border-radius:18px;
+    background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+    border:1px solid rgba(255,255,255,.10);
+    padding:14px 14px 12px;
+  }
+
+  .wg-preview-card .k{
+    color:rgba(226,232,240,.78);
+    font-size:12px;
+    font-weight:900;
+    margin-bottom:8px;
+  }
+
+  .wg-preview-card .v{
+    color:#fff;
+    font-size:28px;
+    font-weight:950;
+    letter-spacing:-0.7px;
+  }
+
+  .wg-modal-foot{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+    padding:18px 28px 24px;
+    border-top:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.08));
+  }
+
+  .wg-result-overlay{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(7,12,24,.62);
+    backdrop-filter: blur(10px);
+    z-index:10000;
+  }
+
+  .wg-result-modal{
+    width:min(620px, 94vw);
+    border-radius:26px;
+    overflow:hidden;
+    background:linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+    box-shadow:0 32px 84px rgba(0,0,0,.28);
+    border:1px solid rgba(15,23,42,.08);
+  }
+
+  .wg-result-head{
+    padding:22px 24px 16px;
+    background:linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+    border-bottom:1px solid rgba(15,23,42,.06);
+  }
+
+  .wg-result-head h3{
+    margin:0;
+    font-size:30px;
+    font-weight:950;
+    letter-spacing:-0.8px;
     color:#0f172a;
   }
 
-  .wg-intro-desc{
-    font-size:13px;
-    line-height:1.6;
-    color:#475569;
-    margin:0 0 10px;
+  .wg-result-head p{
+    margin:8px 0 0;
+    color:#64748b;
+    font-size:14px;
+    line-height:1.65;
   }
 
-  .wg-intro-list{
-    margin:0;
-    padding-left:16px;
-    color:#475569;
-    font-size:12.5px;
+  .wg-result-body{ padding:18px 24px; }
+
+  .wg-result-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:12px;
   }
 
-  .wg-intro-list li{ margin:4px 0; }
+  .wg-result-stat{
+    border-radius:18px;
+    border:1px solid rgba(15,23,42,.07);
+    background:linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    padding:16px 16px 14px;
+    box-shadow:var(--wg-soft);
+  }
+
+  .wg-result-stat .k{
+    font-size:12px;
+    color:#64748b;
+    font-weight:900;
+    margin-bottom:8px;
+  }
+
+  .wg-result-stat .v{
+    font-size:28px;
+    font-weight:950;
+    color:#0f172a;
+    letter-spacing:-0.8px;
+  }
+
+  .wg-result-foot{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    padding:16px 24px 24px;
+  }
+
+  @media (max-width: 980px){
+    .wg-hero{ grid-template-columns:1fr; }
+    .wg-stats{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .wg-preview{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 760px){
+    .wg-page{ padding:18px 12px 42px; }
+    .wg-title{ font-size:34px; }
+    .wg-mode-grid{ grid-template-columns:1fr; }
+    .wg-mode-info{ grid-template-columns:1fr; }
+    #wgCats{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .wg-modal-head{ padding:20px 20px 14px; }
+    .wg-modal-head h3{ font-size:30px; }
+    .wg-modal-body{ padding:18px 20px 16px; }
+    .wg-modal-foot{ padding:14px 20px 20px; }
+    .wg-arena{ height:420px; }
+    .wg-submit{ min-width:94px; height:50px; font-size:16px; }
+    .wg-input{ height:52px; font-size:16px; }
+  }
+
+  @media (max-width: 560px){
+    .wg-stats{ grid-template-columns:1fr; }
+    .wg-shell-top{ flex-direction:column; align-items:flex-start; }
+    .wg-top-right{ width:100%; }
+    .wg-top-right .wg-btn{ flex:1; }
+    #wgCats, .wg-preview, .wg-result-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width: 430px){
+    #wgCats, .wg-preview, .wg-result-grid{ grid-template-columns:1fr; }
+    .wg-title{ font-size:30px; }
+  }
 </style>
 
-<div class="wg-wrap">
-  <div class="wg-head">
-    <div>
-      <h1 class="wg-title">🎮 단어 게임</h1>
-      <p class="wg-sub">
-        이 <b>단어 퀴즈</b>는 일본어 학습자가 자주 사용되는 단어를 빠르게 인식하고 의미를 떠올릴 수 있도록 설계된 학습 도구입니다.
-      </p>
-      <p class="wg-sub">
-        반복적인 연습을 통해 단어 인지 속도와 독해 능력을 함께 향상시키는 것을 목표로 합니다.
-      </p>
-    </div>
+<div class="wg-page">
+  <div class="wg-wrap">
 
-    <div class="wg-actions">
-      <a class="btn ghost" href="{{ url_for('quiz') }}">← 게임 선택</a>
-      <a class="btn" href="{{ url_for('word_game_ranking_page') }}">랭킹 보기</a>
-      <button class="btn" id="wgResetBtn" type="button">재시작</button>
-      <button class="btn primary" id="wgStartBtn" type="button">단어 선택</button>
-    </div>
-  </div>
-
-  <div class="wg-intro">
-    <div class="wg-intro-title">게임 팁</div>
-    <div class="wg-intro-desc">
-      제한 시간 안에 <b>일본어 발음 → 한국어 뜻</b>을 빠르게 떠올리는 훈련이에요.
-      모르면 과감히 넘기고, 틀린 단어는 단어모음에서 복습하면 효과가 좋아요.
-    </div>
-    <ul class="wg-intro-list">
-      <li>✔ 모르면 오래 고민하지 말고 빠르게 넘기기</li>
-      <li>✔ 자주 틀리는 단어는 반복해서 외우기</li>
-      <li>✔ 하루 1~2판만 해도 기억 유지에 도움</li>
-    </ul>
-  </div>
-
-  <div class="wg-panel">
-    <div class="wg-chip"><b>점수</b> <span id="wgScore">0</span></div>
-    <div class="wg-chip"><b>남은 풀</b> <span id="wgPool">-</span></div>
-  </div>
-
-  <div class="wg-box">
-    <div class="wg-arena" id="wgArena">
-      <div class="wg-line" id="wgLine"></div>
-
-      <div class="wg-overlay" id="wgOverlay">
-        <div class="wg-modal">
-
-          <div class="wg-modal-head">
-            <h3>단어 게임 설정</h3>
-            <p>카테고리를 선택하면 그 범위에서 단어가 나와요. (미선택 시 전체)</p>
+    <div class="wg-hero">
+      <div class="wg-panel-card wg-hero-main">
+        <div class="wg-title-row">
+          <div class="wg-logo">🎮</div>
+          <div>
+            <h1 class="wg-title">단어 게임</h1>
+            <p class="wg-sub">
+              <b>지나가는 일본어 단어를 보고 한국어 뜻을 빠르게 입력하는<br> 학습 게임이에요.
+              <br>연습모드로 충분히 익힌 뒤, 단어를 많이 외워 랭킹모드에<br> 도전해보세요.</b>
+            </p>
           </div>
+        </div>
 
-          <div class="wg-modal-body">
-            <div class="wg-row" style="margin-top:10px;">
-              <label class="wg-select">
-                <input type="radio" name="wgMode" value="practice" checked>
-                <b>연습 모드</b>
-                <span style="color:#64748b;font-size:12px;">(카테고리 선택 가능 / 풀 끝나면 클리어)</span>
-              </label>
+        <div class="wg-mode-info single">
+          <div class="wg-mode-card">
+            <span class="t">📚 단어모음 연계 학습 게임</span>
+            <span class="d">
+              이 게임은 <b>단어모음 페이지에서 공부한 일본어 단어들</b>을 바탕으로 뜻을 빠르게 떠올리고 입력하는 복습형 게임이에요.
+              눈으로 익힌 단어를 바로 정답으로 입력하면서,
+              <b>암기한 내용을 실제로 기억하고 있는지 자연스럽게 점검</b>할 수 있어요.
+            </span>
+          </div>
+        </div>
 
-              <label class="wg-select">
-                <input type="radio" name="wgMode" value="rank">
-                <b>랭킹 모드</b>
-                <span style="color:#64748b;font-size:12px;">(전체 단어 / 점수 저장 / 무한)</span>
-              </label>
+        <div class="wg-mini-row">
+          <div class="wg-mini-chip">⚡ 빠른 입력 훈련</div>
+          <div class="wg-mini-chip">🧠 반복 암기 강화</div>
+          <div class="wg-mini-chip">🏆 모드별 랭킹 저장</div>
+          <div class="wg-mini-chip">📚 카테고리 선택 플레이</div>
+        </div>
+      </div>
+
+      <div class="wg-panel-card wg-hero-side">
+        <div>
+          <h3 class="wg-side-title">모드 안내</h3>
+
+          <div class="wg-side-mode-list">
+            <div class="wg-side-mode-item">
+              <span class="k">⚡ 스피드 모드</span>
+              <span class="d">카드가 오른쪽 선에 닿기 전에 뜻을 입력해야 해요. 빠른 판단과 반응 속도가 중요한 모드예요.</span>
             </div>
 
-            <div id="wgCats"></div>
+            <div class="wg-side-mode-item">
+              <span class="k">🏃 마라톤 모드</span>
+              <span class="d">카드가 지나가도 계속 진행돼요. 오래 플레이하면서 정답 수를 쌓고 현재 시점에서 종료도 가능해요.</span>
+            </div>
           </div>
+        </div>
 
-          <div class="wg-modal-foot">
-            <button class="btn" id="wgOverlayClose" type="button">닫기</button>
-            <button class="btn primary" id="wgOverlayStart" type="button">게임 시작</button>
-          </div>
-
+        <div class="wg-side-note">
+          랭킹 모드에서는 현재 점수 기준으로 기록이 저장돼요.
+          마라톤 모드가 길게 느껴질 때는 아래 <b>게임 종료</b> 버튼으로 지금 점수에서 마무리할 수 있어요.
         </div>
       </div>
     </div>
 
-    <div class="wg-bottom">
-      <input class="wg-input" id="wgInput" type="text" placeholder="여기에 한국어 뜻을 입력하고 Enter!" autocomplete="off" />
-      <button class="btn" id="wgSubmit" type="button">Enter</button>
+    <div class="wg-stats">
+      <div class="wg-stat">
+        <div class="k">점수</div>
+        <div class="v" id="wgScore">0</div>
+      </div>
+      <div class="wg-stat">
+        <div class="k">남은 단어</div>
+        <div class="v" id="wgPool">-</div>
+      </div>
+      <div class="wg-stat">
+        <div class="k">현재 모드</div>
+        <div class="modev" id="wgModeLabel">-</div>
+      </div>
+      <div class="wg-stat">
+        <div class="k">진행</div>
+        <div class="v" id="wgProgress">0 / 0</div>
+      </div>
     </div>
 
-    <div class="wg-hint">
-      팁) 정답 비교는 <b>앞뒤 공백 제거 + 띄어쓰기/하이픈 무시 + 영문 대소문자 무시</b>로 판단해요.<br>
-      숫자가 들어간 뜻은 <b>12시간 / 열두시간 / 십이시간</b>처럼 입력해도 정답 처리되도록 확장했습니다.
+    <div class="wg-shell">
+      <div class="wg-shell-top">
+        <div class="wg-top-left">
+          <div class="wg-badge">⌨ 입력 즉시 판정</div>
+          <div class="wg-badge">📝 띄어쓰기·하이픈 무시</div>
+          <div class="wg-badge">🔢 숫자 표현 확장</div>
+        </div>
+
+        <div class="wg-top-right">
+          <button class="wg-btn ghost" id="wgOpenSettingsBtn" type="button">모드 변경</button>
+          <button class="wg-btn danger" id="wgEndBtn" type="button">게임 종료</button>
+          <a class="wg-btn ghost" href="{{ url_for('word_game_ranking_page') }}">랭킹 보기</a>
+          <button class="wg-btn" id="wgResetBtn" type="button">재시작</button>
+        </div>
+      </div>
+
+      <div class="wg-arena" id="wgArena">
+        <div class="wg-line" id="wgLine"></div>
+
+        <div class="wg-overlay" id="wgOverlay">
+          <div class="wg-modal">
+            <div class="wg-modal-head">
+              <h3>🎮 단어 게임 시작</h3>
+              <p>
+                먼저 <b>게임 타입</b>과 <b>플레이 방식</b>을 선택하세요.<br>
+                연습 모드에서는 카테고리를 골라 원하는 단어만 플레이할 수 있어요.
+              </p>
+            </div>
+
+            <div class="wg-modal-body">
+              <div class="wg-section">
+                <div class="wg-section-title">⚡ 게임 모드 선택</div>
+                <div class="wg-section-desc">
+                  긴장감 있는 반응형 모드와, 끝까지 완주하는 학습형 모드 중에서 선택하세요.
+                </div>
+
+                <div class="wg-mode-grid">
+                  <label class="wg-select">
+                    <input type="radio" name="wgGameType" value="speed" checked>
+                    <span class="wg-check">✓</span>
+                    <div class="wg-select-body">
+                      <b>스피드 챌린지</b>
+                      <small>
+                        카드가 오른쪽 선에 닿으면 즉시 종료<br>
+                        빠른 판단과 반응 속도가 중요한 모드
+                      </small>
+                    </div>
+                  </label>
+
+                  <label class="wg-select">
+                    <input type="radio" name="wgGameType" value="marathon">
+                    <span class="wg-check">✓</span>
+                    <div class="wg-select-body">
+                      <b>타이핑 마라톤</b>
+                      <small>
+                        카드가 지나가도 계속 진행<br>
+                        끝까지 플레이 후 정답 수와 정답률 확인
+                      </small>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="wg-section">
+                <div class="wg-section-title">🕹 플레이 방식 선택</div>
+                <div class="wg-section-desc">
+                  연습용으로 가볍게 플레이할지, 랭킹 기록에 도전할지 선택하세요.
+                </div>
+
+                <div class="wg-mode-grid">
+                  <label class="wg-select">
+                    <input type="radio" name="wgMode" value="practice" checked>
+                    <span class="wg-check">✓</span>
+                    <div class="wg-select-body">
+                      <b>연습 모드</b>
+                      <small>
+                        카테고리 선택 가능<br>
+                        기록은 랭킹에 반영되지 않음
+                      </small>
+                    </div>
+                  </label>
+
+                  <label class="wg-select">
+                    <input type="radio" name="wgMode" value="rank">
+                    <span class="wg-check">✓</span>
+                    <div class="wg-select-body">
+                      <b>랭킹 모드</b>
+                      <small>
+                        전체 단어 기준으로 진행<br>
+                        최고 점수가 모드별 랭킹에 저장됨
+                      </small>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="wg-section" id="wgCatsSection">
+                <div class="wg-section-title">📚 연습 카테고리 선택</div>
+                <div class="wg-section-desc">
+                  여러 개를 동시에 선택할 수 있어요. 선택하지 않으면 전체 단어가 나옵니다.
+                </div>
+                <div id="wgCats"></div>
+              </div>
+
+              <div class="wg-section">
+                <div class="wg-section-title">📊 결과 화면 예시</div>
+                <div class="wg-preview">
+                  <div class="wg-preview-card">
+                    <div class="k">총 단어</div>
+                    <div class="v">120</div>
+                  </div>
+                  <div class="wg-preview-card">
+                    <div class="k">정답</div>
+                    <div class="v">84</div>
+                  </div>
+                  <div class="wg-preview-card">
+                    <div class="k">오답</div>
+                    <div class="v">36</div>
+                  </div>
+                  <div class="wg-preview-card">
+                    <div class="k">정답률</div>
+                    <div class="v">70%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wg-modal-foot">
+              <button class="wg-btn ghost" id="wgOverlayClose" type="button">닫기</button>
+              <button class="wg-btn primary" id="wgOverlayStart" type="button">게임 시작</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wg-input-wrap">
+        <div class="wg-input-shell">
+          <input class="wg-input" id="wgInput" type="text" placeholder="여기에 한국어 뜻을 입력하고 Enter" autocomplete="off" />
+          <button class="wg-submit" id="wgSubmit" type="button">Enter</button>
+        </div>
+
+        <div class="wg-help">
+          <div><strong>입력 팁)</strong> 띄어쓰기, 하이픈, 대소문자를 크게 신경 쓰지 않아도 돼요.</div>
+          <div><strong>예시)</strong> 12시간 / 열두시간 / 십이시간처럼 입력해도 정답 처리 가능</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="wg-result-overlay" id="wgResultOverlay">
+  <div class="wg-result-modal">
+    <div class="wg-result-head">
+      <h3 id="wgResultTitle">게임 종료</h3>
+      <p id="wgResultDesc">이번 플레이 결과예요.</p>
+    </div>
+
+    <div class="wg-result-body">
+      <div class="wg-result-grid">
+        <div class="wg-result-stat">
+          <div class="k">총 단어</div>
+          <div class="v" id="wgResultTotal">0</div>
+        </div>
+        <div class="wg-result-stat">
+          <div class="k">정답</div>
+          <div class="v" id="wgResultCorrect">0</div>
+        </div>
+        <div class="wg-result-stat">
+          <div class="k">오답</div>
+          <div class="v" id="wgResultWrong">0</div>
+        </div>
+        <div class="wg-result-stat">
+          <div class="k">정답률</div>
+          <div class="v" id="wgResultRate">0%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wg-result-foot">
+      <button class="wg-btn ghost" id="wgResultClose" type="button">닫기</button>
+      <button class="wg-btn primary" id="wgResultRestart" type="button">다시하기</button>
     </div>
   </div>
 </div>
@@ -367,9 +1143,21 @@
   const lineEl = document.getElementById("wgLine");
   const overlay = document.getElementById("wgOverlay");
   const catsWrap = document.getElementById("wgCats");
+  const catsSection = document.getElementById("wgCatsSection");
 
-  const startBtn = document.getElementById("wgStartBtn");
+  const resultOverlay = document.getElementById("wgResultOverlay");
+  const resultTitleEl = document.getElementById("wgResultTitle");
+  const resultDescEl = document.getElementById("wgResultDesc");
+  const resultTotalEl = document.getElementById("wgResultTotal");
+  const resultCorrectEl = document.getElementById("wgResultCorrect");
+  const resultWrongEl = document.getElementById("wgResultWrong");
+  const resultRateEl = document.getElementById("wgResultRate");
+  const resultCloseBtn = document.getElementById("wgResultClose");
+  const resultRestartBtn = document.getElementById("wgResultRestart");
+
+  const openSettingsBtn = document.getElementById("wgOpenSettingsBtn");
   const resetBtn = document.getElementById("wgResetBtn");
+  const endBtn = document.getElementById("wgEndBtn");
   const overlayStart = document.getElementById("wgOverlayStart");
   const overlayClose = document.getElementById("wgOverlayClose");
 
@@ -378,6 +1166,8 @@
 
   const scoreEl = document.getElementById("wgScore");
   const poolEl = document.getElementById("wgPool");
+  const modeLabelEl = document.getElementById("wgModeLabel");
+  const progressEl = document.getElementById("wgProgress");
 
   const toast = (msg) => {
     if (typeof window.showToast === "function") window.showToast(msg);
@@ -392,17 +1182,19 @@
   let running = false;
 
   let score = 0;
-  let cleared = 0;
+  let totalWords = 0;
+  let finishedWords = 0;
 
   const FIXED_SPEED = 2;
-  const FIXED_SPAWN = 10000;
+  const FIXED_SPAWN = 3000;
+  const INITIAL_SPAWN_COUNT = 3;
+  const POSITION_TRY_COUNT = 30;
+  const MIN_WORD_GAP_X = 240;
+  const MIN_WORD_GAP_Y = 95;
 
   let spawnEvery = FIXED_SPAWN;
   let spawnTimer = null;
   let scoreSaved = false;
-
-  let lastLaneIndex = -1;
-  const LANE_COUNT = 6;
 
   const COMMON_UNITS = [
     "시간","시","분","초","개","명","살","층","번","월","일","년","원",
@@ -568,9 +1360,24 @@
     return r ? r.value : "practice";
   }
 
+  function getGameType(){
+    const r = overlay.querySelector('input[name="wgGameType"]:checked');
+    return r ? r.value : "speed";
+  }
+
+  function getModeLabel(){
+    const mode = getMode();
+    const gameType = getGameType();
+
+    if (mode === "practice" && gameType === "speed") return "연습 / 스피드";
+    if (mode === "practice" && gameType === "marathon") return "연습 / 마라톤";
+    if (mode === "rank" && gameType === "speed") return "랭킹 / 스피드";
+    return "랭킹 / 마라톤";
+  }
+
   function toggleCatsUI(){
     const mode = getMode();
-    catsWrap.style.display = (mode === "rank") ? "none" : "grid";
+    catsSection.style.display = (mode === "rank") ? "none" : "block";
   }
 
   async function loadPool(selectedCats){
@@ -585,7 +1392,12 @@
     if (!data || !data.ok) throw new Error("pool load failed");
 
     pool = Array.isArray(data.items) ? data.items : [];
+    totalWords = pool.length;
+    finishedWords = 0;
+    score = 0;
+
     poolEl.textContent = String(pool.length);
+    progressEl.textContent = `0 / ${totalWords}`;
 
     if (!allCats.length){
       const map = new Map();
@@ -603,11 +1415,15 @@
     catsWrap.innerHTML = "";
     for (const c of cats){
       const label = document.createElement("label");
-      label.className = "wg-select";
-      label.innerHTML =
-        `<input type="checkbox" value="${c.key}">
-         <b>${c.title}</b>
-         <span style="color:#64748b;font-size:12px;">(${c.count})</span>`;
+      label.className = "wg-cat";
+      label.innerHTML = `
+        <input type="checkbox" value="${c.key}">
+        <span class="wg-check">✓</span>
+        <div class="wg-cat-body">
+          <div class="wg-cat-title">${c.title}</div>
+          <div class="wg-cat-count">${c.count}개 단어</div>
+        </div>
+      `;
       catsWrap.appendChild(label);
     }
   }
@@ -627,6 +1443,28 @@
   function setHUD(){
     scoreEl.textContent = String(score);
     poolEl.textContent = String(pool.length);
+    modeLabelEl.textContent = getModeLabel();
+    progressEl.textContent = `${finishedWords} / ${totalWords}`;
+  }
+
+  function showResultModal(title, desc, statsOverride = null){
+    const total = statsOverride?.total ?? totalWords;
+    const correct = statsOverride?.correct ?? score;
+    const wrong = statsOverride?.wrong ?? Math.max(0, total - correct);
+    const rate = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+    resultTitleEl.textContent = title;
+    resultDescEl.textContent = desc;
+    resultTotalEl.textContent = String(total);
+    resultCorrectEl.textContent = String(correct);
+    resultWrongEl.textContent = String(wrong);
+    resultRateEl.textContent = `${rate}%`;
+
+    resultOverlay.style.display = "flex";
+  }
+
+  function hideResultModal(){
+    resultOverlay.style.display = "none";
   }
 
   async function submitRankScoreIfNeeded(){
@@ -635,7 +1473,10 @@
       const res = await fetch("/api/word_game/submit_score", {
         method: "POST",
         headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({score})
+        body: JSON.stringify({
+          score,
+          mode: getGameType()
+        })
       });
       if (res.status === 401) return toast("랭킹 저장은 로그인 후 가능합니다.");
       const data = await res.json();
@@ -653,7 +1494,6 @@
     if (rafId) cancelAnimationFrame(rafId);
     rafId = null;
     input.blur();
-    overlay.style.display = "flex";
   }
 
   async function gameOver(reason){
@@ -661,60 +1501,46 @@
     scoreSaved = true;
     await stopGameCommon();
     await submitRankScoreIfNeeded();
-    toast(reason || `게임오버! 점수: ${score}점`);
+    showResultModal("게임 오버", reason || "스피드 챌린지가 종료되었습니다.");
   }
 
-  async function gameClear(){
+  async function gameClear(reason){
+    if (scoreSaved) return;
+    scoreSaved = true;
     await stopGameCommon();
-    toast(`클리어! 점수: ${score}점 (총 ${cleared}개 정답)`);
+    await submitRankScoreIfNeeded();
+    showResultModal("게임 종료", reason || "플레이가 완료되었습니다.");
   }
 
-  function getLaneY(arenaHeight){
-    const topPadding = 18;
-    const bottomPadding = 80;
-    const usable = Math.max(120, arenaHeight - topPadding - bottomPadding);
-    const laneGap = usable / LANE_COUNT;
-
-    const usedLanes = new Set();
-    active.forEach(a => {
-      if (typeof a.laneIndex === "number") usedLanes.add(a.laneIndex);
-    });
-
-    let candidates = [];
-    for (let i = 0; i < LANE_COUNT; i++){
-      if (i === lastLaneIndex) continue;
-      candidates.push(i);
+  async function manualEndGame(){
+    if (!running){
+      toast("진행 중인 게임이 없어요.");
+      return;
     }
+    if (scoreSaved) return;
 
-    if (!candidates.length){
-      candidates = Array.from({length: LANE_COUNT}, (_, i) => i);
-    }
+    scoreSaved = true;
+    await stopGameCommon();
+    await submitRankScoreIfNeeded();
 
-    let filtered = candidates.filter(i => !usedLanes.has(i));
-
-    if (!filtered.length){
-      filtered = candidates;
-    }
-
-    const laneIndex = filtered[Math.floor(Math.random() * filtered.length)];
-    lastLaneIndex = laneIndex;
-
-    const baseY = topPadding + laneGap * laneIndex;
-    const jitter = Math.min(12, laneGap * 0.18);
-    const y = baseY + laneGap * 0.22 + (Math.random() * jitter * 2 - jitter);
-
-    return { y, laneIndex };
+    const manualTotal = Math.max(finishedWords, score);
+    showResultModal(
+      "게임 종료",
+      "현재 시점 기준으로 게임을 종료했어요. 지금까지의 점수로 결과가 저장됩니다.",
+      {
+        total: manualTotal,
+        correct: score,
+        wrong: Math.max(0, manualTotal - score)
+      }
+    );
   }
 
   function spawnWord(){
     if (!running) return;
+    if (!pool.length) return;
 
-    if (!pool.length){
-      if (getMode() === "rank"){
-        loadPool([]).catch(()=>{});
-      }
-      return;
-    }
+    const pos = getRandomSpawnPosition();
+    if (!pos) return;
 
     const it = pool.pop();
     poolEl.textContent = String(pool.length);
@@ -727,20 +1553,64 @@
     `;
     arena.appendChild(el);
 
-    const arenaRect = arena.getBoundingClientRect();
-    const pos = getLaneY(arenaRect.height);
-    const x = -(140 + Math.random() * 80);
-
     active.push({
       el,
-      x,
+      x: pos.x,
       y: pos.y,
-      laneIndex: pos.laneIndex,
-      speed: FIXED_SPEED + Math.random() * 2,
+      speed: FIXED_SPEED + Math.random() * 1.2,
       word: it
     });
 
-    el.style.transform = `translate(${x}px, ${pos.y}px)`;
+    el.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
+  }
+
+  function finishWord(a, wasCorrect){
+    if (a._finished) return;
+    a._finished = true;
+
+    finishedWords += 1;
+    if (wasCorrect){
+      score += 1;
+    }
+
+    if (a.el && a.el.parentNode){
+      a.el.parentNode.removeChild(a.el);
+    }
+
+    const idx = active.indexOf(a);
+    if (idx !== -1) active.splice(idx, 1);
+
+    setHUD();
+  }
+
+  function isFarEnoughFromOthers(x, y){
+    for (const a of active){
+      const dx = Math.abs(a.x - x);
+      const dy = Math.abs(a.y - y);
+
+      if (dx < MIN_WORD_GAP_X && dy < MIN_WORD_GAP_Y){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function getRandomSpawnPosition(){
+    const arenaRect = arena.getBoundingClientRect();
+
+    const minY = 24;
+    const maxY = Math.max(40, arenaRect.height - 130);
+    const x = -(160 + Math.random() * 100);
+
+    for (let i = 0; i < POSITION_TRY_COUNT; i++){
+      const y = minY + Math.random() * (maxY - minY);
+
+      if (isFarEnoughFromOthers(x, y)){
+        return { x, y };
+      }
+    }
+
+    return null;
   }
 
   function tick(){
@@ -748,27 +1618,38 @@
 
     const lineRect = lineEl.getBoundingClientRect();
     const lineLeft = lineRect.left;
+    const lineRight = lineRect.right;
+    const gameType = getGameType();
 
-    for (const a of active){
+    for (const a of [...active]){
       a.x += (a.speed / 60);
       a.el.style.transform = `translate(${a.x}px, ${a.y}px)`;
 
       const r = a.el.getBoundingClientRect();
-      if (r.right >= lineLeft){
-        gameOver(`게임오버! 점수: ${score}점`);
-        return;
+
+      if (gameType === "speed"){
+        if (r.right >= lineLeft){
+          gameOver("카드가 선에 닿아 게임이 종료되었어요.");
+          return;
+        }
+      } else {
+        if (r.left >= lineRight){
+          finishWord(a, false);
+        }
       }
     }
 
-    if (getMode() === "practice" && pool.length === 0 && active.length === 0){
-      gameClear();
+    if (pool.length === 0 && active.length === 0){
+      if (getGameType() === "speed"){
+        gameClear("모든 단어를 끝까지 막아내며 클리어했어요.");
+      } else {
+        gameClear("타이핑 마라톤이 끝까지 완료되었어요.");
+      }
       return;
     }
 
     rafId = requestAnimationFrame(tick);
   }
-
-  let enterQueued = false;
 
   function tryHit(){
     if (!running) return;
@@ -776,49 +1657,32 @@
     const v = norm(input.value);
     if (!v){
       input.value = "";
+      input.focus();
       return;
     }
 
     const idx = active.findIndex(a => isCorrectAnswer(v, a.word.ko));
     if (idx === -1){
       input.value = "";
+      input.focus();
       return;
     }
 
     const a = active[idx];
-
-    if (a.el && a.el.parentNode){
-      a.el.parentNode.removeChild(a.el);
-    }
-
-    score += 1;
-    cleared += 1;
-    setHUD();
-
-    active.splice(idx, 1);
+    finishWord(a, true);
 
     input.value = "";
-
-    spawnWord();
-  }
-
-  function queueTryHit(){
-    if (enterQueued) return;
-    enterQueued = true;
-
-    requestAnimationFrame(() => {
-      enterQueued = false;
-      tryHit();
-    });
+    input.focus();
   }
 
   function startGame(){
     scoreSaved = false;
+    hideResultModal();
 
     clearArenaWords();
     score = 0;
-    cleared = 0;
-    lastLaneIndex = -1;
+    totalWords = pool.length;
+    finishedWords = 0;
 
     spawnEvery = FIXED_SPAWN;
 
@@ -826,24 +1690,33 @@
 
     running = true;
     overlay.style.display = "none";
+    input.value = "";
     input.focus();
 
-    spawnWord();
-    if (pool.length) spawnWord();
+    for (let i = 0; i < INITIAL_SPAWN_COUNT; i++){
+      setTimeout(() => {
+        if (running) spawnWord();
+      }, i * 700);
+    }
 
     if (spawnTimer) clearInterval(spawnTimer);
-    spawnTimer = setInterval(spawnWord, spawnEvery);
+    spawnTimer = setInterval(() => {
+      if (!running) return;
+      spawnWord();
+    }, spawnEvery);
 
     if (rafId) cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(tick);
   }
 
   async function openOverlay(){
+    hideResultModal();
     overlay.style.display = "flex";
     if (!allCats.length){
       await loadPool([]);
     }
     toggleCatsUI();
+    setHUD();
   }
 
   async function applyCatsAndStart(){
@@ -865,9 +1738,7 @@
     startGame();
   }
 
-  startBtn.addEventListener("click", () => openOverlay().catch(()=>toast("불러오기 실패")));
-
-  resetBtn.addEventListener("click", async () => {
+  async function restartCurrentGame(){
     try{
       const mode = getMode();
       if (mode === "rank") await loadPool([]);
@@ -876,6 +1747,16 @@
     }catch(e){
       toast("재시작 실패(데이터 불러오기 실패)");
     }
+  }
+
+  openSettingsBtn.addEventListener("click", () => openOverlay().catch(()=>toast("불러오기 실패")));
+
+  resetBtn.addEventListener("click", async () => {
+    await restartCurrentGame();
+  });
+
+  endBtn.addEventListener("click", async () => {
+    await manualEndGame();
   });
 
   overlayStart.addEventListener("click", () => {
@@ -887,18 +1768,30 @@
   });
 
   overlay.addEventListener("change", (e) => {
-    if (e.target && e.target.name === "wgMode") toggleCatsUI();
+    if (e.target && (e.target.name === "wgMode" || e.target.name === "wgGameType")){
+      toggleCatsUI();
+      setHUD();
+    }
   });
 
-  submitBtn.addEventListener("click", queueTryHit);
+  resultCloseBtn.addEventListener("click", () => {
+    hideResultModal();
+    overlay.style.display = "flex";
+  });
+
+  resultRestartBtn.addEventListener("click", async () => {
+    await restartCurrentGame();
+  });
+
+  submitBtn.addEventListener("click", () => {
+    tryHit();
+  });
 
   input.addEventListener("keydown", (e) => {
     if (e.key !== "Enter") return;
-
     if (e.isComposing || e.keyCode === 229) return;
-
     e.preventDefault();
-    queueTryHit();
+    tryHit();
   });
 
   openOverlay().catch(()=>{});
