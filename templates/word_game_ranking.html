@@ -17,6 +17,31 @@
   .btn.primary{ background:#2563eb; color:#fff; border-color:rgba(37,99,235,0.22); }
   .btn.ghost{ background:#f8fafc; }
 
+  .rk-tabs{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:14px 0 16px;
+  }
+  .rk-tab{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:40px;
+    padding:0 14px;
+    border-radius:999px;
+    border:1px solid rgba(15,23,42,0.10);
+    background:#fff;
+    color:#0f172a;
+    text-decoration:none;
+    font-weight:900;
+  }
+  .rk-tab.active{
+    background:#2563eb;
+    color:#fff;
+    border-color:rgba(37,99,235,0.22);
+  }
+
   .rk-grid{ display:grid; grid-template-columns: 1.2fr 0.8fr; gap:14px; align-items:start; }
   @media (max-width: 920px){ .rk-grid{ grid-template-columns:1fr; } }
 
@@ -46,12 +71,9 @@
   .rk-score{ width:110px; font-weight:900; }
   .rk-date{ width:90px; color:#64748b; font-size:12px; }
 
-  /* TOP3 강조 */
   tr.top1 td{ background: rgba(250, 204, 21, 0.10); }
   tr.top2 td{ background: rgba(148, 163, 184, 0.12); }
   tr.top3 td{ background: rgba(249, 115, 22, 0.10); }
-
-  /* 내 기록 강조 */
   tr.me td{ outline: 2px solid rgba(37,99,235,0.22); outline-offset:-2px; background: rgba(37,99,235,0.06); }
 
   .muted{ color:#64748b; font-size:12px; }
@@ -73,23 +95,31 @@
   <div class="rk-head">
     <div>
       <h1 class="rk-title">단어 게임 랭킹</h1>
-      <p class="rk-sub">랭킹 모드에서 기록된 <b>최고 점수</b> 기준으로 정렬됩니다.</p>
+      <p class="rk-sub">선택한 모드의 <b>최고 점수</b> 기준으로 정렬됩니다.</p>
     </div>
     <div class="rk-actions">
-      <a class="btn ghost" href="{{ url_for('word_game') }}">← 게임으로</a>
-      <a class="btn ghost" href="{{ url_for('quiz') }}">← 게임 선택</a>
+      <a class="btn ghost" href="{{ url_for('word_game') }}">← 단어게임으로</a>
+      <a class="btn ghost" href="{{ url_for('quiz') }}">← 퀴즈게임목록</a>
       {% if not user %}
         <a class="btn primary" href="{{ url_for('login') }}">로그인</a>
       {% endif %}
     </div>
   </div>
 
+  <div class="rk-tabs">
+    <a class="rk-tab {% if ranking_mode == 'speed' %}active{% endif %}"
+       href="{{ url_for('word_game_ranking_page', mode='speed') }}">스피드 챌린지</a>
+    <a class="rk-tab {% if ranking_mode == 'marathon' %}active{% endif %}"
+       href="{{ url_for('word_game_ranking_page', mode='marathon') }}">타이핑 마라톤</a>
+  </div>
+
   <div class="rk-grid">
-    <!-- 랭킹 테이블 -->
     <div class="card">
       <div class="card-hd">
         <h3>TOP 50</h3>
-        <span class="pill">최고점수</span>
+        <span class="pill">
+          {% if ranking_mode == 'marathon' %}마라톤 최고점{% else %}스피드 최고점{% endif %}
+        </span>
       </div>
 
       {% if not top or top|length == 0 %}
@@ -112,7 +142,7 @@
                 {% if rank == 1 %}top1{% elif rank == 2 %}top2{% elif rank == 3 %}top3{% endif %}
                 {% if is_me %} me{% endif %}
               ">
-              <td class="rk-num">
+                <td class="rk-num">
                   {% if rank == 1 %}🥇
                   {% elif rank == 2 %}🥈
                   {% elif rank == 3 %}🥉
@@ -128,7 +158,6 @@
                 </td>
 
                 <td class="rk-score">{{ row.score }}점</td>
-
                 <td class="rk-date">
                   {% if row.at %}
                     {{ row.at[:10] }}
@@ -143,11 +172,12 @@
       {% endif %}
     </div>
 
-    <!-- 내 정보 카드 -->
     <div class="card">
       <div class="card-hd">
         <h3>내 랭킹</h3>
-        <span class="pill">랭킹 모드 기준</span>
+        <span class="pill">
+          {% if ranking_mode == 'marathon' %}마라톤 기준{% else %}스피드 기준{% endif %}
+        </span>
       </div>
       <div class="mybox">
         {% if user %}
@@ -156,7 +186,7 @@
             <div class="chip"><b>내 최고점</b> <span class="val">{{ my_best or 0 }}점</span></div>
           </div>
           <div class="note">
-            랭킹 모드에서 게임오버 시 자동으로 기록이 저장됩니다.<br>
+            랭킹 모드 종료 시 자동으로 기록이 저장됩니다.<br>
             (연습 모드는 기록에 반영되지 않아요)
           </div>
         {% else %}
