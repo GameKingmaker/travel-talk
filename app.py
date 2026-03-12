@@ -27195,6 +27195,20 @@ def meaning_search():
     return render_template("meaning.html", q=q, results=results, meaning_categories=categories)
 
 
+def get_meaning_by_slug(slug, items):
+    for it in items:
+        if it.get("slug") == slug:
+            return it
+    return None
+
+@app.route("/meaning/<slug>")
+def meaning_detail(slug):
+    item = get_meaning_by_slug(slug, MEANING_ITEMS)
+    if not item:
+        abort(404)
+    return render_template("meaning_detail.html", item=item)
+
+
 @app.context_processor
 def inject_helpers():
     return {"is_admin": is_admin}
