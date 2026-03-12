@@ -96,23 +96,25 @@
   }
 
   .wg-mode-info.single{
-  grid-template-columns:1fr;
-}
+    display:grid;
+    grid-template-columns:1fr;
+    margin-top:18px;
+  }
 
-.wg-mode-info.single .wg-mode-card{
-  padding:16px 18px;
-}
+  .wg-mode-info.single .wg-mode-card{
+    padding:16px 18px;
+  }
 
-.wg-mode-info.single .wg-mode-card .t{
-  margin-bottom:8px;
-  font-size:14px;
-}
+  .wg-mode-info.single .wg-mode-card .t{
+    margin-bottom:8px;
+    font-size:14px;
+  }
 
-.wg-mode-info.single .wg-mode-card .d{
-  font-size:14px;
-  line-height:1.75;
-  color:#475569;
-}
+  .wg-mode-info.single .wg-mode-card .d{
+    font-size:14px;
+    line-height:1.75;
+    color:#475569;
+  }
 
   .wg-mode-card{
     padding:14px 16px;
@@ -499,6 +501,7 @@
     z-index:9999;
   }
 
+  /* ===== 여기부터 모달 밝은 프리미엄 톤 ===== */
   .wg-modal{
     width:min(1080px, 96vw);
     max-height:min(88vh, 860px);
@@ -507,20 +510,22 @@
     overflow:hidden;
     border-radius:28px;
     background:
-      radial-gradient(circle at top center, rgba(88,126,255,.18), transparent 22%),
-      linear-gradient(180deg, var(--wg-dark2) 0%, var(--wg-dark1) 100%);
-    border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 34px 90px rgba(0,0,0,.42);
+      radial-gradient(circle at top left, rgba(59,130,246,.10), transparent 20%),
+      radial-gradient(circle at top right, rgba(99,102,241,.08), transparent 18%),
+      linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border:1px solid rgba(15,23,42,.08);
+    box-shadow:0 34px 90px rgba(15,23,42,.18);
   }
 
   .wg-modal-head{
     padding:24px 28px 16px;
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(15,23,42,.06);
+    background:linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
   }
 
   .wg-modal-head h3{
     margin:0;
-    color:#fff;
+    color:#0f172a;
     font-size:36px;
     font-weight:950;
     letter-spacing:-0.9px;
@@ -528,7 +533,7 @@
 
   .wg-modal-head p{
     margin:10px 0 0;
-    color:rgba(226,232,240,.86);
+    color:#64748b;
     font-size:14px;
     line-height:1.7;
   }
@@ -536,9 +541,12 @@
   .wg-modal-body{
     padding:22px 28px 18px;
     overflow:auto;
+    background:linear-gradient(180deg, #fbfdff 0%, #f7fbff 100%);
   }
 
-  .wg-section{ margin-bottom:22px; }
+  .wg-section{
+    margin-bottom:22px;
+  }
 
   .wg-section-title{
     display:flex;
@@ -547,13 +555,13 @@
     margin:0 0 10px;
     font-size:19px;
     font-weight:950;
-    color:#fff;
+    color:#0f172a;
     letter-spacing:-0.25px;
   }
 
   .wg-section-desc{
     margin:0 0 14px;
-    color:rgba(203,213,225,.86);
+    color:#64748b;
     font-size:13px;
     line-height:1.6;
   }
@@ -564,22 +572,33 @@
     gap:14px;
   }
 
+  .wg-scope-grid{
+    display:grid;
+    grid-template-columns:repeat(5, minmax(0, 1fr));
+    gap:10px;
+  }
+
   .wg-select{
     position:relative;
     display:block;
     cursor:pointer;
     border-radius:20px;
     overflow:hidden;
-    background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
-    border:1px solid rgba(255,255,255,.10);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 10px 24px rgba(0,0,0,.18);
+    background:linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+    border:1px solid rgba(15,23,42,.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.90),
+      0 10px 24px rgba(15,23,42,.08);
     transition:all .16s ease;
     min-height:118px;
   }
 
   .wg-select:hover{
     transform:translateY(-2px);
-    border-color:rgba(96,165,250,.48);
+    border-color:rgba(59,130,246,.35);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.96),
+      0 16px 30px rgba(37,99,235,.10);
   }
 
   .wg-select input{
@@ -598,20 +617,22 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.18);
+    background:#f8fbff;
+    border:1px solid rgba(15,23,42,.10);
     color:transparent;
     font-size:13px;
     font-weight:950;
     z-index:2;
   }
 
-  .wg-select-body{ padding:20px 18px 16px; }
+  .wg-select-body{
+    padding:20px 18px 16px;
+  }
 
   .wg-select b{
     display:block;
     margin:0 0 8px;
-    color:#fff;
+    color:#0f172a;
     font-size:18px;
     font-weight:950;
     letter-spacing:-0.35px;
@@ -619,7 +640,7 @@
 
   .wg-select small{
     display:block;
-    color:rgba(226,232,240,.86);
+    color:#64748b;
     font-size:13px;
     line-height:1.6;
   }
@@ -628,15 +649,96 @@
     background:linear-gradient(180deg, #4b8cff, #2f6fff 55%, #2158d6);
     border-color:rgba(96,165,250,.65);
     color:#fff;
-    box-shadow:0 10px 20px rgba(37,99,235,.26);
+    box-shadow:0 10px 20px rgba(37,99,235,.20);
   }
 
   .wg-select:has(input:checked){
     border-color:#4b8cff;
     box-shadow:
-      inset 0 0 0 1px rgba(75,140,255,.35),
-      0 20px 34px rgba(37,99,235,.16);
-    background:linear-gradient(180deg, rgba(59,130,246,.18), rgba(255,255,255,.06));
+      inset 0 0 0 1px rgba(75,140,255,.18),
+      0 18px 32px rgba(37,99,235,.14);
+    background:linear-gradient(180deg, #f7fbff 0%, #edf4ff 100%);
+  }
+
+  .wg-scope-select{
+    position:relative;
+    display:block;
+    cursor:pointer;
+    border-radius:16px;
+    overflow:hidden;
+    background:linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+    border:1px solid rgba(15,23,42,.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.92),
+      0 8px 18px rgba(15,23,42,.07);
+    transition:all .16s ease;
+    min-height:92px;
+  }
+
+  .wg-scope-select:hover{
+    transform:translateY(-2px);
+    border-color:rgba(59,130,246,.35);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.96),
+      0 14px 24px rgba(37,99,235,.09);
+  }
+
+  .wg-scope-select input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .wg-scope-select .wg-check{
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:22px;
+    height:22px;
+    border-radius:999px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#f8fbff;
+    border:1px solid rgba(15,23,42,.10);
+    color:transparent;
+    font-size:11px;
+    font-weight:950;
+    z-index:2;
+  }
+
+  .wg-scope-body{
+    padding:16px 14px 14px;
+  }
+
+  .wg-scope-body b{
+    display:block;
+    margin:0 0 6px;
+    color:#0f172a;
+    font-size:17px;
+    font-weight:950;
+    letter-spacing:-0.25px;
+  }
+
+  .wg-scope-body small{
+    display:block;
+    color:#64748b;
+    font-size:12px;
+    line-height:1.5;
+  }
+
+  .wg-scope-select input:checked + .wg-check{
+    background:linear-gradient(180deg, #4b8cff, #2f6fff 55%, #2158d6);
+    border-color:rgba(96,165,250,.65);
+    color:#fff;
+  }
+
+  .wg-scope-select:has(input:checked){
+    border-color:#4b8cff;
+    box-shadow:
+      inset 0 0 0 1px rgba(75,140,255,.18),
+      0 16px 28px rgba(37,99,235,.12);
+    background:linear-gradient(180deg, #f7fbff 0%, #edf4ff 100%);
   }
 
   #wgCats{
@@ -652,14 +754,16 @@
     cursor:pointer;
     border-radius:16px;
     overflow:hidden;
-    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-    border:1px solid rgba(255,255,255,.10);
+    background:linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border:1px solid rgba(15,23,42,.08);
     transition:all .16s ease;
+    box-shadow:0 8px 18px rgba(15,23,42,.06);
   }
 
   .wg-cat:hover{
     transform:translateY(-1px);
-    border-color:rgba(96,165,250,.38);
+    border-color:rgba(59,130,246,.30);
+    box-shadow:0 12px 22px rgba(37,99,235,.08);
   }
 
   .wg-cat input{
@@ -678,19 +782,21 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.18);
+    background:#f8fbff;
+    border:1px solid rgba(15,23,42,.10);
     color:transparent;
     font-size:11px;
     font-weight:950;
   }
 
-  .wg-cat-body{ padding:14px 12px 12px; }
+  .wg-cat-body{
+    padding:14px 12px 12px;
+  }
 
   .wg-cat-title{
     padding-right:26px;
     margin-bottom:10px;
-    color:#fff;
+    color:#0f172a;
     font-size:14px;
     font-weight:950;
     line-height:1.35;
@@ -704,9 +810,9 @@
     min-height:26px;
     padding:0 9px;
     border-radius:999px;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.12);
-    color:rgba(226,232,240,.92);
+    background:#f3f7ff;
+    border:1px solid rgba(37,99,235,.10);
+    color:#475569;
     font-size:11.5px;
     font-weight:900;
   }
@@ -719,7 +825,7 @@
 
   .wg-cat:has(input:checked){
     border-color:#4b8cff;
-    background:linear-gradient(180deg, rgba(59,130,246,.16), rgba(255,255,255,.06));
+    background:linear-gradient(180deg, #f7fbff 0%, #edf4ff 100%);
     box-shadow:0 16px 28px rgba(37,99,235,.12);
   }
 
@@ -731,20 +837,21 @@
 
   .wg-preview-card{
     border-radius:18px;
-    background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
-    border:1px solid rgba(255,255,255,.10);
+    background:linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border:1px solid rgba(15,23,42,.08);
     padding:14px 14px 12px;
+    box-shadow:0 8px 18px rgba(15,23,42,.06);
   }
 
   .wg-preview-card .k{
-    color:rgba(226,232,240,.78);
+    color:#64748b;
     font-size:12px;
     font-weight:900;
     margin-bottom:8px;
   }
 
   .wg-preview-card .v{
-    color:#fff;
+    color:#0f172a;
     font-size:28px;
     font-weight:950;
     letter-spacing:-0.7px;
@@ -755,8 +862,8 @@
     justify-content:flex-end;
     gap:12px;
     padding:18px 28px 24px;
-    border-top:1px solid rgba(255,255,255,.08);
-    background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.08));
+    border-top:1px solid rgba(15,23,42,.06);
+    background:linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
   }
 
   .wg-result-overlay{
@@ -801,7 +908,9 @@
     line-height:1.65;
   }
 
-  .wg-result-body{ padding:18px 24px; }
+  .wg-result-body{
+    padding:18px 24px;
+  }
 
   .wg-result-grid{
     display:grid;
@@ -842,6 +951,7 @@
     .wg-hero{ grid-template-columns:1fr; }
     .wg-stats{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
     .wg-preview{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .wg-scope-grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
   }
 
   @media (max-width: 760px){
@@ -849,6 +959,7 @@
     .wg-title{ font-size:34px; }
     .wg-mode-grid{ grid-template-columns:1fr; }
     .wg-mode-info{ grid-template-columns:1fr; }
+    .wg-scope-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
     #wgCats{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
     .wg-modal-head{ padding:20px 20px 14px; }
     .wg-modal-head h3{ font-size:30px; }
@@ -865,13 +976,123 @@
     .wg-top-right{ width:100%; }
     .wg-top-right .wg-btn{ flex:1; }
     #wgCats, .wg-preview, .wg-result-grid{ grid-template-columns:1fr 1fr; }
+    .wg-scope-grid{ grid-template-columns:1fr 1fr; }
   }
 
   @media (max-width: 430px){
-    #wgCats, .wg-preview, .wg-result-grid{ grid-template-columns:1fr; }
+    #wgCats, .wg-preview, .wg-result-grid, .wg-scope-grid{ grid-template-columns:1fr; }
     .wg-title{ font-size:30px; }
   }
+  .wg-rank-unit-item{
+  background:linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%);
+  border:1px solid rgba(59,130,246,.14);
+}
+
+.wg-rank-unit-item::before{
+  background:linear-gradient(90deg, rgba(59,130,246,.22), rgba(37,99,235,.9), rgba(59,130,246,.22));
+}
+
+.wg-rank-unit-item .d b{
+  color:#1d4ed8;
+  font-weight:900;
+}
+
+.wg-side-note-strong{
+  position:relative;
+  padding:16px 16px 15px;
+  border-radius:20px;
+  background:linear-gradient(180deg, #fffdfa 0%, #f8fbff 100%);
+  border:1px solid rgba(37,99,235,.12);
+  box-shadow:
+    0 10px 22px rgba(15,23,42,.06),
+    inset 0 1px 0 rgba(255,255,255,.92);
+}
+
+.wg-side-note-strong::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  border-radius:20px 20px 0 0;
+  background:linear-gradient(90deg, #60a5fa, #2563eb);
+}
+
+.wg-side-note-strong .note-title{
+  margin-bottom:8px;
+  font-size:14px;
+  font-weight:950;
+  color:#0f172a;
+  letter-spacing:-0.2px;
+}
+
+.wg-side-note-strong .note-text{
+  font-size:13.5px;
+  line-height:1.75;
+  color:#475569;
+}
+
+.wg-side-note-strong .note-text b{
+  color:#0f172a;
+  font-weight:900;
+}
+.wg-rank-unit-item{
+  background:linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%);
+  border:1px solid rgba(59,130,246,.14);
+}
+
+.wg-rank-unit-item::before{
+  background:linear-gradient(90deg, rgba(59,130,246,.22), rgba(37,99,235,.9), rgba(59,130,246,.22));
+}
+
+.wg-rank-unit-item .d b{
+  color:#1d4ed8;
+  font-weight:900;
+}
+
+.wg-side-note-strong{
+  position:relative;
+  padding:16px 16px 15px;
+  border-radius:20px;
+  background:linear-gradient(180deg, #fffdfa 0%, #f8fbff 100%);
+  border:1px solid rgba(37,99,235,.12);
+  box-shadow:
+    0 10px 22px rgba(15,23,42,.06),
+    inset 0 1px 0 rgba(255,255,255,.92);
+}
+
+.wg-side-note-strong::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  border-radius:20px 20px 0 0;
+  background:linear-gradient(90deg, #60a5fa, #2563eb);
+}
+
+.wg-side-note-strong .note-title{
+  margin-bottom:8px;
+  font-size:14px;
+  font-weight:950;
+  color:#0f172a;
+  letter-spacing:-0.2px;
+}
+
+.wg-side-note-strong .note-text{
+  font-size:13.5px;
+  line-height:1.75;
+  color:#475569;
+}
+
+.wg-side-note-strong .note-text b{
+  color:#0f172a;
+  font-weight:900;
+}
 </style>
+
 
 <div class="wg-page">
   <div class="wg-wrap">
@@ -908,7 +1129,7 @@
         </div>
       </div>
 
-      <div class="wg-panel-card wg-hero-side">
+            <div class="wg-panel-card wg-hero-side">
         <div>
           <h3 class="wg-side-title">모드 안내</h3>
 
@@ -922,12 +1143,24 @@
               <span class="k">🏃 마라톤 모드</span>
               <span class="d">카드가 지나가도 계속 진행돼요. 오래 플레이하면서 정답 수를 쌓고 현재 시점에서 종료도 가능해요.</span>
             </div>
+
+            <div class="wg-side-mode-item wg-rank-unit-item">
+              <span class="k">🏆 랭킹 단위 안내</span>
+              <span class="d">
+                랭킹 모드는 <b>100개 · 300개 · 500개 · 750개 · 전체 단어</b>처럼
+                원하는 단위별로 도전할 수 있어요.
+              </span>
+            </div>
           </div>
         </div>
 
-        <div class="wg-side-note">
-          랭킹 모드에서는 현재 점수 기준으로 기록이 저장돼요.
-          마라톤 모드가 길게 느껴질 때는 아래 <b>게임 종료</b> 버튼으로 지금 점수에서 마무리할 수 있어요.
+        <div class="wg-side-note wg-side-note-strong">
+          <div class="note-title">📌 랭킹 모드 안내</div>
+          <div class="note-text">
+            랭킹 모드에서는 <b>현재 점수 기준으로 기록이 저장</b>돼요.<br>
+            마라톤 모드가 길게 느껴질 때는 아래 <b>게임 종료</b> 버튼으로
+            <b>지금 점수에서 마무리</b>할 수 있어요.
+          </div>
         </div>
       </div>
     </div>
@@ -962,7 +1195,7 @@
         <div class="wg-top-right">
           <button class="wg-btn ghost" id="wgOpenSettingsBtn" type="button">모드 변경</button>
           <button class="wg-btn danger" id="wgEndBtn" type="button">게임 종료</button>
-          <a class="wg-btn ghost" href="{{ url_for('word_game_ranking_page') }}">랭킹 보기</a>
+          <a class="wg-btn ghost" id="wgRankLink" href="{{ url_for('word_game_ranking_page') }}">랭킹 보기</a>
           <button class="wg-btn" id="wgResetBtn" type="button">재시작</button>
         </div>
       </div>
@@ -1039,9 +1272,63 @@
                     <div class="wg-select-body">
                       <b>랭킹 모드</b>
                       <small>
-                        전체 단어 기준으로 진행<br>
-                        최고 점수가 모드별 랭킹에 저장됨
+                        단어 수 구간을 선택해 기록 도전<br>
+                        최고 점수가 구간별 랭킹에 저장됨
                       </small>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="wg-section" id="wgRankScopeSection" style="display:none;">
+                <div class="wg-section-title">🏁 랭킹 단어 수 선택</div>
+                <div class="wg-section-desc">
+                  랭킹 모드에서는 선택한 단어 수 기준으로 기록이 저장됩니다.
+                </div>
+
+                <div class="wg-scope-grid">
+                  <label class="wg-scope-select">
+                    <input type="radio" name="wgRankScope" value="100" checked>
+                    <span class="wg-check">✓</span>
+                    <div class="wg-scope-body">
+                      <b>100개</b>
+                      <small>짧고 빠르게 도전</small>
+                    </div>
+                  </label>
+
+                  <label class="wg-scope-select">
+                    <input type="radio" name="wgRankScope" value="300">
+                    <span class="wg-check">✓</span>
+                    <div class="wg-scope-body">
+                      <b>300개</b>
+                      <small>중간 분량 도전</small>
+                    </div>
+                  </label>
+
+                  <label class="wg-scope-select">
+                    <input type="radio" name="wgRankScope" value="500">
+                    <span class="wg-check">✓</span>
+                    <div class="wg-scope-body">
+                      <b>500개</b>
+                      <small>안정적인 실력 검증</small>
+                    </div>
+                  </label>
+
+                  <label class="wg-scope-select">
+                    <input type="radio" name="wgRankScope" value="750">
+                    <span class="wg-check">✓</span>
+                    <div class="wg-scope-body">
+                      <b>750개</b>
+                      <small>장기 집중 도전</small>
+                    </div>
+                  </label>
+
+                  <label class="wg-scope-select">
+                    <input type="radio" name="wgRankScope" value="all">
+                    <span class="wg-check">✓</span>
+                    <div class="wg-scope-body">
+                      <b>전체</b>
+                      <small>전체 단어 완전 도전</small>
                     </div>
                   </label>
                 </div>
@@ -1144,6 +1431,8 @@
   const overlay = document.getElementById("wgOverlay");
   const catsWrap = document.getElementById("wgCats");
   const catsSection = document.getElementById("wgCatsSection");
+  const rankScopeSection = document.getElementById("wgRankScopeSection");
+  const rankLink = document.getElementById("wgRankLink");
 
   const resultOverlay = document.getElementById("wgResultOverlay");
   const resultTitleEl = document.getElementById("wgResultTitle");
@@ -1184,6 +1473,7 @@
   let score = 0;
   let totalWords = 0;
   let finishedWords = 0;
+  let currentRankScope = "100";
 
   const FIXED_SPEED = 7;
   const FIXED_SPAWN = 3000;
@@ -1365,24 +1655,51 @@
     return r ? r.value : "speed";
   }
 
+  function getRankScope(){
+    const r = overlay.querySelector('input[name="wgRankScope"]:checked');
+    return r ? r.value : "100";
+  }
+
+  function getRankScopeLabel(scope = null){
+    const s = scope || getRankScope();
+    if (s === "all") return "전체";
+    return `${s}개`;
+  }
+
+  function getRankLimit(scope = null){
+    const s = scope || getRankScope();
+    if (s === "all") return 99999;
+    const n = parseInt(s, 10);
+    return Number.isNaN(n) ? 100 : n;
+  }
+
   function getModeLabel(){
     const mode = getMode();
     const gameType = getGameType();
 
     if (mode === "practice" && gameType === "speed") return "연습 / 스피드";
     if (mode === "practice" && gameType === "marathon") return "연습 / 마라톤";
-    if (mode === "rank" && gameType === "speed") return "랭킹 / 스피드";
-    return "랭킹 / 마라톤";
+    if (mode === "rank" && gameType === "speed") return `랭킹 / 스피드 / ${getRankScopeLabel(currentRankScope)}`;
+    return `랭킹 / 마라톤 / ${getRankScopeLabel(currentRankScope)}`;
+  }
+
+  function updateRankLink(){
+    const mode = getGameType();
+    const scope = currentRankScope || getRankScope();
+    rankLink.href = `/quiz/word_game/ranking?mode=${encodeURIComponent(mode)}&scope=${encodeURIComponent(scope)}`;
   }
 
   function toggleCatsUI(){
     const mode = getMode();
     catsSection.style.display = (mode === "rank") ? "none" : "block";
+    rankScopeSection.style.display = (mode === "rank") ? "block" : "none";
   }
 
-  async function loadPool(selectedCats){
+  async function loadPool(selectedCats, limitOverride = null){
     const qs = new URLSearchParams();
-    qs.set("n", "99999");
+    const limit = limitOverride ?? 99999;
+    qs.set("n", String(limit));
+
     if (selectedCats && selectedCats.length){
       qs.set("cats", selectedCats.join(","));
     }
@@ -1400,8 +1717,14 @@
     progressEl.textContent = `0 / ${totalWords}`;
 
     if (!allCats.length){
+      const fullQs = new URLSearchParams();
+      fullQs.set("n", "99999");
+      const fullRes = await fetch("/api/game_words?" + fullQs.toString());
+      const fullData = await fullRes.json();
+      const source = (fullData && fullData.ok && Array.isArray(fullData.items)) ? fullData.items : pool;
+
       const map = new Map();
-      for (const it of pool){
+      for (const it of source){
         const k = it.cat_key;
         if (!map.has(k)) map.set(k, {key:k, title: it.cat_title || k, count:0});
         map.get(k).count += 1;
@@ -1445,6 +1768,7 @@
     poolEl.textContent = String(pool.length);
     modeLabelEl.textContent = getModeLabel();
     progressEl.textContent = `${finishedWords} / ${totalWords}`;
+    updateRankLink();
   }
 
   function showResultModal(title, desc, statsOverride = null){
@@ -1475,7 +1799,8 @@
         headers: {"Content-Type":"application/json"},
         body: JSON.stringify({
           score,
-          mode: getGameType()
+          mode: getGameType(),
+          scope: currentRankScope
         })
       });
       if (res.status === 401) return toast("랭킹 저장은 로그인 후 가능합니다.");
@@ -1716,6 +2041,7 @@
       await loadPool([]);
     }
     toggleCatsUI();
+    currentRankScope = getRankScope();
     setHUD();
   }
 
@@ -1724,10 +2050,12 @@
 
     if (mode === "rank") {
       currentCats = [];
-      await loadPool([]);
+      currentRankScope = getRankScope();
+      await loadPool([], getRankLimit(currentRankScope));
     } else {
       const selected = getSelectedCats();
       currentCats = selected.length ? selected : [];
+      currentRankScope = getRankScope();
       await loadPool(currentCats);
       if (!pool.length){
         toast("선택한 카테고리에 단어가 없어요.");
@@ -1741,8 +2069,11 @@
   async function restartCurrentGame(){
     try{
       const mode = getMode();
-      if (mode === "rank") await loadPool([]);
-      else await loadPool(currentCats);
+      if (mode === "rank") {
+        await loadPool([], getRankLimit(currentRankScope));
+      } else {
+        await loadPool(currentCats);
+      }
       startGame();
     }catch(e){
       toast("재시작 실패(데이터 불러오기 실패)");
@@ -1768,8 +2099,9 @@
   });
 
   overlay.addEventListener("change", (e) => {
-    if (e.target && (e.target.name === "wgMode" || e.target.name === "wgGameType")){
+    if (e.target && (e.target.name === "wgMode" || e.target.name === "wgGameType" || e.target.name === "wgRankScope")){
       toggleCatsUI();
+      currentRankScope = getRankScope();
       setHUD();
     }
   });
@@ -1794,6 +2126,8 @@
     tryHit();
   });
 
+  currentRankScope = getRankScope();
+  updateRankLink();
   openOverlay().catch(()=>{});
 })();
 </script>
