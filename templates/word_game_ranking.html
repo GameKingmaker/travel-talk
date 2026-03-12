@@ -2,100 +2,378 @@
 {% block content %}
 
 <style>
-  .rk-wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 56px; }
-  .rk-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:14px; }
-  .rk-title{ font-size:34px; font-weight:900; letter-spacing:-0.5px; margin:0; }
-  .rk-sub{ margin:6px 0 0; color:#6b7280; font-size:14px; line-height:1.45; }
-
-  .rk-actions{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center;
-    height:40px; padding:0 14px;
-    border-radius:12px; border:1px solid rgba(15,23,42,0.10);
-    background:#fff; color:#0f172a; text-decoration:none; font-weight:800; cursor:pointer;
+  :root{
+    --rk-bg1:#eef2ff;
+    --rk-bg2:#f8fbff;
+    --rk-panel:#ffffff;
+    --rk-text:#0f172a;
+    --rk-sub:#64748b;
+    --rk-line:rgba(15,23,42,0.08);
+    --rk-line-soft:rgba(15,23,42,0.05);
+    --rk-blue:#2563eb;
+    --rk-blue2:#3b82f6;
+    --rk-shadow:0 18px 38px rgba(15,23,42,0.08);
+    --rk-soft:0 10px 24px rgba(15,23,42,0.06);
   }
-  .btn.primary{ background:#2563eb; color:#fff; border-color:rgba(37,99,235,0.22); }
-  .btn.ghost{ background:#f8fafc; }
+
+  .rk-wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:26px 18px 60px;
+  }
+
+  .rk-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:18px;
+    margin-bottom:18px;
+  }
+
+  .rk-title{
+    margin:0;
+    font-size:38px;
+    line-height:1.08;
+    font-weight:950;
+    letter-spacing:-0.9px;
+    color:var(--rk-text);
+  }
+
+  .rk-sub{
+    margin:10px 0 0;
+    color:var(--rk-sub);
+    font-size:14px;
+    line-height:1.7;
+  }
+
+  .rk-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:42px;
+    padding:0 16px;
+    border-radius:14px;
+    border:1px solid rgba(15,23,42,0.08);
+    background:linear-gradient(180deg, #ffffff, #f5f8fc);
+    color:#0f172a;
+    text-decoration:none;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:var(--rk-soft);
+    transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+  }
+
+  .btn:hover{
+    transform:translateY(-1px);
+    border-color:rgba(37,99,235,0.18);
+    box-shadow:0 14px 26px rgba(15,23,42,0.08);
+  }
+
+  .btn.primary{
+    background:linear-gradient(180deg, #4b8cff, #2f6fff 55%, #2158d6);
+    color:#fff;
+    border-color:rgba(37,99,235,0.18);
+    box-shadow:
+      inset 0 2px 0 rgba(255,255,255,.25),
+      inset 0 -2px 0 rgba(0,0,0,.10),
+      0 14px 28px rgba(37,99,235,.22);
+  }
+
+  .btn.ghost{
+    background:linear-gradient(180deg, #ffffff, #eef3f9);
+  }
 
   .rk-tabs{
     display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:0 0 12px;
+  }
+
+  .rk-scope-tabs{
+    display:flex;
     gap:8px;
     flex-wrap:wrap;
-    margin:14px 0 16px;
+    margin:0 0 18px;
   }
+
   .rk-tab{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    height:40px;
-    padding:0 14px;
+    min-height:42px;
+    padding:0 16px;
     border-radius:999px;
-    border:1px solid rgba(15,23,42,0.10);
-    background:#fff;
+    border:1px solid rgba(15,23,42,0.08);
+    background:linear-gradient(180deg, #ffffff, #f7faff);
     color:#0f172a;
     text-decoration:none;
     font-weight:900;
+    box-shadow:var(--rk-soft);
+    transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease;
   }
+
+  .rk-tab:hover{
+    transform:translateY(-1px);
+    border-color:rgba(37,99,235,0.20);
+    box-shadow:0 14px 26px rgba(15,23,42,0.08);
+  }
+
   .rk-tab.active{
-    background:#2563eb;
+    background:linear-gradient(180deg, #4b8cff, #2f6fff 55%, #2158d6);
     color:#fff;
     border-color:rgba(37,99,235,0.22);
+    box-shadow:
+      inset 0 2px 0 rgba(255,255,255,.24),
+      inset 0 -2px 0 rgba(0,0,0,.10),
+      0 14px 26px rgba(37,99,235,.22);
   }
 
-  .rk-grid{ display:grid; grid-template-columns: 1.2fr 0.8fr; gap:14px; align-items:start; }
-  @media (max-width: 920px){ .rk-grid{ grid-template-columns:1fr; } }
+  .rk-tab.sub{
+    min-height:36px;
+    padding:0 13px;
+    font-size:13px;
+    font-weight:800;
+    background:linear-gradient(180deg, #ffffff, #f5f8fc);
+  }
+
+  .rk-tab.sub.active{
+    background:linear-gradient(180deg, #0f172a, #111827);
+    color:#fff;
+    border-color:rgba(15,23,42,0.16);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.08),
+      0 12px 22px rgba(15,23,42,.16);
+  }
+
+  .rk-grid{
+    display:grid;
+    grid-template-columns:1.22fr 0.78fr;
+    gap:16px;
+    align-items:start;
+  }
 
   .card{
-    background:#fff;
-    border:1px solid rgba(15,23,42,0.10);
-    border-radius:18px;
-    box-shadow:0 10px 30px rgba(2,8,23,0.06);
+    background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,251,255,.98));
+    border:1px solid rgba(15,23,42,0.08);
+    border-radius:24px;
+    box-shadow:var(--rk-shadow);
     overflow:hidden;
   }
 
-  .card-hd{ padding:14px 16px; border-bottom:1px solid rgba(15,23,42,0.06); display:flex; align-items:center; justify-content:space-between; gap:10px;}
-  .card-hd h3{ margin:0; font-size:16px; font-weight:900; letter-spacing:-0.2px; }
+  .card-hd{
+    padding:18px 20px 16px;
+    border-bottom:1px solid var(--rk-line-soft);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    background:
+      radial-gradient(circle at top left, rgba(59,130,246,.08), transparent 28%),
+      linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  }
+
+  .card-hd h3{
+    margin:0;
+    font-size:18px;
+    font-weight:950;
+    letter-spacing:-0.3px;
+    color:var(--rk-text);
+  }
+
   .pill{
-    display:inline-flex; align-items:center; justify-content:center;
-    padding:4px 10px; border-radius:999px;
-    background:#f1f5ff; border:1px solid rgba(37,99,235,0.18);
-    color:#1d4ed8; font-weight:900; font-size:12px; white-space:nowrap;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:30px;
+    padding:0 11px;
+    border-radius:999px;
+    background:linear-gradient(180deg, #f4f8ff, #edf4ff);
+    border:1px solid rgba(37,99,235,0.14);
+    color:#1d4ed8;
+    font-weight:900;
+    font-size:12px;
+    white-space:nowrap;
+    box-shadow:0 6px 14px rgba(37,99,235,.06);
   }
 
-  table{ width:100%; border-collapse:collapse; }
-  th, td{ padding:12px 12px; text-align:left; border-bottom:1px solid rgba(15,23,42,0.06); }
-  th{ font-size:12px; color:#64748b; font-weight:900; background:#fafcff; }
-  td{ font-size:14px; color:#0f172a; }
-  .rk-num{ width:62px; color:#475569; font-weight:900; }
-  .rk-name{ font-weight:900; }
-  .rk-score{ width:110px; font-weight:900; }
-  .rk-date{ width:90px; color:#64748b; font-size:12px; }
+  table{
+    width:100%;
+    border-collapse:collapse;
+  }
 
-  tr.top1 td{ background: rgba(250, 204, 21, 0.10); }
-  tr.top2 td{ background: rgba(148, 163, 184, 0.12); }
-  tr.top3 td{ background: rgba(249, 115, 22, 0.10); }
-  tr.me td{ outline: 2px solid rgba(37,99,235,0.22); outline-offset:-2px; background: rgba(37,99,235,0.06); }
+  th, td{
+    padding:14px 14px;
+    text-align:left;
+    border-bottom:1px solid rgba(15,23,42,0.05);
+  }
 
-  .muted{ color:#64748b; font-size:12px; }
-  .empty{ padding:18px 16px; color:#64748b; }
+  th{
+    font-size:12px;
+    color:#64748b;
+    font-weight:900;
+    background:linear-gradient(180deg, #fbfdff 0%, #f6faff 100%);
+  }
 
-  .mybox{ padding:14px 16px; }
-  .myrow{ display:flex; gap:10px; flex-wrap:wrap; }
+  td{
+    font-size:14px;
+    color:#0f172a;
+    background:#fff;
+  }
+
+  tbody tr{
+    transition:background-color .14s ease;
+  }
+
+  tbody tr:hover td{
+    background:#f9fbff;
+  }
+
+  .rk-num{
+    width:68px;
+    color:#475569;
+    font-weight:900;
+  }
+
+  .rk-name{
+    font-weight:900;
+    letter-spacing:-0.15px;
+  }
+
+  .rk-score{
+    width:110px;
+    font-weight:900;
+    color:#0f172a;
+  }
+
+  .rk-date{
+    width:96px;
+    color:#64748b;
+    font-size:12px;
+  }
+
+  tr.top1 td{
+    background:linear-gradient(180deg, rgba(250, 204, 21, 0.16), rgba(250, 204, 21, 0.08));
+  }
+
+  tr.top2 td{
+    background:linear-gradient(180deg, rgba(148, 163, 184, 0.16), rgba(148, 163, 184, 0.08));
+  }
+
+  tr.top3 td{
+    background:linear-gradient(180deg, rgba(249, 115, 22, 0.14), rgba(249, 115, 22, 0.08));
+  }
+
+  tr.me td{
+    outline:2px solid rgba(37,99,235,0.18);
+    outline-offset:-2px;
+    background:linear-gradient(180deg, rgba(37,99,235,0.08), rgba(37,99,235,0.04));
+  }
+
+  .muted{
+    color:#64748b;
+    font-size:12px;
+  }
+
+  .empty{
+    padding:22px 18px;
+    color:#64748b;
+    line-height:1.7;
+    font-size:14px;
+  }
+
+  .mybox{
+    padding:18px 18px 20px;
+  }
+
+  .myrow{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
   .chip{
-    display:flex; align-items:center; gap:8px;
-    padding:10px 12px; border-radius:14px;
-    background:#fff; border:1px solid rgba(15,23,42,0.10);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px 14px;
+    border-radius:18px;
+    background:linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+    border:1px solid rgba(15,23,42,0.08);
+    box-shadow:var(--rk-soft);
   }
-  .chip b{ font-weight:900; }
-  .chip .val{ font-weight:900; }
-  .note{ margin-top:10px; color:#64748b; font-size:12px; line-height:1.5; }
+
+  .chip b{
+    font-weight:900;
+    color:#334155;
+  }
+
+  .chip .val{
+    font-weight:950;
+    color:#0f172a;
+  }
+
+  .note{
+    margin-top:14px;
+    padding:14px 14px 12px;
+    border-radius:18px;
+    background:linear-gradient(180deg, #f8fbff 0%, #f2f7ff 100%);
+    border:1px solid rgba(37,99,235,0.10);
+    color:#64748b;
+    font-size:12.5px;
+    line-height:1.7;
+  }
+
+  @media (max-width: 920px){
+    .rk-grid{
+      grid-template-columns:1fr;
+    }
+  }
+
+  @media (max-width: 560px){
+    .rk-wrap{
+      padding:18px 12px 44px;
+    }
+
+    .rk-head{
+      align-items:flex-start;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .rk-actions{
+      justify-content:flex-start;
+    }
+
+    .rk-title{
+      font-size:30px;
+    }
+
+    .myrow{
+      grid-template-columns:1fr;
+    }
+
+    th, td{
+      padding:12px 10px;
+    }
+  }
 </style>
 
 <div class="rk-wrap">
   <div class="rk-head">
     <div>
       <h1 class="rk-title">단어 게임 랭킹</h1>
-      <p class="rk-sub">선택한 모드의 <b>최고 점수</b> 기준으로 정렬됩니다.</p>
+      <p class="rk-sub">
+        선택한 <b>모드 + 단어 수 구간</b>의 최고 점수 기준으로 정렬됩니다.
+      </p>
     </div>
     <div class="rk-actions">
       <a class="btn ghost" href="{{ url_for('word_game') }}">← 단어게임으로</a>
@@ -108,22 +386,43 @@
 
   <div class="rk-tabs">
     <a class="rk-tab {% if ranking_mode == 'speed' %}active{% endif %}"
-       href="{{ url_for('word_game_ranking_page', mode='speed') }}">스피드 챌린지</a>
+       href="{{ url_for('word_game_ranking_page', mode='speed', scope=ranking_scope) }}">스피드 챌린지</a>
+
     <a class="rk-tab {% if ranking_mode == 'marathon' %}active{% endif %}"
-       href="{{ url_for('word_game_ranking_page', mode='marathon') }}">타이핑 마라톤</a>
+       href="{{ url_for('word_game_ranking_page', mode='marathon', scope=ranking_scope) }}">타이핑 마라톤</a>
+  </div>
+
+  <div class="rk-scope-tabs">
+    <a class="rk-tab sub {% if ranking_scope == '100' %}active{% endif %}"
+       href="{{ url_for('word_game_ranking_page', mode=ranking_mode, scope='100') }}">100개</a>
+
+    <a class="rk-tab sub {% if ranking_scope == '300' %}active{% endif %}"
+       href="{{ url_for('word_game_ranking_page', mode=ranking_mode, scope='300') }}">300개</a>
+
+    <a class="rk-tab sub {% if ranking_scope == '500' %}active{% endif %}"
+       href="{{ url_for('word_game_ranking_page', mode=ranking_mode, scope='500') }}">500개</a>
+
+    <a class="rk-tab sub {% if ranking_scope == '750' %}active{% endif %}"
+       href="{{ url_for('word_game_ranking_page', mode=ranking_mode, scope='750') }}">750개</a>
+
+    <a class="rk-tab sub {% if ranking_scope == 'all' %}active{% endif %}"
+       href="{{ url_for('word_game_ranking_page', mode=ranking_mode, scope='all') }}">전체 단어</a>
   </div>
 
   <div class="rk-grid">
     <div class="card">
       <div class="card-hd">
-        <h3>TOP 50</h3>
+        <h3>🏆 TOP 50</h3>
         <span class="pill">
-          {% if ranking_mode == 'marathon' %}마라톤 최고점{% else %}스피드 최고점{% endif %}
+          {% if ranking_mode == 'marathon' %}마라톤{% else %}스피드{% endif %}
+          / {% if ranking_scope == 'all' %}전체 단어{% else %}{{ ranking_scope }}개{% endif %}
         </span>
       </div>
 
       {% if not top or top|length == 0 %}
-        <div class="empty">아직 랭킹 기록이 없습니다. 랭킹 모드로 플레이해보세요!</div>
+        <div class="empty">
+          아직 이 구간의 랭킹 기록이 없습니다. 랭킹 모드로 플레이해보세요!
+        </div>
       {% else %}
         <table>
           <thead>
@@ -174,17 +473,26 @@
 
     <div class="card">
       <div class="card-hd">
-        <h3>내 랭킹</h3>
+        <h3>📌 내 랭킹</h3>
         <span class="pill">
-          {% if ranking_mode == 'marathon' %}마라톤 기준{% else %}스피드 기준{% endif %}
+          {% if ranking_mode == 'marathon' %}마라톤{% else %}스피드{% endif %}
+          / {% if ranking_scope == 'all' %}전체 단어{% else %}{{ ranking_scope }}개{% endif %}
         </span>
       </div>
+
       <div class="mybox">
         {% if user %}
           <div class="myrow">
-            <div class="chip"><b>내 순위</b> <span class="val">{% if my_rank %}{{ my_rank }}위{% else %}-{% endif %}</span></div>
-            <div class="chip"><b>내 최고점</b> <span class="val">{{ my_best or 0 }}점</span></div>
+            <div class="chip">
+              <b>내 순위</b>
+              <span class="val">{% if my_rank %}{{ my_rank }}위{% else %}-{% endif %}</span>
+            </div>
+            <div class="chip">
+              <b>내 최고점</b>
+              <span class="val">{{ my_best or 0 }}점</span>
+            </div>
           </div>
+
           <div class="note">
             랭킹 모드 종료 시 자동으로 기록이 저장됩니다.<br>
             (연습 모드는 기록에 반영되지 않아요)
