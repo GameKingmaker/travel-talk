@@ -810,8 +810,10 @@ def init_db() -> None:
         )
         """)
 
-        # 2) users 컬럼 보강
+                # 2) users 컬럼 보강
         cols = table_columns(conn, "users")
+
+        # 기존 컬럼 유지
         if "best_word_score" not in cols:
             cur.execute("ALTER TABLE users ADD COLUMN best_word_score INTEGER DEFAULT 0")
 
@@ -819,7 +821,6 @@ def init_db() -> None:
         if "best_word_score_at" not in cols:
             cur.execute("ALTER TABLE users ADD COLUMN best_word_score_at TEXT")
 
-        # 추가: 타이핑 마라톤 최고점
         cols = table_columns(conn, "users")
         if "best_word_marathon_score" not in cols:
             cur.execute("ALTER TABLE users ADD COLUMN best_word_marathon_score INTEGER DEFAULT 0")
@@ -827,6 +828,34 @@ def init_db() -> None:
         cols = table_columns(conn, "users")
         if "best_word_marathon_score_at" not in cols:
             cur.execute("ALTER TABLE users ADD COLUMN best_word_marathon_score_at TEXT")
+
+        # ===== 새 구간별 스피드 랭킹 컬럼 =====
+        speed_scopes = ["100", "300", "500", "750", "all"]
+        for scope in speed_scopes:
+            cols = table_columns(conn, "users")
+            score_col = f"best_word_score_{scope}"
+            at_col = f"{score_col}_at"
+
+            if score_col not in cols:
+                cur.execute(f"ALTER TABLE users ADD COLUMN {score_col} INTEGER DEFAULT 0")
+
+            cols = table_columns(conn, "users")
+            if at_col not in cols:
+                cur.execute(f"ALTER TABLE users ADD COLUMN {at_col} TEXT")
+
+        # ===== 새 구간별 마라톤 랭킹 컬럼 =====
+        marathon_scopes = ["100", "300", "500", "750", "all"]
+        for scope in marathon_scopes:
+            cols = table_columns(conn, "users")
+            score_col = f"best_word_marathon_score_{scope}"
+            at_col = f"{score_col}_at"
+
+            if score_col not in cols:
+                cur.execute(f"ALTER TABLE users ADD COLUMN {score_col} INTEGER DEFAULT 0")
+
+            cols = table_columns(conn, "users")
+            if at_col not in cols:
+                cur.execute(f"ALTER TABLE users ADD COLUMN {at_col} TEXT")
 
         cols = table_columns(conn, "users")
         if "last_login_at" not in cols:
@@ -11670,7 +11699,14 @@ def api_game_words():
     반환 형식:
         { ok: true, items: [ {cat_key, cat_title, jp, pron, ko}, ... ] }
     """
-    n = request.args.get("n", type=int) or 200
+    n = request.args.get("n", type=int)
+    if n is None:
+        n = 200
+
+    # 안전 처리
+    if n <= 0:
+        n = 200
+
     cats_raw = (request.args.get("cats") or "").strip()
 
     selected = None
@@ -11685,6 +11721,9 @@ def api_game_words():
         cat_title = (cat or {}).get("title", cat_key)
 
         for row in (cat or {}).get("items", []) or []:
+            if len(row) < 3:
+                continue
+
             jp, pron, ko = row[:3]
             items.append({
                 "cat_key": cat_key,
@@ -11695,10 +11734,16 @@ def api_game_words():
             })
 
     random.shuffle(items)
+
+    # 전체 단어 요청 시 n이 전체 개수보다 크면 그냥 전체 반환
     if n > 0:
         items = items[:n]
 
-    return jsonify({"ok": True, "items": items})
+    return jsonify({
+        "ok": True,
+        "items": items,
+        "total": len(items)
+    })
 
 
 @app.route("/board/write", methods=["GET", "POST"])
@@ -12884,8 +12929,10 @@ def submit_word_game_score():
         return jsonify({"ok": False, "error": "login_required"}), 401
 
     data = request.get_json(silent=True) or {}
+
     score = int(data.get("score") or 0)
     mode = str(data.get("mode") or "speed").strip().lower()
+    scope = str(data.get("scope") or "100").strip().lower()
 
     if score < 0:
         score = 0
@@ -12893,12 +12940,21 @@ def submit_word_game_score():
     if mode not in ("speed", "marathon"):
         mode = "speed"
 
-    if mode == "marathon":
-        score_col = "best_word_marathon_score"
-        at_col = "best_word_marathon_score_at"
-    else:
-        score_col = "best_word_score"
-        at_col = "best_word_score_at"
+    if scope not in ("100", "300", "500", "750", "all"):
+        scope = "100"
+
+    def get_score_columns(mode_value, scope_value):
+        if mode_value == "marathon":
+            return (
+                f"best_word_marathon_score_{scope_value}",
+                f"best_word_marathon_score_{scope_value}_at",
+            )
+        return (
+            f"best_word_score_{scope_value}",
+            f"best_word_score_{scope_value}_at",
+        )
+
+    score_col, at_col = get_score_columns(mode, scope)
 
     conn = db()
 
@@ -12919,12 +12975,14 @@ def submit_word_game_score():
         updated = True
 
     conn.close()
+
     return jsonify({
         "ok": True,
         "updated": updated,
         "prev": prev,
         "best": max(prev, score),
-        "mode": mode
+        "mode": mode,
+        "scope": scope
     })
 
 def iter_jlpt_items(src):
@@ -13318,17 +13376,28 @@ def word_game_ranking():
 @app.get("/quiz/word_game/ranking")
 def word_game_ranking_page():
     user = current_user()
+
     ranking_mode = (request.args.get("mode") or "speed").strip().lower()
+    ranking_scope = (request.args.get("scope") or "100").strip().lower()
 
     if ranking_mode not in ("speed", "marathon"):
         ranking_mode = "speed"
 
-    if ranking_mode == "marathon":
-        score_col = "best_word_marathon_score"
-        at_col = "best_word_marathon_score_at"
-    else:
-        score_col = "best_word_score"
-        at_col = "best_word_score_at"
+    if ranking_scope not in ("100", "300", "500", "750", "all"):
+        ranking_scope = "100"
+
+    def get_score_columns(mode_value, scope_value):
+        if mode_value == "marathon":
+            return (
+                f"best_word_marathon_score_{scope_value}",
+                f"best_word_marathon_score_{scope_value}_at",
+            )
+        return (
+            f"best_word_score_{scope_value}",
+            f"best_word_score_{scope_value}_at",
+        )
+
+    score_col, at_col = get_score_columns(ranking_mode, ranking_scope)
 
     conn = db()
 
@@ -13386,6 +13455,7 @@ def word_game_ranking_page():
         my_best=my_best,
         my_best_at=my_best_at,
         ranking_mode=ranking_mode,
+        ranking_scope=ranking_scope,
     )
 
 # -------------------------
