@@ -679,6 +679,36 @@
       font-size: 21px;
     }
   }
+    .chip-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex: 0 0 auto;
+  }
+
+  .detail-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(37,99,235,.08);
+    border: 1px solid rgba(37,99,235,.18);
+    color: var(--pri2);
+    font-size: 12px;
+    font-weight: 950;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease;
+  }
+
+  .detail-link:hover{
+    transform: translateY(-1px);
+    border-color: rgba(37,99,235,.35);
+    box-shadow: 0 8px 18px rgba(37,99,235,.12);
+    text-decoration: none;
+  }
 </style>
 
 <div class="mean-wrap">
@@ -846,20 +876,32 @@
               {% for it in items %}
                 <div class="chip-wrap">
                   <div class="chip" role="button" tabindex="0"
-                       aria-label="{{ it.get('yomi','') }} 뜻 보기"
-                       data-open="1">
-                    <div class="chip-left">
-                      <span class="dot"></span>
-                      {% if it.get('slug') %}
-                        <a class="yomi" href="{{ url_for('meaning_detail', slug=it.get('slug')) }}" onclick="event.stopPropagation();">
-                          {{ it.get("yomi","") }}
-                        </a>
-                      {% else %}
-                        <div class="yomi">{{ it.get("yomi","") }}</div>
-                      {% endif %}
-                    </div>
+                    aria-label="{{ it.get('yomi','') }} 뜻 보기"
+                    data-open="1">
+                  <div class="chip-left">
+                    <span class="dot"></span>
+                    {% if it.get('slug') %}
+                      <a class="yomi"
+                        href="{{ url_for('meaning_detail', slug=it.get('slug')) }}"
+                        onclick="event.stopPropagation();">
+                        {{ it.get("yomi","") }}
+                      </a>
+                    {% else %}
+                      <div class="yomi">{{ it.get("yomi","") }}</div>
+                    {% endif %}
+                  </div>
+
+                  <div class="chip-actions">
+                    {% if it.get('slug') %}
+                      <a class="detail-link"
+                        href="{{ url_for('meaning_detail', slug=it.get('slug')) }}"
+                        onclick="event.stopPropagation();">
+                        상세 보기
+                      </a>
+                    {% endif %}
                     <div class="chev">▴</div>
                   </div>
+                </div>
 
                   <div class="chip-detail" aria-hidden="false">
                     <div class="d-row">
