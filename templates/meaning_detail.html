@@ -311,6 +311,32 @@
     border: 1px solid rgba(22,163,74,.18);
   }
 
+  .cta-related{
+    color: #1e293b;
+    background:
+      radial-gradient(220px 100px at 0% 0%, rgba(255,255,255,.26), transparent 60%),
+      linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #dbeafe 100%);
+    border: 1px solid rgba(99,102,241,.18);
+  }
+
+  .related-box{
+    border-radius: 22px;
+    padding: 22px 20px 18px;
+    background:
+      radial-gradient(600px 180px at 0% 0%, rgba(99,102,241,.08), transparent 55%),
+      radial-gradient(500px 160px at 100% 0%, rgba(37,99,235,.07), transparent 55%),
+      linear-gradient(180deg, #ffffff 0%, #fafcff 100%);
+    border: 1px solid rgba(99,102,241,.10);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+  }
+
+  .related-empty{
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
   .keyword-hint{
     margin-top: 16px;
     color: rgba(100,116,139,.72);
@@ -445,6 +471,34 @@
           <span class="keyword-chip">{{ item.jp }} 뜻</span>
         </div>
       </div>
+
+      {% if related_items %}
+      <div class="section-box related-box">
+        <h2 class="go-title">
+          <span class="go-title-badge">🔗</span>
+          관련 일본어 더 알아보기
+        </h2>
+
+        <p class="go-sub">
+          지금 보고 있는 표현과 함께 알아두면 좋은 관련 단어와 표현입니다.
+        </p>
+
+        <div class="btn-row">
+          {% for rel in related_items %}
+          <a class="cta-btn cta-related" href="{{ url_for('meaning_detail', slug=rel.get('slug')) }}">
+            <span class="cta-left">
+              <span class="cta-icon">📖</span>
+              <span class="cta-text">
+                <span class="cta-kicker">RELATED WORD</span>
+                <span class="cta-label">{{ rel.get('ko') }} | {{ rel.get('jp') }} 뜻 보러가기</span>
+              </span>
+            </span>
+            <span class="cta-arrow">→</span>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
     </div>
   </section>
 </div>
