@@ -3098,7 +3098,7 @@ B: 괜찮아요."""
 "example_ko":"A: 또 오고 싶어요.\nB: 꼭 다시 오세요."
 },
 
-    {
+{
 "slug":"kanashii",
 "yomi":"카나시이",
 "jp":"悲しい",
@@ -3799,7 +3799,8 @@ B: 괜찮아요."""
 "keyword_ko":"기뻤어요",
 "desc":"嬉しかったです는 과거에 기뻤던 감정을 표현할 때 사용하는 표현입니다.",
 "example_jp":"A: プレゼントをもらって嬉しかったです。\nB: よかったです。",
-"example_ko":"A: 선물을 받아서 기뻤어요.\nB: 다행이네요."
+"example_ko":"A: 선물을 받아서 기뻤어요.\nB: 다행이네요.",
+"related":["tanoshikatta-desu","ureshisou-desu","sore-wa-yokatta-desu-ne"]
 },
 {
 "slug":"kanashikatta-desu",
@@ -3809,7 +3810,8 @@ B: 괜찮아요."""
 "keyword_ko":"슬펐어요",
 "desc":"悲しかったです는 과거에 슬펐던 감정을 표현할 때 사용하는 표현입니다.",
 "example_jp":"A: 映画を見て悲しかったです。\nB: そうなんですね。",
-"example_ko":"A: 영화를 보고 슬펐어요.\nB: 그렇군요."
+"example_ko":"A: 영화를 보고 슬펐어요.\nB: 그렇군요.",
+"related":["kowakatta-desu","kanashisou-desu","sore-wa-taihen-desu-ne"]
 },
 {
 "slug":"tanoshikatta-desu",
@@ -3819,7 +3821,8 @@ B: 괜찮아요."""
 "keyword_ko":"즐거웠어요",
 "desc":"楽しかったです는 과거의 경험이 즐거웠다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 旅行はどうでしたか？\nB: 楽しかったです。",
-"example_ko":"A: 여행 어땠어요?\nB: 즐거웠어요."
+"example_ko":"A: 여행 어땠어요?\nB: 즐거웠어요.",
+"related":["ureshikatta-desu","tanoshisou-desu","sore-wa-yokatta-desu-ne"]
 },
 {
 "slug":"kowakatta-desu",
@@ -3829,7 +3832,8 @@ B: 괜찮아요."""
 "keyword_ko":"무서웠어요",
 "desc":"怖かったです는 무서웠던 경험이나 감정을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: その映画どうでしたか？\nB: 怖かったです。",
-"example_ko":"A: 그 영화 어땠어요?\nB: 무서웠어요."
+"example_ko":"A: 그 영화 어땠어요?\nB: 무서웠어요.",
+"related":["kanashikatta-desu","kanashisou-desu"]
 },
 {
 "slug":"tsukarete-imasu",
@@ -3839,7 +3843,8 @@ B: 괜찮아요."""
 "keyword_ko":"피곤해요",
 "desc":"疲れています는 현재 피곤한 상태를 정중하게 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 大丈夫ですか？\nB: 少し疲れています。",
-"example_ko":"A: 괜찮아요?\nB: 조금 피곤해요."
+"example_ko":"A: 괜찮아요?\nB: 조금 피곤해요.",
+"related":["ima-nemui-desu","chotto-hima-desu","sore-wa-taihen-desu-ne"]
 },
 {
 "slug":"nemui",
@@ -3849,7 +3854,8 @@ B: 괜찮아요."""
 "keyword_ko":"졸려",
 "desc":"眠い는 잠이 오거나 졸린 상태를 나타낼 때 사용하는 표현입니다.",
 "example_jp":"A: 昨日あまり寝ていません。\nB: 眠い。",
-"example_ko":"A: 어제 많이 못 잤어.\nB: 졸려."
+"example_ko":"A: 어제 많이 못 잤어.\nB: 졸려.",
+"related":["ima-nemui-desu","tsukarete-imasu"]
 },
 {
 "slug":"nodo-ga-kawaita",
@@ -3859,7 +3865,8 @@ B: 괜찮아요."""
 "keyword_ko":"목말라",
 "desc":"喉が渇いた는 목이 마를 때 사용하는 자연스러운 일본어 표현입니다.",
 "example_jp":"A: たくさん歩いたね。\nB: 喉が渇いた。",
-"example_ko":"A: 많이 걸었네.\nB: 목말라."
+"example_ko":"A: 많이 걸었네.\nB: 목말라.",
+"related":["nodo-ga-kawakimashita","nomimashou","nomitai-desu"]
 },
 {
 "slug":"onaka-ippai",
@@ -3869,7 +3876,8 @@ B: 괜찮아요."""
 "keyword_ko":"배불러",
 "desc":"お腹いっぱい는 음식을 충분히 먹어서 배가 부른 상태를 말할 때 사용하는 표현입니다.",
 "example_jp":"A: もう食べられる？\nB: お腹いっぱい。",
-"example_ko":"A: 더 먹을 수 있어?\nB: 배불러."
+"example_ko":"A: 더 먹을 수 있어?\nB: 배불러.",
+"related":["mou-ippai-desu","onaka-suita","onaka-sukimashita"]
 },
 {
 "slug":"ima-nemui-desu",
@@ -3879,7 +3887,8 @@ B: 괜찮아요."""
 "keyword_ko":"지금 졸려요",
 "desc":"今眠いです는 현재 졸린 상태를 정중하게 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 大丈夫ですか？\nB: 今眠いです。",
-"example_ko":"A: 괜찮아요?\nB: 지금 졸려요."
+"example_ko":"A: 괜찮아요?\nB: 지금 졸려요.",
+"related":["nemui","tsukarete-imasu"]
 },
 {
 "slug":"atsukute-taihen-desu",
@@ -3889,7 +3898,8 @@ B: 괜찮아요."""
 "keyword_ko":"더워서 힘들어요",
 "desc":"暑くて大変です는 날씨가 너무 더워서 힘들다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 最近どうですか？\nB: 暑くて大変です。",
-"example_ko":"A: 요즘 어때요?\nB: 더워서 힘들어요."
+"example_ko":"A: 요즘 어때요?\nB: 더워서 힘들어요.",
+"related":["samukute-tsurai-desu","sore-wa-taihen-desu-ne"]
 },
 {
 "slug":"samukute-tsurai-desu",
@@ -3899,7 +3909,8 @@ B: 괜찮아요."""
 "keyword_ko":"추워서 힘들어요",
 "desc":"寒くてつらいです는 날씨가 너무 추워서 힘들다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 北海道はどうですか？\nB: 寒くてつらいです。",
-"example_ko":"A: 홋카이도 어때요?\nB: 추워서 힘들어요."
+"example_ko":"A: 홋카이도 어때요?\nB: 추워서 힘들어요.",
+"related":["atsukute-taihen-desu","sore-wa-taihen-desu-ne"]
 },
 {
 "slug":"ureshisou-desu",
@@ -3909,7 +3920,8 @@ B: 괜찮아요."""
 "keyword_ko":"기쁜 것 같아요",
 "desc":"嬉しそうです는 상대가 기뻐 보일 때 사용하는 표현입니다.",
 "example_jp":"A: 彼は嬉しそうです。\nB: そうですね。",
-"example_ko":"A: 그 사람 기쁜 것 같아요.\nB: 그러네요."
+"example_ko":"A: 그 사람 기쁜 것 같아요.\nB: 그러네요.",
+"related":["ureshikatta-desu","tanoshisou-desu","kanashisou-desu"]
 },
 {
 "slug":"kanashisou-desu",
@@ -3919,7 +3931,8 @@ B: 괜찮아요."""
 "keyword_ko":"슬퍼 보입니다",
 "desc":"悲しそうです는 상대가 슬퍼 보일 때 사용하는 표현입니다.",
 "example_jp":"A: 彼女は悲しそうです。\nB: 心配ですね。",
-"example_ko":"A: 그녀는 슬퍼 보여요.\nB: 걱정되네요."
+"example_ko":"A: 그녀는 슬퍼 보여요.\nB: 걱정되네요.",
+"related":["kanashikatta-desu","ureshisou-desu","kowakatta-desu"]
 },
 {
 "slug":"tanoshisou-desu",
@@ -3929,7 +3942,8 @@ B: 괜찮아요."""
 "keyword_ko":"즐거워 보여요",
 "desc":"楽しそうです는 상대가 즐거워 보일 때 사용하는 표현입니다.",
 "example_jp":"A: みんな楽しそうです。\nB: いいですね。",
-"example_ko":"A: 다들 즐거워 보여요.\nB: 좋네요."
+"example_ko":"A: 다들 즐거워 보여요.\nB: 좋네요.",
+"related":["tanoshikatta-desu","ureshisou-desu","omoshirosou-desu"]
 },
 {
 "slug":"omoshirosou-desu",
@@ -3939,11 +3953,10 @@ B: 괜찮아요."""
 "keyword_ko":"재밌어 보여요",
 "desc":"面白そうです는 어떤 것이 재미있을 것 같아 보일 때 사용하는 표현입니다.",
 "example_jp":"A: この動画面白そうです。\nB: 見てみましょう。",
-"example_ko":"A: 이 영상 재밌어 보여요.\nB: 봐 봅시다."
+"example_ko":"A: 이 영상 재밌어 보여요.\nB: 봐 봅시다.",
+"related":["tanoshisou-desu","sore-wa-ii-desu-ne"]
 },
-
-
-    {
+{
 "slug":"sou-kamo-shiremasen",
 "yomi":"소오카모시레마센",
 "jp":"そうかもしれません",
@@ -3951,7 +3964,8 @@ B: 괜찮아요."""
 "keyword_ko":"그럴지도 몰라요",
 "desc":"そうかもしれません는 어떤 상황이 그럴 가능성이 있다고 말할 때 사용하는 일본어 표현입니다.",
 "example_jp":"A: 明日雨かもしれません。\nB: そうかもしれませんね。",
-"example_ko":"A: 내일 비 올지도 몰라요.\nB: 그럴지도 몰라요."
+"example_ko":"A: 내일 비 올지도 몰라요.\nB: 그럴지도 몰라요.",
+"related":["watashi-mo-sou-omoimasu","sou-dewa-arimasen","yoku-wakarimasen"]
 },
 {
 "slug":"sou-dewa-arimasen",
@@ -3961,7 +3975,8 @@ B: 괜찮아요."""
 "keyword_ko":"그렇지 않습니다",
 "desc":"そうではありません는 상대의 말이나 생각이 맞지 않다고 정중하게 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 日本人ですか？\nB: そうではありません。",
-"example_ko":"A: 일본인이에요?\nB: 그렇지 않습니다."
+"example_ko":"A: 일본인이에요?\nB: 그렇지 않습니다.",
+"related":["sou-kamo-shiremasen","watashi-wa-chigaimasu"]
 },
 {
 "slug":"yoku-wakarimasen",
@@ -3971,7 +3986,8 @@ B: 괜찮아요."""
 "keyword_ko":"잘 모르겠어요",
 "desc":"よくわかりません는 내용을 잘 이해하지 못했을 때 사용하는 표현입니다.",
 "example_jp":"A: この意味わかりますか？\nB: よくわかりません。",
-"example_ko":"A: 이 뜻 알아요?\nB: 잘 모르겠어요."
+"example_ko":"A: 이 뜻 알아요?\nB: 잘 모르겠어요.",
+"related":["amari-wakarimasen","daitai-wakarimasu","sou-kamo-shiremasen"]
 },
 {
 "slug":"daitai-wakarimasu",
@@ -3981,7 +3997,8 @@ B: 괜찮아요."""
 "keyword_ko":"대충 이해",
 "desc":"だいたいわかります는 전체적인 내용은 이해했다는 의미로 사용하는 표현입니다.",
 "example_jp":"A: 日本語わかりますか？\nB: だいたいわかります。",
-"example_ko":"A: 일본어 알아요?\nB: 대충 이해합니다."
+"example_ko":"A: 일본어 알아요?\nB: 대충 이해합니다.",
+"related":["yoku-wakarimasen","amari-wakarimasen"]
 },
 {
 "slug":"sore-wa-ii-desu-ne",
@@ -3991,7 +4008,8 @@ B: 괜찮아요."""
 "keyword_ko":"좋네요",
 "desc":"それはいいですね는 상대의 말이나 제안이 좋다고 공감할 때 사용하는 표현입니다.",
 "example_jp":"A: 明日旅行に行きます。\nB: それはいいですね。",
-"example_ko":"A: 내일 여행 가요.\nB: 그거 좋네요."
+"example_ko":"A: 내일 여행 가요.\nB: 그거 좋네요.",
+"related":["sore-wa-yokatta-desu-ne","watashi-mo-sou-omoimasu","tanoshikatta-desu"]
 },
 {
 "slug":"sore-wa-taihen-desu-ne",
@@ -4001,7 +4019,8 @@ B: 괜찮아요."""
 "keyword_ko":"힘들겠네요",
 "desc":"それは大変ですね는 상대의 상황이 힘들어 보일 때 공감하며 사용하는 표현입니다.",
 "example_jp":"A: 最近忙しいです。\nB: それは大変ですね。",
-"example_ko":"A: 요즘 바빠요.\nB: 그거 힘들겠네요."
+"example_ko":"A: 요즘 바빠요.\nB: 그거 힘들겠네요.",
+"related":["atsukute-taihen-desu","samukute-tsurai-desu","tsukarete-imasu"]
 },
 {
 "slug":"sore-wa-yokatta-desu-ne",
@@ -4011,7 +4030,8 @@ B: 괜찮아요."""
 "keyword_ko":"다행이네요",
 "desc":"それはよかったですね는 좋은 일이 있었다는 말을 들었을 때 사용하는 표현입니다.",
 "example_jp":"A: 試験に合格しました。\nB: それはよかったですね。",
-"example_ko":"A: 시험 합격했어요.\nB: 그거 다행이네요."
+"example_ko":"A: 시험 합격했어요.\nB: 그거 다행이네요.",
+"related":["sore-wa-ii-desu-ne","ureshikatta-desu","tanoshikatta-desu"]
 },
 {
 "slug":"watashi-mo-sou-omoimasu",
@@ -4021,7 +4041,8 @@ B: 괜찮아요."""
 "keyword_ko":"저도 그렇게 생각",
 "desc":"私もそう思います는 상대의 의견에 동의할 때 사용하는 표현입니다.",
 "example_jp":"A: この映画面白いですね。\nB: 私もそう思います。",
-"example_ko":"A: 이 영화 재미있네요.\nB: 저도 그렇게 생각해요."
+"example_ko":"A: 이 영화 재미있네요.\nB: 저도 그렇게 생각해요.",
+"related":["sou-kamo-shiremasen","sore-wa-ii-desu-ne","watashi-wa-chigaimasu"]
 },
 {
 "slug":"watashi-wa-chigaimasu",
@@ -4031,7 +4052,8 @@ B: 괜찮아요."""
 "keyword_ko":"저는 달라요",
 "desc":"私は違います는 자신의 의견이 다르다는 것을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 彼が一番ですか？\nB: 私は違います。",
-"example_ko":"A: 그가 제일이에요?\nB: 저는 달라요."
+"example_ko":"A: 그가 제일이에요?\nB: 저는 달라요.",
+"related":["sou-dewa-arimasen","watashi-mo-sou-omoimasu"]
 },
 {
 "slug":"amari-wakarimasen",
@@ -4041,7 +4063,8 @@ B: 괜찮아요."""
 "keyword_ko":"잘 모르겠어요",
 "desc":"あまりわかりません는 충분히 이해하지 못했을 때 사용하는 표현입니다.",
 "example_jp":"A: 日本語わかりますか？\nB: あまりわかりません。",
-"example_ko":"A: 일본어 알아요?\nB: 잘 모르겠어요."
+"example_ko":"A: 일본어 알아요?\nB: 잘 모르겠어요.",
+"related":["yoku-wakarimasen","daitai-wakarimasu"]
 },
 {
 "slug":"ima-isogashii",
@@ -4051,7 +4074,8 @@ B: 괜찮아요."""
 "keyword_ko":"지금 바빠",
 "desc":"今忙しい는 현재 바쁜 상황을 말할 때 사용하는 캐주얼한 표현입니다.",
 "example_jp":"A: 電話できますか？\nB: 今忙しい。",
-"example_ko":"A: 전화 가능해?\nB: 지금 바빠."
+"example_ko":"A: 전화 가능해?\nB: 지금 바빠.",
+"related":["chotto-hima-desu","ima-nani-shiteru","tsukarete-imasu"]
 },
 {
 "slug":"chotto-hima-desu",
@@ -4061,7 +4085,8 @@ B: 괜찮아요."""
 "keyword_ko":"조금 한가해요",
 "desc":"ちょっと暇です는 현재 시간이 조금 여유 있다는 의미로 사용하는 표현입니다.",
 "example_jp":"A: 今忙しいですか？\nB: ちょっと暇です。",
-"example_ko":"A: 지금 바빠요?\nB: 조금 한가해요."
+"example_ko":"A: 지금 바빠요?\nB: 조금 한가해요.",
+"related":["ima-isogashii","ima-nani-shiteru"]
 },
 {
 "slug":"ima-nani-shiteru",
@@ -4071,7 +4096,8 @@ B: 괜찮아요."""
 "keyword_ko":"지금 뭐 해",
 "desc":"今何してる는 친구나 가까운 사람에게 지금 무엇을 하고 있는지 물어볼 때 사용하는 표현입니다.",
 "example_jp":"A: 今何してる？\nB: 家にいる。",
-"example_ko":"A: 지금 뭐 해?\nB: 집에 있어."
+"example_ko":"A: 지금 뭐 해?\nB: 집에 있어.",
+"related":["ima-ie-ni-imasu","ima-soto-desu","ima-isogashii"]
 },
 {
 "slug":"ima-ie-ni-imasu",
@@ -4081,7 +4107,8 @@ B: 괜찮아요."""
 "keyword_ko":"지금 집에",
 "desc":"今家にいます는 현재 집에 있다는 의미로 사용하는 표현입니다.",
 "example_jp":"A: 今どこですか？\nB: 今家にいます。",
-"example_ko":"A: 지금 어디예요?\nB: 지금 집에 있어요."
+"example_ko":"A: 지금 어디예요?\nB: 지금 집에 있어요.",
+"related":["ima-soto-desu","ima-nani-shiteru","doko-ni-sundeimasuka"]
 },
 {
 "slug":"ima-soto-desu",
@@ -4091,7 +4118,8 @@ B: 괜찮아요."""
 "keyword_ko":"지금 밖",
 "desc":"今外です는 현재 밖에 있다는 의미로 사용하는 표현입니다.",
 "example_jp":"A: 今どこですか？\nB: 今外です。",
-"example_ko":"A: 지금 어디예요?\nB: 지금 밖이에요."
+"example_ko":"A: 지금 어디예요?\nB: 지금 밖이에요.",
+"related":["ima-ie-ni-imasu","ima-dekakemasu","ima-tsukimashita"]
 },
 {
 "slug":"ima-dekakemasu",
@@ -4101,7 +4129,8 @@ B: 괜찮아요."""
 "keyword_ko":"지금 나가요",
 "desc":"今出かけます는 지금 외출하겠다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 今出かけます。\nB: 気をつけて。",
-"example_ko":"A: 지금 나가요.\nB: 조심히 가."
+"example_ko":"A: 지금 나가요.\nB: 조심히 가.",
+"related":["ima-soto-desu","ima-tsukimashita","mou-sugu-desu"]
 },
 {
 "slug":"ima-kimashita",
@@ -4111,7 +4140,8 @@ B: 괜찮아요."""
 "keyword_ko":"지금 왔어요",
 "desc":"今来ました는 방금 도착했을 때 사용하는 표현입니다.",
 "example_jp":"A: どこですか？\nB: 今来ました。",
-"example_ko":"A: 어디예요?\nB: 지금 왔어요."
+"example_ko":"A: 어디예요?\nB: 지금 왔어요.",
+"related":["ima-tsukimashita","mou-sugu-desu","ima-soto-desu"]
 },
 {
 "slug":"ima-tsukimashita",
@@ -4121,7 +4151,8 @@ B: 괜찮아요."""
 "keyword_ko":"지금 도착",
 "desc":"今着きました는 목적지에 막 도착했을 때 사용하는 표현입니다.",
 "example_jp":"A: 今着きました。\nB: わかりました。",
-"example_ko":"A: 지금 도착했어요.\nB: 알겠습니다."
+"example_ko":"A: 지금 도착했어요.\nB: 알겠습니다.",
+"related":["ima-kimashita","mou-sugu-desu","ima-soto-desu"]
 },
 {
 "slug":"mou-sugu-desu",
@@ -4131,7 +4162,8 @@ B: 괜찮아요."""
 "keyword_ko":"곧이에요",
 "desc":"もうすぐです는 곧 도착하거나 곧 시작된다는 의미로 사용하는 표현입니다.",
 "example_jp":"A: 着きますか？\nB: もうすぐです。",
-"example_ko":"A: 도착해요?\nB: 곧이에요."
+"example_ko":"A: 도착해요?\nB: 곧이에요.",
+"related":["ima-tsukimashita","ima-kimashita","ima-dekakemasu"]
 },
 {
 "slug":"doko-ni-sundeimasuka",
@@ -4141,7 +4173,8 @@ B: 괜찮아요."""
 "keyword_ko":"어디 살아요",
 "desc":"どこに住んでいますか는 상대의 거주지를 물어볼 때 사용하는 표현입니다.",
 "example_jp":"A: どこに住んでいますか？\nB: ソウルです。",
-"example_ko":"A: 어디 살아요?\nB: 서울이요."
+"example_ko":"A: 어디 살아요?\nB: 서울이요.",
+"related":["ima-ie-ni-imasu","nansai-desuka","nan-no-shigoto-desuka"]
 },
 {
 "slug":"nansai-desuka",
@@ -4151,7 +4184,8 @@ B: 괜찮아요."""
 "keyword_ko":"몇 살",
 "desc":"何歳ですか는 상대의 나이를 물어볼 때 사용하는 표현입니다.",
 "example_jp":"A: 何歳ですか？\nB: 二十歳です。",
-"example_ko":"A: 몇 살이에요?\nB: 스무 살이에요."
+"example_ko":"A: 몇 살이에요?\nB: 스무 살이에요.",
+"related":["doko-ni-sundeimasuka","nan-no-shigoto-desuka"]
 },
 {
 "slug":"nan-no-shigoto-desuka",
@@ -4161,7 +4195,8 @@ B: 괜찮아요."""
 "keyword_ko":"무슨 일",
 "desc":"何の仕事ですか는 상대의 직업을 물어볼 때 사용하는 표현입니다.",
 "example_jp":"A: 何の仕事ですか？\nB: 会社員です。",
-"example_ko":"A: 무슨 일 하세요?\nB: 회사원이에요."
+"example_ko":"A: 무슨 일 하세요?\nB: 회사원이에요.",
+"related":["doko-de-hatarai-teimasuka","nansai-desuka","doko-ni-sundeimasuka"]
 },
 {
 "slug":"doko-de-hatarai-teimasuka",
@@ -4171,7 +4206,8 @@ B: 괜찮아요."""
 "keyword_ko":"어디서 일",
 "desc":"どこで働いていますか는 일하는 장소를 물어볼 때 사용하는 표현입니다.",
 "example_jp":"A: どこで働いていますか？\nB: 東京です。",
-"example_ko":"A: 어디서 일하세요?\nB: 도쿄요."
+"example_ko":"A: 어디서 일하세요?\nB: 도쿄요.",
+"related":["nan-no-shigoto-desuka"]
 },
 {
 "slug":"nan-gatsu-desuka",
@@ -4181,7 +4217,8 @@ B: 괜찮아요."""
 "keyword_ko":"몇 월",
 "desc":"何月ですか는 현재 월이나 특정 월을 물어볼 때 사용하는 표현입니다.",
 "example_jp":"A: 今何月ですか？\nB: 七月です。",
-"example_ko":"A: 지금 몇 월이에요?\nB: 7월이에요."
+"example_ko":"A: 지금 몇 월이에요?\nB: 7월이에요.",
+"related":["nan-youbi-desuka"]
 },
 {
 "slug":"nan-youbi-desuka",
@@ -4191,11 +4228,10 @@ B: 괜찮아요."""
 "keyword_ko":"무슨 요일",
 "desc":"何曜日ですか는 요일을 물어볼 때 사용하는 표현입니다.",
 "example_jp":"A: 今日は何曜日ですか？\nB: 月曜日です。",
-"example_ko":"A: 오늘 무슨 요일이에요?\nB: 월요일이에요."
+"example_ko":"A: 오늘 무슨 요일이에요?\nB: 월요일이에요.",
+"related":["nan-gatsu-desuka"]
 },
-
-
-    {
+{
 "slug":"ryokan",
 "yomi":"료칸",
 "jp":"旅館",
@@ -4203,7 +4239,8 @@ B: 괜찮아요."""
 "keyword_ko":"료칸",
 "desc":"旅館은 일본 전통 숙박시설을 의미하며 다다미 방과 온천 등을 제공하는 경우가 많습니다.",
 "example_jp":"A: 旅館に泊まりました。\nB: どうでしたか？",
-"example_ko":"A: 료칸에 묵었어요.\nB: 어땠어요?"
+"example_ko":"A: 료칸에 묵었어요.\nB: 어땠어요?",
+"related":["kankou","kankoukyaku","yuumei-kankouchi"]
 },
 {
 "slug":"kankou",
@@ -4213,7 +4250,8 @@ B: 괜찮아요."""
 "keyword_ko":"관광",
 "desc":"観光은 여행하면서 명소를 구경하는 활동을 의미합니다.",
 "example_jp":"A: 日本で観光します。\nB: 楽しんでください。",
-"example_ko":"A: 일본에서 관광해요.\nB: 즐기세요."
+"example_ko":"A: 일본에서 관광해요.\nB: 즐기세요.",
+"related":["kankoukyaku","kankou-guide","kankou-spot"]
 },
 {
 "slug":"kankoukyaku",
@@ -4223,7 +4261,8 @@ B: 괜찮아요."""
 "keyword_ko":"관광객",
 "desc":"観光客은 관광을 목적으로 여행하는 사람을 의미합니다.",
 "example_jp":"A: 観光客が多いです。\nB: 有名な場所ですね。",
-"example_ko":"A: 관광객이 많아요.\nB: 유명한 곳이네요."
+"example_ko":"A: 관광객이 많아요.\nB: 유명한 곳이네요.",
+"related":["kankou","yuumei-kankouchi","kankou-spot"]
 },
 {
 "slug":"kankou-guide",
@@ -4233,7 +4272,8 @@ B: 괜찮아요."""
 "keyword_ko":"관광 가이드",
 "desc":"観光ガイド는 관광지를 안내하고 설명해 주는 사람이나 안내서를 의미합니다.",
 "example_jp":"A: 観光ガイドを見ました。\nB: 便利ですね。",
-"example_ko":"A: 관광 가이드를 봤어요.\nB: 편리하네요."
+"example_ko":"A: 관광 가이드를 봤어요.\nB: 편리하네요.",
+"related":["kankou","kankou-chizu","kankou-tour"]
 },
 {
 "slug":"kankou-chizu",
@@ -4243,7 +4283,8 @@ B: 괜찮아요."""
 "keyword_ko":"관광 지도",
 "desc":"観光地図는 관광지를 안내하기 위해 만든 지도를 의미합니다.",
 "example_jp":"A: 観光地図をください。\nB: はい、どうぞ。",
-"example_ko":"A: 관광 지도 주세요.\nB: 네, 여기요."
+"example_ko":"A: 관광 지도 주세요.\nB: 네, 여기요.",
+"related":["kankou-guide","kankou-spot","kankou-tour"]
 },
 {
 "slug":"kankou-bus",
@@ -4253,7 +4294,8 @@ B: 괜찮아요."""
 "keyword_ko":"관광 버스",
 "desc":"観光バス는 관광객을 관광지로 이동시키는 버스를 의미합니다.",
 "example_jp":"A: 観光バスに乗ります。\nB: 楽しんでください。",
-"example_ko":"A: 관광 버스를 타요.\nB: 즐기세요."
+"example_ko":"A: 관광 버스를 타요.\nB: 즐기세요.",
+"related":["kankou-tour","kankou","kankoukyaku"]
 },
 {
 "slug":"kankou-tour",
@@ -4263,7 +4305,8 @@ B: 괜찮아요."""
 "keyword_ko":"관광 투어",
 "desc":"観光ツアー는 여러 관광지를 일정에 따라 방문하는 여행 프로그램을 의미합니다.",
 "example_jp":"A: 観光ツアーに参加します。\nB: いいですね。",
-"example_ko":"A: 관광 투어에 참가해요.\nB: 좋네요."
+"example_ko":"A: 관광 투어에 참가해요.\nB: 좋네요.",
+"related":["kankou-bus","kankou-guide","kankou-spot"]
 },
 {
 "slug":"yuumei-kankouchi",
@@ -4273,7 +4316,8 @@ B: 괜찮아요."""
 "keyword_ko":"유명 관광지",
 "desc":"有名観光地는 많은 사람들이 방문하는 유명한 관광지를 의미합니다.",
 "example_jp":"A: ここは有名観光地です。\nB: 人が多いですね。",
-"example_ko":"A: 여기는 유명 관광지예요.\nB: 사람이 많네요."
+"example_ko":"A: 여기는 유명 관광지예요.\nB: 사람이 많네요.",
+"related":["kankou-spot","kankoukyaku","kankou"]
 },
 {
 "slug":"kankou-spot",
@@ -4283,7 +4327,8 @@ B: 괜찮아요."""
 "keyword_ko":"관광 명소",
 "desc":"観光スポット은 관광객들이 많이 방문하는 명소를 의미합니다.",
 "example_jp":"A: おすすめの観光スポットは？\nB: この神社です。",
-"example_ko":"A: 추천 관광 명소는?\nB: 이 신사입니다."
+"example_ko":"A: 추천 관광 명소는?\nB: 이 신사입니다.",
+"related":["yuumei-kankouchi","kankou","kankou-guide"]
 },
 {
 "slug":"kore-wo-kaimasu",
@@ -4293,7 +4338,8 @@ B: 괜찮아요."""
 "keyword_ko":"이거 살게요",
 "desc":"これを買います는 물건을 구매하겠다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: これを買います。\nB: ありがとうございます。",
-"example_ko":"A: 이거 살게요.\nB: 감사합니다."
+"example_ko":"A: 이거 살게요.\nB: 감사합니다.",
+"related":["kore-wa-takasugimasu","kore-wa-ii-shouhin-desu","kore-wa-atarashii-desu"]
 },
 {
 "slug":"kore-wa-takasugimasu",
@@ -4303,7 +4349,8 @@ B: 괜찮아요."""
 "keyword_ko":"너무 비싸요",
 "desc":"これは高すぎます는 가격이 너무 비싸다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: これは高すぎます。\nB: 少し安くできます。",
-"example_ko":"A: 이거 너무 비싸요.\nB: 조금 깎아 드릴게요."
+"example_ko":"A: 이거 너무 비싸요.\nB: 조금 깎아 드릴게요.",
+"related":["kore-wo-kaimasu","kore-wa-yasusugimasu","kore-wa-ii-shouhin-desu"]
 },
 {
 "slug":"kore-wa-yasusugimasu",
@@ -4313,7 +4360,8 @@ B: 괜찮아요."""
 "keyword_ko":"너무 싸요",
 "desc":"これは安すぎます는 가격이 너무 싸다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: これは安すぎます。\nB: セールです。",
-"example_ko":"A: 이거 너무 싸요.\nB: 세일이에요."
+"example_ko":"A: 이거 너무 싸요.\nB: 세일이에요.",
+"related":["kore-wa-takasugimasu","kore-wa-ii-shouhin-desu"]
 },
 {
 "slug":"kore-wa-ii-shouhin-desu",
@@ -4323,7 +4371,8 @@ B: 괜찮아요."""
 "keyword_ko":"좋은 상품",
 "desc":"これはいい商品です는 상품의 품질이 좋다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: これはいい商品です。\nB: 買います。",
-"example_ko":"A: 이거 좋은 상품이에요.\nB: 살게요."
+"example_ko":"A: 이거 좋은 상품이에요.\nB: 살게요.",
+"related":["kore-wo-kaimasu","kore-wa-takasugimasu","kore-wa-atarashii-desu"]
 },
 {
 "slug":"kore-wa-atarashii-desu",
@@ -4333,7 +4382,8 @@ B: 괜찮아요."""
 "keyword_ko":"새 거",
 "desc":"これは新しいです는 물건이 새것이라는 의미로 사용하는 표현입니다.",
 "example_jp":"A: これは新しいです。\nB: きれいですね。",
-"example_ko":"A: 이거 새 거예요.\nB: 깨끗하네요."
+"example_ko":"A: 이거 새 거예요.\nB: 깨끗하네요.",
+"related":["kore-wa-furui-desu","kore-wa-ii-shouhin-desu","kore-wo-kaimasu"]
 },
 {
 "slug":"kore-wa-furui-desu",
@@ -4343,7 +4393,8 @@ B: 괜찮아요."""
 "keyword_ko":"오래됐어요",
 "desc":"これは古いです는 물건이 오래되었음을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: これは古いです。\nB: そうですね。",
-"example_ko":"A: 이거 오래됐어요.\nB: 그렇네요."
+"example_ko":"A: 이거 오래됐어요.\nB: 그렇네요.",
+"related":["kore-wa-atarashii-desu"]
 },
 {
 "slug":"kore-wa-ookii-desu",
@@ -4353,7 +4404,8 @@ B: 괜찮아요."""
 "keyword_ko":"커요",
 "desc":"これは大きいです는 물건의 크기가 크다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: これは大きいです。\nB: 持てますか？",
-"example_ko":"A: 이거 커요.\nB: 들 수 있어요?"
+"example_ko":"A: 이거 커요.\nB: 들 수 있어요?",
+"related":["kore-wa-chiisai-desu","kore-wa-omoi-desu","kore-wa-karui-desu"]
 },
 {
 "slug":"kore-wa-chiisai-desu",
@@ -4363,7 +4415,8 @@ B: 괜찮아요."""
 "keyword_ko":"작아요",
 "desc":"これは小さいです는 물건의 크기가 작다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: これは小さいです。\nB: かわいいですね。",
-"example_ko":"A: 이거 작아요.\nB: 귀엽네요."
+"example_ko":"A: 이거 작아요.\nB: 귀엽네요.",
+"related":["kore-wa-ookii-desu"]
 },
 {
 "slug":"kore-wa-omoi-desu",
@@ -4373,7 +4426,8 @@ B: 괜찮아요."""
 "keyword_ko":"무거워요",
 "desc":"これは重いです는 물건이 무겁다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: これは重いです。\nB: 手伝いましょうか。",
-"example_ko":"A: 이거 무거워요.\nB: 도와드릴까요?"
+"example_ko":"A: 이거 무거워요.\nB: 도와드릴까요?",
+"related":["kore-wa-karui-desu","kore-wa-ookii-desu"]
 },
 {
 "slug":"kore-wa-karui-desu",
@@ -4383,7 +4437,8 @@ B: 괜찮아요."""
 "keyword_ko":"가벼워요",
 "desc":"これは軽いです는 물건이 가볍다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: これは軽いです。\nB: 持ちやすいですね。",
-"example_ko":"A: 이거 가벼워요.\nB: 들기 쉽네요."
+"example_ko":"A: 이거 가벼워요.\nB: 들기 쉽네요.",
+"related":["kore-wa-omoi-desu","kore-wa-ookii-desu"]
 },
 {
 "slug":"tabemashou",
@@ -4393,7 +4448,8 @@ B: 괜찮아요."""
 "keyword_ko":"먹어요",
 "desc":"食べましょう는 함께 음식을 먹자고 제안할 때 사용하는 표현입니다.",
 "example_jp":"A: 一緒に食べましょう。\nB: はい。",
-"example_ko":"A: 같이 먹어요.\nB: 네."
+"example_ko":"A: 같이 먹어요.\nB: 네.",
+"related":["nomimashou","tabetai-desu","onaka-sukimashita"]
 },
 {
 "slug":"nomimashou",
@@ -4403,7 +4459,8 @@ B: 괜찮아요."""
 "keyword_ko":"마셔요",
 "desc":"飲みましょう는 함께 음료나 술을 마시자고 제안할 때 사용하는 표현입니다.",
 "example_jp":"A: コーヒー飲みましょう。\nB: いいですね。",
-"example_ko":"A: 커피 마셔요.\nB: 좋네요."
+"example_ko":"A: 커피 마셔요.\nB: 좋네요.",
+"related":["tabemashou","nomitai-desu","nodo-ga-kawakimashita"]
 },
 {
 "slug":"onaka-suita",
@@ -4413,7 +4470,8 @@ B: 괜찮아요."""
 "keyword_ko":"배고파",
 "desc":"お腹すいた는 배가 고플 때 캐주얼하게 사용하는 표현입니다.",
 "example_jp":"A: お腹すいた。\nB: 何か食べよう。",
-"example_ko":"A: 배고파.\nB: 뭐 좀 먹자."
+"example_ko":"A: 배고파.\nB: 뭐 좀 먹자.",
+"related":["onaka-sukimashita","tabetai-desu","tabemashou"]
 },
 {
 "slug":"onaka-sukimashita",
@@ -4423,7 +4481,8 @@ B: 괜찮아요."""
 "keyword_ko":"배고파요",
 "desc":"お腹空きました는 배가 고픈 상태를 정중하게 말할 때 사용하는 표현입니다.",
 "example_jp":"A: お腹空きました。\nB: 食べに行きましょう。",
-"example_ko":"A: 배고파요.\nB: 먹으러 가요."
+"example_ko":"A: 배고파요.\nB: 먹으러 가요.",
+"related":["onaka-suita","tabetai-desu","tabemashou"]
 },
 {
 "slug":"nodo-ga-kawakimashita",
@@ -4433,7 +4492,8 @@ B: 괜찮아요."""
 "keyword_ko":"목말라요",
 "desc":"喉が渇きました는 목이 마른 상태를 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 喉が渇きました。\nB: 水を飲みましょう。",
-"example_ko":"A: 목말라요.\nB: 물 마셔요."
+"example_ko":"A: 목말라요.\nB: 물 마셔요.",
+"related":["nodo-ga-kawaita","nomitai-desu","nomimashou"]
 },
 {
 "slug":"oishisou",
@@ -4443,7 +4503,8 @@ B: 괜찮아요."""
 "keyword_ko":"맛있어 보인다",
 "desc":"美味しそう는 음식이 맛있어 보일 때 사용하는 표현입니다.",
 "example_jp":"A: このケーキ美味しそう。\nB: 食べてみよう。",
-"example_ko":"A: 이 케이크 맛있어 보인다.\nB: 먹어 보자."
+"example_ko":"A: 이 케이크 맛있어 보인다.\nB: 먹어 보자.",
+"related":["tabetai-desu","tabemashou"]
 },
 {
 "slug":"tabetai-desu",
@@ -4453,7 +4514,8 @@ B: 괜찮아요."""
 "keyword_ko":"먹고 싶어요",
 "desc":"食べたいです는 어떤 음식을 먹고 싶다고 말할 때 사용하는 표현입니다.",
 "example_jp":"A: ラーメン食べたいです。\nB: 行きましょう。",
-"example_ko":"A: 라멘 먹고 싶어요.\nB: 가요."
+"example_ko":"A: 라멘 먹고 싶어요.\nB: 가요.",
+"related":["tabemashou","onaka-sukimashita","oishisou"]
 },
 {
 "slug":"nomitai-desu",
@@ -4463,7 +4525,8 @@ B: 괜찮아요."""
 "keyword_ko":"마시고 싶어요",
 "desc":"飲みたいです는 음료나 술을 마시고 싶을 때 사용하는 표현입니다.",
 "example_jp":"A: コーヒー飲みたいです。\nB: 作ります。",
-"example_ko":"A: 커피 마시고 싶어요.\nB: 만들어 드릴게요."
+"example_ko":"A: 커피 마시고 싶어요.\nB: 만들어 드릴게요.",
+"related":["nomimashou","nodo-ga-kawakimashita","nodo-ga-kawaita"]
 },
 {
 "slug":"mou-ippai-desu",
@@ -4473,7 +4536,8 @@ B: 괜찮아요."""
 "keyword_ko":"이미 가득",
 "desc":"もういっぱいです는 더 이상 먹거나 받을 수 없을 때 사용하는 표현입니다.",
 "example_jp":"A: もう食べますか？\nB: もういっぱいです。",
-"example_ko":"A: 더 드실래요?\nB: 이미 가득이에요."
+"example_ko":"A: 더 드실래요?\nB: 이미 가득이에요.",
+"related":["onaka-ippai","gochisousama"]
 },
 {
 "slug":"gochisousama",
@@ -4483,7 +4547,8 @@ B: 괜찮아요."""
 "keyword_ko":"잘 먹었습니다",
 "desc":"ごちそうさま는 식사를 마친 후 감사의 의미로 말하는 일본어 표현입니다.",
 "example_jp":"A: ごちそうさまでした。\nB: ありがとうございました。",
-"example_ko":"A: 잘 먹었습니다.\nB: 감사합니다."
+"example_ko":"A: 잘 먹었습니다.\nB: 감사합니다.",
+"related":["tabemashou","onaka-ippai","mou-ippai-desu"]
 },
 
 
@@ -5251,44 +5316,59 @@ B: 괜찮아요."""
 "example_ko":"A: 감사합니다.\nB: 네, 또 올게요."
 },
 {
-"slug":"gakkou",
-"yomi":"각코오",
-"jp":"学校",
-"ko":"학교",
-"keyword_ko":"학교",
-"desc":"学校는 학생들이 공부하는 장소인 학교를 의미하는 일본어 단어입니다.",
-"example_jp":"A: 学校はどこですか？\nB: あそこです。",
-"example_ko":"A: 학교는 어디예요?\nB: 저기예요."
+    "slug":"gakkou",
+    "yomi":"각코오",
+    "jp":"学校",
+    "ko":"학교",
+    "keyword_ko":"학교",
+    "desc":"学校는 학생들이 공부하는 장소인 학교를 의미하는 일본어 단어입니다.",
+    "example_jp":"A: 学校はどこですか？\nB: あそこです。",
+    "example_ko":"A: 학교는 어디예요?\nB: 저기예요.",
+    "related": ["gakusei", "sensei", "jugyou", "benkyou"]
 },
 {
-"slug":"sensei",
-"yomi":"센세이",
-"jp":"先生",
-"ko":"선생님",
-"keyword_ko":"선생님",
-"desc":"先生는 학교 선생님이나 전문 직업인을 부를 때 사용하는 표현입니다.",
-"example_jp":"A: 先生、質問があります。\nB: はい、どうぞ。",
-"example_ko":"A: 선생님, 질문 있어요.\nB: 네, 말씀하세요."
+    "slug":"sensei",
+    "yomi":"센세이",
+    "jp":"先生",
+    "ko":"선생님",
+    "keyword_ko":"선생님",
+    "desc":"先生는 학교 선생님이나 전문 직업인을 부를 때 사용하는 표현입니다.",
+    "example_jp":"A: 先生、質問があります。\nB: はい、どうぞ。",
+    "example_ko":"A: 선생님, 질문 있어요.\nB: 네, 말씀하세요.",
+    "related": ["gakusei", "gakkou", "jugyou", "benkyou"]
 },
 {
-"slug":"gakusei",
-"yomi":"가쿠세이",
-"jp":"学生",
-"ko":"학생",
-"keyword_ko":"학생",
-"desc":"学生는 학교에서 공부하는 사람, 즉 학생을 의미합니다.",
-"example_jp":"A: あの人は学生です。\nB: そうですか。",
-"example_ko":"A: 저 사람은 학생이에요.\nB: 그렇군요."
+    "slug":"gakusei",
+    "yomi":"가쿠세이",
+    "jp":"学生",
+    "ko":"학생",
+    "keyword_ko":"학생",
+    "desc":"学生는 학교에서 공부하는 사람, 즉 학생을 의미합니다.",
+    "example_jp":"A: あの人は学生です。\nB: そうですか。",
+    "example_ko":"A: 저 사람은 학생이에요.\nB: 그렇군요.",
+    "related": ["sensei", "gakkou", "jugyou", "benkyou"]
 },
 {
-"slug":"jugyou",
-"yomi":"쥬교오",
-"jp":"授業",
-"ko":"수업",
-"keyword_ko":"수업",
-"desc":"授業는 학교에서 배우는 수업 시간을 의미하는 일본어 단어입니다.",
-"example_jp":"A: 次の授業は何ですか？\nB: 数学です。",
-"example_ko":"A: 다음 수업은 뭐예요?\nB: 수학이에요."
+    "slug":"jugyou",
+    "yomi":"쥬교오",
+    "jp":"授業",
+    "ko":"수업",
+    "keyword_ko":"수업",
+    "desc":"授業는 학교에서 배우는 수업 시간을 의미하는 일본어 단어입니다.",
+    "example_jp":"A: 次の授業は何ですか？\nB: 数学です。",
+    "example_ko":"A: 다음 수업은 뭐예요?\nB: 수학이에요.",
+    "related": ["gakusei", "gakkou", "sensei", "benkyou"]
+},
+{
+    "slug":"benkyou",
+    "yomi":"벤쿄오",
+    "jp":"勉強",
+    "ko":"공부",
+    "keyword_ko":"공부",
+    "desc":"勉強는 공부하거나 학습하는 것을 의미하는 일본어 단어입니다.",
+    "example_jp":"A: 毎日勉強します。\nB: えらいですね。",
+    "example_ko":"A: 매일 공부해요.\nB: 대단하네요.",
+    "related": ["gakusei", "gakkou", "sensei", "jugyou"]
 },
 {
 "slug":"benkyou",
@@ -5298,7 +5378,8 @@ B: 괜찮아요."""
 "keyword_ko":"공부",
 "desc":"勉強는 학습이나 공부를 뜻하는 기본적인 일본어 단어입니다.",
 "example_jp":"A: 毎日勉強します。\nB: すごいですね。",
-"example_ko":"A: 매일 공부해요.\nB: 대단하네요."
+"example_ko":"A: 매일 공부해요.\nB: 대단하네요.",
+"related": ["tesuto", "shukudai", "toshokan", "nooto"]
 },
 {
 "slug":"tesuto",
@@ -5308,7 +5389,8 @@ B: 괜찮아요."""
 "keyword_ko":"시험",
 "desc":"テスト는 학교나 학원에서 보는 시험을 의미하는 일본어 표현입니다.",
 "example_jp":"A: 明日テストがあります。\nB: 頑張ってください。",
-"example_ko":"A: 내일 시험이 있어요.\nB: 힘내세요."
+"example_ko":"A: 내일 시험이 있어요.\nB: 힘내세요.",
+"related": ["benkyou", "shukudai", "nooto", "pen"]
 },
 {
 "slug":"shukudai",
@@ -5318,7 +5400,8 @@ B: 괜찮아요."""
 "keyword_ko":"숙제",
 "desc":"宿題는 학교에서 집으로 내주는 과제나 숙제를 의미합니다.",
 "example_jp":"A: 宿題は終わりましたか？\nB: まだです。",
-"example_ko":"A: 숙제 끝났어요?\nB: 아직이요."
+"example_ko":"A: 숙제 끝났어요?\nB: 아직이요.",
+"related": ["benkyou", "tesuto", "nooto", "pen"]
 },
 {
 "slug":"toshokan",
@@ -5328,7 +5411,8 @@ B: 괜찮아요."""
 "keyword_ko":"도서관",
 "desc":"図書館는 책을 읽거나 빌릴 수 있는 도서관을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 図書館で勉強します。\nB: いいですね。",
-"example_ko":"A: 도서관에서 공부해요.\nB: 좋네요."
+"example_ko":"A: 도서관에서 공부해요.\nB: 좋네요.",
+"related": ["benkyou", "kyoushitsu", "nooto", "shukudai"]
 },
 {
 "slug":"kyoushitsu",
@@ -5338,7 +5422,8 @@ B: 괜찮아요."""
 "keyword_ko":"교실",
 "desc":"教室는 학교에서 수업을 하는 방인 교실을 의미합니다.",
 "example_jp":"A: 教室は二階です。\nB: わかりました。",
-"example_ko":"A: 교실은 2층이에요.\nB: 알겠습니다."
+"example_ko":"A: 교실은 2층이에요.\nB: 알겠습니다.",
+"related": ["tesuto", "shukudai", "nooto", "pen"]
 },
 {
 "slug":"nooto",
@@ -5348,7 +5433,8 @@ B: 괜찮아요."""
 "keyword_ko":"노트",
 "desc":"ノート는 필기할 때 사용하는 노트를 의미하는 일본어 단어입니다.",
 "example_jp":"A: ノートを忘れました。\nB: 大丈夫ですか？",
-"example_ko":"A: 노트를 잊어버렸어요.\nB: 괜찮아요?"
+"example_ko":"A: 노트를 잊어버렸어요.\nB: 괜찮아요?",
+"related": ["benkyou", "tesuto", "shukudai", "pen"]
 },
 {
 "slug":"pen",
@@ -5358,7 +5444,8 @@ B: 괜찮아요."""
 "keyword_ko":"펜",
 "desc":"ペン는 글씨를 쓰는 도구인 펜을 의미하는 일본어 단어입니다.",
 "example_jp":"A: ペンを貸してください。\nB: はい、どうぞ。",
-"example_ko":"A: 펜 빌려 주세요.\nB: 네, 여기요."
+"example_ko":"A: 펜 빌려 주세요.\nB: 네, 여기요.",
+"related": ["nooto", "shukudai", "tesuto", "kyoushitsu"]
 },
 {
 "slug":"enogu",
@@ -5408,7 +5495,8 @@ B: 괜찮아요."""
 "keyword_ko":"회사",
 "desc":"会社는 일을 하는 직장이나 회사를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 会社はどこですか？\nB: 東京です。",
-"example_ko":"A: 회사는 어디예요?\nB: 도쿄예요."
+"example_ko":"A: 회사는 어디예요?\nB: 도쿄예요.",
+"related": ["shigoto", "shain", "kaigi", "douryou"]
 },
 {
 "slug":"shigoto",
@@ -5418,7 +5506,8 @@ B: 괜찮아요."""
 "keyword_ko":"일",
 "desc":"仕事는 직업, 업무, 일을 의미하는 기본적인 일본어 단어입니다.",
 "example_jp":"A: 今日は仕事があります。\nB: 忙しいですね。",
-"example_ko":"A: 오늘 일이 있어요.\nB: 바쁘네요."
+"example_ko":"A: 오늘 일이 있어요.\nB: 바쁘네요.",
+"related": ["kaisha", "shain", "douryou", "joushi"]
 },
 {
 "slug":"shain",
@@ -5428,7 +5517,8 @@ B: 괜찮아요."""
 "keyword_ko":"직원",
 "desc":"社員는 회사에서 일하는 직원이나 사원을 의미합니다.",
 "example_jp":"A: 彼は会社の社員です。\nB: そうですか。",
-"example_ko":"A: 그는 회사 직원이에요.\nB: 그렇군요."
+"example_ko":"A: 그는 회사 직원이에요.\nB: 그렇군요.",
+"related": ["kaisha", "joushi", "douryou", "shigoto"]
 },
 {
 "slug":"joushi",
@@ -5438,7 +5528,8 @@ B: 괜찮아요."""
 "keyword_ko":"상사",
 "desc":"上司는 회사나 직장에서 자신의 윗사람, 즉 상사를 의미합니다.",
 "example_jp":"A: 上司と会議があります。\nB: 大変ですね。",
-"example_ko":"A: 상사와 회의가 있어요.\nB: 힘들겠네요."
+"example_ko":"A: 상사와 회의가 있어요.\nB: 힘들겠네요.",
+"related": ["shain", "douryou", "kaigi", "shigoto"]
 },
 {
 "slug":"douryou",
@@ -5448,7 +5539,8 @@ B: 괜찮아요."""
 "keyword_ko":"동료",
 "desc":"同僚는 회사나 직장에서 함께 일하는 동료를 의미합니다.",
 "example_jp":"A: 同僚と昼ご飯を食べます。\nB: いいですね。",
-"example_ko":"A: 동료와 점심을 먹어요.\nB: 좋네요."
+"example_ko":"A: 동료와 점심을 먹어요.\nB: 좋네요.",
+"related": ["shain", "joushi", "shigoto", "kaisha"]
 },
 {
 "slug":"kaigi",
@@ -5458,7 +5550,8 @@ B: 괜찮아요."""
 "keyword_ko":"회의",
 "desc":"会議는 회사나 단체에서 업무를 논의하는 회의를 의미합니다.",
 "example_jp":"A: 午後に会議があります。\nB: わかりました。",
-"example_ko":"A: 오후에 회의가 있어요.\nB: 알겠습니다."
+"example_ko":"A: 오후에 회의가 있어요.\nB: 알겠습니다.",
+"related": ["kaisha", "joushi", "shain", "shigoto"]
 },
 {
 "slug":"denwa",
@@ -5551,7 +5644,7 @@ B: 괜찮아요."""
 "example_ko":"A: 오늘 회사 가요?\nB: 아니요, 오늘 쉬어요."
 },
 
-    {
+{
 "slug":"asagohan",
 "yomi":"아사고항",
 "jp":"朝ご飯",
@@ -5559,7 +5652,8 @@ B: 괜찮아요."""
 "keyword_ko":"아침밥",
 "desc":"朝ご飯은 아침에 먹는 식사를 의미하는 일본어 표현입니다.",
 "example_jp":"A: 朝ご飯は食べましたか？\nB: はい、食べました。",
-"example_ko":"A: 아침밥 먹었어요?\nB: 네, 먹었어요."
+"example_ko":"A: 아침밥 먹었어요?\nB: 네, 먹었어요.",
+"related": ["hirugohan", "bangohan"]
 },
 {
 "slug":"hirugohan",
@@ -5569,7 +5663,8 @@ B: 괜찮아요."""
 "keyword_ko":"점심밥",
 "desc":"昼ご飯은 낮에 먹는 식사, 즉 점심밥을 의미하는 표현입니다.",
 "example_jp":"A: 昼ご飯は何を食べますか？\nB: ラーメンを食べます。",
-"example_ko":"A: 점심밥은 뭐 먹어요?\nB: 라멘을 먹어요."
+"example_ko":"A: 점심밥은 뭐 먹어요?\nB: 라멘을 먹어요.",
+"related": ["asagohan", "bangohan"]
 },
 {
 "slug":"bangohan",
@@ -5579,7 +5674,8 @@ B: 괜찮아요."""
 "keyword_ko":"저녁밥",
 "desc":"晩ご飯은 저녁에 먹는 식사를 의미하는 일본어 표현입니다.",
 "example_jp":"A: 晩ご飯はもう食べましたか？\nB: まだです。",
-"example_ko":"A: 저녁밥은 벌써 먹었어요?\nB: 아직이요."
+"example_ko":"A: 저녁밥은 벌써 먹었어요?\nB: 아직이요.",
+"related": ["asagohan", "hirugohan"]
 },
 {
 "slug":"suimin",
@@ -5599,7 +5695,8 @@ B: 괜찮아요."""
 "keyword_ko":"샤워",
 "desc":"シャワー는 몸을 씻기 위해 하는 샤워를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 先にシャワーを浴びます。\nB: はい。",
-"example_ko":"A: 먼저 샤워할게요.\nB: 네."
+"example_ko":"A: 먼저 샤워할게요.\nB: 네.",
+"related": ["sentaku", "souji"]
 },
 {
 "slug":"sentaku",
@@ -5609,7 +5706,8 @@ B: 괜찮아요."""
 "keyword_ko":"세탁",
 "desc":"洗濯은 옷이나 천을 씻는 세탁을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 今日洗濯します。\nB: いいですね。",
-"example_ko":"A: 오늘 세탁해요.\nB: 좋네요."
+"example_ko":"A: 오늘 세탁해요.\nB: 좋네요.",
+"related": ["souji", "shawaa"]
 },
 {
 "slug":"souji",
@@ -5619,17 +5717,8 @@ B: 괜찮아요."""
 "keyword_ko":"청소",
 "desc":"掃除는 방이나 집 등을 깨끗하게 정리하는 청소를 의미합니다.",
 "example_jp":"A: 部屋の掃除をします。\nB: 頑張ってください。",
-"example_ko":"A: 방 청소를 해요.\nB: 힘내세요."
-},
-{
-"slug":"kaimono",
-"yomi":"카이모노",
-"jp":"買い物",
-"ko":"쇼핑",
-"keyword_ko":"쇼핑",
-"desc":"買い物은 필요한 물건을 사는 일이나 쇼핑을 의미하는 일본어 표현입니다.",
-"example_jp":"A: 今日は買い物に行きます。\nB: 何を買いますか？",
-"example_ko":"A: 오늘 쇼핑하러 가요.\nB: 뭐 사요?"
+"example_ko":"A: 방 청소를 해요.\nB: 힘내세요.",
+"related": ["sentaku", "shawaa"]
 },
 {
 "slug":"sanpo",
@@ -5642,6 +5731,16 @@ B: 괜찮아요."""
 "example_ko":"A: 아침에 산책해요.\nB: 건강에 좋네요."
 },
 {
+"slug":"kaimono",
+"yomi":"카이모노",
+"jp":"買い物",
+"ko":"쇼핑",
+"keyword_ko":"쇼핑",
+"desc":"買い物은 필요한 물건을 사는 일이나 쇼핑을 의미하는 일본어 표현입니다.",
+"example_jp":"A: 今日は買い物に行きます。\nB: 何を買いますか？",
+"example_ko":"A: 오늘 쇼핑하러 가요.\nB: 뭐 사요?"
+},
+{
 "slug":"uchi",
 "yomi":"우치",
 "jp":"うち",
@@ -5649,7 +5748,8 @@ B: 괜찮아요."""
 "keyword_ko":"집",
 "desc":"うちは 캐주얼하게 자신의 집이나 집안을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 今うちです。\nB: わかりました。",
-"example_ko":"A: 지금 집이에요.\nB: 알겠습니다."
+"example_ko":"A: 지금 집이에요.\nB: 알겠습니다.",
+"related": ["heya", "beddo"]
 },
 {
 "slug":"heya",
@@ -5659,7 +5759,8 @@ B: 괜찮아요."""
 "keyword_ko":"방",
 "desc":"部屋는 방이나 실내 공간을 의미하는 기본적인 일본어 단어입니다.",
 "example_jp":"A: 部屋はきれいです。\nB: そうですね。",
-"example_ko":"A: 방이 깨끗해요.\nB: 그러네요."
+"example_ko":"A: 방이 깨끗해요.\nB: 그러네요.",
+"related": ["uchi", "beddo", "tsukue"]
 },
 {
 "slug":"beddo",
@@ -5669,7 +5770,8 @@ B: 괜찮아요."""
 "keyword_ko":"침대",
 "desc":"ベッド는 잠을 자는 가구인 침대를 의미하는 일본어 단어입니다.",
 "example_jp":"A: ベッドで寝ます。\nB: おやすみなさい。",
-"example_ko":"A: 침대에서 자요.\nB: 안녕히 주무세요."
+"example_ko":"A: 침대에서 자요.\nB: 안녕히 주무세요.",
+"related": ["heya", "uchi", "suimin"]
 },
 {
 "slug":"tsukue",
@@ -5679,7 +5781,8 @@ B: 괜찮아요."""
 "keyword_ko":"책상",
 "desc":"机는 공부하거나 일할 때 사용하는 책상을 의미합니다.",
 "example_jp":"A: 机で勉強します。\nB: 頑張ってください。",
-"example_ko":"A: 책상에서 공부해요.\nB: 힘내세요."
+"example_ko":"A: 책상에서 공부해요.\nB: 힘내세요.",
+"related": ["isu", "heya"]
 },
 {
 "slug":"isu",
@@ -5689,7 +5792,8 @@ B: 괜찮아요."""
 "keyword_ko":"의자",
 "desc":"椅子는 사람이 앉는 가구인 의자를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 椅子に座ってください。\nB: はい。",
-"example_ko":"A: 의자에 앉아 주세요.\nB: 네."
+"example_ko":"A: 의자에 앉아 주세요.\nB: 네.",
+"related": ["tsukue"]
 },
 {
 "slug":"douro",
@@ -5699,7 +5803,8 @@ B: 괜찮아요."""
 "keyword_ko":"도로",
 "desc":"道路는 자동차나 사람이 다니는 길, 즉 도로를 의미합니다.",
 "example_jp":"A: 道路が広いです。\nB: そうですね。",
-"example_ko":"A: 도로가 넓어요.\nB: 그러네요."
+"example_ko":"A: 도로가 넓어요.\nB: 그러네요.",
+"related": ["shingou", "hodou", "hashi", "kado"]
 },
 {
 "slug":"kado",
@@ -5709,7 +5814,8 @@ B: 괜찮아요."""
 "keyword_ko":"모퉁이",
 "desc":"角는 길이나 건물의 모퉁이를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 次の角を右に曲がってください。\nB: はい。",
-"example_ko":"A: 다음 모퉁이에서 오른쪽으로 도세요.\nB: 네."
+"example_ko":"A: 다음 모퉁이에서 오른쪽으로 도세요.\nB: 네.",
+"related": ["douro", "shingou", "hodou"]
 },
 {
 "slug":"shingou",
@@ -5719,7 +5825,8 @@ B: 괜찮아요."""
 "keyword_ko":"신호등",
 "desc":"信号는 도로에서 차량과 보행자를 위한 신호등을 의미합니다.",
 "example_jp":"A: 信号を渡ります。\nB: 気をつけてください。",
-"example_ko":"A: 신호등을 건너요.\nB: 조심하세요."
+"example_ko":"A: 신호등을 건너요.\nB: 조심하세요.",
+"related": ["douro", "hodou", "kado", "hashi"]
 },
 {
 "slug":"hodou",
@@ -5729,7 +5836,8 @@ B: 괜찮아요."""
 "keyword_ko":"보도",
 "desc":"歩道는 사람이 걷는 길인 보도를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 歩道を歩いてください。\nB: はい。",
-"example_ko":"A: 보도로 걸어 주세요.\nB: 네."
+"example_ko":"A: 보도로 걸어 주세요.\nB: 네.",
+"related": ["douro", "shingou", "kado"]
 },
 {
 "slug":"hashi",
@@ -5739,7 +5847,8 @@ B: 괜찮아요."""
 "keyword_ko":"다리",
 "desc":"橋는 강이나 길 위를 건너기 위해 만든 다리를 의미합니다.",
 "example_jp":"A: あの橋を渡ります。\nB: わかりました。",
-"example_ko":"A: 저 다리를 건너요.\nB: 알겠습니다."
+"example_ko":"A: 저 다리를 건너요.\nB: 알겠습니다.",
+"related": ["douro", "shingou"]
 },
 {
 "slug":"kaidan",
@@ -5749,7 +5858,8 @@ B: 괜찮아요."""
 "keyword_ko":"계단",
 "desc":"階段은 위아래 층을 이동할 때 사용하는 계단을 의미합니다.",
 "example_jp":"A: 階段で上がります。\nB: 気をつけてください。",
-"example_ko":"A: 계단으로 올라가요.\nB: 조심하세요."
+"example_ko":"A: 계단으로 올라가요.\nB: 조심하세요.",
+"related": ["erebeetaa", "esukareetaa"]
 },
 {
 "slug":"erebeetaa",
@@ -5759,7 +5869,8 @@ B: 괜찮아요."""
 "keyword_ko":"엘리베이터",
 "desc":"エレベーター는 건물 안에서 층을 이동할 때 사용하는 엘리베이터를 의미합니다.",
 "example_jp":"A: エレベーターはどこですか？\nB: あちらです。",
-"example_ko":"A: 엘리베이터는 어디예요?\nB: 저쪽입니다."
+"example_ko":"A: 엘리베이터는 어디예요?\nB: 저쪽입니다.",
+"related": ["kaidan", "esukareetaa"]
 },
 {
 "slug":"esukareetaa",
@@ -5769,7 +5880,8 @@ B: 괜찮아요."""
 "keyword_ko":"에스컬레이터",
 "desc":"エスカレーター는 자동으로 움직이는 계단인 에스컬레이터를 의미합니다.",
 "example_jp":"A: エスカレーターを使います。\nB: はい。",
-"example_ko":"A: 에스컬레이터를 써요.\nB: 네."
+"example_ko":"A: 에스컬레이터를 써요.\nB: 네.",
+"related": ["kaidan", "erebeetaa"]
 },
 {
 "slug":"iriguchi",
@@ -5779,7 +5891,8 @@ B: 괜찮아요."""
 "keyword_ko":"입구",
 "desc":"入口는 건물이나 장소로 들어가는 입구를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 入口はどこですか？\nB: こちらです。",
-"example_ko":"A: 입구는 어디예요?\nB: 이쪽입니다."
+"example_ko":"A: 입구는 어디예요?\nB: 이쪽입니다.",
+"related": ["deguchi", "doa"]
 },
 {
 "slug":"deguchi",
@@ -5789,7 +5902,8 @@ B: 괜찮아요."""
 "keyword_ko":"출구",
 "desc":"出口는 건물이나 장소에서 나가는 출구를 의미합니다.",
 "example_jp":"A: 出口はあちらです。\nB: ありがとうございます。",
-"example_ko":"A: 출구는 저쪽입니다.\nB: 감사합니다."
+"example_ko":"A: 출구는 저쪽입니다.\nB: 감사합니다.",
+"related": ["iriguchi", "doa"]
 },
 {
 "slug":"mado",
@@ -5799,7 +5913,8 @@ B: 괜찮아요."""
 "keyword_ko":"창문",
 "desc":"窓는 방이나 건물에 있는 창문을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 窓を開けます。\nB: はい。",
-"example_ko":"A: 창문을 엽니다.\nB: 네."
+"example_ko":"A: 창문을 엽니다.\nB: 네.",
+"related": ["akemasu", "shimemasu"]
 },
 {
 "slug":"doa",
@@ -5809,7 +5924,8 @@ B: 괜찮아요."""
 "keyword_ko":"문",
 "desc":"ドア는 방이나 건물의 문을 의미하는 일본어 단어입니다.",
 "example_jp":"A: ドアを閉めてください。\nB: はい。",
-"example_ko":"A: 문을 닫아 주세요.\nB: 네."
+"example_ko":"A: 문을 닫아 주세요.\nB: 네.",
+"related": ["akemasu", "shimemasu", "iriguchi", "deguchi"]
 },
 {
 "slug":"akemasu",
@@ -5819,7 +5935,8 @@ B: 괜찮아요."""
 "keyword_ko":"열다",
 "desc":"開けます는 문이나 창문 등을 여는 동작을 말할 때 사용하는 동사입니다.",
 "example_jp":"A: 窓を開けます。\nB: いいですよ。",
-"example_ko":"A: 창문을 엽니다.\nB: 좋아요."
+"example_ko":"A: 창문을 엽니다.\nB: 좋아요.",
+"related": ["shimemasu", "doa", "mado"]
 },
 {
 "slug":"shimemasu",
@@ -5829,7 +5946,8 @@ B: 괜찮아요."""
 "keyword_ko":"닫다",
 "desc":"閉めます는 문이나 창문 등을 닫는 동작을 말할 때 사용하는 동사입니다.",
 "example_jp":"A: ドアを閉めます。\nB: はい。",
-"example_ko":"A: 문을 닫습니다.\nB: 네."
+"example_ko":"A: 문을 닫습니다.\nB: 네.",
+"related": ["akemasu", "doa", "mado"]
 },
 {
 "slug":"ii-da-ne",
@@ -5879,7 +5997,8 @@ B: 괜찮아요."""
 "keyword_ko":"크다",
 "desc":"大きい는 크기가 크다는 뜻을 가진 기본적인 일본어 형용사입니다.",
 "example_jp":"A: このバッグは大きいです。\nB: 便利ですね。",
-"example_ko":"A: 이 가방은 커요.\nB: 편리하네요."
+"example_ko":"A: 이 가방은 커요.\nB: 편리하네요.",
+"related": ["chiisai"]
 },
 {
 "slug":"chiisai",
@@ -5889,7 +6008,8 @@ B: 괜찮아요."""
 "keyword_ko":"작다",
 "desc":"小さい는 크기가 작다는 뜻을 가진 기본적인 일본어 형용사입니다.",
 "example_jp":"A: この犬は小さいです。\nB: かわいいですね。",
-"example_ko":"A: 이 강아지는 작아요.\nB: 귀엽네요."
+"example_ko":"A: 이 강아지는 작아요.\nB: 귀엽네요.",
+"related": ["ookii"]
 },
 {
 "slug":"takai",
@@ -5899,7 +6019,8 @@ B: 괜찮아요."""
 "keyword_ko":"비싸다",
 "desc":"高い는 가격이 비싸거나 위치가 높다는 뜻으로 쓰이는 형용사입니다.",
 "example_jp":"A: この時計は高いです。\nB: そうですね。",
-"example_ko":"A: 이 시계는 비싸요.\nB: 그러네요."
+"example_ko":"A: 이 시계는 비싸요.\nB: 그러네요.",
+"related": ["yasui"]
 },
 {
 "slug":"yasui",
@@ -5909,7 +6030,8 @@ B: 괜찮아요."""
 "keyword_ko":"싸다",
 "desc":"安い는 가격이 저렴하다는 뜻을 가진 기본적인 일본어 형용사입니다.",
 "example_jp":"A: この店は安いです。\nB: いいですね。",
-"example_ko":"A: 이 가게는 싸요.\nB: 좋네요."
+"example_ko":"A: 이 가게는 싸요.\nB: 좋네요.",
+"related": ["takai"]
 },
 {
 "slug":"atarashii",
@@ -5919,7 +6041,8 @@ B: 괜찮아요."""
 "keyword_ko":"새롭다",
 "desc":"新しい는 새것이거나 새롭다는 뜻을 가진 일본어 형용사입니다.",
 "example_jp":"A: 新しい靴を買いました。\nB: いいですね。",
-"example_ko":"A: 새 신발을 샀어요.\nB: 좋네요."
+"example_ko":"A: 새 신발을 샀어요.\nB: 좋네요.",
+"related": ["furui"]
 },
 {
 "slug":"furui",
@@ -5929,7 +6052,8 @@ B: 괜찮아요."""
 "keyword_ko":"오래됐다",
 "desc":"古い는 오래되었거나 낡았다는 뜻을 가진 일본어 형용사입니다.",
 "example_jp":"A: この建物は古いです。\nB: そうですね。",
-"example_ko":"A: 이 건물은 오래됐어요.\nB: 그러네요."
+"example_ko":"A: 이 건물은 오래됐어요.\nB: 그러네요.",
+"related": ["atarashii"]
 },
 {
 "slug":"omoi",
@@ -5939,7 +6063,8 @@ B: 괜찮아요."""
 "keyword_ko":"무겁다",
 "desc":"重い는 무게가 무겁다는 뜻을 가진 일본어 형용사입니다.",
 "example_jp":"A: この荷物は重いです。\nB: 手伝いましょうか。",
-"example_ko":"A: 이 짐은 무거워요.\nB: 도와드릴까요?"
+"example_ko":"A: 이 짐은 무거워요.\nB: 도와드릴까요?",
+"related": ["karui"]
 },
 {
 "slug":"karui",
@@ -5949,29 +6074,11 @@ B: 괜찮아요."""
 "keyword_ko":"가볍다",
 "desc":"軽い는 무게가 가볍다는 뜻을 가진 일본어 형용사입니다.",
 "example_jp":"A: このカバンは軽いです。\nB: 持ちやすいですね。",
-"example_ko":"A: 이 가방은 가벼워요.\nB: 들기 쉽네요."
+"example_ko":"A: 이 가방은 가벼워요.\nB: 들기 쉽네요.",
+"related": ["omoi"]
 },
 
-   {
-"slug":"kicchin",
-"yomi":"키친",
-"jp":"キッチン",
-"ko":"주방",
-"keyword_ko":"주방",
-"desc":"キッチン은 음식을 만들거나 준비하는 공간인 주방을 의미하는 일본어 단어입니다.",
-"example_jp":"A: キッチンはどこですか？\nB: あちらです。",
-"example_ko":"A: 주방은 어디예요?\nB: 저쪽입니다."
-},
-{
-"slug":"reizouko",
-"yomi":"레조코",
-"jp":"冷蔵庫",
-"ko":"냉장고",
-"keyword_ko":"냉장고",
-"desc":"冷蔵庫는 음식이나 음료를 차갑게 보관하는 냉장고를 의미합니다.",
-"example_jp":"A: 牛乳は冷蔵庫にあります。\nB: わかりました。",
-"example_ko":"A: 우유는 냉장고에 있어요.\nB: 알겠습니다."
-},
+
 {
 "slug":"sentakuki",
 "yomi":"센타쿠키",
@@ -5983,6 +6090,28 @@ B: 괜찮아요."""
 "example_ko":"A: 세탁기를 사용해요.\nB: 네."
 },
 {
+"slug":"kicchin",
+"yomi":"키친",
+"jp":"キッチン",
+"ko":"주방",
+"keyword_ko":"주방",
+"desc":"キッチン은 음식을 만들거나 준비하는 공간인 주방을 의미하는 일본어 단어입니다.",
+"example_jp":"A: キッチンはどこですか？\nB: あちらです。",
+"example_ko":"A: 주방은 어디예요?\nB: 저쪽입니다.",
+"related": ["reizouko", "denshirenji", "gasu", "mizu"]
+},
+{
+"slug":"reizouko",
+"yomi":"레조코",
+"jp":"冷蔵庫",
+"ko":"냉장고",
+"keyword_ko":"냉장고",
+"desc":"冷蔵庫는 음식이나 음료를 차갑게 보관하는 냉장고를 의미합니다.",
+"example_jp":"A: 牛乳は冷蔵庫にあります。\nB: わかりました。",
+"example_ko":"A: 우유는 냉장고에 있어요.\nB: 알겠습니다.",
+"related": ["kicchin", "mizu"]
+},
+{
 "slug":"denshirenji",
 "yomi":"덴시렌지",
 "jp":"電子レンジ",
@@ -5990,37 +6119,8 @@ B: 괜찮아요."""
 "keyword_ko":"전자레인지",
 "desc":"電子レンジ는 음식을 데우는 전자레인지를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 電子レンジで温めます。\nB: 便利ですね。",
-"example_ko":"A: 전자레인지로 데워요.\nB: 편리하네요."
-},
-{
-"slug":"eakon",
-"yomi":"에아콘",
-"jp":"エアコン",
-"ko":"에어컨",
-"keyword_ko":"에어컨",
-"desc":"エアコン는 실내 온도를 조절하는 에어컨을 의미합니다.",
-"example_jp":"A: エアコンをつけます。\nB: お願いします。",
-"example_ko":"A: 에어컨을 켤게요.\nB: 부탁합니다."
-},
-{
-"slug":"denki",
-"yomi":"덴키",
-"jp":"電気",
-"ko":"전기",
-"keyword_ko":"전기",
-"desc":"電気는 전기나 전등 불빛을 의미하는 일본어 단어입니다.",
-"example_jp":"A: 電気を消してください。\nB: はい。",
-"example_ko":"A: 불을 꺼 주세요.\nB: 네."
-},
-{
-"slug":"gasu",
-"yomi":"가스",
-"jp":"ガス",
-"ko":"가스",
-"keyword_ko":"가스",
-"desc":"ガス는 가스레인지나 도시가스 등을 의미하는 일본어 단어입니다.",
-"example_jp":"A: ガスを使います。\nB: 気をつけてください。",
-"example_ko":"A: 가스를 사용해요.\nB: 조심하세요."
+"example_ko":"A: 전자레인지로 데워요.\nB: 편리하네요.",
+"related": ["kicchin", "gasu"]
 },
 {
 "slug":"mizu",
@@ -6030,7 +6130,8 @@ B: 괜찮아요."""
 "keyword_ko":"물",
 "desc":"水는 마시는 물이나 일반적인 물을 의미하는 기본 일본어 단어입니다.",
 "example_jp":"A: 水をください。\nB: はい、どうぞ。",
-"example_ko":"A: 물 주세요.\nB: 네, 여기요."
+"example_ko":"A: 물 주세요.\nB: 네, 여기요.",
+"related": ["oyu", "reizouko"]
 },
 {
 "slug":"oyu",
@@ -6040,7 +6141,8 @@ B: 괜찮아요."""
 "keyword_ko":"뜨거운 물",
 "desc":"お湯는 데워진 물, 즉 뜨거운 물을 의미합니다.",
 "example_jp":"A: お湯がありますか？\nB: はい、あります。",
-"example_ko":"A: 뜨거운 물 있어요?\nB: 네, 있어요."
+"example_ko":"A: 뜨거운 물 있어요?\nB: 네, 있어요.",
+"related": ["mizu", "ofuro"]
 },
 {
 "slug":"toire",
@@ -6050,7 +6152,8 @@ B: 괜찮아요."""
 "keyword_ko":"화장실",
 "desc":"トイレ는 화장실을 의미하는 가장 기본적인 일본어 표현입니다.",
 "example_jp":"A: トイレはどこですか？\nB: あちらです。",
-"example_ko":"A: 화장실은 어디예요?\nB: 저쪽입니다."
+"example_ko":"A: 화장실은 어디예요?\nB: 저쪽입니다.",
+"related": ["ofuro", "kagami"]
 },
 {
 "slug":"ofuro",
@@ -6060,7 +6163,8 @@ B: 괜찮아요."""
 "keyword_ko":"목욕",
 "desc":"お風呂는 목욕이나 욕조를 의미하는 일본어 단어입니다.",
 "example_jp":"A: お風呂に入ります。\nB: はい。",
-"example_ko":"A: 목욕해요.\nB: 네."
+"example_ko":"A: 목욕해요.\nB: 네.",
+"related": ["toire", "oyu"]
 },
 {
 "slug":"kagami",
@@ -6070,7 +6174,30 @@ B: 괜찮아요."""
 "keyword_ko":"거울",
 "desc":"鏡는 얼굴이나 모습을 비추는 거울을 의미합니다.",
 "example_jp":"A: 鏡はどこですか？\nB: そこです。",
-"example_ko":"A: 거울은 어디예요?\nB: 거기예요."
+"example_ko":"A: 거울은 어디예요?\nB: 거기예요.",
+"related": ["toire"]
+},
+{
+"slug":"eakon",
+"yomi":"에아콘",
+"jp":"エアコン",
+"ko":"에어컨",
+"keyword_ko":"에어컨",
+"desc":"エアコン는 실내 온도를 조절하는 에어컨을 의미합니다.",
+"example_jp":"A: エアコンをつけます。\nB: お願いします。",
+"example_ko":"A: 에어컨을 켤게요.\nB: 부탁합니다.",
+"related": ["denki"]
+},
+{
+"slug":"denki",
+"yomi":"덴키",
+"jp":"電気",
+"ko":"전기",
+"keyword_ko":"전기",
+"desc":"電気는 전기나 전등 불빛을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 電気を消してください。\nB: はい。",
+"example_ko":"A: 불을 꺼 주세요.\nB: 네.",
+"related": ["eakon"]
 },
 {
 "slug":"kagi-wo-wasuremashita",
@@ -6090,7 +6217,8 @@ B: 괜찮아요."""
 "keyword_ko":"창문을 엽니다",
 "desc":"窓を開けます는 창문을 여는 행동을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 暑いですね。\nB: 窓を開けます。",
-"example_ko":"A: 덥네요.\nB: 창문을 엽니다."
+"example_ko":"A: 덥네요.\nB: 창문을 엽니다.",
+"related": ["mado-wo-shimemasu", "doa-wo-akemasu"]
 },
 {
 "slug":"mado-wo-shimemasu",
@@ -6100,7 +6228,8 @@ B: 괜찮아요."""
 "keyword_ko":"창문을 닫습니다",
 "desc":"窓を閉めます는 창문을 닫는 행동을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 寒いです。\nB: 窓を閉めます。",
-"example_ko":"A: 추워요.\nB: 창문을 닫습니다."
+"example_ko":"A: 추워요.\nB: 창문을 닫습니다.",
+"related": ["mado-wo-akemasu", "doa-wo-shimemasu"]
 },
 {
 "slug":"denki-wo-tsukemasu",
@@ -6110,7 +6239,8 @@ B: 괜찮아요."""
 "keyword_ko":"불을 켭니다",
 "desc":"電気をつけます는 전등이나 불을 켜는 행동을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 暗いですね。\nB: 電気をつけます。",
-"example_ko":"A: 어둡네요.\nB: 불을 켭니다."
+"example_ko":"A: 어둡네요.\nB: 불을 켭니다.",
+"related": ["denki-wo-keshimasu"]
 },
 {
 "slug":"denki-wo-keshimasu",
@@ -6120,7 +6250,8 @@ B: 괜찮아요."""
 "keyword_ko":"불을 끕니다",
 "desc":"電気を消します는 전등이나 불을 끄는 행동을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: もう寝ますか？\nB: はい、電気を消します。",
-"example_ko":"A: 이제 자요?\nB: 네, 불을 끕니다."
+"example_ko":"A: 이제 자요?\nB: 네, 불을 끕니다.",
+"related": ["denki-wo-tsukemasu"]
 },
 {
 "slug":"doa-wo-akemasu",
@@ -6130,7 +6261,8 @@ B: 괜찮아요."""
 "keyword_ko":"문을 엽니다",
 "desc":"ドアを開けます는 문을 여는 행동을 나타내는 표현입니다.",
 "example_jp":"A: 暑いです。\nB: ドアを開けます。",
-"example_ko":"A: 더워요.\nB: 문을 엽니다."
+"example_ko":"A: 더워요.\nB: 문을 엽니다.",
+"related": ["doa-wo-shimemasu", "mado-wo-akemasu"]
 },
 {
 "slug":"doa-wo-shimemasu",
@@ -6140,7 +6272,8 @@ B: 괜찮아요."""
 "keyword_ko":"문을 닫습니다",
 "desc":"ドアを閉めます는 문을 닫는 행동을 나타내는 표현입니다.",
 "example_jp":"A: 寒いですね。\nB: ドアを閉めます。",
-"example_ko":"A: 춥네요.\nB: 문을 닫습니다."
+"example_ko":"A: 춥네요.\nB: 문을 닫습니다.",
+"related": ["doa-wo-akemasu", "mado-wo-shimemasu"]
 },
 {
 "slug":"gohan",
@@ -6150,47 +6283,8 @@ B: 괜찮아요."""
 "keyword_ko":"밥",
 "desc":"ご飯은 밥이나 식사를 의미하는 매우 기본적인 일본어 단어입니다.",
 "example_jp":"A: ご飯を食べます。\nB: はい。",
-"example_ko":"A: 밥을 먹어요.\nB: 네."
-},
-{
-"slug":"onigiri",
-"yomi":"오니기리",
-"jp":"おにぎり",
-"ko":"주먹밥",
-"keyword_ko":"주먹밥",
-"desc":"おにぎり는 밥을 뭉쳐 만든 일본식 주먹밥을 의미합니다.",
-"example_jp":"A: おにぎりが好きです。\nB: 私もです。",
-"example_ko":"A: 주먹밥을 좋아해요.\nB: 저도요."
-},
-{
-"slug":"chaahan",
-"yomi":"초항",
-"jp":"チャーハン",
-"ko":"볶음밥",
-"keyword_ko":"볶음밥",
-"desc":"チャーハン은 밥을 볶아 만든 요리인 볶음밥을 의미합니다.",
-"example_jp":"A: チャーハンを食べました。\nB: 美味しかったですか？",
-"example_ko":"A: 볶음밥을 먹었어요.\nB: 맛있었어요?"
-},
-{
-"slug":"kareeraisu",
-"yomi":"카레라이스",
-"jp":"カレーライス",
-"ko":"카레라이스",
-"keyword_ko":"카레라이스",
-"desc":"カレーライス는 밥 위에 카레를 얹어 먹는 일본식 카레라이스를 의미합니다.",
-"example_jp":"A: カレーライスが好きです。\nB: 私も好きです。",
-"example_ko":"A: 카레라이스를 좋아해요.\nB: 저도 좋아해요."
-},
-{
-"slug":"ochazuke",
-"yomi":"오차즈케",
-"jp":"お茶漬け",
-"ko":"오차즈케",
-"keyword_ko":"오차즈케",
-"desc":"お茶漬け는 밥에 차나 국물을 부어 먹는 일본 음식입니다.",
-"example_jp":"A: お茶漬けを食べます。\nB: いいですね。",
-"example_ko":"A: 오차즈케를 먹어요.\nB: 좋네요."
+"example_ko":"A: 밥을 먹어요.\nB: 네.",
+"related": ["asagohan","hirugohan", "bangohan"]
 },
 {
 "slug":"sushi",
@@ -6200,7 +6294,8 @@ B: 괜찮아요."""
 "keyword_ko":"초밥",
 "desc":"寿司는 식초 밥 위에 생선이나 해산물을 올린 일본 대표 음식입니다.",
 "example_jp":"A: 寿司を食べたいです。\nB: 行きましょう。",
-"example_ko":"A: 초밥 먹고 싶어요.\nB: 가요."
+"example_ko":"A: 초밥 먹고 싶어요.\nB: 가요.",
+"related": ["makizushi","inarizushi","temakizushi","sashimi"]
 },
 {
 "slug":"makizushi",
@@ -6210,7 +6305,8 @@ B: 괜찮아요."""
 "keyword_ko":"김밥",
 "desc":"巻き寿司는 김으로 밥과 재료를 말아 만든 롤 형태의 초밥입니다.",
 "example_jp":"A: 巻き寿司を作ります。\nB: 楽しそうですね。",
-"example_ko":"A: 김밥을 만들어요.\nB: 재미있겠네요."
+"example_ko":"A: 김밥을 만들어요.\nB: 재미있겠네요.",
+"related": ["sushi","temakizushi","inarizushi"]
 },
 {
 "slug":"inarizushi",
@@ -6220,7 +6316,8 @@ B: 괜찮아요."""
 "keyword_ko":"유부초밥",
 "desc":"いなり寿司는 유부 안에 초밥용 밥을 넣어 만든 일본 음식입니다.",
 "example_jp":"A: いなり寿司が好きです。\nB: 美味しいですね。",
-"example_ko":"A: 유부초밥을 좋아해요.\nB: 맛있죠."
+"example_ko":"A: 유부초밥을 좋아해요.\nB: 맛있죠.",
+"related": ["sushi","makizushi","temakizushi"]
 },
 {
 "slug":"temakizushi",
@@ -6230,7 +6327,8 @@ B: 괜찮아요."""
 "keyword_ko":"손말이초밥",
 "desc":"手巻き寿司는 김 위에 밥과 재료를 올려 손으로 말아 먹는 초밥입니다.",
 "example_jp":"A: 手巻き寿司を食べました。\nB: どうでしたか？",
-"example_ko":"A: 손말이초밥을 먹었어요.\nB: 어땠어요?"
+"example_ko":"A: 손말이초밥을 먹었어요.\nB: 어땠어요?",
+"related": ["sushi","makizushi","inarizushi"]
 },
 {
 "slug":"sashimi",
@@ -6240,7 +6338,8 @@ B: 괜찮아요."""
 "keyword_ko":"회",
 "desc":"刺身는 생선이나 해산물을 얇게 썰어 먹는 일본식 회를 의미합니다.",
 "example_jp":"A: 刺身は新鮮です。\nB: 美味しそうですね。",
-"example_ko":"A: 회가 신선해요.\nB: 맛있어 보이네요."
+"example_ko":"A: 회가 신선해요.\nB: 맛있어 보여요.",
+"related": ["sushi","makizushi"]
 },
 {
 "slug":"raamen",
@@ -6250,7 +6349,8 @@ B: 괜찮아요."""
 "keyword_ko":"라멘",
 "desc":"ラーメン은 일본식 국수 요리인 라멘을 의미합니다.",
 "example_jp":"A: ラーメンを食べましょう。\nB: いいですね。",
-"example_ko":"A: 라멘 먹어요.\nB: 좋네요."
+"example_ko":"A: 라멘 먹어요.\nB: 좋네요.",
+"related": ["udon","soba","yakisoba"]
 },
 {
 "slug":"udon",
@@ -6260,7 +6360,8 @@ B: 괜찮아요."""
 "keyword_ko":"우동",
 "desc":"うどん은 굵은 면을 사용하는 일본식 국수 요리입니다.",
 "example_jp":"A: うどんが好きです。\nB: 私もです。",
-"example_ko":"A: 우동을 좋아해요.\nB: 저도요."
+"example_ko":"A: 우동을 좋아해요.\nB: 저도요.",
+"related": ["raamen","soba","yakisoba"]
 },
 {
 "slug":"soba",
@@ -6270,7 +6371,8 @@ B: 괜찮아요."""
 "keyword_ko":"메밀국수",
 "desc":"そば는 메밀로 만든 일본식 국수를 의미합니다.",
 "example_jp":"A: そばを食べます。\nB: いいですね。",
-"example_ko":"A: 메밀국수를 먹어요.\nB: 좋네요."
+"example_ko":"A: 메밀국수를 먹어요.\nB: 좋네요.",
+"related": ["raamen","udon","yakisoba"]
 },
 {
 "slug":"yakisoba",
@@ -6280,47 +6382,19 @@ B: 괜찮아요."""
 "keyword_ko":"볶음면",
 "desc":"焼きそば는 면을 채소, 소스와 함께 볶아 만든 일본식 볶음면입니다.",
 "example_jp":"A: 焼きそばを作ります。\nB: 美味しそうです。",
-"example_ko":"A: 볶음면을 만들어요.\nB: 맛있어 보여요."
+"example_ko":"A: 볶음면을 만들어요.\nB: 맛있어 보여요.",
+"related": ["raamen","udon","soba"]
 },
 {
-"slug":"nabe",
-"yomi":"나베",
-"jp":"鍋",
-"ko":"전골",
-"keyword_ko":"전골",
-"desc":"鍋는 냄비에 고기, 채소 등을 넣고 끓여 먹는 일본식 전골 요리입니다.",
-"example_jp":"A: 冬は鍋がいいですね。\nB: そうですね。",
-"example_ko":"A: 겨울엔 전골이 좋네요.\nB: 그러네요."
-},
-{
-"slug":"sukiyaki",
-"yomi":"스키야키",
-"jp":"すき焼き",
-"ko":"스키야키",
-"keyword_ko":"스키야키",
-"desc":"すき焼き는 고기와 채소를 달콤짭짤한 소스에 끓여 먹는 일본 요리입니다.",
-"example_jp":"A: すき焼きを食べたいです。\nB: いいですね。",
-"example_ko":"A: 스키야키 먹고 싶어요.\nB: 좋네요."
-},
-{
-"slug":"shabushabu",
-"yomi":"샤부샤부",
-"jp":"しゃぶしゃぶ",
-"ko":"샤브샤브",
-"keyword_ko":"샤브샤브",
-"desc":"しゃぶしゃぶ는 얇은 고기와 채소를 뜨거운 물에 살짝 익혀 먹는 일본 요리입니다.",
-"example_jp":"A: しゃぶしゃぶは好きですか？\nB: はい、好きです。",
-"example_ko":"A: 샤브샤브 좋아해요?\nB: 네, 좋아해요."
-},
-{
-"slug":"tonkatsu",
-"yomi":"돈카츠",
-"jp":"とんかつ",
-"ko":"돈가스",
-"keyword_ko":"돈가스",
-"desc":"とんかつ는 돼지고기에 빵가루를 입혀 튀긴 일본식 돈가스를 의미합니다.",
-"example_jp":"A: とんかつを食べます。\nB: 美味しそうですね。",
-"example_ko":"A: 돈가스를 먹어요.\nB: 맛있어 보이네요."
+"slug":"gyuudon",
+"yomi":"규동",
+"jp":"牛丼",
+"ko":"소고기덮밥",
+"keyword_ko":"소고기덮밥",
+"desc":"牛丼은 소고기와 양파를 밥 위에 얹은 일본식 덮밥입니다.",
+"example_jp":"A: 牛丼が安いです。\nB: そうですね。",
+"example_ko":"A: 소고기덮밥이 싸요.\nB: 그러네요.",
+"related": ["katsudon","oyakodon","tendon"]
 },
 {
 "slug":"katsudon",
@@ -6330,27 +6404,8 @@ B: 괜찮아요."""
 "keyword_ko":"돈가스덮밥",
 "desc":"カツ丼은 돈가스를 밥 위에 얹고 달걀과 함께 조리한 덮밥입니다.",
 "example_jp":"A: カツ丼を注文します。\nB: はい。",
-"example_ko":"A: 돈가스덮밥을 주문할게요.\nB: 네."
-},
-{
-"slug":"gyuudon",
-"yomi":"규동",
-"jp":"牛丼",
-"ko":"규동",
-"keyword_ko":"규동",
-"desc":"牛丼은 소고기와 양파를 밥 위에 얹은 일본식 덮밥입니다.",
-"example_jp":"A: 牛丼が安いです。\nB: そうですね。",
-"example_ko":"A: 규동이 싸요.\nB: 그러네요."
-},
-{
-"slug":"tendon",
-"yomi":"텐동",
-"jp":"天丼",
-"ko":"튀김덮밥",
-"keyword_ko":"튀김덮밥",
-"desc":"天丼은 밥 위에 튀김을 얹어 먹는 일본식 덮밥입니다.",
-"example_jp":"A: 天丼を食べます。\nB: いいですね。",
-"example_ko":"A: 튀김덮밥을 먹어요.\nB: 좋네요."
+"example_ko":"A: 돈가스덮밥을 주문할게요.\nB: 네.",
+"related": ["gyuudon","oyakodon","tendon"]
 },
 {
 "slug":"oyakodon",
@@ -6360,7 +6415,19 @@ B: 괜찮아요."""
 "keyword_ko":"닭고기덮밥",
 "desc":"親子丼은 닭고기와 달걀을 밥 위에 얹은 일본식 덮밥입니다.",
 "example_jp":"A: 親子丼が好きです。\nB: 私も好きです。",
-"example_ko":"A: 닭고기덮밥을 좋아해요.\nB: 저도 좋아해요."
+"example_ko":"A: 닭고기덮밥을 좋아해요.\nB: 저도 좋아해요.",
+"related": ["gyuudon","katsudon","tendon"]
+},
+{
+"slug":"tendon",
+"yomi":"텐동",
+"jp":"天丼",
+"ko":"튀김덮밥",
+"keyword_ko":"튀김덮밥",
+"desc":"天丼은 밥 위에 튀김을 얹어 먹는 일본식 덮밥입니다.",
+"example_jp":"A: 天丼を食べます。\nB: いいですね。",
+"example_ko":"A: 튀김덮밥을 먹어요.\nB: 좋네요.",
+"related": ["gyuudon","katsudon","oyakodon"]
 },
 {
 "slug":"takoyaki",
@@ -6370,7 +6437,8 @@ B: 괜찮아요."""
 "keyword_ko":"타코야키",
 "desc":"たこ焼き는 문어가 들어간 일본식 밀가루 간식입니다.",
 "example_jp":"A: たこ焼きを食べました。\nB: 美味しかったですか？",
-"example_ko":"A: 타코야키를 먹었어요.\nB: 맛있었어요?"
+"example_ko":"A: 타코야키를 먹었어요.\nB: 맛있었어요?",
+"related": ["okonomiyaki","yakitori","karaage"]
 },
 {
 "slug":"okonomiyaki",
@@ -6380,7 +6448,8 @@ B: 괜찮아요."""
 "keyword_ko":"오코노미야키",
 "desc":"お好み焼き는 밀가루 반죽에 여러 재료를 넣어 구운 일본식 부침 요리입니다.",
 "example_jp":"A: お好み焼きが有名です。\nB: 食べたいです。",
-"example_ko":"A: 오코노미야키가 유명해요.\nB: 먹고 싶어요."
+"example_ko":"A: 오코노미야키가 유명해요.\nB: 먹고 싶어요.",
+"related": ["takoyaki","yakitori"]
 },
 {
 "slug":"yakitori",
@@ -6390,7 +6459,8 @@ B: 괜찮아요."""
 "keyword_ko":"닭꼬치",
 "desc":"焼き鳥는 닭고기를 꼬치에 꽂아 구운 일본식 닭꼬치를 의미합니다.",
 "example_jp":"A: 焼き鳥を食べます。\nB: いいですね。",
-"example_ko":"A: 닭꼬치를 먹어요.\nB: 좋네요."
+"example_ko":"A: 닭꼬치를 먹어요.\nB: 좋네요.",
+"related": ["karaage","takoyaki"]
 },
 {
 "slug":"karaage",
@@ -6400,7 +6470,8 @@ B: 괜찮아요."""
 "keyword_ko":"닭튀김",
 "desc":"唐揚げ는 간을 한 고기나 재료를 튀긴 일본식 튀김 요리입니다.",
 "example_jp":"A: 唐揚げが好きです。\nB: 私もです。",
-"example_ko":"A: 닭튀김을 좋아해요.\nB: 저도요."
+"example_ko":"A: 닭튀김을 좋아해요.\nB: 저도요.",
+"related": ["yakitori","tenpura"]
 },
 {
 "slug":"tenpura",
@@ -6410,7 +6481,8 @@ B: 괜찮아요."""
 "keyword_ko":"튀김",
 "desc":"天ぷら는 해산물이나 채소에 반죽을 입혀 튀긴 일본 요리입니다.",
 "example_jp":"A: 天ぷらを食べたいです。\nB: 行きましょう。",
-"example_ko":"A: 튀김을 먹고 싶어요.\nB: 가요."
+"example_ko":"A: 튀김을 먹고 싶어요.\nB: 가요.",
+"related": ["karaage","korokke"]
 },
 {
 "slug":"korokke",
@@ -6420,17 +6492,8 @@ B: 괜찮아요."""
 "keyword_ko":"고로케",
 "desc":"コロッケ는 감자나 고기를 넣어 튀긴 일본식 고로케를 의미합니다.",
 "example_jp":"A: コロッケを買います。\nB: はい。",
-"example_ko":"A: 고로케를 살게요.\nB: 네."
-},
-{
-"slug":"oden",
-"yomi":"오뎅",
-"jp":"おでん",
-"ko":"오뎅",
-"keyword_ko":"오뎅",
-"desc":"おでん은 무, 어묵, 달걀 등을 국물에 끓여 먹는 일본 음식입니다.",
-"example_jp":"A: 寒い日はおでんがいいですね。\nB: そうですね。",
-"example_ko":"A: 추운 날엔 오뎅이 좋네요.\nB: 그러네요."
+"example_ko":"A: 고로케를 살게요.\nB: 네.",
+"related": ["tenpura","karaage"]
 },
 {
 "slug":"misoshiru",
@@ -6740,7 +6803,8 @@ B: 괜찮아요."""
 "keyword_ko":"요거트",
 "desc":"ヨーグルト는 요거트를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: 朝はヨーグルトを食べます。\nB: 健康にいいですね。",
-"example_ko":"A: 아침엔 요거트를 먹어요.\nB: 건강에 좋네요."
+"example_ko":"A: 아침엔 요거트를 먹어요.\nB: 건강에 좋네요.",
+"related": ["miruku","chiizu"]
 },
 {
 "slug":"chiizu",
@@ -6750,7 +6814,8 @@ B: 괜찮아요."""
 "keyword_ko":"치즈",
 "desc":"チーズ는 치즈를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: チーズがありますか？\nB: はい、あります。",
-"example_ko":"A: 치즈 있어요?\nB: 네, 있어요."
+"example_ko":"A: 치즈 있어요?\nB: 네, 있어요.",
+"related": ["bataa","yooguruto","miruku"]
 },
 {
 "slug":"bataa",
@@ -6760,107 +6825,8 @@ B: 괜찮아요."""
 "keyword_ko":"버터",
 "desc":"バター는 버터를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: バターを塗ります。\nB: はい。",
-"example_ko":"A: 버터를 발라요.\nB: 네."
-},
-{
-"slug":"mayoneezu",
-"yomi":"마요네즈",
-"jp":"マヨネーズ",
-"ko":"마요네즈",
-"keyword_ko":"마요네즈",
-"desc":"マヨネーズ는 마요네즈를 의미하는 일본어 외래어입니다.",
-"example_jp":"A: マヨネーズを入れますか？\nB: はい。",
-"example_ko":"A: 마요네즈 넣을까요?\nB: 네."
-},
-{
-"slug":"kechappu",
-"yomi":"케첩",
-"jp":"ケチャップ",
-"ko":"케첩",
-"keyword_ko":"케첩",
-"desc":"ケチャップ는 케첩을 의미하는 일본어 외래어입니다.",
-"example_jp":"A: ケチャップをください。\nB: はい。",
-"example_ko":"A: 케첩 주세요.\nB: 네."
-},
-{
-"slug":"shouyu",
-"yomi":"쇼유",
-"jp":"醤油",
-"ko":"간장",
-"keyword_ko":"간장",
-"desc":"醤油는 일본 요리에 자주 사용하는 간장을 의미합니다.",
-"example_jp":"A: 醤油を少し入れます。\nB: わかりました。",
-"example_ko":"A: 간장을 조금 넣어요.\nB: 알겠습니다."
-},
-{
-"slug":"miso",
-"yomi":"미소",
-"jp":"味噌",
-"ko":"된장",
-"keyword_ko":"된장",
-"desc":"味噌는 된장을 의미하며 일본 요리에 많이 쓰이는 재료입니다.",
-"example_jp":"A: 味噌汁を作ります。\nB: いいですね。",
-"example_ko":"A: 된장국을 만들어요.\nB: 좋네요."
-},
-{
-"slug":"satou",
-"yomi":"사토",
-"jp":"砂糖",
-"ko":"설탕",
-"keyword_ko":"설탕",
-"desc":"砂糖는 설탕을 의미하는 기본 일본어 단어입니다.",
-"example_jp":"A: 砂糖を入れますか？\nB: 少しだけ。",
-"example_ko":"A: 설탕 넣을까요?\nB: 조금만요."
-},
-{
-"slug":"shio",
-"yomi":"시오",
-"jp":"塩",
-"ko":"소금",
-"keyword_ko":"소금",
-"desc":"塩는 소금을 의미하는 기본 일본어 단어입니다.",
-"example_jp":"A: 塩をください。\nB: はい。",
-"example_ko":"A: 소금 주세요.\nB: 네."
-},
-{
-"slug":"koshou",
-"yomi":"코쇼",
-"jp":"胡椒",
-"ko":"후추",
-"keyword_ko":"후추",
-"desc":"胡椒는 후추를 의미하는 기본 일본어 단어입니다.",
-"example_jp":"A: 胡椒を少しかけます。\nB: はい。",
-"example_ko":"A: 후추를 조금 뿌려요.\nB: 네."
-},
-{
-"slug":"su",
-"yomi":"스",
-"jp":"酢",
-"ko":"식초",
-"keyword_ko":"식초",
-"desc":"酢는 식초를 의미하는 일본어 단어입니다.",
-"example_jp":"A: 酢を入れます。\nB: わかりました。",
-"example_ko":"A: 식초를 넣어요.\nB: 알겠습니다."
-},
-{
-"slug":"gomayu",
-"yomi":"고마유",
-"jp":"ごま油",
-"ko":"참기름",
-"keyword_ko":"참기름",
-"desc":"ごま油는 참깨로 만든 기름인 참기름을 의미합니다.",
-"example_jp":"A: ごま油の香りがいいですね。\nB: そうですね。",
-"example_ko":"A: 참기름 향이 좋네요.\nB: 그러네요."
-},
-{
-"slug":"saradayu",
-"yomi":"사라다유",
-"jp":"サラダ油",
-"ko":"식용유",
-"keyword_ko":"식용유",
-"desc":"サラダ油는 요리에 사용하는 식용유를 의미하는 일본어 표현입니다.",
-"example_jp":"A: サラダ油を使います。\nB: はい。",
-"example_ko":"A: 식용유를 사용해요.\nB: 네."
+"example_ko":"A: 버터를 발라요.\nB: 네.",
+"related": ["chiizu","miruku"]
 },
 {
 "slug":"miruku",
@@ -6870,7 +6836,118 @@ B: 괜찮아요."""
 "keyword_ko":"우유",
 "desc":"ミルク는 우유를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ミルクを飲みます。\nB: 健康にいいですね。",
-"example_ko":"A: 우유를 마셔요.\nB: 건강에 좋네요."
+"example_ko":"A: 우유를 마셔요.\nB: 건강에 좋네요.",
+"related": ["yooguruto","chiizu","bataa"]
+},
+{
+"slug":"mayoneezu",
+"yomi":"마요네즈",
+"jp":"マヨネーズ",
+"ko":"마요네즈",
+"keyword_ko":"마요네즈",
+"desc":"マヨネーズ는 마요네즈를 의미하는 일본어 외래어입니다.",
+"example_jp":"A: マヨネーズを入れますか？\nB: はい。",
+"example_ko":"A: 마요네즈 넣을까요?\nB: 네.",
+"related": ["kechappu","shouyu"]
+},
+{
+"slug":"kechappu",
+"yomi":"케첩",
+"jp":"ケチャップ",
+"ko":"케첩",
+"keyword_ko":"케첩",
+"desc":"ケチャップ는 케첩을 의미하는 일본어 외래어입니다.",
+"example_jp":"A: ケチャップをください。\nB: はい。",
+"example_ko":"A: 케첩 주세요.\nB: 네.",
+"related": ["mayoneezu","shouyu"]
+},
+{
+"slug":"shouyu",
+"yomi":"쇼유",
+"jp":"醤油",
+"ko":"간장",
+"keyword_ko":"간장",
+"desc":"醤油는 일본 요리에 자주 사용하는 간장을 의미합니다.",
+"example_jp":"A: 醤油を少し入れます。\nB: わかりました。",
+"example_ko":"A: 간장을 조금 넣어요.\nB: 알겠습니다.",
+"related": ["miso","shio","su","mayoneezu"]
+},
+{
+"slug":"miso",
+"yomi":"미소",
+"jp":"味噌",
+"ko":"된장",
+"keyword_ko":"된장",
+"desc":"味噌는 된장을 의미하며 일본 요리에 많이 쓰이는 재료입니다.",
+"example_jp":"A: 味噌汁を作ります。\nB: いいですね。",
+"example_ko":"A: 된장국을 만들어요.\nB: 좋네요.",
+"related": ["shouyu","shio"]
+},
+{
+"slug":"satou",
+"yomi":"사토",
+"jp":"砂糖",
+"ko":"설탕",
+"keyword_ko":"설탕",
+"desc":"砂糖는 설탕을 의미하는 기본 일본어 단어입니다.",
+"example_jp":"A: 砂糖を入れますか？\nB: 少しだけ。",
+"example_ko":"A: 설탕 넣을까요?\nB: 조금만요.",
+"related": ["shio","koshou"]
+},
+{
+"slug":"shio",
+"yomi":"시오",
+"jp":"塩",
+"ko":"소금",
+"keyword_ko":"소금",
+"desc":"塩는 소금을 의미하는 기본 일본어 단어입니다.",
+"example_jp":"A: 塩をください。\nB: はい。",
+"example_ko":"A: 소금 주세요.\nB: 네.",
+"related": ["koshou","satou","shouyu","miso"]
+},
+{
+"slug":"koshou",
+"yomi":"코쇼",
+"jp":"胡椒",
+"ko":"후추",
+"keyword_ko":"후추",
+"desc":"胡椒는 후추를 의미하는 기본 일본어 단어입니다.",
+"example_jp":"A: 胡椒を少しかけます。\nB: はい。",
+"example_ko":"A: 후추를 조금 뿌려요.\nB: 네.",
+"related": ["shio","satou"]
+},
+{
+"slug":"su",
+"yomi":"스",
+"jp":"酢",
+"ko":"식초",
+"keyword_ko":"식초",
+"desc":"酢는 식초를 의미하는 일본어 단어입니다.",
+"example_jp":"A: 酢を入れます。\nB: わかりました。",
+"example_ko":"A: 식초를 넣어요.\nB: 알겠습니다.",
+"related": ["shouyu","gomayu"]
+},
+{
+"slug":"gomayu",
+"yomi":"고마유",
+"jp":"ごま油",
+"ko":"참기름",
+"keyword_ko":"참기름",
+"desc":"ごま油는 참깨로 만든 기름인 참기름을 의미합니다.",
+"example_jp":"A: ごま油の香りがいいですね。\nB: そうですね。",
+"example_ko":"A: 참기름 향이 좋네요.\nB: 그러네요.",
+"related": ["saradayu","su"]
+},
+{
+"slug":"saradayu",
+"yomi":"사라다유",
+"jp":"サラダ油",
+"ko":"식용유",
+"keyword_ko":"식용유",
+"desc":"サラダ油는 요리에 사용하는 식용유를 의미하는 일본어 표현입니다.",
+"example_jp":"A: サラダ油を使います。\nB: はい。",
+"example_ko":"A: 식용유를 사용해요.\nB: 네.",
+"related": ["gomayu"]
 },
 {
 "slug":"koohii",
@@ -6880,7 +6957,8 @@ B: 괜찮아요."""
 "keyword_ko":"커피",
 "desc":"コーヒー는 커피를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: コーヒーが好きです。\nB: 私もです。",
-"example_ko":"A: 커피를 좋아해요.\nB: 저도요."
+"example_ko":"A: 커피를 좋아해요.\nB: 저도요.",
+"related": ["kokoa","koucha","miruku"]
 },
 {
 "slug":"kokoa",
@@ -6890,7 +6968,8 @@ B: 괜찮아요."""
 "keyword_ko":"코코아",
 "desc":"ココア는 코코아 음료를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ココアを飲みます。\nB: 温かいですね。",
-"example_ko":"A: 코코아를 마셔요.\nB: 따뜻하네요."
+"example_ko":"A: 코코아를 마셔요.\nB: 따뜻하네요.",
+"related": ["koohii","miruku"]
 },
 {
 "slug":"koucha",
@@ -6900,7 +6979,8 @@ B: 괜찮아요."""
 "keyword_ko":"홍차",
 "desc":"紅茶는 홍차를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 紅茶をください。\nB: はい。",
-"example_ko":"A: 홍차 주세요.\nB: 네."
+"example_ko":"A: 홍차 주세요.\nB: 네.",
+"related": ["ryokucha","mugicha","koohii"]
 },
 {
 "slug":"ryokucha",
@@ -6910,7 +6990,8 @@ B: 괜찮아요."""
 "keyword_ko":"녹차",
 "desc":"緑茶는 일본에서 많이 마시는 녹차를 의미합니다.",
 "example_jp":"A: 緑茶を飲みます。\nB: いいですね。",
-"example_ko":"A: 녹차를 마셔요.\nB: 좋네요."
+"example_ko":"A: 녹차를 마셔요.\nB: 좋네요.",
+"related": ["koucha","mugicha"]
 },
 {
 "slug":"mugicha",
@@ -6920,7 +7001,8 @@ B: 괜찮아요."""
 "keyword_ko":"보리차",
 "desc":"麦茶는 보리로 만든 차인 보리차를 의미합니다.",
 "example_jp":"A: 麦茶がありますか？\nB: はい、あります。",
-"example_ko":"A: 보리차 있어요?\nB: 네, 있어요."
+"example_ko":"A: 보리차 있어요?\nB: 네, 있어요.",
+"related": ["ryokucha","koucha"]
 },
 {
 "slug":"juusu",
@@ -6930,7 +7012,8 @@ B: 괜찮아요."""
 "keyword_ko":"주스",
 "desc":"ジュース는 과일 주스나 음료를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ジュースを飲みたいです。\nB: どうぞ。",
-"example_ko":"A: 주스를 마시고 싶어요.\nB: 드세요."
+"example_ko":"A: 주스를 마시고 싶어요.\nB: 드세요.",
+"related": ["saidaa","orenji","gureepufuruutsu"]
 },
 {
 "slug":"saidaa",
@@ -6940,7 +7023,8 @@ B: 괜찮아요."""
 "keyword_ko":"탄산음료",
 "desc":"サイダー는 일본에서 투명한 탄산음료를 의미하는 표현입니다.",
 "example_jp":"A: サイダーを買いました。\nB: 冷たいですか？",
-"example_ko":"A: 탄산음료를 샀어요.\nB: 차가워요?"
+"example_ko":"A: 탄산음료를 샀어요.\nB: 차가워요?",
+"related": ["juusu"]
 },
 {
 "slug":"biiru",
@@ -6950,7 +7034,8 @@ B: 괜찮아요."""
 "keyword_ko":"맥주",
 "desc":"ビール는 맥주를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ビールを飲みますか？\nB: はい。",
-"example_ko":"A: 맥주 마실래요?\nB: 네."
+"example_ko":"A: 맥주 마실래요?\nB: 네.",
+"related": ["sake","wain"]
 },
 {
 "slug":"sake",
@@ -6960,7 +7045,8 @@ B: 괜찮아요."""
 "keyword_ko":"술",
 "desc":"酒는 술 전반을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 酒は好きですか？\nB: 少しだけ。",
-"example_ko":"A: 술 좋아해요?\nB: 조금만요."
+"example_ko":"A: 술 좋아해요?\nB: 조금만요.",
+"related": ["biiru","wain"]
 },
 {
 "slug":"wain",
@@ -6970,10 +7056,10 @@ B: 괜찮아요."""
 "keyword_ko":"와인",
 "desc":"ワイン는 와인을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ワインを飲みます。\nB: いいですね。",
-"example_ko":"A: 와인을 마셔요.\nB: 좋네요."
+"example_ko":"A: 와인을 마셔요.\nB: 좋네요.",
+"related": ["sake","biiru"]
 },
-
-    {
+{
 "slug":"ringo",
 "yomi":"링고",
 "jp":"りんご",
@@ -6981,7 +7067,8 @@ B: 괜찮아요."""
 "keyword_ko":"사과",
 "desc":"りんご는 과일인 사과를 의미하는 기본적인 일본어 단어입니다.",
 "example_jp":"A: りんごが好きです。\nB: 私も好きです。",
-"example_ko":"A: 사과를 좋아해요.\nB: 저도 좋아해요."
+"example_ko":"A: 사과를 좋아해요.\nB: 저도 좋아해요.",
+"related": ["nashi","mikan","orenji"]
 },
 {
 "slug":"mikan",
@@ -6991,7 +7078,8 @@ B: 괜찮아요."""
 "keyword_ko":"귤",
 "desc":"みかん은 일본에서 많이 먹는 귤을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 冬はみかんをよく食べます。\nB: 美味しいですね。",
-"example_ko":"A: 겨울에는 귤을 자주 먹어요.\nB: 맛있네요."
+"example_ko":"A: 겨울에는 귤을 자주 먹어요.\nB: 맛있네요.",
+"related": ["orenji","ringo","gureepufuruutsu"]
 },
 {
 "slug":"banana",
@@ -7001,7 +7089,8 @@ B: 괜찮아요."""
 "keyword_ko":"바나나",
 "desc":"バナナ는 바나나를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: バナナを買いました。\nB: 朝ご飯にいいですね。",
-"example_ko":"A: 바나나를 샀어요.\nB: 아침밥으로 좋네요."
+"example_ko":"A: 바나나를 샀어요.\nB: 아침밥으로 좋네요.",
+"related": ["ichigo","mangoo","kiui"]
 },
 {
 "slug":"ichigo",
@@ -7011,7 +7100,8 @@ B: 괜찮아요."""
 "keyword_ko":"딸기",
 "desc":"いちご는 딸기를 의미하는 일본어 단어입니다.",
 "example_jp":"A: いちごは甘いです。\nB: そうですね。",
-"example_ko":"A: 딸기는 달아요.\nB: 그러네요."
+"example_ko":"A: 딸기는 달아요.\nB: 그러네요.",
+"related": ["sakuranbo","banana","momo"]
 },
 {
 "slug":"budou",
@@ -7021,7 +7111,8 @@ B: 괜찮아요."""
 "keyword_ko":"포도",
 "desc":"ぶどう는 포도를 의미하는 일본어 단어입니다.",
 "example_jp":"A: ぶどうを食べます。\nB: 美味しそうですね。",
-"example_ko":"A: 포도를 먹어요.\nB: 맛있어 보이네요."
+"example_ko":"A: 포도를 먹어요.\nB: 맛있어 보이네요.",
+"related": ["sakuranbo","momo"]
 },
 {
 "slug":"momo",
@@ -7031,7 +7122,8 @@ B: 괜찮아요."""
 "keyword_ko":"복숭아",
 "desc":"桃는 복숭아를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 桃が好きです。\nB: 私もです。",
-"example_ko":"A: 복숭아를 좋아해요.\nB: 저도요."
+"example_ko":"A: 복숭아를 좋아해요.\nB: 저도요.",
+"related": ["nashi","ichigo","budou"]
 },
 {
 "slug":"nashi",
@@ -7041,7 +7133,8 @@ B: 괜찮아요."""
 "keyword_ko":"배",
 "desc":"梨는 과일 배를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 梨はしゃきしゃきしています。\nB: 美味しいですね。",
-"example_ko":"A: 배는 아삭아삭해요.\nB: 맛있네요."
+"example_ko":"A: 배는 아삭아삭해요.\nB: 맛있네요.",
+"related": ["ringo","momo"]
 },
 {
 "slug":"sakuranbo",
@@ -7051,7 +7144,8 @@ B: 괜찮아요."""
 "keyword_ko":"체리",
 "desc":"さくらんぼ는 체리를 의미하는 일본어 단어입니다.",
 "example_jp":"A: さくらんぼを食べました。\nB: 甘かったですか？",
-"example_ko":"A: 체리를 먹었어요.\nB: 달았어요?"
+"example_ko":"A: 체리를 먹었어요.\nB: 달았어요?",
+"related": ["ichigo","budou"]
 },
 {
 "slug":"meron",
@@ -7061,7 +7155,8 @@ B: 괜찮아요."""
 "keyword_ko":"멜론",
 "desc":"メロン은 멜론을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: メロンは高いです。\nB: でも美味しいですね。",
-"example_ko":"A: 멜론은 비싸요.\nB: 그래도 맛있네요."
+"example_ko":"A: 멜론은 비싸요.\nB: 그래도 맛있네요.",
+"related": ["suika","mangoo"]
 },
 {
 "slug":"suika",
@@ -7071,7 +7166,8 @@ B: 괜찮아요."""
 "keyword_ko":"수박",
 "desc":"スイカ는 수박을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 夏はスイカが人気です。\nB: そうですね。",
-"example_ko":"A: 여름에는 수박이 인기예요.\nB: 그러네요."
+"example_ko":"A: 여름에는 수박이 인기예요.\nB: 그러네요.",
+"related": ["meron","painappuru"]
 },
 {
 "slug":"painappuru",
@@ -7081,7 +7177,8 @@ B: 괜찮아요."""
 "keyword_ko":"파인애플",
 "desc":"パイナップルは 파인애플을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: パイナップルジュースが好きです。\nB: 私もです。",
-"example_ko":"A: 파인애플 주스를 좋아해요.\nB: 저도요."
+"example_ko":"A: 파인애플 주스를 좋아해요.\nB: 저도요.",
+"related": ["mangoo","suika","kiui"]
 },
 {
 "slug":"mangoo",
@@ -7091,7 +7188,8 @@ B: 괜찮아요."""
 "keyword_ko":"망고",
 "desc":"マンゴー는 망고를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: マンゴーは甘いです。\nB: 美味しいですね。",
-"example_ko":"A: 망고는 달아요.\nB: 맛있네요."
+"example_ko":"A: 망고는 달아요.\nB: 맛있네요.",
+"related": ["painappuru","meron","banana"]
 },
 {
 "slug":"kiui",
@@ -7101,7 +7199,8 @@ B: 괜찮아요."""
 "keyword_ko":"키위",
 "desc":"キウイ는 키위를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: キウイを食べます。\nB: 酸っぱいですか？",
-"example_ko":"A: 키위를 먹어요.\nB: 시어요?"
+"example_ko":"A: 키위를 먹어요.\nB: 시어요?",
+"related": ["remon","raimu","banana"]
 },
 {
 "slug":"remon",
@@ -7111,7 +7210,8 @@ B: 괜찮아요."""
 "keyword_ko":"레몬",
 "desc":"レモン은 레몬을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: レモンを入れます。\nB: さっぱりしますね。",
-"example_ko":"A: 레몬을 넣어요.\nB: 상큼하네요."
+"example_ko":"A: 레몬을 넣어요.\nB: 상큼하네요.",
+"related": ["raimu","kiui","gureepufuruutsu"]
 },
 {
 "slug":"raimu",
@@ -7121,7 +7221,8 @@ B: 괜찮아요."""
 "keyword_ko":"라임",
 "desc":"ライム는 라임을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ライムの香りがいいです。\nB: そうですね。",
-"example_ko":"A: 라임 향이 좋아요.\nB: 그러네요."
+"example_ko":"A: 라임 향이 좋아요.\nB: 그러네요.",
+"related": ["remon","kiui","gureepufuruutsu"]
 },
 {
 "slug":"gureepufuruutsu",
@@ -7131,7 +7232,8 @@ B: 괜찮아요."""
 "keyword_ko":"자몽",
 "desc":"グレープフルーツ는 자몽을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: グレープフルーツジュースを飲みます。\nB: いいですね。",
-"example_ko":"A: 자몽 주스를 마셔요.\nB: 좋네요."
+"example_ko":"A: 자몽 주스를 마셔요.\nB: 좋네요.",
+"related": ["orenji","remon","raimu","mikan"]
 },
 {
 "slug":"orenji",
@@ -7141,7 +7243,8 @@ B: 괜찮아요."""
 "keyword_ko":"오렌지",
 "desc":"オレンジ는 오렌지를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: オレンジをむきます。\nB: ありがとうございます。",
-"example_ko":"A: 오렌지를 깔게요.\nB: 감사합니다."
+"example_ko":"A: 오렌지를 깔게요.\nB: 감사합니다.",
+"related": ["mikan","gureepufuruutsu","ringo"]
 },
 {
 "slug":"papaiya",
@@ -7151,7 +7254,8 @@ B: 괜찮아요."""
 "keyword_ko":"파파야",
 "desc":"パパイヤ는 파파야를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: パパイヤを食べたことがありますか？\nB: いいえ、まだです。",
-"example_ko":"A: 파파야를 먹어본 적 있어요?\nB: 아니요, 아직이요."
+"example_ko":"A: 파파야를 먹어본 적 있어요?\nB: 아니요, 아직이요.",
+"related": ["mangoo","painappuru","kokonattsu"]
 },
 {
 "slug":"kokonattsu",
@@ -7161,7 +7265,8 @@ B: 괜찮아요."""
 "keyword_ko":"코코넛",
 "desc":"ココナッツ는 코코넛을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ココナッツミルクが好きです。\nB: 私もです。",
-"example_ko":"A: 코코넛 밀크를 좋아해요.\nB: 저도요."
+"example_ko":"A: 코코넛 밀크를 좋아해요.\nB: 저도요.",
+"related": ["papaiya","mangoo"]
 },
 {
 "slug":"abokado",
@@ -7171,7 +7276,8 @@ B: 괜찮아요."""
 "keyword_ko":"아보카도",
 "desc":"アボカド는 아보카도를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: アボカドサラダを食べます。\nB: 健康にいいですね。",
-"example_ko":"A: 아보카도 샐러드를 먹어요.\nB: 건강에 좋네요."
+"example_ko":"A: 아보카도 샐러드를 먹어요.\nB: 건강에 좋네요.",
+"related": ["kiui","remon"]
 },
 {
 "slug":"buruuberii",
@@ -7181,7 +7287,8 @@ B: 괜찮아요."""
 "keyword_ko":"블루베리",
 "desc":"ブルーベリー는 블루베리를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ブルーベリージャムが好きです。\nB: 美味しいですね。",
-"example_ko":"A: 블루베리잼을 좋아해요.\nB: 맛있네요."
+"example_ko":"A: 블루베리잼을 좋아해요.\nB: 맛있네요.",
+"related": ["ichigo","sakuranbo"]
 },
 {
 "slug":"razuberii",
@@ -7281,7 +7388,8 @@ B: 괜찮아요."""
 "keyword_ko":"양파",
 "desc":"玉ねぎ는 양파를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 玉ねぎを切ります。\nB: 目が痛いですね。",
-"example_ko":"A: 양파를 썰어요.\nB: 눈이 맵네요."
+"example_ko":"A: 양파를 썰어요.\nB: 눈이 맵네요.",
+"related":["negi","ninjin","jagaimo"]
 },
 {
 "slug":"negi",
@@ -7291,7 +7399,8 @@ B: 괜찮아요."""
 "keyword_ko":"파",
 "desc":"ねぎ는 파를 의미하는 일본어 단어입니다.",
 "example_jp":"A: ねぎを入れますか？\nB: はい、お願いします。",
-"example_ko":"A: 파 넣을까요?\nB: 네, 부탁해요."
+"example_ko":"A: 파 넣을까요?\nB: 네, 부탁해요.",
+"related":["tamanegi","nira","daikon"]
 },
 {
 "slug":"nira",
@@ -7301,7 +7410,8 @@ B: 괜찮아요."""
 "keyword_ko":"부추",
 "desc":"ニラ는 부추를 의미하는 일본어 단어입니다.",
 "example_jp":"A: ニラは香りが強いです。\nB: そうですね。",
-"example_ko":"A: 부추는 향이 강해요.\nB: 그러네요."
+"example_ko":"A: 부추는 향이 강해요.\nB: 그러네요.",
+"related":["negi","hakusai","kyabetsu"]
 },
 {
 "slug":"ninjin",
@@ -7311,7 +7421,8 @@ B: 괜찮아요."""
 "keyword_ko":"당근",
 "desc":"人参는 당근을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 人参を食べます。\nB: 体にいいですね。",
-"example_ko":"A: 당근을 먹어요.\nB: 몸에 좋네요."
+"example_ko":"A: 당근을 먹어요.\nB: 몸에 좋네요.",
+"related":["tamanegi","jagaimo","daikon"]
 },
 {
 "slug":"daikon",
@@ -7321,7 +7432,8 @@ B: 괜찮아요."""
 "keyword_ko":"무",
 "desc":"大根은 무를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 大根を煮ます。\nB: 美味しそうですね。",
-"example_ko":"A: 무를 조려요.\nB: 맛있어 보이네요."
+"example_ko":"A: 무를 조려요.\nB: 맛있어 보이네요.",
+"related":["hakusai","negi","ninjin"]
 },
 {
 "slug":"hakusai",
@@ -7331,7 +7443,8 @@ B: 괜찮아요."""
 "keyword_ko":"배추",
 "desc":"白菜는 배추를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 白菜を買いました。\nB: 鍋にいいですね。",
-"example_ko":"A: 배추를 샀어요.\nB: 전골에 좋네요."
+"example_ko":"A: 배추를 샀어요.\nB: 전골에 좋네요.",
+"related":["kyabetsu","daikon","nira"]
 },
 {
 "slug":"kyabetsu",
@@ -7341,7 +7454,8 @@ B: 괜찮아요."""
 "keyword_ko":"양배추",
 "desc":"キャベツ는 양배추를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: キャベツを切ります。\nB: はい。",
-"example_ko":"A: 양배추를 썰어요.\nB: 네."
+"example_ko":"A: 양배추를 썰어요.\nB: 네.",
+"related":["hakusai","retasu","piiman"]
 },
 {
 "slug":"retasu",
@@ -7351,7 +7465,8 @@ B: 괜찮아요."""
 "keyword_ko":"상추",
 "desc":"レタス는 상추 또는 양상추를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: レタスサラダを作ります。\nB: いいですね。",
-"example_ko":"A: 상추 샐러드를 만들어요.\nB: 좋네요."
+"example_ko":"A: 상추 샐러드를 만들어요.\nB: 좋네요.",
+"related":["kyabetsu","kyuuri","tomato"]
 },
 {
 "slug":"piiman",
@@ -7361,7 +7476,8 @@ B: 괜찮아요."""
 "keyword_ko":"피망",
 "desc":"ピーマン은 피망을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ピーマンは少し苦いです。\nB: そうですね。",
-"example_ko":"A: 피망은 조금 써요.\nB: 그러네요."
+"example_ko":"A: 피망은 조금 써요.\nB: 그러네요.",
+"related":["papurika","kyabetsu","nasu"]
 },
 {
 "slug":"papurika",
@@ -7371,7 +7487,8 @@ B: 괜찮아요."""
 "keyword_ko":"파프리카",
 "desc":"パプリカ는 파프리카를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: パプリカは色がきれいです。\nB: はい。",
-"example_ko":"A: 파프리카는 색이 예뻐요.\nB: 네."
+"example_ko":"A: 파프리카는 색이 예뻐요.\nB: 네.",
+"related":["piiman","tomato","kyuuri"]
 },
 {
 "slug":"tomato",
@@ -7381,7 +7498,8 @@ B: 괜찮아요."""
 "keyword_ko":"토마토",
 "desc":"トマト는 토마토를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: トマトを食べます。\nB: 体にいいですね。",
-"example_ko":"A: 토마토를 먹어요.\nB: 몸에 좋네요."
+"example_ko":"A: 토마토를 먹어요.\nB: 몸에 좋네요.",
+"related":["kyuuri","retasu","papurika"]
 },
 {
 "slug":"nasu",
@@ -7391,7 +7509,8 @@ B: 괜찮아요."""
 "keyword_ko":"가지",
 "desc":"なす는 가지를 의미하는 일본어 단어입니다.",
 "example_jp":"A: なすを焼きます。\nB: 美味しそうですね。",
-"example_ko":"A: 가지를 구워요.\nB: 맛있어 보이네요."
+"example_ko":"A: 가지를 구워요.\nB: 맛있어 보이네요.",
+"related":["piiman","tomato","kyuuri"]
 },
 {
 "slug":"kyuuri",
@@ -7401,7 +7520,8 @@ B: 괜찮아요."""
 "keyword_ko":"오이",
 "desc":"きゅうり는 오이를 의미하는 일본어 단어입니다.",
 "example_jp":"A: きゅうりは冷たいです。\nB: さっぱりしますね。",
-"example_ko":"A: 오이는 차가워요.\nB: 상큼하네요."
+"example_ko":"A: 오이는 차가워요.\nB: 상큼하네요.",
+"related":["retasu","tomato","papurika"]
 },
 {
 "slug":"hourensou",
@@ -7411,7 +7531,8 @@ B: 괜찮아요."""
 "keyword_ko":"시금치",
 "desc":"ほうれん草는 시금치를 의미하는 일본어 단어입니다.",
 "example_jp":"A: ほうれん草をゆでます。\nB: はい。",
-"example_ko":"A: 시금치를 삶아요.\nB: 네."
+"example_ko":"A: 시금치를 삶아요.\nB: 네.",
+"related":["burokkorii","kyabetsu","retasu"]
 },
 {
 "slug":"burokkorii",
@@ -7421,7 +7542,8 @@ B: 괜찮아요."""
 "keyword_ko":"브로콜리",
 "desc":"ブロッコリー는 브로콜리를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ブロッコリーが好きです。\nB: 健康にいいですね。",
-"example_ko":"A: 브로콜리를 좋아해요.\nB: 건강에 좋네요."
+"example_ko":"A: 브로콜리를 좋아해요.\nB: 건강에 좋네요.",
+"related":["karifurawaa","hourensou","kyabetsu"]
 },
 {
 "slug":"karifurawaa",
@@ -7431,7 +7553,8 @@ B: 괜찮아요."""
 "keyword_ko":"콜리플라워",
 "desc":"カリフラワー는 콜리플라워를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: カリフラワーを食べます。\nB: いいですね。",
-"example_ko":"A: 콜리플라워를 먹어요.\nB: 좋네요."
+"example_ko":"A: 콜리플라워를 먹어요.\nB: 좋네요.",
+"related":["burokkorii","hourensou","kyabetsu"]
 },
 {
 "slug":"kabocha",
@@ -7441,7 +7564,8 @@ B: 괜찮아요."""
 "keyword_ko":"호박",
 "desc":"かぼちゃ는 호박을 의미하는 일본어 단어입니다.",
 "example_jp":"A: かぼちゃは甘いです。\nB: 美味しいですね。",
-"example_ko":"A: 호박은 달아요.\nB: 맛있네요."
+"example_ko":"A: 호박은 달아요.\nB: 맛있네요.",
+"related":["satsumaimo","jagaimo","ninjin"]
 },
 {
 "slug":"satsumaimo",
@@ -7451,7 +7575,8 @@ B: 괜찮아요."""
 "keyword_ko":"고구마",
 "desc":"さつまいも는 고구마를 의미하는 일본어 단어입니다.",
 "example_jp":"A: さつまいもを焼きます。\nB: いいですね。",
-"example_ko":"A: 고구마를 구워요.\nB: 좋네요."
+"example_ko":"A: 고구마를 구워요.\nB: 좋네요.",
+"related":["jagaimo","kabocha","ninjin"]
 },
 {
 "slug":"jagaimo",
@@ -7461,7 +7586,8 @@ B: 괜찮아요."""
 "keyword_ko":"감자",
 "desc":"じゃがいも는 감자를 의미하는 일본어 단어입니다.",
 "example_jp":"A: じゃがいもを使います。\nB: はい。",
-"example_ko":"A: 감자를 사용해요.\nB: 네."
+"example_ko":"A: 감자를 사용해요.\nB: 네.",
+"related":["satsumaimo","tamanegi","ninjin"]
 },
 {
 "slug":"gobou",
@@ -7471,7 +7597,8 @@ B: 괜찮아요."""
 "keyword_ko":"우엉",
 "desc":"ごぼう는 우엉을 의미하는 일본어 단어입니다.",
 "example_jp":"A: ごぼうは香りがあります。\nB: そうですね。",
-"example_ko":"A: 우엉은 향이 있어요.\nB: 그러네요."
+"example_ko":"A: 우엉은 향이 있어요.\nB: 그러네요.",
+"related":["renkon","ninjin","daikon"]
 },
 {
 "slug":"renkon",
@@ -7481,7 +7608,8 @@ B: 괜찮아요."""
 "keyword_ko":"연근",
 "desc":"れんこん은 연근을 의미하는 일본어 단어입니다.",
 "example_jp":"A: れんこんを揚げます。\nB: 美味しそうですね。",
-"example_ko":"A: 연근을 튀겨요.\nB: 맛있어 보이네요."
+"example_ko":"A: 연근을 튀겨요.\nB: 맛있어 보이네요.",
+"related":["gobou","daikon","ninjin"]
 },
 {
 "slug":"moyashi",
@@ -7574,7 +7702,7 @@ B: 괜찮아요."""
 "example_ko":"A: 오크라를 먹어요.\nB: 몸에 좋네요."
 },
 
-    {
+{
 "slug":"saba",
 "yomi":"사바",
 "jp":"さば",
@@ -7582,7 +7710,8 @@ B: 괜찮아요."""
 "keyword_ko":"고등어",
 "desc":"さば는 고등어를 의미하는 일본어 단어입니다.",
 "example_jp":"A: さばが好きです。\nB: 焼きさばは美味しいですね。",
-"example_ko":"A: 고등어를 좋아해요.\nB: 고등어구이는 맛있죠."
+"example_ko":"A: 고등어를 좋아해요.\nB: 고등어구이는 맛있죠.",
+"related":["aji","iwashi","sanma"]
 },
 {
 "slug":"sake-salmon",
@@ -7592,7 +7721,8 @@ B: 괜찮아요."""
 "keyword_ko":"연어",
 "desc":"鮭는 연어를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 鮭を食べます。\nB: 私も好きです。",
-"example_ko":"A: 연어를 먹어요.\nB: 저도 좋아해요."
+"example_ko":"A: 연어를 먹어요.\nB: 저도 좋아해요.",
+"related":["maguro","tai","hirame"]
 },
 {
 "slug":"maguro",
@@ -7602,7 +7732,8 @@ B: 괜찮아요."""
 "keyword_ko":"참치",
 "desc":"まぐろ는 참치를 의미하는 일본어 단어입니다.",
 "example_jp":"A: まぐろの寿司が好きです。\nB: 美味しいですね。",
-"example_ko":"A: 참치 초밥을 좋아해요.\nB: 맛있죠."
+"example_ko":"A: 참치 초밥을 좋아해요.\nB: 맛있죠.",
+"related":["sake-salmon","katsuo","hirame"]
 },
 {
 "slug":"tai",
@@ -7612,7 +7743,8 @@ B: 괜찮아요."""
 "keyword_ko":"도미",
 "desc":"鯛는 도미를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 鯛は高いです。\nB: でも美味しいですね。",
-"example_ko":"A: 도미는 비싸요.\nB: 그래도 맛있네요."
+"example_ko":"A: 도미는 비싸요.\nB: 그래도 맛있네요.",
+"related":["hirame","tara","maguro"]
 },
 {
 "slug":"aji",
@@ -7622,7 +7754,8 @@ B: 괜찮아요."""
 "keyword_ko":"전갱이",
 "desc":"あじ는 전갱이를 의미하는 일본어 단어입니다.",
 "example_jp":"A: あじの干物を食べました。\nB: どうでしたか？",
-"example_ko":"A: 전갱이 말린 생선을 먹었어요.\nB: 어땠어요?"
+"example_ko":"A: 전갱이 말린 생선을 먹었어요.\nB: 어땠어요?",
+"related":["saba","iwashi","sanma"]
 },
 {
 "slug":"iwashi",
@@ -7632,7 +7765,8 @@ B: 괜찮아요."""
 "keyword_ko":"정어리",
 "desc":"いわし는 정어리를 의미하는 일본어 단어입니다.",
 "example_jp":"A: いわしは体にいいです。\nB: そうですね。",
-"example_ko":"A: 정어리는 몸에 좋아요.\nB: 그러네요."
+"example_ko":"A: 정어리는 몸에 좋아요.\nB: 그러네요.",
+"related":["saba","aji","nishin"]
 },
 {
 "slug":"sanma",
@@ -7642,7 +7776,8 @@ B: 괜찮아요."""
 "keyword_ko":"꽁치",
 "desc":"さんま는 꽁치를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 秋はさんまが人気です。\nB: 美味しいですね。",
-"example_ko":"A: 가을에는 꽁치가 인기예요.\nB: 맛있네요."
+"example_ko":"A: 가을에는 꽁치가 인기예요.\nB: 맛있네요.",
+"related":["saba","aji","iwashi"]
 },
 {
 "slug":"unagi",
@@ -7652,7 +7787,8 @@ B: 괜찮아요."""
 "keyword_ko":"장어",
 "desc":"うなぎ는 장어를 의미하는 일본어 단어입니다.",
 "example_jp":"A: うなぎを食べたいです。\nB: いいですね。",
-"example_ko":"A: 장어를 먹고 싶어요.\nB: 좋네요."
+"example_ko":"A: 장어를 먹고 싶어요.\nB: 좋네요.",
+"related":["anago","tai","hirame"]
 },
 {
 "slug":"anago",
@@ -7662,7 +7798,8 @@ B: 괜찮아요."""
 "keyword_ko":"붕장어",
 "desc":"穴子는 붕장어를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 穴子寿司を食べました。\nB: 美味しかったですか？",
-"example_ko":"A: 붕장어 초밥을 먹었어요.\nB: 맛있었어요?"
+"example_ko":"A: 붕장어 초밥을 먹었어요.\nB: 맛있었어요?",
+"related":["unagi","maguro","hirame"]
 },
 {
 "slug":"hotate",
@@ -7672,7 +7809,8 @@ B: 괜찮아요."""
 "keyword_ko":"가리비",
 "desc":"ホタテ는 가리비를 의미하는 일본어 단어입니다.",
 "example_jp":"A: ホタテが好きです。\nB: 私もです。",
-"example_ko":"A: 가리비를 좋아해요.\nB: 저도요."
+"example_ko":"A: 가리비를 좋아해요.\nB: 저도요.",
+"related":["asari","hamaguri","shijimi"]
 },
 {
 "slug":"asari",
@@ -7682,7 +7820,8 @@ B: 괜찮아요."""
 "keyword_ko":"바지락",
 "desc":"あさり는 바지락을 의미하는 일본어 단어입니다.",
 "example_jp":"A: あさりの味噌汁を作ります。\nB: いいですね。",
-"example_ko":"A: 바지락 된장국을 만들어요.\nB: 좋네요."
+"example_ko":"A: 바지락 된장국을 만들어요.\nB: 좋네요.",
+"related":["hamaguri","shijimi","hotate"]
 },
 {
 "slug":"hamaguri",
@@ -7692,7 +7831,8 @@ B: 괜찮아요."""
 "keyword_ko":"대합",
 "desc":"はまぐり는 대합을 의미하는 일본어 단어입니다.",
 "example_jp":"A: はまぐりを食べます。\nB: 美味しそうですね。",
-"example_ko":"A: 대합을 먹어요.\nB: 맛있어 보이네요."
+"example_ko":"A: 대합을 먹어요.\nB: 맛있어 보이네요.",
+"related":["asari","shijimi","hotate"]
 },
 {
 "slug":"shijimi",
@@ -7702,7 +7842,8 @@ B: 괜찮아요."""
 "keyword_ko":"재첩",
 "desc":"しじみ는 재첩을 의미하는 일본어 단어입니다.",
 "example_jp":"A: しじみ汁が好きです。\nB: 体にいいですね。",
-"example_ko":"A: 재첩국을 좋아해요.\nB: 몸에 좋네요."
+"example_ko":"A: 재첩국을 좋아해요.\nB: 몸에 좋네요.",
+"related":["asari","hamaguri","hotate"]
 },
 {
 "slug":"kurage",
@@ -7712,7 +7853,8 @@ B: 괜찮아요."""
 "keyword_ko":"해파리",
 "desc":"クラゲ는 해파리를 의미하는 일본어 단어입니다.",
 "example_jp":"A: クラゲを食べたことがありますか？\nB: はい、あります。",
-"example_ko":"A: 해파리를 먹어본 적 있어요?\nB: 네, 있어요."
+"example_ko":"A: 해파리를 먹어본 적 있어요?\nB: 네, 있어요.",
+"related":["hotate","asari"]
 },
 {
 "slug":"tara",
@@ -7722,7 +7864,8 @@ B: 괜찮아요."""
 "keyword_ko":"대구",
 "desc":"たら는 대구를 의미하는 일본어 단어입니다.",
 "example_jp":"A: たら鍋を作ります。\nB: 温まりそうですね。",
-"example_ko":"A: 대구 전골을 만들어요.\nB: 따뜻하겠네요."
+"example_ko":"A: 대구 전골을 만들어요.\nB: 따뜻하겠네요.",
+"related":["tai","hirame","maguro"]
 },
 {
 "slug":"hirame",
@@ -7732,7 +7875,8 @@ B: 괜찮아요."""
 "keyword_ko":"광어",
 "desc":"ヒラメ는 광어를 의미하는 일본어 단어입니다.",
 "example_jp":"A: ヒラメの刺身を食べます。\nB: いいですね。",
-"example_ko":"A: 광어회를 먹어요.\nB: 좋네요."
+"example_ko":"A: 광어회를 먹어요.\nB: 좋네요.",
+"related":["tai","maguro","sake-salmon"]
 },
 {
 "slug":"katsuo",
@@ -7742,7 +7886,8 @@ B: 괜찮아요."""
 "keyword_ko":"가다랑어",
 "desc":"かつお는 가다랑어를 의미하는 일본어 단어입니다.",
 "example_jp":"A: かつおのたたきが好きです。\nB: 美味しいですね。",
-"example_ko":"A: 가다랑어 타다키를 좋아해요.\nB: 맛있네요."
+"example_ko":"A: 가다랑어 타다키를 좋아해요.\nB: 맛있네요.",
+"related":["maguro","saba","nishin"]
 },
 {
 "slug":"nishin",
@@ -7752,7 +7897,8 @@ B: 괜찮아요."""
 "keyword_ko":"청어",
 "desc":"にしん는 청어를 의미하는 일본어 단어입니다.",
 "example_jp":"A: にしんを食べます。\nB: 珍しいですね。",
-"example_ko":"A: 청어를 먹어요.\nB: 신기하네요."
+"example_ko":"A: 청어를 먹어요.\nB: 신기하네요.",
+"related":["iwashi","saba","katsuo"]
 },
 {
 "slug":"shako",
@@ -7762,7 +7908,8 @@ B: 괜찮아요."""
 "keyword_ko":"갯가재",
 "desc":"シャコ는 갯가재를 의미하는 일본어 단어입니다.",
 "example_jp":"A: シャコの寿司を食べました。\nB: どうでしたか？",
-"example_ko":"A: 갯가재 초밥을 먹었어요.\nB: 어땠어요?"
+"example_ko":"A: 갯가재 초밥을 먹었어요.\nB: 어땠어요?",
+"related":["maguro","hirame"]
 },
 {
 "slug":"akagai",
@@ -7782,7 +7929,8 @@ B: 괜찮아요."""
 "keyword_ko":"소고기",
 "desc":"牛肉는 소고기를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 牛肉を買いました。\nB: 何を作りますか？",
-"example_ko":"A: 소고기를 샀어요.\nB: 뭐 만들어요?"
+"example_ko":"A: 소고기를 샀어요.\nB: 뭐 만들어요?",
+"related":["butaniku","toriniku","suteeki"]
 },
 {
 "slug":"butaniku",
@@ -7792,7 +7940,8 @@ B: 괜찮아요."""
 "keyword_ko":"돼지고기",
 "desc":"豚肉는 돼지고기를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 豚肉が安いです。\nB: いいですね。",
-"example_ko":"A: 돼지고기가 싸요.\nB: 좋네요."
+"example_ko":"A: 돼지고기가 싸요.\nB: 좋네요.",
+"related":["gyuuniku","toriniku","beekon"]
 },
 {
 "slug":"toriniku",
@@ -7802,7 +7951,8 @@ B: 괜찮아요."""
 "keyword_ko":"닭고기",
 "desc":"鶏肉는 닭고기를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 鶏肉を使います。\nB: はい。",
-"example_ko":"A: 닭고기를 사용해요.\nB: 네."
+"example_ko":"A: 닭고기를 사용해요.\nB: 네.",
+"related":["gyuuniku","butaniku","miitobooru"]
 },
 {
 "slug":"hitsujiniku",
@@ -7812,7 +7962,8 @@ B: 괜찮아요."""
 "keyword_ko":"양고기",
 "desc":"羊肉는 양고기를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 羊肉を食べたことがありますか？\nB: はい、あります。",
-"example_ko":"A: 양고기를 먹어본 적 있어요?\nB: 네, 있어요."
+"example_ko":"A: 양고기를 먹어본 적 있어요?\nB: 네, 있어요.",
+"related":["gyuuniku","butaniku"]
 },
 {
 "slug":"basashi",
@@ -7822,57 +7973,63 @@ B: 괜찮아요."""
 "keyword_ko":"말고기회",
 "desc":"馬刺し는 생으로 먹는 말고기회를 의미하는 일본 음식 이름입니다.",
 "example_jp":"A: 馬刺しは熊本で有名です。\nB: そうなんですね。",
-"example_ko":"A: 말고기회는 구마모토에서 유명해요.\nB: 그렇군요."
+"example_ko":"A: 말고기회는 구마모토에서 유명해요.\nB: 그렇군요.",
+"related":["gyuuniku","hitsujiniku"]
 },
 {
 "slug":"sooseeji",
-"yomi":"소세지",
+"yomi":"소-세-지",
 "jp":"ソーセージ",
 "ko":"소시지",
 "keyword_ko":"소시지",
 "desc":"ソーセージ는 소시지를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ソーセージを焼きます。\nB: 美味しそうですね。",
-"example_ko":"A: 소시지를 구워요.\nB: 맛있어 보이네요."
+"example_ko":"A: 소시지를 구워요.\nB: 맛있어 보이네요.",
+"related":["hamu","beekon","butaniku"]
 },
 {
 "slug":"hamu",
-"yomi":"햄",
+"yomi":"하무",
 "jp":"ハム",
 "ko":"햄",
 "keyword_ko":"햄",
 "desc":"ハム는 햄을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ハムを入れますか？\nB: はい、お願いします。",
-"example_ko":"A: 햄 넣을까요?\nB: 네, 부탁해요."
+"example_ko":"A: 햄 넣을까요?\nB: 네, 부탁해요.",
+"related":["sooseeji","beekon","pan"]
 },
 {
 "slug":"beekon",
-"yomi":"베이컨",
+"yomi":"베-콘",
 "jp":"ベーコン",
 "ko":"베이컨",
 "keyword_ko":"베이컨",
 "desc":"ベーコンは 베이컨을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ベーコンエッグを作ります。\nB: いいですね。",
-"example_ko":"A: 베이컨 에그를 만들어요.\nB: 좋네요."
+"example_ko":"A: 베이컨 에그를 만들어요.\nB: 좋네요.",
+"related":["hamu","sooseeji","butaniku"]
 },
 {
 "slug":"miitobooru",
-"yomi":"미트볼",
+"yomi":"미트보-루",
 "jp":"ミートボール",
 "ko":"미트볼",
 "keyword_ko":"미트볼",
 "desc":"ミートボール는 미트볼을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ミートボールが好きです。\nB: 私もです。",
-"example_ko":"A: 미트볼을 좋아해요.\nB: 저도요."
+"example_ko":"A: 미트볼을 좋아해요.\nB: 저도요.",
+"related":["gyuuniku","toriniku","suteeki"]
 },
 {
 "slug":"suteeki",
-"yomi":"스테이크",
+"yomi":"스테-키",
 "jp":"ステーキ",
 "ko":"스테이크",
 "keyword_ko":"스테이크",
 "desc":"ステーキ는 스테이크를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ステーキを食べたいです。\nB: 行きましょう。",
-"example_ko":"A: 스테이크를 먹고 싶어요.\nB: 가요."
+"example_ko":"A: 스테이크를 먹고 싶어요.\nB: 가요.",
+"related":["gyuuniku","miitobooru","butaniku"]
 },
 {
 "slug":"kome",
@@ -7882,7 +8039,8 @@ B: 괜찮아요."""
 "keyword_ko":"쌀",
 "desc":"米는 쌀을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 米を買いました。\nB: 何キロですか？",
-"example_ko":"A: 쌀을 샀어요.\nB: 몇 킬로예요?"
+"example_ko":"A: 쌀을 샀어요.\nB: 몇 킬로예요?",
+"related":["mugi","komugi","nuudoru"]
 },
 {
 "slug":"mugi",
@@ -7892,7 +8050,8 @@ B: 괜찮아요."""
 "keyword_ko":"보리",
 "desc":"麦는 보리를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 麦茶を飲みます。\nB: いいですね。",
-"example_ko":"A: 보리차를 마셔요.\nB: 좋네요."
+"example_ko":"A: 보리차를 마셔요.\nB: 좋네요.",
+"related":["kome","komugi","guranora"]
 },
 {
 "slug":"komugi",
@@ -7902,7 +8061,8 @@ B: 괜찮아요."""
 "keyword_ko":"밀",
 "desc":"小麦는 밀을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 小麦を使います。\nB: はい。",
-"example_ko":"A: 밀을 사용해요.\nB: 네."
+"example_ko":"A: 밀을 사용해요.\nB: 네.",
+"related":["komugiko","mugi","kome"]
 },
 {
 "slug":"sobako",
@@ -7912,7 +8072,8 @@ B: 괜찮아요."""
 "keyword_ko":"메밀가루",
 "desc":"そば粉는 메밀가루를 의미하는 일본어 단어입니다.",
 "example_jp":"A: そば粉で作ります。\nB: そうなんですね。",
-"example_ko":"A: 메밀가루로 만들어요.\nB: 그렇군요."
+"example_ko":"A: 메밀가루로 만들어요.\nB: 그렇군요.",
+"related":["komugiko","nuudoru"]
 },
 {
 "slug":"katakuriko",
@@ -7922,7 +8083,8 @@ B: 괜찮아요."""
 "keyword_ko":"전분",
 "desc":"片栗粉는 요리에 사용하는 전분가루를 의미합니다.",
 "example_jp":"A: 片栗粉を入れます。\nB: とろみが出ますね。",
-"example_ko":"A: 전분을 넣어요.\nB: 걸쭉해지네요."
+"example_ko":"A: 전분을 넣어요.\nB: 걸쭉해지네요.",
+"related":["komugiko","sobako"]
 },
 {
 "slug":"komugiko",
@@ -7932,67 +8094,74 @@ B: 괜찮아요."""
 "keyword_ko":"밀가루",
 "desc":"小麦粉는 밀가루를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 小麦粉を使います。\nB: はい。",
-"example_ko":"A: 밀가루를 사용해요.\nB: 네."
+"example_ko":"A: 밀가루를 사용해요.\nB: 네.",
+"related":["komugi","katakuriko","pan"]
 },
 {
 "slug":"pan",
-"yomi":"빵",
+"yomi":"판",
 "jp":"パン",
 "ko":"빵",
 "keyword_ko":"빵",
 "desc":"パン은 빵을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: パンを食べます。\nB: 朝ご飯ですか？",
-"example_ko":"A: 빵을 먹어요.\nB: 아침밥이에요?"
+"example_ko":"A: 빵을 먹어요.\nB: 아침밥이에요?",
+"related":["komugiko","jamu","piinattsubataa"]
 },
 {
 "slug":"nuudoru",
-"yomi":"누들",
+"yomi":"누도루",
 "jp":"ヌードル",
 "ko":"면",
 "keyword_ko":"면",
 "desc":"ヌードル는 면 종류를 가리키는 일본어 외래어입니다.",
 "example_jp":"A: ヌードルが好きです。\nB: 私もです。",
-"example_ko":"A: 면을 좋아해요.\nB: 저도요."
+"example_ko":"A: 면을 좋아해요.\nB: 저도요.",
+"related":["komugi","sobako","komugiko"]
 },
 {
 "slug":"shiriaru",
-"yomi":"시리얼",
+"yomi":"시리알",
 "jp":"シリアル",
 "ko":"시리얼",
 "keyword_ko":"시리얼",
 "desc":"シリアル는 아침 식사로 먹는 시리얼을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: 朝はシリアルを食べます。\nB: 簡単でいいですね。",
-"example_ko":"A: 아침엔 시리얼을 먹어요.\nB: 간단해서 좋네요."
+"example_ko":"A: 아침엔 시리얼을 먹어요.\nB: 간단해서 좋네요.",
+"related":["guranora","mugi","hachimitsu"]
 },
 {
 "slug":"guranora",
-"yomi":"그래놀라",
+"yomi":"구라노-라",
 "jp":"グラノーラ",
 "ko":"그래놀라",
 "keyword_ko":"그래놀라",
 "desc":"グラノーラ는 곡물과 견과류를 섞은 그래놀라를 의미합니다.",
 "example_jp":"A: グラノーラを食べます。\nB: 健康的ですね。",
-"example_ko":"A: 그래놀라를 먹어요.\nB: 건강하네요."
+"example_ko":"A: 그래놀라를 먹어요.\nB: 건강하네요.",
+"related":["shiriaru","mugi","aamondo"]
 },
 {
 "slug":"hachimitsu",
-"yomi":"꿀",
+"yomi":"하치미츠",
 "jp":"はちみつ",
 "ko":"꿀",
 "keyword_ko":"꿀",
 "desc":"はちみつ는 꿀을 의미하는 일본어 단어입니다.",
 "example_jp":"A: はちみつを入れます。\nB: 甘くなりますね。",
-"example_ko":"A: 꿀을 넣어요.\nB: 달아지네요."
+"example_ko":"A: 꿀을 넣어요.\nB: 달아지네요.",
+"related":["jamu","pan","guranora"]
 },
 {
 "slug":"jamu",
-"yomi":"잼",
+"yomi":"자무",
 "jp":"ジャム",
 "ko":"잼",
 "keyword_ko":"잼",
 "desc":"ジャム는 잼을 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ジャムを塗ります。\nB: はい。",
-"example_ko":"A: 잼을 발라요.\nB: 네."
+"example_ko":"A: 잼을 발라요.\nB: 네.",
+"related":["pan","hachimitsu","piinattsubataa"]
 },
 {
 "slug":"piinattsubataa",
@@ -8002,31 +8171,34 @@ B: 괜찮아요."""
 "keyword_ko":"땅콩버터",
 "desc":"ピーナッツバター는 땅콩버터를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: ピーナッツバターが好きです。\nB: パンによく合いますね。",
-"example_ko":"A: 땅콩버터를 좋아해요.\nB: 빵에 잘 어울리네요."
+"example_ko":"A: 땅콩버터를 좋아해요.\nB: 빵에 잘 어울리네요.",
+"related":["pan","jamu","aamondo"]
 },
 {
 "slug":"aamondo",
-"yomi":"아몬드",
+"yomi":"아-몬도",
 "jp":"アーモンド",
 "ko":"아몬드",
 "keyword_ko":"아몬드",
 "desc":"アーモンドは 아몬드를 의미하는 일본어 외래어입니다.",
 "example_jp":"A: アーモンドを食べます。\nB: 体にいいですね。",
-"example_ko":"A: 아몬드를 먹어요.\nB: 몸에 좋네요."
+"example_ko":"A: 아몬드를 먹어요.\nB: 몸에 좋네요.",
+"related":["kurumi","guranora","piinattsubataa"]
 },
 {
 "slug":"kurumi",
-"yomi":"호두",
+"yomi":"쿠루미",
 "jp":"くるみ",
 "ko":"호두",
 "keyword_ko":"호두",
 "desc":"くるみ는 호두를 의미하는 일본어 단어입니다.",
 "example_jp":"A: くるみを入れますか？\nB: はい。",
-"example_ko":"A: 호두를 넣을까요?\nB: 네."
+"example_ko":"A: 호두를 넣을까요?\nB: 네.",
+"related":["aamondo","guranora"]
 },
 {
 "slug":"kashuunaattsu",
-"yomi":"캐슈넛",
+"yomi":"카슈-낫츠",
 "jp":"カシューナッツ",
 "ko":"캐슈넛",
 "keyword_ko":"캐슈넛",
@@ -8046,7 +8218,7 @@ B: 괜찮아요."""
 },
 {
 "slug":"goma",
-"yomi":"참깨",
+"yomi":"고마",
 "jp":"ごま",
 "ko":"참깨",
 "keyword_ko":"참깨",
@@ -8056,7 +8228,7 @@ B: 괜찮아요."""
 },
 {
 "slug":"nori",
-"yomi":"김",
+"yomi":"노리",
 "jp":"海苔",
 "ko":"김",
 "keyword_ko":"김",
@@ -8066,7 +8238,7 @@ B: 괜찮아요."""
 },
 {
 "slug":"toufu",
-"yomi":"두부",
+"yomi":"토-후",
 "jp":"豆腐",
 "ko":"두부",
 "keyword_ko":"두부",
@@ -8076,7 +8248,7 @@ B: 괜찮아요."""
 },
 {
 "slug":"aburaage",
-"yomi":"유부",
+"yomi":"아부라게",
 "jp":"油揚げ",
 "ko":"유부",
 "keyword_ko":"유부",
@@ -8096,7 +8268,7 @@ B: 괜찮아요."""
 },
 {
 "slug":"konnyaku",
-"yomi":"곤약",
+"yomi":"콘냐쿠",
 "jp":"こんにゃく",
 "ko":"곤약",
 "keyword_ko":"곤약",
@@ -8175,7 +8347,7 @@ B: 괜찮아요."""
 "example_ko":"A: 계란을 사용해요.\nB: 네."
 },
 
-    {
+{
 "slug":"kazoku",
 "yomi":"카조쿠",
 "jp":"家族",
@@ -8183,7 +8355,8 @@ B: 괜찮아요."""
 "keyword_ko":"가족",
 "desc":"家族는 부모, 형제자매, 자녀 등을 포함한 가족을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 家族は何人ですか？\nB: 四人です。",
-"example_ko":"A: 가족은 몇 명이에요?\nB: 네 명이에요."
+"example_ko":"A: 가족은 몇 명이에요?\nB: 네 명이에요.",
+"related":["chichi","haha","kodomo"]
 },
 {
 "slug":"chichi",
@@ -8193,7 +8366,8 @@ B: 괜찮아요."""
 "keyword_ko":"아버지",
 "desc":"父는 자신의 아버지를 말할 때 사용하는 일본어 단어입니다.",
 "example_jp":"A: 父は会社員です。\nB: そうですか。",
-"example_ko":"A: 아버지는 회사원이세요.\nB: 그렇군요."
+"example_ko":"A: 아버지는 회사원이세요.\nB: 그렇군요.",
+"related":["haha","kazoku","ani"]
 },
 {
 "slug":"haha",
@@ -8203,7 +8377,8 @@ B: 괜찮아요."""
 "keyword_ko":"어머니",
 "desc":"母는 자신의 어머니를 말할 때 사용하는 일본어 단어입니다.",
 "example_jp":"A: 母は料理が上手です。\nB: いいですね。",
-"example_ko":"A: 어머니는 요리를 잘하세요.\nB: 좋네요."
+"example_ko":"A: 어머니는 요리를 잘하세요.\nB: 좋네요.",
+"related":["chichi","kazoku","ane"]
 },
 {
 "slug":"ani",
@@ -8213,7 +8388,8 @@ B: 괜찮아요."""
 "keyword_ko":"형",
 "desc":"兄는 자신의 형이나 오빠를 말할 때 사용하는 일본어 단어입니다.",
 "example_jp":"A: 兄がいます。\nB: 何歳ですか？",
-"example_ko":"A: 형이 있어요.\nB: 몇 살이에요?"
+"example_ko":"A: 형이 있어요.\nB: 몇 살이에요?",
+"related":["ane","otouto","imouto"]
 },
 {
 "slug":"ane",
@@ -8223,7 +8399,8 @@ B: 괜찮아요."""
 "keyword_ko":"누나",
 "desc":"姉는 자신의 누나나 언니를 말할 때 사용하는 일본어 단어입니다.",
 "example_jp":"A: 姉は先生です。\nB: すごいですね。",
-"example_ko":"A: 누나는 선생님이에요.\nB: 대단하네요."
+"example_ko":"A: 누나는 선생님이에요.\nB: 대단하네요.",
+"related":["ani","otouto","imouto"]
 },
 {
 "slug":"otouto",
@@ -8233,7 +8410,8 @@ B: 괜찮아요."""
 "keyword_ko":"남동생",
 "desc":"弟는 자신의 남동생을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 弟は学生です。\nB: そうなんですね。",
-"example_ko":"A: 남동생은 학생이에요.\nB: 그렇군요."
+"example_ko":"A: 남동생은 학생이에요.\nB: 그렇군요.",
+"related":["imouto","ani","ane"]
 },
 {
 "slug":"imouto",
@@ -8243,7 +8421,8 @@ B: 괜찮아요."""
 "keyword_ko":"여동생",
 "desc":"妹는 자신의 여동생을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 妹は高校生です。\nB: 若いですね。",
-"example_ko":"A: 여동생은 고등학생이에요.\nB: 어리네요."
+"example_ko":"A: 여동생은 고등학생이에요.\nB: 어리네요.",
+"related":["otouto","ani","ane"]
 },
 {
 "slug":"sofu",
@@ -8253,7 +8432,8 @@ B: 괜찮아요."""
 "keyword_ko":"할아버지",
 "desc":"祖父는 할아버지를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 祖父は元気です。\nB: よかったですね。",
-"example_ko":"A: 할아버지는 건강하세요.\nB: 다행이네요."
+"example_ko":"A: 할아버지는 건강하세요.\nB: 다행이네요.",
+"related":["sobo","kazoku"]
 },
 {
 "slug":"sobo",
@@ -8263,7 +8443,8 @@ B: 괜찮아요."""
 "keyword_ko":"할머니",
 "desc":"祖母는 할머니를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 祖母と住んでいます。\nB: そうですか。",
-"example_ko":"A: 할머니와 살고 있어요.\nB: 그렇군요."
+"example_ko":"A: 할머니와 살고 있어요.\nB: 그렇군요.",
+"related":["sofu","kazoku"]
 },
 {
 "slug":"kodomo",
@@ -8273,7 +8454,8 @@ B: 괜찮아요."""
 "keyword_ko":"아이",
 "desc":"子供는 아이나 어린이를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 子供が好きです。\nB: 私もです。",
-"example_ko":"A: 아이를 좋아해요.\nB: 저도요."
+"example_ko":"A: 아이를 좋아해요.\nB: 저도요.",
+"related":["musuko","musume","kazoku"]
 },
 {
 "slug":"musuko",
@@ -8283,7 +8465,8 @@ B: 괜찮아요."""
 "keyword_ko":"아들",
 "desc":"息子는 아들을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 息子は五歳です。\nB: かわいいですね。",
-"example_ko":"A: 아들은 다섯 살이에요.\nB: 귀엽네요."
+"example_ko":"A: 아들은 다섯 살이에요.\nB: 귀엽네요.",
+"related":["musume","kodomo","otokonoko"]
 },
 {
 "slug":"musume",
@@ -8293,7 +8476,8 @@ B: 괜찮아요."""
 "keyword_ko":"딸",
 "desc":"娘는 딸을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 娘は歌が好きです。\nB: いいですね。",
-"example_ko":"A: 딸은 노래를 좋아해요.\nB: 좋네요."
+"example_ko":"A: 딸은 노래를 좋아해요.\nB: 좋네요.",
+"related":["musuko","kodomo","onnanoko"]
 },
 {
 "slug":"otokonoko",
@@ -8303,7 +8487,8 @@ B: 괜찮아요."""
 "keyword_ko":"남자아이",
 "desc":"男の子는 남자아이를 의미하는 일본어 표현입니다.",
 "example_jp":"A: あの男の子は元気ですね。\nB: そうですね。",
-"example_ko":"A: 저 남자아이는 활발하네요.\nB: 그러네요."
+"example_ko":"A: 저 남자아이는 활발하네요.\nB: 그러네요.",
+"related":["onnanoko","kodomo","musuko"]
 },
 {
 "slug":"onnanoko",
@@ -8313,7 +8498,8 @@ B: 괜찮아요."""
 "keyword_ko":"여자아이",
 "desc":"女の子는 여자아이를 의미하는 일본어 표현입니다.",
 "example_jp":"A: あの女の子は誰ですか？\nB: 妹です。",
-"example_ko":"A: 저 여자아이는 누구예요?\nB: 여동생이에요."
+"example_ko":"A: 저 여자아이는 누구예요?\nB: 여동생이에요.",
+"related":["otokonoko","kodomo","musume"]
 },
 {
 "slug":"tomodachi",
@@ -8333,7 +8519,8 @@ B: 괜찮아요."""
 "keyword_ko":"아침",
 "desc":"朝는 하루의 시작 시간대인 아침을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 朝は早いです。\nB: 大変ですね。",
-"example_ko":"A: 아침은 빨라요.\nB: 힘들겠네요."
+"example_ko":"A: 아침은 빨라요.\nB: 힘들겠네요.",
+"related":["hiru","yuugata","yoru"]
 },
 {
 "slug":"hiru",
@@ -8343,7 +8530,8 @@ B: 괜찮아요."""
 "keyword_ko":"낮",
 "desc":"昼는 낮 시간이나 정오 무렵을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 昼は暑いです。\nB: そうですね。",
-"example_ko":"A: 낮에는 더워요.\nB: 그러네요."
+"example_ko":"A: 낮에는 더워요.\nB: 그러네요.",
+"related":["asa","yuugata","yoru"]
 },
 {
 "slug":"yuugata",
@@ -8353,7 +8541,8 @@ B: 괜찮아요."""
 "keyword_ko":"저녁",
 "desc":"夕方는 해가 지기 전 저녁 무렵을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 夕方に帰ります。\nB: わかりました。",
-"example_ko":"A: 저녁쯤 돌아가요.\nB: 알겠습니다."
+"example_ko":"A: 저녁쯤 돌아가요.\nB: 알겠습니다.",
+"related":["hiru","yoru","asa"]
 },
 {
 "slug":"yoru",
@@ -8363,7 +8552,8 @@ B: 괜찮아요."""
 "keyword_ko":"밤",
 "desc":"夜는 밤 시간을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 夜は静かです。\nB: いいですね。",
-"example_ko":"A: 밤은 조용해요.\nB: 좋네요."
+"example_ko":"A: 밤은 조용해요.\nB: 좋네요.",
+"related":["yuugata","hiru","asa"]
 },
 {
 "slug":"kinou",
@@ -8373,7 +8563,8 @@ B: 괜찮아요."""
 "keyword_ko":"어제",
 "desc":"昨日는 어제를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 昨日何をしましたか？\nB: 勉強しました。",
-"example_ko":"A: 어제 뭐 했어요?\nB: 공부했어요."
+"example_ko":"A: 어제 뭐 했어요?\nB: 공부했어요.",
+"related":["ashita","asatte"]
 },
 {
 "slug":"ashita",
@@ -8383,7 +8574,8 @@ B: 괜찮아요."""
 "keyword_ko":"내일",
 "desc":"明日는 내일을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 明日会いましょう。\nB: はい。",
-"example_ko":"A: 내일 만나요.\nB: 네."
+"example_ko":"A: 내일 만나요.\nB: 네.",
+"related":["asatte","kinou"]
 },
 {
 "slug":"asatte",
@@ -8393,7 +8585,8 @@ B: 괜찮아요."""
 "keyword_ko":"모레",
 "desc":"明後日는 모레를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 明後日行きます。\nB: わかりました。",
-"example_ko":"A: 모레 가요.\nB: 알겠습니다."
+"example_ko":"A: 모레 가요.\nB: 알겠습니다.",
+"related":["ashita","kinou"]
 },
 {
 "slug":"senshuu",
@@ -8403,7 +8596,8 @@ B: 괜찮아요."""
 "keyword_ko":"지난주",
 "desc":"先週는 지난주를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 先週は忙しかったです。\nB: 大変でしたね。",
-"example_ko":"A: 지난주는 바빴어요.\nB: 힘들었겠네요."
+"example_ko":"A: 지난주는 바빴어요.\nB: 힘들었겠네요.",
+"related":["konshuu","raishuu"]
 },
 {
 "slug":"konshuu",
@@ -8413,7 +8607,8 @@ B: 괜찮아요."""
 "keyword_ko":"이번주",
 "desc":"今週는 이번 주를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 今週は暇ですか？\nB: 少し忙しいです。",
-"example_ko":"A: 이번 주는 한가해요?\nB: 조금 바빠요."
+"example_ko":"A: 이번 주는 한가해요?\nB: 조금 바빠요.",
+"related":["senshuu","raishuu"]
 },
 {
 "slug":"raishuu",
@@ -8423,7 +8618,8 @@ B: 괜찮아요."""
 "keyword_ko":"다음주",
 "desc":"来週는 다음 주를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 来週会いましょう。\nB: いいですね。",
-"example_ko":"A: 다음 주에 만나요.\nB: 좋네요."
+"example_ko":"A: 다음 주에 만나요.\nB: 좋네요.",
+"related":["konshuu","senshuu"]
 },
 {
 "slug":"sengetsu",
@@ -8433,7 +8629,8 @@ B: 괜찮아요."""
 "keyword_ko":"지난달",
 "desc":"先月는 지난달을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 先月旅行に行きました。\nB: どこですか？",
-"example_ko":"A: 지난달 여행 갔어요.\nB: 어디예요?"
+"example_ko":"A: 지난달 여행 갔어요.\nB: 어디예요?",
+"related":["kongetsu","raigetsu"]
 },
 {
 "slug":"kongetsu",
@@ -8443,7 +8640,8 @@ B: 괜찮아요."""
 "keyword_ko":"이번달",
 "desc":"今月는 이번 달을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 今月は忙しいです。\nB: そうですか。",
-"example_ko":"A: 이번 달은 바빠요.\nB: 그렇군요."
+"example_ko":"A: 이번 달은 바빠요.\nB: 그렇군요.",
+"related":["sengetsu","raigetsu"]
 },
 {
 "slug":"raigetsu",
@@ -8453,7 +8651,8 @@ B: 괜찮아요."""
 "keyword_ko":"다음달",
 "desc":"来月는 다음 달을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 来月引っ越します。\nB: そうなんですね。",
-"example_ko":"A: 다음 달 이사해요.\nB: 그렇군요."
+"example_ko":"A: 다음 달 이사해요.\nB: 그렇군요.",
+"related":["kongetsu","sengetsu"]
 },
 {
 "slug":"kotoshi",
@@ -8463,7 +8662,8 @@ B: 괜찮아요."""
 "keyword_ko":"올해",
 "desc":"今年는 올해를 의미하는 일본어 단어입니다.",
 "example_jp":"A: 今年は忙しいです。\nB: 頑張ってください。",
-"example_ko":"A: 올해는 바빠요.\nB: 힘내세요."
+"example_ko":"A: 올해는 바빠요.\nB: 힘내세요.",
+"related":["kyonen","rainen"]
 },
 {
 "slug":"kyonen",
@@ -8473,7 +8673,8 @@ B: 괜찮아요."""
 "keyword_ko":"작년",
 "desc":"去年은 작년을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 去年日本に行きました。\nB: いいですね。",
-"example_ko":"A: 작년에 일본에 갔어요.\nB: 좋네요."
+"example_ko":"A: 작년에 일본에 갔어요.\nB: 좋네요.",
+"related":["kotoshi","rainen"]
 },
 {
 "slug":"rainen",
@@ -8483,7 +8684,8 @@ B: 괜찮아요."""
 "keyword_ko":"내년",
 "desc":"来年은 내년을 의미하는 일본어 단어입니다.",
 "example_jp":"A: 来年留学します。\nB: すごいですね。",
-"example_ko":"A: 내년에 유학 가요.\nB: 대단하네요."
+"example_ko":"A: 내년에 유학 가요.\nB: 대단하네요.",
+"related":["kotoshi","kyonen"]
 },
 {
 "slug":"tenki",
@@ -8974,7 +9176,8 @@ B: 괜찮아요."""
 "keyword_ko":"즐거웠다",
 "desc":"楽しかった는 ‘즐겁다’의 과거형으로, 즐거운 경험을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 旅行はどうだった？\nB: 楽しかった。",
-"example_ko":"A: 여행 어땠어?\nB: 즐거웠어."
+"example_ko":"A: 여행 어땠어?\nB: 즐거웠어.",
+"related":["ureshikatta","tanoshisou","omoshirosou"]
 },
 {
 "slug":"kanashikatta",
@@ -8984,7 +9187,8 @@ B: 괜찮아요."""
 "keyword_ko":"슬펐다",
 "desc":"悲しかった는 ‘슬프다’의 과거형으로, 슬펐던 감정을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 映画はどうだった？\nB: 悲しかった。",
-"example_ko":"A: 영화 어땠어?\nB: 슬펐어."
+"example_ko":"A: 영화 어땠어?\nB: 슬펐어.",
+"related":["kanashisou","kowakatta","taihen"]
 },
 {
 "slug":"ureshikatta",
@@ -8994,7 +9198,8 @@ B: 괜찮아요."""
 "keyword_ko":"기뻤다",
 "desc":"嬉しかった는 ‘기쁘다’의 과거형으로, 기뻤던 경험을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 合格してどうだった？\nB: 嬉しかった。",
-"example_ko":"A: 합격해서 어땠어?\nB: 기뻤어."
+"example_ko":"A: 합격해서 어땠어?\nB: 기뻤어.",
+"related":["tanoshikatta","ureshisou","tanoshisou"]
 },
 {
 "slug":"kowakatta",
@@ -9004,7 +9209,8 @@ B: 괜찮아요."""
 "keyword_ko":"무서웠다",
 "desc":"怖かった는 ‘무섭다’의 과거형으로, 무서웠던 경험을 말할 때 사용하는 표현입니다.",
 "example_jp":"A: ホラー映画どうだった？\nB: 怖かった。",
-"example_ko":"A: 공포영화 어땠어?\nB: 무서웠어."
+"example_ko":"A: 공포영화 어땠어?\nB: 무서웠어.",
+"related":["kanashikatta","kanashisou"]
 },
 {
 "slug":"taihen",
@@ -9014,7 +9220,8 @@ B: 괜찮아요."""
 "keyword_ko":"힘들다",
 "desc":"大変는 힘들다, 큰일이다, 어렵다 등의 뜻으로 쓰이는 일본어 표현입니다.",
 "example_jp":"A: 最近どう？\nB: 大変。",
-"example_ko":"A: 요즘 어때?\nB: 힘들어."
+"example_ko":"A: 요즘 어때?\nB: 힘들어.",
+"related":["taihen-desu","kanashikatta"]
 },
 {
 "slug":"taihen-desu",
@@ -9024,7 +9231,8 @@ B: 괜찮아요."""
 "keyword_ko":"힘들어요",
 "desc":"大変です는 상황이 힘들거나 어렵다고 정중하게 말할 때 사용하는 표현입니다.",
 "example_jp":"A: 仕事はどうですか？\nB: 大変です。",
-"example_ko":"A: 일은 어때요?\nB: 힘들어요."
+"example_ko":"A: 일은 어때요?\nB: 힘들어요.",
+"related":["taihen"]
 },
 {
 "slug":"ureshisou",
@@ -9034,7 +9242,8 @@ B: 괜찮아요."""
 "keyword_ko":"기뻐 보인다",
 "desc":"嬉しそう는 상대가 기뻐 보일 때 사용하는 표현입니다.",
 "example_jp":"A: 彼は嬉しそう。\nB: そうだね。",
-"example_ko":"A: 그 사람 기뻐 보인다.\nB: 그러네."
+"example_ko":"A: 그 사람 기뻐 보인다.\nB: 그러네.",
+"related":["ureshikatta","tanoshisou","kanashisou"]
 },
 {
 "slug":"kanashisou",
@@ -9044,7 +9253,8 @@ B: 괜찮아요."""
 "keyword_ko":"슬퍼 보인다",
 "desc":"悲しそう는 상대가 슬퍼 보일 때 사용하는 표현입니다.",
 "example_jp":"A: 彼女は悲しそう。\nB: 心配ですね。",
-"example_ko":"A: 그 사람 슬퍼 보인다.\nB: 걱정되네요."
+"example_ko":"A: 그 사람 슬퍼 보인다.\nB: 걱정되네요.",
+"related":["kanashikatta","ureshisou","kowakatta"]
 },
 {
 "slug":"tanoshisou",
@@ -9054,7 +9264,8 @@ B: 괜찮아요."""
 "keyword_ko":"즐거워 보인다",
 "desc":"楽しそう는 사람이나 상황이 즐거워 보일 때 사용하는 표현입니다.",
 "example_jp":"A: みんな楽しそう。\nB: いいね。",
-"example_ko":"A: 다들 즐거워 보인다.\nB: 좋네."
+"example_ko":"A: 다들 즐거워 보인다.\nB: 좋네.",
+"related":["tanoshikatta","ureshisou","omoshirosou"]
 },
 {
 "slug":"omoshirosou",
@@ -9064,7 +9275,8 @@ B: 괜찮아요."""
 "keyword_ko":"재미있어 보인다",
 "desc":"面白そう는 재미있을 것 같아 보일 때 사용하는 표현입니다.",
 "example_jp":"A: その本、面白そう。\nB: 読んでみる？",
-"example_ko":"A: 그 책 재미있어 보인다.\nB: 읽어볼래?"
+"example_ko":"A: 그 책 재미있어 보인다.\nB: 읽어볼래?",
+"related":["tanoshisou","tanoshikatta"]
 },
 {
 "slug":"oishii",
@@ -9074,7 +9286,8 @@ B: 괜찮아요."""
 "keyword_ko":"맛있다",
 "desc":"美味しい는 음식이나 음료가 맛있을 때 사용하는 기본적인 일본어 형용사입니다.",
 "example_jp":"A: このラーメン美味しい。\nB: そうですね。",
-"example_ko":"A: 이 라멘 맛있다.\nB: 그러네."
+"example_ko":"A: 이 라멘 맛있다.\nB: 그러네.",
+"related":["amai","karai","shoppai"]
 },
 {
 "slug":"amai",
@@ -9084,7 +9297,8 @@ B: 괜찮아요."""
 "keyword_ko":"달다",
 "desc":"甘い는 단맛이 날 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: このケーキは甘いです。\nB: 美味しいですね。",
-"example_ko":"A: 이 케이크는 달아요.\nB: 맛있네요."
+"example_ko":"A: 이 케이크는 달아요.\nB: 맛있네요.",
+"related":["oishii","nigai","shoppai"]
 },
 {
 "slug":"karai",
@@ -9094,7 +9308,8 @@ B: 괜찮아요."""
 "keyword_ko":"맵다",
 "desc":"辛い는 음식이 맵거나 자극적일 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: この料理は辛いです。\nB: 本当ですね。",
-"example_ko":"A: 이 요리는 매워요.\nB: 정말 그러네요."
+"example_ko":"A: 이 요리는 매워요.\nB: 정말 그러네요.",
+"related":["supaishii","oishii","shoppai"]
 },
 {
 "slug":"supaishii",
@@ -9104,7 +9319,8 @@ B: 괜찮아요."""
 "keyword_ko":"매콤하다",
 "desc":"スパイシー는 향신료가 느껴지는 매콤한 맛을 표현할 때 사용하는 일본어 외래어입니다.",
 "example_jp":"A: このカレーはスパイシーです。\nB: いいですね。",
-"example_ko":"A: 이 카레는 매콤해요.\nB: 좋네요."
+"example_ko":"A: 이 카레는 매콤해요.\nB: 좋네요.",
+"related":["karai","oishii"]
 },
 {
 "slug":"shoppai",
@@ -9114,7 +9330,8 @@ B: 괜찮아요."""
 "keyword_ko":"짜다",
 "desc":"しょっぱい는 음식이 짤 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: このスープはしょっぱい。\nB: 少し塩が多いですね。",
-"example_ko":"A: 이 수프는 짜다.\nB: 소금이 조금 많네요."
+"example_ko":"A: 이 수프는 짜다.\nB: 소금이 조금 많네요.",
+"related":["oishii","amai","karai"]
 },
 {
 "slug":"nigai",
@@ -9124,7 +9341,8 @@ B: 괜찮아요."""
 "keyword_ko":"쓰다",
 "desc":"苦い는 쓴맛이 날 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: この薬は苦いです。\nB: そうですね。",
-"example_ko":"A: 이 약은 써요.\nB: 그러네요."
+"example_ko":"A: 이 약은 써요.\nB: 그러네요.",
+"related":["amai","oishii"]
 },
 {
 "slug":"atatakai",
@@ -9134,7 +9352,8 @@ B: 괜찮아요."""
 "keyword_ko":"따뜻하다",
 "desc":"暖かい는 날씨나 온도가 따뜻할 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: 今日は暖かいです。\nB: 気持ちいいですね。",
-"example_ko":"A: 오늘 따뜻해요.\nB: 기분 좋네요."
+"example_ko":"A: 오늘 따뜻해요.\nB: 기분 좋네요.",
+"related":["tsumetai","atsui-hot"]
 },
 {
 "slug":"tsumetai",
@@ -9144,7 +9363,8 @@ B: 괜찮아요."""
 "keyword_ko":"차갑다",
 "desc":"冷たい는 물건이나 음식, 음료가 차가울 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: 水が冷たいです。\nB: 夏にいいですね。",
-"example_ko":"A: 물이 차가워요.\nB: 여름에 좋네요."
+"example_ko":"A: 물이 차가워요.\nB: 여름에 좋네요.",
+"related":["atatakai","atsui-hot"]
 },
 {
 "slug":"atsui-hot",
@@ -9154,7 +9374,8 @@ B: 괜찮아요."""
 "keyword_ko":"뜨겁다",
 "desc":"熱い는 음식이나 음료, 물건이 뜨거울 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: このお茶は熱いです。\nB: 気をつけてください。",
-"example_ko":"A: 이 차는 뜨거워요.\nB: 조심하세요."
+"example_ko":"A: 이 차는 뜨거워요.\nB: 조심하세요.",
+"related":["atatakai","tsumetai"]
 },
 {
 "slug":"akarui",
@@ -9164,7 +9385,8 @@ B: 괜찮아요."""
 "keyword_ko":"밝다",
 "desc":"明るい는 빛이 밝거나 분위기가 밝을 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: この部屋は明るいです。\nB: いいですね。",
-"example_ko":"A: 이 방은 밝아요.\nB: 좋네요."
+"example_ko":"A: 이 방은 밝아요.\nB: 좋네요.",
+"related":["kurai","hiroi"]
 },
 {
 "slug":"kurai",
@@ -9174,7 +9396,8 @@ B: 괜찮아요."""
 "keyword_ko":"어둡다",
 "desc":"暗い는 빛이 부족해 어두울 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: ここは暗いです。\nB: 電気をつけましょう。",
-"example_ko":"A: 여기는 어두워요.\nB: 불을 켜요."
+"example_ko":"A: 여기는 어두워요.\nB: 불을 켜요.",
+"related":["akarui"]
 },
 {
 "slug":"hiroi",
@@ -9184,7 +9407,8 @@ B: 괜찮아요."""
 "keyword_ko":"넓다",
 "desc":"広い는 공간이나 범위가 넓을 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: この部屋は広いです。\nB: そうですね。",
-"example_ko":"A: 이 방은 넓어요.\nB: 그러네요."
+"example_ko":"A: 이 방은 넓어요.\nB: 그러네요.",
+"related":["semai","akarui","nagai"]
 },
 {
 "slug":"semai",
@@ -9194,7 +9418,8 @@ B: 괜찮아요."""
 "keyword_ko":"좁다",
 "desc":"狭い는 공간이 좁을 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: この道は狭いです。\nB: 気をつけましょう。",
-"example_ko":"A: 이 길은 좁아요.\nB: 조심합시다."
+"example_ko":"A: 이 길은 좁아요.\nB: 조심합시다.",
+"related":["hiroi"]
 },
 {
 "slug":"nagai",
@@ -9204,7 +9429,8 @@ B: 괜찮아요."""
 "keyword_ko":"길다",
 "desc":"長い는 길이나 시간 등이 길 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: この橋は長いです。\nB: そうですね。",
-"example_ko":"A: 이 다리는 길어요.\nB: 그러네요."
+"example_ko":"A: 이 다리는 길어요.\nB: 그러네요.",
+"related":["mijikai","hiroi"]
 },
 {
 "slug":"mijikai",
@@ -9214,7 +9440,8 @@ B: 괜찮아요."""
 "keyword_ko":"짧다",
 "desc":"短い는 길이, 시간 등이 짧을 때 사용하는 일본어 형용사입니다.",
 "example_jp":"A: 休み時間は短いです。\nB: そうですね。",
-"example_ko":"A: 쉬는 시간은 짧아요.\nB: 그러네요."
+"example_ko":"A: 쉬는 시간은 짧아요.\nB: 그러네요.",
+"related":["nagai"]
 },
 {
 "slug":"hikui",
@@ -16462,7 +16689,8 @@ B: 괜찮아요."""
 "keyword_ko":"개",
 "desc":"犬는 개를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: これは何ですか？\nB: 犬です。",
-"example_ko":"A: 이건 무엇인가요?\nB: 개예요."
+"example_ko":"A: 이건 무엇인가요?\nB: 개예요.",
+"related":["neko","ookami","kitsune"]
 },
 {
 "slug":"neko",
@@ -16472,7 +16700,8 @@ B: 괜찮아요."""
 "keyword_ko":"고양이",
 "desc":"猫는 고양이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: あの動物は何ですか？\nB: 猫です。",
-"example_ko":"A: 저 동물은 무엇인가요?\nB: 고양이예요."
+"example_ko":"A: 저 동물은 무엇인가요?\nB: 고양이예요.",
+"related":["inu","usagi","harinezumi"]
 },
 {
 "slug":"tori",
@@ -16482,7 +16711,8 @@ B: 괜찮아요."""
 "keyword_ko":"새",
 "desc":"鳥는 새를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 空に何がいますか？\nB: 鳥がいます。",
-"example_ko":"A: 하늘에 무엇이 있나요?\nB: 새가 있어요."
+"example_ko":"A: 하늘에 무엇이 있나요?\nB: 새가 있어요.",
+"related":["hato","suzume","karasu"]
 },
 {
 "slug":"usagi",
@@ -16492,7 +16722,8 @@ B: 괜찮아요."""
 "keyword_ko":"토끼",
 "desc":"うさぎ는 토끼를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: その動物は何ですか？\nB: うさぎです。",
-"example_ko":"A: 그 동물은 무엇인가요?\nB: 토끼예요."
+"example_ko":"A: 그 동물은 무엇인가요?\nB: 토끼예요.",
+"related":["hamusutaa","morumotto","risu"]
 },
 {
 "slug":"uma",
@@ -16502,7 +16733,8 @@ B: 괜찮아요."""
 "keyword_ko":"말",
 "desc":"馬는 말을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 牧場に何がいますか？\nB: 馬がいます。",
-"example_ko":"A: 목장에 무엇이 있나요?\nB: 말이 있어요."
+"example_ko":"A: 목장에 무엇이 있나요?\nB: 말이 있어요.",
+"related":["ushi","shimauma","rakuda"]
 },
 {
 "slug":"ushi",
@@ -16512,7 +16744,8 @@ B: 괜찮아요."""
 "keyword_ko":"소",
 "desc":"牛는 소를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: あの大きい動物は何ですか？\nB: 牛です。",
-"example_ko":"A: 저 큰 동물은 무엇인가요?\nB: 소예요."
+"example_ko":"A: 저 큰 동물은 무엇인가요?\nB: 소예요.",
+"related":["uma","buta","hitsuji"]
 },
 {
 "slug":"buta",
@@ -16522,7 +16755,8 @@ B: 괜찮아요."""
 "keyword_ko":"돼지",
 "desc":"豚는 돼지를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 農場に何がいますか？\nB: 豚がいます。",
-"example_ko":"A: 농장에 무엇이 있나요?\nB: 돼지가 있어요."
+"example_ko":"A: 농장에 무엇이 있나요?\nB: 돼지가 있어요.",
+"related":["ushi","hitsuji","yagi"]
 },
 {
 "slug":"hitsuji",
@@ -16532,7 +16766,8 @@ B: 괜찮아요."""
 "keyword_ko":"양",
 "desc":"羊는 양을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 白いあの動物は何ですか？\nB: 羊です。",
-"example_ko":"A: 저 흰 동물은 무엇인가요?\nB: 양이에요."
+"example_ko":"A: 저 흰 동물은 무엇인가요?\nB: 양이에요.",
+"related":["yagi","ushi","buta"]
 },
 {
 "slug":"yagi",
@@ -16542,7 +16777,8 @@ B: 괜찮아요."""
 "keyword_ko":"염소",
 "desc":"山羊는 염소를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 角がある動物は何ですか？\nB: 山羊です。",
-"example_ko":"A: 뿔이 있는 동물은 무엇인가요?\nB: 염소예요."
+"example_ko":"A: 뿔이 있는 동물은 무엇인가요?\nB: 염소예요.",
+"related":["hitsuji","shika","ushi"]
 },
 {
 "slug":"niwatori",
@@ -16552,7 +16788,8 @@ B: 괜찮아요."""
 "keyword_ko":"닭",
 "desc":"鶏는 닭을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 朝に鳴く動物は何ですか？\nB: 鶏です。",
-"example_ko":"A: 아침에 우는 동물은 무엇인가요?\nB: 닭이에요."
+"example_ko":"A: 아침에 우는 동물은 무엇인가요?\nB: 닭이에요.",
+"related":["hiyoko","ahiru","gachou"]
 },
 {
 "slug":"hiyoko",
@@ -16562,7 +16799,8 @@ B: 괜찮아요."""
 "keyword_ko":"병아리",
 "desc":"ひよこ는 병아리를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 小さい黄色い鳥は何ですか？\nB: ひよこです。",
-"example_ko":"A: 작은 노란 새는 무엇인가요?\nB: 병아리예요."
+"example_ko":"A: 작은 노란 새는 무엇인가요?\nB: 병아리예요.",
+"related":["niwatori","ahiru","suzume"]
 },
 {
 "slug":"ahiru",
@@ -16572,7 +16810,8 @@ B: 괜찮아요."""
 "keyword_ko":"오리",
 "desc":"アヒル는 오리를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 池にいる鳥は何ですか？\nB: アヒルです。",
-"example_ko":"A: 연못에 있는 새는 무엇인가요?\nB: 오리예요."
+"example_ko":"A: 연못에 있는 새는 무엇인가요?\nB: 오리예요.",
+"related":["gachou","hakuchou","niwatori"]
 },
 {
 "slug":"gachou",
@@ -16582,7 +16821,8 @@ B: 괜찮아요."""
 "keyword_ko":"거위",
 "desc":"ガチョウ는 거위를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: あの大きい鳥は何ですか？\nB: ガチョウです。",
-"example_ko":"A: 저 큰 새는 무엇인가요?\nB: 거위예요."
+"example_ko":"A: 저 큰 새는 무엇인가요?\nB: 거위예요.",
+"related":["ahiru","hakuchou","tsuru"]
 },
 {
 "slug":"hato",
@@ -16592,7 +16832,8 @@ B: 괜찮아요."""
 "keyword_ko":"비둘기",
 "desc":"鳩는 비둘기를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 公園に何がいますか？\nB: 鳩がいます。",
-"example_ko":"A: 공원에 무엇이 있나요?\nB: 비둘기가 있어요."
+"example_ko":"A: 공원에 무엇이 있나요?\nB: 비둘기가 있어요.",
+"related":["suzume","karasu","tori"]
 },
 {
 "slug":"suzume",
@@ -16602,7 +16843,8 @@ B: 괜찮아요."""
 "keyword_ko":"참새",
 "desc":"雀는 참새를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 小さい鳥がいますね。\nB: 雀です。",
-"example_ko":"A: 작은 새가 있네요.\nB: 참새예요."
+"example_ko":"A: 작은 새가 있네요.\nB: 참새예요.",
+"related":["hato","karasu","tori"]
 },
 {
 "slug":"karasu",
@@ -16612,7 +16854,8 @@ B: 괜찮아요."""
 "keyword_ko":"까마귀",
 "desc":"カラス는 까마귀를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 黒い鳥は何ですか？\nB: カラスです。",
-"example_ko":"A: 검은 새는 무엇인가요?\nB: 까마귀예요."
+"example_ko":"A: 검은 새는 무엇인가요?\nB: 까마귀예요.",
+"related":["hato","suzume","fukurou"]
 },
 {
 "slug":"taka",
@@ -16622,7 +16865,8 @@ B: 괜찮아요."""
 "keyword_ko":"매",
 "desc":"鷹는 매를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: あの強そうな鳥は何ですか？\nB: 鷹です。",
-"example_ko":"A: 저 강해 보이는 새는 무엇인가요?\nB: 매예요."
+"example_ko":"A: 저 강해 보이는 새는 무엇인가요?\nB: 매예요.",
+"related":["washi","fukurou","karasu"]
 },
 {
 "slug":"washi",
@@ -16632,7 +16876,8 @@ B: 괜찮아요."""
 "keyword_ko":"독수리",
 "desc":"鷲는 독수리를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 大きい鳥が飛んでいますね。\nB: 鷲です。",
-"example_ko":"A: 큰 새가 날고 있네요.\nB: 독수리예요."
+"example_ko":"A: 큰 새가 날고 있네요.\nB: 독수리예요.",
+"related":["taka","fukurou","kamome"]
 },
 {
 "slug":"fukurou",
@@ -16642,7 +16887,8 @@ B: 괜찮아요."""
 "keyword_ko":"부엉이",
 "desc":"ふくろう는 부엉이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 夜に活動する鳥は何ですか？\nB: ふくろうです。",
-"example_ko":"A: 밤에 활동하는 새는 무엇인가요?\nB: 부엉이예요."
+"example_ko":"A: 밤에 활동하는 새는 무엇인가요?\nB: 부엉이예요.",
+"related":["taka","washi","karasu"]
 },
 {
 "slug":"kujaku",
@@ -16652,7 +16898,8 @@ B: 괜찮아요."""
 "keyword_ko":"공작",
 "desc":"孔雀는 공작을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 羽がきれいな鳥は何ですか？\nB: 孔雀です。",
-"example_ko":"A: 깃털이 아름다운 새는 무엇인가요?\nB: 공작이에요."
+"example_ko":"A: 깃털이 아름다운 새는 무엇인가요?\nB: 공작이에요.",
+"related":["hakuchou","tsuru","oumu"]
 },
 {
 "slug":"tsuru",
@@ -16662,7 +16909,8 @@ B: 괜찮아요."""
 "keyword_ko":"두루미",
 "desc":"鶴는 두루미를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 足が長い鳥は何ですか？\nB: 鶴です。",
-"example_ko":"A: 다리가 긴 새는 무엇인가요?\nB: 두루미예요."
+"example_ko":"A: 다리가 긴 새는 무엇인가요?\nB: 두루미예요.",
+"related":["hakuchou","gachou","kujaku"]
 },
 {
 "slug":"hakuchou",
@@ -16672,7 +16920,8 @@ B: 괜찮아요."""
 "keyword_ko":"백조",
 "desc":"白鳥는 백조를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 湖にいる白い鳥は何ですか？\nB: 白鳥です。",
-"example_ko":"A: 호수에 있는 흰 새는 무엇인가요?\nB: 백조예요."
+"example_ko":"A: 호수에 있는 흰 새는 무엇인가요?\nB: 백조예요.",
+"related":["ahiru","gachou","tsuru"]
 },
 {
 "slug":"pengin",
@@ -16682,7 +16931,8 @@ B: 괜찮아요."""
 "keyword_ko":"펭귄",
 "desc":"ペンギン는 펭귄을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 水族館で人気の鳥は何ですか？\nB: ペンギンです。",
-"example_ko":"A: 수족관에서 인기 있는 새는 무엇인가요?\nB: 펭귄이에요."
+"example_ko":"A: 수족관에서 인기 있는 새는 무엇인가요?\nB: 펭귄이에요.",
+"related":["azarashi","iruka","hakuchou"]
 },
 {
 "slug":"oumu",
@@ -16692,7 +16942,8 @@ B: 괜찮아요."""
 "keyword_ko":"앵무새",
 "desc":"オウム는 앵무새를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: しゃべる鳥は何ですか？\nB: オウムです。",
-"example_ko":"A: 말을 하는 새는 무엇인가요?\nB: 앵무새예요."
+"example_ko":"A: 말을 하는 새는 무엇인가요?\nB: 앵무새예요.",
+"related":["inko","kujaku","tori"]
 },
 {
 "slug":"inko",
@@ -16702,7 +16953,8 @@ B: 괜찮아요."""
 "keyword_ko":"잉꼬",
 "desc":"インコ는 잉꼬를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 小さくてかわいい鳥ですね。\nB: インコです。",
-"example_ko":"A: 작고 귀여운 새네요.\nB: 잉꼬예요."
+"example_ko":"A: 작고 귀여운 새네요.\nB: 잉꼬예요.",
+"related":["oumu","suzume","hiyoko"]
 },
 {
 "slug":"kamome",
@@ -16712,7 +16964,8 @@ B: 괜찮아요."""
 "keyword_ko":"갈매기",
 "desc":"カモメ는 갈매기를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 海の近くにいる鳥は何ですか？\nB: カモメです。",
-"example_ko":"A: 바다 근처에 있는 새는 무엇인가요?\nB: 갈매기예요."
+"example_ko":"A: 바다 근처에 있는 새는 무엇인가요?\nB: 갈매기예요.",
+"related":["washi","pengin","umigame"]
 },
 {
 "slug":"kirin",
@@ -16722,7 +16975,8 @@ B: 괜찮아요."""
 "keyword_ko":"기린",
 "desc":"キリン는 기린을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 首が長い動物は何ですか？\nB: キリンです。",
-"example_ko":"A: 목이 긴 동물은 무엇인가요?\nB: 기린이에요."
+"example_ko":"A: 목이 긴 동물은 무엇인가요?\nB: 기린이에요.",
+"related":["shimauma","zou","sai"]
 },
 {
 "slug":"zou",
@@ -16732,7 +16986,8 @@ B: 괜찮아요."""
 "keyword_ko":"코끼리",
 "desc":"象는 코끼리를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 鼻が長い動物は何ですか？\nB: 象です。",
-"example_ko":"A: 코가 긴 동물은 무엇인가요?\nB: 코끼리예요."
+"example_ko":"A: 코가 긴 동물은 무엇인가요?\nB: 코끼리예요.",
+"related":["kirin","sai","kaba"]
 },
 {
 "slug":"saru",
@@ -16742,7 +16997,8 @@ B: 괜찮아요."""
 "keyword_ko":"원숭이",
 "desc":"猿는 원숭이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 木に登るのが上手な動物は何ですか？\nB: 猿です。",
-"example_ko":"A: 나무를 잘 타는 동물은 무엇인가요?\nB: 원숭이예요."
+"example_ko":"A: 나무를 잘 타는 동물은 무엇인가요?\nB: 원숭이예요.",
+"related":["gorira","chinpanji","koara"]
 },
 {
 "slug":"gorira",
@@ -16752,7 +17008,8 @@ B: 괜찮아요."""
 "keyword_ko":"고릴라",
 "desc":"ゴリラ는 고릴라를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 大きい猿の仲間は何ですか？\nB: ゴリラです。",
-"example_ko":"A: 큰 유인원은 무엇인가요?\nB: 고릴라예요."
+"example_ko":"A: 큰 유인원은 무엇인가요?\nB: 고릴라예요.",
+"related":["chinpanji","saru","kuma"]
 },
 {
 "slug":"chinpanji",
@@ -16762,7 +17019,8 @@ B: 괜찮아요."""
 "keyword_ko":"침팬지",
 "desc":"チンパンジー는 침팬지를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 人に似ている動物は何ですか？\nB: チンパンジーです。",
-"example_ko":"A: 사람과 비슷한 동물은 무엇인가요?\nB: 침팬지예요."
+"example_ko":"A: 사람과 비슷한 동물은 무엇인가요?\nB: 침팬지예요.",
+"related":["gorira","saru","koara"]
 },
 {
 "slug":"raion",
@@ -16772,7 +17030,8 @@ B: 괜찮아요."""
 "keyword_ko":"사자",
 "desc":"ライオン는 사자를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 百獣の王は何ですか？\nB: ライオンです。",
-"example_ko":"A: 백수의 왕은 무엇인가요?\nB: 사자예요."
+"example_ko":"A: 백수의 왕은 무엇인가요?\nB: 사자예요.",
+"related":["tora","hyou","chiitaa"]
 },
 {
 "slug":"tora",
@@ -16782,7 +17041,8 @@ B: 괜찮아요."""
 "keyword_ko":"호랑이",
 "desc":"虎는 호랑이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 縞模様の大きい動物は何ですか？\nB: 虎です。",
-"example_ko":"A: 줄무늬가 있는 큰 동물은 무엇인가요?\nB: 호랑이예요."
+"example_ko":"A: 줄무늬가 있는 큰 동물은 무엇인가요?\nB: 호랑이예요.",
+"related":["raion","hyou","chiitaa"]
 },
 {
 "slug":"hyou",
@@ -16792,7 +17052,8 @@ B: 괜찮아요."""
 "keyword_ko":"표범",
 "desc":"豹는 표범을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 斑点がある動物は何ですか？\nB: 豹です。",
-"example_ko":"A: 점무늬가 있는 동물은 무엇인가요?\nB: 표범이에요."
+"example_ko":"A: 점무늬가 있는 동물은 무엇인가요?\nB: 표범이에요.",
+"related":["chiitaa","tora","raion"]
 },
 {
 "slug":"chiitaa",
@@ -16802,7 +17063,8 @@ B: 괜찮아요."""
 "keyword_ko":"치타",
 "desc":"チーター는 치타를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 走るのが速い動物は何ですか？\nB: チーターです。",
-"example_ko":"A: 달리기가 빠른 동물은 무엇인가요?\nB: 치타예요."
+"example_ko":"A: 달리기가 빠른 동물은 무엇인가요?\nB: 치타예요.",
+"related":["hyou","tora","raion"]
 },
 {
 "slug":"kuma",
@@ -16812,7 +17074,8 @@ B: 괜찮아요."""
 "keyword_ko":"곰",
 "desc":"熊는 곰을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 森にいる大きい動物は何ですか？\nB: 熊です。",
-"example_ko":"A: 숲에 사는 큰 동물은 무엇인가요?\nB: 곰이에요."
+"example_ko":"A: 숲에 사는 큰 동물은 무엇인가요?\nB: 곰이에요.",
+"related":["shirokuma","panda","ressaapanda"]
 },
 {
 "slug":"shirokuma",
@@ -16822,7 +17085,8 @@ B: 괜찮아요."""
 "keyword_ko":"북극곰",
 "desc":"白熊는 북극곰을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 白い大きい熊は何ですか？\nB: 白熊です。",
-"example_ko":"A: 흰 큰 곰은 무엇인가요?\nB: 북극곰이에요."
+"example_ko":"A: 흰 큰 곰은 무엇인가요?\nB: 북극곰이에요.",
+"related":["kuma","panda","azarashi"]
 },
 {
 "slug":"panda",
@@ -16832,7 +17096,8 @@ B: 괜찮아요."""
 "keyword_ko":"판다",
 "desc":"パンダ는 판다를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 白と黒の動物は何ですか？\nB: パンダです。",
-"example_ko":"A: 흰색과 검은색 동물은 무엇인가요?\nB: 판다예요."
+"example_ko":"A: 흰색과 검은색 동물은 무엇인가요?\nB: 판다예요.",
+"related":["ressaapanda","kuma","koara"]
 },
 {
 "slug":"ressaapanda",
@@ -16842,7 +17107,8 @@ B: 괜찮아요."""
 "keyword_ko":"레서판다",
 "desc":"レッサーパンダ는 레서판다를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 小さいパンダみたいな動物は何ですか？\nB: レッサーパンダです。",
-"example_ko":"A: 작은 판다 같은 동물은 무엇인가요?\nB: 레서판다예요."
+"example_ko":"A: 작은 판다 같은 동물은 무엇인가요?\nB: 레서판다예요.",
+"related":["panda","araiguma","tanuki"]
 },
 {
 "slug":"ookami",
@@ -16852,7 +17118,8 @@ B: 괜찮아요."""
 "keyword_ko":"늑대",
 "desc":"狼는 늑대를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 山にいる犬に似た動物は何ですか？\nB: 狼です。",
-"example_ko":"A: 산에 사는 개와 비슷한 동물은 무엇인가요?\nB: 늑대예요."
+"example_ko":"A: 산에 사는 개와 비슷한 동물은 무엇인가요?\nB: 늑대예요.",
+"related":["inu","kitsune","tanuki"]
 },
 {
 "slug":"kitsune",
@@ -16862,7 +17129,8 @@ B: 괜찮아요."""
 "keyword_ko":"여우",
 "desc":"狐는 여우를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: しっぽがふわふわの動物は何ですか？\nB: 狐です。",
-"example_ko":"A: 꼬리가 복슬복슬한 동물은 무엇인가요?\nB: 여우예요."
+"example_ko":"A: 꼬리가 복슬복슬한 동물은 무엇인가요?\nB: 여우예요.",
+"related":["tanuki","ookami","inu"]
 },
 {
 "slug":"tanuki",
@@ -16872,7 +17140,8 @@ B: 괜찮아요."""
 "keyword_ko":"너구리",
 "desc":"たぬき는 너구리를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 丸い顔の動物は何ですか？\nB: たぬきです。",
-"example_ko":"A: 둥근 얼굴의 동물은 무엇인가요?\nB: 너구리예요."
+"example_ko":"A: 둥근 얼굴의 동물은 무엇인가요?\nB: 너구리예요.",
+"related":["kitsune","araiguma","ookami"]
 },
 {
 "slug":"shika",
@@ -16882,7 +17151,8 @@ B: 괜찮아요."""
 "keyword_ko":"사슴",
 "desc":"鹿는 사슴을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 角があるきれいな動物は何ですか？\nB: 鹿です。",
-"example_ko":"A: 뿔이 있는 아름다운 동물은 무엇인가요?\nB: 사슴이에요."
+"example_ko":"A: 뿔이 있는 아름다운 동물은 무엇인가요?\nB: 사슴이에요.",
+"related":["yagi","shimauma","kirin"]
 },
 {
 "slug":"kaba",
@@ -16892,7 +17162,8 @@ B: 괜찮아요."""
 "keyword_ko":"하마",
 "desc":"カバ는 하마를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 水の中が好きな大きい動物は何ですか？\nB: カバです。",
-"example_ko":"A: 물속을 좋아하는 큰 동물은 무엇인가요?\nB: 하마예요."
+"example_ko":"A: 물속을 좋아하는 큰 동물은 무엇인가요?\nB: 하마예요.",
+"related":["sai","zou","wani"]
 },
 {
 "slug":"sai",
@@ -16902,7 +17173,8 @@ B: 괜찮아요."""
 "keyword_ko":"코뿔소",
 "desc":"サイ는 코뿔소를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 鼻の上に角がある動物は何ですか？\nB: サイです。",
-"example_ko":"A: 코 위에 뿔이 있는 동물은 무엇인가요?\nB: 코뿔소예요."
+"example_ko":"A: 코 위에 뿔이 있는 동물은 무엇인가요?\nB: 코뿔소예요.",
+"related":["zou","kaba","kirin"]
 },
 {
 "slug":"shimauma",
@@ -16912,7 +17184,8 @@ B: 괜찮아요."""
 "keyword_ko":"얼룩말",
 "desc":"シマウマ는 얼룩말을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 白と黒の縞がある動物は何ですか？\nB: シマウマです。",
-"example_ko":"A: 흰색과 검은색 줄무늬가 있는 동물은 무엇인가요?\nB: 얼룩말이에요."
+"example_ko":"A: 흰색과 검은색 줄무늬가 있는 동물은 무엇인가요?\nB: 얼룩말이에요.",
+"related":["uma","kirin","shika"]
 },
 {
 "slug":"rakuda",
@@ -16922,7 +17195,8 @@ B: 괜찮아요."""
 "keyword_ko":"낙타",
 "desc":"ラクダ는 낙타를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 砂漠でよく見る動物は何ですか？\nB: ラクダです。",
-"example_ko":"A: 사막에서 자주 보는 동물은 무엇인가요?\nB: 낙타예요."
+"example_ko":"A: 사막에서 자주 보는 동물은 무엇인가요?\nB: 낙타예요.",
+"related":["uma","kirin","zou"]
 },
 {
 "slug":"kawauso",
@@ -16932,7 +17206,8 @@ B: 괜찮아요."""
 "keyword_ko":"수달",
 "desc":"カワウソ는 수달을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 川にいるかわいい動物は何ですか？\nB: カワウソです。",
-"example_ko":"A: 강에 사는 귀여운 동물은 무엇인가요?\nB: 수달이에요."
+"example_ko":"A: 강에 사는 귀여운 동물은 무엇인가요?\nB: 수달이에요.",
+"related":["rakko","azarashi","kai"]
 },
 {
 "slug":"araiguma",
@@ -16942,7 +17217,8 @@ B: 괜찮아요."""
 "keyword_ko":"라쿤",
 "desc":"アライグマ는 라쿤을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 顔に模様がある動物は何ですか？\nB: アライグマです。",
-"example_ko":"A: 얼굴에 무늬가 있는 동물은 무엇인가요?\nB: 라쿤이에요."
+"example_ko":"A: 얼굴에 무늬가 있는 동물은 무엇인가요?\nB: 라쿤이에요.",
+"related":["tanuki","ressaapanda","mujina"]
 },
 {
 "slug":"itachi",
@@ -16952,7 +17228,8 @@ B: 괜찮아요."""
 "keyword_ko":"족제비",
 "desc":"いたち는 족제비를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 体が細長い動物は何ですか？\nB: いたちです。",
-"example_ko":"A: 몸이 길쭉한 동물은 무엇인가요?\nB: 족제비예요."
+"example_ko":"A: 몸이 길쭉한 동물은 무엇인가요?\nB: 족제비예요.",
+"related":["mujina","kawauso","harinezumi"]
 },
 {
 "slug":"mujina",
@@ -16962,7 +17239,8 @@ B: 괜찮아요."""
 "keyword_ko":"오소리",
 "desc":"むじな는 오소리를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 地面に穴を掘る動物は何ですか？\nB: むじなです。",
-"example_ko":"A: 땅에 굴을 파는 동물은 무엇인가요?\nB: 오소리예요."
+"example_ko":"A: 땅에 굴을 파는 동물은 무엇인가요?\nB: 오소리예요.",
+"related":["itachi","araiguma","mogura"]
 },
 {
 "slug":"risu",
@@ -16972,7 +17250,8 @@ B: 괜찮아요."""
 "keyword_ko":"다람쥐",
 "desc":"リス는 다람쥐를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 木の上にいる小さい動物は何ですか？\nB: リスです。",
-"example_ko":"A: 나무 위에 있는 작은 동물은 무엇인가요?\nB: 다람쥐예요."
+"example_ko":"A: 나무 위에 있는 작은 동물은 무엇인가요?\nB: 다람쥐예요.",
+"related":["musasabi","hamusutaa","usagi"]
 },
 {
 "slug":"musasabi",
@@ -16982,7 +17261,8 @@ B: 괜찮아요."""
 "keyword_ko":"날다람쥐",
 "desc":"ムササビ는 날다람쥐를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 空を滑るように飛ぶ動物は何ですか？\nB: ムササビです。",
-"example_ko":"A: 하늘을 미끄러지듯 나는 동물은 무엇인가요?\nB: 날다람쥐예요."
+"example_ko":"A: 하늘을 미끄러지듯 나는 동물은 무엇인가요?\nB: 날다람쥐예요.",
+"related":["risu","koumori","saru"]
 },
 {
 "slug":"nezumi",
@@ -16992,7 +17272,8 @@ B: 괜찮아요."""
 "keyword_ko":"쥐",
 "desc":"ねずみ는 쥐를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 小さい灰色の動物は何ですか？\nB: ねずみです。",
-"example_ko":"A: 작은 회색 동물은 무엇인가요?\nB: 쥐예요."
+"example_ko":"A: 작은 회색 동물은 무엇인가요?\nB: 쥐예요.",
+"related":["hamusutaa","morumotto","harinezumi"]
 },
 {
 "slug":"hamusutaa",
@@ -17002,7 +17283,8 @@ B: 괜찮아요."""
 "keyword_ko":"햄스터",
 "desc":"ハムスター는 햄스터를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 人気のある小さいペットは何ですか？\nB: ハムスターです。",
-"example_ko":"A: 인기 있는 작은 반려동물은 무엇인가요?\nB: 햄스터예요."
+"example_ko":"A: 인기 있는 작은 반려동물은 무엇인가요?\nB: 햄스터예요.",
+"related":["nezumi","morumotto","risu"]
 },
 {
 "slug":"morumotto",
@@ -17012,7 +17294,8 @@ B: 괜찮아요."""
 "keyword_ko":"기니피그",
 "desc":"モルモット는 기니피그를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 丸くてかわいい動物は何ですか？\nB: モルモットです。",
-"example_ko":"A: 둥글고 귀여운 동물은 무엇인가요?\nB: 기니피그예요."
+"example_ko":"A: 둥글고 귀여운 동물은 무엇인가요?\nB: 기니피그예요.",
+"related":["hamusutaa","usagi","nezumi"]
 },
 {
 "slug":"koumori",
@@ -17022,7 +17305,8 @@ B: 괜찮아요."""
 "keyword_ko":"박쥐",
 "desc":"こうもり는 박쥐를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 夜に飛ぶ動物は何ですか？\nB: こうもりです。",
-"example_ko":"A: 밤에 나는 동물은 무엇인가요?\nB: 박쥐예요."
+"example_ko":"A: 밤에 나는 동물은 무엇인가요?\nB: 박쥐예요.",
+"related":["fukurou","musasabi","ga"]
 },
 {
 "slug":"harinezumi",
@@ -17032,7 +17316,8 @@ B: 괜찮아요."""
 "keyword_ko":"고슴도치",
 "desc":"ハリネズミ는 고슴도치를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 針みたいな毛がある動物は何ですか？\nB: ハリネズミです。",
-"example_ko":"A: 바늘 같은 털이 있는 동물은 무엇인가요?\nB: 고슴도치예요."
+"example_ko":"A: 바늘 같은 털이 있는 동물은 무엇인가요?\nB: 고슴도치예요.",
+"related":["nezumi","itachi","usagi"]
 },
 {
 "slug":"mogura",
@@ -17042,7 +17327,8 @@ B: 괜찮아요."""
 "keyword_ko":"두더지",
 "desc":"もぐら는 두더지를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 地面の下で暮らす動物は何ですか？\nB: もぐらです。",
-"example_ko":"A: 땅속에서 사는 동물은 무엇인가요?\nB: 두더지예요."
+"example_ko":"A: 땅속에서 사는 동물은 무엇인가요?\nB: 두더지예요.",
+"related":["mujina","mimizu","nezumi"]
 },
 {
 "slug":"namakemono",
@@ -17052,7 +17338,8 @@ B: 괜찮아요."""
 "keyword_ko":"나무늘보",
 "desc":"ナマケモノ는 나무늘보를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 動きがゆっくりな動物は何ですか？\nB: ナマケモノです。",
-"example_ko":"A: 움직임이 느린 동물은 무엇인가요?\nB: 나무늘보예요."
+"example_ko":"A: 움직임이 느린 동물은 무엇인가요?\nB: 나무늘보예요.",
+"related":["koara","saru","chinpanji"]
 },
 {
 "slug":"koara",
@@ -17062,7 +17349,8 @@ B: 괜찮아요."""
 "keyword_ko":"코알라",
 "desc":"コアラ는 코알라를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: ユーカリが好きな動物は何ですか？\nB: コアラです。",
-"example_ko":"A: 유칼립투스를 좋아하는 동물은 무엇인가요?\nB: 코알라예요."
+"example_ko":"A: 유칼립투스를 좋아하는 동물은 무엇인가요?\nB: 코알라예요.",
+"related":["kangaruu","namakemono","panda"]
 },
 {
 "slug":"kangaruu",
@@ -17072,7 +17360,8 @@ B: 괜찮아요."""
 "keyword_ko":"캥거루",
 "desc":"カンガルー는 캥거루를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: お腹に袋がある動物は何ですか？\nB: カンガルーです。",
-"example_ko":"A: 배에 주머니가 있는 동물은 무엇인가요?\nB: 캥거루예요."
+"example_ko":"A: 배에 주머니가 있는 동물은 무엇인가요?\nB: 캥거루예요.",
+"related":["koara","usagi","shimauma"]
 },
 {
 "slug":"wani",
@@ -17082,7 +17371,8 @@ B: 괜찮아요."""
 "keyword_ko":"악어",
 "desc":"ワニ는 악어를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 大きい口の動物は何ですか？\nB: ワニです。",
-"example_ko":"A: 입이 큰 동물은 무엇인가요?\nB: 악어예요."
+"example_ko":"A: 입이 큰 동물은 무엇인가요?\nB: 악어예요.",
+"related":["kame","hebi","kaeru"]
 },
 {
 "slug":"kame",
@@ -17092,7 +17382,8 @@ B: 괜찮아요."""
 "keyword_ko":"거북이",
 "desc":"亀는 거북이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 甲羅がある動物は何ですか？\nB: 亀です。",
-"example_ko":"A: 등껍질이 있는 동물은 무엇인가요?\nB: 거북이예요."
+"example_ko":"A: 등껍질이 있는 동물은 무엇인가요?\nB: 거북이예요.",
+"related":["umigame","wani","tokage"]
 },
 {
 "slug":"tokage",
@@ -17102,7 +17393,8 @@ B: 괜찮아요."""
 "keyword_ko":"도마뱀",
 "desc":"とかげ는 도마뱀을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 小さい爬虫類は何ですか？\nB: とかげです。",
-"example_ko":"A: 작은 파충류는 무엇인가요?\nB: 도마뱀이에요."
+"example_ko":"A: 작은 파충류는 무엇인가요?\nB: 도마뱀이에요.",
+"related":["yamori","hebi","kame"]
 },
 {
 "slug":"yamori",
@@ -17112,7 +17404,8 @@ B: 괜찮아요."""
 "keyword_ko":"도마뱀붙이",
 "desc":"やもり는 도마뱀붙이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 壁にいる小さい動物は何ですか？\nB: やもりです。",
-"example_ko":"A: 벽에 있는 작은 동물은 무엇인가요?\nB: 도마뱀붙이예요."
+"example_ko":"A: 벽에 있는 작은 동물은 무엇인가요?\nB: 도마뱀붙이예요.",
+"related":["tokage","hebi"]
 },
 {
 "slug":"hebi",
@@ -17122,7 +17415,8 @@ B: 괜찮아요."""
 "keyword_ko":"뱀",
 "desc":"蛇는 뱀을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 長い体の爬虫類は何ですか？\nB: 蛇です。",
-"example_ko":"A: 몸이 긴 파충류는 무엇인가요?\nB: 뱀이에요."
+"example_ko":"A: 몸이 긴 파충류는 무엇인가요?\nB: 뱀이에요.",
+"related":["tokage","yamori","wani"]
 },
 {
 "slug":"kaeru",
@@ -17132,7 +17426,8 @@ B: 괜찮아요."""
 "keyword_ko":"개구리",
 "desc":"カエル는 개구리를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 池の近くにいる動物は何ですか？\nB: カエルです。",
-"example_ko":"A: 연못 근처에 있는 동물은 무엇인가요?\nB: 개구리예요."
+"example_ko":"A: 연못 근처에 있는 동물은 무엇인가요?\nB: 개구리예요.",
+"related":["otamajakushi","kame","wani"]
 },
 {
 "slug":"otamajakushi",
@@ -17142,7 +17437,8 @@ B: 괜찮아요."""
 "keyword_ko":"올챙이",
 "desc":"おたまじゃくし는 올챙이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: カエルの子どもは何ですか？\nB: おたまじゃくしです。",
-"example_ko":"A: 개구리의 아기는 무엇인가요?\nB: 올챙이예요."
+"example_ko":"A: 개구리의 아기는 무엇인가요?\nB: 올챙이예요.",
+"related":["kaeru","sakana"]
 },
 {
 "slug":"sakana",
@@ -17152,7 +17448,8 @@ B: 괜찮아요."""
 "keyword_ko":"물고기",
 "desc":"魚는 물고기를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 水の中を泳ぐ動物は何ですか？\nB: 魚です。",
-"example_ko":"A: 물속을 헤엄치는 동물은 무엇인가요?\nB: 물고기예요."
+"example_ko":"A: 물속을 헤엄치는 동물은 무엇인가요?\nB: 물고기예요.",
+"related":["kingyo","koi","same"]
 },
 {
 "slug":"kingyo",
@@ -17162,7 +17459,8 @@ B: 괜찮아요."""
 "keyword_ko":"금붕어",
 "desc":"金魚는 금붕어를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 小さい赤い魚は何ですか？\nB: 金魚です。",
-"example_ko":"A: 작은 빨간 물고기는 무엇인가요?\nB: 금붕어예요."
+"example_ko":"A: 작은 빨간 물고기는 무엇인가요?\nB: 금붕어예요.",
+"related":["koi","sakana","kai"]
 },
 {
 "slug":"koi",
@@ -17172,7 +17470,8 @@ B: 괜찮아요."""
 "keyword_ko":"잉어",
 "desc":"鯉는 잉어를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 池の大きい魚は何ですか？\nB: 鯉です。",
-"example_ko":"A: 연못의 큰 물고기는 무엇인가요?\nB: 잉어예요."
+"example_ko":"A: 연못의 큰 물고기는 무엇인가요?\nB: 잉어예요.",
+"related":["kingyo","sakana","kame"]
 },
 {
 "slug":"same",
@@ -17182,7 +17481,8 @@ B: 괜찮아요."""
 "keyword_ko":"상어",
 "desc":"サメ는 상어를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 海のこわい魚は何ですか？\nB: サメです。",
-"example_ko":"A: 바다의 무서운 물고기는 무엇인가요?\nB: 상어예요."
+"example_ko":"A: 바다의 무서운 물고기는 무엇인가요?\nB: 상어예요.",
+"related":["iruka","kujira","sakana"]
 },
 {
 "slug":"iruka",
@@ -17192,7 +17492,8 @@ B: 괜찮아요."""
 "keyword_ko":"돌고래",
 "desc":"イルカ는 돌고래를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 頭がよくてかわいい海の動物は何ですか？\nB: イルカです。",
-"example_ko":"A: 똑똑하고 귀여운 바다 동물은 무엇인가요?\nB: 돌고래예요."
+"example_ko":"A: 똑똑하고 귀여운 바다 동물은 무엇인가요?\nB: 돌고래예요.",
+"related":["kujira","same","azarashi"]
 },
 {
 "slug":"kujira",
@@ -17202,7 +17503,8 @@ B: 괜찮아요."""
 "keyword_ko":"고래",
 "desc":"鯨는 고래를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 海で一番大きい動物は何ですか？\nB: 鯨です。",
-"example_ko":"A: 바다에서 가장 큰 동물은 무엇인가요?\nB: 고래예요."
+"example_ko":"A: 바다에서 가장 큰 동물은 무엇인가요?\nB: 고래예요.",
+"related":["iruka","same","todo"]
 },
 {
 "slug":"azarashi",
@@ -17212,7 +17514,8 @@ B: 괜찮아요."""
 "keyword_ko":"물범",
 "desc":"アザラシ는 물범을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 丸い顔の海の動物は何ですか？\nB: アザラシです。",
-"example_ko":"A: 둥근 얼굴의 바다 동물은 무엇인가요?\nB: 물범이에요."
+"example_ko":"A: 둥근 얼굴의 바다 동물은 무엇인가요?\nB: 물범이에요.",
+"related":["todo","rakko","pengin"]
 },
 {
 "slug":"todo",
@@ -17222,7 +17525,8 @@ B: 괜찮아요."""
 "keyword_ko":"바다사자",
 "desc":"トド는 바다사자를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 大きい海の哺乳類は何ですか？\nB: トドです。",
-"example_ko":"A: 큰 바다 포유류는 무엇인가요?\nB: 바다사자예요."
+"example_ko":"A: 큰 바다 포유류는 무엇인가요?\nB: 바다사자예요.",
+"related":["azarashi","rakko","kujira"]
 },
 {
 "slug":"rakko",
@@ -17232,7 +17536,8 @@ B: 괜찮아요."""
 "keyword_ko":"해달",
 "desc":"ラッコ는 해달을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 貝を持つ海の動物は何ですか？\nB: ラッコです。",
-"example_ko":"A: 조개를 드는 바다 동물은 무엇인가요?\nB: 해달이에요."
+"example_ko":"A: 조개를 드는 바다 동물은 무엇인가요?\nB: 해달이에요.",
+"related":["kawauso","azarashi","todo"]
 },
 {
 "slug":"tako",
@@ -17242,7 +17547,8 @@ B: 괜찮아요."""
 "keyword_ko":"문어",
 "desc":"たこ는 문어를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 足が八本ある海の動物は何ですか？\nB: たこです。",
-"example_ko":"A: 다리가 여덟 개 있는 바다 동물은 무엇인가요?\nB: 문어예요."
+"example_ko":"A: 다리가 여덟 개 있는 바다 동물은 무엇인가요?\nB: 문어예요.",
+"related":["ika","kurage","ebi"]
 },
 {
 "slug":"ika",
@@ -17252,7 +17558,8 @@ B: 괜찮아요."""
 "keyword_ko":"오징어",
 "desc":"いか는 오징어를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 海にいる細長い動物は何ですか？\nB: いかです。",
-"example_ko":"A: 바다에 사는 길쭉한 동물은 무엇인가요?\nB: 오징어예요."
+"example_ko":"A: 바다에 사는 길쭉한 동물은 무엇인가요?\nB: 오징어예요.",
+"related":["tako","kurage","sakana"]
 },
 {
 "slug":"kurage",
@@ -17262,7 +17569,8 @@ B: 괜찮아요."""
 "keyword_ko":"해파리",
 "desc":"くらげ는 해파리를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: ふわふわ泳ぐ海の動物は何ですか？\nB: くらげです。",
-"example_ko":"A: 둥실둥실 헤엄치는 바다 동물은 무엇인가요?\nB: 해파리예요."
+"example_ko":"A: 둥실둥실 헤엄치는 바다 동물은 무엇인가요?\nB: 해파리예요.",
+"related":["tako","ika","hitode"]
 },
 {
 "slug":"ebi",
@@ -17272,7 +17580,8 @@ B: 괜찮아요."""
 "keyword_ko":"새우",
 "desc":"えび는 새우를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 小さい海の生き物は何ですか？\nB: えびです。",
-"example_ko":"A: 작은 바다 생물은 무엇인가요?\nB: 새우예요."
+"example_ko":"A: 작은 바다 생물은 무엇인가요?\nB: 새우예요.",
+"related":["kani","kai","tako"]
 },
 {
 "slug":"kani",
@@ -17282,7 +17591,8 @@ B: 괜찮아요."""
 "keyword_ko":"게",
 "desc":"かに는 게를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 横に歩く動物は何ですか？\nB: かにです。",
-"example_ko":"A: 옆으로 걷는 동물은 무엇인가요?\nB: 게예요."
+"example_ko":"A: 옆으로 걷는 동물은 무엇인가요?\nB: 게예요.",
+"related":["ebi","kai","hitode"]
 },
 {
 "slug":"kai",
@@ -17292,7 +17602,8 @@ B: 괜찮아요."""
 "keyword_ko":"조개",
 "desc":"貝는 조개를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 殻がある海の生き物は何ですか？\nB: 貝です。",
-"example_ko":"A: 껍데기가 있는 바다 생물은 무엇인가요?\nB: 조개예요."
+"example_ko":"A: 껍데기가 있는 바다 생물은 무엇인가요?\nB: 조개예요.",
+"related":["kani","ebi","hitode"]
 },
 {
 "slug":"hitode",
@@ -17302,7 +17613,8 @@ B: 괜찮아요."""
 "keyword_ko":"불가사리",
 "desc":"ヒトデ는 불가사리를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 星みたいな形の生き物は何ですか？\nB: ヒトデです。",
-"example_ko":"A: 별 모양의 생물은 무엇인가요?\nB: 불가사리예요."
+"example_ko":"A: 별 모양의 생물은 무엇인가요?\nB: 불가사리예요.",
+"related":["kai","kani","kurage"]
 },
 {
 "slug":"umigame",
@@ -17312,7 +17624,8 @@ B: 괜찮아요."""
 "keyword_ko":"바다거북",
 "desc":"ウミガメ는 바다거북을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 海にいる亀は何ですか？\nB: ウミガメです。",
-"example_ko":"A: 바다에 사는 거북은 무엇인가요?\nB: 바다거북이에요."
+"example_ko":"A: 바다에 사는 거북은 무엇인가요?\nB: 바다거북이에요.",
+"related":["kame","kamome","azarashi"]
 },
 {
 "slug":"chou",
@@ -17322,7 +17635,8 @@ B: 괜찮아요."""
 "keyword_ko":"나비",
 "desc":"ちょう는 나비를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 花の近くを飛ぶ虫は何ですか？\nB: ちょうです。",
-"example_ko":"A: 꽃 근처를 나는 벌레는 무엇인가요?\nB: 나비예요."
+"example_ko":"A: 꽃 근처를 나는 벌레는 무엇인가요?\nB: 나비예요.",
+"related":["ga","hachi","tentoumushi"]
 },
 {
 "slug":"ga",
@@ -17332,7 +17646,8 @@ B: 괜찮아요."""
 "keyword_ko":"나방",
 "desc":"蛾는 나방을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 夜によく見る虫は何ですか？\nB: 蛾です。",
-"example_ko":"A: 밤에 자주 보는 벌레는 무엇인가요?\nB: 나방이에요."
+"example_ko":"A: 밤에 자주 보는 벌레는 무엇인가요?\nB: 나방이에요.",
+"related":["chou","koumori","hotaru"]
 },
 {
 "slug":"tentoumushi",
@@ -17342,7 +17657,8 @@ B: 괜찮아요."""
 "keyword_ko":"무당벌레",
 "desc":"てんとう虫는 무당벌레를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 赤くて小さい虫は何ですか？\nB: てんとう虫です。",
-"example_ko":"A: 작고 빨간 벌레는 무엇인가요?\nB: 무당벌레예요."
+"example_ko":"A: 작고 빨간 벌레는 무엇인가요?\nB: 무당벌레예요.",
+"related":["chou","ari","hachi"]
 },
 {
 "slug":"kabutomushi",
@@ -17352,7 +17668,8 @@ B: 괜찮아요."""
 "keyword_ko":"장수풍뎅이",
 "desc":"カブトムシ는 장수풍뎅이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 角がある虫は何ですか？\nB: カブトムシです。",
-"example_ko":"A: 뿔이 있는 벌레는 무엇인가요?\nB: 장수풍뎅이예요."
+"example_ko":"A: 뿔이 있는 벌레는 무엇인가요?\nB: 장수풍뎅이예요.",
+"related":["kuwagata","semi","tonbo"]
 },
 {
 "slug":"kuwagata",
@@ -17362,7 +17679,8 @@ B: 괜찮아요."""
 "keyword_ko":"사슴벌레",
 "desc":"クワガタ는 사슴벌레를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 大きいあごがある虫は何ですか？\nB: クワガタです。",
-"example_ko":"A: 큰 턱이 있는 벌레는 무엇인가요?\nB: 사슴벌레예요."
+"example_ko":"A: 큰 턱이 있는 벌레는 무엇인가요?\nB: 사슴벌레예요.",
+"related":["kabutomushi","semi","kamakiri"]
 },
 {
 "slug":"semi",
@@ -17372,7 +17690,8 @@ B: 괜찮아요."""
 "keyword_ko":"매미",
 "desc":"蝉는 매미를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 夏によく鳴く虫は何ですか？\nB: 蝉です。",
-"example_ko":"A: 여름에 자주 우는 벌레는 무엇인가요?\nB: 매미예요."
+"example_ko":"A: 여름에 자주 우는 벌레는 무엇인가요?\nB: 매미예요.",
+"related":["tonbo","kabutomushi","hotaru"]
 },
 {
 "slug":"tonbo",
@@ -17382,7 +17701,8 @@ B: 괜찮아요."""
 "keyword_ko":"잠자리",
 "desc":"とんぼ는 잠자리를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 細長い羽の虫は何ですか？\nB: とんぼです。",
-"example_ko":"A: 길쭉한 날개의 벌레는 무엇인가요?\nB: 잠자리예요."
+"example_ko":"A: 길쭉한 날개의 벌레는 무엇인가요?\nB: 잠자리예요.",
+"related":["semi","chou","batta"]
 },
 {
 "slug":"ari",
@@ -17392,7 +17712,8 @@ B: 괜찮아요."""
 "keyword_ko":"개미",
 "desc":"蟻는 개미를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 列になって歩く虫は何ですか？\nB: 蟻です。",
-"example_ko":"A: 줄지어 걷는 벌레는 무엇인가요?\nB: 개미예요."
+"example_ko":"A: 줄지어 걷는 벌레는 무엇인가요?\nB: 개미예요.",
+"related":["hachi","tentoumushi","batta"]
 },
 {
 "slug":"hachi",
@@ -17402,7 +17723,8 @@ B: 괜찮아요."""
 "keyword_ko":"벌",
 "desc":"蜂는 벌을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 花のまわりを飛ぶ虫は何ですか？\nB: 蜂です。",
-"example_ko":"A: 꽃 주변을 나는 벌레는 무엇인가요?\nB: 벌이에요."
+"example_ko":"A: 꽃 주변을 나는 벌레는 무엇인가요?\nB: 벌이에요.",
+"related":["ari","chou","tentoumushi"]
 },
 {
 "slug":"kumo",
@@ -17412,7 +17734,8 @@ B: 괜찮아요."""
 "keyword_ko":"거미",
 "desc":"蜘蛛는 거미를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 糸を出す虫は何ですか？\nB: 蜘蛛です。",
-"example_ko":"A: 실을 뽑는 벌레는 무엇인가요?\nB: 거미예요."
+"example_ko":"A: 실을 뽑는 벌레는 무엇인가요?\nB: 거미예요.",
+"related":["kamakiri","ari","hotaru"]
 },
 {
 "slug":"batta",
@@ -17422,7 +17745,8 @@ B: 괜찮아요."""
 "keyword_ko":"메뚜기",
 "desc":"バッタ는 메뚜기를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: ぴょんと跳ぶ虫は何ですか？\nB: バッタです。",
-"example_ko":"A: 폴짝 뛰는 벌레는 무엇인가요?\nB: 메뚜기예요."
+"example_ko":"A: 폴짝 뛰는 벌레는 무엇인가요?\nB: 메뚜기예요.",
+"related":["kamakiri","tonbo","ari"]
 },
 {
 "slug":"kamakiri",
@@ -17432,7 +17756,8 @@ B: 괜찮아요."""
 "keyword_ko":"사마귀",
 "desc":"カマキリ는 사마귀를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 前足が大きい虫は何ですか？\nB: カマキリです。",
-"example_ko":"A: 앞다리가 큰 벌레는 무엇인가요?\nB: 사마귀예요."
+"example_ko":"A: 앞다리가 큰 벌레는 무엇인가요?\nB: 사마귀예요.",
+"related":["batta","kuwagata","kumo"]
 },
 {
 "slug":"hotaru",
@@ -17442,7 +17767,8 @@ B: 괜찮아요."""
 "keyword_ko":"반딧불이",
 "desc":"蛍는 반딧불이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 夜に光る虫は何ですか？\nB: 蛍です。",
-"example_ko":"A: 밤에 빛나는 벌레는 무엇인가요?\nB: 반딧불이예요."
+"example_ko":"A: 밤에 빛나는 벌레는 무엇인가요?\nB: 반딧불이예요.",
+"related":["ga","semi","chou"]
 },
 {
 "slug":"mimizu",
@@ -17452,7 +17778,8 @@ B: 괜찮아요."""
 "keyword_ko":"지렁이",
 "desc":"みみず는 지렁이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 土の中にいる細長い生き物は何ですか？\nB: みみずです。",
-"example_ko":"A: 흙 속에 있는 길쭉한 생물은 무엇인가요?\nB: 지렁이예요."
+"example_ko":"A: 흙 속에 있는 길쭉한 생물은 무엇인가요?\nB: 지렁이예요.",
+"related":["mogura","namekuji","katatsumuri"]
 },
 {
 "slug":"katatsumuri",
@@ -17462,7 +17789,8 @@ B: 괜찮아요."""
 "keyword_ko":"달팽이",
 "desc":"かたつむり는 달팽이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 殻をしょっている生き物は何ですか？\nB: かたつむりです。",
-"example_ko":"A: 껍데기를 지고 있는 생물은 무엇인가요?\nB: 달팽이예요."
+"example_ko":"A: 껍데기를 지고 있는 생물은 무엇인가요?\nB: 달팽이예요.",
+"related":["namekuji","mimizu","kai"]
 },
 {
 "slug":"namekuji",
@@ -17472,10 +17800,11 @@ B: 괜찮아요."""
 "keyword_ko":"민달팽이",
 "desc":"なめくじ는 민달팽이를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 殻がないかたつむりみたいな生き物は何ですか？\nB: なめくじです。",
-"example_ko":"A: 껍데기 없는 달팽이 같은 생물은 무엇인가요?\nB: 민달팽이예요."
+"example_ko":"A: 껍데기 없는 달팽이 같은 생물은 무엇인가요?\nB: 민달팽이예요.",
+"related":["katatsumuri","mimizu"]
 },
     
-   {
+{
 "slug":"haiyuu",
 "yomi":"하이유우",
 "jp":"俳優",
@@ -17483,7 +17812,8 @@ B: 괜찮아요."""
 "keyword_ko":"배우",
 "desc":"俳優는 영화, 드라마, 연극 등에서 연기를 하는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: あの人の仕事は何ですか？\nB: 俳優です。",
-"example_ko":"A: 저 사람의 직업은 무엇인가요?\nB: 배우예요."
+"example_ko":"A: 저 사람의 직업은 무엇인가요?\nB: 배우예요.",
+"related":["joyuu","tarento","kashu"]
 },
 {
 "slug":"joyuu",
@@ -17493,7 +17823,8 @@ B: 괜찮아요."""
 "keyword_ko":"여배우",
 "desc":"女優는 여성 배우를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼女は何をしていますか？\nB: 女優です。",
-"example_ko":"A: 그녀는 무슨 일을 하나요?\nB: 여배우예요."
+"example_ko":"A: 그녀는 무슨 일을 하나요?\nB: 여배우예요.",
+"related":["haiyuu","tarento","moderu"]
 },
 {
 "slug":"kashu",
@@ -17503,7 +17834,8 @@ B: 괜찮아요."""
 "keyword_ko":"가수",
 "desc":"歌手는 노래를 부르는 직업을 가진 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: あの人は何の仕事ですか？\nB: 歌手です。",
-"example_ko":"A: 저 사람은 무슨 직업인가요?\nB: 가수예요."
+"example_ko":"A: 저 사람은 무슨 직업인가요?\nB: 가수예요.",
+"related":["aidoru","tarento","dansa"]
 },
 {
 "slug":"aidoru",
@@ -17513,7 +17845,8 @@ B: 괜찮아요."""
 "keyword_ko":"아이돌",
 "desc":"アイドル는 노래, 춤, 방송 등 다양한 활동을 하는 인기 연예인을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼らは何ですか？\nB: アイドルです。",
-"example_ko":"A: 그들은 무엇인가요?\nB: 아이돌이에요."
+"example_ko":"A: 그들은 무엇인가요?\nB: 아이돌이에요.",
+"related":["kashu","tarento","dansa"]
 },
 {
 "slug":"tarento",
@@ -17523,7 +17856,8 @@ B: 괜찮아요."""
 "keyword_ko":"연예인",
 "desc":"タレント는 방송, 예능, 광고 등 여러 분야에서 활동하는 연예인을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: その人は有名ですか？\nB: はい、タレントです。",
-"example_ko":"A: 그 사람은 유명한가요?\nB: 네, 연예인이에요."
+"example_ko":"A: 그 사람은 유명한가요?\nB: 네, 연예인이에요.",
+"related":["haiyuu","aidoru","geinin"]
 },
 {
 "slug":"geinin",
@@ -17533,7 +17867,8 @@ B: 괜찮아요."""
 "keyword_ko":"개그맨",
 "desc":"芸人는 일본에서 주로 웃음을 주는 예능인이나 개그맨을 뜻하는 단어로 자주 사용됩니다.",
 "example_jp":"A: あの人は何をする人ですか？\nB: 芸人です。",
-"example_ko":"A: 저 사람은 무슨 일을 하는 사람인가요?\nB: 개그맨이에요."
+"example_ko":"A: 저 사람은 무슨 일을 하는 사람인가요?\nB: 개그맨이에요.",
+"related":["komedian","monomane-geinin","tarento"]
 },
 {
 "slug":"komedian",
@@ -17543,7 +17878,8 @@ B: 괜찮아요."""
 "keyword_ko":"코미디언",
 "desc":"コメディアン는 코미디를 중심으로 활동하는 연예인을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼は俳優ですか？\nB: いいえ、コメディアンです。",
-"example_ko":"A: 그는 배우인가요?\nB: 아니요, 코미디언이에요."
+"example_ko":"A: 그는 배우인가요?\nB: 아니요, 코미디언이에요.",
+"related":["geinin","monomane-geinin","tarento"]
 },
 {
 "slug":"monomane-geinin",
@@ -17553,7 +17889,8 @@ B: 괜찮아요."""
 "keyword_ko":"성대모사",
 "desc":"ものまね芸人는 다른 사람의 목소리나 말투, 행동을 흉내 내는 개그맨을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: あの人は何が得意ですか？\nB: ものまね芸人です。",
-"example_ko":"A: 저 사람은 무엇을 잘하나요?\nB: 성대모사 개그맨이에요."
+"example_ko":"A: 저 사람은 무엇을 잘하나요?\nB: 성대모사 개그맨이에요.",
+"related":["geinin","komedian","tarento"]
 },
 {
 "slug":"dansa",
@@ -17563,7 +17900,8 @@ B: 괜찮아요."""
 "keyword_ko":"댄서",
 "desc":"ダンサー는 춤을 전문적으로 추는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼女の仕事は何ですか？\nB: ダンサーです。",
-"example_ko":"A: 그녀의 직업은 무엇인가요?\nB: 댄서예요."
+"example_ko":"A: 그녀의 직업은 무엇인가요?\nB: 댄서예요.",
+"related":["aidoru","kashu","moderu"]
 },
 {
 "slug":"moderu",
@@ -17573,7 +17911,8 @@ B: 괜찮아요."""
 "keyword_ko":"모델",
 "desc":"モデル는 패션쇼, 광고, 잡지 등에서 활동하는 모델을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: あのきれいな人は何ですか？\nB: モデルです。",
-"example_ko":"A: 저 예쁜 사람은 무슨 일을 하나요?\nB: 모델이에요."
+"example_ko":"A: 저 예쁜 사람은 무슨 일을 하나요?\nB: 모델이에요.",
+"related":["fasshon-moderu","joyuu","tarento"]
 },
 {
 "slug":"fasshon-moderu",
@@ -17583,7 +17922,8 @@ B: 괜찮아요."""
 "keyword_ko":"패션모델",
 "desc":"ファッションモデル는 의상과 패션을 보여 주는 일을 하는 모델을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼女はどんな仕事をしていますか？\nB: ファッションモデルです。",
-"example_ko":"A: 그녀는 어떤 일을 하나요?\nB: 패션모델이에요."
+"example_ko":"A: 그녀는 어떤 일을 하나요?\nB: 패션모델이에요.",
+"related":["moderu","gurabia-aidoru","joyuu"]
 },
 {
 "slug":"gurabia-aidoru",
@@ -17593,7 +17933,8 @@ B: 괜찮아요."""
 "keyword_ko":"그라비아",
 "desc":"グラビアアイドル는 잡지 화보나 사진 촬영을 중심으로 활동하는 아이돌을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼女は何で有名ですか？\nB: グラビアアイドルです。",
-"example_ko":"A: 그녀는 무엇으로 유명한가요?\nB: 그라비아아이돌이에요."
+"example_ko":"A: 그녀는 무엇으로 유명한가요?\nB: 그라비아아이돌이에요.",
+"related":["aidoru","fasshon-moderu","tarento"]
 },
 {
 "slug":"anaunsa",
@@ -17603,7 +17944,8 @@ B: 괜찮아요."""
 "keyword_ko":"아나운서",
 "desc":"アナウンサー는 방송에서 뉴스나 정보를 전달하는 진행자를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: その人はテレビで何をしていますか？\nB: アナウンサーです。",
-"example_ko":"A: 그 사람은 TV에서 무슨 일을 하나요?\nB: 아나운서예요."
+"example_ko":"A: 그 사람은 TV에서 무슨 일을 하나요?\nB: 아나운서예요.",
+"related":["nyuusu-kyasutaa","ripootaa","shikaisha"]
 },
 {
 "slug":"nyuusu-kyasutaa",
@@ -17613,7 +17955,8 @@ B: 괜찮아요."""
 "keyword_ko":"뉴스",
 "desc":"ニュースキャスター는 뉴스 프로그램을 진행하는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼は番組で何をしていますか？\nB: ニュースキャスターです。",
-"example_ko":"A: 그는 방송에서 무슨 일을 하나요?\nB: 뉴스 진행자예요."
+"example_ko":"A: 그는 방송에서 무슨 일을 하나요?\nB: 뉴스 진행자예요.",
+"related":["anaunsa","ripootaa","shikaisha"]
 },
 {
 "slug":"ripootaa",
@@ -17623,7 +17966,8 @@ B: 괜찮아요."""
 "keyword_ko":"리포터",
 "desc":"リポーター는 현장 취재나 인터뷰 등을 전달하는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼女は現場で何をしていますか？\nB: リポーターです。",
-"example_ko":"A: 그녀는 현장에서 무슨 일을 하나요?\nB: 리포터예요."
+"example_ko":"A: 그녀는 현장에서 무슨 일을 하나요?\nB: 리포터예요.",
+"related":["anaunsa","nyuusu-kyasutaa","shikaisha"]
 },
 {
 "slug":"shikaisha",
@@ -17633,7 +17977,8 @@ B: 괜찮아요."""
 "keyword_ko":"사회자",
 "desc":"司会者는 행사, 방송, 프로그램 등을 진행하는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: このイベントの進行は誰ですか？\nB: 司会者です。",
-"example_ko":"A: 이 행사의 진행은 누가 하나요?\nB: 사회자예요."
+"example_ko":"A: 이 행사의 진행은 누가 하나요?\nB: 사회자예요.",
+"related":["anaunsa","nyuusu-kyasutaa","dj"]
 },
 {
 "slug":"dj",
@@ -17643,7 +17988,8 @@ B: 괜찮아요."""
 "keyword_ko":"디제이",
 "desc":"DJ는 음악을 틀거나 분위기를 이끄는 진행자를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: あの人は何をしていますか？\nB: DJです。",
-"example_ko":"A: 저 사람은 무슨 일을 하나요?\nB: 디제이예요."
+"example_ko":"A: 저 사람은 무슨 일을 하나요?\nB: 디제이예요.",
+"related":["shikaisha","kashu","tarento"]
 },
 {
 "slug":"rajio-paasonariti",
@@ -17966,7 +18312,7 @@ B: 괜찮아요."""
 "example_ko":"A: 여권 관련 상담은 누구에게 하나요?\nB: 영사예요."
 },
 
-    {
+{
 "slug":"keisatsukan",
 "yomi":"케이사츠칸",
 "jp":"警察官",
@@ -17974,7 +18320,8 @@ B: 괜찮아요."""
 "keyword_ko":"경찰",
 "desc":"警察官는 치안 유지와 범죄 예방을 담당하는 경찰을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: あの人の仕事は何ですか？\nB: 警察官です。",
-"example_ko":"A: 저 사람의 직업은 무엇인가요?\nB: 경찰이에요."
+"example_ko":"A: 저 사람의 직업은 무엇인가요?\nB: 경찰이에요.",
+"related":["keiji","koutsuu-keisatsu","kouan-keisatsu"]
 },
 {
 "slug":"keiji",
@@ -17984,7 +18331,8 @@ B: 괜찮아요."""
 "keyword_ko":"형사",
 "desc":"刑事는 사건 수사와 범인 검거를 담당하는 형사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: その人は何をする人ですか？\nB: 刑事です。",
-"example_ko":"A: 그 사람은 무슨 일을 하는 사람인가요?\nB: 형사예요."
+"example_ko":"A: 그 사람은 무슨 일을 하는 사람인가요?\nB: 형사예요.",
+"related":["keisatsukan","kensatsukan","saibankan"]
 },
 {
 "slug":"kouan-keisatsu",
@@ -17994,7 +18342,8 @@ B: 괜찮아요."""
 "keyword_ko":"공안경찰",
 "desc":"公安警察는 국가의 안전과 공공질서를 지키는 업무를 담당하는 경찰을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: その部署は何を担当しますか？\nB: 公安警察です。",
-"example_ko":"A: 그 부서는 무엇을 담당하나요?\nB: 공안경찰이에요."
+"example_ko":"A: 그 부서는 무엇을 담당하나요?\nB: 공안경찰이에요.",
+"related":["keisatsukan","keiji","koumuin"]
 },
 {
 "slug":"koutsuu-keisatsu",
@@ -18004,7 +18353,8 @@ B: 괜찮아요."""
 "keyword_ko":"교통경찰",
 "desc":"交通警察는 교통 정리와 교통사고 관련 업무를 담당하는 경찰을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 道で案内している人は誰ですか？\nB: 交通警察です。",
-"example_ko":"A: 길에서 안내하는 사람은 누구인가요?\nB: 교통경찰이에요."
+"example_ko":"A: 길에서 안내하는 사람은 누구인가요?\nB: 교통경찰이에요.",
+"related":["keisatsukan","keiji","keibiin"]
 },
 {
 "slug":"keibiin",
@@ -18014,7 +18364,8 @@ B: 괜찮아요."""
 "keyword_ko":"경비원",
 "desc":"警備員는 건물이나 시설의 안전을 지키는 경비원을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 入り口にいる人は誰ですか？\nB: 警備員です。",
-"example_ko":"A: 입구에 있는 사람은 누구인가요?\nB: 경비원이에요."
+"example_ko":"A: 입구에 있는 사람은 누구인가요?\nB: 경비원이에요.",
+"related":["keisatsukan","koutsuu-keisatsu","shouboushi"]
 },
 {
 "slug":"shouboushi",
@@ -18024,7 +18375,8 @@ B: 괜찮아요."""
 "keyword_ko":"소방관",
 "desc":"消防士는 화재 진압과 구조 활동을 담당하는 소방관을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 火事のときに来る人は誰ですか？\nB: 消防士です。",
-"example_ko":"A: 화재 때 오는 사람은 누구인가요?\nB: 소방관이에요."
+"example_ko":"A: 화재 때 오는 사람은 누구인가요?\nB: 소방관이에요.",
+"related":["kyuukyuutaiin","keibiin","keisatsukan"]
 },
 {
 "slug":"kyuukyuutaiin",
@@ -18034,7 +18386,8 @@ B: 괜찮아요."""
 "keyword_ko":"구급대원",
 "desc":"救急隊員는 응급환자를 구조하고 이송하는 구급대원을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 救急車に乗っている人は誰ですか？\nB: 救急隊員です。",
-"example_ko":"A: 구급차에 타고 있는 사람은 누구인가요?\nB: 구급대원이에요."
+"example_ko":"A: 구급차에 타고 있는 사람은 누구인가요?\nB: 구급대원이에요.",
+"related":["shouboushi","isha","kangoshi"]
 },
 {
 "slug":"jieikan",
@@ -18044,7 +18397,8 @@ B: 괜찮아요."""
 "keyword_ko":"군인",
 "desc":"自衛官는 일본의 자위대에 소속된 군인을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼の仕事は何ですか？\nB: 自衛官です。",
-"example_ko":"A: 그의 직업은 무엇인가요?\nB: 군인이에요."
+"example_ko":"A: 그의 직업은 무엇인가요?\nB: 군인이에요.",
+"related":["heishi","shoukou","koumuin"]
 },
 {
 "slug":"heishi",
@@ -18054,7 +18408,8 @@ B: 괜찮아요."""
 "keyword_ko":"병사",
 "desc":"兵士는 군대에서 복무하는 병사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: その人は軍で何をしていますか？\nB: 兵士です。",
-"example_ko":"A: 그 사람은 군에서 무슨 일을 하나요?\nB: 병사예요."
+"example_ko":"A: 그 사람은 군에서 무슨 일을 하나요?\nB: 병사예요.",
+"related":["jieikan","shoukou"]
 },
 {
 "slug":"shoukou",
@@ -18064,7 +18419,8 @@ B: 괜찮아요."""
 "keyword_ko":"장교",
 "desc":"将校는 군대에서 지휘 역할을 맡는 장교를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼は兵士ですか？\nB: いいえ、将校です。",
-"example_ko":"A: 그는 병사인가요?\nB: 아니요, 장교예요."
+"example_ko":"A: 그는 병사인가요?\nB: 아니요, 장교예요.",
+"related":["jieikan","heishi"]
 },
 {
 "slug":"bengoshi",
@@ -18074,7 +18430,8 @@ B: 괜찮아요."""
 "keyword_ko":"변호사",
 "desc":"弁護士는 법률 상담과 변호를 담당하는 변호사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 法律の相談は誰にしますか？\nB: 弁護士です。",
-"example_ko":"A: 법률 상담은 누구에게 하나요?\nB: 변호사예요."
+"example_ko":"A: 법률 상담은 누구에게 하나요?\nB: 변호사예요.",
+"related":["kensatsukan","saibankan","shounin"]
 },
 {
 "slug":"kensatsukan",
@@ -18084,7 +18441,8 @@ B: 괜찮아요."""
 "keyword_ko":"검사",
 "desc":"検察官는 범죄를 기소하고 공소를 유지하는 검사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 事件を起訴する人は誰ですか？\nB: 検察官です。",
-"example_ko":"A: 사건을 기소하는 사람은 누구인가요?\nB: 검사예요."
+"example_ko":"A: 사건을 기소하는 사람은 누구인가요?\nB: 검사예요.",
+"related":["bengoshi","saibankan","keiji"]
 },
 {
 "slug":"saibankan",
@@ -18094,7 +18452,8 @@ B: 괜찮아요."""
 "keyword_ko":"판사",
 "desc":"裁判官는 재판에서 판결을 내리는 판사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 裁判で判断する人は誰ですか？\nB: 裁判官です。",
-"example_ko":"A: 재판에서 판단하는 사람은 누구인가요?\nB: 판사예요."
+"example_ko":"A: 재판에서 판단하는 사람은 누구인가요?\nB: 판사예요.",
+"related":["bengoshi","kensatsukan","shounin"]
 },
 {
 "slug":"shounin",
@@ -18104,7 +18463,8 @@ B: 괜찮아요."""
 "keyword_ko":"증인",
 "desc":"証人는 사건이나 사실에 대해 증언하는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 裁判で話している人は誰ですか？\nB: 証人です。",
-"example_ko":"A: 재판에서 말하고 있는 사람은 누구인가요?\nB: 증인이에요."
+"example_ko":"A: 재판에서 말하고 있는 사람은 누구인가요?\nB: 증인이에요.",
+"related":["saibankan","bengoshi","kensatsukan"]
 },
 {
 "slug":"keimukan",
@@ -18114,7 +18474,8 @@ B: 괜찮아요."""
 "keyword_ko":"교도관",
 "desc":"刑務官는 교도소에서 수용자를 관리하는 교도관을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 刑務所で働く人は誰ですか？\nB: 刑務官です。",
-"example_ko":"A: 교도소에서 일하는 사람은 누구인가요?\nB: 교도관이에요."
+"example_ko":"A: 교도소에서 일하는 사람은 누구인가요?\nB: 교도관이에요.",
+"related":["keisatsukan","keiji","koumuin"]
 },
 {
 "slug":"zeimukan",
@@ -18124,7 +18485,8 @@ B: 괜찮아요."""
 "keyword_ko":"세무공무원",
 "desc":"税務官는 세금 관련 업무를 담당하는 공무원을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 税金の仕事をする人は誰ですか？\nB: 税務官です。",
-"example_ko":"A: 세금 일을 하는 사람은 누구인가요?\nB: 세무 공무원이에요."
+"example_ko":"A: 세금 일을 하는 사람은 누구인가요?\nB: 세무 공무원이에요.",
+"related":["koumuin","bengoshi"]
 },
 {
 "slug":"koumuin",
@@ -18134,7 +18496,8 @@ B: 괜찮아요."""
 "keyword_ko":"공무원",
 "desc":"公務員는 국가나 지방자치단체에서 일하는 공무원을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼はどこで働いていますか？\nB: 公務員です。",
-"example_ko":"A: 그는 어디에서 일하나요?\nB: 공무원이에요."
+"example_ko":"A: 그는 어디에서 일하나요?\nB: 공무원이에요.",
+"related":["zeimukan","keisatsukan","jieikan"]
 },
 {
 "slug":"isha",
@@ -18144,7 +18507,8 @@ B: 괜찮아요."""
 "keyword_ko":"의사",
 "desc":"医者는 병을 진단하고 치료하는 의사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 病院で診てくれる人は誰ですか？\nB: 医者です。",
-"example_ko":"A: 병원에서 진료해 주는 사람은 누구인가요?\nB: 의사예요."
+"example_ko":"A: 병원에서 진료해 주는 사람은 누구인가요?\nB: 의사예요.",
+"related":["kangoshi","haisha","yakuzaishi"]
 },
 {
 "slug":"kangoshi",
@@ -18154,7 +18518,8 @@ B: 괜찮아요."""
 "keyword_ko":"간호사",
 "desc":"看護師는 환자를 돌보고 의료를 돕는 간호사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 病院で患者さんを助ける人は誰ですか？\nB: 看護師です。",
-"example_ko":"A: 병원에서 환자를 돕는 사람은 누구인가요?\nB: 간호사예요."
+"example_ko":"A: 병원에서 환자를 돕는 사람은 누구인가요?\nB: 간호사예요.",
+"related":["isha","kyuukyuutaiin","yakuzaishi"]
 },
 {
 "slug":"haisha",
@@ -18164,7 +18529,8 @@ B: 괜찮아요."""
 "keyword_ko":"치과의사",
 "desc":"歯医者는 치아를 치료하는 치과의사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 歯が痛いときは誰に行きますか？\nB: 歯医者です。",
-"example_ko":"A: 이가 아플 때는 누구에게 가나요?\nB: 치과의사예요."
+"example_ko":"A: 이가 아플 때는 누구에게 가나요?\nB: 치과의사예요.",
+"related":["isha","yakuzaishi"]
 },
 {
 "slug":"yakuzaishi",
@@ -18174,7 +18540,8 @@ B: 괜찮아요."""
 "keyword_ko":"약사",
 "desc":"薬剤師는 약을 조제하고 설명하는 약사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 薬を出してくれる人は誰ですか？\nB: 薬剤師です。",
-"example_ko":"A: 약을 내주는 사람은 누구인가요?\nB: 약사예요."
+"example_ko":"A: 약을 내주는 사람은 누구인가요?\nB: 약사예요.",
+"related":["isha","kangoshi","haisha"]
 },
 {
 "slug":"ryourinin",
@@ -18184,7 +18551,8 @@ B: 괜찮아요."""
 "keyword_ko":"요리사",
 "desc":"料理人는 음식을 만드는 일을 하는 요리사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: レストランで料理を作る人は誰ですか？\nB: 料理人です。",
-"example_ko":"A: 레스토랑에서 요리하는 사람은 누구인가요?\nB: 요리사예요."
+"example_ko":"A: 레스토랑에서 요리하는 사람은 누구인가요?\nB: 요리사예요.",
+"related":["shefu","weitaa","weitoresu"]
 },
 {
 "slug":"shefu",
@@ -18194,7 +18562,8 @@ B: 괜찮아요."""
 "keyword_ko":"셰프",
 "desc":"シェフ는 주방을 총괄하거나 전문적으로 요리하는 셰프를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: あの有名な料理人は誰ですか？\nB: シェフです。",
-"example_ko":"A: 저 유명한 요리사는 누구인가요?\nB: 셰프예요."
+"example_ko":"A: 저 유명한 요리사는 누구인가요?\nB: 셰프예요.",
+"related":["ryourinin","barisuta"]
 },
 {
 "slug":"weitaa",
@@ -18204,7 +18573,8 @@ B: 괜찮아요."""
 "keyword_ko":"웨이터",
 "desc":"ウェイター는 식당에서 손님을 응대하는 남성 직원을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 注文を聞く人は誰ですか？\nB: ウェイターです。",
-"example_ko":"A: 주문을 받는 사람은 누구인가요?\nB: 웨이터예요."
+"example_ko":"A: 주문을 받는 사람은 누구인가요?\nB: 웨이터예요.",
+"related":["weitoresu","ryourinin","barisuta"]
 },
 {
 "slug":"weitoresu",
@@ -18214,7 +18584,8 @@ B: 괜찮아요."""
 "keyword_ko":"웨이트리스",
 "desc":"ウェイトレス는 식당에서 손님을 응대하는 여성 직원을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 料理を運ぶ人は誰ですか？\nB: ウェイトレスです。",
-"example_ko":"A: 음식을 나르는 사람은 누구인가요?\nB: 웨이트리스예요."
+"example_ko":"A: 음식을 나르는 사람은 누구인가요?\nB: 웨이트리스예요.",
+"related":["weitaa","ryourinin","barisuta"]
 },
 {
 "slug":"barisuta",
@@ -18224,17 +18595,8 @@ B: 괜찮아요."""
 "keyword_ko":"바리스타",
 "desc":"バリスタ는 커피를 전문적으로 만드는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: コーヒーをいれる人は誰ですか？\nB: バリスタです。",
-"example_ko":"A: 커피를 내리는 사람은 누구인가요?\nB: 바리스타예요."
-},
-{
-"slug":"panya",
-"yomi":"판야",
-"jp":"パン屋",
-"ko":"빵집",
-"keyword_ko":"빵집",
-"desc":"パン屋는 빵을 만들어 팔거나 빵집을 뜻하는 일본어 단어입니다.",
-"example_jp":"A: パンを買うならどこですか？\nB: パン屋です。",
-"example_ko":"A: 빵을 사려면 어디로 가나요?\nB: 빵집이에요."
+"example_ko":"A: 커피를 내리는 사람은 누구인가요?\nB: 바리스타예요.",
+"related":["weitaa","weitoresu","shefu"]
 },
 {
 "slug":"nikuya",
@@ -18244,7 +18606,8 @@ B: 괜찮아요."""
 "keyword_ko":"정육점",
 "desc":"肉屋는 고기를 파는 가게나 정육점을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 肉を買うならどこですか？\nB: 肉屋です。",
-"example_ko":"A: 고기를 사려면 어디로 가나요?\nB: 정육점이에요."
+"example_ko":"A: 고기를 사려면 어디로 가나요?\nB: 정육점이에요.",
+"related":["ryourinin","nouka"]
 },
 {
 "slug":"ryoushi",
@@ -18254,7 +18617,8 @@ B: 괜찮아요."""
 "keyword_ko":"어부",
 "desc":"漁師는 바다나 강에서 물고기를 잡는 어부를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 海で魚をとる人は誰ですか？\nB: 漁師です。",
-"example_ko":"A: 바다에서 물고기를 잡는 사람은 누구인가요?\nB: 어부예요."
+"example_ko":"A: 바다에서 물고기를 잡는 사람은 누구인가요?\nB: 어부예요.",
+"related":["nouka","ryourinin"]
 },
 {
 "slug":"nouka",
@@ -18264,7 +18628,8 @@ B: 괜찮아요."""
 "keyword_ko":"농부",
 "desc":"農家는 농사를 짓는 사람이나 농가를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 野菜を育てる人は誰ですか？\nB: 農家です。",
-"example_ko":"A: 채소를 기르는 사람은 누구인가요?\nB: 농부예요."
+"example_ko":"A: 채소를 기르는 사람은 누구인가요?\nB: 농부예요.",
+"related":["ryoushi","nikuya","ryourinin"]
 },
 {
 "slug":"kaishain",
@@ -18274,7 +18639,8 @@ B: 괜찮아요."""
 "keyword_ko":"회사원",
 "desc":"会社員는 회사에서 일하는 직장인을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 彼の職業は何ですか？\nB: 会社員です。",
-"example_ko":"A: 그의 직업은 무엇인가요?\nB: 회사원이에요."
+"example_ko":"A: 그의 직업은 무엇인가요?\nB: 회사원이에요.",
+"related":["shachou","buchou","kachou"]
 },
 {
 "slug":"shachou",
@@ -18284,7 +18650,8 @@ B: 괜찮아요."""
 "keyword_ko":"사장",
 "desc":"社長는 회사의 대표나 사장을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 会社の代表は誰ですか？\nB: 社長です。",
-"example_ko":"A: 회사의 대표는 누구인가요?\nB: 사장이에요."
+"example_ko":"A: 회사의 대표는 누구인가요?\nB: 사장이에요.",
+"related":["kaishain","buchou","hisho"]
 },
 {
 "slug":"buchou",
@@ -18294,7 +18661,8 @@ B: 괜찮아요."""
 "keyword_ko":"부장",
 "desc":"部長는 회사 부서를 이끄는 부장을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: この部署の責任者は誰ですか？\nB: 部長です。",
-"example_ko":"A: 이 부서의 책임자는 누구인가요?\nB: 부장이에요."
+"example_ko":"A: 이 부서의 책임자는 누구인가요?\nB: 부장이에요.",
+"related":["kachou","shachou","kaishain"]
 },
 {
 "slug":"kachou",
@@ -18304,7 +18672,8 @@ B: 괜찮아요."""
 "keyword_ko":"과장",
 "desc":"課長는 회사나 조직에서 과를 맡는 과장을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: その課のリーダーは誰ですか？\nB: 課長です。",
-"example_ko":"A: 그 과의 리더는 누구인가요?\nB: 과장이에요."
+"example_ko":"A: 그 과의 리더는 누구인가요?\nB: 과장이에요.",
+"related":["buchou","kaishain","hisho"]
 },
 {
 "slug":"hisho",
@@ -18314,7 +18683,8 @@ B: 괜찮아요."""
 "keyword_ko":"비서",
 "desc":"秘書는 상사나 대표의 업무를 보조하는 비서를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 社長を手伝う人は誰ですか？\nB: 秘書です。",
-"example_ko":"A: 사장을 돕는 사람은 누구인가요?\nB: 비서예요."
+"example_ko":"A: 사장을 돕는 사람은 누구인가요?\nB: 비서예요.",
+"related":["shachou","buchou","kachou"]
 },
 {
 "slug":"kyoushi",
@@ -18324,7 +18694,8 @@ B: 괜찮아요."""
 "keyword_ko":"교사",
 "desc":"教師는 학교에서 학생을 가르치는 교사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 学校で教える人は誰ですか？\nB: 教師です。",
-"example_ko":"A: 학교에서 가르치는 사람은 누구인가요?\nB: 교사예요."
+"example_ko":"A: 학교에서 가르치는 사람은 누구인가요?\nB: 교사예요.",
+"related":["kyouju","kenkyuusha","kagakusha"]
 },
 {
 "slug":"kyouju",
@@ -18334,7 +18705,8 @@ B: 괜찮아요."""
 "keyword_ko":"교수",
 "desc":"教授는 대학교에서 연구와 강의를 하는 교수를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 大学で教える人は誰ですか？\nB: 教授です。",
-"example_ko":"A: 대학교에서 가르치는 사람은 누구인가요?\nB: 교수예요."
+"example_ko":"A: 대학교에서 가르치는 사람은 누구인가요?\nB: 교수예요.",
+"related":["kyoushi","kenkyuusha","kagakusha"]
 },
 {
 "slug":"kenkyuusha",
@@ -18344,7 +18716,8 @@ B: 괜찮아요."""
 "keyword_ko":"연구원",
 "desc":"研究者는 특정 분야를 연구하는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 新しいことを調べる人は誰ですか？\nB: 研究者です。",
-"example_ko":"A: 새로운 것을 연구하는 사람은 누구인가요?\nB: 연구원이에요."
+"example_ko":"A: 새로운 것을 연구하는 사람은 누구인가요?\nB: 연구원이에요.",
+"related":["kagakusha","kyouju","enjinia"]
 },
 {
 "slug":"kagakusha",
@@ -18354,7 +18727,8 @@ B: 괜찮아요."""
 "keyword_ko":"과학자",
 "desc":"科学者는 과학을 연구하는 과학자를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 実験をする人は誰ですか？\nB: 科学者です。",
-"example_ko":"A: 실험을 하는 사람은 누구인가요?\nB: 과학자예요."
+"example_ko":"A: 실험을 하는 사람은 누구인가요?\nB: 과학자예요.",
+"related":["kenkyuusha","kyouju","enjinia"]
 },
 {
 "slug":"enjinia",
@@ -18364,7 +18738,8 @@ B: 괜찮아요."""
 "keyword_ko":"엔지니어",
 "desc":"エンジニア는 기술과 설계, 개발 관련 일을 하는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: システムを作る人は誰ですか？\nB: エンジニアです。",
-"example_ko":"A: 시스템을 만드는 사람은 누구인가요?\nB: 엔지니어예요."
+"example_ko":"A: 시스템을 만드는 사람은 누구인가요?\nB: 엔지니어예요.",
+"related":["puroguramaa","dezainaa","kenkyuusha"]
 },
 {
 "slug":"puroguramaa",
@@ -18374,7 +18749,8 @@ B: 괜찮아요."""
 "keyword_ko":"프로그래머",
 "desc":"プログラマー는 프로그램 코드를 작성하는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: アプリを作る人は誰ですか？\nB: プログラマーです。",
-"example_ko":"A: 앱을 만드는 사람은 누구인가요?\nB: 프로그래머예요."
+"example_ko":"A: 앱을 만드는 사람은 누구인가요?\nB: 프로그래머예요.",
+"related":["enjinia","dezainaa","konpyuutaa"]
 },
 {
 "slug":"dezainaa",
@@ -18384,7 +18760,8 @@ B: 괜찮아요."""
 "keyword_ko":"디자이너",
 "desc":"デザイナー는 디자인을 기획하고 제작하는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: このロゴを作ったのは誰ですか？\nB: デザイナーです。",
-"example_ko":"A: 이 로고를 만든 사람은 누구인가요?\nB: 디자이너예요."
+"example_ko":"A: 이 로고를 만든 사람은 누구인가요?\nB: 디자이너예요.",
+"related":["enjinia","puroguramaa","kenchikuka"]
 },
 {
 "slug":"kenchikuka",
@@ -18394,7 +18771,8 @@ B: 괜찮아요."""
 "keyword_ko":"건축가",
 "desc":"建築家는 건물과 공간을 설계하는 건축가를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: この建物を設計したのは誰ですか？\nB: 建築家です。",
-"example_ko":"A: 이 건물을 설계한 사람은 누구인가요?\nB: 건축가예요."
+"example_ko":"A: 이 건물을 설계한 사람은 누구인가요?\nB: 건축가예요.",
+"related":["dezainaa","enjinia","shashinka"]
 },
 {
 "slug":"untenshu",
@@ -18404,7 +18782,8 @@ B: 괜찮아요."""
 "keyword_ko":"운전기사",
 "desc":"運転手는 차량을 운전하는 일을 하는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 車を運転する人は誰ですか？\nB: 運転手です。",
-"example_ko":"A: 차를 운전하는 사람은 누구인가요?\nB: 운전기사예요."
+"example_ko":"A: 차를 운전하는 사람은 누구인가요?\nB: 운전기사예요.",
+"related":["takushii-untenshu","basu-untenshu","untenshi"]
 },
 {
 "slug":"takushii-untenshu",
@@ -18414,7 +18793,8 @@ B: 괜찮아요."""
 "keyword_ko":"택시기사",
 "desc":"タクシー運転手는 택시를 운전하는 기사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: このタクシーを運転する人は誰ですか？\nB: タクシー運転手です。",
-"example_ko":"A: 이 택시를 운전하는 사람은 누구인가요?\nB: 택시기사예요."
+"example_ko":"A: 이 택시를 운전하는 사람은 누구인가요?\nB: 택시기사예요.",
+"related":["untenshu","basu-untenshu","haitatsuin"]
 },
 {
 "slug":"basu-untenshu",
@@ -18424,7 +18804,8 @@ B: 괜찮아요."""
 "keyword_ko":"버스기사",
 "desc":"バス運転手는 버스를 운전하는 기사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: バスを運転する人は誰ですか？\nB: バス運転手です。",
-"example_ko":"A: 버스를 운전하는 사람은 누구인가요?\nB: 버스기사예요."
+"example_ko":"A: 버스를 운전하는 사람은 누구인가요?\nB: 버스기사예요.",
+"related":["untenshu","takushii-untenshu","untenshi"]
 },
 {
 "slug":"pairotto",
@@ -18434,7 +18815,8 @@ B: 괜찮아요."""
 "keyword_ko":"조종사",
 "desc":"パイロット는 비행기를 조종하는 조종사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 飛行機を運転する人は誰ですか？\nB: パイロットです。",
-"example_ko":"A: 비행기를 조종하는 사람은 누구인가요?\nB: 조종사예요."
+"example_ko":"A: 비행기를 조종하는 사람은 누구인가요?\nB: 조종사예요.",
+"related":["kyakushitsu-joumuin","untenshi"]
 },
 {
 "slug":"kyakushitsu-joumuin",
@@ -18444,7 +18826,8 @@ B: 괜찮아요."""
 "keyword_ko":"승무원",
 "desc":"客室乗務員는 비행기 안에서 승객을 안내하고 돕는 승무원을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 飛行機の中で案内する人は誰ですか？\nB: 客室乗務員です。",
-"example_ko":"A: 비행기 안에서 안내하는 사람은 누구인가요?\nB: 승무원이에요."
+"example_ko":"A: 비행기 안에서 안내하는 사람은 누구인가요?\nB: 승무원이에요.",
+"related":["pairotto","untenshi"]
 },
 {
 "slug":"untenshi",
@@ -18454,7 +18837,8 @@ B: 괜찮아요."""
 "keyword_ko":"기관사",
 "desc":"運転士는 기차나 전철 등을 운전하는 기관사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 電車を動かす人は誰ですか？\nB: 運転士です。",
-"example_ko":"A: 전철을 움직이는 사람은 누구인가요?\nB: 기관사예요."
+"example_ko":"A: 전철을 움직이는 사람은 누구인가요?\nB: 기관사예요.",
+"related":["untenshu","basu-untenshu","pairotto"]
 },
 {
 "slug":"haitatsuin",
@@ -18464,7 +18848,8 @@ B: 괜찮아요."""
 "keyword_ko":"배달원",
 "desc":"配達員는 물건이나 음식을 배달하는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 荷物を届ける人は誰ですか？\nB: 配達員です。",
-"example_ko":"A: 물건을 배달하는 사람은 누구인가요?\nB: 배달원이에요."
+"example_ko":"A: 물건을 배달하는 사람은 누구인가요?\nB: 배달원이에요.",
+"related":["yuubin-haitatsuin","takushii-untenshu","basu-untenshu"]
 },
 {
 "slug":"yuubin-haitatsuin",
@@ -18474,7 +18859,8 @@ B: 괜찮아요."""
 "keyword_ko":"우체부",
 "desc":"郵便配達員는 우편물을 배달하는 우체부를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 手紙を届ける人は誰ですか？\nB: 郵便配達員です。",
-"example_ko":"A: 편지를 배달하는 사람은 누구인가요?\nB: 우체부예요."
+"example_ko":"A: 편지를 배달하는 사람은 누구인가요?\nB: 우체부예요.",
+"related":["haitatsuin","kisha"]
 },
 {
 "slug":"shashinka",
@@ -18484,7 +18870,8 @@ B: 괜찮아요."""
 "keyword_ko":"사진작가",
 "desc":"写真家는 전문적으로 사진을 찍는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: この写真を撮ったのは誰ですか？\nB: 写真家です。",
-"example_ko":"A: 이 사진을 찍은 사람은 누구인가요?\nB: 사진작가예요."
+"example_ko":"A: 이 사진을 찍은 사람은 누구인가요?\nB: 사진작가예요.",
+"related":["gaka","mangaka","dezainaa"]
 },
 {
 "slug":"gaka",
@@ -18494,7 +18881,8 @@ B: 괜찮아요."""
 "keyword_ko":"화가",
 "desc":"画家는 그림을 그리는 일을 하는 화가를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: この絵を描いたのは誰ですか？\nB: 画家です。",
-"example_ko":"A: 이 그림을 그린 사람은 누구인가요?\nB: 화가예요."
+"example_ko":"A: 이 그림을 그린 사람은 누구인가요?\nB: 화가예요.",
+"related":["mangaka","shashinka","shousetsuka"]
 },
 {
 "slug":"mangaka",
@@ -18504,7 +18892,8 @@ B: 괜찮아요."""
 "keyword_ko":"만화가",
 "desc":"漫画家는 만화를 그리거나 만드는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: この漫画を作ったのは誰ですか？\nB: 漫画家です。",
-"example_ko":"A: 이 만화를 만든 사람은 누구인가요?\nB: 만화가예요."
+"example_ko":"A: 이 만화를 만든 사람은 누구인가요?\nB: 만화가예요.",
+"related":["gaka","shousetsuka","shashinka"]
 },
 {
 "slug":"shousetsuka",
@@ -18514,7 +18903,8 @@ B: 괜찮아요."""
 "keyword_ko":"소설가",
 "desc":"小説家는 소설을 쓰는 작가를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: この小説を書いたのは誰ですか？\nB: 小説家です。",
-"example_ko":"A: 이 소설을 쓴 사람은 누구인가요?\nB: 소설가예요."
+"example_ko":"A: 이 소설을 쓴 사람은 누구인가요?\nB: 소설가예요.",
+"related":["mangaka","gaka","honyakuka"]
 },
 {
 "slug":"kisha",
@@ -18524,7 +18914,8 @@ B: 괜찮아요."""
 "keyword_ko":"기자",
 "desc":"記者는 뉴스를 취재하고 기사를 쓰는 사람을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: ニュースを取材する人は誰ですか？\nB: 記者です。",
-"example_ko":"A: 뉴스를 취재하는 사람은 누구인가요?\nB: 기자예요."
+"example_ko":"A: 뉴스를 취재하는 사람은 누구인가요?\nB: 기자예요.",
+"related":["tsuuyaku","honyakuka","yuubin-haitatsuin"]
 },
 {
 "slug":"tsuuyaku",
@@ -18534,7 +18925,8 @@ B: 괜찮아요."""
 "keyword_ko":"통역사",
 "desc":"通訳는 서로 다른 언어를 말로 전달해 주는 통역사를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 日本語をその場で訳す人は誰ですか？\nB: 通訳です。",
-"example_ko":"A: 일본어를 그 자리에서 옮겨 주는 사람은 누구인가요?\nB: 통역사예요."
+"example_ko":"A: 일본어를 그 자리에서 옮겨 주는 사람은 누구인가요?\nB: 통역사예요.",
+"related":["honyakuka","kisha"]
 },
 {
 "slug":"honyakuka",
@@ -18544,10 +18936,10 @@ B: 괜찮아요."""
 "keyword_ko":"번역가",
 "desc":"翻訳家는 글이나 문서를 다른 언어로 옮기는 번역가를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: この本を韓国語にしたのは誰ですか？\nB: 翻訳家です。",
-"example_ko":"A: 이 책을 한국어로 옮긴 사람은 누구인가요?\nB: 번역가예요."
+"example_ko":"A: 이 책을 한국어로 옮긴 사람은 누구인가요?\nB: 번역가예요.",
+"related":["tsuuyaku","shousetsuka","kisha"]
 },
-
-    {
+{
 "slug":"konpyuutaa",
 "yomi":"콘퓨타",
 "jp":"コンピューター",
@@ -18555,7 +18947,8 @@ B: 괜찮아요."""
 "keyword_ko":"컴퓨터",
 "desc":"コンピューター는 다양한 작업과 계산을 처리하는 전자기기를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: これは何ですか？\nB: コンピューターです。",
-"example_ko":"A: 이건 무엇인가요?\nB: 컴퓨터예요."
+"example_ko":"A: 이건 무엇인가요?\nB: 컴퓨터예요.",
+"related":["nooto-pasokon","desukutoppu-pasokon","monitaa"]
 },
 {
 "slug":"nooto-pasokon",
@@ -18565,7 +18958,8 @@ B: 괜찮아요."""
 "keyword_ko":"노트북",
 "desc":"ノートパソコン는 휴대할 수 있는 접이식 컴퓨터를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: そのパソコンは持ち運べますか？\nB: はい、ノートパソコンです。",
-"example_ko":"A: 그 컴퓨터는 들고 다닐 수 있나요?\nB: 네, 노트북이에요."
+"example_ko":"A: 그 컴퓨터는 들고 다닐 수 있나요?\nB: 네, 노트북이에요.",
+"related":["konpyuutaa","desukutoppu-pasokon","kiiboodo"]
 },
 {
 "slug":"desukutoppu-pasokon",
@@ -18575,7 +18969,8 @@ B: 괜찮아요."""
 "keyword_ko":"데스크톱",
 "desc":"デスクトップパソコン는 책상 위에 두고 사용하는 컴퓨터를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: これはノートパソコンですか？\nB: いいえ、デスクトップパソコンです。",
-"example_ko":"A: 이건 노트북인가요?\nB: 아니요, 데스크톱 컴퓨터예요."
+"example_ko":"A: 이건 노트북인가요?\nB: 아니요, 데스크톱 컴퓨터예요.",
+"related":["konpyuutaa","nooto-pasokon","monitaa"]
 },
 {
 "slug":"monitaa",
@@ -18585,7 +18980,8 @@ B: 괜찮아요."""
 "keyword_ko":"모니터",
 "desc":"モニター는 화면을 보여 주는 장치를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 映像はどこに出ますか？\nB: モニターに出ます。",
-"example_ko":"A: 화면은 어디에 나오나요?\nB: 모니터에 나와요."
+"example_ko":"A: 화면은 어디에 나오나요?\nB: 모니터에 나와요.",
+"related":["konpyuutaa","desukutoppu-pasokon","kiiboodo"]
 },
 {
 "slug":"kiiboodo",
@@ -18595,7 +18991,8 @@ B: 괜찮아요."""
 "keyword_ko":"키보드",
 "desc":"キーボード는 글자나 명령을 입력하는 장치를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 文字は何で打ちますか？\nB: キーボードです。",
-"example_ko":"A: 글자는 무엇으로 입력하나요?\nB: 키보드예요."
+"example_ko":"A: 글자는 무엇으로 입력하나요?\nB: 키보드예요.",
+"related":["mausu","konpyuutaa","nooto-pasokon"]
 },
 {
 "slug":"mausu",
@@ -18605,7 +19002,8 @@ B: 괜찮아요."""
 "keyword_ko":"마우스",
 "desc":"マウス는 컴퓨터 화면의 포인터를 움직이는 장치를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: カーソルは何で動かしますか？\nB: マウスです。",
-"example_ko":"A: 커서는 무엇으로 움직이나요?\nB: 마우스예요."
+"example_ko":"A: 커서는 무엇으로 움직이나요?\nB: 마우스예요.",
+"related":["kiiboodo","konpyuutaa","monitaa"]
 },
 {
 "slug":"mausu-paddo",
@@ -19005,7 +19403,8 @@ B: 괜찮아요."""
 "keyword_ko":"가습기",
 "desc":"加湿器는 실내 공기에 수분을 더해 주는 가전제품을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 部屋が乾燥しています。\nB: 加湿器を使いましょう。",
-"example_ko":"A: 방이 건조해요.\nB: 가습기를 사용합시다."
+"example_ko":"A: 방이 건조해요.\nB: 가습기를 사용합시다.",
+"related":["joshitsuki","kuuki-seijouki","eakon"]
 },
 {
 "slug":"joshitsuki",
@@ -19015,7 +19414,8 @@ B: 괜찮아요."""
 "keyword_ko":"제습기",
 "desc":"除湿機는 실내의 습기를 줄여 주는 가전제품을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 部屋がじめじめしています。\nB: 除湿機をつけましょう。",
-"example_ko":"A: 방이 습해요.\nB: 제습기를 켭시다."
+"example_ko":"A: 방이 습해요.\nB: 제습기를 켭시다.",
+"related":["kashitsuki","eakon","kuuki-seijouki"]
 },
 {
 "slug":"eakon",
@@ -19025,7 +19425,8 @@ B: 괜찮아요."""
 "keyword_ko":"에어컨",
 "desc":"エアコン는 실내 온도를 조절하는 냉난방 기기를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 部屋が暑いです。\nB: エアコンをつけてください。",
-"example_ko":"A: 방이 더워요.\nB: 에어컨을 켜 주세요."
+"example_ko":"A: 방이 더워요.\nB: 에어컨을 켜 주세요.",
+"related":["senpuuki","hiitaa","joshitsuki"]
 },
 {
 "slug":"senpuuki",
@@ -19035,7 +19436,8 @@ B: 괜찮아요."""
 "keyword_ko":"선풍기",
 "desc":"扇風機는 바람을 일으켜 시원하게 해 주는 기기를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 風がほしいです。\nB: 扇風機を使ってください。",
-"example_ko":"A: 바람이 필요해요.\nB: 선풍기를 사용해 주세요."
+"example_ko":"A: 바람이 필요해요.\nB: 선풍기를 사용해 주세요.",
+"related":["eakon","hiitaa"]
 },
 {
 "slug":"hiitaa",
@@ -19045,7 +19447,8 @@ B: 괜찮아요."""
 "keyword_ko":"히터",
 "desc":"ヒーター는 실내를 따뜻하게 해 주는 난방 기기를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 部屋が寒いです。\nB: ヒーターをつけましょう。",
-"example_ko":"A: 방이 추워요.\nB: 히터를 켭시다."
+"example_ko":"A: 방이 추워요.\nB: 히터를 켭시다.",
+"related":["eakon","denki-moufu","senpuuki"]
 },
 {
 "slug":"denki-moufu",
@@ -19055,7 +19458,8 @@ B: 괜찮아요."""
 "keyword_ko":"전기장판",
 "desc":"電気毛布는 전기를 이용해 따뜻하게 하는 담요나 매트를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 寝るとき寒いです。\nB: 電気毛布を使ってください。",
-"example_ko":"A: 잘 때 추워요.\nB: 전기장판을 사용해 주세요."
+"example_ko":"A: 잘 때 추워요.\nB: 전기장판을 사용해 주세요.",
+"related":["hiitaa"]
 },
 {
 "slug":"kuuki-seijouki",
@@ -19065,7 +19469,8 @@ B: 괜찮아요."""
 "keyword_ko":"공기청정기",
 "desc":"空気清浄機는 공기 중 먼지나 냄새를 줄여 주는 기기를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 空気をきれいにしたいです。\nB: 空気清浄機を使いましょう。",
-"example_ko":"A: 공기를 깨끗하게 하고 싶어요.\nB: 공기청정기를 사용합시다."
+"example_ko":"A: 공기를 깨끗하게 하고 싶어요.\nB: 공기청정기를 사용합시다.",
+"related":["kashitsuki","joshitsuki","eakon"]
 },
 {
 "slug":"airon",
@@ -19075,7 +19480,8 @@ B: 괜찮아요."""
 "keyword_ko":"다리미",
 "desc":"アイロン는 옷의 주름을 펴는 도구를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: シャツのしわを伸ばしたいです。\nB: アイロンを使ってください。",
-"example_ko":"A: 셔츠의 주름을 펴고 싶어요.\nB: 다리미를 사용해 주세요."
+"example_ko":"A: 셔츠의 주름을 펴고 싶어요.\nB: 다리미를 사용해 주세요.",
+"related":["doraiyaa"]
 },
 {
 "slug":"doraiyaa",
@@ -19085,7 +19491,8 @@ B: 괜찮아요."""
 "keyword_ko":"드라이기",
 "desc":"ドライヤー는 머리카락을 말리는 전자기기를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 髪は何で乾かしますか？\nB: ドライヤーです。",
-"example_ko":"A: 머리는 무엇으로 말리나요?\nB: 헤어드라이기예요."
+"example_ko":"A: 머리는 무엇으로 말리나요?\nB: 헤어드라이기예요.",
+"related":["airon","denki-sheebaa"]
 },
 {
 "slug":"denki-sheebaa",
@@ -19095,7 +19502,8 @@ B: 괜찮아요."""
 "keyword_ko":"전기면도기",
 "desc":"電気シェーバー는 전기로 수염을 깎는 기기를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: ひげは何でそりますか？\nB: 電気シェーバーです。",
-"example_ko":"A: 수염은 무엇으로 깎나요?\nB: 전기면도기예요."
+"example_ko":"A: 수염은 무엇으로 깎나요?\nB: 전기면도기예요.",
+"related":["doraiyaa"]
 },
 {
 "slug":"naifu",
@@ -19105,7 +19513,8 @@ B: 괜찮아요."""
 "keyword_ko":"칼",
 "desc":"ナイフ는 자르거나 써는 데 사용하는 칼을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: これで肉を切りますか？\nB: はい、ナイフです。",
-"example_ko":"A: 이것으로 고기를 자르나요?\nB: 네, 칼이에요."
+"example_ko":"A: 이것으로 고기를 자르나요?\nB: 네, 칼이에요.",
+"related":["houchou","manaita"]
 },
 {
 "slug":"houchou",
@@ -19115,7 +19524,8 @@ B: 괜찮아요."""
 "keyword_ko":"부엌칼",
 "desc":"包丁는 주방에서 재료를 자를 때 사용하는 칼을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 野菜は何で切りますか？\nB: 包丁です。",
-"example_ko":"A: 채소는 무엇으로 자르나요?\nB: 부엌칼이에요."
+"example_ko":"A: 채소는 무엇으로 자르나요?\nB: 부엌칼이에요.",
+"related":["naifu","manaita","nabe"]
 },
 {
 "slug":"manaita",
@@ -19125,7 +19535,8 @@ B: 괜찮아요."""
 "keyword_ko":"도마",
 "desc":"まな板는 재료를 썰 때 밑에 놓는 판을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 包丁の下に置くものは何ですか？\nB: まな板です。",
-"example_ko":"A: 칼 아래에 놓는 것은 무엇인가요?\nB: 도마예요."
+"example_ko":"A: 칼 아래에 놓는 것은 무엇인가요?\nB: 도마예요.",
+"related":["houchou","naifu"]
 },
 {
 "slug":"nabe",
@@ -19135,7 +19546,8 @@ B: 괜찮아요."""
 "keyword_ko":"냄비",
 "desc":"鍋는 국이나 찌개 등을 끓이는 조리 도구를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: スープは何で作りますか？\nB: 鍋です。",
-"example_ko":"A: 수프는 무엇으로 만드나요?\nB: 냄비예요."
+"example_ko":"A: 수프는 무엇으로 만드나요?\nB: 냄비예요.",
+"related":["furaipan","otama","tongu"]
 },
 {
 "slug":"furaipan",
@@ -19145,7 +19557,8 @@ B: 괜찮아요."""
 "keyword_ko":"프라이팬",
 "desc":"フライパン는 재료를 굽거나 볶을 때 사용하는 조리 도구를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 卵は何で焼きますか？\nB: フライパンです。",
-"example_ko":"A: 달걀은 무엇으로 굽나요?\nB: 프라이팬이에요."
+"example_ko":"A: 달걀은 무엇으로 굽나요?\nB: 프라이팬이에요.",
+"related":["nabe","furai-gaeshi","tongu"]
 },
 {
 "slug":"otama",
@@ -19155,7 +19568,8 @@ B: 괜찮아요."""
 "keyword_ko":"국자",
 "desc":"お玉는 국이나 소스를 떠 담는 도구를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: スープは何で入れますか？\nB: お玉です。",
-"example_ko":"A: 수프는 무엇으로 담나요?\nB: 국자예요."
+"example_ko":"A: 수프는 무엇으로 담나요?\nB: 국자예요.",
+"related":["nabe","furaipan"]
 },
 {
 "slug":"furai-gaeshi",
@@ -19165,7 +19579,8 @@ B: 괜찮아요."""
 "keyword_ko":"뒤집개",
 "desc":"フライ返し는 프라이팬에서 음식을 뒤집는 도구를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 目玉焼きを返す道具は何ですか？\nB: フライ返しです。",
-"example_ko":"A: 계란프라이를 뒤집는 도구는 무엇인가요?\nB: 뒤집개예요."
+"example_ko":"A: 계란프라이를 뒤집는 도구는 무엇인가요?\nB: 뒤집개예요.",
+"related":["furaipan","tongu","saibashi"]
 },
 {
 "slug":"tongu",
@@ -19175,7 +19590,8 @@ B: 괜찮아요."""
 "keyword_ko":"집게",
 "desc":"トング는 재료나 음식을 집어 옮기는 도구를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 焼いた肉は何で取りますか？\nB: トングです。",
-"example_ko":"A: 구운 고기는 무엇으로 집나요?\nB: 집게예요."
+"example_ko":"A: 구운 고기는 무엇으로 집나요?\nB: 집게예요.",
+"related":["furaipan","furai-gaeshi","saibashi"]
 },
 {
 "slug":"saibashi",
@@ -19185,7 +19601,8 @@ B: 괜찮아요."""
 "keyword_ko":"요리젓가락",
 "desc":"菜箸는 요리할 때 사용하는 긴 젓가락을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 料理するときの長い箸は何ですか？\nB: 菜箸です。",
-"example_ko":"A: 요리할 때 쓰는 긴 젓가락은 무엇인가요?\nB: 요리젓가락이에요."
+"example_ko":"A: 요리할 때 쓰는 긴 젓가락은 무엇인가요?\nB: 요리젓가락이에요.",
+"related":["tongu","furai-gaeshi","houchou"]
 },
 {
 "slug":"booru",
@@ -19315,7 +19732,8 @@ B: 괜찮아요."""
 "keyword_ko":"국그릇",
 "desc":"お椀는 국이나 된장국 등을 담는 그릇을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: みそ汁は何に入れますか？\nB: お椀です。",
-"example_ko":"A: 된장국은 무엇에 담나요?\nB: 국그릇이에요."
+"example_ko":"A: 된장국은 무엇에 담나요?\nB: 국그릇이에요.",
+"related":["sara","supuun","kappu"]
 },
 {
 "slug":"sara",
@@ -19325,7 +19743,8 @@ B: 괜찮아요."""
 "keyword_ko":"접시",
 "desc":"皿는 음식을 담는 평평한 그릇을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 料理は何にのせますか？\nB: 皿です。",
-"example_ko":"A: 음식은 무엇에 올리나요?\nB: 접시예요."
+"example_ko":"A: 음식은 무엇에 올리나요?\nB: 접시예요.",
+"related":["owan","hashi","fooku"]
 },
 {
 "slug":"kappu",
@@ -19335,7 +19754,8 @@ B: 괜찮아요."""
 "keyword_ko":"컵",
 "desc":"カップ는 음료를 마실 때 사용하는 컵을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 飲み物は何に入れますか？\nB: カップです。",
-"example_ko":"A: 음료는 무엇에 담나요?\nB: 컵이에요."
+"example_ko":"A: 음료는 무엇에 담나요?\nB: 컵이에요.",
+"related":["magu-kappu","suitou","owan"]
 },
 {
 "slug":"magu-kappu",
@@ -19345,7 +19765,8 @@ B: 괜찮아요."""
 "keyword_ko":"머그컵",
 "desc":"マグカップ는 손잡이가 달린 큰 컵을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: コーヒーは何で飲みますか？\nB: マグカップです。",
-"example_ko":"A: 커피는 무엇으로 마시나요?\nB: 머그컵이에요."
+"example_ko":"A: 커피는 무엇으로 마시나요?\nB: 머그컵이에요.",
+"related":["kappu","suitou"]
 },
 {
 "slug":"hashi",
@@ -19355,7 +19776,8 @@ B: 괜찮아요."""
 "keyword_ko":"젓가락",
 "desc":"箸는 음식을 집어 먹는 식사 도구를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 日本では何で食べますか？\nB: 箸です。",
-"example_ko":"A: 일본에서는 무엇으로 먹나요?\nB: 젓가락이에요."
+"example_ko":"A: 일본에서는 무엇으로 먹나요?\nB: 젓가락이에요.",
+"related":["supuun","fooku","sara"]
 },
 {
 "slug":"fooku",
@@ -19365,7 +19787,8 @@ B: 괜찮아요."""
 "keyword_ko":"포크",
 "desc":"フォーク는 음식을 찍어 먹는 식사 도구를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: パスタは何で食べますか？\nB: フォークです。",
-"example_ko":"A: 파스타는 무엇으로 먹나요?\nB: 포크예요."
+"example_ko":"A: 파스타는 무엇으로 먹나요?\nB: 포크예요.",
+"related":["supuun","hashi","sara"]
 },
 {
 "slug":"supuun",
@@ -19375,7 +19798,8 @@ B: 괜찮아요."""
 "keyword_ko":"숟가락",
 "desc":"スプーン는 국물이나 음식물을 떠먹는 식사 도구를 뜻하는 일본어 단어입니다.",
 "example_jp":"A: スープは何で飲みますか？\nB: スプーンです。",
-"example_ko":"A: 수프는 무엇으로 먹나요?\nB: 숟가락이에요."
+"example_ko":"A: 수프는 무엇으로 먹나요?\nB: 숟가락이에요.",
+"related":["fooku","hashi","owan"]
 },
 {
 "slug":"bentoubako",
@@ -19385,7 +19809,8 @@ B: 괜찮아요."""
 "keyword_ko":"도시락통",
 "desc":"弁当箱는 도시락을 담아 가지고 다니는 통을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: お弁当は何に入れますか？\nB: 弁当箱です。",
-"example_ko":"A: 도시락은 무엇에 담나요?\nB: 도시락통이에요."
+"example_ko":"A: 도시락은 무엇에 담나요?\nB: 도시락통이에요.",
+"related":["suitou","hashi","sara"]
 },
 {
 "slug":"suitou",
@@ -19395,10 +19820,10 @@ B: 괜찮아요."""
 "keyword_ko":"물병",
 "desc":"水筒는 물이나 음료를 담아 가지고 다니는 병을 뜻하는 일본어 단어입니다.",
 "example_jp":"A: 水は何に入れて持っていきますか？\nB: 水筒です。",
-"example_ko":"A: 물은 무엇에 담아 가지고 가나요?\nB: 물병이에요."
+"example_ko":"A: 물은 무엇에 담아 가지고 가나요?\nB: 물병이에요.",
+"related":["kappu","magu-kappu","bentoubako"]
 },
-        # ===== 옷 / 패션 =====
-    {
+{
 "slug":"fuku",
 "yomi":"후쿠",
 "jp":"服",
@@ -19406,7 +19831,8 @@ B: 괜찮아요."""
 "keyword_ko":"옷",
 "desc":"服는 몸에 입는 옷 전체를 뜻하는 가장 기본적인 일본어 표현입니다.",
 "example_jp":"A: 服を買いたいです。\nB: 二階にございます。",
-"example_ko":"A: 옷을 사고 싶어요.\nB: 2층에 있습니다."
+"example_ko":"A: 옷을 사고 싶어요.\nB: 2층에 있습니다.",
+"related":["ishou","youfuku","wafuku"]
 },
 {
 "slug":"ishou",
@@ -19416,7 +19842,8 @@ B: 괜찮아요."""
 "keyword_ko":"의상",
 "desc":"衣装는 공연, 촬영, 행사 등 특별한 목적을 위해 입는 의상을 뜻하는 일본어 표현입니다.",
 "example_jp":"A: これは普段着ですか？\nB: いいえ、舞台の衣装です。",
-"example_ko":"A: 이건 평상복인가요?\nB: 아니요, 무대 의상이에요."
+"example_ko":"A: 이건 평상복인가요?\nB: 아니요, 무대 의상이에요.",
+"related":["fuku","wafuku","kimono"]
 },
 {
 "slug":"youfuku",
@@ -19426,7 +19853,8 @@ B: 괜찮아요."""
 "keyword_ko":"양복",
 "desc":"洋服는 일본 전통의상이 아닌 서양식 옷을 뜻하는 일본어 표현입니다.",
 "example_jp":"A: 和服と洋服、どちらが好きですか？\nB: 洋服のほうが楽です。",
-"example_ko":"A: 일본 전통의상과 양복 중 어느 쪽을 좋아하세요?\nB: 양복이 더 편해요."
+"example_ko":"A: 일본 전통의상과 양복 중 어느 쪽을 좋아하세요?\nB: 양복이 더 편해요.",
+"related":["fuku","wafuku","suutsu"]
 },
 {
 "slug":"wafuku",
@@ -19436,7 +19864,8 @@ B: 괜찮아요."""
 "keyword_ko":"일본전통의상",
 "desc":"和服는 일본의 전통 의상을 가리키는 말입니다.",
 "example_jp":"A: 京都で和服を着たいです。\nB: 着物レンタルのお店がありますよ。",
-"example_ko":"A: 교토에서 일본 전통의상을 입고 싶어요.\nB: 기모노 대여점이 있어요."
+"example_ko":"A: 교토에서 일본 전통의상을 입고 싶어요.\nB: 기모노 대여점이 있어요.",
+"related":["kimono","yukata","hakama"]
 },
 {
 "slug":"kimono",
@@ -19446,7 +19875,8 @@ B: 괜찮아요."""
 "keyword_ko":"기모노",
 "desc":"着物는 일본을 대표하는 전통 의상으로, 격식 있는 자리나 행사에서 자주 입습니다.",
 "example_jp":"A: 日本らしい服を着てみたいです。\nB: では、着物はいかがですか。",
-"example_ko":"A: 일본다운 옷을 입어 보고 싶어요.\nB: 그럼 기모노는 어떠세요?"
+"example_ko":"A: 일본다운 옷을 입어 보고 싶어요.\nB: 그럼 기모노는 어떠세요?",
+"related":["wafuku","yukata","hakama"]
 },
 {
 "slug":"yukata",
@@ -19456,7 +19886,8 @@ B: 괜찮아요."""
 "keyword_ko":"유카타",
 "desc":"浴衣는 여름 축제나 온천 숙소 등에서 자주 입는 가벼운 일본 전통 의상입니다.",
 "example_jp":"A: 夏祭りには何を着ますか？\nB: 浴衣を着る人が多いです。",
-"example_ko":"A: 여름 축제에는 무엇을 입나요?\nB: 유카타를 입는 사람이 많아요."
+"example_ko":"A: 여름 축제에는 무엇을 입나요?\nB: 유카타를 입는 사람이 많아요.",
+"related":["kimono","wafuku","hakama"]
 },
 {
 "slug":"hakama",
@@ -19466,7 +19897,8 @@ B: 괜찮아요."""
 "keyword_ko":"하카마",
 "desc":"袴는 일본 전통 의상의 한 종류로 졸업식이나 전통 행사에서 자주 볼 수 있습니다.",
 "example_jp":"A: 卒業式でよく見る服は何ですか？\nB: 袴です。",
-"example_ko":"A: 졸업식에서 자주 보는 옷은 무엇인가요?\nB: 하카마예요."
+"example_ko":"A: 졸업식에서 자주 보는 옷은 무엇인가요?\nB: 하카마예요.",
+"related":["wafuku","kimono","yukata"]
 },
 {
 "slug":"kooto",
@@ -19476,7 +19908,8 @@ B: 괜찮아요."""
 "keyword_ko":"코트",
 "desc":"コート는 추운 날씨에 겉에 입는 긴 외투를 뜻합니다.",
 "example_jp":"A: 外は寒いですね。\nB: コートを着たほうがいいですよ。",
-"example_ko":"A: 밖이 춥네요.\nB: 코트를 입는 게 좋겠어요."
+"example_ko":"A: 밖이 춥네요.\nB: 코트를 입는 게 좋겠어요.",
+"related":["jaketto","suutsu","kaadigan"]
 },
 {
 "slug":"jaketto",
@@ -19486,7 +19919,8 @@ B: 괜찮아요."""
 "keyword_ko":"재킷",
 "desc":"ジャケット는 셔츠나 티셔츠 위에 걸쳐 입는 겉옷을 뜻합니다.",
 "example_jp":"A: この服、少し地味ですか？\nB: ジャケットを合わせるといいですよ。",
-"example_ko":"A: 이 옷 좀 밋밋한가요?\nB: 재킷을 매치하면 좋아요."
+"example_ko":"A: 이 옷 좀 밋밋한가요?\nB: 재킷을 매치하면 좋아요.",
+"related":["kooto","suutsu","shatsu"]
 },
 {
 "slug":"suutsu",
@@ -19496,7 +19930,8 @@ B: 괜찮아요."""
 "keyword_ko":"정장",
 "desc":"スーツ는 비즈니스나 공식적인 자리에서 입는 정장을 뜻합니다.",
 "example_jp":"A: 面接には何を着ればいいですか？\nB: スーツが無難です。",
-"example_ko":"A: 면접에는 무엇을 입으면 좋을까요?\nB: 정장이 무난해요."
+"example_ko":"A: 면접에는 무엇을 입으면 좋을까요?\nB: 정장이 무난해요.",
+"related":["waishatsu","jaketto","surakkusu"]
 },
 {
 "slug":"waishatsu",
@@ -19506,7 +19941,8 @@ B: 괜찮아요."""
 "keyword_ko":"와이셔츠",
 "desc":"ワイシャツ는 정장 안에 입는 셔츠를 뜻하는 일본어 표현입니다.",
 "example_jp":"A: スーツの中には何を着ますか？\nB: 白いワイシャツが定番です。",
-"example_ko":"A: 정장 안에는 무엇을 입나요?\nB: 흰 와이셔츠가 기본이에요."
+"example_ko":"A: 정장 안에는 무엇을 입나요?\nB: 흰 와이셔츠가 기본이에요.",
+"related":["suutsu","shatsu","jaketto"]
 },
 {
 "slug":"shatsu",
@@ -19516,7 +19952,8 @@ B: 괜찮아요."""
 "keyword_ko":"셔츠",
 "desc":"シャツ는 상의 종류 중 하나로, 단정한 느낌의 옷을 뜻합니다.",
 "example_jp":"A: このシャツ、試着できますか？\nB: はい、あちらへどうぞ。",
-"example_ko":"A: 이 셔츠, 입어 봐도 되나요?\nB: 네, 저쪽으로 가세요."
+"example_ko":"A: 이 셔츠, 입어 봐도 되나요?\nB: 네, 저쪽으로 가세요.",
+"related":["waishatsu","tii-shatsu","jaketto"]
 },
 {
 "slug":"tii-shatsu",
@@ -19526,7 +19963,8 @@ B: 괜찮아요."""
 "keyword_ko":"티셔츠",
 "desc":"Tシャツ는 반팔 또는 긴팔의 편한 캐주얼 상의를 뜻합니다.",
 "example_jp":"A: 普段はどんな服を着ますか？\nB: Tシャツが多いです。",
-"example_ko":"A: 평소에는 어떤 옷을 입나요?\nB: 티셔츠를 많이 입어요."
+"example_ko":"A: 평소에는 어떤 옷을 입나요?\nB: 티셔츠를 많이 입어요.",
+"related":["shatsu","poro-shatsu","fuudii"]
 },
 {
 "slug":"poro-shatsu",
@@ -19536,17 +19974,19 @@ B: 괜찮아요."""
 "keyword_ko":"폴로셔츠",
 "desc":"ポロシャツ는 칼라가 있는 캐주얼 셔츠를 뜻합니다.",
 "example_jp":"A: Tシャツより少しきちんと見える服はありますか？\nB: ポロシャツはいかがですか。",
-"example_ko":"A: 티셔츠보다 조금 단정해 보이는 옷이 있을까요?\nB: 폴로셔츠는 어떠세요?"
+"example_ko":"A: 티셔츠보다 조금 단정해 보이는 옷이 있을까요?\nB: 폴로셔츠는 어떠세요?",
+"related":["tii-shatsu","shatsu","jaketto"]
 },
 {
 "slug":"nitto",
-"yomi":"니트",
+"yomi":"닛토",
 "jp":"ニット",
 "ko":"니트",
 "keyword_ko":"니트",
 "desc":"ニット는 실을 짜서 만든 따뜻한 상의를 뜻합니다.",
 "example_jp":"A: 冬におすすめの服はありますか？\nB: このニットが人気です。",
-"example_ko":"A: 겨울에 추천하는 옷이 있나요?\nB: 이 니트가 인기예요."
+"example_ko":"A: 겨울에 추천하는 옷이 있나요?\nB: 이 니트가 인기예요.",
+"related":["seetaa","kaadigan","kooto"]
 },
 {
 "slug":"seetaa",
@@ -19556,7 +19996,8 @@ B: 괜찮아요."""
 "keyword_ko":"스웨터",
 "desc":"セーター는 보온성이 좋은 니트류 상의를 뜻합니다.",
 "example_jp":"A: 少し厚手のものがほしいです。\nB: それならセーターがおすすめです。",
-"example_ko":"A: 조금 두꺼운 옷을 원해요.\nB: 그렇다면 스웨터를 추천해요."
+"example_ko":"A: 조금 두꺼운 옷을 원해요.\nB: 그렇다면 스웨터를 추천해요.",
+"related":["nitto","kaadigan","kooto"]
 },
 {
 "slug":"kaadigan",
@@ -19566,7 +20007,8 @@ B: 괜찮아요."""
 "keyword_ko":"가디건",
 "desc":"カーディガン는 앞이 열리거나 단추가 달린 니트형 겉옷을 뜻합니다.",
 "example_jp":"A: さっと羽織れるものはありますか？\nB: カーディガンが便利ですよ。",
-"example_ko":"A: 가볍게 걸칠 수 있는 게 있을까요?\nB: 가디건이 편리해요."
+"example_ko":"A: 가볍게 걸칠 수 있는 게 있을까요?\nB: 가디건이 편리해요.",
+"related":["nitto","seetaa","jaketto"]
 },
 {
 "slug":"fuudii",
@@ -19576,7 +20018,8 @@ B: 괜찮아요."""
 "keyword_ko":"후드티",
 "desc":"フーディー는 모자가 달린 티셔츠형 상의를 뜻합니다.",
 "example_jp":"A: 楽な服がいいです。\nB: このフーディーはどうですか。",
-"example_ko":"A: 편한 옷이 좋아요.\nB: 이 후드티는 어떠세요?"
+"example_ko":"A: 편한 옷이 좋아요.\nB: 이 후드티는 어떠세요?",
+"related":["paakaa","tii-shatsu","supootsu-wea"]
 },
 {
 "slug":"paakaa",
@@ -19586,7 +20029,8 @@ B: 괜찮아요."""
 "keyword_ko":"후드집업",
 "desc":"パーカー는 후드가 달린 집업 또는 캐주얼 상의를 뜻합니다.",
 "example_jp":"A: 脱ぎ着しやすい服がほしいです。\nB: パーカーがぴったりです。",
-"example_ko":"A: 벗고 입기 쉬운 옷이 필요해요.\nB: 후드집업이 딱이에요."
+"example_ko":"A: 벗고 입기 쉬운 옷이 필요해요.\nB: 후드집업이 딱이에요.",
+"related":["fuudii","jaketto","supootsu-wea"]
 },
 {
 "slug":"besuto",
@@ -19596,7 +20040,8 @@ B: 괜찮아요."""
 "keyword_ko":"조끼",
 "desc":"ベスト는 소매가 없는 상의를 뜻하며 정장 또는 캐주얼 스타일로 입습니다.",
 "example_jp":"A: このコーデ、何か足りないですね。\nB: ベストを合わせるのはどうですか。",
-"example_ko":"A: 이 코디, 뭔가 부족하네요.\nB: 조끼를 매치하는 건 어떠세요?"
+"example_ko":"A: 이 코디, 뭔가 부족하네요.\nB: 조끼를 매치하는 건 어떠세요?",
+"related":["suutsu","jaketto","shatsu"]
 },
 {
 "slug":"burausu",
@@ -19606,7 +20051,8 @@ B: 괜찮아요."""
 "keyword_ko":"블라우스",
 "desc":"ブラウス는 여성용 상의로, 셔츠보다 부드럽고 단정한 느낌의 옷을 뜻합니다.",
 "example_jp":"A: 仕事用の上着を探しています。\nB: このブラウスはいかがですか。",
-"example_ko":"A: 회사용 상의를 찾고 있어요.\nB: 이 블라우스는 어떠세요?"
+"example_ko":"A: 회사용 상의를 찾고 있어요.\nB: 이 블라우스는 어떠세요?",
+"related":["shatsu","wanpiisu","sukaato"]
 },
 {
 "slug":"tanku-toppu",
@@ -19616,7 +20062,8 @@ B: 괜찮아요."""
 "keyword_ko":"민소매",
 "desc":"タンクトップ는 소매가 없는 가벼운 상의를 뜻합니다.",
 "example_jp":"A: 真夏に涼しい服がほしいです。\nB: タンクトップがありますよ。",
-"example_ko":"A: 한여름에 시원한 옷이 필요해요.\nB: 민소매가 있어요."
+"example_ko":"A: 한여름에 시원한 옷이 필요해요.\nB: 민소매가 있어요.",
+"related":["tii-shatsu","fuudii"]
 },
 {
 "slug":"wanpiisu",
@@ -19626,7 +20073,8 @@ B: 괜찮아요."""
 "keyword_ko":"원피스",
 "desc":"ワンピース는 상의와 하의가 하나로 이어진 여성용 옷을 뜻합니다.",
 "example_jp":"A: 一枚で着られる服はありますか？\nB: このワンピースが人気です。",
-"example_ko":"A: 한 벌로 입을 수 있는 옷이 있나요?\nB: 이 원피스가 인기예요."
+"example_ko":"A: 한 벌로 입을 수 있는 옷이 있나요?\nB: 이 원피스가 인기예요.",
+"related":["sukaato","burausu","rongu-sukaato"]
 },
 {
 "slug":"sukaato",
@@ -19636,7 +20084,8 @@ B: 괜찮아요."""
 "keyword_ko":"치마",
 "desc":"スカート는 허리 아래로 입는 치마를 뜻합니다.",
 "example_jp":"A: パンツではなくて、もっと女性らしいものがいいです。\nB: スカートはいかがですか。",
-"example_ko":"A: 바지 말고 좀 더 여성스러운 게 좋아요.\nB: 치마는 어떠세요?"
+"example_ko":"A: 바지 말고 좀 더 여성스러운 게 좋아요.\nB: 치마는 어떠세요?",
+"related":["mini-sukaato","rongu-sukaato","wanpiisu"]
 },
 {
 "slug":"mini-sukaato",
@@ -19646,7 +20095,8 @@ B: 괜찮아요."""
 "keyword_ko":"미니스커트",
 "desc":"ミニスカート는 길이가 짧은 치마를 뜻합니다.",
 "example_jp":"A: もう少し丈が短いものはありますか？\nB: こちらのミニスカートをご覧ください。",
-"example_ko":"A: 조금 더 짧은 길이의 제품이 있나요?\nB: 이 미니스커트를 봐 주세요."
+"example_ko":"A: 조금 더 짧은 길이의 제품이 있나요?\nB: 이 미니스커트를 봐 주세요.",
+"related":["sukaato","rongu-sukaato","taitsu"]
 },
 {
 "slug":"rongu-sukaato",
@@ -19656,7 +20106,8 @@ B: 괜찮아요."""
 "keyword_ko":"롱스커트",
 "desc":"ロングスカート는 길이가 긴 치마를 뜻합니다.",
 "example_jp":"A: 短いのは苦手です。\nB: では、ロングスカートがおすすめです。",
-"example_ko":"A: 짧은 건 별로예요.\nB: 그럼 롱스커트를 추천해요."
+"example_ko":"A: 짧은 건 별로예요.\nB: 그럼 롱스커트를 추천해요.",
+"related":["sukaato","mini-sukaato","wanpiisu"]
 },
 {
 "slug":"pantsu",
@@ -19666,7 +20117,8 @@ B: 괜찮아요."""
 "keyword_ko":"바지",
 "desc":"パンツ는 하의 전반을 가리키는 일본어 표현으로 바지를 뜻합니다.",
 "example_jp":"A: この上着に合う下はありますか？\nB: 黒いパンツが合うと思います。",
-"example_ko":"A: 이 상의에 어울리는 하의가 있나요?\nB: 검은 바지가 어울릴 것 같아요."
+"example_ko":"A: 이 상의에 어울리는 하의가 있나요?\nB: 검은 바지가 어울릴 것 같아요.",
+"related":["jiinzu","surakkusu","shooto-pantsu"]
 },
 {
 "slug":"jiinzu",
@@ -19676,7 +20128,8 @@ B: 괜찮아요."""
 "keyword_ko":"청바지",
 "desc":"ジーンズ는 데님 소재로 만든 바지를 뜻합니다.",
 "example_jp":"A: カジュアルな服装が好きです。\nB: じゃあ、ジーンズは欠かせませんね。",
-"example_ko":"A: 캐주얼한 옷차림을 좋아해요.\nB: 그럼 청바지는 빠질 수 없겠네요."
+"example_ko":"A: 캐주얼한 옷차림을 좋아해요.\nB: 그럼 청바지는 빠질 수 없겠네요.",
+"related":["denimu","pantsu","shooto-pantsu"]
 },
 {
 "slug":"denimu",
@@ -19686,7 +20139,8 @@ B: 괜찮아요."""
 "keyword_ko":"데님",
 "desc":"デニム는 청바지 등에 쓰이는 질긴 면 소재를 뜻합니다.",
 "example_jp":"A: この素材は何ですか？\nB: デニムです。",
-"example_ko":"A: 이 소재는 무엇인가요?\nB: 데님이에요."
+"example_ko":"A: 이 소재는 무엇인가요?\nB: 데님이에요.",
+"related":["jiinzu","pantsu"]
 },
 {
 "slug":"surakkusu",
@@ -19696,7 +20150,8 @@ B: 괜찮아요."""
 "keyword_ko":"슬랙스",
 "desc":"スラックス는 단정한 느낌의 바지를 뜻합니다.",
 "example_jp":"A: 会社に着ていくズボンを探しています。\nB: スラックスが人気です。",
-"example_ko":"A: 회사에 입고 갈 바지를 찾고 있어요.\nB: 슬랙스가 인기예요."
+"example_ko":"A: 회사에 입고 갈 바지를 찾고 있어요.\nB: 슬랙스가 인기예요.",
+"related":["pantsu","suutsu","jiinzu"]
 },
 {
 "slug":"shooto-pantsu",
@@ -19706,7 +20161,8 @@ B: 괜찮아요."""
 "keyword_ko":"반바지",
 "desc":"ショートパンツ는 길이가 짧은 바지를 뜻합니다.",
 "example_jp":"A: 旅行用に涼しい服がほしいです。\nB: ショートパンツはどうですか。",
-"example_ko":"A: 여행용으로 시원한 옷이 필요해요.\nB: 반바지는 어떠세요?"
+"example_ko":"A: 여행용으로 시원한 옷이 필요해요.\nB: 반바지는 어떠세요?",
+"related":["pantsu","jiinzu","toreeningu-pantsu"]
 },
 {
 "slug":"toreeningu-pantsu",
@@ -19716,7 +20172,8 @@ B: 괜찮아요."""
 "keyword_ko":"운동바지",
 "desc":"トレーニングパンツ는 운동할 때 입는 편한 바지를 뜻합니다.",
 "example_jp":"A: ジムで着るものを探しています。\nB: トレーニングパンツがいいですよ。",
-"example_ko":"A: 헬스장에서 입을 옷을 찾고 있어요.\nB: 운동바지가 좋아요."
+"example_ko":"A: 헬스장에서 입을 옷을 찾고 있어요.\nB: 운동바지가 좋아요.",
+"related":["supootsu-wea","reginsu","shooto-pantsu"]
 },
 {
 "slug":"supootsu-wea",
@@ -19726,7 +20183,8 @@ B: 괜찮아요."""
 "keyword_ko":"운동복",
 "desc":"スポーツウェア는 운동할 때 입는 기능성 옷을 뜻합니다.",
 "example_jp":"A: ランニング用の服はありますか？\nB: スポーツウェアはこちらです。",
-"example_ko":"A: 러닝용 옷이 있나요?\nB: 운동복은 이쪽입니다."
+"example_ko":"A: 러닝용 옷이 있나요?\nB: 운동복은 이쪽입니다.",
+"related":["toreeningu-pantsu","reginsu","fuudii"]
 },
 {
 "slug":"pajama",
@@ -19736,7 +20194,8 @@ B: 괜찮아요."""
 "keyword_ko":"잠옷",
 "desc":"パジャマ는 잘 때 입는 옷을 뜻합니다.",
 "example_jp":"A: 寝るときに着る服を探しています。\nB: パジャマ売り場は三階です。",
-"example_ko":"A: 잘 때 입는 옷을 찾고 있어요.\nB: 잠옷 매장은 3층입니다."
+"example_ko":"A: 잘 때 입는 옷을 찾고 있어요.\nB: 잠옷 매장은 3층입니다.",
+"related":["shitagi"]
 },
 {
 "slug":"shitagi",
@@ -19746,7 +20205,8 @@ B: 괜찮아요."""
 "keyword_ko":"속옷",
 "desc":"下着는 겉옷 안에 입는 속옷을 뜻합니다.",
 "example_jp":"A: 下着コーナーはどこですか？\nB: 奥にございます。",
-"example_ko":"A: 속옷 코너는 어디인가요?\nB: 안쪽에 있습니다."
+"example_ko":"A: 속옷 코너는 어디인가요?\nB: 안쪽에 있습니다.",
+"related":["burajaa","pantii","pajama"]
 },
 {
 "slug":"burajaa",
@@ -19756,7 +20216,8 @@ B: 괜찮아요."""
 "keyword_ko":"브래지어",
 "desc":"ブラジャー는 여성용 속옷의 한 종류를 뜻합니다.",
 "example_jp":"A: サイズを測ってもらえますか？\nB: はい、ブラジャーですね。",
-"example_ko":"A: 사이즈를 재 주실 수 있나요?\nB: 네, 브래지어 맞으시죠?"
+"example_ko":"A: 사이즈를 재 주실 수 있나요?\nB: 네, 브래지어 맞으시죠?",
+"related":["shitagi","pantii"]
 },
 {
 "slug":"pantii",
@@ -19766,7 +20227,8 @@ B: 괜찮아요."""
 "keyword_ko":"팬티",
 "desc":"パンティー는 하의 속옷을 뜻하는 일본어 표현입니다.",
 "example_jp":"A: セットで買えますか？\nB: はい、パンティーもございます。",
-"example_ko":"A: 세트로 살 수 있나요?\nB: 네, 팬티도 있습니다."
+"example_ko":"A: 세트로 살 수 있나요?\nB: 네, 팬티도 있습니다.",
+"related":["shitagi","burajaa"]
 },
 {
 "slug":"kutsushita",
@@ -19776,7 +20238,8 @@ B: 괜찮아요."""
 "keyword_ko":"양말",
 "desc":"靴下는 발에 신는 양말을 뜻합니다.",
 "example_jp":"A: この靴に合う靴下はありますか？\nB: 白いのが人気です。",
-"example_ko":"A: 이 신발에 어울리는 양말이 있나요?\nB: 흰색이 인기예요."
+"example_ko":"A: 이 신발에 어울리는 양말이 있나요?\nB: 흰색이 인기예요.",
+"related":["sutokkingu","taitsu","tebukuro"]
 },
 {
 "slug":"sutokkingu",
@@ -19786,7 +20249,8 @@ B: 괜찮아요."""
 "keyword_ko":"스타킹",
 "desc":"ストッキング는 얇고 몸에 밀착되는 여성용 다리 의류를 뜻합니다.",
 "example_jp":"A: スーツに合わせる薄いものが必要です。\nB: ストッキングはこちらです。",
-"example_ko":"A: 정장에 신을 얇은 제품이 필요해요.\nB: 스타킹은 이쪽입니다."
+"example_ko":"A: 정장에 신을 얇은 제품이 필요해요.\nB: 스타킹은 이쪽입니다.",
+"related":["taitsu","kutsushita","sukaato"]
 },
 {
 "slug":"taitsu",
@@ -19796,7 +20260,8 @@ B: 괜찮아요."""
 "keyword_ko":"타이츠",
 "desc":"タイツ는 다리 전체를 덮는 신축성 있는 의류를 뜻합니다.",
 "example_jp":"A: 冬でもスカートをはきたいです。\nB: タイツを合わせると暖かいですよ。",
-"example_ko":"A: 겨울에도 치마를 입고 싶어요.\nB: 타이츠를 매치하면 따뜻해요."
+"example_ko":"A: 겨울에도 치마를 입고 싶어요.\nB: 타이츠를 매치하면 따뜻해요.",
+"related":["sutokkingu","reginsu","kutsushita"]
 },
 {
 "slug":"reginsu",
@@ -19806,7 +20271,8 @@ B: 괜찮아요."""
 "keyword_ko":"레깅스",
 "desc":"レギンス는 몸에 밀착되는 편한 하의를 뜻합니다.",
 "example_jp":"A: 運動するときに楽なズボンがいいです。\nB: レギンスはいかがですか。",
-"example_ko":"A: 운동할 때 편한 바지가 좋아요.\nB: 레깅스는 어떠세요?"
+"example_ko":"A: 운동할 때 편한 바지가 좋아요.\nB: 레깅스는 어떠세요?",
+"related":["taitsu","supootsu-wea","toreeningu-pantsu"]
 },
 {
 "slug":"tebukuro",
@@ -19816,7 +20282,8 @@ B: 괜찮아요."""
 "keyword_ko":"장갑",
 "desc":"手袋는 손에 끼는 방한용 또는 보호용 물건을 뜻합니다.",
 "example_jp":"A: 手がすごく冷たいです。\nB: 手袋をしたほうがいいですよ。",
-"example_ko":"A: 손이 너무 차가워요.\nB: 장갑을 끼는 게 좋겠어요."
+"example_ko":"A: 손이 너무 차가워요.\nB: 장갑을 끼는 게 좋겠어요.",
+"related":["boushi","kutsushita","kooto"]
 },
 {
 "slug":"boushi",
@@ -19826,7 +20293,8 @@ B: 괜찮아요."""
 "keyword_ko":"모자",
 "desc":"帽子는 머리에 쓰는 모자를 뜻합니다.",
 "example_jp":"A: 日差しが強いですね。\nB: 帽子をかぶりましょう。",
-"example_ko":"A: 햇빛이 강하네요.\nB: 모자를 씁시다."
+"example_ko":"A: 햇빛이 강하네요.\nB: 모자를 씁시다.",
+"related":["tebukuro","kooto","jaketto"]
 },
 {
 "slug":"kyappu",
@@ -20146,7 +20614,8 @@ B: 괜찮아요."""
 "keyword_ko":"집",
 "desc":"家는 사람이 사는 집이나 가정을 뜻하는 가장 기본적인 일본어 표현입니다.",
 "example_jp":"A: 今日はどこに帰りますか？\nB: まっすぐ家に帰ります。",
-"example_ko":"A: 오늘은 어디로 돌아가나요?\nB: 바로 집에 가요."
+"example_ko":"A: 오늘은 어디로 돌아가나요?\nB: 바로 집에 가요.",
+"related":["taku","apaato","ikkodate"]
 },
 {
 "slug":"taku",
@@ -20156,7 +20625,8 @@ B: 괜찮아요."""
 "keyword_ko":"자택",
 "desc":"宅는 집이나 자택을 조금 더 정중하거나 공식적으로 말할 때 쓰는 표현입니다.",
 "example_jp":"A: お荷物はどちらに送りますか？\nB: 自宅ではなく、こちらの宅へお願いします。",
-"example_ko":"A: 짐은 어디로 보내 드릴까요?\nB: 집이 아니라, 이 자택으로 부탁드립니다."
+"example_ko":"A: 짐은 어디로 보내 드릴까요?\nB: 집이 아니라, 이 자택으로 부탁드립니다.",
+"related":["ie","heya"]
 },
 {
 "slug":"apaato",
@@ -20166,7 +20636,8 @@ B: 괜찮아요."""
 "keyword_ko":"아파트",
 "desc":"アパート는 여러 세대가 함께 사는 공동주택을 뜻하는 일본어 표현입니다.",
 "example_jp":"A: 今はどこに住んでいますか？\nB: 駅の近くのアパートです。",
-"example_ko":"A: 지금 어디에 살고 있나요?\nB: 역 근처 아파트에 살고 있어요."
+"example_ko":"A: 지금 어디에 살고 있나요?\nB: 역 근처 아파트에 살고 있어요.",
+"related":["manshon","ie","heya"]
 },
 {
 "slug":"manshon",
@@ -20176,7 +20647,8 @@ B: 괜찮아요."""
 "keyword_ko":"맨션",
 "desc":"マンション는 일본에서 비교적 규모가 크고 설비가 좋은 공동주택을 뜻합니다.",
 "example_jp":"A: 新しいお部屋、広いですね。\nB: はい、マンションに引っ越しました。",
-"example_ko":"A: 새 집, 넓네요.\nB: 네, 맨션으로 이사했어요."
+"example_ko":"A: 새 집, 넓네요.\nB: 네, 맨션으로 이사했어요.",
+"related":["apaato","ie","barukonii"]
 },
 {
 "slug":"ikkodate",
@@ -20186,7 +20658,8 @@ B: 괜찮아요."""
 "keyword_ko":"단독주택",
 "desc":"一戸建て는 한 가족이 독립적으로 사는 단독주택을 뜻합니다.",
 "example_jp":"A: 集合住宅ではないんですね。\nB: はい、一戸建てです。",
-"example_ko":"A: 공동주택은 아니군요.\nB: 네, 단독주택이에요."
+"example_ko":"A: 공동주택은 아니군요.\nB: 네, 단독주택이에요.",
+"related":["ie","niwa","gareeji"]
 },
 {
 "slug":"heya",
@@ -20196,7 +20669,8 @@ B: 괜찮아요."""
 "keyword_ko":"방",
 "desc":"部屋는 집이나 건물 안의 각각의 방이나 공간을 뜻합니다.",
 "example_jp":"A: 荷物はどこに置けばいいですか？\nB: あの部屋にお願いします。",
-"example_ko":"A: 짐은 어디에 두면 되나요?\nB: 저 방에 부탁드립니다."
+"example_ko":"A: 짐은 어디에 두면 되나요?\nB: 저 방에 부탁드립니다.",
+"related":["ie","ribingu","kicchin"]
 },
 {
 "slug":"ribingu",
@@ -20206,7 +20680,8 @@ B: 괜찮아요."""
 "keyword_ko":"거실",
 "desc":"リビング는 가족이 모여 쉬거나 생활하는 거실을 뜻합니다.",
 "example_jp":"A: みんなはどこにいますか？\nB: リビングにいます。",
-"example_ko":"A: 다들 어디에 있나요?\nB: 거실에 있어요."
+"example_ko":"A: 다들 어디에 있나요?\nB: 거실에 있어요.",
+"related":["heya","dainingu","kicchin"]
 },
 {
 "slug":"dainingu",
@@ -20216,7 +20691,8 @@ B: 괜찮아요."""
 "keyword_ko":"식당",
 "desc":"ダイニング는 집 안에서 식사하는 공간을 뜻합니다.",
 "example_jp":"A: 朝ごはんはどこで食べますか？\nB: ダイニングで食べます。",
-"example_ko":"A: 아침은 어디서 먹나요?\nB: 식당에서 먹어요."
+"example_ko":"A: 아침은 어디서 먹나요?\nB: 식당에서 먹어요.",
+"related":["ribingu","kicchin","resutoran"]
 },
 {
 "slug":"kicchin",
@@ -20226,7 +20702,8 @@ B: 괜찮아요."""
 "keyword_ko":"부엌",
 "desc":"キッチン는 음식을 만들고 조리하는 부엌을 뜻합니다.",
 "example_jp":"A: いい匂いですね。\nB: 母がキッチンで料理しています。",
-"example_ko":"A: 좋은 냄새가 나네요.\nB: 엄마가 부엌에서 요리하고 있어요."
+"example_ko":"A: 좋은 냄새가 나네요.\nB: 엄마가 부엌에서 요리하고 있어요.",
+"related":["dainingu","ribingu","heya"]
 },
 {
 "slug":"yokushitsu",
@@ -20236,7 +20713,8 @@ B: 괜찮아요."""
 "keyword_ko":"욕실",
 "desc":"浴室는 목욕이나 샤워를 하는 공간을 뜻합니다.",
 "example_jp":"A: シャワーを浴びてもいいですか？\nB: はい、浴室は右です。",
-"example_ko":"A: 샤워해도 될까요?\nB: 네, 욕실은 오른쪽이에요."
+"example_ko":"A: 샤워해도 될까요?\nB: 네, 욕실은 오른쪽이에요.",
+"related":["toire","heya"]
 },
 {
 "slug":"toire",
@@ -20246,7 +20724,8 @@ B: 괜찮아요."""
 "keyword_ko":"화장실",
 "desc":"トイレ는 화장실을 뜻하는 가장 일반적인 일본어 표현입니다.",
 "example_jp":"A: すみません、トイレはどこですか？\nB: まっすぐ行って左です。",
-"example_ko":"A: 실례합니다, 화장실은 어디인가요?\nB: 곧장 가서 왼쪽입니다."
+"example_ko":"A: 실례합니다, 화장실은 어디인가요?\nB: 곧장 가서 왼쪽입니다.",
+"related":["yokushitsu","heya"]
 },
 {
 "slug":"genkan",
@@ -20256,7 +20735,8 @@ B: 괜찮아요."""
 "keyword_ko":"현관",
 "desc":"玄関는 집이나 건물의 출입구 공간을 뜻합니다.",
 "example_jp":"A: 靴はどこで脱ぎますか？\nB: 玄関でお願いします。",
-"example_ko":"A: 신발은 어디서 벗나요?\nB: 현관에서 부탁드립니다."
+"example_ko":"A: 신발은 어디서 벗나요?\nB: 현관에서 부탁드립니다.",
+"related":["ie","heya"]
 },
 {
 "slug":"beranda",
@@ -20266,7 +20746,8 @@ B: 괜찮아요."""
 "keyword_ko":"베란다",
 "desc":"ベランダ는 집 밖으로 이어진 좁은 바깥 공간을 뜻합니다.",
 "example_jp":"A: 洗濯物はどこに干しますか？\nB: ベランダに干します。",
-"example_ko":"A: 빨래는 어디에 널어요?\nB: 베란다에 널어요."
+"example_ko":"A: 빨래는 어디에 널어요?\nB: 베란다에 널어요.",
+"related":["barukonii","manshon","apaato"]
 },
 {
 "slug":"barukonii",
@@ -20276,7 +20757,8 @@ B: 괜찮아요."""
 "keyword_ko":"발코니",
 "desc":"バルコニー는 건물 바깥쪽으로 돌출된 난간 있는 공간을 뜻합니다.",
 "example_jp":"A: 景色がよく見えますね。\nB: バルコニーから見るときれいですよ。",
-"example_ko":"A: 경치가 잘 보이네요.\nB: 발코니에서 보면 예뻐요."
+"example_ko":"A: 경치가 잘 보이네요.\nB: 발코니에서 보면 예뻐요.",
+"related":["beranda","manshon","apaato"]
 },
 {
 "slug":"niwa",
@@ -20286,7 +20768,8 @@ B: 괜찮아요."""
 "keyword_ko":"정원",
 "desc":"庭는 집 앞이나 뒤에 있는 정원이나 마당을 뜻합니다.",
 "example_jp":"A: 花がたくさんありますね。\nB: 庭で育てています。",
-"example_ko":"A: 꽃이 정말 많네요.\nB: 정원에서 기르고 있어요."
+"example_ko":"A: 꽃이 정말 많네요.\nB: 정원에서 기르고 있어요.",
+"related":["ikkodate","teien","ie"]
 },
 {
 "slug":"gareeji",
@@ -20296,7 +20779,8 @@ B: 괜찮아요."""
 "keyword_ko":"차고",
 "desc":"ガレージ는 자동차를 보관하는 차고를 뜻합니다.",
 "example_jp":"A: 車はどこに入れますか？\nB: ガレージを使ってください。",
-"example_ko":"A: 차는 어디에 넣나요?\nB: 차고를 사용해 주세요."
+"example_ko":"A: 차는 어디에 넣나요?\nB: 차고를 사용해 주세요.",
+"related":["chuushajou","ikkodate","ie"]
 },
 {
 "slug":"chuushajou",
@@ -20306,7 +20790,8 @@ B: 괜찮아요."""
 "keyword_ko":"주차장",
 "desc":"駐車場는 차를 세워 두는 공간을 뜻합니다.",
 "example_jp":"A: この近くに駐車場はありますか？\nB: はい、建物の裏にあります。",
-"example_ko":"A: 이 근처에 주차장이 있나요?\nB: 네, 건물 뒤에 있어요."
+"example_ko":"A: 이 근처에 주차장이 있나요?\nB: 네, 건물 뒤에 있어요.",
+"related":["gareeji","tatemono","biru"]
 },
 {
 "slug":"souko",
@@ -20316,7 +20801,8 @@ B: 괜찮아요."""
 "keyword_ko":"창고",
 "desc":"倉庫는 물건을 보관하는 공간이나 건물을 뜻합니다.",
 "example_jp":"A: 使わない物はどこに置きますか？\nB: 倉庫にしまってあります。",
-"example_ko":"A: 안 쓰는 물건은 어디에 두나요?\nB: 창고에 보관해 두었어요."
+"example_ko":"A: 안 쓰는 물건은 어디에 두나요?\nB: 창고에 보관해 두었어요.",
+"related":["chikashitsu","koujou"]
 },
 {
 "slug":"chikashitsu",
@@ -20326,7 +20812,8 @@ B: 괜찮아요."""
 "keyword_ko":"지하실",
 "desc":"地下室는 건물 지하에 있는 방이나 공간을 뜻합니다.",
 "example_jp":"A: この建物に地下はありますか？\nB: はい、地下室があります。",
-"example_ko":"A: 이 건물에 지하가 있나요?\nB: 네, 지하실이 있어요."
+"example_ko":"A: 이 건물에 지하가 있나요?\nB: 네, 지하실이 있어요.",
+"related":["souko","tatemono","okujou"]
 },
 {
 "slug":"okujou",
@@ -20336,7 +20823,8 @@ B: 괜찮아요."""
 "keyword_ko":"옥상",
 "desc":"屋上는 건물 맨 위의 평평한 공간을 뜻합니다.",
 "example_jp":"A: 上から町を見たいです。\nB: 屋上に行ってみましょう。",
-"example_ko":"A: 위에서 마을을 보고 싶어요.\nB: 옥상에 가 봅시다."
+"example_ko":"A: 위에서 마을을 보고 싶어요.\nB: 옥상에 가 봅시다.",
+"related":["tatemono","biru","chikashitsu"]
 },
 {
 "slug":"tatemono",
@@ -20346,7 +20834,8 @@ B: 괜찮아요."""
 "keyword_ko":"건물",
 "desc":"建物는 집, 빌딩 등 사람이 사용하는 구조물을 뜻하는 일반적인 표현입니다.",
 "example_jp":"A: 目的地はどれですか？\nB: あの白い建物です。",
-"example_ko":"A: 목적지는 어느 곳인가요?\nB: 저 하얀 건물입니다."
+"example_ko":"A: 목적지는 어느 곳인가요?\nB: 저 하얀 건물입니다.",
+"related":["biru","ie","okujou"]
 },
 {
 "slug":"biru",
@@ -20356,7 +20845,8 @@ B: 괜찮아요."""
 "keyword_ko":"빌딩",
 "desc":"ビル는 여러 층으로 된 상업용 또는 업무용 건물을 뜻합니다.",
 "example_jp":"A: オフィスはどこにありますか？\nB: 駅前のビルの五階です。",
-"example_ko":"A: 사무실은 어디에 있나요?\nB: 역 앞 빌딩 5층입니다."
+"example_ko":"A: 사무실은 어디에 있나요?\nB: 역 앞 빌딩 5층입니다.",
+"related":["tatemono","ofisu","kaisha"]
 },
 {
 "slug":"ofisu",
@@ -20366,7 +20856,8 @@ B: 괜찮아요."""
 "keyword_ko":"사무실",
 "desc":"オフィス는 회사나 업무를 보는 사무 공간을 뜻합니다.",
 "example_jp":"A: 今どこで働いていますか？\nB: 新しいオフィスです。",
-"example_ko":"A: 지금 어디에서 일하고 있나요?\nB: 새 사무실에서요."
+"example_ko":"A: 지금 어디에서 일하고 있나요?\nB: 새 사무실에서요.",
+"related":["kaisha","biru"]
 },
 {
 "slug":"kaisha",
@@ -20376,7 +20867,8 @@ B: 괜찮아요."""
 "keyword_ko":"회사",
 "desc":"会社는 사업이나 업무를 하는 조직이나 회사를 뜻합니다.",
 "example_jp":"A: 毎朝どこへ行きますか？\nB: 会社に行きます。",
-"example_ko":"A: 매일 아침 어디에 가나요?\nB: 회사에 가요."
+"example_ko":"A: 매일 아침 어디에 가나요?\nB: 회사에 가요.",
+"related":["ofisu","biru","koujou"]
 },
 {
 "slug":"koujou",
@@ -20386,7 +20878,8 @@ B: 괜찮아요."""
 "keyword_ko":"공장",
 "desc":"工場는 물건을 만드는 장소를 뜻합니다.",
 "example_jp":"A: この商品はどこで作られますか？\nB: 郊外の工場です。",
-"example_ko":"A: 이 상품은 어디에서 만들어지나요?\nB: 교외 공장에서요."
+"example_ko":"A: 이 상품은 어디에서 만들어지나요?\nB: 교외 공장에서요.",
+"related":["kaisha","souko"]
 },
 {
 "slug":"ginkou",
@@ -20396,7 +20889,8 @@ B: 괜찮아요."""
 "keyword_ko":"은행",
 "desc":"銀行는 돈을 맡기거나 찾고, 금융 업무를 보는 장소를 뜻합니다.",
 "example_jp":"A: お金を下ろしたいです。\nB: 銀行は駅の前にあります。",
-"example_ko":"A: 돈을 찾고 싶어요.\nB: 은행은 역 앞에 있어요."
+"example_ko":"A: 돈을 찾고 싶어요.\nB: 은행은 역 앞에 있어요.",
+"related":["yuubinkyoku","shiyakusho","mise"]
 },
 {
 "slug":"yuubinkyoku",
@@ -20406,7 +20900,8 @@ B: 괜찮아요."""
 "keyword_ko":"우체국",
 "desc":"郵便局는 편지나 소포를 보내는 곳을 뜻합니다.",
 "example_jp":"A: 荷物を送りたいんですが。\nB: 郵便局ならここから近いですよ。",
-"example_ko":"A: 짐을 보내고 싶은데요.\nB: 우체국이면 여기서 가까워요."
+"example_ko":"A: 짐을 보내고 싶은데요.\nB: 우체국이면 여기서 가까워요.",
+"related":["ginkou","shiyakusho","kuyakusho"]
 },
 {
 "slug":"shoubousho",
@@ -20416,7 +20911,8 @@ B: 괜찮아요."""
 "keyword_ko":"소방서",
 "desc":"消防署는 화재 진압과 구조를 담당하는 기관을 뜻합니다.",
 "example_jp":"A: 火事のときはどこに連絡しますか？\nB: 消防署です。",
-"example_ko":"A: 화재가 났을 때는 어디에 연락하나요?\nB: 소방서예요."
+"example_ko":"A: 화재가 났을 때는 어디에 연락하나요?\nB: 소방서예요.",
+"related":["keisatsusho","byouin"]
 },
 {
 "slug":"keisatsusho",
@@ -20426,7 +20922,8 @@ B: 괜찮아요."""
 "keyword_ko":"경찰서",
 "desc":"警察署는 치안과 신고 업무를 담당하는 기관을 뜻합니다.",
 "example_jp":"A: 財布をなくしました。\nB: まず警察署に行きましょう。",
-"example_ko":"A: 지갑을 잃어버렸어요.\nB: 먼저 경찰서에 갑시다."
+"example_ko":"A: 지갑을 잃어버렸어요.\nB: 먼저 경찰서에 갑시다.",
+"related":["shoubousho","shiyakusho","kuyakusho"]
 },
 {
 "slug":"shiyakusho",
@@ -20436,7 +20933,8 @@ B: 괜찮아요."""
 "keyword_ko":"시청",
 "desc":"市役所는 시 행정 업무를 보는 관공서를 뜻합니다.",
 "example_jp":"A: 住民票はどこでもらえますか？\nB: 市役所で手続きできます。",
-"example_ko":"A: 주민표는 어디에서 받을 수 있나요?\nB: 시청에서 처리할 수 있어요."
+"example_ko":"A: 주민표는 어디에서 받을 수 있나요?\nB: 시청에서 처리할 수 있어요.",
+"related":["kuyakusho","kouminkan","yuubinkyoku"]
 },
 {
 "slug":"kuyakusho",
@@ -20446,7 +20944,8 @@ B: 괜찮아요."""
 "keyword_ko":"구청",
 "desc":"区役所는 구 단위 행정 업무를 보는 곳을 뜻합니다.",
 "example_jp":"A: 住所変更をしたいです。\nB: 区役所へ行ってください。",
-"example_ko":"A: 주소 변경을 하고 싶어요.\nB: 구청에 가 주세요."
+"example_ko":"A: 주소 변경을 하고 싶어요.\nB: 구청에 가 주세요.",
+"related":["shiyakusho","kouminkan","yuubinkyoku"]
 },
 {
 "slug":"kouminkan",
@@ -20456,7 +20955,8 @@ B: 괜찮아요."""
 "keyword_ko":"주민센터",
 "desc":"公民館는 지역 주민이 모이거나 활동하는 공공시설을 뜻합니다.",
 "example_jp":"A: この辺で集まりに使える場所はありますか？\nB: 公民館がありますよ。",
-"example_ko":"A: 이 근처에 모임에 쓸 만한 장소가 있나요?\nB: 주민센터가 있어요."
+"example_ko":"A: 이 근처에 모임에 쓸 만한 장소가 있나요?\nB: 주민센터가 있어요.",
+"related":["shiyakusho","kuyakusho","hiroba"]
 },
 {
 "slug":"toshokan",
@@ -20466,7 +20966,8 @@ B: 괜찮아요."""
 "keyword_ko":"도서관",
 "desc":"図書館는 책을 읽거나 빌릴 수 있는 장소를 뜻합니다.",
 "example_jp":"A: 静かに勉強できる場所はありますか？\nB: 図書館がおすすめです。",
-"example_ko":"A: 조용히 공부할 수 있는 곳이 있나요?\nB: 도서관을 추천해요."
+"example_ko":"A: 조용히 공부할 수 있는 곳이 있나요?\nB: 도서관을 추천해요.",
+"related":["honya","bijutsukan","hakubutsukan"]
 },
 {
 "slug":"bijutsukan",
@@ -20476,7 +20977,8 @@ B: 괜찮아요."""
 "keyword_ko":"미술관",
 "desc":"美術館는 그림이나 예술 작품을 전시하는 장소를 뜻합니다.",
 "example_jp":"A: 絵を見るのが好きなんです。\nB: では、この近くの美術館はどうですか。",
-"example_ko":"A: 그림 보는 걸 좋아해요.\nB: 그럼 이 근처 미술관은 어떠세요?"
+"example_ko":"A: 그림 보는 걸 좋아해요.\nB: 그럼 이 근처 미술관은 어떠세요?",
+"related":["hakubutsukan","toshokan","gekijou"]
 },
 {
 "slug":"hakubutsukan",
@@ -20486,7 +20988,8 @@ B: 괜찮아요."""
 "keyword_ko":"박물관",
 "desc":"博物館는 역사, 과학, 문화 자료 등을 전시하는 장소를 뜻합니다.",
 "example_jp":"A: 子どもと行ける場所を探しています。\nB: 博物館なら楽しめると思います。",
-"example_ko":"A: 아이와 갈 수 있는 곳을 찾고 있어요.\nB: 박물관이면 즐길 수 있을 것 같아요."
+"example_ko":"A: 아이와 갈 수 있는 곳을 찾고 있어요.\nB: 박물관이면 즐길 수 있을 것 같아요.",
+"related":["bijutsukan","toshokan"]
 },
 {
 "slug":"sutajiamu",
@@ -20496,7 +20999,8 @@ B: 괜찮아요."""
 "keyword_ko":"경기장",
 "desc":"スタジアム는 스포츠 경기나 큰 행사가 열리는 장소를 뜻합니다.",
 "example_jp":"A: 試合はどこでありますか？\nB: スタジアムです。",
-"example_ko":"A: 경기는 어디에서 하나요?\nB: 경기장에서 해요."
+"example_ko":"A: 경기는 어디에서 하나요?\nB: 경기장에서 해요.",
+"related":["taiikukan","hiroba"]
 },
 {
 "slug":"taiikukan",
@@ -20506,7 +21010,8 @@ B: 괜찮아요."""
 "keyword_ko":"체육관",
 "desc":"体育館는 실내 운동이나 체육 활동을 하는 건물을 뜻합니다.",
 "example_jp":"A: バスケの練習はどこですか？\nB: 体育館でやります。",
-"example_ko":"A: 농구 연습은 어디에서 하나요?\nB: 체육관에서 해요."
+"example_ko":"A: 농구 연습은 어디에서 하나요?\nB: 체육관에서 해요.",
+"related":["sutajiamu","puuru"]
 },
 {
 "slug":"puuru",
@@ -20516,7 +21021,8 @@ B: 괜찮아요."""
 "keyword_ko":"수영장",
 "desc":"プール는 수영을 하는 시설을 뜻합니다.",
 "example_jp":"A: 夏に泳ぎに行きたいです。\nB: 市民プールがありますよ。",
-"example_ko":"A: 여름에 수영하러 가고 싶어요.\nB: 시민 수영장이 있어요."
+"example_ko":"A: 여름에 수영하러 가고 싶어요.\nB: 시민 수영장이 있어요.",
+"related":["taiikukan","kouen"]
 },
 {
 "slug":"eigakan",
@@ -20526,7 +21032,8 @@ B: 괜찮아요."""
 "keyword_ko":"영화관",
 "desc":"映画館는 영화를 보는 장소를 뜻합니다.",
 "example_jp":"A: 新作を見に行きませんか？\nB: いいですね。映画館で会いましょう。",
-"example_ko":"A: 신작 보러 가지 않을래요?\nB: 좋네요. 영화관에서 만나요."
+"example_ko":"A: 신작 보러 가지 않을래요?\nB: 좋네요. 영화관에서 만나요.",
+"related":["gekijou","shoppingu-mooru","depaato"]
 },
 {
 "slug":"gekijou",
@@ -20536,7 +21043,8 @@ B: 괜찮아요."""
 "keyword_ko":"극장",
 "desc":"劇場는 연극이나 공연을 보는 장소를 뜻합니다.",
 "example_jp":"A: 今日の公演はどこですか？\nB: 駅前の劇場です。",
-"example_ko":"A: 오늘 공연은 어디에서 하나요?\nB: 역 앞 극장이에요."
+"example_ko":"A: 오늘 공연은 어디에서 하나요?\nB: 역 앞 극장이에요.",
+"related":["eigakan","bijutsukan"]
 },
 {
 "slug":"mise",
@@ -20546,7 +21054,8 @@ B: 괜찮아요."""
 "keyword_ko":"가게",
 "desc":"店는 물건을 팔거나 서비스를 제공하는 가게를 뜻합니다.",
 "example_jp":"A: この辺にいい店はありますか？\nB: あの角のお店が人気です。",
-"example_ko":"A: 이 근처에 괜찮은 가게가 있나요?\nB: 저 모퉁이 가게가 인기예요."
+"example_ko":"A: 이 근처에 괜찮은 가게가 있나요?\nB: 저 모퉁이 가게가 인기예요.",
+"related":["shoppingu-mooru","depaato","suupaa"]
 },
 {
 "slug":"shoppingu-mooru",
@@ -20556,7 +21065,8 @@ B: 괜찮아요."""
 "keyword_ko":"쇼핑몰",
 "desc":"ショッピングモール는 여러 상점이 모여 있는 큰 쇼핑 공간을 뜻합니다.",
 "example_jp":"A: 一か所でいろいろ買いたいです。\nB: ショッピングモールが便利ですよ。",
-"example_ko":"A: 한곳에서 여러 가지를 사고 싶어요.\nB: 쇼핑몰이 편리해요."
+"example_ko":"A: 한곳에서 여러 가지를 사고 싶어요.\nB: 쇼핑몰이 편리해요.",
+"related":["depaato","mise","suupaa"]
 },
 {
 "slug":"depaato",
@@ -20566,7 +21076,8 @@ B: 괜찮아요."""
 "keyword_ko":"백화점",
 "desc":"デパート는 다양한 브랜드와 상품을 파는 큰 상점을 뜻합니다.",
 "example_jp":"A: ちょっといいプレゼントを探しています。\nB: デパートを見てみましょう。",
-"example_ko":"A: 조금 괜찮은 선물을 찾고 있어요.\nB: 백화점을 가 봅시다."
+"example_ko":"A: 조금 괜찮은 선물을 찾고 있어요.\nB: 백화점을 가 봅시다.",
+"related":["shoppingu-mooru","mise","suupaa"]
 },
 {
 "slug":"suupaa",
@@ -20576,7 +21087,8 @@ B: 괜찮아요."""
 "keyword_ko":"마트",
 "desc":"スーパー는 식료품과 생활용품을 파는 마트를 뜻합니다.",
 "example_jp":"A: 野菜を買いたいです。\nB: スーパーなら安いですよ。",
-"example_ko":"A: 채소를 사고 싶어요.\nB: 마트가 저렴해요."
+"example_ko":"A: 채소를 사고 싶어요.\nB: 마트가 저렴해요.",
+"related":["konbini","shoppingu-mooru","depaato"]
 },
 {
 "slug":"konbini",
@@ -20586,7 +21098,8 @@ B: 괜찮아요."""
 "keyword_ko":"편의점",
 "desc":"コンビニ는 24시간 운영하는 경우가 많은 소형 상점을 뜻합니다.",
 "example_jp":"A: 今の時間でも開いているところはありますか？\nB: コンビニなら大丈夫です。",
-"example_ko":"A: 이 시간에도 열려 있는 곳이 있나요?\nB: 편의점이면 괜찮아요."
+"example_ko":"A: 이 시간에도 열려 있는 곳이 있나요?\nB: 편의점이면 괜찮아요.",
+"related":["suupaa","mise","yakkyoku"]
 },
 {
 "slug":"resutoran",
@@ -20596,7 +21109,8 @@ B: 괜찮아요."""
 "keyword_ko":"레스토랑",
 "desc":"レストラン는 음식을 주문해 먹는 식당을 뜻합니다.",
 "example_jp":"A: 夕食はどこで食べましょうか？\nB: あのレストランがよさそうです。",
-"example_ko":"A: 저녁은 어디에서 먹을까요?\nB: 저 레스토랑이 좋아 보여요."
+"example_ko":"A: 저녁은 어디에서 먹을까요?\nB: 저 레스토랑이 좋아 보여요.",
+"related":["kafe","dainingu","mise"]
 },
 {
 "slug":"kafe",
@@ -20606,7 +21120,8 @@ B: 괜찮아요."""
 "keyword_ko":"카페",
 "desc":"カフェ는 커피나 디저트를 즐기는 장소를 뜻합니다.",
 "example_jp":"A: 少し休みませんか？\nB: 近くのカフェに入りましょう。",
-"example_ko":"A: 잠깐 쉬지 않을래요?\nB: 근처 카페에 들어가요."
+"example_ko":"A: 잠깐 쉬지 않을래요?\nB: 근처 카페에 들어가요.",
+"related":["resutoran","panya","mise"]
 },
 {
 "slug":"panya",
@@ -20616,17 +21131,8 @@ B: 괜찮아요."""
 "keyword_ko":"빵집",
 "desc":"パン屋는 빵을 만드는 곳 또는 파는 가게를 뜻합니다.",
 "example_jp":"A: 焼きたてのパンが食べたいです。\nB: 駅前のパン屋が有名ですよ。",
-"example_ko":"A: 갓 구운 빵이 먹고 싶어요.\nB: 역 앞 빵집이 유명해요."
-},
-{
-"slug":"nikuya",
-"yomi":"니쿠야",
-"jp":"肉屋",
-"ko":"정육점",
-"keyword_ko":"정육점",
-"desc":"肉屋는 고기를 파는 가게를 뜻합니다.",
-"example_jp":"A: バーベキュー用の肉を買いたいです。\nB: 肉屋のほうが種類が多いですよ。",
-"example_ko":"A: 바비큐용 고기를 사고 싶어요.\nB: 정육점이 종류가 더 많아요."
+"example_ko":"A: 갓 구운 빵이 먹고 싶어요.\nB: 역 앞 빵집이 유명해요.",
+"related":["kafe","mise","shoppingu-mooru"]
 },
 {
 "slug":"sakana-ya",
@@ -20636,7 +21142,8 @@ B: 괜찮아요."""
 "keyword_ko":"생선가게",
 "desc":"魚屋는 생선과 해산물을 파는 가게를 뜻합니다.",
 "example_jp":"A: 新鮮な魚はどこで買えますか？\nB: 魚屋に行ってみてください。",
-"example_ko":"A: 신선한 생선은 어디에서 살 수 있나요?\nB: 생선가게에 가 보세요."
+"example_ko":"A: 신선한 생선은 어디에서 살 수 있나요?\nB: 생선가게에 가 보세요.",
+"related":["mise","suupaa"]
 },
 {
 "slug":"honya",
@@ -20646,7 +21153,8 @@ B: 괜찮아요."""
 "keyword_ko":"서점",
 "desc":"本屋는 책을 파는 가게를 뜻합니다.",
 "example_jp":"A: 日本語の本を探しています。\nB: 角にある本屋にありますよ。",
-"example_ko":"A: 일본어 책을 찾고 있어요.\nB: 모퉁이에 있는 서점에 있어요."
+"example_ko":"A: 일본어 책을 찾고 있어요.\nB: 모퉁이에 있는 서점에 있어요.",
+"related":["toshokan","mise","shoppingu-mooru"]
 },
 {
 "slug":"yakkyoku",
@@ -20656,7 +21164,8 @@ B: 괜찮아요."""
 "keyword_ko":"약국",
 "desc":"薬局는 약을 사거나 처방약을 받는 곳을 뜻합니다.",
 "example_jp":"A: 風邪薬を買いたいです。\nB: 薬局はこの先です。",
-"example_ko":"A: 감기약을 사고 싶어요.\nB: 약국은 이 앞에 있어요."
+"example_ko":"A: 감기약을 사고 싶어요.\nB: 약국은 이 앞에 있어요.",
+"related":["byouin","haisha","konbini"]
 },
 {
 "slug":"byouin",
@@ -20666,7 +21175,8 @@ B: 괜찮아요."""
 "keyword_ko":"병원",
 "desc":"病院는 진료와 치료를 받는 의료기관을 뜻합니다.",
 "example_jp":"A: ちょっと熱があるんです。\nB: 早めに病院へ行ったほうがいいですよ。",
-"example_ko":"A: 좀 열이 있어요.\nB: 빨리 병원에 가는 게 좋겠어요."
+"example_ko":"A: 좀 열이 있어요.\nB: 빨리 병원에 가는 게 좋겠어요.",
+"related":["yakkyoku","haisha","shoubousho"]
 },
 {
 "slug":"haisha",
@@ -20676,7 +21186,8 @@ B: 괜찮아요."""
 "keyword_ko":"치과",
 "desc":"歯医者는 치아 치료를 받는 곳 또는 치과의사를 뜻합니다.",
 "example_jp":"A: 歯が痛くて困っています。\nB: 歯医者を予約しましょう。",
-"example_ko":"A: 이가 아파서 곤란해요.\nB: 치과를 예약합시다."
+"example_ko":"A: 이가 아파서 곤란해요.\nB: 치과를 예약합시다.",
+"related":["byouin","yakkyoku"]
 },
 {
 "slug":"biyouin",
@@ -20686,7 +21197,8 @@ B: 괜찮아요."""
 "keyword_ko":"미용실",
 "desc":"美容院는 머리를 자르거나 염색, 스타일링을 하는 곳을 뜻합니다.",
 "example_jp":"A: 髪を少し切りたいです。\nB: この近くにいい美容院がありますよ。",
-"example_ko":"A: 머리를 조금 자르고 싶어요.\nB: 이 근처에 괜찮은 미용실이 있어요."
+"example_ko":"A: 머리를 조금 자르고 싶어요.\nB: 이 근처에 괜찮은 미용실이 있어요.",
+"related":["rihatsuten","mise"]
 },
 {
 "slug":"rihatsuten",
@@ -20696,7 +21208,8 @@ B: 괜찮아요."""
 "keyword_ko":"이발소",
 "desc":"理髪店는 주로 남성 머리를 자르는 이발소를 뜻합니다.",
 "example_jp":"A: 短くさっぱりしたいです。\nB: 理髪店のほうが早いかもしれません。",
-"example_ko":"A: 짧고 깔끔하게 하고 싶어요.\nB: 이발소가 더 빠를지도 몰라요."
+"example_ko":"A: 짧고 깔끔하게 하고 싶어요.\nB: 이발소가 더 빠를지도 몰라요.",
+"related":["biyouin","mise"]
 },
 {
 "slug":"kuriiningu-ten",
@@ -20706,7 +21219,8 @@ B: 괜찮아요."""
 "keyword_ko":"세탁소",
 "desc":"クリーニング店는 옷을 맡겨 세탁하거나 관리받는 곳을 뜻합니다.",
 "example_jp":"A: このコート、自分で洗えませんよね？\nB: はい、クリーニング店に出しましょう。",
-"example_ko":"A: 이 코트는 직접 세탁하면 안 되겠죠?\nB: 네, 세탁소에 맡깁시다."
+"example_ko":"A: 이 코트는 직접 세탁하면 안 되겠죠?\nB: 네, 세탁소에 맡깁시다.",
+"related":["mise","shoppingu-mooru"]
 },
 {
 "slug":"hoteru",
@@ -20716,7 +21230,8 @@ B: 괜찮아요."""
 "keyword_ko":"호텔",
 "desc":"ホテル는 여행이나 출장 때 숙박하는 곳을 뜻합니다.",
 "example_jp":"A: 今夜はどこに泊まりますか？\nB: 駅前のホテルを予約しました。",
-"example_ko":"A: 오늘 밤은 어디에서 묵나요?\nB: 역 앞 호텔을 예약했어요."
+"example_ko":"A: 오늘 밤은 어디에서 묵나요?\nB: 역 앞 호텔을 예약했어요.",
+"related":["ryokan","gesuto-hausu"]
 },
 {
 "slug":"ryokan",
@@ -20726,7 +21241,8 @@ B: 괜찮아요."""
 "keyword_ko":"료칸",
 "desc":"旅館는 일본식 숙박시설인 료칸을 뜻합니다.",
 "example_jp":"A: 和室に泊まってみたいです。\nB: それなら旅館がおすすめです。",
-"example_ko":"A: 일본식 방에 묵어 보고 싶어요.\nB: 그렇다면 료칸을 추천해요."
+"example_ko":"A: 일본식 방에 묵어 보고 싶어요.\nB: 그렇다면 료칸을 추천해요.",
+"related":["hoteru","gesuto-hausu"]
 },
 {
 "slug":"gesuto-hausu",
@@ -20736,7 +21252,8 @@ B: 괜찮아요."""
 "keyword_ko":"게스트하우스",
 "desc":"ゲストハウス는 비교적 가볍고 저렴하게 묵을 수 있는 숙소를 뜻합니다.",
 "example_jp":"A: 宿代を少し安くしたいです。\nB: ゲストハウスもありますよ。",
-"example_ko":"A: 숙박비를 조금 아끼고 싶어요.\nB: 게스트하우스도 있어요."
+"example_ko":"A: 숙박비를 조금 아끼고 싶어요.\nB: 게스트하우스도 있어요.",
+"related":["hoteru","ryokan"]
 },
 {
 "slug":"machi",
@@ -20746,7 +21263,8 @@ B: 괜찮아요."""
 "keyword_ko":"마을",
 "desc":"町는 마을이나 동네를 뜻하는 일본어 표현입니다.",
 "example_jp":"A: この町は静かですね。\nB: はい、とても住みやすいです。",
-"example_ko":"A: 이 마을은 조용하네요.\nB: 네, 살기 아주 좋아요."
+"example_ko":"A: 이 마을은 조용하네요.\nB: 네, 살기 아주 좋아요.",
+"related":["toshi","toori","hiroba"]
 },
 {
 "slug":"toshi",
@@ -20756,7 +21274,8 @@ B: 괜찮아요."""
 "keyword_ko":"도시",
 "desc":"都市는 사람이 많이 모여 사는 큰 도시를 뜻합니다.",
 "example_jp":"A: 東京はどんなところですか？\nB: とても大きい都市です。",
-"example_ko":"A: 도쿄는 어떤 곳인가요?\nB: 아주 큰 도시예요."
+"example_ko":"A: 도쿄는 어떤 곳인가요?\nB: 아주 큰 도시예요.",
+"related":["machi","toshi","biru"]
 },
 {
 "slug":"toori",
@@ -20766,7 +21285,8 @@ B: 괜찮아요."""
 "keyword_ko":"거리",
 "desc":"通り는 길이나 거리, 특정 도로변 구역을 뜻합니다.",
 "example_jp":"A: ここはにぎやかな通りですね。\nB: 夜も人が多いですよ。",
-"example_ko":"A: 여기는 번화한 거리네요.\nB: 밤에도 사람이 많아요."
+"example_ko":"A: 여기는 번화한 거리네요.\nB: 밤에도 사람이 많아요.",
+"related":["douro","roji","machi"]
 },
 {
 "slug":"douro",
@@ -20776,7 +21296,8 @@ B: 괜찮아요."""
 "keyword_ko":"도로",
 "desc":"道路는 자동차나 사람이 다니는 길을 뜻합니다.",
 "example_jp":"A: この道路は広いですね。\nB: 車の通りも多いです。",
-"example_ko":"A: 이 도로는 넓네요.\nB: 차도 많이 다녀요."
+"example_ko":"A: 이 도로는 넓네요.\nB: 차도 많이 다녀요.",
+"related":["toori","kousaten","roji"]
 },
 {
 "slug":"roji",
@@ -20786,7 +21307,8 @@ B: 괜찮아요."""
 "keyword_ko":"골목",
 "desc":"路地는 큰길에서 갈라진 좁은 골목길을 뜻합니다.",
 "example_jp":"A: 近道はありますか？\nB: そこの路地を入ると早いです。",
-"example_ko":"A: 지름길이 있나요?\nB: 저 골목으로 들어가면 빨라요."
+"example_ko":"A: 지름길이 있나요?\nB: 저 골목으로 들어가면 빨라요.",
+"related":["toori","douro","kousaten"]
 },
 {
 "slug":"kousaten",
@@ -20796,7 +21318,8 @@ B: 괜찮아요."""
 "keyword_ko":"교차로",
 "desc":"交差点는 길과 길이 만나는 곳을 뜻합니다.",
 "example_jp":"A: 次はどこで曲がりますか？\nB: 次の交差点を右です。",
-"example_ko":"A: 다음에는 어디서 돌아야 하나요?\nB: 다음 교차로에서 오른쪽이에요."
+"example_ko":"A: 다음에는 어디서 돌아야 하나요?\nB: 다음 교차로에서 오른쪽이에요.",
+"related":["douro","toori","roji"]
 },
 {
 "slug":"hiroba",
@@ -20806,7 +21329,8 @@ B: 괜찮아요."""
 "keyword_ko":"광장",
 "desc":"広場는 사람들이 모일 수 있는 넓은 열린 공간을 뜻합니다.",
 "example_jp":"A: 待ち合わせはどこにしますか？\nB: 駅前の広場にしましょう。",
-"example_ko":"A: 어디서 만날까요?\nB: 역 앞 광장으로 합시다."
+"example_ko":"A: 어디서 만날까요?\nB: 역 앞 광장으로 합시다.",
+"related":["kouen","machi","sutajiamu"]
 },
 {
 "slug":"kouen",
@@ -20816,7 +21340,8 @@ B: 괜찮아요."""
 "keyword_ko":"공원",
 "desc":"公園는 산책하거나 쉬는 공공 녹지 공간을 뜻합니다.",
 "example_jp":"A: 今日は天気がいいですね。\nB: 公園を散歩しませんか。",
-"example_ko":"A: 오늘 날씨가 좋네요.\nB: 공원을 산책하지 않을래요?"
+"example_ko":"A: 오늘 날씨가 좋네요.\nB: 공원을 산책하지 않을래요?",
+"related":["hiroba","asobiba","teien"]
 },
 {
 "slug":"asobiba",
@@ -20826,7 +21351,8 @@ B: 괜찮아요."""
 "keyword_ko":"놀이터",
 "desc":"遊び場는 아이들이 놀 수 있는 장소를 뜻합니다.",
 "example_jp":"A: 子どもはどこで遊べますか？\nB: あそこに遊び場があります。",
-"example_ko":"A: 아이는 어디에서 놀 수 있나요?\nB: 저기에 놀이터가 있어요."
+"example_ko":"A: 아이는 어디에서 놀 수 있나요?\nB: 저기에 놀이터가 있어요.",
+"related":["kouen","hiroba"]
 },
 {
 "slug":"teien",
@@ -20836,7 +21362,8 @@ B: 괜찮아요."""
 "keyword_ko":"정원",
 "desc":"庭園는 잘 가꾸어진 정원이나 공원형 정원을 뜻합니다.",
 "example_jp":"A: 景色のきれいな場所はありますか？\nB: 日本庭園が有名です。",
-"example_ko":"A: 경치가 예쁜 곳이 있나요?\nB: 일본식 정원이 유명해요."
+"example_ko":"A: 경치가 예쁜 곳이 있나요?\nB: 일본식 정원이 유명해요.",
+"related":["niwa","kouen","bijutsukan"]
 },
 {
 "slug":"kawa",
@@ -20846,7 +21373,8 @@ B: 괜찮아요."""
 "keyword_ko":"강",
 "desc":"川는 흐르는 강물을 뜻합니다.",
 "example_jp":"A: 夕方はどこがきれいですか？\nB: 川の近くが気持ちいいですよ。",
-"example_ko":"A: 저녁에는 어디가 예쁜가요?\nB: 강 근처가 기분 좋아요."
+"example_ko":"A: 저녁에는 어디가 예쁜가요?\nB: 강 근처가 기분 좋아요.",
+"related":["hashi","umi","mizuumi"]
 },
 {
 "slug":"umi",
@@ -20856,7 +21384,8 @@ B: 괜찮아요."""
 "keyword_ko":"바다",
 "desc":"海는 넓은 바다를 뜻합니다.",
 "example_jp":"A: 夏に行きたい場所はありますか？\nB: やっぱり海ですね。",
-"example_ko":"A: 여름에 가고 싶은 곳이 있나요?\nB: 역시 바다죠."
+"example_ko":"A: 여름에 가고 싶은 곳이 있나요?\nB: 역시 바다죠.",
+"related":["kaigan","minato","shima"]
 },
 {
 "slug":"kaigan",
@@ -20866,7 +21395,8 @@ B: 괜찮아요."""
 "keyword_ko":"해변",
 "desc":"海岸는 바다와 육지가 만나는 해변이나 해안을 뜻합니다.",
 "example_jp":"A: 波の音が聞こえますね。\nB: もう海岸の近くですよ。",
-"example_ko":"A: 파도 소리가 들리네요.\nB: 벌써 해변 근처예요."
+"example_ko":"A: 파도 소리가 들리네요.\nB: 벌써 해변 근처예요.",
+"related":["umi","minato","shima"]
 },
 {
 "slug":"yama",
@@ -20876,7 +21406,8 @@ B: 괜찮아요."""
 "keyword_ko":"산",
 "desc":"山는 산을 뜻하는 가장 기본적인 일본어 표현입니다.",
 "example_jp":"A: 週末は何をしたいですか？\nB: 山に登りたいです。",
-"example_ko":"A: 주말에 무엇을 하고 싶나요?\nB: 산에 오르고 싶어요."
+"example_ko":"A: 주말에 무엇을 하고 싶나요?\nB: 산에 오르고 싶어요.",
+"related":["mori","tonneru","mizuumi"]
 },
 {
 "slug":"mori",
@@ -20886,7 +21417,8 @@ B: 괜찮아요."""
 "keyword_ko":"숲",
 "desc":"森는 나무가 우거진 숲을 뜻합니다.",
 "example_jp":"A: 空気がきれいなところへ行きたいです。\nB: 森の中は静かでいいですよ。",
-"example_ko":"A: 공기가 좋은 곳에 가고 싶어요.\nB: 숲속은 조용하고 좋아요."
+"example_ko":"A: 공기가 좋은 곳에 가고 싶어요.\nB: 숲속은 조용하고 좋아요.",
+"related":["yama","kawa","kouen"]
 },
 {
 "slug":"mizuumi",
@@ -20896,7 +21428,8 @@ B: 괜찮아요."""
 "keyword_ko":"호수",
 "desc":"湖는 큰 호수를 뜻합니다.",
 "example_jp":"A: ここは海ですか？\nB: いいえ、湖です。",
-"example_ko":"A: 여기는 바다인가요?\nB: 아니요, 호수예요."
+"example_ko":"A: 여기는 바다인가요?\nB: 아니요, 호수예요.",
+"related":["kawa","yama","shima"]
 },
 {
 "slug":"shima",
@@ -20906,7 +21439,8 @@ B: 괜찮아요."""
 "keyword_ko":"섬",
 "desc":"島는 바다에 둘러싸인 땅, 즉 섬을 뜻합니다.",
 "example_jp":"A: 船で行ける場所はありますか？\nB: あの島へ行けますよ。",
-"example_ko":"A: 배로 갈 수 있는 곳이 있나요?\nB: 저 섬에 갈 수 있어요."
+"example_ko":"A: 배로 갈 수 있는 곳이 있나요?\nB: 저 섬에 갈 수 있어요.",
+"related":["umi","kaigan","minato"]
 },
 {
 "slug":"hashi",
@@ -20916,7 +21450,8 @@ B: 괜찮아요."""
 "keyword_ko":"다리",
 "desc":"橋는 강이나 길 위를 건너기 위한 다리를 뜻합니다.",
 "example_jp":"A: 向こう側へはどう行きますか？\nB: あの橋を渡ってください。",
-"example_ko":"A: 저쪽으로는 어떻게 가나요?\nB: 저 다리를 건너 주세요."
+"example_ko":"A: 저쪽으로는 어떻게 가나요?\nB: 저 다리를 건너 주세요.",
+"related":["kawa","tonneru","douro"]
 },
 {
 "slug":"tonneru",
@@ -20926,7 +21461,8 @@ B: 괜찮아요."""
 "keyword_ko":"터널",
 "desc":"トンネル는 산이나 지하를 뚫어 만든 통로를 뜻합니다.",
 "example_jp":"A: この先は暗いですね。\nB: もうすぐトンネルに入ります。",
-"example_ko":"A: 이 앞은 어둡네요.\nB: 곧 터널에 들어가요."
+"example_ko":"A: 이 앞은 어둡네요.\nB: 곧 터널에 들어가요.",
+"related":["hashi","yama","douro"]
 },
 {
 "slug":"eki",
@@ -20936,7 +21472,8 @@ B: 괜찮아요."""
 "keyword_ko":"역",
 "desc":"駅는 기차나 전철을 타는 역을 뜻합니다.",
 "example_jp":"A: 一番近い駅はどこですか？\nB: 歩いて五分です。",
-"example_ko":"A: 가장 가까운 역은 어디인가요?\nB: 걸어서 5분이에요."
+"example_ko":"A: 가장 가까운 역은 어디인가요?\nB: 걸어서 5분이에요.",
+"related":["basutei","kuukou","biru"]
 },
 {
 "slug":"basutei",
@@ -20946,7 +21483,8 @@ B: 괜찮아요."""
 "keyword_ko":"버스정류장",
 "desc":"バス停는 버스를 타고 내리는 정류장을 뜻합니다.",
 "example_jp":"A: 空港行きのバスはどこで乗れますか？\nB: そこのバス停です。",
-"example_ko":"A: 공항 가는 버스는 어디서 탈 수 있나요?\nB: 저 버스정류장이에요."
+"example_ko":"A: 공항 가는 버스는 어디서 탈 수 있나요?\nB: 저 버스정류장이에요.",
+"related":["eki","kuukou"]
 },
 {
 "slug":"kuukou",
@@ -20956,7 +21494,8 @@ B: 괜찮아요."""
 "keyword_ko":"공항",
 "desc":"空港는 비행기가 출발하고 도착하는 공항을 뜻합니다.",
 "example_jp":"A: フライトは何時ですか？\nB: その前に空港へ向かいましょう。",
-"example_ko":"A: 비행기는 몇 시인가요?\nB: 그 전에 공항으로 갑시다."
+"example_ko":"A: 비행기는 몇 시인가요?\nB: 그 전에 공항으로 갑시다.",
+"related":["eki","basutei","minato"]
 },
 {
 "slug":"minato",
@@ -20966,7 +21505,8 @@ B: 괜찮아요."""
 "keyword_ko":"항구",
 "desc":"港는 배가 드나드는 항구를 뜻합니다.",
 "example_jp":"A: 船はどこから出ますか？\nB: 港から出発します。",
-"example_ko":"A: 배는 어디에서 출발하나요?\nB: 항구에서 출발해요."
+"example_ko":"A: 배는 어디에서 출발하나요?\nB: 항구에서 출발해요.",
+"related":["umi","kaigan","kuukou"]
 },
-    
+
 ]
