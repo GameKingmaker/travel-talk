@@ -27105,7 +27105,41 @@ def jlpt_n1_grammar():
     return render_template("jlpt_n1_grammar.html", user=user)
 
 
+def get_meaning_by_slug(slug, items):
+    for it in items:
+        if it.get("slug") == slug:
+            return it
+    return None
 
+
+def build_related_items(item, items, max_count=4):
+    related_slugs = item.get("related", []) or []
+    related_items = []
+
+    for related_slug in related_slugs:
+        related_item = get_meaning_by_slug(related_slug, items)
+        if related_item and related_item.get("slug") != item.get("slug"):
+            related_items.append(related_item)
+
+        if len(related_items) >= max_count:
+            break
+
+    return related_items
+
+
+@app.route("/meaning/<slug>")
+def meaning_detail(slug):
+    item = get_meaning_by_slug(slug, MEANING_ITEMS)
+    if not item:
+        abort(404)
+
+    related_items = build_related_items(item, MEANING_ITEMS, max_count=4)
+
+    return render_template(
+        "meaning_detail.html",
+        item=item,
+        related_items=related_items
+    )
 
 # ㄱ~ㅎ 초성 추출
 def get_choseong(ch):
@@ -27195,20 +27229,7 @@ def meaning_search():
     return render_template("meaning.html", q=q, results=results, meaning_categories=categories)
 
 
-def get_meaning_by_slug(slug, items):
-    for it in items:
-        if it.get("slug") == slug:
-            return it
-    return None
-
-@app.route("/meaning/<slug>")
-def meaning_detail(slug):
-    item = get_meaning_by_slug(slug, MEANING_ITEMS)
-    if not item:
-        abort(404)
-    return render_template("meaning_detail.html", item=item)
-
-
+    
 @app.context_processor
 def inject_helpers():
     return {"is_admin": is_admin}
