@@ -27129,6 +27129,8 @@ def build_related_items(item, items, max_count=4):
 
 @app.route("/meaning/<slug>")
 def meaning_detail(slug):
+    user = current_user()   # ✅ 추가
+
     item = get_meaning_by_slug(slug, MEANING_ITEMS)
     if not item:
         abort(404)
@@ -27137,6 +27139,7 @@ def meaning_detail(slug):
 
     return render_template(
         "meaning_detail.html",
+        user=user,   # ✅ 추가
         item=item,
         related_items=related_items
     )
@@ -27213,9 +27216,12 @@ def search_meanings(q, items, limit=80):
 
 @app.route("/meaning")
 def meaning():
+    user = current_user()   # ✅ 추가
+
     categories = build_meaning_categories(MEANING_ITEMS)
     return render_template(
         "meaning.html",
+        user=user,   # ✅ 추가
         q="",
         results=[],   # ✅ None 말고 빈 리스트
         meaning_categories=categories
@@ -27223,11 +27229,18 @@ def meaning():
 
 @app.route("/meaning/search")
 def meaning_search():
+    user = current_user()   # ✅ 추가
+
     q = request.args.get("q", "").strip()
     results = search_meanings(q, MEANING_ITEMS, limit=80)
     categories = build_meaning_categories(MEANING_ITEMS)
-    return render_template("meaning.html", q=q, results=results, meaning_categories=categories)
-
+    return render_template(
+        "meaning.html",
+        user=user,   # ✅ 추가
+        q=q,
+        results=results,
+        meaning_categories=categories
+    )
 
     
 @app.context_processor
