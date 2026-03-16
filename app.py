@@ -27241,7 +27241,13 @@ def meaning_search():
         results=results,
         meaning_categories=categories
     )
-
+@app.route('/ads.txt')
+def ads_txt():
+    return send_from_directory(
+        os.path.dirname(os.path.abspath(__file__)),
+        'ads.txt',
+        mimetype='text/plain'
+    )
     
 @app.context_processor
 def inject_helpers():
