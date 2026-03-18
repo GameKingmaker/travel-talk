@@ -1,0 +1,437 @@
+{% extends "base.html" %}
+
+{% set page_title = "일본어 한자 2136개 모음 | JapaneseStudyRoom" %}
+{% set page_desc = "일본어 한자 2136개를 한눈에 정리한 페이지입니다. 한자, 뜻, 한자음을 검색하고 자세한 설명과 예문을 확인해보세요." %}
+{% set page_robots = "index,follow" %}
+
+{% block content %}
+<style>
+  :root{
+    --bg: #eef3ff;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --line: rgba(15,23,42,.10);
+    --pri: #2563eb;
+    --pri2:#1d4ed8;
+    --shadow: 0 12px 28px rgba(15,23,42,.06);
+  }
+
+  .kanji-wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 22px 18px 48px;
+  }
+
+  .kanji-hero{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .kanji-hero-top{
+    padding: 24px 22px 20px;
+    border-top: 4px solid rgba(37,99,235,.65);
+    background:
+      radial-gradient(900px 320px at 20% 0%, rgba(37,99,235,.10), transparent 60%),
+      radial-gradient(760px 260px at 90% 10%, rgba(99,102,241,.08), transparent 55%),
+      #fff;
+  }
+
+  .kanji-title{
+    margin:0;
+    font-size: 34px;
+    font-weight: 950;
+    letter-spacing: -.6px;
+    color: var(--text);
+  }
+
+  .kanji-desc{
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+    word-break: keep-all;
+  }
+
+  .search-box{
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(37,99,235,.16);
+    background:
+      radial-gradient(600px 180px at 0% 0%, rgba(37,99,235,.12), transparent 60%),
+      radial-gradient(420px 180px at 100% 100%, rgba(99,102,241,.10), transparent 60%),
+      linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    box-shadow: 0 14px 34px rgba(37,99,235,.08);
+  }
+
+  .search-box h2{
+    margin: 0 0 10px;
+    font-size: 24px;
+    font-weight: 950;
+    color: var(--text);
+  }
+
+  .search-box p{
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .kanji-search{
+    display:flex;
+    gap:12px;
+  }
+
+  .kanji-search input{
+    flex:1;
+    height: 56px;
+    border-radius: 16px;
+    border: 1.5px solid rgba(37,99,235,.16);
+    padding: 0 18px;
+    outline: none;
+    font-size: 16px;
+    font-weight: 700;
+    background:#fff;
+  }
+
+  .kanji-search input:focus{
+    border-color: rgba(37,99,235,.58);
+    box-shadow: 0 0 0 4px rgba(37,99,235,.14);
+  }
+
+  .kanji-search button{
+    height:56px;
+    min-width: 120px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 55%, #1e40af 100%);
+    color: #fff;
+    font-weight: 950;
+    font-size: 16px;
+    cursor:pointer;
+    box-shadow: 0 14px 28px rgba(37,99,235,.22);
+  }
+
+  .filter-wrap{
+    margin-top: 16px;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px;
+  }
+
+  .filter-tag{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width: 46px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(37,99,235,.16);
+    background: #fff;
+    color: var(--pri2);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 900;
+    transition: .15s ease;
+  }
+
+  .filter-tag:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(37,99,235,.10);
+  }
+
+  .filter-tag.active{
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .search-summary{
+    margin-top: 16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .search-summary-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(37,99,235,.16);
+    background: #fff;
+    color: var(--pri2);
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .kanji-body{
+    margin-top: 18px;
+  }
+
+  .kanji-box{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .kanji-box-head{
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(15,23,42,.06);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+
+  .kanji-box-title{
+    margin:0;
+    font-size: 18px;
+    font-weight: 950;
+    color: var(--text);
+  }
+
+  .kanji-pill{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: #eef2ff;
+    border: 1px solid rgba(99,102,241,.25);
+    color: #4338ca;
+    font-weight: 900;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .kanji-grid{
+    padding: 18px;
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .kanji-card{
+    border: 1px solid rgba(15,23,42,.08);
+    border-radius: 16px;
+    background: #fff;
+    padding: 16px 16px 14px;
+    transition: .15s ease;
+  }
+
+  .kanji-card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px rgba(37,99,235,.08);
+    border-color: rgba(37,99,235,.20);
+  }
+
+  .kanji-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .kanji-char{
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .kanji-detail-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+    width: 100%;
+    height: 46px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 900;
+    color: #fff;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    box-shadow: 0 10px 22px rgba(37,99,235,.18);
+    transition: .15s ease;
+  }
+
+  .kanji-detail-btn:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 14px 26px rgba(37,99,235,.24);
+  }
+
+  .kanji-row{
+    display:flex;
+    gap: 8px;
+    align-items:flex-start;
+    margin-top: 7px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .kanji-label{
+    width: 58px;
+    flex: 0 0 auto;
+    font-weight: 900;
+    color: var(--muted);
+  }
+
+  .kanji-value{
+    color: var(--text);
+    font-weight: 700;
+    overflow-wrap:anywhere;
+  }
+
+  .empty-box{
+    padding: 20px;
+    color: var(--muted);
+    font-weight: 800;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 980px){
+    .kanji-grid{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px){
+    .kanji-search{
+      flex-direction: column;
+    }
+
+    .kanji-search button{
+      width:100%;
+    }
+
+    .kanji-grid{
+      grid-template-columns: 1fr;
+    }
+
+    .kanji-title{
+      font-size: 28px;
+    }
+  }
+</style>
+
+<div class="kanji-wrap">
+  <section class="kanji-hero">
+    <div class="kanji-hero-top">
+      <h1 class="kanji-title">🈶 일본어 한자 2136개 모음</h1>
+      <p class="kanji-desc">
+        일본어에서 자주 쓰이는 한자는 총 <strong>2136개</strong>가 있으며, 이 페이지는 그 한자들을 한눈에 보기 쉽게 정리한 페이지입니다.<br>
+        각 한자마다 <strong>뜻, 한자음, 설명, 관련 단어, 예문, 관련 한자</strong>를 함께 확인할 수 있어 일본어 공부에 활용하기 좋습니다.<br>
+        아래의 <strong>한자음 초성 분류(ㄱ~ㅎ)</strong>는 한국어식 한자음 기준으로 묶어두어, 비슷한 소리의 한자를 함께 익히는 데 도움이 됩니다.<br>
+        검색창에서는 <strong>한자 / 뜻 / 한자음</strong>만 간단하게 검색할 수 있습니다.
+      </p>
+
+      <div class="search-box">
+        <h2>원하는 한자를 바로 찾아보세요</h2>
+        <p>
+          예) 暇 / 틈 / 가
+        </p>
+
+        <form class="kanji-search" method="GET" action="{{ url_for('jlpt_kanji_home') }}">
+          <input
+            type="text"
+            name="q"
+            value="{{ q or '' }}"
+            placeholder="예) 暇 / 틈 / 가">
+          <button type="submit">검색하기</button>
+        </form>
+
+        <div class="filter-wrap">
+          <a class="filter-tag {% if selected_initial == 'ALL' and not q %}active{% endif %}"
+             href="{{ url_for('jlpt_kanji_home') }}">전체</a>
+          {% for ini in initials %}
+            <a class="filter-tag {% if selected_initial == ini %}active{% endif %}"
+               href="{{ url_for('jlpt_kanji_home', q=q, initial=ini) }}">{{ ini }}</a>
+          {% endfor %}
+        </div>
+
+        <div class="search-summary">
+          <span class="search-summary-badge">
+            {% if q %}
+              검색 결과 {{ kanji_list|length }}개
+            {% elif selected_initial != 'ALL' %}
+              {{ selected_initial }} 계열 한자 {{ kanji_list|length }}개
+            {% else %}
+              전체 한자 {{ kanji_list|length }}개
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="kanji-body">
+    <section class="kanji-box">
+      <div class="kanji-box-head">
+        <h2 class="kanji-box-title">
+          {% if q %}
+            🔎 "{{ q }}" 검색 결과
+          {% elif selected_initial != 'ALL' %}
+            📚 "{{ selected_initial }}" 계열 한자 목록
+          {% else %}
+            📚 한자 목록
+          {% endif %}
+        </h2>
+        <span class="kanji-pill">{{ kanji_list|length }}개</span>
+      </div>
+
+      {% if kanji_list and kanji_list|length > 0 %}
+        <div class="kanji-grid">
+          {% for item in kanji_list %}
+            {% set sound = item.meaning.split()[-1] if item.meaning else '-' %}
+            {% set meaning_text = item.meaning.rsplit(' ', 1)[0] if item.meaning and ' ' in item.meaning else (item.meaning or '-') %}
+
+            <article class="kanji-card">
+              <div class="kanji-top">
+                <div class="kanji-char">{{ item.kanji }}</div>
+              </div>
+
+              <div class="kanji-row">
+                <div class="kanji-label">뜻</div>
+                <div class="kanji-value">{{ meaning_text }}</div>
+              </div>
+
+              <div class="kanji-row">
+                <div class="kanji-label">한자음</div>
+                <div class="kanji-value">{{ sound }}</div>
+              </div>
+
+              <div class="kanji-row">
+                <div class="kanji-label">설명</div>
+                <div class="kanji-value">{{ item.desc or '-' }}</div>
+              </div>
+
+              <a class="kanji-detail-btn" href="{{ url_for('jlpt_kanji_detail', slug=item.slug) }}">
+                자세히 알아보기
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty-box">
+          검색 결과가 없습니다. 다른 검색어를 입력하거나 전체 버튼을 눌러 다시 확인해보세요.
+        </div>
+      {% endif %}
+    </section>
+  </div>
+</div>
+{% endblock %}
