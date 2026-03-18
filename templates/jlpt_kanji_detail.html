@@ -1,0 +1,391 @@
+{% extends "base.html" %}
+
+{% set page_title = item.kanji ~ " 한자 뜻 음독 훈독 | JapaneseStudyRoom" %}
+{% set page_desc = item.kanji ~ " 한자의 뜻, 음독, 훈독, 관련 단어, 예문을 확인할 수 있는 페이지입니다." %}
+{% set page_robots = "index,follow" %}
+
+{% block content %}
+<style>
+  :root{
+    --card:#ffffff;
+    --text:#0f172a;
+    --muted:#64748b;
+    --line:rgba(15,23,42,.10);
+    --pri:#2563eb;
+    --pri2:#1d4ed8;
+    --shadow:0 12px 28px rgba(15,23,42,.06);
+  }
+
+  .kanji-detail-wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 22px 18px 48px;
+  }
+
+  .detail-card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .detail-top{
+    padding: 28px 24px 24px;
+    background:
+      radial-gradient(900px 320px at 20% 0%, rgba(37,99,235,.10), transparent 60%),
+      radial-gradient(760px 260px at 90% 10%, rgba(99,102,241,.08), transparent 55%),
+      #fff;
+    border-top: 4px solid rgba(37,99,235,.65);
+  }
+
+  .detail-breadcrumb{
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .detail-breadcrumb a{
+    color: var(--pri2);
+    text-decoration: none;
+    font-weight: 800;
+  }
+
+  .detail-kanji{
+    font-size: 88px;
+    line-height: 1;
+    font-weight: 900;
+    color: var(--text);
+  }
+
+  .detail-title{
+    margin: 16px 0 0;
+    font-size: 30px;
+    font-weight: 950;
+    color: var(--text);
+  }
+
+  .detail-desc{
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .detail-body{
+    padding: 20px 24px 24px;
+    display:grid;
+    gap:16px;
+  }
+
+  .info-box{
+    border: 1px solid rgba(15,23,42,.08);
+    border-radius: 18px;
+    background: #fff;
+    padding: 18px;
+  }
+
+  .info-box h2{
+    margin:0 0 14px;
+    font-size: 18px;
+    font-weight: 950;
+    color: var(--text);
+  }
+
+  .info-row{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    padding: 7px 0;
+    border-bottom: 1px dashed rgba(15,23,42,.06);
+  }
+
+  .info-row:last-child{
+    border-bottom:none;
+  }
+
+  .info-label{
+    width: 80px;
+    flex: 0 0 auto;
+    color: var(--muted);
+    font-weight: 900;
+    font-size: 13px;
+  }
+
+  .info-value{
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.7;
+    overflow-wrap:anywhere;
+  }
+
+  .guide-box{
+    border-radius: 20px;
+    padding: 20px 18px;
+    background:
+      radial-gradient(600px 180px at 0% 0%, rgba(37,99,235,.08), transparent 55%),
+      radial-gradient(500px 160px at 100% 0%, rgba(99,102,241,.07), transparent 55%),
+      linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid rgba(37,99,235,.10);
+  }
+
+  .guide-title{
+    margin: 0 0 12px;
+    font-size: 20px;
+    font-weight: 950;
+    color: var(--text);
+  }
+
+  .guide-text{
+    margin: 0;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.85;
+    word-break: keep-all;
+  }
+
+  .guide-text b{
+    color: var(--pri2);
+  }
+
+  .word-list{
+    display:grid;
+    gap:10px;
+  }
+
+  .word-item{
+    padding: 12px 14px;
+    border-radius: 14px;
+    background:#f8fbff;
+    border:1px solid rgba(37,99,235,.10);
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.7;
+  }
+
+  .related-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .related-item{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    text-decoration:none;
+    background:#f8fbff;
+    border:1px solid rgba(37,99,235,.14);
+    color: var(--pri2);
+    font-weight: 900;
+    transition:.15s ease;
+  }
+
+  .related-item:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(37,99,235,.10);
+  }
+
+  .keyword-box{
+    border-radius: 20px;
+    padding: 20px 18px 16px;
+    background:
+      radial-gradient(600px 180px at 0% 0%, rgba(99,102,241,.08), transparent 55%),
+      radial-gradient(500px 160px at 100% 0%, rgba(37,99,235,.07), transparent 55%),
+      linear-gradient(180deg, #ffffff 0%, #fafcff 100%);
+    border: 1px solid rgba(99,102,241,.10);
+  }
+
+  .keyword-title{
+    margin: 0 0 10px;
+    font-size: 19px;
+    font-weight: 950;
+    color: var(--text);
+  }
+
+  .keyword-desc{
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+
+  .keyword-chip-wrap{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  .keyword-chip{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(37,99,235,.07);
+    border: 1px solid rgba(37,99,235,.13);
+    color: var(--pri2);
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .back-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin-top: 8px;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 14px;
+    text-decoration:none;
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--pri2);
+    background:#fff;
+    border:1px solid rgba(37,99,235,.18);
+  }
+
+  .back-btn:hover{
+    box-shadow: 0 10px 20px rgba(37,99,235,.10);
+  }
+
+  @media (max-width: 700px){
+    .detail-kanji{
+      font-size: 70px;
+    }
+
+    .detail-title{
+      font-size: 24px;
+    }
+
+    .info-row{
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .info-label{
+      width:auto;
+    }
+  }
+</style>
+
+<div class="kanji-detail-wrap">
+  <section class="detail-card">
+    <div class="detail-top">
+      <div class="detail-breadcrumb">
+        <a href="/">홈</a> /
+        <a href="{{ url_for('jlpt_kanji_home') }}">일본어 한자 2136개 모음</a> /
+        <span>{{ item.kanji }}</span>
+      </div>
+
+      <div class="detail-kanji">{{ item.kanji }}</div>
+      <h1 class="detail-title">{{ item.kanji }} 한자 정리</h1>
+      <p class="detail-desc">
+        {{ item.desc or (item.kanji ~ " 한자의 뜻과 읽는 법을 정리한 페이지입니다.") }}
+      </p>
+    </div>
+
+    <div class="detail-body">
+      <section class="info-box">
+        <h2>기본 정보</h2>
+
+        <div class="info-row">
+          <div class="info-label">한자</div>
+          <div class="info-value">{{ item.kanji }}</div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">뜻</div>
+          <div class="info-value">{{ item.meaning or '-' }}</div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">음독</div>
+          <div class="info-value">{{ item.onyomi or '-' }}</div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">훈독</div>
+          <div class="info-value">{{ item.kunyomi or '-' }}</div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">설명</div>
+          <div class="info-value">{{ item.desc or '-' }}</div>
+        </div>
+      </section>
+
+      <section class="guide-box">
+        <h2 class="guide-title">음독 / 훈독이란?</h2>
+        <p class="guide-text">
+          <b>음독</b>은 한자가 중국에서 들어오면서 생긴 읽는 방식이고,
+          <b>훈독</b>은 일본 고유어에 맞춰 읽는 방식입니다.<br>
+          보통 <b>한자어처럼 여러 글자가 붙을 때는 음독</b>,
+          <b>단독으로 쓰이거나 일본식 표현에서는 훈독</b>이 자주 쓰입니다.
+        </p>
+      </section>
+
+      <section class="info-box">
+        <h2>관련 단어</h2>
+
+        {% if item.words %}
+          <div class="word-list">
+            {% for word in item.words %}
+              <div class="word-item">{{ word }}</div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="info-value">등록된 관련 단어가 없습니다.</div>
+        {% endif %}
+      </section>
+
+      <section class="info-box">
+        <h2>예문</h2>
+
+        <div class="info-row">
+          <div class="info-label">일본어</div>
+          <div class="info-value">{{ item.example_jp or '-' }}</div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">뜻</div>
+          <div class="info-value">{{ item.example_ko or '-' }}</div>
+        </div>
+      </section>
+
+      <section class="info-box">
+        <h2>관련 한자</h2>
+
+        {% if related_items %}
+          <div class="related-list">
+            {% for rel in related_items %}
+              <a class="related-item" href="{{ url_for('jlpt_kanji_detail', slug=rel.slug) }}">
+                <span>{{ rel.kanji }}</span>
+                <span>{{ rel.meaning }}</span>
+              </a>
+            {% endfor %}
+          </div>
+        {% else %}
+
+        {% endif %}
+      </section>
+
+      <section class="keyword-box">
+
+        <div class="keyword-chip-wrap">
+          <span class="keyword-chip">{{ item.kanji }} 뜻</span>
+          <span class="keyword-chip">{{ item.meaning }} 한자</span>
+        </div>
+      </section>
+
+      <a class="back-btn" href="{{ url_for('jlpt_kanji_home') }}">← 한자 목록으로 돌아가기</a>
+    </div>
+  </section>
+</div>
+{% endblock %}
