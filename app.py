@@ -26,6 +26,7 @@ from flask import Response
 from time import time
 from math import ceil
 from meaning_data import MEANING_ITEMS
+from kanji_data import KANJI_DATA
 
 from flask import (
     Flask, render_template, request, redirect, url_for,
@@ -27248,7 +27249,106 @@ def ads_txt():
         'ads.txt',
         mimetype='text/plain'
     )
-    
+
+def get_kanji_korean_sound(meaning):
+    if not meaning:
+        return ''
+
+    parts = str(meaning).strip().split()
+    if not parts:
+        return ''
+
+    return parts[-1]
+
+
+def get_kanji_meaning_text(meaning):
+    if not meaning:
+        return ''
+
+    text = str(meaning).strip()
+    if ' ' in text:
+        return text.rsplit(' ', 1)[0]
+    return text
+
+
+def get_korean_initial(text):
+    if not text:
+        return None
+
+    ch = str(text).strip()[0]
+    code = ord(ch)
+
+    if 0xAC00 <= code <= 0xD7A3:
+        initials = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
+        return initials[(code - 0xAC00) // 588]
+
+    return None
+
+
+@app.route('/jlpt/kanji')
+def jlpt_kanji_home():
+    q = request.args.get('q', '').strip()
+    selected_initial = request.args.get('initial', 'ALL').strip()
+
+    initials = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
+    if selected_initial not in initials and selected_initial != 'ALL':
+        selected_initial = 'ALL'
+
+    filtered_kanji = KANJI_DATA
+
+    if selected_initial != 'ALL':
+        filtered_kanji = [
+            item for item in filtered_kanji
+            if get_korean_initial(get_kanji_korean_sound(item.get('meaning', ''))) == selected_initial
+        ]
+
+    if q:
+        q_lower = q.lower()
+        filtered_kanji = [
+            item for item in filtered_kanji
+            if q_lower in str(item.get('kanji', '')).lower()
+            or q_lower in get_kanji_meaning_text(item.get('meaning', '')).lower()
+            or q_lower in get_kanji_korean_sound(item.get('meaning', '')).lower()
+        ]
+
+    return render_template(
+        'jlpt_kanji_home.html',
+        kanji_list=filtered_kanji,
+        q=q,
+        initials=initials,
+        selected_initial=selected_initial
+    )
+
+
+@app.route('/jlpt/kanji/detail/<slug>')
+def jlpt_kanji_detail(slug):
+    kanji_item = next((item for item in KANJI_DATA if item.get("slug") == slug), None)
+    if not kanji_item:
+        abort(404)
+
+    related_items = []
+    related_values = kanji_item.get("related", []) or []
+    seen_slugs = set()
+
+    for rel_value in related_values:
+        found = next(
+            (
+                item for item in KANJI_DATA
+                if item.get("slug") == rel_value or item.get("kanji") == rel_value
+            ),
+            None
+        )
+
+        if found and found.get("slug") not in seen_slugs:
+            related_items.append(found)
+            seen_slugs.add(found.get("slug"))
+
+    return render_template(
+        'jlpt_kanji_detail.html',
+        item=kanji_item,
+        related_items=related_items
+    )
+
 @app.context_processor
 def inject_helpers():
     return {"is_admin": is_admin}
