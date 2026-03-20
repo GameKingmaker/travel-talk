@@ -22,7 +22,7 @@ KANJI_DATA = [
     'meaning': '집 가',
     'onyomi': 'カ, ケ',
     'kunyomi': 'いえ, や',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '집이나 가정을 의미하는 기본 한자입니다.',
     'words': [
       '家（いえ） 집',
@@ -58,7 +58,7 @@ KANJI_DATA = [
     'meaning': '거리 가',
     'onyomi': 'ガイ, カイ',
     'kunyomi': 'まち',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '거리나 도시를 의미하는 한자입니다.',
     'words': [
       '街（まち） 거리',
@@ -75,7 +75,7 @@ KANJI_DATA = [
     'meaning': '값 가',
     'onyomi': 'カ',
     'kunyomi': 'あたい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '가격이나 가치를 의미하는 한자입니다.',
     'words': [
       '価値（かち） 가치',
@@ -92,7 +92,7 @@ KANJI_DATA = [
     'meaning': '옳을 가',
     'onyomi': 'カ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '가능하거나 허가됨을 의미합니다.',
     'words': [
       '可能（かのう） 가능',
@@ -109,7 +109,7 @@ KANJI_DATA = [
     'meaning': '거짓 가',
     'onyomi': 'カ, ケ',
     'kunyomi': 'かり',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '임시나 가짜 상태를 의미합니다.',
     'words': [
       '仮定（かてい） 가정',
@@ -158,7 +158,7 @@ KANJI_DATA = [
     'meaning': '시렁 가',
     'onyomi': 'カ',
     'kunyomi': 'かける, かかる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '걸거나 연결하는 의미입니다.',
     'words': [
       '架橋（かきょう） 가교',
@@ -174,7 +174,7 @@ KANJI_DATA = [
     'meaning': '시집갈 가',
     'onyomi': 'カ',
     'kunyomi': 'よめ, とつぐ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '결혼하여 시집가는 것을 의미합니다.',
     'words': [
       '嫁ぐ（とつぐ） 시집가다',
@@ -190,7 +190,7 @@ KANJI_DATA = [
     'meaning': '틈 가',
     'onyomi': 'カ',
     'kunyomi': 'ひま',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '시간적 여유나 한가함을 의미합니다.',
     'words': [
       '暇（ひま） 한가함',
@@ -206,7 +206,7 @@ KANJI_DATA = [
     'meaning': '심을 가',
     'onyomi': 'カ',
     'kunyomi': 'かせぐ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '돈이나 이익을 벌어들이는 의미입니다.',
     'words': [
       '稼ぐ（かせぐ） 돈 벌다',
@@ -222,7 +222,7 @@ KANJI_DATA = [
     'meaning': '뿔 각',
     'onyomi': 'カク',
     'kunyomi': 'かど, つの',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '뿔이나 모서리를 의미합니다.',
     'words': [
       '角（つの） 뿔',
@@ -239,7 +239,7 @@ KANJI_DATA = [
     'meaning': '각각 각',
     'onyomi': 'カク',
     'kunyomi': 'おのおの',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '각각, 개별을 의미합니다.',
     'words': [
       '各自（かくじ） 각자',
@@ -255,7 +255,7 @@ KANJI_DATA = [
     'meaning': '깨달을 각',
     'onyomi': 'カク',
     'kunyomi': 'おぼえる, さます, さめる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '기억하거나 깨닫는 의미입니다.',
     'words': [
       '覚える（おぼえる） 외우다',
@@ -271,7 +271,7 @@ KANJI_DATA = [
     'meaning': '새길 각',
     'onyomi': 'コク',
     'kunyomi': 'きざむ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '새기거나 기록하는 의미입니다.',
     'words': [
       '時刻（じこく） 시각',
@@ -287,7 +287,7 @@ KANJI_DATA = [
     'meaning': '집 각',
     'onyomi': 'カク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '큰 건물이나 정부 조직을 의미합니다.',
     'words': [
       '内閣（ないかく） 내각',
@@ -305,7 +305,7 @@ KANJI_DATA = [
     'meaning': '물리칠 각',
     'onyomi': 'キャク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '물리치거나 거절하는 의미입니다.',
     'words': [
       '却下（きゃっか） 기각',
@@ -337,7 +337,7 @@ KANJI_DATA = [
     'meaning': '다리 각',
     'onyomi': 'キャク, キャ',
     'kunyomi': 'あし',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '다리나 발을 의미하며 신체나 기둥 역할을 나타낼 때 사용됩니다.',
     'words': [
       '脚（あし） 다리',
@@ -371,7 +371,7 @@ KANJI_DATA = [
     'meaning': '새길 간',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '출판하거나 간행하는 의미를 가진 한자입니다.',
     'words': [
       '刊行（かんこう） 간행',
@@ -387,7 +387,7 @@ KANJI_DATA = [
     'meaning': '줄기 간',
     'onyomi': 'カン',
     'kunyomi': 'みき',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '나무의 줄기나 중심이 되는 부분을 의미합니다.',
     'words': [
       '幹（みき） 줄기',
@@ -403,7 +403,7 @@ KANJI_DATA = [
     'meaning': '방패 간',
     'onyomi': 'カン',
     'kunyomi': 'ほす, ひる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '말리거나 건조시키는 의미를 가진 한자입니다.',
     'words': [
       '干す（ほす） 말리다',
@@ -419,7 +419,7 @@ KANJI_DATA = [
     'meaning': '볼 간',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '보다, 돌보다의 의미로 사용되는 한자입니다.',
     'words': [
       '看護（かんご） 간호',
@@ -437,7 +437,7 @@ KANJI_DATA = [
     'meaning': '대쪽 간',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '간단하거나 간략함을 의미하는 한자입니다.',
     'words': [
       '簡単（かんたん） 간단',
@@ -453,7 +453,7 @@ KANJI_DATA = [
     'meaning': '간 간',
     'onyomi': 'カン',
     'kunyomi': 'きも',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '간이나 중요한 핵심을 의미하는 한자입니다.',
     'words': [
       '肝（きも） 간',
@@ -469,7 +469,7 @@ KANJI_DATA = [
     'meaning': '개간할 간',
     'onyomi': 'コン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '땅을 개간하거나 개발하는 의미를 가진 한자입니다.',
     'words': [
       '開墾（かいこん） 개간'
@@ -484,7 +484,7 @@ KANJI_DATA = [
     'meaning': '간절할 간',
     'onyomi': 'コン',
     'kunyomi': 'ねんごろ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '정중하거나 간절한 태도를 의미합니다.',
     'words': [
       '懇切（こんせつ） 친절',
@@ -500,7 +500,7 @@ KANJI_DATA = [
     'meaning': '꾸짖을 갈',
     'onyomi': 'カツ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '크게 꾸짖거나 외치는 의미를 가진 한자입니다.',
     'words': [
       '一喝（いっかつ） 호통'
@@ -517,7 +517,7 @@ KANJI_DATA = [
     'meaning': '목마를 갈',
     'onyomi': 'カツ',
     'kunyomi': 'かわく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '목마르거나 갈증을 느끼는 상태를 의미합니다.',
     'words': [
       '渇く（かわく） 목마르다',
@@ -535,7 +535,7 @@ KANJI_DATA = [
     'meaning': '칡 갈',
     'onyomi': 'カツ',
     'kunyomi': 'くず',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '칡이라는 식물을 의미하는 한자입니다.',
     'words': [
       '葛（くず） 칡'
@@ -565,7 +565,7 @@ KANJI_DATA = [
     'meaning': '느낄 감',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '느끼거나 감정을 나타내는 중요한 한자입니다.',
     'words': [
       '感情（かんじょう） 감정',
@@ -583,7 +583,7 @@ KANJI_DATA = [
     'meaning': '덜 감',
     'onyomi': 'ゲン',
     'kunyomi': 'へる, へらす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '줄어들거나 감소하는 것을 의미합니다.',
     'words': [
       '減る（へる） 줄다',
@@ -601,7 +601,7 @@ KANJI_DATA = [
     'meaning': '달 감',
     'onyomi': 'カン',
     'kunyomi': 'あまい, あまえる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '달콤함이나 느슨함을 의미합니다.',
     'words': [
       '甘い（あまい） 달다',
@@ -617,7 +617,7 @@ KANJI_DATA = [
     'meaning': '헤아릴 감',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '직감이나 감각적인 판단을 의미합니다.',
     'words': [
       '勘（かん） 감',
@@ -633,7 +633,7 @@ KANJI_DATA = [
     'meaning': '감색 감',
     'onyomi': 'コン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '짙은 남색을 의미하는 한자입니다.',
     'words': [
       '紺色（こんいろ） 감색'
@@ -648,7 +648,7 @@ KANJI_DATA = [
     'meaning': '견딜 감',
     'onyomi': 'カン, タン',
     'kunyomi': 'たえる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '참거나 견디는 의미를 가진 한자입니다.',
     'words': [
       '堪える（たえる） 견디다'
@@ -663,7 +663,7 @@ KANJI_DATA = [
     'meaning': '감히 감',
     'onyomi': 'カン',
     'kunyomi': 'あえて',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '감히 어떤 행동을 하는 의미입니다.',
     'words': [
       '敢えて（あえて） 굳이'
@@ -678,7 +678,7 @@ KANJI_DATA = [
     'meaning': '볼 감',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '감시하거나 관리하는 의미를 가진 한자입니다.',
     'words': [
       '監督（かんとく） 감독',
@@ -696,7 +696,7 @@ KANJI_DATA = [
     'meaning': '섭섭할 감',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '한이 되거나 섭섭하고 아쉬운 마음을 나타내는 한자입니다.',
     'words': [
       '遺憾（いかん） 유감',
@@ -712,7 +712,7 @@ KANJI_DATA = [
     'meaning': '거울 감',
     'onyomi': 'カン',
     'kunyomi': 'かんがみる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '거울이나 본보기로 삼아 살피는 뜻을 가진 한자입니다.',
     'words': [
       '鑑賞（かんしょう） 감상',
@@ -729,7 +729,7 @@ KANJI_DATA = [
     'meaning': '갑옷 갑',
     'onyomi': 'コウ, カン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '갑옷이나 등급의 첫째를 뜻하며 분류나 순서를 나타낼 때도 쓰입니다.',
     'words': [
       '甲（こう） 갑',
@@ -792,10 +792,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-kou-lecture',
     'kanji': '講',
-    'meaning': '외울 강',
+    'meaning': '익힐 강',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '강의하거나 설명하는 뜻을 가진 한자입니다.',
     'words': [
       '講義（こうぎ） 강의',
@@ -812,7 +812,7 @@ KANJI_DATA = [
     'meaning': '내릴 강/항복할 항',
     'onyomi': 'コウ',
     'kunyomi': 'おりる, おろす, ふる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '내려오거나 내리게 하다, 또는 항복하는 뜻으로 쓰이는 한자입니다.',
     'words': [
       '降りる（おりる） 내리다',
@@ -829,7 +829,7 @@ KANJI_DATA = [
     'meaning': '강철 강',
     'onyomi': 'コウ',
     'kunyomi': 'はがね',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '강철이나 단단한 금속을 의미하는 한자입니다.',
     'words': [
       '鋼（はがね） 강철',
@@ -847,7 +847,7 @@ KANJI_DATA = [
     'meaning': '강 강',
     'onyomi': 'コウ',
     'kunyomi': 'え',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '큰 강이나 물줄기를 뜻하는 한자입니다.',
     'words': [
       '江戸（えど） 에도',
@@ -860,10 +860,10 @@ KANJI_DATA = [
   {
     'slug': 'n2-oka',
     'kanji': '丘',
-    'meaning': '언덕 강',
+    'meaning': '언덕 구',
     'onyomi': '',
     'kunyomi': 'おか',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '낮은 언덕이나 둔덕을 의미하는 한자입니다.',
     'words': [
       '丘（おか） 언덕',
@@ -874,12 +874,32 @@ KANJI_DATA = [
     'related': []
   },
   {
+  'slug': 'n1-han-hill-name',
+  'kanji': '邱',
+  'meaning': '언덕 구',
+  'onyomi': 'キュウ',
+  'kunyomi': '',
+  'level': 'N1',
+  'desc': '언덕을 뜻하는 한자로, 주로 인명이나 지명에서 사용됩니다.',
+  'words': [
+    '邱（きゅう） 언덕 구(한자)',
+    '邱陵（きゅうりょう） 언덕과 구릉'
+  ],
+  'example_jp': '邱は主に人名や地名で使われる。',
+  'example_ko': '邱는 주로 인명이나 지명에서 사용된다.',
+  'related': [
+    '丘',
+    '山',
+    '陵'
+  ]
+},
+  {
     'slug': 'n3-gou-hard',
     'kanji': '剛',
     'meaning': '굳셀 강',
     'onyomi': 'ゴウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '굳세고 강인한 성질을 뜻하는 한자입니다.',
     'words': [
       '剛力（ごうりき） 강한 힘',
@@ -898,7 +918,7 @@ KANJI_DATA = [
     'meaning': '벼리 강',
     'onyomi': 'コウ',
     'kunyomi': 'つな',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '굵은 줄이나 밧줄, 또는 중요한 강령을 뜻하는 한자입니다.',
     'words': [
       '綱（つな） 밧줄',
@@ -914,7 +934,7 @@ KANJI_DATA = [
     'meaning': '열 개',
     'onyomi': 'カイ',
     'kunyomi': 'ひらく, ひらける, あく, あける',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '열다, 열리다의 뜻을 가진 매우 기본적인 한자입니다.',
     'words': [
       '開ける（あける） 열다',
@@ -933,7 +953,7 @@ KANJI_DATA = [
     'meaning': '고칠 개',
     'onyomi': 'カイ',
     'kunyomi': 'あらためる, あらたまる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '고치거나 새롭게 바꾸는 뜻을 가진 한자입니다.',
     'words': [
       '改める（あらためる） 고치다',
@@ -950,7 +970,7 @@ KANJI_DATA = [
     'meaning': '낱 개',
     'onyomi': 'コ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '개수 단위로 쓰이며 사물의 낱개를 세는 기본 한자입니다.',
     'words': [
       '一個（いっこ） 한 개',
@@ -967,7 +987,7 @@ KANJI_DATA = [
     'meaning': '끼일 개',
     'onyomi': 'カイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '사이에 끼이거나 매개하는 뜻을 가진 한자입니다.',
     'words': [
       '紹介（しょうかい） 소개',
@@ -983,7 +1003,7 @@ KANJI_DATA = [
     'meaning': '다 개',
     'onyomi': 'カイ',
     'kunyomi': 'みな',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '모두, 전부라는 뜻을 나타내는 한자입니다.',
     'words': [
       '皆（みな） 모두',
@@ -999,7 +1019,7 @@ KANJI_DATA = [
     'meaning': '분개할 개',
     'onyomi': 'ガイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '분개하거나 깊이 탄식하는 감정을 나타내는 한자입니다.',
     'words': [
       '憤慨（ふんがい） 분개',
@@ -1015,7 +1035,7 @@ KANJI_DATA = [
     'meaning': '덮을 개',
     'onyomi': 'ガイ',
     'kunyomi': 'ふた',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '뚜껑이나 덮개를 의미하는 한자입니다.',
     'words': [
       '蓋（ふた） 뚜껑',
@@ -1049,7 +1069,7 @@ KANJI_DATA = [
     'meaning': '대개 개',
     'onyomi': 'ガイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '대체로, 대강, 개요라는 뜻을 나타내는 한자입니다.',
     'words': [
       '概要（がいよう） 개요',
@@ -1066,7 +1086,7 @@ KANJI_DATA = [
     'meaning': '손 객',
     'onyomi': 'キャク, カク',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '손님이나 방문객을 뜻하는 매우 기본적인 한자입니다.',
     'words': [
       '客（きゃく） 손님',
@@ -1098,7 +1118,7 @@ KANJI_DATA = [
     'meaning': '갈 거',
     'onyomi': 'キョ, コ',
     'kunyomi': 'さる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '가다, 떠나다, 지나가다의 뜻을 가진 기본 한자입니다.',
     'words': [
       '去る（さる） 떠나다',
@@ -1115,7 +1135,7 @@ KANJI_DATA = [
     'meaning': '들 거',
     'onyomi': 'キョ',
     'kunyomi': 'あがる, あげる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '들어 올리거나 거론하고, 행동을 일으키는 뜻을 가진 한자입니다.',
     'words': [
       '挙げる（あげる） 들다',
@@ -1132,7 +1152,7 @@ KANJI_DATA = [
     'meaning': '살 거',
     'onyomi': 'キョ',
     'kunyomi': 'いる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '있다, 머무르다, 살다의 뜻으로 쓰이는 기본 한자입니다.',
     'words': [
       '居る（いる） 있다',
@@ -1151,7 +1171,7 @@ KANJI_DATA = [
     'meaning': '클 거',
     'onyomi': 'キョ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '매우 크거나 거대한 것을 뜻하는 한자입니다.',
     'words': [
       '巨大（きょだい） 거대',
@@ -1167,7 +1187,7 @@ KANJI_DATA = [
     'meaning': '막을 거',
     'onyomi': 'キョ',
     'kunyomi': 'こばむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '거절하거나 받아들이지 않는 뜻을 가진 한자입니다.',
     'words': [
       '拒否（きょひ） 거부',
@@ -1201,10 +1221,10 @@ KANJI_DATA = [
   {
     'slug': 'n2-sueru',
     'kanji': '据',
-    'meaning': '일할 거',
+    'meaning': '놓을 거',
     'onyomi': '',
     'kunyomi': 'すえる, すわる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '어떤 자리에 놓거나 자리를 잡게 한다는 뜻을 가진 한자입니다.',
     'words': [
       '据える（すえる） 놓다, 앉히다',
@@ -1217,10 +1237,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-kyo-distance',
     'kanji': '距',
-    'meaning': '떨어질 거',
+    'meaning': '거리 거',
     'onyomi': 'キョ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '거리나 간격을 뜻하는 한자입니다.',
     'words': [
       '距離（きょり） 거리'
@@ -1253,7 +1273,7 @@ KANJI_DATA = [
     'meaning': '세울 건',
     'onyomi': 'ケン, コン',
     'kunyomi': 'たてる, たつ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '세우다, 짓다의 뜻을 가진 기본 한자입니다.',
     'words': [
       '建てる（たてる） 세우다, 짓다',
@@ -1274,7 +1294,7 @@ KANJI_DATA = [
     'meaning': '굳셀 건',
     'onyomi': 'ケン',
     'kunyomi': 'すこやか',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '건강하고 튼튼함을 뜻하는 한자입니다.',
     'words': [
       '健康（けんこう） 건강',
@@ -1293,7 +1313,7 @@ KANJI_DATA = [
     'meaning': '물건 건',
     'onyomi': 'ケン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '사건이나 건수, 안건 등을 세는 데 쓰이는 한자입니다.',
     'words': [
       '事件（じけん） 사건',
@@ -1312,7 +1332,7 @@ KANJI_DATA = [
     'meaning': '수건 건',
     'onyomi': 'キン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '천이나 폭, 수건과 관련된 뜻을 가진 한자입니다.',
     'words': [
       '頭巾（ずきん） 두건',
@@ -1328,7 +1348,7 @@ KANJI_DATA = [
     'meaning': '마를 건',
     'onyomi': 'カン',
     'kunyomi': 'かわく, かわかす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '마르다, 건조하다의 뜻을 가진 한자입니다.',
     'words': [
       '乾く（かわく） 마르다',
@@ -1347,7 +1367,7 @@ KANJI_DATA = [
     'meaning': '열쇠 건',
     'onyomi': 'ケン',
     'kunyomi': 'かぎ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '문을 잠그거나 여는 열쇠를 뜻하는 한자입니다.',
     'words': [
       '鍵（かぎ） 열쇠',
@@ -1382,7 +1402,7 @@ KANJI_DATA = [
     'meaning': '뛰어날 걸',
     'onyomi': 'ケツ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '뛰어나고 걸출한 인물이나 재능을 뜻하는 한자입니다.',
     'words': [
       '傑作（けっさく） 걸작',
@@ -1398,7 +1418,7 @@ KANJI_DATA = [
     'meaning': '검사할 검',
     'onyomi': 'ケン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '조사하거나 검사하는 뜻을 가진 한자입니다.',
     'words': [
       '検査（けんさ） 검사',
@@ -1430,7 +1450,7 @@ KANJI_DATA = [
     'meaning': '칼 검',
     'onyomi': 'ケン',
     'kunyomi': 'つるぎ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '칼이나 검을 의미하는 한자입니다.',
     'words': [
       '剣（つるぎ） 검',
@@ -1445,7 +1465,7 @@ KANJI_DATA = [
     'meaning': '걸 게',
     'onyomi': 'ケイ',
     'kunyomi': 'かかげる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '걸거나 내걸어 알리는 의미를 가진 한자입니다.',
     'words': [
       '掲載（けいさい） 게재',
@@ -1460,7 +1480,7 @@ KANJI_DATA = [
     'meaning': '쉴 게',
     'onyomi': 'ケイ',
     'kunyomi': 'いこう',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '쉬거나 휴식을 취하는 상태를 의미하는 한자입니다.',
     'words': [
       '憩い（いこい） 휴식'
@@ -1474,7 +1494,7 @@ KANJI_DATA = [
     'meaning': '격식 격',
     'onyomi': 'カク, コウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '격식이나 기준, 등급을 나타내는 한자입니다.',
     'words': [
       '性格（せいかく） 성격',
@@ -1493,7 +1513,7 @@ KANJI_DATA = [
     'meaning': '격할 격',
     'onyomi': 'ゲキ',
     'kunyomi': 'はげしい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '강하거나 격렬한 상태를 의미하는 한자입니다.',
     'words': [
       '激しい（はげしい） 격렬하다',
@@ -1509,10 +1529,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-kaku-separate',
     'kanji': '隔',
-    'meaning': '사이뜰 격',
+    'meaning': '사이 뜰 격',
     'onyomi': 'カク',
     'kunyomi': 'へだてる, へだたる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '사이를 두거나 떨어뜨리는 의미를 가진 한자입니다.',
     'words': [
       '間隔（かんかく） 간격',
@@ -1530,7 +1550,7 @@ KANJI_DATA = [
     'meaning': '칠 격',
     'onyomi': 'ゲキ',
     'kunyomi': 'うつ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '치거나 공격하는 의미를 가진 한자입니다.',
     'words': [
       '攻撃（こうげき） 공격',
@@ -1548,7 +1568,7 @@ KANJI_DATA = [
     'meaning': '개 견',
     'onyomi': 'ケン',
     'kunyomi': 'いぬ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '개를 의미하는 기본 한자입니다.',
     'words': [
       '犬（いぬ） 개',
@@ -1579,7 +1599,7 @@ KANJI_DATA = [
     'meaning': '비단 견',
     'onyomi': 'ケン',
     'kunyomi': 'きぬ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '비단이나 실크를 의미하는 한자입니다.',
     'words': [
       '絹（きぬ） 비단'
@@ -1593,7 +1613,7 @@ KANJI_DATA = [
     'meaning': '어깨 견',
     'onyomi': 'ケン',
     'kunyomi': 'かた',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '어깨를 의미하는 기본 한자입니다.',
     'words': [
       '肩（かた） 어깨',
@@ -1608,7 +1628,7 @@ KANJI_DATA = [
     'meaning': '굳을 견',
     'onyomi': 'ケン',
     'kunyomi': 'かたい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '단단하거나 굳은 상태를 의미하는 한자입니다.',
     'words': [
       '堅い（かたい） 단단하다',
@@ -1627,7 +1647,7 @@ KANJI_DATA = [
     'meaning': '보낼 견',
     'onyomi': 'ケン',
     'kunyomi': 'つかう, つかわす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '보내거나 파견하는 의미를 가진 한자입니다.',
     'words': [
       '派遣（はけん） 파견',
@@ -1642,7 +1662,7 @@ KANJI_DATA = [
     'meaning': '고치 견',
     'onyomi': 'ケン',
     'kunyomi': 'まゆ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '누에고치나 보호하는 껍질을 의미하는 한자입니다.',
     'words': [
       '繭（まゆ） 고치'
@@ -1656,7 +1676,7 @@ KANJI_DATA = [
     'meaning': '결단할 결',
     'onyomi': 'ケツ',
     'kunyomi': 'きめる, きまる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '결정하거나 확정하는 의미를 가진 한자입니다.',
     'words': [
       '決める（きめる） 정하다',
@@ -1675,7 +1695,7 @@ KANJI_DATA = [
     'meaning': '이지러질 결',
     'onyomi': 'ケツ',
     'kunyomi': 'かける, かく, かかす',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '부족하거나 빠지는 상태를 의미합니다.',
     'words': [
       '欠ける（かける） 결핍되다',
@@ -1693,7 +1713,7 @@ KANJI_DATA = [
     'meaning': '맺을 결',
     'onyomi': 'ケツ',
     'kunyomi': 'むすぶ, ゆう, ゆわえる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '묶거나 연결하는 의미를 가진 한자입니다.',
     'words': [
       '結ぶ（むすぶ） 묶다',
@@ -1712,7 +1732,7 @@ KANJI_DATA = [
     'meaning': '깨끗할 결',
     'onyomi': 'ケツ',
     'kunyomi': 'いさぎよい',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '깨끗하고 결단력 있는 상태를 의미합니다.',
     'words': [
       '潔い（いさぎよい） 깨끗하다, 시원스럽다',
@@ -1730,7 +1750,7 @@ KANJI_DATA = [
     'meaning': '겸할 겸',
     'onyomi': 'ケン',
     'kunyomi': 'かねる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '겸하다, 동시에 한다는 의미를 가진 한자입니다.',
     'words': [
       '兼ねる（かねる） 겸하다',
@@ -1765,7 +1785,7 @@ KANJI_DATA = [
     'meaning': '낫 겸',
     'onyomi': '',
     'kunyomi': 'かま',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '곡식이나 풀을 베는 낫을 의미하는 한자입니다.',
     'words': [
       '鎌（かま） 낫',
@@ -1780,7 +1800,7 @@ KANJI_DATA = [
     'meaning': '서울 경',
     'onyomi': 'キョウ, ケイ, キン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '수도나 큰 도시를 뜻하는 기본 한자입니다.',
     'words': [
       '東京（とうきょう） 도쿄',
@@ -1815,7 +1835,7 @@ KANJI_DATA = [
     'meaning': '지름길/길 경',
     'onyomi': 'ケイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '지름길이나 직경, 통로의 의미를 나타내는 한자입니다.',
     'words': [
       '直径（ちょっけい） 직경',
@@ -1833,7 +1853,7 @@ KANJI_DATA = [
     'meaning': '볕 경',
     'onyomi': 'ケイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '햇빛, 경치, 풍경과 관련된 뜻을 가진 한자입니다.',
     'words': [
       '景色（けしき） 경치',
@@ -1851,7 +1871,7 @@ KANJI_DATA = [
     'meaning': '거울 경',
     'onyomi': 'キョウ',
     'kunyomi': 'かがみ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '거울을 의미하는 한자입니다.',
     'words': [
       '鏡（かがみ） 거울',
@@ -1882,10 +1902,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-kei-pass',
     'kanji': '経',
-    'meaning': '지날/글 경',
+    'meaning': '지날 경',
     'onyomi': 'ケイ, キョウ',
     'kunyomi': 'へる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '지나다, 거치다의 뜻과 함께 경전이나 경과를 나타내는 기본 한자입니다.',
     'words': [
       '経つ（たつ） 지나다',
@@ -1905,7 +1925,7 @@ KANJI_DATA = [
     'meaning': '밭 갈 경',
     'onyomi': 'コウ',
     'kunyomi': 'たがやす',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '밭을 갈거나 경작하는 뜻을 가진 한자입니다.',
     'words': [
       '耕す（たがやす） 밭을 갈다',
@@ -1923,7 +1943,7 @@ KANJI_DATA = [
     'meaning': '지경 경',
     'onyomi': 'キョウ, ケイ',
     'kunyomi': 'さかい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '경계나 처지, 상황의 경지를 의미하는 한자입니다.',
     'words': [
       '境界（きょうかい） 경계',
@@ -1943,7 +1963,7 @@ KANJI_DATA = [
     'meaning': '공경할 경',
     'onyomi': 'ケイ',
     'kunyomi': 'うやまう',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '존경하거나 공경하는 마음을 나타내는 한자입니다.',
     'words': [
       '尊敬（そんけい） 존경',
@@ -1959,10 +1979,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-kei-warn',
     'kanji': '警',
-    'meaning': '깨우칠 경',
+    'meaning': '경계할 경',
     'onyomi': 'ケイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '경계하거나 주의를 주는 뜻을 가진 한자입니다.',
     'words': [
       '警察（けいさつ） 경찰',
@@ -1980,7 +2000,7 @@ KANJI_DATA = [
     'meaning': '줄기 경',
     'onyomi': 'ケイ',
     'kunyomi': 'くき',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '식물의 줄기를 의미하는 한자입니다.',
     'words': [
       '茎（くき） 줄기'
@@ -1997,7 +2017,7 @@ KANJI_DATA = [
     'meaning': '고칠 경/다시 갱',
     'onyomi': 'コウ',
     'kunyomi': 'さら, ふける, ふかす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '다시 새롭게 하거나 고치고 바꾸는 뜻을 가진 한자입니다.',
     'words': [
       '変更（へんこう） 변경',
@@ -2013,7 +2033,7 @@ KANJI_DATA = [
   {
     'slug': 'n2-koro',
     'kanji': '頃',
-    'meaning': '잠깐 경',
+    'meaning': '때 경',
     'onyomi': '',
     'kunyomi': 'ころ',
     'level': 'N2',
@@ -2049,7 +2069,7 @@ KANJI_DATA = [
     'meaning': '굳을 경',
     'onyomi': 'コウ',
     'kunyomi': 'かたい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '단단하고 굳은 상태를 의미하는 한자입니다.',
     'words': [
       '硬い（かたい） 단단하다',
@@ -2069,7 +2089,7 @@ KANJI_DATA = [
     'meaning': '기울 경',
     'onyomi': 'ケイ',
     'kunyomi': 'かたむく, かたむける',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '기울어지거나 기울게 하는 뜻을 가진 한자입니다.',
     'words': [
       '傾く（かたむく） 기울다',
@@ -2084,7 +2104,7 @@ KANJI_DATA = [
     'meaning': '경사 경',
     'onyomi': 'ケイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '기쁘고 경사스러운 일을 의미하는 한자입니다.',
     'words': [
       '慶祝（けいしゅく） 경축',
@@ -2119,7 +2139,7 @@ KANJI_DATA = [
     'meaning': '고래 경',
     'onyomi': 'ゲイ',
     'kunyomi': 'くじら',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '고래를 의미하는 한자입니다.',
     'words': [
       '鯨（くじら） 고래'
@@ -2133,7 +2153,7 @@ KANJI_DATA = [
     'meaning': '놀랄 경',
     'onyomi': 'キョウ',
     'kunyomi': 'おどろく, おどろかす',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '놀라거나 놀라게 하는 뜻을 가진 한자입니다.',
     'words': [
       '驚く（おどろく） 놀라다',
@@ -2149,7 +2169,7 @@ KANJI_DATA = [
     'meaning': '셀 계',
     'onyomi': 'ケイ',
     'kunyomi': 'はかる, はかろう',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '세거나 계산하고 계획하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '計る（はかる） 재다, 꾀하다',
@@ -2170,7 +2190,7 @@ KANJI_DATA = [
     'meaning': '맬 계',
     'onyomi': 'ケイ',
     'kunyomi': 'かかる, かかり',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '관계되거나 맡은 바를 나타내는 한자입니다.',
     'words': [
       '関係（かんけい） 관계',
@@ -2230,7 +2250,7 @@ KANJI_DATA = [
     'meaning': '계절 계',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '계절이나 시기를 나타내는 기본 한자입니다.',
     'words': [
       '季節（きせつ） 계절',
@@ -2245,7 +2265,7 @@ KANJI_DATA = [
     'meaning': '기계 계',
     'onyomi': 'カイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '기계나 장치를 뜻하는 한자입니다.',
     'words': [
       '機械（きかい） 기계'
@@ -2262,7 +2282,7 @@ KANJI_DATA = [
     'meaning': '이을 계',
     'onyomi': 'ケイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '계통이나 연결된 줄기를 뜻하는 한자입니다.',
     'words': [
       '系統（けいとう） 계통',
@@ -2283,7 +2303,7 @@ KANJI_DATA = [
     'meaning': '이를 계',
     'onyomi': '',
     'kunyomi': 'とどける, とどく',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '도달하거나 전달한다는 뜻을 가진 한자입니다.',
     'words': [
       '届く（とどく） 닿다, 도착하다',
@@ -2299,7 +2319,7 @@ KANJI_DATA = [
     'meaning': '경계할 계',
     'onyomi': 'カイ',
     'kunyomi': 'いましめる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '경계하거나 훈계하는 뜻을 가진 한자입니다.',
     'words': [
       '警戒（けいかい） 경계',
@@ -2317,7 +2337,7 @@ KANJI_DATA = [
     'meaning': '맺을 계',
     'onyomi': 'ケイ',
     'kunyomi': 'ちぎる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '약속이나 계약을 맺는 뜻을 가진 한자입니다.',
     'words': [
       '契約（けいやく） 계약',
@@ -2335,7 +2355,7 @@ KANJI_DATA = [
     'meaning': '열 계',
     'onyomi': 'ケイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '열다, 깨우치다의 뜻으로 주로 격식 있는 표현에 쓰이는 한자입니다.',
     'words': [
       '啓発（けいはつ） 계발',
@@ -2353,7 +2373,7 @@ KANJI_DATA = [
     'meaning': '시내 계',
     'onyomi': 'ケイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '산 사이로 흐르는 시내나 계곡을 뜻하는 한자입니다.',
     'words': [
       '渓谷（けいこく） 계곡'
@@ -2367,7 +2387,7 @@ KANJI_DATA = [
     'meaning': '이을 계',
     'onyomi': 'ケイ',
     'kunyomi': 'つぐ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '이어받거나 계속 잇는 뜻을 가진 한자입니다.',
     'words': [
       '継ぐ（つぐ） 잇다, 계승하다',
@@ -2400,7 +2420,7 @@ KANJI_DATA = [
     'meaning': '닭 계',
     'onyomi': 'ケイ',
     'kunyomi': 'にわとり',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '닭을 의미하는 한자입니다.',
     'words': [
       '鶏（にわとり） 닭',
@@ -2434,7 +2454,7 @@ KANJI_DATA = [
     'meaning': '생각할 고',
     'onyomi': 'コウ',
     'kunyomi': 'かんがえる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '생각하거나 판단하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '考える（かんがえる） 생각하다',
@@ -2470,7 +2490,7 @@ KANJI_DATA = [
     'meaning': '쓸 고',
     'onyomi': 'ク',
     'kunyomi': 'くるしい, くるしむ, くるしめる, にがい',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '괴롭거나 쓰고 힘든 상태를 뜻하는 기본 한자입니다.',
     'words': [
       '苦しい（くるしい） 괴롭다',
@@ -2486,7 +2506,7 @@ KANJI_DATA = [
     'meaning': '곳집 고',
     'onyomi': 'コ, ク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '창고나 저장하는 곳을 뜻하는 한자입니다.',
     'words': [
       '倉庫（そうこ） 창고',
@@ -2522,7 +2542,7 @@ KANJI_DATA = [
     'meaning': '굳을 고',
     'onyomi': 'コ',
     'kunyomi': 'かたい, かたまる, かためる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '굳거나 단단해지는 상태를 의미하는 한자입니다.',
     'words': [
       '固い（かたい） 단단하다',
@@ -2542,7 +2562,7 @@ KANJI_DATA = [
     'meaning': '연고 고',
     'onyomi': 'コ',
     'kunyomi': 'ゆえ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '이유나 사정, 원인을 나타내는 한자입니다.',
     'words': [
       '理由（りゆう） 이유',
@@ -2558,7 +2578,7 @@ KANJI_DATA = [
     'meaning': '꽁무니 고',
     'onyomi': '',
     'kunyomi': 'しり',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '엉덩이나 끝부분을 의미하는 한자입니다.',
     'words': [
       '尻（しり） 엉덩이'
@@ -2586,7 +2606,7 @@ KANJI_DATA = [
     'meaning': '외로울 고',
     'onyomi': 'コ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '외롭거나 홀로 있는 상태를 의미하는 한자입니다.',
     'words': [
       '孤独（こどく） 고독'
@@ -2600,7 +2620,7 @@ KANJI_DATA = [
     'meaning': '칠 고',
     'onyomi': 'ゴウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '고문하거나 심하게 다루는 뜻을 가진 한자입니다.',
     'words': [
       '拷問（ごうもん） 고문'
@@ -2614,7 +2634,7 @@ KANJI_DATA = [
     'meaning': '마를 고',
     'onyomi': 'コ',
     'kunyomi': 'かれる, からす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '마르거나 시드는 상태를 의미하는 한자입니다.',
     'words': [
       '枯れる（かれる） 시들다',
@@ -2632,7 +2652,7 @@ KANJI_DATA = [
     'meaning': '품 팔 고',
     'onyomi': 'コ',
     'kunyomi': 'やとう',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '사람을 고용하는 뜻을 가진 한자입니다.',
     'words': [
       '雇う（やとう） 고용하다',
@@ -2647,7 +2667,7 @@ KANJI_DATA = [
     'meaning': '북 고',
     'onyomi': 'コ',
     'kunyomi': 'つづみ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '북이나 두드리는 악기를 의미하는 한자입니다.',
     'words': [
       '太鼓（たいこ） 북'
@@ -2661,7 +2681,7 @@ KANJI_DATA = [
     'meaning': '원고 고',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '글의 초안이나 원고를 의미하는 한자입니다.',
     'words': [
       '原稿（げんこう） 원고'
@@ -2675,7 +2695,7 @@ KANJI_DATA = [
     'meaning': '막을 고',
     'onyomi': 'コ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '가두거나 제한하는 뜻을 가진 한자입니다.',
     'words': [
       '禁錮（きんこ） 금고형'
@@ -2689,7 +2709,7 @@ KANJI_DATA = [
     'meaning': '돌아볼 고',
     'onyomi': 'コ',
     'kunyomi': 'かえりみる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '뒤돌아보거나 배려하는 뜻을 가진 한자입니다.',
     'words': [
       '顧みる（かえりみる） 돌아보다',
@@ -2704,10 +2724,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-tani',
     'kanji': '谷',
-    'meaning': '골짜기 곡',
+    'meaning': '골 곡',
     'onyomi': 'コク',
     'kunyomi': 'たに',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '골짜기나 계곡을 의미하는 기본 한자입니다.',
     'words': [
       '谷（たに） 골짜기'
@@ -2721,7 +2741,7 @@ KANJI_DATA = [
     'meaning': '굽을 곡',
     'onyomi': 'キョク',
     'kunyomi': 'まがる, まげる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '굽거나 휘어지는 상태를 의미하는 기본 한자입니다.',
     'words': [
       '曲がる（まがる） 굽다',
@@ -2737,7 +2757,7 @@ KANJI_DATA = [
     'meaning': '곡식 곡',
     'onyomi': 'コク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '곡식이나 식량을 의미하는 한자입니다.',
     'words': [
       '穀物（こくもつ） 곡물'
@@ -2751,7 +2771,7 @@ KANJI_DATA = [
     'meaning': '곤할 곤',
     'onyomi': 'コン',
     'kunyomi': 'こまる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '곤란하거나 어려움을 겪는 상태를 의미하는 한자입니다.',
     'words': [
       '困る（こまる） 곤란하다',
@@ -2766,7 +2786,7 @@ KANJI_DATA = [
     'meaning': '벌레 곤',
     'onyomi': 'コン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '벌레나 곤충을 의미하는 한자입니다.',
     'words': [
       '昆虫（こんちゅう） 곤충'
@@ -2780,7 +2800,7 @@ KANJI_DATA = [
     'meaning': '뼈 골',
     'onyomi': 'コツ',
     'kunyomi': 'ほね',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '뼈를 의미하는 기본 한자입니다.',
     'words': [
       '骨（ほね） 뼈',
@@ -2811,7 +2831,7 @@ KANJI_DATA = [
     'meaning': '장인 공',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '기술이나 공작, 일을 의미하는 기본 한자입니다.',
     'words': [
       '工事（こうじ） 공사',
@@ -2827,7 +2847,7 @@ KANJI_DATA = [
     'meaning': '공평할 공',
     'onyomi': 'コウ',
     'kunyomi': 'おおやけ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '공적이거나 공평한 상태를 의미하는 기본 한자입니다.',
     'words': [
       '公共（こうきょう） 공공',
@@ -2847,7 +2867,7 @@ KANJI_DATA = [
     'meaning': '공 공',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '공로나 업적을 의미하는 한자입니다.',
     'words': [
       '成功（せいこう） 성공',
@@ -2865,7 +2885,7 @@ KANJI_DATA = [
     'meaning': '한가지 공',
     'onyomi': 'キョウ',
     'kunyomi': 'とも',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '함께하거나 공동으로 한다는 의미를 가진 한자입니다.',
     'words': [
       '共に（ともに） 함께',
@@ -2885,7 +2905,7 @@ KANJI_DATA = [
     'meaning': '이바지할 공',
     'onyomi': 'キョウ, ク',
     'kunyomi': 'とも, そなえる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '바치거나 제공하는 의미를 가진 한자입니다.',
     'words': [
       '提供（ていきょう） 제공',
@@ -2917,7 +2937,7 @@ KANJI_DATA = [
     'meaning': '칠 공',
     'onyomi': 'コウ',
     'kunyomi': 'せめる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '공격하거나 몰아붙이는 의미를 가진 한자입니다.',
     'words': [
       '攻撃（こうげき） 공격',
@@ -2935,7 +2955,7 @@ KANJI_DATA = [
     'meaning': '두려울 공',
     'onyomi': 'キョウ',
     'kunyomi': 'おそれる, おそろしい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '두려움이나 무서움을 나타내는 한자입니다.',
     'words': [
       '恐れる（おそれる） 두려워하다',
@@ -2950,7 +2970,7 @@ KANJI_DATA = [
     'meaning': '공손할 공',
     'onyomi': 'キョウ',
     'kunyomi': 'うやうやしい',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '공손하고 예의 바른 태도를 의미하는 한자입니다.',
     'words': [
       '恭しい（うやうやしい） 공손하다'
@@ -2967,7 +2987,7 @@ KANJI_DATA = [
     'meaning': '바칠 공',
     'onyomi': 'コウ, ク',
     'kunyomi': 'みつぐ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '바치거나 공헌하는 의미를 가진 한자입니다.',
     'words': [
       '貢献（こうけん） 공헌',
@@ -2982,7 +3002,7 @@ KANJI_DATA = [
     'meaning': '당길 공',
     'onyomi': 'コウ',
     'kunyomi': 'ひかえる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '억제하거나 삼가고 준비하는 뜻을 가진 한자입니다.',
     'words': [
       '控える（ひかえる） 삼가다',
@@ -2997,7 +3017,7 @@ KANJI_DATA = [
     'meaning': '과목 과',
     'onyomi': 'カ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '과목이나 분류를 의미하는 기본 한자입니다.',
     'words': [
       '科目（かもく） 과목',
@@ -3015,7 +3035,7 @@ KANJI_DATA = [
     'meaning': '실과 과',
     'onyomi': 'カ',
     'kunyomi': 'はたす, はてる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '결과나 열매를 의미하는 한자입니다.',
     'words': [
       '結果（けっか） 결과',
@@ -3033,7 +3053,7 @@ KANJI_DATA = [
     'meaning': '공부할 과',
     'onyomi': 'カ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '과제나 수업 단위를 의미하는 한자입니다.',
     'words': [
       '課題（かだい） 과제',
@@ -3052,7 +3072,7 @@ KANJI_DATA = [
     'meaning': '지날 과',
     'onyomi': 'カ',
     'kunyomi': 'すぎる, すごす, あやまつ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '지나가거나 지나침을 의미하는 한자입니다.',
     'words': [
       '過ぎる（すぎる） 지나가다',
@@ -3071,7 +3091,7 @@ KANJI_DATA = [
     'meaning': '과자 과',
     'onyomi': 'カ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '과자나 간식을 의미하는 기본 한자입니다.',
     'words': [
       '菓子（かし） 과자'
@@ -3088,7 +3108,7 @@ KANJI_DATA = [
     'meaning': '자랑할 과',
     'onyomi': 'コ',
     'kunyomi': 'ほこる, ほこらしい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '자랑하거나 긍지를 가지는 뜻을 가진 한자입니다.',
     'words': [
       '誇る（ほこる） 자랑하다',
@@ -3103,7 +3123,7 @@ KANJI_DATA = [
     'meaning': '적을 과',
     'onyomi': 'カ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '적거나 부족함을 의미하는 한자입니다.',
     'words': [
       '寡黙（かもく） 과묵'
@@ -3117,7 +3137,7 @@ KANJI_DATA = [
     'meaning': '냄비 과',
     'onyomi': '',
     'kunyomi': 'なべ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '요리에 사용하는 냄비를 의미하는 한자입니다.',
     'words': [
       '鍋（なべ） 냄비',
@@ -3132,7 +3152,7 @@ KANJI_DATA = [
     'meaning': '둘레 곽',
     'onyomi': 'カク',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '성곽이나 외곽을 의미하는 한자입니다.',
     'words': [
       '外郭（がいかく） 외곽'
@@ -3146,7 +3166,7 @@ KANJI_DATA = [
     'meaning': '집 관',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '건물이나 시설을 의미하는 기본 한자입니다.',
     'words': [
       '図書館（としょかん） 도서관',
@@ -3164,7 +3184,7 @@ KANJI_DATA = [
     'meaning': '벼슬 관',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '관청이나 관리와 관련된 뜻을 가진 기본 한자입니다.',
     'words': [
       '警官（けいかん） 경찰관',
@@ -3182,7 +3202,7 @@ KANJI_DATA = [
     'meaning': '대롱 관',
     'onyomi': 'カン',
     'kunyomi': 'くだ',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '관이나 파이프, 관리하는 뜻을 가진 한자입니다.',
     'words': [
       '管（くだ） 관',
@@ -3201,7 +3221,7 @@ KANJI_DATA = [
     'meaning': '관계할 관',
     'onyomi': 'カン',
     'kunyomi': 'せき, かかわる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '관계되거나 연결되는 것을 의미하는 기본 한자입니다.',
     'words': [
       '関係（かんけい） 관계',
@@ -3221,7 +3241,7 @@ KANJI_DATA = [
     'meaning': '볼 관',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '보거나 관찰하는 의미를 가진 한자입니다.',
     'words': [
       '観る（みる） 보다',
@@ -3240,7 +3260,7 @@ KANJI_DATA = [
     'meaning': '익숙할 관',
     'onyomi': 'カン',
     'kunyomi': 'なれる, ならす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '익숙해지거나 습관이 되는 것을 의미하는 한자입니다.',
     'words': [
       '慣れる（なれる） 익숙해지다',
@@ -3255,7 +3275,7 @@ KANJI_DATA = [
     'meaning': '꿸 관',
     'onyomi': '',
     'kunyomi': 'くし',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '꼬치나 꿰는 도구를 의미하는 한자입니다.',
     'words': [
       '串（くし） 꼬치'
@@ -3264,27 +3284,12 @@ KANJI_DATA = [
     'example_ko': '꼬치에 고기를 꽂다.'
   },
   {
-    'slug': 'n3-kan-can',
-    'kanji': '缶',
-    'meaning': '두레박 관',
-    'onyomi': 'カン',
-    'kunyomi': '',
-    'level': 'N3',
-    'desc': '깡통이나 금속 용기를 의미하는 한자입니다.',
-    'words': [
-      '缶（かん） 캔',
-      '缶詰（かんづめ） 통조림'
-    ],
-    'example_jp': '缶を開ける。',
-    'example_ko': '캔을 열다.'
-  },
-  {
     'slug': 'n3-kan-crown',
     'kanji': '冠',
     'meaning': '갓 관',
     'onyomi': 'カン',
     'kunyomi': 'かんむり',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '관이나 머리에 쓰는 것을 의미하는 한자입니다.',
     'words': [
       '冠（かんむり） 관',
@@ -3299,7 +3304,7 @@ KANJI_DATA = [
     'meaning': '꿸 관',
     'onyomi': 'カン',
     'kunyomi': 'つらぬく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '뚫거나 관통하는 뜻을 가진 한자입니다.',
     'words': [
       '貫く（つらぬく） 관통하다',
@@ -3331,7 +3336,7 @@ KANJI_DATA = [
     'meaning': '항목 관',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '조항이나 항목을 의미하는 한자입니다.',
     'words': [
       '条款（じょうかん） 조항'
@@ -3345,7 +3350,7 @@ KANJI_DATA = [
     'meaning': '너그러울 관',
     'onyomi': 'カン',
     'kunyomi': 'くつろぐ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '너그럽고 여유로운 상태를 의미하는 한자입니다.',
     'words': [
       '寛大（かんだい） 관대',
@@ -3360,7 +3365,7 @@ KANJI_DATA = [
     'meaning': '묶을 괄',
     'onyomi': 'カツ',
     'kunyomi': 'くくる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '묶거나 정리하는 뜻을 가진 한자입니다.',
     'words': [
       '括る（くくる） 묶다',
@@ -3375,7 +3380,7 @@ KANJI_DATA = [
     'meaning': '넓을 광',
     'onyomi': 'コウ',
     'kunyomi': 'ひろい, ひろまる, ひろめる, ひろがる, ひろげる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '넓거나 퍼지는 상태를 의미하는 기본 한자입니다.',
     'words': [
       '広い（ひろい） 넓다',
@@ -3394,7 +3399,7 @@ KANJI_DATA = [
     'meaning': '빛 광',
     'onyomi': 'コウ',
     'kunyomi': 'ひかる, ひかり',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '빛이나 빛남을 의미하는 기본 한자입니다.',
     'words': [
       '光（ひかり） 빛',
@@ -3407,7 +3412,7 @@ KANJI_DATA = [
   {
     'slug': 'n3-kou-mine',
     'kanji': '鉱',
-    'meaning': '쇳돌 광',
+    'meaning': '광물 광',
     'onyomi': 'コウ',
     'kunyomi': '',
     'level': 'N3',
@@ -3424,7 +3429,7 @@ KANJI_DATA = [
     'meaning': '미칠 광',
     'onyomi': 'キョウ',
     'kunyomi': 'くるう, くるおしい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '미치거나 정상에서 벗어난 상태를 의미하는 한자입니다.',
     'words': [
       '狂う（くるう） 미치다',
@@ -3439,7 +3444,7 @@ KANJI_DATA = [
     'meaning': '걸 괘',
     'onyomi': '',
     'kunyomi': 'かける, かかる',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '걸거나 걸리다의 의미를 가진 기본 한자입니다.',
     'words': [
       '掛ける（かける） 걸다',
@@ -3454,7 +3459,7 @@ KANJI_DATA = [
     'meaning': '괴이할 괴',
     'onyomi': 'カイ',
     'kunyomi': 'あやしい, あやしむ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '이상하거나 수상한 상태를 의미하는 한자입니다.',
     'words': [
       '怪しい（あやしい） 수상하다',
@@ -3469,7 +3474,7 @@ KANJI_DATA = [
     'meaning': '후릴 괴',
     'onyomi': 'カイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '유괴하거나 빼앗는 뜻을 가진 한자입니다.',
     'words': [
       '誘拐（ゆうかい） 유괴'
@@ -3486,7 +3491,7 @@ KANJI_DATA = [
     'meaning': '덩어리 괴',
     'onyomi': 'カイ',
     'kunyomi': 'かたまり',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '덩어리나 뭉친 것을 의미하는 한자입니다.',
     'words': [
       '塊（かたまり） 덩어리'
@@ -3500,7 +3505,7 @@ KANJI_DATA = [
     'meaning': '무너질 괴',
     'onyomi': 'カイ',
     'kunyomi': 'こわす, こわれる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '부수거나 망가지는 것을 의미하는 한자입니다.',
     'words': [
       '壊す（こわす） 부수다',
@@ -3536,7 +3541,7 @@ KANJI_DATA = [
     'meaning': '사귈 교',
     'onyomi': 'コウ',
     'kunyomi': 'まじわる, まじえる, まざる, かう, かわす',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '서로 교류하거나 섞이는 의미를 가진 기본 한자입니다.',
     'words': [
       '交流（こうりゅう） 교류',
@@ -3555,7 +3560,7 @@ KANJI_DATA = [
     'meaning': '가르칠 교',
     'onyomi': 'キョウ',
     'kunyomi': 'おしえる, おそわる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '가르치거나 배우는 의미를 가진 기본 한자입니다.',
     'words': [
       '教える（おしえる） 가르치다',
@@ -3574,7 +3579,7 @@ KANJI_DATA = [
     'meaning': '다리 교',
     'onyomi': 'キョウ',
     'kunyomi': 'はし',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '강이나 길 위를 건너는 다리를 의미하는 한자입니다.',
     'words': [
       '橋（はし） 다리'
@@ -3588,7 +3593,7 @@ KANJI_DATA = [
     'meaning': '공교할 교',
     'onyomi': 'コウ',
     'kunyomi': 'たくみ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '솜씨가 좋거나 교묘한 상태를 의미하는 한자입니다.',
     'words': [
       '巧み（たくみ） 교묘함',
@@ -3603,7 +3608,7 @@ KANJI_DATA = [
     'meaning': '들 교',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '도시 외곽이나 교외를 의미하는 한자입니다.',
     'words': [
       '郊外（こうがい） 교외'
@@ -3617,7 +3622,7 @@ KANJI_DATA = [
     'meaning': '목맬 교',
     'onyomi': 'コウ',
     'kunyomi': 'しぼる, しめる, しまる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '짜거나 조이는 의미를 가진 한자입니다.',
     'words': [
       '絞る（しぼる） 짜다',
@@ -3632,7 +3637,7 @@ KANJI_DATA = [
     'meaning': '견줄 교',
     'onyomi': 'カク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '비교하거나 견주는 뜻을 가진 한자입니다.',
     'words': [
       '比較（ひかく） 비교'
@@ -3649,7 +3654,7 @@ KANJI_DATA = [
     'meaning': '바로잡을 교',
     'onyomi': 'キョウ',
     'kunyomi': 'ためる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '바르게 고치거나 교정하는 뜻을 가진 한자입니다.',
     'words': [
       '矯正（きょうせい） 교정'
@@ -3691,10 +3696,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-ku-area',
     'kanji': '区',
-    'meaning': '구분할 구',
+    'meaning': '구역 구',
     'onyomi': 'ク',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '구역이나 구분을 의미하는 기본 한자입니다.',
     'words': [
       '区（く） 구',
@@ -3723,7 +3728,7 @@ KANJI_DATA = [
     'meaning': '갖출 구',
     'onyomi': 'グ',
     'kunyomi': 'そなわる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '도구나 준비된 것을 의미하는 한자입니다.',
     'words': [
       '道具（どうぐ） 도구',
@@ -3738,7 +3743,7 @@ KANJI_DATA = [
     'meaning': '공 구',
     'onyomi': 'キュウ',
     'kunyomi': 'たま',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '공이나 구형을 의미하는 기본 한자입니다.',
     'words': [
       '野球（やきゅう） 야구',
@@ -3753,7 +3758,7 @@ KANJI_DATA = [
     'meaning': '구할 구',
     'onyomi': 'キュウ',
     'kunyomi': 'もとめる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '구하거나 요구하는 뜻을 가진 한자입니다.',
     'words': [
       '求める（もとめる） 구하다',
@@ -3771,7 +3776,7 @@ KANJI_DATA = [
     'meaning': '구원할 구',
     'onyomi': 'キュウ',
     'kunyomi': 'すくう',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '구하거나 도와주는 뜻을 가진 한자입니다.',
     'words': [
       '救う（すくう） 구하다',
@@ -3789,7 +3794,7 @@ KANJI_DATA = [
     'meaning': '오랠 구',
     'onyomi': 'キュウ, ク',
     'kunyomi': 'ひさしい',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '시간이 오래됨을 의미하는 기본 한자입니다.',
     'words': [
       '久しぶり（ひさしぶり） 오랜만',
@@ -3804,7 +3809,7 @@ KANJI_DATA = [
     'meaning': '글귀 구',
     'onyomi': 'ク',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '문장이나 구절을 의미하는 기본 한자입니다.',
     'words': [
       '句（く） 구절'
@@ -3815,7 +3820,7 @@ KANJI_DATA = [
   {
     'slug': 'n5-kyuu-old',
     'kanji': '旧',
-    'meaning': '예 구',
+    'meaning': '옛 구',
     'onyomi': 'キュウ',
     'kunyomi': '',
     'level': 'N5',
@@ -3836,7 +3841,7 @@ KANJI_DATA = [
     'meaning': '얽을 구',
     'onyomi': 'コウ',
     'kunyomi': 'かまえる, かまう',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '구성하거나 짜는 뜻을 가진 한자입니다.',
     'words': [
       '構える（かまえる） 자세를 취하다',
@@ -3863,23 +3868,6 @@ KANJI_DATA = [
     'example_ko': '언덕의 경사가 가파르다.'
   },
   {
-    'slug': 'n4-oka-hill',
-    'kanji': '岡',
-    'meaning': '언덕 구',
-    'onyomi': 'キュウ',
-    'kunyomi': 'おか',
-    'level': 'N4',
-    'desc': '작은 언덕이나 높은 지형을 의미하는 한자입니다.',
-    'words': [
-      '岡（おか） 언덕'
-    ],
-    'example_jp': '岡の上に家がある。',
-    'example_ko': '언덕 위에 집이 있다.',
-    'related': [
-      'n5-kyuu-hill'
-    ]
-  },
-  {
     'slug': 'n2-usu-mortar',
     'kanji': '臼',
     'meaning': '절구 구',
@@ -3899,7 +3887,7 @@ KANJI_DATA = [
     'meaning': '때릴 구',
     'onyomi': 'オウ',
     'kunyomi': 'なぐる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '때리거나 구타하는 뜻을 가진 한자입니다.',
     'words': [
       '殴る（なぐる） 때리다'
@@ -3927,7 +3915,7 @@ KANJI_DATA = [
     'meaning': '잡을 구',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '붙잡거나 구속하는 뜻을 가진 한자입니다.',
     'words': [
       '拘束（こうそく） 구속'
@@ -3941,7 +3929,7 @@ KANJI_DATA = [
     'meaning': '두려워할 구',
     'onyomi': 'グ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '두려워하거나 겁내는 뜻을 가진 한자입니다.',
     'words': [
       '恐惧（きょうく） 공포'
@@ -3958,7 +3946,7 @@ KANJI_DATA = [
     'meaning': '몰 구',
     'onyomi': 'ク',
     'kunyomi': 'かける, かる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '몰거나 달리는 뜻을 가진 한자입니다.',
     'words': [
       '駆ける（かける） 달리다',
@@ -3973,7 +3961,7 @@ KANJI_DATA = [
     'meaning': '도랑 구',
     'onyomi': 'コウ',
     'kunyomi': 'みぞ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '물길이나 도랑을 의미하는 한자입니다.',
     'words': [
       '溝（みぞ） 도랑'
@@ -3987,7 +3975,7 @@ KANJI_DATA = [
     'meaning': '망아지 구',
     'onyomi': '',
     'kunyomi': 'こま',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '어린 말이나 장기 말을 의미하는 한자입니다.',
     'words': [
       '駒（こま） 말(장기)'
@@ -4001,7 +3989,7 @@ KANJI_DATA = [
     'meaning': '살 구',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '구입하거나 구매하는 뜻을 가진 한자입니다.',
     'words': [
       '購入（こうにゅう） 구매'
@@ -4034,7 +4022,7 @@ KANJI_DATA = [
     'meaning': '판 국',
     'onyomi': 'キョク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '국이나 부서, 판을 의미하는 한자입니다.',
     'words': [
       '郵便局（ゆうびんきょく） 우체국',
@@ -4052,7 +4040,7 @@ KANJI_DATA = [
     'meaning': '국화 국',
     'onyomi': '',
     'kunyomi': 'きく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '국화를 의미하는 한자입니다.',
     'words': [
       '菊（きく） 국화'
@@ -4066,7 +4054,7 @@ KANJI_DATA = [
     'meaning': '임금 군',
     'onyomi': 'クン',
     'kunyomi': 'きみ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '임금이나 상대를 높여 부르는 말에 쓰이는 기본 한자입니다.',
     'words': [
       '君（きみ） 너, 군',
@@ -4081,7 +4069,7 @@ KANJI_DATA = [
     'meaning': '군사 군',
     'onyomi': 'グン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '군대나 군사를 의미하는 기본 한자입니다.',
     'words': [
       '軍（ぐん） 군',
@@ -4096,7 +4084,7 @@ KANJI_DATA = [
     'meaning': '고을 군',
     'onyomi': 'グン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '행정 구역 단위를 의미하는 한자입니다.',
     'words': [
       '郡（ぐん） 군'
@@ -4110,7 +4098,7 @@ KANJI_DATA = [
     'meaning': '무리 군',
     'onyomi': 'グン',
     'kunyomi': 'むれる, むら',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '무리나 집단을 의미하는 한자입니다.',
     'words': [
       '群れ（むれ） 무리',
@@ -4128,7 +4116,7 @@ KANJI_DATA = [
     'meaning': '굽힐 굴',
     'onyomi': 'クツ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '굽히거나 굴복하는 뜻을 가진 한자입니다.',
     'words': [
       '屈する（くっする） 굴복하다',
@@ -4143,7 +4131,7 @@ KANJI_DATA = [
     'meaning': '팔 굴',
     'onyomi': 'クツ',
     'kunyomi': 'ほる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '파거나 땅을 파내는 뜻을 가진 한자입니다.',
     'words': [
       '掘る（ほる） 파다',
@@ -4161,7 +4149,7 @@ KANJI_DATA = [
     'meaning': '굴 굴',
     'onyomi': '',
     'kunyomi': 'ほり',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '도랑이나 해자를 의미하는 한자입니다.',
     'words': [
       '堀（ほり） 해자'
@@ -4178,7 +4166,7 @@ KANJI_DATA = [
     'meaning': '굴 굴',
     'onyomi': 'クツ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '굴이나 동굴을 의미하는 한자입니다.',
     'words': [
       '洞窟（どうくつ） 동굴'
@@ -4195,7 +4183,7 @@ KANJI_DATA = [
     'meaning': '활 궁',
     'onyomi': 'キュウ',
     'kunyomi': 'ゆみ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '활을 의미하는 한자입니다.',
     'words': [
       '弓（ゆみ） 활'
@@ -4209,7 +4197,7 @@ KANJI_DATA = [
     'meaning': '집 궁',
     'onyomi': 'キュウ, グウ, ク',
     'kunyomi': 'みや',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '궁전이나 큰 집을 의미하는 기본 한자입니다.',
     'words': [
       '神宮（じんぐう） 신궁',
@@ -4224,7 +4212,7 @@ KANJI_DATA = [
     'meaning': '다할/궁할 궁',
     'onyomi': 'キュウ',
     'kunyomi': 'きわめる, きわまる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '궁지에 몰리거나 끝에 다다름을 의미하는 한자입니다.',
     'words': [
       '困窮（こんきゅう） 곤궁',
@@ -4242,7 +4230,7 @@ KANJI_DATA = [
     'meaning': '문서 권',
     'onyomi': 'ケン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '티켓이나 증서를 의미하는 한자입니다.',
     'words': [
       '切符券（きっぷけん） 승차권',
@@ -4257,7 +4245,7 @@ KANJI_DATA = [
     'meaning': '책 권',
     'onyomi': 'カン',
     'kunyomi': 'まく, まき',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '말거나 책의 권수를 의미하는 한자입니다.',
     'words': [
       '一巻（いっかん） 1권',
@@ -4272,7 +4260,7 @@ KANJI_DATA = [
     'meaning': '권세 권',
     'onyomi': 'ケン, ゴン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '권리나 권력을 의미하는 한자입니다.',
     'words': [
       '権利（けんり） 권리',
@@ -4290,7 +4278,7 @@ KANJI_DATA = [
     'meaning': '주먹 권',
     'onyomi': 'ケン',
     'kunyomi': 'こぶし',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '주먹을 의미하는 한자입니다.',
     'words': [
       '拳（こぶし） 주먹'
@@ -4304,7 +4292,7 @@ KANJI_DATA = [
     'meaning': '우리 권',
     'onyomi': 'ケン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '범위나 권역을 의미하는 한자입니다.',
     'words': [
       '圏内（けんない） 권내',
@@ -4319,7 +4307,7 @@ KANJI_DATA = [
     'meaning': '권할 권',
     'onyomi': 'カン',
     'kunyomi': 'すすめる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '권유하거나 추천하는 뜻을 가진 한자입니다.',
     'words': [
       '勧める（すすめる） 권하다',
@@ -4334,7 +4322,7 @@ KANJI_DATA = [
     'meaning': '책상 궤',
     'onyomi': 'キ',
     'kunyomi': 'つくえ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '책상을 의미하는 기본 한자입니다.',
     'words': [
       '机（つくえ） 책상'
@@ -4348,7 +4336,7 @@ KANJI_DATA = [
     'meaning': '바퀴자국 궤',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '궤도나 바퀴 자국을 의미하는 한자입니다.',
     'words': [
       '軌道（きどう） 궤도'
@@ -4362,7 +4350,7 @@ KANJI_DATA = [
     'meaning': '무너질 궤',
     'onyomi': 'カイ',
     'kunyomi': 'つぶす, つぶれる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '무너지거나 찌그러지는 뜻을 가진 한자입니다.',
     'words': [
       '潰れる（つぶれる） 무너지다'
@@ -4379,7 +4367,7 @@ KANJI_DATA = [
     'meaning': '돌아갈 귀',
     'onyomi': 'キ',
     'kunyomi': 'かえる, かえす',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '돌아가거나 되돌리는 뜻을 가진 기본 한자입니다.',
     'words': [
       '帰る（かえる） 돌아가다',
@@ -4394,7 +4382,7 @@ KANJI_DATA = [
     'meaning': '귀할 귀',
     'onyomi': 'キ',
     'kunyomi': 'たっとい, たっとぶ, とうとい, とうとぶ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '귀하거나 소중함을 의미하는 한자입니다.',
     'words': [
       '貴重（きちょう） 귀중',
@@ -4409,7 +4397,7 @@ KANJI_DATA = [
     'meaning': '귀신 귀',
     'onyomi': 'キ',
     'kunyomi': 'おに',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '귀신이나 도깨비를 의미하는 한자입니다.',
     'words': [
       '鬼（おに） 도깨비'
@@ -4423,7 +4411,7 @@ KANJI_DATA = [
     'meaning': '거북 귀',
     'onyomi': 'キ',
     'kunyomi': 'かめ',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '거북을 의미하는 한자입니다.',
     'words': [
       '亀（かめ） 거북'
@@ -4437,7 +4425,7 @@ KANJI_DATA = [
     'meaning': '법 규',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '규칙이나 기준을 의미하는 한자입니다.',
     'words': [
       '規則（きそく） 규칙',
@@ -4452,7 +4440,7 @@ KANJI_DATA = [
     'meaning': '부르짖을 규',
     'onyomi': 'キョウ',
     'kunyomi': 'さけぶ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '크게 외치거나 부르짖는 뜻을 가진 한자입니다.',
     'words': [
       '叫ぶ（さけぶ） 외치다'
@@ -4463,11 +4451,11 @@ KANJI_DATA = [
   {
     'slug': 'n3-kyuu-accuse',
     'kanji': '糾',
-    'meaning': '규탄할 규',
+    'meaning': '얽힐 규',
     'onyomi': 'キュウ',
     'kunyomi': '',
     'level': 'N3',
-    'desc': '잘못을 따지거나 규탄하는 뜻을 가진 한자입니다.',
+    'desc': '얽히다, 꼬이다 라는 뜻을 가진 한자입니다.',
     'words': [
       '糾弾（きゅうだん） 규탄'
     ],
@@ -4480,7 +4468,7 @@ KANJI_DATA = [
     'meaning': '고를 균',
     'onyomi': 'キン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '고르거나 균형을 의미하는 한자입니다.',
     'words': [
       '平均（へいきん） 평균',
@@ -4495,7 +4483,7 @@ KANJI_DATA = [
     'meaning': '버섯 균',
     'onyomi': 'キン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '균이나 세균, 버섯 등을 의미하는 한자입니다.',
     'words': [
       '細菌（さいきん） 세균'
@@ -4527,7 +4515,7 @@ KANJI_DATA = [
     'meaning': '심할 극',
     'onyomi': 'ゲキ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '강하거나 격렬한 상태를 의미하는 한자입니다.',
     'words': [
       '劇的（げきてき） 극적',
@@ -4556,7 +4544,7 @@ KANJI_DATA = [
     'meaning': '틈 극',
     'onyomi': 'ゲキ',
     'kunyomi': 'すき',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '틈이나 빈 공간을 의미하는 한자입니다.',
     'words': [
       '隙（すき） 틈'
@@ -4570,7 +4558,7 @@ KANJI_DATA = [
     'meaning': '가까울 근',
     'onyomi': 'キン',
     'kunyomi': 'ちかい',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '가까움을 의미하는 기본 한자입니다.',
     'words': [
       '近い（ちかい） 가깝다',
@@ -4585,7 +4573,7 @@ KANJI_DATA = [
     'meaning': '뿌리 근',
     'onyomi': 'コン',
     'kunyomi': 'ね',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '뿌리나 근원을 의미하는 기본 한자입니다.',
     'words': [
       '根（ね） 뿌리',
@@ -4600,7 +4588,7 @@ KANJI_DATA = [
     'meaning': '부지런할 근',
     'onyomi': 'キン',
     'kunyomi': 'つとめる, つとまる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '부지런히 일하거나 근무하는 뜻을 가진 한자입니다.',
     'words': [
       '勤務（きんむ） 근무',
@@ -4615,7 +4603,7 @@ KANJI_DATA = [
     'meaning': '힘줄 근',
     'onyomi': 'キン',
     'kunyomi': 'すじ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '근육이나 줄기, 흐름을 의미하는 한자입니다.',
     'words': [
       '筋（すじ） 힘줄',
@@ -4644,7 +4632,7 @@ KANJI_DATA = [
     'meaning': '겨우 근',
     'onyomi': 'キン',
     'kunyomi': 'わずか',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '아주 적거나 겨우의 의미를 가진 한자입니다.',
     'words': [
       '僅か（わずか） 겨우, 약간'
@@ -4658,7 +4646,7 @@ KANJI_DATA = [
     'meaning': '삼갈 근',
     'onyomi': 'キン',
     'kunyomi': 'つつしむ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '조심하거나 삼가는 뜻을 가진 한자입니다.',
     'words': [
       '謹慎（きんしん） 근신'
@@ -4703,7 +4691,7 @@ KANJI_DATA = [
     'meaning': '금할 금',
     'onyomi': 'キン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '금지하거나 막는 뜻을 가진 한자입니다.',
     'words': [
       '禁止（きんし） 금지'
@@ -4717,7 +4705,7 @@ KANJI_DATA = [
     'meaning': '거문고 금',
     'onyomi': 'キン',
     'kunyomi': 'こと',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '전통 현악기를 의미하는 한자입니다.',
     'words': [
       '琴（こと） 거문고'
@@ -4731,7 +4719,7 @@ KANJI_DATA = [
     'meaning': '비단 금',
     'onyomi': 'キン',
     'kunyomi': 'にしき',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '화려한 비단을 의미하는 한자입니다.',
     'words': [
       '錦（にしき） 비단'
@@ -4745,7 +4733,7 @@ KANJI_DATA = [
     'meaning': '옷깃 금',
     'onyomi': 'キン',
     'kunyomi': 'えり',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '옷의 깃 부분을 의미하는 한자입니다.',
     'words': [
       '襟（えり） 옷깃'
@@ -4759,7 +4747,7 @@ KANJI_DATA = [
     'meaning': '급할 급',
     'onyomi': 'キュウ',
     'kunyomi': 'いそぐ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '급하거나 서두르는 상태를 의미하는 기본 한자입니다.',
     'words': [
       '急ぐ（いそぐ） 서두르다',
@@ -4774,7 +4762,7 @@ KANJI_DATA = [
     'meaning': '등급 급',
     'onyomi': 'キュウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '등급이나 수준을 의미하는 기본 한자입니다.',
     'words': [
       '上級（じょうきゅう） 상급',
@@ -4789,7 +4777,7 @@ KANJI_DATA = [
     'meaning': '줄 급',
     'onyomi': 'キュウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '지급하거나 급여를 의미하는 기본 한자입니다.',
     'words': [
       '給料（きゅうりょう） 급여',
@@ -4804,7 +4792,7 @@ KANJI_DATA = [
     'meaning': '미칠 급',
     'onyomi': 'キュウ',
     'kunyomi': 'およぶ, および, およぼす',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '미치거나 도달하는 뜻을 가진 한자입니다.',
     'words': [
       '及ぶ（およぶ） 미치다',
@@ -4816,7 +4804,7 @@ KANJI_DATA = [
   {
     'slug': 'n4-atsukau-handle',
     'kanji': '扱',
-    'meaning': '다룰 급',
+    'meaning': '다룰 취',
     'onyomi': '',
     'kunyomi': 'あつかう',
     'level': 'N4',
@@ -4867,7 +4855,7 @@ KANJI_DATA = [
     'meaning': '물 끓는 김 기',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '증기나 수증기를 의미하는 한자입니다.',
     'words': [
       '汽車（きしゃ） 기차'
@@ -4884,7 +4872,7 @@ KANJI_DATA = [
     'meaning': '기록할 기',
     'onyomi': 'キ',
     'kunyomi': 'しるす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '기록하거나 적는 뜻을 가진 기본 한자입니다.',
     'words': [
       '記録（きろく） 기록',
@@ -4899,7 +4887,7 @@ KANJI_DATA = [
     'meaning': '기약할 기',
     'onyomi': 'キ, ゴ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '시기나 기간을 의미하는 기본 한자입니다.',
     'words': [
       '期間（きかん） 기간',
@@ -4914,7 +4902,7 @@ KANJI_DATA = [
     'meaning': '일어날 기',
     'onyomi': 'キ',
     'kunyomi': 'おきる, おこる, おこす',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '일어나거나 시작하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '起きる（おきる） 일어나다',
@@ -4929,7 +4917,7 @@ KANJI_DATA = [
     'meaning': '벼리 기',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '기록이나 역사적 흐름을 의미하는 한자입니다.',
     'words': [
       '紀元（きげん） 기원'
@@ -4943,7 +4931,7 @@ KANJI_DATA = [
     'meaning': '기 기',
     'onyomi': 'キ',
     'kunyomi': 'はた',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '깃발을 의미하는 한자입니다.',
     'words': [
       '旗（はた） 깃발'
@@ -4957,7 +4945,7 @@ KANJI_DATA = [
     'meaning': '그릇 기',
     'onyomi': 'キ',
     'kunyomi': 'うつわ',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '그릇이나 도구를 의미하는 한자입니다.',
     'words': [
       '器（うつわ） 그릇',
@@ -4993,7 +4981,7 @@ KANJI_DATA = [
     'meaning': '재주 기',
     'onyomi': 'ギ',
     'kunyomi': 'わざ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '기술이나 재주를 의미하는 한자입니다.',
     'words': [
       '技術（ぎじゅつ） 기술',
@@ -5008,7 +4996,7 @@ KANJI_DATA = [
     'meaning': '부칠 기',
     'onyomi': 'キ',
     'kunyomi': 'よる, よせる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '의지하거나 보내는 뜻을 가진 한자입니다.',
     'words': [
       '寄る（よる） 들르다',
@@ -5023,7 +5011,7 @@ KANJI_DATA = [
     'meaning': '터 기',
     'onyomi': 'キ',
     'kunyomi': 'もと, もとい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '기초나 기반을 의미하는 한자입니다.',
     'words': [
       '基本（きほん） 기본',
@@ -5038,7 +5026,7 @@ KANJI_DATA = [
     'meaning': '몸 기',
     'onyomi': 'コ, キ',
     'kunyomi': 'おのれ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '자기 자신을 의미하는 한자입니다.',
     'words': [
       '己（おのれ） 자기'
@@ -5052,7 +5040,7 @@ KANJI_DATA = [
     'meaning': '꾀할 기',
     'onyomi': 'キ',
     'kunyomi': 'くわだてる, たくらむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '계획하거나 꾀하는 뜻을 가진 한자입니다.',
     'words': [
       '企画（きかく） 기획'
@@ -5066,7 +5054,7 @@ KANJI_DATA = [
     'meaning': '살 기',
     'onyomi': '',
     'kunyomi': 'はだ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '피부나 살을 의미하는 기본 한자입니다.',
     'words': [
       '肌（はだ） 피부'
@@ -5080,7 +5068,7 @@ KANJI_DATA = [
     'meaning': '재간 기',
     'onyomi': 'ギ, キ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '기술이나 예능적인 재주를 의미하는 한자입니다.',
     'words': [
       '伎（ぎ） 재능'
@@ -5097,7 +5085,7 @@ KANJI_DATA = [
     'meaning': '갈림길 기',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '갈라지거나 분기되는 것을 의미하는 한자입니다.',
     'words': [
       '分岐（ぶんき） 분기'
@@ -5111,7 +5099,7 @@ KANJI_DATA = [
     'meaning': '꺼릴 기',
     'onyomi': 'キ',
     'kunyomi': 'いむ, いまわしい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '싫어하거나 꺼리는 뜻을 가진 한자입니다.',
     'words': [
       '忌む（いむ） 꺼리다',
@@ -5123,10 +5111,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-ki-strange',
     'kanji': '奇',
-    'meaning': '기특할 기',
+    'meaning': '기이할 기',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '기이하거나 특별한 것을 의미하는 한자입니다.',
     'words': [
       '奇妙（きみょう） 기묘',
@@ -5145,7 +5133,7 @@ KANJI_DATA = [
     'meaning': '빌 기',
     'onyomi': 'キ',
     'kunyomi': 'いのる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '기도하거나 비는 뜻을 가진 한자입니다.',
     'words': [
       '祈る（いのる） 빌다',
@@ -5163,7 +5151,7 @@ KANJI_DATA = [
     'meaning': '이미 기',
     'onyomi': 'キ',
     'kunyomi': 'すでに',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '이미 어떤 일이 이루어졌음을 나타내는 한자입니다.',
     'words': [
       '既に（すでに） 이미'
@@ -5177,7 +5165,7 @@ KANJI_DATA = [
     'meaning': '주릴 기',
     'onyomi': 'キ',
     'kunyomi': 'うえる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '굶주리거나 배고픈 상태를 의미하는 한자입니다.',
     'words': [
       '飢える（うえる） 굶주리다'
@@ -5191,7 +5179,7 @@ KANJI_DATA = [
     'meaning': '갑 기',
     'onyomi': 'サイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '곶이나 돌출된 땅을 의미하는 한자입니다.',
     'words': [
       '埼玉（さいたま） 사이타마'
@@ -5208,7 +5196,7 @@ KANJI_DATA = [
     'meaning': '험할 기',
     'onyomi': '',
     'kunyomi': 'さき',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '험한 산길이나 돌출된 지형을 의미하는 한자입니다.',
     'words': [
       '長崎（ながさき） 나가사키'
@@ -5225,7 +5213,7 @@ KANJI_DATA = [
     'meaning': '몇 기',
     'onyomi': 'キ',
     'kunyomi': 'いく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '수량이나 횟수를 묻는 뜻을 가진 한자입니다.',
     'words': [
       '幾つ（いくつ） 몇 개'
@@ -5239,7 +5227,7 @@ KANJI_DATA = [
     'meaning': '바둑 기',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '바둑이나 장기 등의 게임을 의미하는 한자입니다.',
     'words': [
       '将棋（しょうぎ） 장기'
@@ -5256,7 +5244,7 @@ KANJI_DATA = [
     'meaning': '속일 기',
     'onyomi': 'ギ',
     'kunyomi': 'あざむく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '속이거나 기만하는 뜻을 가진 한자입니다.',
     'words': [
       '欺く（あざむく） 속이다'
@@ -5270,7 +5258,7 @@ KANJI_DATA = [
     'meaning': '바둑 기',
     'onyomi': 'ゴ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '바둑을 의미하는 한자입니다.',
     'words': [
       '囲碁（いご） 바둑'
@@ -5287,7 +5275,7 @@ KANJI_DATA = [
     'meaning': '버릴 기',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '버리거나 포기하는 뜻을 가진 한자입니다.',
     'words': [
       '放棄（ほうき） 포기'
@@ -5301,7 +5289,7 @@ KANJI_DATA = [
     'meaning': '경기 기',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '수도 주변 지역을 의미하는 한자입니다.',
     'words': [
       '近畿（きんき） 긴키'
@@ -5315,7 +5303,7 @@ KANJI_DATA = [
     'meaning': '말탈 기',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '말을 타는 것을 의미하는 한자입니다.',
     'words': [
       '騎馬（きば） 기마'
@@ -5329,7 +5317,7 @@ KANJI_DATA = [
     'meaning': '긴할 긴',
     'onyomi': 'キン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '긴장되거나 급박한 상태를 의미하는 한자입니다.',
     'words': [
       '緊張（きんちょう） 긴장'
@@ -5343,7 +5331,7 @@ KANJI_DATA = [
     'meaning': '길할 길',
     'onyomi': 'キチ, キツ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '좋거나 길한 의미를 가진 기본 한자입니다.',
     'words': [
       '大吉（だいきち） 대길'
@@ -5357,7 +5345,7 @@ KANJI_DATA = [
     'meaning': '먹을 끽',
     'onyomi': 'キツ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '마시거나 먹는 뜻을 가진 한자입니다.',
     'words': [
       '喫茶（きっさ） 다방'
@@ -5402,7 +5390,7 @@ KANJI_DATA = [
     'meaning': '허락할 낙',
     'onyomi': 'ダク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '허락하거나 승낙하는 뜻을 가진 한자입니다.',
     'words': [
       '承諾（しょうだく） 승낙'
@@ -5416,7 +5404,7 @@ KANJI_DATA = [
     'meaning': '어려울 난',
     'onyomi': 'ナン',
     'kunyomi': 'かたい, むずかしい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '어렵거나 곤란함을 의미하는 한자입니다.',
     'words': [
       '難しい（むずかしい） 어렵다'
@@ -5430,7 +5418,7 @@ KANJI_DATA = [
     'meaning': '따뜻할 난',
     'onyomi': 'ダン',
     'kunyomi': 'あたたか, あたたかい, あたたまる, あたためる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '따뜻함을 의미하는 한자입니다.',
     'words': [
       '暖かい（あたたかい） 따뜻하다'
@@ -5478,7 +5466,7 @@ KANJI_DATA = [
     'meaning': '들일 납',
     'onyomi': 'ノウ, ナツ',
     'kunyomi': 'おさまる, おさめる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '납부하거나 안에 들여 넣는 뜻을 가진 한자입니다.',
     'words': [
       '納める（おさめる） 납부하다, 거두다',
@@ -5491,10 +5479,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-musume',
     'kanji': '娘',
-    'meaning': '여자 낭',
+    'meaning': '아가씨 낭',
     'onyomi': '',
     'kunyomi': 'むすめ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '딸이나 젊은 여자를 의미하는 한자입니다.',
     'words': [
       '娘（むすめ） 딸, 처녀'
@@ -5511,7 +5499,7 @@ KANJI_DATA = [
     'meaning': '안 내',
     'onyomi': 'ナイ, ダイ',
     'kunyomi': 'うち',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '안쪽이나 내부를 의미하는 기본 한자입니다.',
     'words': [
       '内（うち） 안',
@@ -5541,7 +5529,7 @@ KANJI_DATA = [
     'meaning': '견딜 내',
     'onyomi': 'タイ',
     'kunyomi': 'たえる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '참거나 견디는 뜻을 가진 한자입니다.',
     'words': [
       '耐える（たえる） 견디다',
@@ -5557,7 +5545,7 @@ KANJI_DATA = [
   {
     'slug': 'n5-onna-female',
     'kanji': '女',
-    'meaning': '여자 녀',
+    'meaning': '계집 녀',
     'onyomi': 'ジョ, ニョ, ニョウ',
     'kunyomi': 'おんな',
     'level': 'N5',
@@ -5596,7 +5584,7 @@ KANJI_DATA = [
     'meaning': '생각 념',
     'onyomi': 'ネン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '생각이나 마음속에 두는 뜻을 가진 기본 한자입니다.',
     'words': [
       '念願（ねんがん） 염원',
@@ -5615,7 +5603,7 @@ KANJI_DATA = [
     'meaning': '편안할 녕',
     'onyomi': 'ネイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '편안하고 차분한 상태를 의미하는 한자입니다.',
     'words': [
       '丁寧（ていねい） 정중함'
@@ -5633,7 +5621,7 @@ KANJI_DATA = [
     'meaning': '힘쓸 노',
     'onyomi': 'ド',
     'kunyomi': 'つとめる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '힘쓰거나 노력하는 뜻을 가진 한자입니다.',
     'words': [
       '努力（どりょく） 노력',
@@ -5665,7 +5653,7 @@ KANJI_DATA = [
     'meaning': '성낼 노',
     'onyomi': 'ド',
     'kunyomi': 'いかる, おこる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '성내거나 화를 내는 뜻을 가진 한자입니다.',
     'words': [
       '怒る（おこる） 화내다',
@@ -5684,7 +5672,7 @@ KANJI_DATA = [
     'meaning': '농사 농',
     'onyomi': 'ノウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '농사나 농업을 의미하는 기본 한자입니다.',
     'words': [
       '農業（のうぎょう） 농업',
@@ -5703,7 +5691,7 @@ KANJI_DATA = [
     'meaning': '짙을 농',
     'onyomi': 'ノウ',
     'kunyomi': 'こい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '짙거나 농도가 진한 상태를 의미하는 한자입니다.',
     'words': [
       '濃い（こい） 진하다',
@@ -5718,7 +5706,7 @@ KANJI_DATA = [
     'meaning': '골 뇌',
     'onyomi': 'ノウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '뇌를 의미하는 한자입니다.',
     'words': [
       '脳（のう） 뇌',
@@ -5736,7 +5724,7 @@ KANJI_DATA = [
     'meaning': '번뇌할 뇌',
     'onyomi': 'ノウ',
     'kunyomi': 'なやむ, なやます, なやましい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '고민하거나 괴로워하는 뜻을 가진 한자입니다.',
     'words': [
       '悩む（なやむ） 고민하다',
@@ -5755,7 +5743,7 @@ KANJI_DATA = [
     'meaning': '오줌 뇨',
     'onyomi': 'ニョウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '소변이나 오줌을 의미하는 한자입니다.',
     'words': [
       '尿（にょう） 소변',
@@ -5770,7 +5758,7 @@ KANJI_DATA = [
     'meaning': '능할 능',
     'onyomi': 'ノウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '능력이나 할 수 있음을 의미하는 기본 한자입니다.',
     'words': [
       '能力（のうりょく） 능력',
@@ -5789,7 +5777,7 @@ KANJI_DATA = [
     'meaning': '여승 니',
     'onyomi': 'ニ',
     'kunyomi': 'あま',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '여승이나 비구니를 의미하는 한자입니다.',
     'words': [
       '尼（あま） 비구니'
@@ -5806,7 +5794,7 @@ KANJI_DATA = [
     'meaning': '진흙 니',
     'onyomi': 'デイ',
     'kunyomi': 'どろ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '진흙이나 더러운 흙을 의미하는 한자입니다.',
     'words': [
       '泥（どろ） 진흙'
@@ -5820,7 +5808,7 @@ KANJI_DATA = [
     'meaning': '숨길 닉',
     'onyomi': 'トク',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '숨기거나 감추는 뜻을 가진 한자입니다.',
     'words': [
       '匿名（とくめい） 익명'
@@ -5855,7 +5843,7 @@ KANJI_DATA = [
     'meaning': '짧을 단',
     'onyomi': 'タン',
     'kunyomi': 'みじかい',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '길이가 짧음을 의미하는 기본 한자입니다.',
     'words': [
       '短い（みじかい） 짧다'
@@ -5872,7 +5860,7 @@ KANJI_DATA = [
     'meaning': '홑 단',
     'onyomi': 'タン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '하나이거나 단순함을 의미하는 한자입니다.',
     'words': [
       '単語（たんご） 단어',
@@ -5887,7 +5875,7 @@ KANJI_DATA = [
     'meaning': '둥글 단',
     'onyomi': 'ダン, トン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '집단이나 단체를 의미하는 한자입니다.',
     'words': [
       '団体（だんたい） 단체'
@@ -5904,7 +5892,7 @@ KANJI_DATA = [
     'meaning': '끊을 단',
     'onyomi': 'ダン',
     'kunyomi': 'たつ, ことわる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '끊거나 거절하는 뜻을 가진 한자입니다.',
     'words': [
       '断る（ことわる） 거절하다',
@@ -5922,7 +5910,7 @@ KANJI_DATA = [
     'meaning': '층계 단',
     'onyomi': 'ダン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '단계나 층을 의미하는 기본 한자입니다.',
     'words': [
       '階段（かいだん） 계단'
@@ -5950,7 +5938,7 @@ KANJI_DATA = [
     'meaning': '아침 단',
     'onyomi': 'タン, ダン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '아침이나 하루의 시작을 의미하는 한자입니다.',
     'words': [
       '元旦（がんたん） 원단'
@@ -5964,7 +5952,7 @@ KANJI_DATA = [
     'meaning': '다만 단',
     'onyomi': '',
     'kunyomi': 'ただし',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '단서나 조건을 나타낼 때 쓰이는 한자입니다.',
     'words': [
       '但し（ただし） 단, 다만'
@@ -5978,7 +5966,7 @@ KANJI_DATA = [
     'meaning': '끝 단',
     'onyomi': 'タン',
     'kunyomi': 'はし, は, はた',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '끝이나 가장자리를 의미하는 한자입니다.',
     'words': [
       '端（はし） 끝'
@@ -5995,7 +5983,7 @@ KANJI_DATA = [
     'meaning': '단 단',
     'onyomi': 'ダン, タン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '단이나 제단을 의미하는 한자입니다.',
     'words': [
       '花壇（かだん） 화단'
@@ -6009,7 +5997,7 @@ KANJI_DATA = [
     'meaning': '쇠 불릴 단',
     'onyomi': 'タン',
     'kunyomi': 'きたえる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '단련하거나 단조하는 뜻을 가진 한자입니다.',
     'words': [
       '鍛える（きたえる） 단련하다'
@@ -6026,7 +6014,7 @@ KANJI_DATA = [
     'meaning': '통달할 달',
     'onyomi': 'タツ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '도달하거나 통달함을 의미하는 기본 한자입니다.',
     'words': [
       '到達（とうたつ） 도달',
@@ -6041,7 +6029,7 @@ KANJI_DATA = [
     'meaning': '말씀 담',
     'onyomi': 'ダン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '이야기하거나 말하는 것을 의미하는 한자입니다.',
     'words': [
       '相談（そうだん） 상담',
@@ -6059,7 +6047,7 @@ KANJI_DATA = [
     'meaning': '멜 담',
     'onyomi': 'タン',
     'kunyomi': 'かつぐ, になう',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '짊어지거나 책임지는 뜻을 가진 한자입니다.',
     'words': [
       '担当（たんとう） 담당'
@@ -6073,7 +6061,7 @@ KANJI_DATA = [
     'meaning': '쓸개 담',
     'onyomi': 'タン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '쓸개나 용기를 의미하는 한자입니다.',
     'words': [
       '大胆（だいたん） 대담'
@@ -6090,7 +6078,7 @@ KANJI_DATA = [
     'meaning': '맑을 담',
     'onyomi': 'タン',
     'kunyomi': 'あわい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '옅거나 담백한 상태를 의미하는 한자입니다.',
     'words': [
       '淡い（あわい） 옅다'
@@ -6107,7 +6095,7 @@ KANJI_DATA = [
     'meaning': '흐릴 담',
     'onyomi': 'ドン',
     'kunyomi': 'くもる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '하늘이 흐린 상태를 의미하는 기본 한자입니다.',
     'words': [
       '曇る（くもる） 흐리다'
@@ -6124,7 +6112,7 @@ KANJI_DATA = [
     'meaning': '대답할 답',
     'onyomi': 'トウ',
     'kunyomi': 'こたえる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '대답하거나 응답하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '答える（こたえる） 대답하다',
@@ -6139,7 +6127,7 @@ KANJI_DATA = [
     'meaning': '밟을 답',
     'onyomi': 'トウ',
     'kunyomi': 'ふむ, ふまえる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '밟거나 디디는 뜻을 가진 한자입니다.',
     'words': [
       '踏む（ふむ） 밟다'
@@ -6153,7 +6141,7 @@ KANJI_DATA = [
     'meaning': '마땅할 당',
     'onyomi': 'トウ',
     'kunyomi': 'あたる, あてる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '맞거나 해당함을 의미하는 기본 한자입니다.',
     'words': [
       '当たる（あたる） 맞다',
@@ -6168,7 +6156,7 @@ KANJI_DATA = [
     'meaning': '집 당',
     'onyomi': 'ドウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '큰 건물이나 집을 의미하는 한자입니다.',
     'words': [
       '食堂（しょくどう） 식당',
@@ -6186,7 +6174,7 @@ KANJI_DATA = [
     'meaning': '무리 당',
     'onyomi': 'トウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '정당이나 무리를 의미하는 한자입니다.',
     'words': [
       '政党（せいとう） 정당'
@@ -6204,7 +6192,7 @@ KANJI_DATA = [
     'meaning': '엿 당',
     'onyomi': 'トウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '설탕이나 당분을 의미하는 한자입니다.',
     'words': [
       '砂糖（さとう） 설탕',
@@ -6219,7 +6207,7 @@ KANJI_DATA = [
     'meaning': '당나라/당황할 당',
     'onyomi': 'トウ',
     'kunyomi': 'から',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '중국 당나라나 외래 문화를 의미하는 한자입니다.',
     'words': [
       '唐辛子（とうがらし） 고추'
@@ -6251,7 +6239,7 @@ KANJI_DATA = [
     'meaning': '대 대',
     'onyomi': 'ダイ, タイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '받침대나 기계를 세는 단위를 의미하는 한자입니다.',
     'words': [
       '台（だい） 대',
@@ -6266,7 +6254,7 @@ KANJI_DATA = [
     'meaning': '대신할 대',
     'onyomi': 'ダイ, タイ',
     'kunyomi': 'かわる, かえる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '대신하거나 세대를 의미하는 기본 한자입니다.',
     'words': [
       '代表（だいひょう） 대표',
@@ -6281,7 +6269,7 @@ KANJI_DATA = [
     'meaning': '대할 대',
     'onyomi': 'タイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '마주하거나 대응하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '対話（たいわ） 대화',
@@ -6296,7 +6284,7 @@ KANJI_DATA = [
     'meaning': '기다릴 대',
     'onyomi': 'タイ',
     'kunyomi': 'まつ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '기다리는 뜻을 가진 기본 한자입니다.',
     'words': [
       '待つ（まつ） 기다리다'
@@ -6310,7 +6298,7 @@ KANJI_DATA = [
     'meaning': '띠 대',
     'onyomi': 'タイ',
     'kunyomi': 'おびる, おび',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '띠나 두르는 것을 의미하는 한자입니다.',
     'words': [
       '帯（おび） 띠'
@@ -6324,7 +6312,7 @@ KANJI_DATA = [
     'meaning': '무리 대',
     'onyomi': 'タイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '부대나 팀을 의미하는 한자입니다.',
     'words': [
       '部隊（ぶたい） 부대'
@@ -6342,7 +6330,7 @@ KANJI_DATA = [
     'meaning': '빌릴 대',
     'onyomi': 'タイ',
     'kunyomi': 'かす',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '빌려주거나 대여하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '貸す（かす） 빌려주다'
@@ -6359,7 +6347,7 @@ KANJI_DATA = [
     'meaning': '자루 대',
     'onyomi': 'タイ',
     'kunyomi': 'ふくろ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '주머니나 자루를 의미하는 한자입니다.',
     'words': [
       '袋（ふくろ） 봉지'
@@ -6373,7 +6361,7 @@ KANJI_DATA = [
     'meaning': '일 대',
     'onyomi': 'タイ',
     'kunyomi': 'いただく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '받들거나 겸손하게 받는 뜻을 가진 한자입니다.',
     'words': [
       '頂戴（ちょうだい） 받다'
@@ -6384,10 +6372,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-toku-virtue',
     'kanji': '徳',
-    'meaning': '큰 덕',
+    'meaning': '덕 덕',
     'onyomi': 'トク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '덕이나 인품을 의미하는 한자입니다.',
     'words': [
       '道徳（どうとく） 도덕'
@@ -6401,7 +6389,7 @@ KANJI_DATA = [
     'meaning': '칼 도',
     'onyomi': 'トウ',
     'kunyomi': 'かたな',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '칼을 의미하는 기본 한자입니다.',
     'words': [
       '刀（かたな） 칼'
@@ -6415,7 +6403,7 @@ KANJI_DATA = [
     'meaning': '그림 도',
     'onyomi': 'ズ, ト',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '그림이나 도면을 의미하는 기본 한자입니다.',
     'words': [
       '地図（ちず） 지도',
@@ -6445,7 +6433,7 @@ KANJI_DATA = [
     'meaning': '법도 도',
     'onyomi': 'ド, ト, タク',
     'kunyomi': 'たび',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '정도나 횟수를 의미하는 기본 한자입니다.',
     'words': [
       '温度（おんど） 온도',
@@ -6460,7 +6448,7 @@ KANJI_DATA = [
     'meaning': '섬 도',
     'onyomi': 'トウ',
     'kunyomi': 'しま',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '섬을 의미하는 기본 한자입니다.',
     'words': [
       '島（しま） 섬'
@@ -6474,7 +6462,7 @@ KANJI_DATA = [
     'meaning': '도읍 도',
     'onyomi': 'ト, ツ',
     'kunyomi': 'みやこ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '수도나 큰 도시를 의미하는 기본 한자입니다.',
     'words': [
       '京都（きょうと） 교토',
@@ -6511,7 +6499,7 @@ KANJI_DATA = [
     'meaning': '인도할 도',
     'onyomi': 'トウ',
     'kunyomi': 'みちびく',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '이끌거나 안내하는 뜻을 가진 한자입니다.',
     'words': [
       '指導（しどう） 지도'
@@ -6528,7 +6516,7 @@ KANJI_DATA = [
     'meaning': '이를 도',
     'onyomi': 'チョウ',
     'kunyomi': 'いたる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '도달하거나 이르는 뜻을 가진 한자입니다.',
     'words': [
       '到着（とうちゃく） 도착'
@@ -6545,7 +6533,7 @@ KANJI_DATA = [
     'meaning': '돋울 도',
     'onyomi': 'トウ',
     'kunyomi': 'いどむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '도전하거나 자극하는 뜻을 가진 한자입니다.',
     'words': [
       '挑戦（ちょうせん） 도전'
@@ -6559,7 +6547,7 @@ KANJI_DATA = [
     'meaning': '도망할 도',
     'onyomi': 'トウ',
     'kunyomi': 'にげる, にがす, のがす, のがれる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '도망가거나 피하는 뜻을 가진 한자입니다.',
     'words': [
       '逃げる（にげる） 도망가다'
@@ -6576,7 +6564,7 @@ KANJI_DATA = [
     'meaning': '넘어질 도',
     'onyomi': 'トウ',
     'kunyomi': 'たおれる, たおす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '넘어지거나 쓰러뜨리는 뜻을 가진 한자입니다.',
     'words': [
       '倒れる（たおれる） 쓰러지다'
@@ -6590,7 +6578,7 @@ KANJI_DATA = [
     'meaning': '길 도',
     'onyomi': 'ト',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '길이나 도중을 의미하는 한자입니다.',
     'words': [
       '途中（とちゅう） 도중'
@@ -6607,7 +6595,7 @@ KANJI_DATA = [
     'meaning': '복숭아 도',
     'onyomi': 'トウ',
     'kunyomi': 'もも',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '복숭아를 의미하는 기본 한자입니다.',
     'words': [
       '桃（もも） 복숭아'
@@ -6621,7 +6609,7 @@ KANJI_DATA = [
     'meaning': '슬퍼할 도',
     'onyomi': 'トウ',
     'kunyomi': 'いたむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '슬퍼하거나 애도하는 뜻을 가진 한자입니다.',
     'words': [
       '追悼（ついとう） 추도'
@@ -6635,7 +6623,7 @@ KANJI_DATA = [
   {
     'slug': 'n4-tou-steal',
     'kanji': '盗',
-    'meaning': '도둑 도',
+    'meaning': '훔칠 도',
     'onyomi': 'トウ',
     'kunyomi': 'ぬすむ',
     'level': 'N4',
@@ -6656,7 +6644,7 @@ KANJI_DATA = [
     'meaning': '질그릇 도',
     'onyomi': 'トウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '도자기나 질그릇을 의미하는 한자입니다.',
     'words': [
       '陶器（とうき） 도자기'
@@ -6670,7 +6658,7 @@ KANJI_DATA = [
     'meaning': '건널 도',
     'onyomi': 'ト',
     'kunyomi': 'わたる, わたす',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '건너거나 건네는 뜻을 가진 기본 한자입니다.',
     'words': [
       '渡る（わたる） 건너다'
@@ -6687,7 +6675,7 @@ KANJI_DATA = [
     'meaning': '뛸 도',
     'onyomi': 'チョウ',
     'kunyomi': 'はねる, とぶ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '뛰거나 점프하는 뜻을 가진 한자입니다.',
     'words': [
       '跳ぶ（とぶ） 뛰다'
@@ -6701,7 +6689,7 @@ KANJI_DATA = [
     'meaning': '칠할 도',
     'onyomi': 'ト',
     'kunyomi': 'ぬる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '칠하거나 바르는 뜻을 가진 한자입니다.',
     'words': [
       '塗る（ぬる） 바르다'
@@ -6715,7 +6703,7 @@ KANJI_DATA = [
     'meaning': '벼 도',
     'onyomi': 'トウ',
     'kunyomi': 'いね, いな',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '벼나 쌀의 원료를 의미하는 한자입니다.',
     'words': [
       '稲（いね） 벼'
@@ -6733,7 +6721,7 @@ KANJI_DATA = [
     'meaning': '내기 도',
     'onyomi': 'ト',
     'kunyomi': 'かける',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '내기하거나 걸다라는 뜻을 가진 한자입니다.',
     'words': [
       '賭ける（かける） 걸다'
@@ -6762,7 +6750,7 @@ KANJI_DATA = [
     'meaning': '독 독',
     'onyomi': 'ドク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '독이나 해로운 물질을 의미하는 한자입니다.',
     'words': [
       '毒（どく） 독',
@@ -6780,7 +6768,7 @@ KANJI_DATA = [
     'meaning': '홀로 독',
     'onyomi': 'ドク',
     'kunyomi': 'ひとり',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '혼자이거나 독립을 의미하는 기본 한자입니다.',
     'words': [
       '独り（ひとり） 혼자',
@@ -6798,7 +6786,7 @@ KANJI_DATA = [
     'meaning': '감독할 독',
     'onyomi': 'トク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '감독하거나 지휘하는 뜻을 가진 한자입니다.',
     'words': [
       '監督（かんとく） 감독'
@@ -6816,7 +6804,7 @@ KANJI_DATA = [
     'meaning': '도타울 독',
     'onyomi': 'トク',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '정이 깊거나 성실함을 의미하는 한자입니다.',
     'words': [
       '篤い（あつい） 정이 깊다'
@@ -6833,7 +6821,7 @@ KANJI_DATA = [
     'meaning': '돼지 돈',
     'onyomi': 'トン',
     'kunyomi': 'ぶた',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '돼지를 의미하는 한자입니다.',
     'words': [
       '豚肉（ぶたにく） 돼지고기'
@@ -6847,7 +6835,7 @@ KANJI_DATA = [
     'meaning': '조아릴 돈',
     'onyomi': 'トン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '머리를 숙이거나 갑작스러움을 나타내는 한자입니다.',
     'words': [
       '頓首（とんしゅ） 머리를 숙임'
@@ -6861,7 +6849,7 @@ KANJI_DATA = [
     'meaning': '갑자기 돌',
     'onyomi': 'トツ',
     'kunyomi': 'つく',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '갑자기 찌르거나 돌진하는 뜻을 가진 한자입니다.',
     'words': [
       '突然（とつぜん） 갑자기'
@@ -6878,7 +6866,7 @@ KANJI_DATA = [
     'meaning': '겨울 동',
     'onyomi': 'トウ',
     'kunyomi': 'ふゆ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '겨울을 의미하는 기본 한자입니다.',
     'words': [
       '冬（ふゆ） 겨울'
@@ -6896,7 +6884,7 @@ KANJI_DATA = [
     'meaning': '한가지 동',
     'onyomi': 'ドウ',
     'kunyomi': 'おなじ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '같음을 의미하는 기본 한자입니다.',
     'words': [
       '同じ（おなじ） 같다'
@@ -6930,7 +6918,7 @@ KANJI_DATA = [
     'meaning': '움직일 동',
     'onyomi': 'ドウ',
     'kunyomi': 'うごく, うごかす',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '움직이거나 작동하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '動く（うごく） 움직이다',
@@ -6945,7 +6933,7 @@ KANJI_DATA = [
     'meaning': '아이 동',
     'onyomi': 'ドウ',
     'kunyomi': 'わらべ',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '아이를 의미하는 한자입니다.',
     'words': [
       '児童（じどう） 아동'
@@ -6962,7 +6950,7 @@ KANJI_DATA = [
     'meaning': '일할 동',
     'onyomi': 'ドウ',
     'kunyomi': 'はたらく',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '일하거나 활동하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '働く（はたらく） 일하다'
@@ -6979,7 +6967,7 @@ KANJI_DATA = [
     'meaning': '구리 동',
     'onyomi': 'ドウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '구리를 의미하는 한자입니다.',
     'words': [
       '銅（どう） 구리'
@@ -6996,7 +6984,7 @@ KANJI_DATA = [
     'meaning': '골 동',
     'onyomi': 'ドウ',
     'kunyomi': 'ほら',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '동굴이나 깊은 구멍을 의미하는 한자입니다.',
     'words': [
       '洞窟（どうくつ） 동굴'
@@ -7013,7 +7001,7 @@ KANJI_DATA = [
     'meaning': '얼 동',
     'onyomi': 'トウ',
     'kunyomi': 'こおる, こごえる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '얼거나 얼어붙는 상태를 의미하는 한자입니다.',
     'words': [
       '凍る（こおる） 얼다'
@@ -7027,7 +7015,7 @@ KANJI_DATA = [
     'meaning': '몸통 동',
     'onyomi': 'ドウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '몸통이나 중심 부분을 의미하는 한자입니다.',
     'words': [
       '胴体（どうたい） 몸통'
@@ -7041,7 +7029,7 @@ KANJI_DATA = [
     'meaning': '마룻대 동',
     'onyomi': 'トウ',
     'kunyomi': 'むね, むな',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '건물의 중심 기둥이나 동을 의미하는 한자입니다.',
     'words': [
       '一棟（いっとう） 한 동'
@@ -7055,7 +7043,7 @@ KANJI_DATA = [
     'meaning': '동경할 동',
     'onyomi': 'ドウ, ショウ',
     'kunyomi': 'あこがれる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '동경하거나 부러워하는 뜻을 가진 한자입니다.',
     'words': [
       '憧れる（あこがれる） 동경하다'
@@ -7072,7 +7060,7 @@ KANJI_DATA = [
     'meaning': '눈동자 동',
     'onyomi': 'ドウ',
     'kunyomi': 'ひとみ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '눈동자를 의미하는 한자입니다.',
     'words': [
       '瞳（ひとみ） 눈동자'
@@ -7089,7 +7077,7 @@ KANJI_DATA = [
     'meaning': '머리 두',
     'onyomi': 'トウ, ズ, ト',
     'kunyomi': 'あたま, かしら',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '머리를 의미하는 기본 한자입니다.',
     'words': [
       '頭（あたま） 머리'
@@ -7103,7 +7091,7 @@ KANJI_DATA = [
     'meaning': '콩 두',
     'onyomi': 'トウ, ズ',
     'kunyomi': 'まめ',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '콩을 의미하는 기본 한자입니다.',
     'words': [
       '豆（まめ） 콩'
@@ -7117,7 +7105,7 @@ KANJI_DATA = [
     'meaning': '말 두',
     'onyomi': 'ト, トウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '곡식의 부피를 재는 단위를 의미하는 한자입니다.',
     'words': [
       '一斗（いっと） 한 말'
@@ -7131,7 +7119,7 @@ KANJI_DATA = [
     'meaning': '역질 두',
     'onyomi': 'トウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '천연두와 같은 병을 의미하는 한자입니다.',
     'words': [
       '天然痘（てんねんとう） 천연두'
@@ -7145,7 +7133,7 @@ KANJI_DATA = [
     'meaning': '진칠 둔',
     'onyomi': 'ドン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '군대가 주둔하는 것을 의미하는 한자입니다.',
     'words': [
       '駐屯（ちゅうとん） 주둔'
@@ -7162,7 +7150,7 @@ KANJI_DATA = [
     'meaning': '둔할 둔',
     'onyomi': 'ドン',
     'kunyomi': 'にぶい, にぶる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '둔하거나 무딘 상태를 의미하는 한자입니다.',
     'words': [
       '鈍い（にぶい） 둔하다'
@@ -7179,7 +7167,7 @@ KANJI_DATA = [
     'meaning': '얻을 득',
     'onyomi': 'トク, トウ',
     'kunyomi': 'える, うる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '얻거나 획득하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '得る（える） 얻다',
@@ -7197,7 +7185,7 @@ KANJI_DATA = [
     'meaning': '오를 등',
     'onyomi': 'トウ',
     'kunyomi': 'のぼる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '오르거나 올라가는 뜻을 가진 기본 한자입니다.',
     'words': [
       '登る（のぼる） 오르다',
@@ -7215,7 +7203,7 @@ KANJI_DATA = [
     'meaning': '무리 등',
     'onyomi': 'トウ',
     'kunyomi': 'ひとしい',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '같거나 동등함을 의미하는 기본 한자입니다.',
     'words': [
       '等しい（ひとしい） 같다',
@@ -7250,7 +7238,7 @@ KANJI_DATA = [
     'meaning': '베낄 등',
     'onyomi': 'トウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '문서를 베끼거나 등사하는 뜻을 가진 한자입니다.',
     'words': [
       '謄写（とうしゃ） 등사'
@@ -7264,7 +7252,7 @@ KANJI_DATA = [
     'meaning': '등나무 등',
     'onyomi': 'トウ',
     'kunyomi': 'ふじ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '등나무를 의미하는 한자입니다.',
     'words': [
       '藤（ふじ） 등나무'
@@ -7278,7 +7266,7 @@ KANJI_DATA = [
     'meaning': '오를 등',
     'onyomi': 'トウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '값이나 기운이 오르는 것을 의미하는 한자입니다.',
     'words': [
       '高騰（こうとう） 급등'
@@ -7295,7 +7283,7 @@ KANJI_DATA = [
     'meaning': '벗을 라',
     'onyomi': 'ラ',
     'kunyomi': 'はだか',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '옷을 벗은 상태를 의미하는 한자입니다.',
     'words': [
       '裸（はだか） 벌거벗음'
@@ -7309,7 +7297,7 @@ KANJI_DATA = [
     'meaning': '벌일 라',
     'onyomi': 'ラ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '그물을 펼치거나 나열하는 뜻을 가진 한자입니다.',
     'words': [
       '羅列（られつ） 나열'
@@ -7323,7 +7311,7 @@ KANJI_DATA = [
     'meaning': '즐길 락',
     'onyomi': 'ラク, ガク',
     'kunyomi': 'たのしい, たのしむ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '즐겁거나 편안함을 의미하는 기본 한자입니다.',
     'words': [
       '楽しい（たのしい） 즐겁다',
@@ -7341,7 +7329,7 @@ KANJI_DATA = [
     'meaning': '떨어질 락',
     'onyomi': 'ラク',
     'kunyomi': 'おちる, おとす',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '떨어지거나 내려오는 뜻을 가진 기본 한자입니다.',
     'words': [
       '落ちる（おちる） 떨어지다'
@@ -7358,7 +7346,7 @@ KANJI_DATA = [
     'meaning': '이을 락',
     'onyomi': 'ラク',
     'kunyomi': 'からむ, からまる, からめる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '얽히거나 연결되는 뜻을 가진 한자입니다.',
     'words': [
       '連絡（れんらく） 연락'
@@ -7372,7 +7360,7 @@ KANJI_DATA = [
   {
     'slug': 'n3-raku-dairy',
     'kanji': '酪',
-    'meaning': '쇠젖 락',
+    'meaning': '소젖 락',
     'onyomi': 'ラク',
     'kunyomi': '',
     'level': 'N3',
@@ -7389,7 +7377,7 @@ KANJI_DATA = [
     'meaning': '알 란',
     'onyomi': 'ラン',
     'kunyomi': 'たまご',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '알이나 달걀을 의미하는 기본 한자입니다.',
     'words': [
       '卵（たまご） 달걀'
@@ -7403,7 +7391,7 @@ KANJI_DATA = [
     'meaning': '어지러울 란',
     'onyomi': 'ラン',
     'kunyomi': 'みだれる, みだす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '어지럽거나 혼란스러운 상태를 의미하는 한자입니다.',
     'words': [
       '混乱（こんらん） 혼란'
@@ -7417,10 +7405,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-ran-railing',
     'kanji': '欄',
-    'meaning': '난간 란',
+    'meaning': '난간 난',
     'onyomi': 'ラン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '난간이나 구획을 의미하는 한자입니다.',
     'words': [
       '欄（らん） 난간'
@@ -7434,7 +7422,7 @@ KANJI_DATA = [
     'meaning': '매울 랄',
     'onyomi': 'ラツ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '맵거나 자극적인 상태를 의미하는 한자입니다.',
     'words': [
       '辛辣（しんらつ） 신랄'
@@ -7448,7 +7436,7 @@ KANJI_DATA = [
     'meaning': '볼 람',
     'onyomi': 'ラン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '보다 또는 열람하는 뜻을 가진 한자입니다.',
     'words': [
       '閲覧（えつらん） 열람'
@@ -7465,7 +7453,7 @@ KANJI_DATA = [
     'meaning': '남기 람',
     'onyomi': 'ラン',
     'kunyomi': 'あらし',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '폭풍이나 거센 바람을 의미하는 한자입니다.',
     'words': [
       '嵐（あらし） 폭풍'
@@ -7482,7 +7470,7 @@ KANJI_DATA = [
     'meaning': '넘칠 람',
     'onyomi': 'ラン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '물이 넘치거나 남용되는 상태를 의미하는 한자입니다.',
     'words': [
       '濫用（らんよう） 남용'
@@ -7496,7 +7484,7 @@ KANJI_DATA = [
     'meaning': '쪽 람',
     'onyomi': 'ラン',
     'kunyomi': 'あい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '쪽빛이나 염료를 의미하는 한자입니다.',
     'words': [
       '藍色（あいいろ） 남색'
@@ -7513,7 +7501,7 @@ KANJI_DATA = [
     'meaning': '끌 랍',
     'onyomi': 'ラ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '끌어당기거나 잡아당기는 뜻을 가진 한자입니다.',
     'words': [
       '拉致（らち） 납치'
@@ -7530,7 +7518,7 @@ KANJI_DATA = [
     'meaning': '밝을 랑',
     'onyomi': 'ロウ',
     'kunyomi': 'ほがらか',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '밝고 명랑한 상태를 의미하는 한자입니다.',
     'words': [
       '朗らか（ほがらか） 명랑하다'
@@ -7547,7 +7535,7 @@ KANJI_DATA = [
     'meaning': '사내 랑',
     'onyomi': 'ロウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '젊은 남자를 의미하는 한자입니다.',
     'words': [
       '新郎（しんろう） 신랑'
@@ -7561,7 +7549,7 @@ KANJI_DATA = [
     'meaning': '물결 랑',
     'onyomi': 'ロウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '큰 물결이나 파도를 의미하는 한자입니다.',
     'words': [
       '波浪（はろう） 파도'
@@ -7578,7 +7566,7 @@ KANJI_DATA = [
     'meaning': '행랑 랑',
     'onyomi': 'ロウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '건물의 복도나 통로를 의미하는 한자입니다.',
     'words': [
       '廊下（ろうか） 복도'
@@ -7607,10 +7595,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-rei-cold',
     'kanji': '冷',
-    'meaning': '찰 랭',
+    'meaning': '찰 냉',
     'onyomi': 'レイ',
     'kunyomi': 'つめたい, ひえる, ひやす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '차갑거나 식는 상태를 의미하는 기본 한자입니다.',
     'words': [
       '冷たい（つめたい） 차갑다'
@@ -7627,7 +7615,7 @@ KANJI_DATA = [
     'meaning': '간략할 략',
     'onyomi': 'リャク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '간단히 줄이거나 생략하는 뜻을 가진 한자입니다.',
     'words': [
       '省略（しょうりゃく） 생략'
@@ -7641,7 +7629,7 @@ KANJI_DATA = [
     'meaning': '두 량',
     'onyomi': 'リョウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '둘 또는 양쪽을 의미하는 기본 한자입니다.',
     'words': [
       '両方（りょうほう） 양쪽'
@@ -7655,7 +7643,7 @@ KANJI_DATA = [
     'meaning': '어질 량',
     'onyomi': 'リョウ',
     'kunyomi': 'よい',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '좋거나 바른 상태를 의미하는 기본 한자입니다.',
     'words': [
       '良い（よい） 좋다'
@@ -7672,7 +7660,7 @@ KANJI_DATA = [
     'meaning': '헤아릴 량',
     'onyomi': 'リョウ',
     'kunyomi': 'はかる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '양을 재거나 측정하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '数量（すうりょう） 수량'
@@ -7689,7 +7677,7 @@ KANJI_DATA = [
     'meaning': '서늘할 량',
     'onyomi': 'リョウ',
     'kunyomi': 'すずしい, すずむ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '서늘하거나 시원한 상태를 의미하는 한자입니다.',
     'words': [
       '涼しい（すずしい） 시원하다'
@@ -7706,7 +7694,7 @@ KANJI_DATA = [
     'meaning': '양식 량',
     'onyomi': 'リョウ, ロウ',
     'kunyomi': 'かて',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '식량이나 생활의 밑바탕이 되는 것을 의미하는 한자입니다.',
     'words': [
       '食糧（しょくりょう） 식량'
@@ -7717,10 +7705,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-ryo-travel',
     'kanji': '旅',
-    'meaning': '나그네 려',
+    'meaning': '나그네 여',
     'onyomi': 'リョ',
     'kunyomi': 'たび',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '여행이나 나그네를 의미하는 기본 한자입니다.',
     'words': [
       '旅行（りょこう） 여행'
@@ -7734,7 +7722,7 @@ KANJI_DATA = [
     'meaning': '어그러질 려',
     'onyomi': 'レイ',
     'kunyomi': 'もどす, もどる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '되돌아가거나 되돌리는 뜻을 가진 기본 한자입니다.',
     'words': [
       '戻る（もどる） 돌아오다'
@@ -7765,7 +7753,7 @@ KANJI_DATA = [
     'meaning': '힘쓸 려',
     'onyomi': 'レイ',
     'kunyomi': 'はげむ, はげます',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '힘쓰거나 격려하는 뜻을 가진 한자입니다.',
     'words': [
       '励む（はげむ） 힘쓰다'
@@ -7782,7 +7770,7 @@ KANJI_DATA = [
     'meaning': '짝 려',
     'onyomi': 'リョ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '동반자나 짝을 의미하는 한자입니다.',
     'words': [
       '伴侶（はんりょ） 배우자'
@@ -7796,7 +7784,7 @@ KANJI_DATA = [
     'meaning': '생각할 려',
     'onyomi': 'リョ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '깊이 생각하거나 고려하는 뜻을 가진 한자입니다.',
     'words': [
       '配慮（はいりょ） 배려'
@@ -7814,7 +7802,7 @@ KANJI_DATA = [
     'meaning': '고울 려',
     'onyomi': 'レイ',
     'kunyomi': 'うるわしい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '아름답고 우아한 상태를 의미하는 한자입니다.',
     'words': [
       '華麗（かれい） 화려'
@@ -7849,7 +7837,7 @@ KANJI_DATA = [
     'meaning': '지낼 력',
     'onyomi': 'レキ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '지나온 과정이나 역사를 의미하는 한자입니다.',
     'words': [
       '歴史（れきし） 역사'
@@ -7863,7 +7851,7 @@ KANJI_DATA = [
     'meaning': '책력 력',
     'onyomi': 'レキ',
     'kunyomi': 'こよみ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '달력이나 날짜 체계를 의미하는 한자입니다.',
     'words': [
       '暦（こよみ） 달력'
@@ -7880,7 +7868,7 @@ KANJI_DATA = [
     'meaning': '익힐 련',
     'onyomi': 'レン',
     'kunyomi': 'ねる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '반복하여 익히거나 단련하는 뜻을 가진 한자입니다.',
     'words': [
       '練習（れんしゅう） 연습'
@@ -7894,10 +7882,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-ren-connect',
     'kanji': '連',
-    'meaning': '잇닿을 련',
+    'meaning': '이을 연',
     'onyomi': 'レン',
     'kunyomi': 'つらなる, つらねる, つれる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '이어지거나 연결되는 뜻을 가진 기본 한자입니다.',
     'words': [
       '連絡（れんらく） 연락'
@@ -7912,7 +7900,7 @@ KANJI_DATA = [
   {
     'slug': 'n4-ren-love',
     'kanji': '恋',
-    'meaning': '그리워할 련',
+    'meaning': '사랑 연',
     'onyomi': 'レン, コウ',
     'kunyomi': 'こい, こいしい',
     'level': 'N4',
@@ -7929,10 +7917,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-ren-refine',
     'kanji': '錬',
-    'meaning': '불릴 련',
+    'meaning': '단련할 련',
     'onyomi': 'レン',
     'kunyomi': 'ねる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '금속을 단련하거나 정제하는 뜻을 가진 한자입니다.',
     'words': [
       '鍛錬（たんれん） 단련'
@@ -7949,7 +7937,7 @@ KANJI_DATA = [
     'meaning': '벌일 렬',
     'onyomi': 'レツ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '줄을 세우거나 배열하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '行列（ぎょうれつ） 행렬'
@@ -7963,7 +7951,7 @@ KANJI_DATA = [
     'meaning': '못할 렬',
     'onyomi': 'レツ',
     'kunyomi': 'おとる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '다른 것보다 뒤지거나 못함을 의미하는 한자입니다.',
     'words': [
       '劣る（おとる） 뒤지다'
@@ -7980,7 +7968,7 @@ KANJI_DATA = [
     'meaning': '매울 렬',
     'onyomi': 'レツ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '강하거나 격렬한 상태를 의미하는 한자입니다.',
     'words': [
       '強烈（きょうれつ） 강렬'
@@ -8011,7 +7999,7 @@ KANJI_DATA = [
     'meaning': '청렴할 렴',
     'onyomi': 'レン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '청렴하고 바른 성품을 의미하는 한자입니다.',
     'words': [
       '廉潔（れんけつ） 청렴'
@@ -8025,7 +8013,7 @@ KANJI_DATA = [
     'meaning': '사냥 렵',
     'onyomi': 'リョウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '사냥이나 수렵을 의미하는 한자입니다.',
     'words': [
       '狩猟（しゅりょう） 수렵'
@@ -8039,7 +8027,7 @@ KANJI_DATA = [
     'meaning': '하여금 령',
     'onyomi': 'レイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '명령이나 지시를 의미하는 기본 한자입니다.',
     'words': [
       '命令（めいれい） 명령'
@@ -8053,7 +8041,7 @@ KANJI_DATA = [
     'meaning': '거느릴 령',
     'onyomi': 'リョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '영역이나 지배를 의미하는 한자입니다.',
     'words': [
       '領土（りょうど） 영토'
@@ -8067,7 +8055,7 @@ KANJI_DATA = [
     'meaning': '방울 령',
     'onyomi': 'レイ, リン',
     'kunyomi': 'すず',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '방울이나 종을 의미하는 한자입니다.',
     'words': [
       '鈴（すず） 방울'
@@ -8078,10 +8066,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-rei-zero',
     'kanji': '零',
-    'meaning': '떨어질 령',
+    'meaning': '영 영',
     'onyomi': 'レイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '0이나 떨어짐을 의미하는 한자입니다.',
     'words': [
       '零点（れいてん） 0점'
@@ -8095,7 +8083,7 @@ KANJI_DATA = [
     'meaning': '신령 령',
     'onyomi': 'レイ, リョウ',
     'kunyomi': 'たま',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '영혼이나 신령한 존재를 의미하는 한자입니다.',
     'words': [
       '霊（れい） 영혼'
@@ -8109,7 +8097,7 @@ KANJI_DATA = [
     'meaning': '나이 령',
     'onyomi': 'レイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '나이를 의미하는 한자입니다.',
     'words': [
       '年齢（ねんれい） 나이'
@@ -8126,7 +8114,7 @@ KANJI_DATA = [
     'meaning': '예도 례',
     'onyomi': 'レイ, ライ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '예의나 예절을 의미하는 기본 한자입니다.',
     'words': [
       '礼儀（れいぎ） 예의'
@@ -8143,7 +8131,7 @@ KANJI_DATA = [
     'meaning': '법식 례',
     'onyomi': 'レイ',
     'kunyomi': 'たとえる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '예시나 본보기를 의미하는 기본 한자입니다.',
     'words': [
       '例（れい） 예',
@@ -8158,7 +8146,7 @@ KANJI_DATA = [
     'meaning': '종 례',
     'onyomi': 'レイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '종이나 속박된 사람을 의미하는 한자입니다.',
     'words': [
       '奴隷（どれい） 노예'
@@ -8172,7 +8160,7 @@ KANJI_DATA = [
     'meaning': '길 로',
     'onyomi': 'ロ',
     'kunyomi': 'じ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '길이나 도로를 의미하는 기본 한자입니다.',
     'words': [
       '道路（どうろ） 도로'
@@ -8189,7 +8177,7 @@ KANJI_DATA = [
     'meaning': '늙을 로',
     'onyomi': 'ロウ',
     'kunyomi': 'おいる, ふける',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '늙거나 나이가 든 상태를 의미하는 기본 한자입니다.',
     'words': [
       '老人（ろうじん） 노인'
@@ -8206,7 +8194,7 @@ KANJI_DATA = [
     'meaning': '일할 로',
     'onyomi': 'ロウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '노동이나 수고를 의미하는 기본 한자입니다.',
     'words': [
       '労働（ろうどう） 노동'
@@ -8223,7 +8211,7 @@ KANJI_DATA = [
     'meaning': '화로 로',
     'onyomi': 'ロ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '불을 피우는 화로나 난로를 의미하는 한자입니다.',
     'words': [
       '暖炉（だんろ） 난로'
@@ -8240,7 +8228,7 @@ KANJI_DATA = [
     'meaning': '사로잡을 로',
     'onyomi': 'リョ',
     'kunyomi': 'とりこ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '사로잡히거나 포로가 된 상태를 의미하는 한자입니다.',
     'words': [
       '捕虜（ほりょ） 포로'
@@ -8254,7 +8242,7 @@ KANJI_DATA = [
     'meaning': '이슬 로',
     'onyomi': 'ロ, ロウ',
     'kunyomi': 'つゆ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '이슬이나 드러남을 의미하는 한자입니다.',
     'words': [
       '露（つゆ） 이슬'
@@ -8268,7 +8256,7 @@ KANJI_DATA = [
     'meaning': '푸를 록',
     'onyomi': 'リョク, ロク',
     'kunyomi': 'みどり',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '초록색을 의미하는 기본 한자입니다.',
     'words': [
       '緑（みどり） 초록'
@@ -8285,7 +8273,7 @@ KANJI_DATA = [
     'meaning': '기록할 록',
     'onyomi': 'ロク',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '기록하거나 남기는 뜻을 가진 기본 한자입니다.',
     'words': [
       '記録（きろく） 기록'
@@ -8302,7 +8290,7 @@ KANJI_DATA = [
     'meaning': '사슴 록',
     'onyomi': 'ロク',
     'kunyomi': 'しか, か',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '사슴을 의미하는 한자입니다.',
     'words': [
       '鹿（しか） 사슴'
@@ -8316,7 +8304,7 @@ KANJI_DATA = [
     'meaning': '산기슭 록',
     'onyomi': 'ロク',
     'kunyomi': 'ふもと',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '산 아래 기슭을 의미하는 한자입니다.',
     'words': [
       '山麓（さんろく） 산기슭'
@@ -8330,10 +8318,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-ron-argument',
     'kanji': '論',
-    'meaning': '논할 론',
+    'meaning': '논할 논',
     'onyomi': 'ロン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '논의하거나 의견을 말하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '議論（ぎろん） 토론'
@@ -8350,7 +8338,7 @@ KANJI_DATA = [
     'meaning': '희롱할 롱',
     'onyomi': 'ロウ',
     'kunyomi': 'もてあそぶ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '가지고 놀거나 희롱하는 뜻을 가진 한자입니다.',
     'words': [
       '弄ぶ（もてあそぶ） 희롱하다'
@@ -8359,29 +8347,31 @@ KANJI_DATA = [
     'example_ko': '사람을 희롱하다.'
   },
   {
-    'slug': 'n5-taki-waterfall',
-    'kanji': '滝',
-    'meaning': '비 올 롱',
-    'onyomi': '',
-    'kunyomi': 'たき',
-    'level': 'N5',
-    'desc': '폭포를 의미하는 기본 한자입니다.',
-    'words': [
-      '滝（たき） 폭포'
-    ],
-    'example_jp': '滝を見る。',
-    'example_ko': '폭포를 보다.',
-    'related': [
-      '물 수'
-    ]
-  },
+  'slug': 'n5-taki-waterfall',
+  'kanji': '滝',
+  'meaning': '폭포',
+  'onyomi': '',
+  'kunyomi': 'たき',
+  'level': 'N5',
+  'desc': '폭포를 의미하는 기본 한자입니다.',
+  'words': [
+    '滝（たき） 폭포'
+  ],
+  'example_jp': '滝を見る。',
+  'example_ko': '폭포를 보다.',
+  'related': [
+    '水',
+    '川',
+    '海'
+  ]
+},
   {
     'slug': 'n3-rou-basket',
     'kanji': '籠',
     'meaning': '대바구니 롱',
     'onyomi': 'ロウ',
     'kunyomi': 'かご, こもる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '바구니나 갇힘을 의미하는 한자입니다.',
     'words': [
       '籠（かご） 바구니'
@@ -8395,7 +8385,7 @@ KANJI_DATA = [
     'meaning': '우레 뢰',
     'onyomi': 'ライ',
     'kunyomi': 'かみなり',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '천둥을 의미하는 기본 한자입니다.',
     'words': [
       '雷（かみなり） 천둥'
@@ -8409,7 +8399,7 @@ KANJI_DATA = [
     'meaning': '뇌물 뢰',
     'onyomi': 'ロ',
     'kunyomi': 'まいない',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '뇌물을 의미하는 한자입니다.',
     'words': [
       '賄賂（わいろ） 뇌물'
@@ -8423,7 +8413,7 @@ KANJI_DATA = [
     'meaning': '의뢰할 뢰',
     'onyomi': 'ライ',
     'kunyomi': 'たのむ, たよる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '부탁하거나 의지하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '頼む（たのむ） 부탁하다'
@@ -8440,7 +8430,7 @@ KANJI_DATA = [
     'meaning': '여울 뢰',
     'onyomi': 'セ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '물살이 빠른 얕은 곳을 의미하는 한자입니다.',
     'words': [
       '瀬（せ） 여울'
@@ -8457,7 +8447,7 @@ KANJI_DATA = [
     'meaning': '헤아릴 료',
     'onyomi': 'リョウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '재료나 비용을 의미하는 기본 한자입니다.',
     'words': [
       '料理（りょうり） 요리',
@@ -8475,7 +8465,7 @@ KANJI_DATA = [
     'meaning': '마칠 료',
     'onyomi': 'リョウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '끝내거나 완료하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '終了（しゅうりょう） 종료'
@@ -8492,7 +8482,7 @@ KANJI_DATA = [
     'meaning': '동료 료',
     'onyomi': 'リョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '같이 일하는 동료를 의미하는 한자입니다.',
     'words': [
       '同僚（どうりょう） 동료'
@@ -8509,7 +8499,7 @@ KANJI_DATA = [
     'meaning': '동관 료',
     'onyomi': 'リョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '기숙사나 숙소를 의미하는 한자입니다.',
     'words': [
       '寮（りょう） 기숙사'
@@ -8523,10 +8513,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-ryou-treatment',
     'kanji': '療',
-    'meaning': '병 고칠 료',
+    'meaning': '고칠 료',
     'onyomi': 'リョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '병을 치료하는 뜻을 가진 한자입니다.',
     'words': [
       '治療（ちりょう） 치료'
@@ -8543,7 +8533,7 @@ KANJI_DATA = [
     'meaning': '밝을 료',
     'onyomi': 'リョウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '분명하고 명확한 상태를 의미하는 한자입니다.',
     'words': [
       '明瞭（めいりょう） 명료'
@@ -8560,7 +8550,7 @@ KANJI_DATA = [
     'meaning': '용 룡',
     'onyomi': 'リュウ',
     'kunyomi': 'たつ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '상상의 동물인 용을 의미하는 한자입니다.',
     'words': [
       '竜（りゅう） 용'
@@ -8574,7 +8564,7 @@ KANJI_DATA = [
     'meaning': '눈물 루',
     'onyomi': 'ルイ',
     'kunyomi': 'なみだ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '눈물을 의미하는 기본 한자입니다.',
     'words': [
       '涙（なみだ） 눈물'
@@ -8591,7 +8581,7 @@ KANJI_DATA = [
     'meaning': '여러 루',
     'onyomi': 'ルイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '겹치거나 쌓이는 것을 의미하는 한자입니다.',
     'words': [
       '累積（るいせき） 누적'
@@ -8605,7 +8595,7 @@ KANJI_DATA = [
     'meaning': '보루 루',
     'onyomi': 'ルイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '성이나 방어 시설을 의미하는 한자입니다.',
     'words': [
       '要塁（ようるい） 요새'
@@ -8619,7 +8609,7 @@ KANJI_DATA = [
     'meaning': '다락 루',
     'onyomi': 'ロウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '높은 건물이나 다락을 의미하는 한자입니다.',
     'words': [
       '楼（ろう） 다락'
@@ -8633,7 +8623,7 @@ KANJI_DATA = [
     'meaning': '샐 루',
     'onyomi': 'ロウ',
     'kunyomi': 'もる, もれる, もらす',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '새거나 흘러나오는 뜻을 가진 한자입니다.',
     'words': [
       '漏れる（もれる） 새다'
@@ -8647,7 +8637,7 @@ KANJI_DATA = [
     'meaning': '흐를 류',
     'onyomi': 'リュウ, ル',
     'kunyomi': 'ながれる, ながす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '흐르거나 이동하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '流れる（ながれる） 흐르다'
@@ -8661,7 +8651,7 @@ KANJI_DATA = [
     'meaning': '무리 류',
     'onyomi': 'ルイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '종류나 무리를 의미하는 기본 한자입니다.',
     'words': [
       '種類（しゅるい） 종류'
@@ -8678,7 +8668,7 @@ KANJI_DATA = [
     'meaning': '머무를 류',
     'onyomi': 'リュウ, ル',
     'kunyomi': 'とめる, とまる, とどまる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '머무르거나 멈추는 뜻을 가진 기본 한자입니다.',
     'words': [
       '留学（りゅうがく） 유학'
@@ -8695,7 +8685,7 @@ KANJI_DATA = [
     'meaning': '버들 류',
     'onyomi': 'リュウ',
     'kunyomi': 'やなぎ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '버드나무를 의미하는 한자입니다.',
     'words': [
       '柳（やなぎ） 버드나무'
@@ -8709,7 +8699,7 @@ KANJI_DATA = [
     'meaning': '유황 류',
     'onyomi': 'リュウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '화학 원소인 유황을 의미하는 한자입니다.',
     'words': [
       '硫黄（いおう） 유황'
@@ -8723,7 +8713,7 @@ KANJI_DATA = [
     'meaning': '맑은 유리 류',
     'onyomi': 'ル',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '보석이나 유리 같은 맑은 재질을 의미하는 한자입니다.',
     'words': [
       '瑠璃（るり） 유리빛 보석'
@@ -8734,10 +8724,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-riku-land',
     'kanji': '陸',
-    'meaning': '뭍 륙',
+    'meaning': '뭍 육',
     'onyomi': 'リク',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '땅이나 육지를 의미하는 기본 한자입니다.',
     'words': [
       '陸（りく） 육지'
@@ -8754,7 +8744,7 @@ KANJI_DATA = [
     'meaning': '바퀴 륜',
     'onyomi': 'リン',
     'kunyomi': 'わ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '바퀴나 원형을 의미하는 기본 한자입니다.',
     'words': [
       '車輪（しゃりん） 차바퀴'
@@ -8768,7 +8758,7 @@ KANJI_DATA = [
     'meaning': '인륜 륜',
     'onyomi': 'リン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '사람 사이의 도리나 윤리를 의미하는 한자입니다.',
     'words': [
       '倫理（りんり） 윤리'
@@ -8799,7 +8789,7 @@ KANJI_DATA = [
     'meaning': '법칙 률',
     'onyomi': 'リツ, リチ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '법이나 규칙을 의미하는 한자입니다.',
     'words': [
       '法律（ほうりつ） 법률'
@@ -8816,7 +8806,7 @@ KANJI_DATA = [
     'meaning': '떨릴 률',
     'onyomi': 'リツ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '두려워서 떨리는 상태를 의미하는 한자입니다.',
     'words': [
       '戦慄（せんりつ） 전율'
@@ -8833,7 +8823,7 @@ KANJI_DATA = [
     'meaning': '높을 륭',
     'onyomi': 'リュウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '높거나 번성하는 상태를 의미하는 한자입니다.',
     'words': [
       '隆盛（りゅうせい） 번성'
@@ -8850,7 +8840,7 @@ KANJI_DATA = [
     'meaning': '언덕 릉',
     'onyomi': 'リョウ',
     'kunyomi': 'みささぎ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '언덕이나 왕릉을 의미하는 한자입니다.',
     'words': [
       '陵（りょう） 능'
@@ -8867,7 +8857,7 @@ KANJI_DATA = [
     'meaning': '다스릴 리',
     'onyomi': 'リ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '이치나 원리를 의미하는 기본 한자입니다.',
     'words': [
       '理由（りゆう） 이유'
@@ -8884,7 +8874,7 @@ KANJI_DATA = [
     'meaning': '마을 리',
     'onyomi': 'リ',
     'kunyomi': 'さと',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '마을이나 고향을 의미하는 기본 한자입니다.',
     'words': [
       '里（さと） 고향'
@@ -8901,7 +8891,7 @@ KANJI_DATA = [
     'meaning': '이로울 리',
     'onyomi': 'リ',
     'kunyomi': 'きく',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '이익이나 유리함을 의미하는 기본 한자입니다.',
     'words': [
       '利益（りえき） 이익'
@@ -8918,7 +8908,7 @@ KANJI_DATA = [
     'meaning': '속 리',
     'onyomi': 'リ',
     'kunyomi': 'うら',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '겉의 반대인 속이나 뒤를 의미하는 기본 한자입니다.',
     'words': [
       '裏（うら） 뒤'
@@ -8935,7 +8925,7 @@ KANJI_DATA = [
     'meaning': '관리 리',
     'onyomi': 'リ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '관리나 공무원을 의미하는 한자입니다.',
     'words': [
       '官吏（かんり） 관리'
@@ -8963,7 +8953,7 @@ KANJI_DATA = [
     'meaning': '배나무 리',
     'onyomi': 'リ',
     'kunyomi': 'なし',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '배나무와 과일 배를 의미하는 한자입니다.',
     'words': [
       '梨（なし） 배'
@@ -8977,7 +8967,7 @@ KANJI_DATA = [
     'meaning': '설사 리',
     'onyomi': 'リ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '설사와 같은 질병을 의미하는 한자입니다.',
     'words': [
       '下痢（げり） 설사'
@@ -8991,7 +8981,7 @@ KANJI_DATA = [
     'meaning': '밟을 리',
     'onyomi': 'リ',
     'kunyomi': 'はく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '신발을 신거나 밟는 뜻을 가진 한자입니다.',
     'words': [
       '履く（はく） 신다'
@@ -9005,7 +8995,7 @@ KANJI_DATA = [
     'meaning': '유리 리',
     'onyomi': 'リ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '유리나 보석을 의미하는 한자입니다.',
     'words': [
       '玻璃（はり） 유리'
@@ -9022,7 +9012,7 @@ KANJI_DATA = [
     'meaning': '떠날 리',
     'onyomi': 'リ',
     'kunyomi': 'はなれる, はなす',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '떨어지거나 떠나는 뜻을 가진 기본 한자입니다.',
     'words': [
       '離れる（はなれる） 떨어지다'
@@ -9039,7 +9029,7 @@ KANJI_DATA = [
     'meaning': '이웃 린',
     'onyomi': 'リン',
     'kunyomi': 'となり',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '옆이나 이웃을 의미하는 기본 한자입니다.',
     'words': [
       '隣（となり） 이웃'
@@ -9053,7 +9043,7 @@ KANJI_DATA = [
     'meaning': '수풀 림',
     'onyomi': 'リン',
     'kunyomi': 'はやし',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '나무가 많은 숲을 의미하는 기본 한자입니다.',
     'words': [
       '林（はやし） 숲'
@@ -9067,10 +9057,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-rin-face',
     'kanji': '臨',
-    'meaning': '임할 림',
+    'meaning': '임할 임',
     'onyomi': 'リン',
     'kunyomi': 'のぞむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '어떤 상황에 직면하거나 임하는 뜻을 가진 한자입니다.',
     'words': [
       '臨む（のぞむ） 임하다'
@@ -9098,7 +9088,7 @@ KANJI_DATA = [
     'meaning': '낟알 립',
     'onyomi': 'リュウ',
     'kunyomi': 'つぶ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '작은 알갱이를 의미하는 한자입니다.',
     'words': [
       '粒（つぶ） 알갱이'
@@ -9112,7 +9102,7 @@ KANJI_DATA = [
     'meaning': '말 마',
     'onyomi': 'バ',
     'kunyomi': 'うま, ま',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '말을 의미하는 기본 한자입니다.',
     'words': [
       '馬（うま） 말'
@@ -9126,7 +9116,7 @@ KANJI_DATA = [
     'meaning': '삼 마',
     'onyomi': 'マ',
     'kunyomi': 'あさ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '삼이나 마 섬유를 의미하는 한자입니다.',
     'words': [
       '麻（あさ） 삼'
@@ -9140,7 +9130,7 @@ KANJI_DATA = [
     'meaning': '문지를 마',
     'onyomi': 'マ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '문지르거나 마찰하는 뜻을 가진 한자입니다.',
     'words': [
       '摩擦（まさつ） 마찰'
@@ -9157,7 +9147,7 @@ KANJI_DATA = [
     'meaning': '갈 마',
     'onyomi': 'マ',
     'kunyomi': 'みがく',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '갈거나 닦아 빛나게 하는 뜻을 가진 한자입니다.',
     'words': [
       '磨く（みがく） 닦다'
@@ -9174,7 +9164,7 @@ KANJI_DATA = [
     'meaning': '마귀 마',
     'onyomi': 'マ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '마귀나 악한 존재를 의미하는 한자입니다.',
     'words': [
       '悪魔（あくま） 악마'
@@ -9188,7 +9178,7 @@ KANJI_DATA = [
     'meaning': '장막 막',
     'onyomi': 'マク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '막이나 장막을 의미하는 한자입니다.',
     'words': [
       '幕（まく） 막'
@@ -9202,7 +9192,7 @@ KANJI_DATA = [
     'meaning': '넓을 막',
     'onyomi': 'バク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '넓고 끝이 없는 상태를 의미하는 한자입니다.',
     'words': [
       '砂漠（さばく） 사막'
@@ -9213,10 +9203,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-maku-membrane',
     'kanji': '膜',
-    'meaning': '꺼풀 막',
+    'meaning': '막 막',
     'onyomi': 'マク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '얇은 막이나 껍질을 의미하는 한자입니다.',
     'words': [
       '皮膜（ひまく） 막'
@@ -9244,7 +9234,7 @@ KANJI_DATA = [
     'meaning': '찰 만',
     'onyomi': 'マン',
     'kunyomi': 'みちる, みたす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '가득 차거나 만족함을 의미하는 기본 한자입니다.',
     'words': [
       '満足（まんぞく） 만족'
@@ -9261,7 +9251,7 @@ KANJI_DATA = [
     'meaning': '늦을 만',
     'onyomi': 'バン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '늦은 시간이나 밤을 의미하는 기본 한자입니다.',
     'words': [
       '今晩（こんばん） 오늘 밤'
@@ -9275,7 +9265,7 @@ KANJI_DATA = [
     'meaning': '오랑캐 만',
     'onyomi': 'バン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '외국이나 이민족을 의미하는 한자입니다.',
     'words': [
       '野蛮（やばん） 야만'
@@ -9289,7 +9279,7 @@ KANJI_DATA = [
     'meaning': '물굽이 만',
     'onyomi': 'ワン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '바다의 굽이진 부분을 의미하는 한자입니다.',
     'words': [
       '湾（わん） 만'
@@ -9306,7 +9296,7 @@ KANJI_DATA = [
     'meaning': '흩어질 만',
     'onyomi': 'マン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '흩어지거나 질서 없이 퍼지는 뜻을 가진 한자입니다.',
     'words': [
       '漫画（まんが） 만화'
@@ -9320,7 +9310,7 @@ KANJI_DATA = [
     'meaning': '거만할 만',
     'onyomi': 'マン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '거만하거나 게으른 태도를 의미하는 한자입니다.',
     'words': [
       '慢心（まんしん） 교만'
@@ -9334,7 +9324,7 @@ KANJI_DATA = [
     'meaning': '끝 말',
     'onyomi': 'マツ, バツ',
     'kunyomi': 'すえ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '끝이나 마지막을 의미하는 기본 한자입니다.',
     'words': [
       '週末（しゅうまつ） 주말'
@@ -9351,7 +9341,7 @@ KANJI_DATA = [
     'meaning': '지울 말',
     'onyomi': 'マツ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '지우거나 없애는 뜻을 가진 한자입니다.',
     'words': [
       '抹消（まっしょう） 말소'
@@ -9365,7 +9355,7 @@ KANJI_DATA = [
     'meaning': '바랄 망',
     'onyomi': 'ボウ, モウ',
     'kunyomi': 'のぞむ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '바라거나 희망하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '希望（きぼう） 희망'
@@ -9382,7 +9372,7 @@ KANJI_DATA = [
     'meaning': '망할 망',
     'onyomi': 'ボウ, モウ',
     'kunyomi': 'ない',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '사라지거나 죽음을 의미하는 기본 한자입니다.',
     'words': [
       '死亡（しぼう） 사망'
@@ -9399,7 +9389,7 @@ KANJI_DATA = [
     'meaning': '잊을 망',
     'onyomi': 'ボウ',
     'kunyomi': 'わすれる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '기억하지 못하거나 잊는 뜻을 가진 기본 한자입니다.',
     'words': [
       '忘れる（わすれる） 잊다'
@@ -9416,7 +9406,7 @@ KANJI_DATA = [
     'meaning': '바쁠 망',
     'onyomi': 'ボウ',
     'kunyomi': 'いそがしい',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '바쁘거나 여유가 없는 상태를 의미하는 기본 한자입니다.',
     'words': [
       '忙しい（いそがしい） 바쁘다'
@@ -9433,7 +9423,7 @@ KANJI_DATA = [
     'meaning': '망령될 망',
     'onyomi': 'モウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '헛되거나 망령된 생각을 의미하는 한자입니다.',
     'words': [
       '妄想（もうそう） 망상'
@@ -9450,7 +9440,7 @@ KANJI_DATA = [
     'meaning': '그물 망',
     'onyomi': 'モウ',
     'kunyomi': 'あみ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '그물이나 네트 구조를 의미하는 한자입니다.',
     'words': [
       '網（あみ） 그물'
@@ -9478,7 +9468,7 @@ KANJI_DATA = [
     'meaning': '팔 매',
     'onyomi': 'バイ',
     'kunyomi': 'うる, うれる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '물건을 파는 뜻을 가진 기본 한자입니다.',
     'words': [
       '販売（はんばい） 판매'
@@ -9495,7 +9485,7 @@ KANJI_DATA = [
     'meaning': '누이 매',
     'onyomi': 'マイ',
     'kunyomi': 'いもうと',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '여동생을 의미하는 기본 한자입니다.',
     'words': [
       '妹（いもうと） 여동생'
@@ -9526,7 +9516,7 @@ KANJI_DATA = [
     'meaning': '매화 매',
     'onyomi': 'バイ',
     'kunyomi': 'うめ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '매화나무나 매실을 의미하는 기본 한자입니다.',
     'words': [
       '梅（うめ） 매실'
@@ -9540,7 +9530,7 @@ KANJI_DATA = [
     'meaning': '낱 매',
     'onyomi': 'マイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '얇은 물건을 세는 단위를 의미하는 기본 한자입니다.',
     'words': [
       '一枚（いちまい） 한 장'
@@ -9554,7 +9544,7 @@ KANJI_DATA = [
     'meaning': '어두울 매',
     'onyomi': 'マイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '어둡거나 분명하지 않은 상태를 의미하는 한자입니다.',
     'words': [
       '曖昧（あいまい） 애매'
@@ -9571,7 +9561,7 @@ KANJI_DATA = [
     'meaning': '묻을 매',
     'onyomi': 'マイ',
     'kunyomi': 'うめる, うまる, うもれる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '묻거나 메우는 뜻을 가진 한자입니다.',
     'words': [
       '埋める（うめる） 묻다'
@@ -9585,7 +9575,7 @@ KANJI_DATA = [
     'meaning': '중매 매',
     'onyomi': 'バイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '사이에서 연결하는 역할을 의미하는 한자입니다.',
     'words': [
       '媒介（ばいかい） 매개'
@@ -9599,7 +9589,7 @@ KANJI_DATA = [
     'meaning': '매혹할 매',
     'onyomi': 'ミ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '사람을 끌어당기는 매력을 의미하는 한자입니다.',
     'words': [
       '魅力（みりょく） 매력'
@@ -9613,7 +9603,7 @@ KANJI_DATA = [
     'meaning': '꾸짖을 매',
     'onyomi': 'バ',
     'kunyomi': 'ののしる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '심하게 꾸짖거나 욕하는 뜻을 가진 한자입니다.',
     'words': [
       '罵る（ののしる） 욕하다'
@@ -9627,7 +9617,7 @@ KANJI_DATA = [
     'meaning': '보리 맥',
     'onyomi': 'バク',
     'kunyomi': 'むぎ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '보리나 밀을 의미하는 기본 한자입니다.',
     'words': [
       '麦（むぎ） 보리'
@@ -9641,7 +9631,7 @@ KANJI_DATA = [
     'meaning': '줄기 맥',
     'onyomi': 'ミャク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '혈관이나 흐름을 의미하는 한자입니다.',
     'words': [
       '血脈（けつみゃく） 혈맥'
@@ -9658,7 +9648,7 @@ KANJI_DATA = [
     'meaning': '맹세 맹',
     'onyomi': 'メイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '맹세하거나 동맹을 의미하는 한자입니다.',
     'words': [
       '同盟（どうめい） 동맹'
@@ -9669,10 +9659,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-mou-blind',
     'kanji': '盲',
-    'meaning': '눈 멀 맹',
+    'meaning': '맹인 맹',
     'onyomi': 'モウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '앞을 보지 못하는 상태를 의미하는 한자입니다.',
     'words': [
       '盲人（もうじん） 맹인'
@@ -9689,7 +9679,7 @@ KANJI_DATA = [
     'meaning': '사나울 맹',
     'onyomi': 'モウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '사납거나 강한 상태를 의미하는 한자입니다.',
     'words': [
       '猛烈（もうれつ） 맹렬'
@@ -9703,7 +9693,7 @@ KANJI_DATA = [
   {
     'slug': 'n5-men-face',
     'kanji': '面',
-    'meaning': '낮 면',
+    'meaning': '낯 면',
     'onyomi': 'メン',
     'kunyomi': 'おも, おもて, つら',
     'level': 'N5',
@@ -9720,7 +9710,7 @@ KANJI_DATA = [
     'meaning': '힘쓸 면',
     'onyomi': 'ベン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '힘쓰거나 노력하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '勉強（べんきょう） 공부'
@@ -9737,7 +9727,7 @@ KANJI_DATA = [
     'meaning': '솜 면',
     'onyomi': 'メン',
     'kunyomi': 'わた',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '솜이나 면을 의미하는 기본 한자입니다.',
     'words': [
       '木綿（もめん） 면'
@@ -9751,7 +9741,7 @@ KANJI_DATA = [
     'meaning': '면할 면',
     'onyomi': 'メン',
     'kunyomi': 'まぬかれる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '어떤 상황을 피하거나 면하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '免れる（まぬかれる） 면하다'
@@ -9768,7 +9758,7 @@ KANJI_DATA = [
     'meaning': '잘 면',
     'onyomi': 'ミン',
     'kunyomi': 'ねむる, ねむい',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '잠을 자거나 졸린 상태를 의미하는 기본 한자입니다.',
     'words': [
       '眠る（ねむる） 자다'
@@ -9785,7 +9775,7 @@ KANJI_DATA = [
     'meaning': '밀가루 면',
     'onyomi': 'メン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '국수나 면류 음식을 의미하는 기본 한자입니다.',
     'words': [
       '麺（めん） 면'
@@ -9799,7 +9789,7 @@ KANJI_DATA = [
     'meaning': '멸할 멸',
     'onyomi': 'メツ',
     'kunyomi': 'ほろびる, ほろぼす',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '사라지거나 멸망하는 뜻을 가진 한자입니다.',
     'words': [
       '滅亡（めつぼう） 멸망'
@@ -9816,7 +9806,7 @@ KANJI_DATA = [
     'meaning': '업신여길 멸',
     'onyomi': 'ベツ',
     'kunyomi': 'さげすむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '남을 얕보거나 업신여기는 뜻을 가진 한자입니다.',
     'words': [
       '軽蔑（けいべつ） 경멸'
@@ -9847,7 +9837,7 @@ KANJI_DATA = [
     'meaning': '밝을 명',
     'onyomi': 'ミョウ, メイ',
     'kunyomi': 'あかるい, あかり, あける, あく',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '밝음이나 분명함을 의미하는 매우 중요한 기본 한자입니다.',
     'words': [
       '明るい（あかるい） 밝다'
@@ -9864,7 +9854,7 @@ KANJI_DATA = [
     'meaning': '울 명',
     'onyomi': 'メイ',
     'kunyomi': 'なる, なく, ならす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '소리를 내거나 울음을 의미하는 기본 한자입니다.',
     'words': [
       '鳴く（なく） 울다'
@@ -9878,7 +9868,7 @@ KANJI_DATA = [
     'meaning': '그릇 명',
     'onyomi': '',
     'kunyomi': 'さら',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '접시나 그릇을 의미하는 기본 한자입니다.',
     'words': [
       '皿（さら） 접시'
@@ -9895,7 +9885,7 @@ KANJI_DATA = [
     'meaning': '목숨 명',
     'onyomi': 'メイ, ミョウ',
     'kunyomi': 'いのち',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '생명이나 목숨을 의미하는 중요한 기본 한자입니다.',
     'words': [
       '命（いのち） 목숨'
@@ -9909,7 +9899,7 @@ KANJI_DATA = [
     'meaning': '어두울 명',
     'onyomi': 'メイ, ミョウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '깊고 어두운 상태를 의미하는 한자입니다.',
     'words': [
       '冥界（めいかい） 명계'
@@ -9926,7 +9916,7 @@ KANJI_DATA = [
     'meaning': '새길 명',
     'onyomi': 'メイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '새기거나 기록하는 뜻을 가진 한자입니다.',
     'words': [
       '銘記（めいき） 명기'
@@ -9943,7 +9933,7 @@ KANJI_DATA = [
     'meaning': '터럭 모',
     'onyomi': 'モウ',
     'kunyomi': 'け',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '머리카락이나 털을 의미하는 기본 한자입니다.',
     'words': [
       '毛（け） 털'
@@ -9954,7 +9944,7 @@ KANJI_DATA = [
   {
     'slug': 'n5-bo-mother',
     'kanji': '母',
-    'meaning': '어머니 모',
+    'meaning': '어미 모',
     'onyomi': 'ボ',
     'kunyomi': 'はは',
     'level': 'N5',
@@ -9971,7 +9961,7 @@ KANJI_DATA = [
     'meaning': '본뜰 모',
     'onyomi': 'モ, ボ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '본보기가 되는 틀이나 모양을 의미하는 한자입니다.',
     'words': [
       '模型（もけい） 모형'
@@ -9985,7 +9975,7 @@ KANJI_DATA = [
     'meaning': '저물 모',
     'onyomi': 'ボ',
     'kunyomi': 'くれる, くらす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '해가 지거나 하루가 끝나는 것을 의미하는 한자입니다.',
     'words': [
       '日暮れ（ひぐれ） 해질녘'
@@ -10002,7 +9992,7 @@ KANJI_DATA = [
     'meaning': '창 모',
     'onyomi': 'ム',
     'kunyomi': 'ほこ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '창과 같은 무기를 의미하는 한자입니다.',
     'words': [
       '矛（ほこ） 창'
@@ -10016,7 +10006,7 @@ KANJI_DATA = [
     'meaning': '업신여길 모',
     'onyomi': 'ブ',
     'kunyomi': 'あなどる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '남을 얕보거나 무시하는 뜻을 가진 한자입니다.',
     'words': [
       '侮辱（ぶじょく） 모욕'
@@ -10033,7 +10023,7 @@ KANJI_DATA = [
     'meaning': '무릅쓸 모',
     'onyomi': 'ボウ',
     'kunyomi': 'おかす',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '위험을 무릅쓰는 뜻을 가진 한자입니다.',
     'words': [
       '冒険（ぼうけん） 모험'
@@ -10050,7 +10040,7 @@ KANJI_DATA = [
     'meaning': '아무 모',
     'onyomi': 'ボウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '특정하지 않은 사람이나 대상을 가리킬 때 사용하는 한자입니다.',
     'words': [
       '某人（ぼうじん） 어떤 사람'
@@ -10064,7 +10054,7 @@ KANJI_DATA = [
     'meaning': '소모할 모',
     'onyomi': 'モウ, コウ',
     'kunyomi': 'へらす, へる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '줄어들거나 소모되는 뜻을 가진 한자입니다.',
     'words': [
       '消耗（しょうもう） 소모'
@@ -10081,7 +10071,7 @@ KANJI_DATA = [
     'meaning': '모을 모',
     'onyomi': 'ボ',
     'kunyomi': 'つのる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '사람이나 의견 등을 모으는 뜻을 가진 한자입니다.',
     'words': [
       '募集（ぼしゅう） 모집'
@@ -10098,7 +10088,7 @@ KANJI_DATA = [
     'meaning': '모자 모',
     'onyomi': 'ボウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '머리에 쓰는 모자를 의미하는 기본 한자입니다.',
     'words': [
       '帽子（ぼうし） 모자'
@@ -10112,7 +10102,7 @@ KANJI_DATA = [
     'meaning': '그릴 모',
     'onyomi': 'ボ',
     'kunyomi': 'したう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '그리워하거나 동경하는 마음을 의미하는 한자입니다.',
     'words': [
       '慕う（したう） 그리워하다'
@@ -10129,7 +10119,7 @@ KANJI_DATA = [
     'meaning': '모양 모',
     'onyomi': 'ボウ',
     'kunyomi': 'かお, かたち',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '겉모습이나 형태를 의미하는 한자입니다.',
     'words': [
       '容貌（ようぼう） 용모'
@@ -10146,7 +10136,7 @@ KANJI_DATA = [
     'meaning': '꾀 모',
     'onyomi': 'ボウ, ム',
     'kunyomi': 'はかる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '계략이나 계획을 세우는 뜻을 가진 한자입니다.',
     'words': [
       '陰謀（いんぼう） 음모'
@@ -10191,7 +10181,7 @@ KANJI_DATA = [
     'meaning': '칠 목',
     'onyomi': 'ボク',
     'kunyomi': 'まき',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '가축을 기르는 것을 의미하는 한자입니다.',
     'words': [
       '牧場（ぼくじょう） 목장'
@@ -10205,7 +10195,7 @@ KANJI_DATA = [
     'meaning': '화목할 목',
     'onyomi': 'ボク',
     'kunyomi': 'むつまじい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '사이가 좋고 화목한 상태를 의미하는 한자입니다.',
     'words': [
       '親睦（しんぼく） 친목'
@@ -10222,7 +10212,7 @@ KANJI_DATA = [
     'meaning': '빠질 몰',
     'onyomi': 'ボツ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '가라앉거나 사라지는 뜻을 가진 한자입니다.',
     'words': [
       '没落（ぼつらく） 몰락'
@@ -10239,7 +10229,7 @@ KANJI_DATA = [
     'meaning': '꿈 몽',
     'onyomi': 'ム',
     'kunyomi': 'ゆめ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '꿈이나 희망을 의미하는 기본 한자입니다.',
     'words': [
       '夢（ゆめ） 꿈'
@@ -10256,7 +10246,7 @@ KANJI_DATA = [
     'meaning': '무덤 묘',
     'onyomi': 'ボ',
     'kunyomi': 'はか',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '사람이 묻히는 무덤을 의미하는 기본 한자입니다.',
     'words': [
       '墓（はか） 무덤'
@@ -10270,7 +10260,7 @@ KANJI_DATA = [
     'meaning': '묘할 묘',
     'onyomi': 'ミョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '이상하거나 신비로운 상태를 의미하는 한자입니다.',
     'words': [
       '奇妙（きみょう） 기묘'
@@ -10287,7 +10277,7 @@ KANJI_DATA = [
     'meaning': '모 묘',
     'onyomi': 'ビョウ, ミョウ',
     'kunyomi': 'なえ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '식물의 어린 싹이나 모종을 의미하는 한자입니다.',
     'words': [
       '苗（なえ） 모종'
@@ -10304,7 +10294,7 @@ KANJI_DATA = [
     'meaning': '이랑 묘',
     'onyomi': '',
     'kunyomi': 'うね',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '밭의 고랑이나 이랑을 의미하는 한자입니다.',
     'words': [
       '畝（うね） 이랑'
@@ -10318,7 +10308,7 @@ KANJI_DATA = [
     'meaning': '그릴 묘',
     'onyomi': 'ビョウ',
     'kunyomi': 'えがく, かく',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '그림을 그리거나 묘사하는 뜻을 가진 한자입니다.',
     'words': [
       '描く（えがく） 그리다'
@@ -10332,7 +10322,7 @@ KANJI_DATA = [
     'meaning': '고양이 묘',
     'onyomi': 'ビョウ',
     'kunyomi': 'ねこ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '고양이를 의미하는 기본 한자입니다.',
     'words': [
       '猫（ねこ） 고양이'
@@ -10346,7 +10336,7 @@ KANJI_DATA = [
     'meaning': '없을 무',
     'onyomi': 'ム, ブ',
     'kunyomi': 'ない',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '없음을 의미하는 매우 중요한 기본 한자입니다.',
     'words': [
       '無い（ない） 없다'
@@ -10360,7 +10350,7 @@ KANJI_DATA = [
     'meaning': '호반 무',
     'onyomi': 'ブ, ム',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '무력이나 군사를 의미하는 한자입니다.',
     'words': [
       '武士（ぶし） 무사'
@@ -10374,7 +10364,7 @@ KANJI_DATA = [
     'meaning': '힘쓸 무',
     'onyomi': 'ム',
     'kunyomi': 'つとめる, つとまる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '노력하거나 책임을 다하는 뜻을 가진 한자입니다.',
     'words': [
       '勤務（きんむ） 근무'
@@ -10391,7 +10381,7 @@ KANJI_DATA = [
     'meaning': '무역할 무',
     'onyomi': 'ボウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '물건을 교환하거나 거래하는 뜻을 가진 한자입니다.',
     'words': [
       '貿易（ぼうえき） 무역'
@@ -10405,7 +10395,7 @@ KANJI_DATA = [
     'meaning': '무성할 무',
     'onyomi': 'モ',
     'kunyomi': 'しげる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '풀이 무성하게 자라는 상태를 의미하는 한자입니다.',
     'words': [
       '繁茂（はんも） 번무'
@@ -10422,7 +10412,7 @@ KANJI_DATA = [
     'meaning': '춤출 무',
     'onyomi': 'ブ',
     'kunyomi': 'まう, まい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '춤을 추거나 움직이는 동작을 의미하는 한자입니다.',
     'words': [
       '舞う（まう） 춤추다'
@@ -10436,7 +10426,7 @@ KANJI_DATA = [
     'meaning': '안개 무',
     'onyomi': 'ム',
     'kunyomi': 'きり',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '공기 중에 수증기가 모여 생기는 안개를 의미하는 한자입니다.',
     'words': [
       '霧（きり） 안개'
@@ -10450,7 +10440,7 @@ KANJI_DATA = [
     'meaning': '먹 묵',
     'onyomi': 'ボク',
     'kunyomi': 'すみ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '글씨를 쓸 때 사용하는 먹을 의미하는 한자입니다.',
     'words': [
       '墨（すみ） 먹'
@@ -10464,7 +10454,7 @@ KANJI_DATA = [
     'meaning': '잠잠할 묵',
     'onyomi': 'モク',
     'kunyomi': 'だまる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '말을 하지 않고 조용한 상태를 의미하는 한자입니다.',
     'words': [
       '黙る（だまる） 침묵하다'
@@ -10478,7 +10468,7 @@ KANJI_DATA = [
     'meaning': '글월 문',
     'onyomi': 'ブン, モン',
     'kunyomi': 'ふみ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '글이나 문장을 의미하는 가장 기본적인 한자입니다.',
     'words': [
       '文章（ぶんしょう） 문장'
@@ -10492,7 +10482,7 @@ KANJI_DATA = [
     'meaning': '문 문',
     'onyomi': 'モン',
     'kunyomi': 'かど',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '출입하는 문을 의미하는 기본 한자입니다.',
     'words': [
       '門（もん） 문'
@@ -10523,7 +10513,7 @@ KANJI_DATA = [
     'meaning': '물을 문',
     'onyomi': 'モン',
     'kunyomi': 'とう, とん',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '질문하거나 묻는 것을 의미하는 기본 한자입니다.',
     'words': [
       '質問（しつもん） 질문'
@@ -10540,7 +10530,7 @@ KANJI_DATA = [
     'meaning': '모기 문',
     'onyomi': 'カ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '모기를 의미하는 한자입니다.',
     'words': [
       '蚊（か） 모기'
@@ -10554,7 +10544,7 @@ KANJI_DATA = [
     'meaning': '무늬 문',
     'onyomi': 'モン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '무늬나 문양을 의미하는 한자입니다.',
     'words': [
       '家紋（かもん） 가문 문양'
@@ -10568,7 +10558,7 @@ KANJI_DATA = [
     'meaning': '물건 물',
     'onyomi': 'ブツ, モツ',
     'kunyomi': 'もの',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '물건이나 사물을 의미하는 기본 한자입니다.',
     'words': [
       '物（もの） 물건'
@@ -10585,7 +10575,7 @@ KANJI_DATA = [
     'meaning': '쌀 미',
     'onyomi': 'ベイ, マイ',
     'kunyomi': 'こめ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '쌀을 의미하는 기본 한자입니다.',
     'words': [
       '米（こめ） 쌀'
@@ -10599,7 +10589,7 @@ KANJI_DATA = [
     'meaning': '아름다울 미',
     'onyomi': 'ビ',
     'kunyomi': 'うつくしい',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '아름다움을 의미하는 기본 한자입니다.',
     'words': [
       '美しい（うつくしい） 아름답다'
@@ -10616,7 +10606,7 @@ KANJI_DATA = [
     'meaning': '맛 미',
     'onyomi': 'ミ',
     'kunyomi': 'あじ, あじわう',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '맛이나 감각을 의미하는 기본 한자입니다.',
     'words': [
       '味（あじ） 맛'
@@ -10630,7 +10620,7 @@ KANJI_DATA = [
     'meaning': '아닐 미',
     'onyomi': 'ミ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '아직 ~하지 않음을 의미하는 기본 한자입니다.',
     'words': [
       '未来（みらい） 미래'
@@ -10647,7 +10637,7 @@ KANJI_DATA = [
     'meaning': '미혹할 미',
     'onyomi': 'メイ',
     'kunyomi': 'まよう',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '길을 잃거나 망설이는 상태를 의미하는 기본 한자입니다.',
     'words': [
       '迷う（まよう） 헤매다'
@@ -10664,7 +10654,7 @@ KANJI_DATA = [
     'meaning': '꼬리 미',
     'onyomi': 'ビ',
     'kunyomi': 'お',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '동물의 꼬리를 의미하는 한자입니다.',
     'words': [
       '尾（お） 꼬리'
@@ -10675,7 +10665,7 @@ KANJI_DATA = [
   {
     'slug': 'n3-mi-buddha',
     'kanji': '弥',
-    'meaning': '미륵 미',
+    'meaning': '두루 미',
     'onyomi': 'ミ',
     'kunyomi': 'や',
     'level': 'N3',
@@ -10692,7 +10682,7 @@ KANJI_DATA = [
     'meaning': '눈썹 미',
     'onyomi': 'ビ, ミ',
     'kunyomi': 'まゆ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '눈썹을 의미하는 한자입니다.',
     'words': [
       '眉（まゆ） 눈썹'
@@ -10706,7 +10696,7 @@ KANJI_DATA = [
     'meaning': '작을 미',
     'onyomi': 'ビ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '아주 작거나 미세한 상태를 의미하는 한자입니다.',
     'words': [
       '微妙（びみょう） 미묘'
@@ -10723,7 +10713,7 @@ KANJI_DATA = [
     'meaning': '수수께끼 미',
     'onyomi': '',
     'kunyomi': 'なぞ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '수수께끼나 풀리지 않는 문제를 의미하는 한자입니다.',
     'words': [
       '謎（なぞ） 수수께끼'
@@ -10751,10 +10741,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-bin-sensitive',
     'kanji': '敏',
-    'meaning': '민감할 민',
+    'meaning': '민첩할 민',
     'onyomi': 'ビン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '빠르고 예민한 상태를 의미하는 한자입니다.',
     'words': [
       '敏感（びんかん） 민감'
@@ -10771,7 +10761,7 @@ KANJI_DATA = [
     'meaning': '빽빽할 밀',
     'onyomi': 'ミツ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '빽빽하거나 비밀스러운 상태를 의미하는 한자입니다.',
     'words': [
       '秘密（ひみつ） 비밀'
@@ -10788,7 +10778,7 @@ KANJI_DATA = [
     'meaning': '꿀 밀',
     'onyomi': 'ミツ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '꿀이나 달콤한 액체를 의미하는 한자입니다.',
     'words': [
       '蜂蜜（はちみつ） 벌꿀'
@@ -10802,7 +10792,7 @@ KANJI_DATA = [
     'meaning': '넓을 박',
     'onyomi': 'ハク, バク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '지식이나 범위가 넓음을 의미하는 한자입니다.',
     'words': [
       '博士（はかせ） 박사'
@@ -10816,7 +10806,7 @@ KANJI_DATA = [
   {
     'slug': 'n3-boku-plain',
     'kanji': '朴',
-    'meaning': '성씨 박',
+    'meaning': '순박할 박',
     'onyomi': 'ボク',
     'kunyomi': '',
     'level': 'N3',
@@ -10833,7 +10823,7 @@ KANJI_DATA = [
     'meaning': '머무를 박',
     'onyomi': 'ハク',
     'kunyomi': 'とまる, とめる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '머무르거나 숙박하는 뜻을 가진 한자입니다.',
     'words': [
       '宿泊（しゅくはく） 숙박'
@@ -10850,7 +10840,7 @@ KANJI_DATA = [
     'meaning': '칠 박',
     'onyomi': 'ハク, ヒョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '손을 치거나 박자를 의미하는 한자입니다.',
     'words': [
       '拍手（はくしゅ） 박수'
@@ -10864,7 +10854,7 @@ KANJI_DATA = [
     'meaning': '핍박할 박',
     'onyomi': 'ハク',
     'kunyomi': 'せまる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '가까이 다가오거나 압박하는 뜻을 가진 한자입니다.',
     'words': [
       '迫る（せまる） 다가오다'
@@ -10881,7 +10871,7 @@ KANJI_DATA = [
     'meaning': '벗길 박',
     'onyomi': 'ハク',
     'kunyomi': 'はがす, はぐ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '껍질을 벗기거나 떼어내는 뜻을 가진 한자입니다.',
     'words': [
       '剝がす（はがす） 벗기다'
@@ -10895,7 +10885,7 @@ KANJI_DATA = [
     'meaning': '배 박',
     'onyomi': 'ハク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '큰 배나 선박을 의미하는 한자입니다.',
     'words': [
       '船舶（せんぱく） 선박'
@@ -10909,7 +10899,7 @@ KANJI_DATA = [
     'meaning': '칠 박',
     'onyomi': 'ボク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '세게 치거나 때리는 뜻을 가진 한자입니다.',
     'words': [
       '打撲（だぼく） 타박'
@@ -10923,7 +10913,7 @@ KANJI_DATA = [
     'meaning': '엷을 박',
     'onyomi': 'ハク',
     'kunyomi': 'うすい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '얇거나 약한 상태를 의미하는 한자입니다.',
     'words': [
       '薄い（うすい） 얇다'
@@ -10940,7 +10930,7 @@ KANJI_DATA = [
     'meaning': '얽을 박',
     'onyomi': 'バク',
     'kunyomi': 'しばる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '묶거나 얽는 뜻을 가진 한자입니다.',
     'words': [
       '束縛（そくばく） 속박'
@@ -10971,7 +10961,7 @@ KANJI_DATA = [
     'meaning': '돌이킬 반',
     'onyomi': 'ハン',
     'kunyomi': 'そる, そらす',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '거꾸로 하거나 반대하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '反対（はんたい） 반대'
@@ -10988,7 +10978,7 @@ KANJI_DATA = [
     'meaning': '돌이킬 반',
     'onyomi': 'ヘン',
     'kunyomi': 'かえす, かえる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '되돌리거나 반환하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '返す（かえす） 돌려주다'
@@ -11005,7 +10995,7 @@ KANJI_DATA = [
     'meaning': '밥 반',
     'onyomi': 'ハン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '밥이나 식사를 의미하는 기본 한자입니다.',
     'words': [
       'ご飯（ごはん） 밥'
@@ -11019,7 +11009,7 @@ KANJI_DATA = [
     'meaning': '나눌 반',
     'onyomi': 'ハン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '조나 그룹을 의미하는 한자입니다.',
     'words': [
       '班（はん） 반'
@@ -11036,7 +11026,7 @@ KANJI_DATA = [
     'meaning': '짝 반',
     'onyomi': 'ハン, バン',
     'kunyomi': 'ともなう',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '함께 하거나 동반하는 뜻을 가진 한자입니다.',
     'words': [
       '伴う（ともなう） 동반하다'
@@ -11053,7 +11043,7 @@ KANJI_DATA = [
     'meaning': '밭두둑 반',
     'onyomi': 'ハン',
     'kunyomi': 'あぜ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '밭의 경계나 두둑을 의미하는 한자입니다.',
     'words': [
       '畔（あぜ） 두둑'
@@ -11067,7 +11057,7 @@ KANJI_DATA = [
     'meaning': '일반 반',
     'onyomi': 'ハン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '일반적이거나 보통의 상태를 의미하는 한자입니다.',
     'words': [
       '一般（いっぱん） 일반'
@@ -11095,7 +11085,7 @@ KANJI_DATA = [
     'meaning': '옮길 반',
     'onyomi': 'ハン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '물건을 옮기거나 운반하는 뜻을 가진 한자입니다.',
     'words': [
       '運搬（うんぱん） 운반'
@@ -11112,7 +11102,7 @@ KANJI_DATA = [
     'meaning': '나눌 반',
     'onyomi': 'ハン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '나누어 주거나 배포하는 뜻을 가진 한자입니다.',
     'words': [
       '頒布（はんぷ） 반포'
@@ -11129,7 +11119,7 @@ KANJI_DATA = [
     'meaning': '소반 반',
     'onyomi': 'バン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '판이나 받침을 의미하는 한자입니다.',
     'words': [
       '円盤（えんばん） 원반'
@@ -11140,10 +11130,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-hatsu-start',
     'kanji': '発',
-    'meaning': '필 발',
+    'meaning': '쏠 발',
     'onyomi': 'ハツ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '시작하거나 일어나는 것을 의미하는 기본 한자입니다.',
     'words': [
       '出発（しゅっぱつ） 출발'
@@ -11160,7 +11150,7 @@ KANJI_DATA = [
     'meaning': '뽑을 발',
     'onyomi': 'バツ',
     'kunyomi': 'ぬく, ぬける',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '뽑거나 빠지는 뜻을 가진 기본 한자입니다.',
     'words': [
       '抜く（ぬく） 뽑다'
@@ -11174,7 +11164,7 @@ KANJI_DATA = [
     'meaning': '우쩍 일어날 발',
     'onyomi': 'ボツ',
     'kunyomi': 'おこる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '갑자기 일어나거나 솟아나는 뜻을 가진 한자입니다.',
     'words': [
       '勃発（ぼっぱつ） 돌발'
@@ -11188,7 +11178,7 @@ KANJI_DATA = [
     'meaning': '바리때 발',
     'onyomi': 'ハチ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '그릇이나 화분을 의미하는 한자입니다.',
     'words': [
       '植木鉢（うえきばち） 화분'
@@ -11202,7 +11192,7 @@ KANJI_DATA = [
     'meaning': '터럭 발',
     'onyomi': 'ハツ',
     'kunyomi': 'かみ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '머리카락을 의미하는 기본 한자입니다.',
     'words': [
       '髪（かみ） 머리카락'
@@ -11233,7 +11223,7 @@ KANJI_DATA = [
     'meaning': '놓을 방',
     'onyomi': 'ホウ',
     'kunyomi': 'はなす, はなつ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '놓거나 풀어주는 뜻을 가진 기본 한자입니다.',
     'words': [
       '放す（はなす） 놓다'
@@ -11250,7 +11240,7 @@ KANJI_DATA = [
     'meaning': '찾을 방',
     'onyomi': 'ホウ',
     'kunyomi': 'おとずれる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '방문하거나 찾아가는 뜻을 가진 한자입니다.',
     'words': [
       '訪問（ほうもん） 방문'
@@ -11267,7 +11257,7 @@ KANJI_DATA = [
     'meaning': '막을 방',
     'onyomi': 'ボウ',
     'kunyomi': 'ふせぐ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '막거나 방지하는 뜻을 가진 한자입니다.',
     'words': [
       '防ぐ（ふせぐ） 막다'
@@ -11284,7 +11274,7 @@ KANJI_DATA = [
     'meaning': '방해할 방',
     'onyomi': 'ボウ',
     'kunyomi': 'さまたげる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '방해하거나 저지하는 뜻을 가진 한자입니다.',
     'words': [
       '妨げる（さまたげる） 방해하다'
@@ -11301,7 +11291,7 @@ KANJI_DATA = [
     'meaning': '나라 방',
     'onyomi': 'ホウ',
     'kunyomi': 'くに',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '나라나 국가를 의미하는 한자입니다.',
     'words': [
       '邦人（ほうじん） 자국민'
@@ -11318,7 +11308,7 @@ KANJI_DATA = [
     'meaning': '꽃다울 방',
     'onyomi': 'ホウ',
     'kunyomi': 'かんばしい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '향기롭거나 아름다운 상태를 의미하는 한자입니다.',
     'words': [
       '芳香（ほうこう） 방향'
@@ -11335,7 +11325,7 @@ KANJI_DATA = [
     'meaning': '동네 방',
     'onyomi': 'ボウ, ボッ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '거리나 구역을 의미하는 한자입니다.',
     'words': [
       '坊（ぼう） 동네'
@@ -11349,7 +11339,7 @@ KANJI_DATA = [
     'meaning': '방 방',
     'onyomi': 'ボウ',
     'kunyomi': 'ふさ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '방이나 공간을 의미하는 한자입니다.',
     'words': [
       '部屋（へや） 방'
@@ -11363,7 +11353,7 @@ KANJI_DATA = [
     'meaning': '살찔 방',
     'onyomi': 'ボウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '지방이나 살을 의미하는 한자입니다.',
     'words': [
       '脂肪（しぼう） 지방'
@@ -11394,7 +11384,7 @@ KANJI_DATA = [
     'meaning': '길쌈 방',
     'onyomi': 'ボウ',
     'kunyomi': 'つむぐ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '실을 잣거나 이야기를 이어가는 뜻을 가진 한자입니다.',
     'words': [
       '紡ぐ（つむぐ） 잣다'
@@ -11408,7 +11398,7 @@ KANJI_DATA = [
     'meaning': '곁 방',
     'onyomi': 'ボウ',
     'kunyomi': 'そば, かたわら',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '곁이나 옆을 의미하는 한자입니다.',
     'words': [
       '傍（そば） 곁'
@@ -11425,7 +11415,7 @@ KANJI_DATA = [
     'meaning': '나눌 배',
     'onyomi': 'ハイ',
     'kunyomi': 'くばる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '나누어 주거나 배치하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '配る（くばる） 나누다'
@@ -11442,7 +11432,7 @@ KANJI_DATA = [
     'meaning': '곱 배',
     'onyomi': 'バイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '배수나 증가를 의미하는 기본 한자입니다.',
     'words': [
       '倍（ばい） 배'
@@ -11456,7 +11446,7 @@ KANJI_DATA = [
     'meaning': '절 배',
     'onyomi': 'ハイ',
     'kunyomi': 'おがむ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '절하거나 공손히 대하는 뜻을 가진 한자입니다.',
     'words': [
       '拝見（はいけん） 배견'
@@ -11470,7 +11460,7 @@ KANJI_DATA = [
     'meaning': '등 배',
     'onyomi': 'ハイ',
     'kunyomi': 'せ, そむく',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '등이나 뒤쪽을 의미하는 기본 한자입니다.',
     'words': [
       '背中（せなか） 등'
@@ -11484,7 +11474,7 @@ KANJI_DATA = [
     'meaning': '배우 배',
     'onyomi': 'ハイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '연극이나 연기와 관련된 뜻을 가진 한자입니다.',
     'words': [
       '俳優（はいゆう） 배우'
@@ -11498,7 +11488,7 @@ KANJI_DATA = [
     'meaning': '잔 배',
     'onyomi': 'ハイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '잔이나 컵을 세는 단위를 의미하는 기본 한자입니다.',
     'words': [
       '一杯（いっぱい） 한 잔'
@@ -11509,10 +11499,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-hai-reject',
     'kanji': '排',
-    'meaning': '배척할 배',
+    'meaning': '밀칠 배',
     'onyomi': 'ハイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '밀어내거나 배제하는 뜻을 가진 한자입니다.',
     'words': [
       '排除（はいじょ） 배제'
@@ -11540,10 +11530,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-bai-cultivate',
     'kanji': '培',
-    'meaning': '배양할 배',
+    'meaning': '북돋울 배',
     'onyomi': 'バイ',
     'kunyomi': 'つちかう',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '기르거나 배양하는 뜻을 가진 한자입니다.',
     'words': [
       '培う（つちかう） 기르다'
@@ -11560,7 +11550,7 @@ KANJI_DATA = [
     'meaning': '무리 배',
     'onyomi': 'ハイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '동류나 무리를 의미하는 한자입니다.',
     'words': [
       '先輩（せんぱい） 선배'
@@ -11574,7 +11564,7 @@ KANJI_DATA = [
     'meaning': '물어줄 배',
     'onyomi': 'バイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '손해를 보상하는 뜻을 가진 한자입니다.',
     'words': [
       '賠償（ばいしょう） 배상'
@@ -11616,7 +11606,7 @@ KANJI_DATA = [
     'meaning': '맏 백',
     'onyomi': 'ハク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '맏이나 높은 지위를 의미하는 한자입니다.',
     'words': [
       '伯父（おじ） 큰아버지'
@@ -11630,7 +11620,7 @@ KANJI_DATA = [
     'meaning': '차례 번',
     'onyomi': 'バン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '순서나 차례를 의미하는 기본 한자입니다.',
     'words': [
       '番号（ばんごう） 번호'
@@ -11644,7 +11634,7 @@ KANJI_DATA = [
     'meaning': '번성할 번',
     'onyomi': 'ハン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '번성하거나 많아지는 상태를 의미하는 한자입니다.',
     'words': [
       '繁栄（はんえい） 번영'
@@ -11658,7 +11648,7 @@ KANJI_DATA = [
     'meaning': '번거로울 번',
     'onyomi': 'ハン, ボン',
     'kunyomi': 'わずらう',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '번거롭거나 괴로운 상태를 의미하는 한자입니다.',
     'words': [
       '煩悩（ぼんのう） 번뇌'
@@ -11689,7 +11679,7 @@ KANJI_DATA = [
     'meaning': '번역할 번 / 뒤집을 번',
     'onyomi': 'ホン',
     'kunyomi': 'ひるがえる、ひるがえす',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '뒤집다, 번역하다의 의미를 가진 한자입니다.',
     'words': [
       '翻訳（ほんやく） 번역'
@@ -11708,7 +11698,7 @@ KANJI_DATA = [
     'meaning': '칠 벌',
     'onyomi': 'バツ',
     'kunyomi': 'うつ、きる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '나무를 베거나 공격한다는 의미를 가진 한자입니다.',
     'words': [
       '伐採（ばっさい） 벌채'
@@ -11727,7 +11717,7 @@ KANJI_DATA = [
     'meaning': '벌할 벌',
     'onyomi': 'バツ、バチ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '잘못에 대해 벌을 준다는 의미의 한자입니다.',
     'words': [
       '罰（ばつ） 벌',
@@ -11766,7 +11756,7 @@ KANJI_DATA = [
     'meaning': '범할 범',
     'onyomi': 'ハン',
     'kunyomi': 'おかす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '죄를 범하다라는 의미로 자주 사용됩니다.',
     'words': [
       '犯罪（はんざい） 범죄'
@@ -11785,7 +11775,7 @@ KANJI_DATA = [
     'meaning': '무릇 범',
     'onyomi': 'ハン、ボン',
     'kunyomi': 'およそ、すべて',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '대체로, 모든 것을 의미하는 한자입니다.',
     'words': [
       '凡人（ぼんじん） 범인(평범한 사람)'
@@ -11842,7 +11832,7 @@ KANJI_DATA = [
     'meaning': '돛 범',
     'onyomi': 'ハン',
     'kunyomi': 'ほ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '배의 돛을 의미하는 한자입니다.',
     'words': [
       '帆（ほ） 돛'
@@ -11861,7 +11851,7 @@ KANJI_DATA = [
     'meaning': '법 범 / 본보기',
     'onyomi': 'ハン',
     'kunyomi': 'のり',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '본보기나 규범을 의미하는 한자입니다.',
     'words': [
       '模範（もはん） 모범'
@@ -11880,7 +11870,7 @@ KANJI_DATA = [
     'meaning': '법 법',
     'onyomi': 'ホウ、ホッ、ハッ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '법이나 방법을 의미하는 기본 한자입니다.',
     'words': [
       '法律（ほうりつ） 법률'
@@ -11899,7 +11889,7 @@ KANJI_DATA = [
     'meaning': '벽 벽',
     'onyomi': 'ヘキ',
     'kunyomi': 'かべ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '건물의 벽을 의미하는 한자입니다.',
     'words': [
       '壁（かべ） 벽'
@@ -11918,7 +11908,7 @@ KANJI_DATA = [
     'meaning': '버릇 벽',
     'onyomi': 'ヘキ',
     'kunyomi': 'くせ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '습관이나 버릇을 의미하는 한자입니다.',
     'words': [
       '癖（くせ） 버릇'
@@ -11956,7 +11946,7 @@ KANJI_DATA = [
     'meaning': '가 변 / 주변',
     'onyomi': 'ヘン',
     'kunyomi': 'あたり、べ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '주변이나 근처를 의미하는 기본 한자입니다.',
     'words': [
       '周辺（しゅうへん） 주변'
@@ -11975,7 +11965,7 @@ KANJI_DATA = [
     'meaning': '변할 변',
     'onyomi': 'ヘン',
     'kunyomi': 'かわる、かえる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '변하다, 바꾸다의 의미를 가진 기본 한자입니다.',
     'words': [
       '変更（へんこう） 변경'
@@ -11994,7 +11984,7 @@ KANJI_DATA = [
     'meaning': '말씀 변',
     'onyomi': 'ベン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '말이나 변론을 의미하는 한자입니다.',
     'words': [
       '弁当（べんとう） 도시락',
@@ -12014,7 +12004,7 @@ KANJI_DATA = [
     'meaning': '나눌 별',
     'onyomi': 'ベツ',
     'kunyomi': 'わかれる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '나누다, 구별하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '別れる（わかれる） 헤어지다'
@@ -12033,7 +12023,7 @@ KANJI_DATA = [
     'meaning': '병 병',
     'onyomi': 'ビョウ、ヘイ',
     'kunyomi': 'やむ、やまい',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '병이나 아픔을 의미하는 기본 한자입니다.',
     'words': [
       '病気（びょうき） 병'
@@ -12052,7 +12042,7 @@ KANJI_DATA = [
     'meaning': '병사 병',
     'onyomi': 'ヘイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '군인이나 병사를 의미하는 한자입니다.',
     'words': [
       '兵士（へいし） 병사'
@@ -12071,7 +12061,7 @@ KANJI_DATA = [
     'meaning': '나란히 병',
     'onyomi': 'ヘイ',
     'kunyomi': 'なみ、ならべる、ならぶ、ならびに',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '나란히 하다, 줄을 서다의 의미를 가진 기본 한자입니다.',
     'words': [
       '並ぶ（ならぶ） 줄서다'
@@ -12087,7 +12077,7 @@ KANJI_DATA = [
   {
     'slug': 'n1-han-third',
     'kanji': '丙',
-    'meaning': '남녘 병',
+    'meaning': '셋째 병',
     'onyomi': 'ヘイ',
     'kunyomi': '',
     'level': 'N1',
@@ -12108,7 +12098,7 @@ KANJI_DATA = [
     'meaning': '아우를 병',
     'onyomi': 'ヘイ',
     'kunyomi': 'あわせる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '합치다, 함께하다의 의미를 가진 한자입니다.',
     'words': [
       '併用（へいよう） 병용'
@@ -12127,7 +12117,7 @@ KANJI_DATA = [
     'meaning': '자루 병',
     'onyomi': 'ヘイ',
     'kunyomi': 'え、がら、つか',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '도구의 손잡이나 무늬를 의미하는 한자입니다.',
     'words': [
       '柄（え） 자루'
@@ -12141,31 +12131,12 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n3-han-bottle',
-    'kanji': '瓶',
-    'meaning': '병 병',
-    'onyomi': 'ビン',
-    'kunyomi': '',
-    'level': 'N3',
-    'desc': '액체를 담는 병을 의미하는 한자입니다.',
-    'words': [
-      '瓶（びん） 병'
-    ],
-    'example_jp': '瓶に水を入れる。',
-    'example_ko': '병에 물을 넣다.',
-    'related': [
-      '水',
-      '容',
-      '器'
-    ]
-  },
-  {
     'slug': 'n2-han-wall-fence',
     'kanji': '塀',
     'meaning': '담 병',
     'onyomi': 'ヘイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '집이나 건물을 둘러싸는 담을 의미하는 한자입니다.',
     'words': [
       '塀（へい） 담'
@@ -12184,7 +12155,7 @@ KANJI_DATA = [
     'meaning': '떡 병',
     'onyomi': 'ヘイ',
     'kunyomi': 'もち',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '떡을 의미하는 한자입니다.',
     'words': [
       '餅（もち） 떡'
@@ -12203,7 +12174,7 @@ KANJI_DATA = [
     'meaning': '걸음 보',
     'onyomi': 'ホ、ブ、フ',
     'kunyomi': 'あるく、あゆむ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '걷다, 나아가다의 의미를 가진 기본 한자입니다.',
     'words': [
       '歩く（あるく） 걷다'
@@ -12222,7 +12193,7 @@ KANJI_DATA = [
     'meaning': '지킬 보',
     'onyomi': 'ホ',
     'kunyomi': 'たもつ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '지키다, 유지하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '保つ（たもつ） 유지하다'
@@ -12241,7 +12212,7 @@ KANJI_DATA = [
     'meaning': '갚을 보 / 알릴 보',
     'onyomi': 'ホウ',
     'kunyomi': 'しらせる、むくいる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '알리다, 보답하다의 의미를 가진 한자입니다.',
     'words': [
       '報告（ほうこく） 보고'
@@ -12260,7 +12231,7 @@ KANJI_DATA = [
     'meaning': '보배 보',
     'onyomi': 'ホウ',
     'kunyomi': 'たから',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '보물이나 귀한 것을 의미하는 기본 한자입니다.',
     'words': [
       '宝（たから） 보물'
@@ -12279,7 +12250,7 @@ KANJI_DATA = [
     'meaning': '기울 보',
     'onyomi': 'ホ',
     'kunyomi': 'おぎなう',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '부족한 것을 채우거나 보충하는 의미입니다.',
     'words': [
       '補う（おぎなう） 보충하다'
@@ -12295,10 +12266,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-general-wide',
     'kanji': '普',
-    'meaning': '넓을 보 / 보통',
+    'meaning': '넓을 보',
     'onyomi': 'フ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '보편적이고 널리 퍼진 것을 의미하는 한자입니다.',
     'words': [
       '普通（ふつう） 보통'
@@ -12336,7 +12307,7 @@ KANJI_DATA = [
     'meaning': '옷 복',
     'onyomi': 'フク',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '옷이나 복장을 의미하는 기본 한자입니다.',
     'words': [
       '洋服（ようふく） 양복'
@@ -12355,7 +12326,7 @@ KANJI_DATA = [
     'meaning': '복 복',
     'onyomi': 'フク',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '행복이나 복을 의미하는 기본 한자입니다.',
     'words': [
       '幸福（こうふく） 행복'
@@ -12374,7 +12345,7 @@ KANJI_DATA = [
     'meaning': '회복할 복 / 다시 부',
     'onyomi': 'フク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '되돌아오다, 회복하다의 의미를 가진 한자입니다.',
     'words': [
       '復習（ふくしゅう） 복습'
@@ -12393,7 +12364,7 @@ KANJI_DATA = [
     'meaning': '겹칠 복',
     'onyomi': 'フク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '겹치거나 복잡함을 의미하는 한자입니다.',
     'words': [
       '複雑（ふくざつ） 복잡'
@@ -12412,7 +12383,7 @@ KANJI_DATA = [
     'meaning': '배 복',
     'onyomi': 'フク',
     'kunyomi': 'はら',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '배나 속을 의미하는 기본 한자입니다.',
     'words': [
       '腹（はら） 배'
@@ -12431,7 +12402,7 @@ KANJI_DATA = [
     'meaning': '엎드릴 복',
     'onyomi': 'フク',
     'kunyomi': 'ふせる、ふす',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '엎드리다, 숨다의 의미를 가진 한자입니다.',
     'words': [
       '降伏（こうふく） 항복'
@@ -12450,7 +12421,7 @@ KANJI_DATA = [
     'meaning': '종 복 / 나',
     'onyomi': 'ボク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': "자신을 낮추어 말하는 '나' 또는 하인을 의미합니다.",
     'words': [
       '僕（ぼく） 나'
@@ -12466,7 +12437,7 @@ KANJI_DATA = [
   {
     'slug': 'n1-han-cover',
     'kanji': '覆',
-    'meaning': '뒤집힐 복 / 덮을 부',
+    'meaning': '덮을 복',
     'onyomi': 'フク',
     'kunyomi': 'おおう、くつがえす、くつがえる',
     'level': 'N1',
@@ -12507,7 +12478,7 @@ KANJI_DATA = [
     'meaning': '막대 봉',
     'onyomi': 'ボウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '막대기나 긴 도구를 의미하는 한자입니다.',
     'words': [
       '泥棒（どろぼう） 도둑'
@@ -12526,7 +12497,7 @@ KANJI_DATA = [
     'meaning': '받들 봉',
     'onyomi': 'ブ、ホウ',
     'kunyomi': 'たてまつる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '윗사람에게 바치거나 공경하는 의미의 한자입니다.',
     'words': [
       '奉仕（ほうし） 봉사'
@@ -12545,7 +12516,7 @@ KANJI_DATA = [
     'meaning': '봉할 봉',
     'onyomi': 'フウ、ホウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '봉하다, 밀봉하다의 의미를 가진 한자입니다.',
     'words': [
       '封筒（ふうとう） 봉투'
@@ -12564,7 +12535,7 @@ KANJI_DATA = [
     'meaning': '녹 봉',
     'onyomi': 'ホウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '급여나 녹봉을 의미하는 한자입니다.',
     'words': [
       '俸給（ほうきゅう） 봉급'
@@ -12583,7 +12554,7 @@ KANJI_DATA = [
     'meaning': '봉우리 봉',
     'onyomi': 'ホウ',
     'kunyomi': 'みね',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '산의 봉우리나 꼭대기를 의미하는 한자입니다.',
     'words': [
       '山の峰（みね） 산봉우리'
@@ -12602,7 +12573,7 @@ KANJI_DATA = [
     'meaning': '벌 봉',
     'onyomi': 'ホウ',
     'kunyomi': 'はち',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '벌을 의미하는 한자입니다.',
     'words': [
       '蜂（はち） 벌'
@@ -12621,7 +12592,7 @@ KANJI_DATA = [
     'meaning': '꿰맬 봉',
     'onyomi': 'ホウ',
     'kunyomi': 'ぬう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '바느질하다, 꿰매다의 의미를 가진 한자입니다.',
     'words': [
       '縫う（ぬう） 꿰매다'
@@ -12659,7 +12630,7 @@ KANJI_DATA = [
     'meaning': '질 부',
     'onyomi': 'フ',
     'kunyomi': 'まける、まかす、おう',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '지다, 짊어지다, 패배하다의 의미를 가진 한자입니다.',
     'words': [
       '負ける（まける） 지다'
@@ -12678,7 +12649,7 @@ KANJI_DATA = [
     'meaning': '떼 부',
     'onyomi': 'ブ、ベ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '부분이나 부서를 의미하는 기본 한자입니다.',
     'words': [
       '部屋（へや） 방'
@@ -12697,7 +12668,7 @@ KANJI_DATA = [
     'meaning': '지아비 부',
     'onyomi': 'フ、フウ',
     'kunyomi': 'おっと',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '남편이나 성인 남성을 의미하는 기본 한자입니다.',
     'words': [
       '夫（おっと） 남편'
@@ -12716,7 +12687,7 @@ KANJI_DATA = [
     'meaning': '줄 부',
     'onyomi': 'フ',
     'kunyomi': 'つく、つける',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '붙다, 붙이다의 의미를 가진 기본 한자입니다.',
     'words': [
       '気を付ける（きをつける） 조심하다'
@@ -12732,7 +12703,7 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-office',
     'kanji': '府',
-    'meaning': '막을 부',
+    'meaning': '마을 부',
     'onyomi': 'フ',
     'kunyomi': '',
     'level': 'N3',
@@ -12773,7 +12744,7 @@ KANJI_DATA = [
     'meaning': '며느리 부 / 여자',
     'onyomi': 'フ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '여성이나 부인을 의미하는 한자입니다.',
     'words': [
       '主婦（しゅふ） 주부'
@@ -12792,7 +12763,7 @@ KANJI_DATA = [
     'meaning': '부유할 부',
     'onyomi': 'フ、フウ',
     'kunyomi': 'とむ、とみ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '부유함이나 풍요로움을 의미하는 한자입니다.',
     'words': [
       '富（とみ） 부'
@@ -12811,7 +12782,7 @@ KANJI_DATA = [
     'meaning': '아닐 부',
     'onyomi': 'ヒ',
     'kunyomi': 'いな',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '부정하거나 거절하는 의미를 가진 한자입니다.',
     'words': [
       '否定（ひてい） 부정'
@@ -12824,6 +12795,27 @@ KANJI_DATA = [
       '拒'
     ]
   },
+  {
+  'slug': 'n5-bu-not',
+  'kanji': '不',
+  'meaning': '아닐 불',
+  'onyomi': 'フ, ブ',
+  'kunyomi': '',
+  'level': 'N5',
+  'desc': '부정의 의미를 나타내며 “~이 아니다”, “~하지 않는다”라는 뜻으로 사용되는 기본 한자입니다.',
+  'words': [
+    '不安（ふあん） 불안',
+    '不便（ふべん） 불편',
+    '不可能（ふかのう） 불가능'
+  ],
+  'example_jp': 'これは不可能です。',
+  'example_ko': '이것은 불가능합니다.',
+  'related': [
+    '否',
+    '非',
+    '無'
+  ]
+},
   {
     'slug': 'n2-han-support',
     'kanji': '扶',
@@ -12868,7 +12860,7 @@ KANJI_DATA = [
     'meaning': '붙을 부',
     'onyomi': 'フ',
     'kunyomi': 'つく、つける',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '붙다, 덧붙이다의 의미를 가진 한자 (付의 옛 형태)입니다.',
     'words': [
       '附属（ふぞく） 부속'
@@ -12887,7 +12879,7 @@ KANJI_DATA = [
     'meaning': '갈 부',
     'onyomi': 'フ',
     'kunyomi': 'おもむく',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '어떤 장소로 향하거나 가다의 의미를 가진 한자입니다.',
     'words': [
       '赴任（ふにん） 부임'
@@ -12925,7 +12917,7 @@ KANJI_DATA = [
     'meaning': '뜰 부',
     'onyomi': 'フ',
     'kunyomi': 'うく、うかれる、うかぶ、うかべる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '뜨다, 떠오르다의 의미를 가진 한자입니다.',
     'words': [
       '浮かぶ（うかぶ） 떠오르다'
@@ -13001,7 +12993,7 @@ KANJI_DATA = [
     'meaning': '썩을 부',
     'onyomi': 'フ',
     'kunyomi': 'くさる、くされる、くさらす',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '썩다, 부패하다의 의미를 가진 한자입니다.',
     'words': [
       '腐る（くさる） 썩다'
@@ -13020,7 +13012,7 @@ KANJI_DATA = [
     'meaning': '펼 부',
     'onyomi': 'フ',
     'kunyomi': 'しく',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '펴다, 깔다의 의미를 가진 한자입니다.',
     'words': [
       '敷く（しく） 깔다'
@@ -13077,7 +13069,7 @@ KANJI_DATA = [
     'meaning': '문서 부',
     'onyomi': 'ボ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '장부나 기록 문서를 의미하는 한자입니다.',
     'words': [
       '帳簿（ちょうぼ） 장부'
@@ -13136,7 +13128,7 @@ KANJI_DATA = [
     'meaning': '가루 분',
     'onyomi': 'フン',
     'kunyomi': 'こ、こな',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '가루나 분말을 의미하는 한자입니다.',
     'words': [
       '小麦粉（こむぎこ） 밀가루'
@@ -13155,7 +13147,7 @@ KANJI_DATA = [
     'meaning': '떨칠 분',
     'onyomi': 'フン',
     'kunyomi': 'ふるう',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '기운을 떨치고 분발한다는 의미를 가진 한자입니다.',
     'words': [
       '興奮（こうふん） 흥분',
@@ -13194,7 +13186,7 @@ KANJI_DATA = [
     'meaning': '동이 분',
     'onyomi': 'ボン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '쟁반이나 동이 같은 그릇을 의미하는 한자입니다.',
     'words': [
       'お盆（おぼん） 쟁반',
@@ -13214,7 +13206,7 @@ KANJI_DATA = [
     'meaning': '어지러울 분',
     'onyomi': 'フン',
     'kunyomi': 'まぎれる、まぎらす、まぎらわす、まぎらわしい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '뒤섞이거나 헷갈리게 하다의 의미를 가진 한자입니다.',
     'words': [
       '紛失（ふんしつ） 분실'
@@ -13233,7 +13225,7 @@ KANJI_DATA = [
     'meaning': '눈날릴 분',
     'onyomi': 'フン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '주로 분위기를 뜻하는 단어에 쓰이는 한자입니다.',
     'words': [
       '雰囲気（ふんいき） 분위기'
@@ -13252,7 +13244,7 @@ KANJI_DATA = [
     'meaning': '뿜을 분',
     'onyomi': 'フン',
     'kunyomi': 'ふく',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '분출하다, 뿜어내다의 의미를 가진 한자입니다.',
     'words': [
       '噴火（ふんか） 분화'
@@ -13271,7 +13263,7 @@ KANJI_DATA = [
     'meaning': '분할 분',
     'onyomi': 'フン',
     'kunyomi': 'いきどおる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '분하게 여기거나 분노한다는 의미의 한자입니다.',
     'words': [
       '憤慨（ふんがい） 분개'
@@ -13329,7 +13321,7 @@ KANJI_DATA = [
     'meaning': '부처 불',
     'onyomi': 'ブツ',
     'kunyomi': 'ほとけ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '부처나 불교를 의미하는 기본 한자입니다.',
     'words': [
       '仏（ほとけ） 부처',
@@ -13349,7 +13341,7 @@ KANJI_DATA = [
     'meaning': '떨칠 불 / 지불할 불',
     'onyomi': 'フツ',
     'kunyomi': 'はらう',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '지불하다, 털어내다의 의미를 가진 기본 한자입니다.',
     'words': [
       '支払う（しはらう） 지불하다'
@@ -13368,7 +13360,7 @@ KANJI_DATA = [
     'meaning': '무너질 붕',
     'onyomi': 'ホウ',
     'kunyomi': 'くずれる、くずす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '무너지다, 붕괴되다의 의미를 가진 한자입니다.',
     'words': [
       '崩壊（ほうかい） 붕괴'
@@ -13387,7 +13379,7 @@ KANJI_DATA = [
     'meaning': '사다리 붕 / 선반',
     'onyomi': '',
     'kunyomi': 'たな',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '물건을 올려두는 선반을 의미하는 한자입니다.',
     'words': [
       '棚（たな） 선반'
@@ -13406,7 +13398,7 @@ KANJI_DATA = [
     'meaning': '슬플 비',
     'onyomi': 'ヒ',
     'kunyomi': 'かなしい、かなしむ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '슬프다, 슬퍼하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '悲しい（かなしい） 슬프다'
@@ -13425,7 +13417,7 @@ KANJI_DATA = [
     'meaning': '코 비',
     'onyomi': 'ビ',
     'kunyomi': 'はな',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '코를 의미하는 기본 한자입니다.',
     'words': [
       '鼻（はな） 코'
@@ -13444,7 +13436,7 @@ KANJI_DATA = [
     'meaning': '날 비',
     'onyomi': 'ヒ',
     'kunyomi': 'とぶ、とばす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '날다, 날리다의 의미를 가진 기본 한자입니다.',
     'words': [
       '飛ぶ（とぶ） 날다'
@@ -13463,7 +13455,7 @@ KANJI_DATA = [
     'meaning': '쓸 비',
     'onyomi': 'ヒ',
     'kunyomi': 'ついやす、ついえる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '비용이나 소비를 의미하는 기본 한자입니다.',
     'words': [
       '費用（ひよう） 비용'
@@ -13482,7 +13474,7 @@ KANJI_DATA = [
     'meaning': '견줄 비',
     'onyomi': 'ヒ',
     'kunyomi': 'くらべる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '비교하다, 견주다의 의미를 가진 기본 한자입니다.',
     'words': [
       '比較（ひかく） 비교'
@@ -13501,7 +13493,7 @@ KANJI_DATA = [
     'meaning': '아닐 비',
     'onyomi': 'ヒ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '옳지 않음, 부정을 의미하는 기본 한자입니다.',
     'words': [
       '非常（ひじょう） 비상'
@@ -13520,7 +13512,7 @@ KANJI_DATA = [
     'meaning': '살찔 비',
     'onyomi': 'ヒ',
     'kunyomi': 'こえる、こえ、こやす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '살찌다, 비옥하다의 의미를 가진 한자입니다.',
     'words': [
       '肥える（こえる） 살찌다'
@@ -13539,7 +13531,7 @@ KANJI_DATA = [
     'meaning': '갖출 비',
     'onyomi': 'ビ',
     'kunyomi': 'そなえる、そなわる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '준비하다, 갖추다의 의미를 가진 한자입니다.',
     'words': [
       '準備（じゅんび） 준비'
@@ -13558,7 +13550,7 @@ KANJI_DATA = [
     'meaning': '비평할 비',
     'onyomi': 'ヒ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '비판하거나 평가한다는 의미의 한자입니다.',
     'words': [
       '批判（ひはん） 비판'
@@ -13577,7 +13569,7 @@ KANJI_DATA = [
     'meaning': '숨길 비',
     'onyomi': 'ヒ',
     'kunyomi': 'ひめる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '숨기다, 비밀의 의미를 가진 한자입니다.',
     'words': [
       '秘密（ひみつ） 비밀'
@@ -13615,7 +13607,7 @@ KANJI_DATA = [
     'meaning': '끓을 비',
     'onyomi': 'フツ',
     'kunyomi': 'わく、わかす',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '끓다, 끓이다의 의미를 가진 한자입니다.',
     'words': [
       '沸く（わく） 끓다'
@@ -13672,7 +13664,7 @@ KANJI_DATA = [
     'meaning': '사립문 비',
     'onyomi': 'ヒ',
     'kunyomi': 'とびら',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '문이나 출입구를 의미하는 한자입니다.',
     'words': [
       '扉（とびら） 문'
@@ -13691,7 +13683,7 @@ KANJI_DATA = [
     'meaning': '비석 비',
     'onyomi': 'ヒ',
     'kunyomi': 'いしぶみ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '기념하거나 기록하기 위해 세운 비석을 의미하는 한자입니다.',
     'words': [
       '石碑（せきひ） 비석'
@@ -13710,7 +13702,7 @@ KANJI_DATA = [
     'meaning': '가난할 빈',
     'onyomi': 'ヒン、ビン',
     'kunyomi': 'まずしい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '가난하거나 부족한 상태를 의미하는 한자입니다.',
     'words': [
       '貧しい（まずしい） 가난하다'
@@ -13729,7 +13721,7 @@ KANJI_DATA = [
     'meaning': '물가 빈',
     'onyomi': 'ヒン',
     'kunyomi': 'はま',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '바닷가나 강가를 의미하는 한자입니다.',
     'words': [
       '浜（はま） 해변'
@@ -13767,7 +13759,7 @@ KANJI_DATA = [
     'meaning': '자주 빈',
     'onyomi': 'ヒン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '자주, 빈번함을 의미하는 한자입니다.',
     'words': [
       '頻繁（ひんぱん） 빈번'
@@ -13786,7 +13778,7 @@ KANJI_DATA = [
     'meaning': '얼음 빙',
     'onyomi': 'ヒョウ',
     'kunyomi': 'こおり、ひ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '얼음을 의미하는 기본 한자입니다.',
     'words': [
       '氷（こおり） 얼음'
@@ -13824,7 +13816,7 @@ KANJI_DATA = [
     'meaning': '실 사',
     'onyomi': 'シ',
     'kunyomi': 'いと',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '실이나 끈을 의미하는 기본 한자입니다.',
     'words': [
       '糸（いと） 실'
@@ -13843,7 +13835,7 @@ KANJI_DATA = [
     'meaning': '절 사',
     'onyomi': 'ジ',
     'kunyomi': 'てら',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '절이나 사원을 의미하는 기본 한자입니다.',
     'words': [
       '寺（てら） 절'
@@ -13881,7 +13873,7 @@ KANJI_DATA = [
     'meaning': '생각 사',
     'onyomi': 'シ',
     'kunyomi': 'おもう',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '생각하다, 느끼다의 의미를 가진 기본 한자입니다.',
     'words': [
       '思う（おもう） 생각하다'
@@ -13900,7 +13892,7 @@ KANJI_DATA = [
     'meaning': '베낄 사',
     'onyomi': 'シャ',
     'kunyomi': 'うつす、うつる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '베끼다, 옮기다의 의미를 가진 기본 한자입니다.',
     'words': [
       '写真（しゃしん） 사진'
@@ -13938,7 +13930,7 @@ KANJI_DATA = [
     'meaning': '죽을 사',
     'onyomi': 'シ',
     'kunyomi': 'しぬ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '죽음을 의미하는 기본 한자입니다.',
     'words': [
       '死ぬ（しぬ） 죽다'
@@ -13957,7 +13949,7 @@ KANJI_DATA = [
     'meaning': '일 사',
     'onyomi': 'ジ、ズ',
     'kunyomi': 'こと',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '일이나 사건을 의미하는 기본 한자입니다.',
     'words': [
       '仕事（しごと） 일'
@@ -13973,10 +13965,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-use',
     'kanji': '使',
-    'meaning': '하여금 사',
+    'meaning': '부릴 사',
     'onyomi': 'シ',
     'kunyomi': 'つかう',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '사용하다, 시키다의 의미를 가진 기본 한자입니다.',
     'words': [
       '使う（つかう） 사용하다'
@@ -13995,7 +13987,7 @@ KANJI_DATA = [
     'meaning': '선비 사',
     'onyomi': 'シ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '학식 있는 사람이나 직업인을 의미하는 한자입니다.',
     'words': [
       '弁護士（べんごし） 변호사'
@@ -14033,7 +14025,7 @@ KANJI_DATA = [
     'meaning': '맡을 사',
     'onyomi': 'シ',
     'kunyomi': 'つかさどる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '관장하다, 맡다의 의미를 가진 한자입니다.',
     'words': [
       '司会（しかい） 사회'
@@ -14071,7 +14063,7 @@ KANJI_DATA = [
     'meaning': '닮을 사',
     'onyomi': 'ジ',
     'kunyomi': 'にる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '비슷하다, 닮다의 의미를 가진 한자입니다.',
     'words': [
       '似る（にる） 닮다'
@@ -14090,7 +14082,7 @@ KANJI_DATA = [
     'meaning': '집 사',
     'onyomi': 'シャ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '집이나 숙소를 의미하는 한자입니다.',
     'words': [
       '校舎（こうしゃ） 교사(학교 건물)'
@@ -14109,7 +14101,7 @@ KANJI_DATA = [
     'meaning': '조사할 사',
     'onyomi': 'サ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '조사하거나 검사하는 의미를 가진 한자입니다.',
     'words': [
       '調査（ちょうさ） 조사'
@@ -14128,7 +14120,7 @@ KANJI_DATA = [
     'meaning': '스승 사',
     'onyomi': 'シ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '스승이나 전문가를 의미하는 기본 한자입니다.',
     'words': [
       '教師（きょうし） 교사'
@@ -14147,7 +14139,7 @@ KANJI_DATA = [
     'meaning': '기를 사',
     'onyomi': 'シ',
     'kunyomi': 'かう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '동물을 기르다의 의미를 가진 한자입니다.',
     'words': [
       '飼う（かう） 기르다'
@@ -14166,7 +14158,7 @@ KANJI_DATA = [
     'meaning': '사례할 사 / 사과할 사',
     'onyomi': 'シャ',
     'kunyomi': 'あやまる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '감사하거나 사과하는 의미를 가진 한자입니다.',
     'words': [
       '感謝（かんしゃ） 감사',
@@ -14186,7 +14178,7 @@ KANJI_DATA = [
     'meaning': '사사로울 사',
     'onyomi': 'シ',
     'kunyomi': 'わたくし、わたし',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '나 또는 개인을 의미하는 기본 한자입니다.',
     'words': [
       '私（わたし） 나'
@@ -14205,7 +14197,7 @@ KANJI_DATA = [
     'meaning': '모래 사',
     'onyomi': 'サ、シャ',
     'kunyomi': 'すな',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '모래를 의미하는 기본 한자입니다.',
     'words': [
       '砂（すな） 모래'
@@ -14224,7 +14216,7 @@ KANJI_DATA = [
     'meaning': '쏠 사',
     'onyomi': 'シャ',
     'kunyomi': 'いる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '쏘다, 발사하다의 의미를 가진 한자입니다.',
     'words': [
       '発射（はっしゃ） 발사'
@@ -14243,7 +14235,7 @@ KANJI_DATA = [
     'meaning': '버릴 사',
     'onyomi': 'シャ',
     'kunyomi': 'すてる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '버리다의 의미를 가진 기본 한자입니다.',
     'words': [
       '捨てる（すてる） 버리다'
@@ -14262,7 +14254,7 @@ KANJI_DATA = [
     'meaning': '말 사',
     'onyomi': 'シ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '말이나 가사를 의미하는 한자입니다.',
     'words': [
       '歌詞（かし） 가사'
@@ -14297,10 +14289,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-ask-humble',
     'kanji': '伺',
-    'meaning': '엿볼 사 / 여쭙다',
+    'meaning': '엿볼 사',
     'onyomi': 'シ',
     'kunyomi': 'うかがう',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '겸손하게 묻거나 방문하다의 의미를 가진 한자입니다.',
     'words': [
       '伺う（うかがう） 여쭙다'
@@ -14319,7 +14311,7 @@ KANJI_DATA = [
     'meaning': '간사할 사',
     'onyomi': 'ジャ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '바르지 않거나 나쁜 것을 의미하는 한자입니다.',
     'words': [
       '邪魔（じゃま） 방해'
@@ -14338,7 +14330,7 @@ KANJI_DATA = [
     'meaning': '풀 사',
     'onyomi': '',
     'kunyomi': 'おろす、おろし',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '도매나 내리다의 의미를 가진 한자입니다.',
     'words': [
       '卸売（おろしうり） 도매'
@@ -14373,10 +14365,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-slant',
     'kanji': '斜',
-    'meaning': '비스듬할 사',
+    'meaning': '비낄 사',
     'onyomi': 'シャ',
     'kunyomi': 'ななめ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '기울어짐이나 비스듬함을 의미하는 한자입니다.',
     'words': [
       '斜め（ななめ） 비스듬함'
@@ -14471,7 +14463,7 @@ KANJI_DATA = [
     'meaning': '줄 사',
     'onyomi': 'シ',
     'kunyomi': 'たまわる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '윗사람이 아랫사람에게 내리거나 주는 의미의 한자입니다.',
     'words': [
       '賜る（たまわる） 하사받다'
@@ -14490,7 +14482,7 @@ KANJI_DATA = [
     'meaning': '깎을 삭',
     'onyomi': 'サク',
     'kunyomi': 'けずる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '깎다, 줄이다의 의미를 가진 한자입니다.',
     'words': [
       '削る（けずる） 깎다'
@@ -14506,7 +14498,7 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-mountain',
     'kanji': '山',
-    'meaning': '뫼 산',
+    'meaning': '메 산',
     'onyomi': 'サン',
     'kunyomi': 'やま',
     'level': 'N5',
@@ -14528,7 +14520,7 @@ KANJI_DATA = [
     'meaning': '셈 산',
     'onyomi': 'サン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '계산하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '計算（けいさん） 계산'
@@ -14566,7 +14558,7 @@ KANJI_DATA = [
     'meaning': '흩을 산',
     'onyomi': 'サン',
     'kunyomi': 'ちる、ちらす、ちらかす、ちらかる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '흩어지다, 흩다의 의미를 가진 한자입니다.',
     'words': [
       '散る（ちる） 흩어지다'
@@ -14585,7 +14577,7 @@ KANJI_DATA = [
     'meaning': '실 산',
     'onyomi': 'サン',
     'kunyomi': 'すい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '산성이나 신맛을 의미하는 한자입니다.',
     'words': [
       '酸っぱい（すっぱい） 시다'
@@ -14604,7 +14596,7 @@ KANJI_DATA = [
     'meaning': '우산 산',
     'onyomi': 'サン',
     'kunyomi': 'かさ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '우산을 의미하는 기본 한자입니다.',
     'words': [
       '傘（かさ） 우산'
@@ -14623,7 +14615,7 @@ KANJI_DATA = [
     'meaning': '죽일 살 / 덜 쇄',
     'onyomi': 'サツ、サイ、セツ',
     'kunyomi': 'ころす',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '죽이다, 줄이다의 의미를 가진 한자입니다.',
     'words': [
       '殺す（ころす） 죽이다'
@@ -14658,10 +14650,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-forest',
     'kanji': '森',
-    'meaning': '수풀 삼',
+    'meaning': '숲 삼',
     'onyomi': 'シン',
     'kunyomi': 'もり',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '숲을 의미하는 기본 한자입니다.',
     'words': [
       '森（もり） 숲'
@@ -14680,7 +14672,7 @@ KANJI_DATA = [
     'meaning': '삼나무 삼',
     'onyomi': '',
     'kunyomi': 'すぎ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '삼나무를 의미하는 한자입니다.',
     'words': [
       '杉（すぎ） 삼나무'
@@ -14699,7 +14691,7 @@ KANJI_DATA = [
     'meaning': '꽂을 삽',
     'onyomi': 'ソウ',
     'kunyomi': 'さす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '꽂다, 삽입하다의 의미를 가진 한자입니다.',
     'words': [
       '挿す（さす） 꽂다'
@@ -14718,7 +14710,7 @@ KANJI_DATA = [
     'meaning': '떫을 삽',
     'onyomi': 'ジュウ',
     'kunyomi': 'しぶ、しぶい、しぶる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '떫다, 꺼리다의 의미를 가진 한자입니다.',
     'words': [
       '渋い（しぶい） 떫다'
@@ -14756,7 +14748,7 @@ KANJI_DATA = [
     'meaning': '장사 상',
     'onyomi': 'ショウ',
     'kunyomi': 'あきなう',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '장사나 व्यापार을 의미하는 한자입니다.',
     'words': [
       '商売（しょうばい） 장사'
@@ -14775,7 +14767,7 @@ KANJI_DATA = [
     'meaning': '서로 상',
     'onyomi': 'ソウ、ショウ',
     'kunyomi': 'あい',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '서로, 상호를 의미하는 한자입니다.',
     'words': [
       '相談（そうだん） 상담'
@@ -14794,7 +14786,7 @@ KANJI_DATA = [
     'meaning': '생각 상',
     'onyomi': 'ソウ、ソ',
     'kunyomi': 'おもう',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '생각하거나 상상하는 의미를 가진 한자입니다.',
     'words': [
       '想像（そうぞう） 상상'
@@ -14813,7 +14805,7 @@ KANJI_DATA = [
     'meaning': '상자 상',
     'onyomi': '',
     'kunyomi': 'はこ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '물건을 담는 상자를 의미하는 기본 한자입니다.',
     'words': [
       '箱（はこ） 상자'
@@ -14832,7 +14824,7 @@ KANJI_DATA = [
     'meaning': '코끼리 상',
     'onyomi': 'ショウ、ゾウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '코끼리를 의미하는 기본 한자입니다.',
     'words': [
       '象（ぞう） 코끼리'
@@ -14851,7 +14843,7 @@ KANJI_DATA = [
     'meaning': '상줄 상',
     'onyomi': 'ショウ',
     'kunyomi': 'ほめる、めでる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '상을 주다, 칭찬하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '賞（しょう） 상'
@@ -14870,7 +14862,7 @@ KANJI_DATA = [
     'meaning': '형상 상 / 문서 장',
     'onyomi': 'ジョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '상태나 문서를 의미하는 한자입니다.',
     'words': [
       '状態（じょうたい） 상태'
@@ -14889,7 +14881,7 @@ KANJI_DATA = [
     'meaning': '항상 상',
     'onyomi': 'ジョウ',
     'kunyomi': 'つね、とこ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '항상, 보통을 의미하는 기본 한자입니다.',
     'words': [
       '日常（にちじょう） 일상'
@@ -14908,7 +14900,7 @@ KANJI_DATA = [
     'meaning': '모양 상',
     'onyomi': 'ゾウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '형상이나 모습, 상을 의미하는 기본 한자입니다.',
     'words': [
       '映像（えいぞう） 영상'
@@ -14927,7 +14919,7 @@ KANJI_DATA = [
     'meaning': '다칠 상',
     'onyomi': 'ショウ',
     'kunyomi': 'きず、いたむ、いためる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '상처나 다치다의 의미를 가진 한자입니다.',
     'words': [
       '傷（きず） 상처'
@@ -14946,7 +14938,7 @@ KANJI_DATA = [
     'meaning': '평상 상',
     'onyomi': 'ショウ',
     'kunyomi': 'とこ、ゆか',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '바닥이나 침상을 의미하는 한자입니다.',
     'words': [
       '床（ゆか） 바닥'
@@ -15003,7 +14995,7 @@ KANJI_DATA = [
     'meaning': '뽕나무 상',
     'onyomi': 'ソウ',
     'kunyomi': 'くわ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '뽕나무를 의미하는 한자입니다.',
     'words': [
       '桑（くわ） 뽕나무'
@@ -15041,7 +15033,7 @@ KANJI_DATA = [
     'meaning': '잃을 상',
     'onyomi': 'ソウ',
     'kunyomi': 'も',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '죽음을 애도하거나 잃음을 의미하는 한자입니다.',
     'words': [
       '喪失（そうしつ） 상실'
@@ -15060,7 +15052,7 @@ KANJI_DATA = [
     'meaning': '자세할 상',
     'onyomi': 'ショウ',
     'kunyomi': 'くわしい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '자세하다, 상세하다의 의미를 가진 한자입니다.',
     'words': [
       '詳細（しょうさい） 상세'
@@ -15079,7 +15071,7 @@ KANJI_DATA = [
     'meaning': '갚을 상',
     'onyomi': 'ショウ',
     'kunyomi': 'つぐなう',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '보상하거나 갚는다는 의미를 가진 한자입니다.',
     'words': [
       '補償（ほしょう） 보상'
@@ -15098,7 +15090,7 @@ KANJI_DATA = [
     'meaning': '서리 상',
     'onyomi': 'ソウ',
     'kunyomi': 'しも',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '서리를 의미하는 한자입니다.',
     'words': [
       '霜（しも） 서리'
@@ -15136,7 +15128,7 @@ KANJI_DATA = [
     'meaning': '빛 색',
     'onyomi': 'ショク、シキ',
     'kunyomi': 'いろ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '색이나 빛을 의미하는 기본 한자입니다.',
     'words': [
       '色（いろ） 색'
@@ -15155,7 +15147,7 @@ KANJI_DATA = [
     'meaning': '찾을 색',
     'onyomi': 'サク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '찾다, 탐색하다의 의미를 가진 한자입니다.',
     'words': [
       '探索（たんさく） 탐색'
@@ -15174,7 +15166,7 @@ KANJI_DATA = [
     'meaning': '막힐 색',
     'onyomi': 'ソク、サイ',
     'kunyomi': 'ふさぐ、ふさがる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '막다, 막히다의 의미를 가진 한자입니다.',
     'words': [
       '閉塞（へいそく） 폐색'
@@ -15269,7 +15261,7 @@ KANJI_DATA = [
     'meaning': '더울 서',
     'onyomi': 'ショ',
     'kunyomi': 'あつい',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '날씨가 덥다를 의미하는 기본 한자입니다.',
     'words': [
       '暑い（あつい） 덥다'
@@ -15288,7 +15280,7 @@ KANJI_DATA = [
     'meaning': '차례 서',
     'onyomi': 'ジョ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '순서나 서문을 의미하는 한자입니다.',
     'words': [
       '順序（じゅんじょ） 순서'
@@ -15307,7 +15299,7 @@ KANJI_DATA = [
     'meaning': '마을 서',
     'onyomi': 'ショ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '관청이나 기관을 의미하는 한자입니다.',
     'words': [
       '警察署（けいさつしょ） 경찰서'
@@ -15326,7 +15318,7 @@ KANJI_DATA = [
     'meaning': '펼 서',
     'onyomi': 'ジョ',
     'kunyomi': 'のべる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '이야기를 서술하거나 펼친다는 의미를 가진 한자입니다.',
     'words': [
       '叙述（じょじゅつ） 서술'
@@ -15345,7 +15337,7 @@ KANJI_DATA = [
     'meaning': '천천히 할 서',
     'onyomi': 'ジョ',
     'kunyomi': 'おもむろ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '천천히 또는 서서히의 의미를 가진 한자입니다.',
     'words': [
       '徐々に（じょじょに） 서서히'
@@ -15421,7 +15413,7 @@ KANJI_DATA = [
     'meaning': '실마리 서',
     'onyomi': 'ショ、チョ',
     'kunyomi': 'お',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '실마리나 시작을 의미하는 한자입니다.',
     'words': [
       '端緒（たんしょ） 단서'
@@ -15440,7 +15432,7 @@ KANJI_DATA = [
     'meaning': '맹세할 서',
     'onyomi': 'セイ',
     'kunyomi': 'ちかう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '맹세하다의 의미를 가진 한자입니다.',
     'words': [
       '誓う（ちかう） 맹세하다'
@@ -15459,7 +15451,7 @@ KANJI_DATA = [
     'meaning': '저녁 석',
     'onyomi': 'セキ',
     'kunyomi': 'ゆう',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '저녁이나 해질녘을 의미하는 기본 한자입니다.',
     'words': [
       '夕方（ゆうがた） 저녁'
@@ -15478,7 +15470,7 @@ KANJI_DATA = [
     'meaning': '돌 석',
     'onyomi': 'セキ、シャク、コク',
     'kunyomi': 'いし',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '돌을 의미하는 기본 한자입니다.',
     'words': [
       '石（いし） 돌'
@@ -15494,10 +15486,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-past',
     'kanji': '昔',
-    'meaning': '예 석',
+    'meaning': '옛 석',
     'onyomi': 'セキ、シャク',
     'kunyomi': 'むかし',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '옛날을 의미하는 기본 한자입니다.',
     'words': [
       '昔（むかし） 옛날'
@@ -15516,7 +15508,7 @@ KANJI_DATA = [
     'meaning': '자리 석',
     'onyomi': 'セキ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '자리나 좌석을 의미하는 한자입니다.',
     'words': [
       '座席（ざせき） 좌석'
@@ -15535,7 +15527,7 @@ KANJI_DATA = [
     'meaning': '쪼갤 석',
     'onyomi': 'セキ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '분석하거나 쪼개다의 의미를 가진 한자입니다.',
     'words': [
       '分析（ぶんせき） 분석'
@@ -15554,7 +15546,7 @@ KANJI_DATA = [
     'meaning': '풀 석',
     'onyomi': 'シャク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '설명하거나 해석한다는 의미를 가진 한자입니다.',
     'words': [
       '解釈（かいしゃく） 해석'
@@ -15573,7 +15565,7 @@ KANJI_DATA = [
     'meaning': '아낄 석',
     'onyomi': 'セキ',
     'kunyomi': 'おしい、おしむ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '아깝다, 아끼다의 의미를 가진 한자입니다.',
     'words': [
       '惜しい（おしい） 아깝다'
@@ -15630,7 +15622,7 @@ KANJI_DATA = [
     'meaning': '배 선',
     'onyomi': 'セン',
     'kunyomi': 'ふね、ふな',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '배를 의미하는 기본 한자입니다.',
     'words': [
       '船（ふね） 배'
@@ -15649,7 +15641,7 @@ KANJI_DATA = [
     'meaning': '줄 선',
     'onyomi': 'セン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '선이나 줄을 의미하는 기본 한자입니다.',
     'words': [
       '直線（ちょくせん） 직선'
@@ -15668,7 +15660,7 @@ KANJI_DATA = [
     'meaning': '고를 선',
     'onyomi': 'セン',
     'kunyomi': 'えらぶ',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '선택하다, 고르다의 의미를 가진 한자입니다.',
     'words': [
       '選ぶ（えらぶ） 고르다'
@@ -15687,7 +15679,7 @@ KANJI_DATA = [
     'meaning': '베풀 선 / 선언',
     'onyomi': 'セン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '선언하거나 널리 알리는 의미를 가진 한자입니다.',
     'words': [
       '宣言（せんげん） 선언'
@@ -15706,7 +15698,7 @@ KANJI_DATA = [
     'meaning': '착할 선',
     'onyomi': 'ゼン',
     'kunyomi': 'よい',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '좋다, 선함을 의미하는 기본 한자입니다.',
     'words': [
       '善い（よい） 좋다'
@@ -15725,7 +15717,7 @@ KANJI_DATA = [
     'meaning': '신선 선',
     'onyomi': 'セン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '신선이나 초월적인 존재를 의미하는 한자입니다.',
     'words': [
       '仙人（せんにん） 신선'
@@ -15744,7 +15736,7 @@ KANJI_DATA = [
     'meaning': '부채 선',
     'onyomi': 'セン',
     'kunyomi': 'おうぎ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '부채를 의미하는 한자입니다.',
     'words': [
       '扇（おうぎ） 부채'
@@ -15763,7 +15755,7 @@ KANJI_DATA = [
     'meaning': '돌 선',
     'onyomi': 'セン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '돌다, 회전하다의 의미를 가진 한자입니다.',
     'words': [
       '旋回（せんかい） 선회'
@@ -15782,7 +15774,7 @@ KANJI_DATA = [
     'meaning': '부러워할 선',
     'onyomi': 'セン',
     'kunyomi': 'うらやむ、うらやましい',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '부러워하다의 의미를 가진 한자입니다.',
     'words': [
       '羨む（うらやむ） 부러워하다'
@@ -15801,7 +15793,7 @@ KANJI_DATA = [
     'meaning': '샘 선',
     'onyomi': 'セン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '체내의 샘(선)을 의미하는 한자입니다.',
     'words': [
       '汗腺（かんせん） 땀샘'
@@ -15820,7 +15812,7 @@ KANJI_DATA = [
     'meaning': '선 선',
     'onyomi': 'ゼン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '불교의 선(禅)을 의미하는 한자입니다.',
     'words': [
       '禅（ぜん） 선'
@@ -15858,7 +15850,7 @@ KANJI_DATA = [
     'meaning': '고울 선',
     'onyomi': 'セン',
     'kunyomi': 'あざやか',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '선명하다, 신선하다의 의미를 가진 한자입니다.',
     'words': [
       '新鮮（しんせん） 신선'
@@ -15877,7 +15869,7 @@ KANJI_DATA = [
     'meaning': '기울 선',
     'onyomi': 'ゼン',
     'kunyomi': 'つくろう',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '수선하거나 고치다의 의미를 가진 한자입니다.',
     'words': [
       '修繕（しゅうぜん） 수선'
@@ -15896,7 +15888,7 @@ KANJI_DATA = [
     'meaning': '눈 설',
     'onyomi': 'セツ',
     'kunyomi': 'ゆき',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '눈을 의미하는 기본 한자입니다.',
     'words': [
       '雪（ゆき） 눈'
@@ -15934,7 +15926,7 @@ KANJI_DATA = [
     'meaning': '혀 설',
     'onyomi': 'ゼツ',
     'kunyomi': 'した',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '혀를 의미하는 기본 한자입니다.',
     'words': [
       '舌（した） 혀'
@@ -15953,7 +15945,7 @@ KANJI_DATA = [
     'meaning': '베풀 설',
     'onyomi': 'セツ',
     'kunyomi': 'もうける',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '설치하다, 마련하다의 의미를 가진 한자입니다.',
     'words': [
       '設計（せっけい） 설계'
@@ -15972,7 +15964,7 @@ KANJI_DATA = [
     'meaning': '가늘 섬',
     'onyomi': 'セン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '가늘고 섬세함을 의미하는 한자입니다.',
     'words': [
       '繊細（せんさい） 섬세'
@@ -15991,7 +15983,7 @@ KANJI_DATA = [
     'meaning': '건널 섭',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '건너다, 관련되다의 의미를 가진 한자입니다.',
     'words': [
       '交渉（こうしょう） 교섭'
@@ -16010,7 +16002,7 @@ KANJI_DATA = [
     'meaning': '다스릴 섭',
     'onyomi': 'セツ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '다스리거나 받아들이다의 의미를 가진 한자입니다.',
     'words': [
       '摂取（せっしゅ） 섭취'
@@ -16029,7 +16021,7 @@ KANJI_DATA = [
     'meaning': '별 성',
     'onyomi': 'セイ、ショウ',
     'kunyomi': 'ほし',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '별을 의미하는 기본 한자입니다.',
     'words': [
       '星（ほし） 별'
@@ -16048,7 +16040,7 @@ KANJI_DATA = [
     'meaning': '소리 성',
     'onyomi': 'セイ、ショウ',
     'kunyomi': 'こえ、こわ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '소리나 목소리를 의미하는 기본 한자입니다.',
     'words': [
       '声（こえ） 목소리'
@@ -16067,7 +16059,7 @@ KANJI_DATA = [
     'meaning': '이룰 성',
     'onyomi': 'セイ、ジョウ',
     'kunyomi': 'なす、なる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '이루다, 되다의 의미를 가진 기본 한자입니다.',
     'words': [
       '成功（せいこう） 성공'
@@ -16086,7 +16078,7 @@ KANJI_DATA = [
     'meaning': '살필 성 / 덜 생',
     'onyomi': 'セイ、ショウ',
     'kunyomi': 'かえりみる、はぶく',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '반성하다, 줄이다의 의미를 가진 한자입니다.',
     'words': [
       '反省（はんせい） 반성'
@@ -16105,7 +16097,7 @@ KANJI_DATA = [
     'meaning': '성품 성',
     'onyomi': 'セイ、ショウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '성질이나 성격을 의미하는 기본 한자입니다.',
     'words': [
       '性格（せいかく） 성격'
@@ -16143,7 +16135,7 @@ KANJI_DATA = [
     'meaning': '성할 성',
     'onyomi': 'セイ、ジョウ',
     'kunyomi': 'もる、さかる、さかん',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '번성하다, 많다의 의미를 가진 한자입니다.',
     'words': [
       '繁盛（はんじょう） 번성'
@@ -16162,7 +16154,7 @@ KANJI_DATA = [
     'meaning': '정성 성',
     'onyomi': 'セイ',
     'kunyomi': 'まこと',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '진실함이나 정성을 의미하는 한자입니다.',
     'words': [
       '誠（まこと） 진심'
@@ -16181,7 +16173,7 @@ KANJI_DATA = [
     'meaning': '성인 성',
     'onyomi': 'セイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '성스럽거나 위대한 인물을 의미하는 한자입니다.',
     'words': [
       '聖人（せいじん） 성인'
@@ -16197,10 +16189,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-han-surname',
     'kanji': '姓',
-    'meaning': '성씨 성',
+    'meaning': '성 성',
     'onyomi': 'セイ、ショウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '성이나 가문을 의미하는 한자입니다.',
     'words': [
       '姓名（せいめい） 성명'
@@ -16219,7 +16211,7 @@ KANJI_DATA = [
     'meaning': '깰 성',
     'onyomi': 'セイ',
     'kunyomi': 'さめる、さます',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '깨다, 정신이 들다의 의미를 가진 한자입니다.',
     'words': [
       '目覚める（めざめる） 깨어나다'
@@ -16238,7 +16230,7 @@ KANJI_DATA = [
     'meaning': '가늘 세',
     'onyomi': 'サイ',
     'kunyomi': 'ほそい、ほそる、こまか、こまかい',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '가늘다, 자세하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '細い（ほそい） 가늘다'
@@ -16257,7 +16249,7 @@ KANJI_DATA = [
     'meaning': '세상 세',
     'onyomi': 'セイ、セ',
     'kunyomi': 'よ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '세상이나 시대를 의미하는 기본 한자입니다.',
     'words': [
       '世界（せかい） 세계'
@@ -16276,7 +16268,7 @@ KANJI_DATA = [
     'meaning': '세금 세',
     'onyomi': 'ゼイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '세금을 의미하는 한자입니다.',
     'words': [
       '税金（ぜいきん） 세금'
@@ -16295,7 +16287,7 @@ KANJI_DATA = [
     'meaning': '형세 세',
     'onyomi': 'セイ',
     'kunyomi': 'いきおい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '기세나 힘을 의미하는 한자입니다.',
     'words': [
       '勢い（いきおい） 기세'
@@ -16314,7 +16306,7 @@ KANJI_DATA = [
     'meaning': '씻을 세',
     'onyomi': 'セン',
     'kunyomi': 'あらう',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '씻다의 의미를 가진 기본 한자입니다.',
     'words': [
       '洗う（あらう） 씻다'
@@ -16333,7 +16325,7 @@ KANJI_DATA = [
     'meaning': '해 세',
     'onyomi': 'サイ、セイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '나이나 해를 의미하는 기본 한자입니다.',
     'words': [
       '歳（さい） 살'
@@ -16390,7 +16382,7 @@ KANJI_DATA = [
     'meaning': '바 소',
     'onyomi': 'ショ',
     'kunyomi': 'ところ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '장소를 의미하는 기본 한자입니다.',
     'words': [
       '場所（ばしょ） 장소'
@@ -16409,7 +16401,7 @@ KANJI_DATA = [
     'meaning': '밝을 소',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '밝다, 분명하다의 의미를 가진 한자입니다.',
     'words': [
       '昭和（しょうわ） 쇼와'
@@ -16428,7 +16420,7 @@ KANJI_DATA = [
     'meaning': '사라질 소',
     'onyomi': 'ショウ',
     'kunyomi': 'きえる、けす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '사라지다, 끄다의 의미를 가진 기본 한자입니다.',
     'words': [
       '消える（きえる） 사라지다'
@@ -16447,7 +16439,7 @@ KANJI_DATA = [
     'meaning': '웃음 소',
     'onyomi': 'ショウ',
     'kunyomi': 'わらう、えむ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '웃다를 의미하는 기본 한자입니다.',
     'words': [
       '笑う（わらう） 웃다'
@@ -16466,7 +16458,7 @@ KANJI_DATA = [
     'meaning': '새집 소',
     'onyomi': 'ソウ',
     'kunyomi': 'す',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '새집이나 보금자리를 의미하는 한자입니다.',
     'words': [
       '巣（す） 둥지'
@@ -16485,7 +16477,7 @@ KANJI_DATA = [
     'meaning': '불사를 소',
     'onyomi': 'ショウ',
     'kunyomi': 'やく、やける',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '굽다, 타다의 의미를 가진 기본 한자입니다.',
     'words': [
       '焼く（やく） 굽다'
@@ -16504,7 +16496,7 @@ KANJI_DATA = [
     'meaning': '본디 소',
     'onyomi': 'ス、ソ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '본래의 상태나 재료를 의미하는 한자입니다.',
     'words': [
       '元素（げんそ） 원소'
@@ -16523,7 +16515,7 @@ KANJI_DATA = [
     'meaning': '부를 소',
     'onyomi': 'ショウ',
     'kunyomi': 'めす',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '부르다, 소환하다의 의미를 가진 한자입니다.',
     'words': [
       '召す（めす） 부르다'
@@ -16542,7 +16534,7 @@ KANJI_DATA = [
     'meaning': '못 소',
     'onyomi': 'ショウ',
     'kunyomi': 'ぬま',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '늪이나 못을 의미하는 한자입니다.',
     'words': [
       '沼（ぬま） 늪'
@@ -16561,7 +16553,7 @@ KANJI_DATA = [
     'meaning': '꽃필 소',
     'onyomi': '',
     'kunyomi': 'さく',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '꽃이 피다의 의미를 가진 한자입니다.',
     'words': [
       '咲く（さく） 피다'
@@ -16599,7 +16591,7 @@ KANJI_DATA = [
     'meaning': '이을 소',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '이어주다, 소개하다의 의미를 가진 한자입니다.',
     'words': [
       '紹介（しょうかい） 소개'
@@ -16618,7 +16610,7 @@ KANJI_DATA = [
     'meaning': '쓸 소',
     'onyomi': 'ソウ',
     'kunyomi': 'はく',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '쓸다, 청소하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '掃除（そうじ） 청소'
@@ -16637,7 +16629,7 @@ KANJI_DATA = [
     'meaning': '호소할 소',
     'onyomi': 'ソ',
     'kunyomi': 'うったえる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '호소하다, 고소하다의 의미를 가진 한자입니다.',
     'words': [
       '訴える（うったえる） 호소하다'
@@ -16656,7 +16648,7 @@ KANJI_DATA = [
     'meaning': '성길 소',
     'onyomi': 'ソ',
     'kunyomi': 'うとい、うとむ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '멀다, 소원하다의 의미를 가진 한자입니다.',
     'words': [
       '疎い（うとい） 서투르다'
@@ -16675,7 +16667,7 @@ KANJI_DATA = [
     'meaning': '흙 빚을 소',
     'onyomi': 'ソ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '형태를 만들다, 조형하다의 의미를 가진 한자입니다.',
     'words': [
       '塑像（そぞう） 조각상'
@@ -16713,7 +16705,7 @@ KANJI_DATA = [
     'meaning': '떠들 소',
     'onyomi': 'ソウ',
     'kunyomi': 'さわぐ、さわがしい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '시끄럽다, 떠들다의 의미를 가진 한자입니다.',
     'words': [
       '騒ぐ（さわぐ） 떠들다'
@@ -16732,7 +16724,7 @@ KANJI_DATA = [
     'meaning': '빠를 속',
     'onyomi': 'ソク',
     'kunyomi': 'はやい、はやめる、はやまる、すみやか',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '빠르다의 의미를 가진 기본 한자입니다.',
     'words': [
       '速い（はやい） 빠르다'
@@ -16751,7 +16743,7 @@ KANJI_DATA = [
     'meaning': '묶을 속',
     'onyomi': 'ソク',
     'kunyomi': 'たば、たばねる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '묶다, 묶음의 의미를 가진 한자입니다.',
     'words': [
       '約束（やくそく） 약속'
@@ -16770,7 +16762,7 @@ KANJI_DATA = [
     'meaning': '이을 속',
     'onyomi': 'ゾク',
     'kunyomi': 'つづく、つづける',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '계속하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '続く（つづく） 계속되다'
@@ -16789,7 +16781,7 @@ KANJI_DATA = [
     'meaning': '무리 속',
     'onyomi': 'ゾク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '속하다, 소속의 의미를 가진 한자입니다.',
     'words': [
       '所属（しょぞく） 소속'
@@ -16808,7 +16800,7 @@ KANJI_DATA = [
     'meaning': '풍속 속',
     'onyomi': 'ゾク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '풍속이나 세속을 의미하는 한자입니다.',
     'words': [
       '風俗（ふうぞく） 풍속'
@@ -16827,7 +16819,7 @@ KANJI_DATA = [
     'meaning': '손자 손',
     'onyomi': 'ソン',
     'kunyomi': 'まご',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '손자를 의미하는 한자입니다.',
     'words': [
       '孫（まご） 손자'
@@ -16846,7 +16838,7 @@ KANJI_DATA = [
     'meaning': '덜 손',
     'onyomi': 'ソン',
     'kunyomi': 'そこなう、そこねる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '손해나 손실을 의미하는 한자입니다.',
     'words': [
       '損失（そんしつ） 손실'
@@ -16865,7 +16857,7 @@ KANJI_DATA = [
     'meaning': '겸손할 손',
     'onyomi': 'ソン',
     'kunyomi': 'へりくだる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '겸손하다의 의미를 가진 한자입니다.',
     'words': [
       '謙遜（けんそん） 겸손'
@@ -16884,7 +16876,7 @@ KANJI_DATA = [
     'meaning': '보낼 송',
     'onyomi': 'ソウ',
     'kunyomi': 'おくる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '보내다, 배웅하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '送る（おくる） 보내다'
@@ -16903,7 +16895,7 @@ KANJI_DATA = [
     'meaning': '소나무 송',
     'onyomi': 'ショウ',
     'kunyomi': 'まつ',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '소나무를 의미하는 기본 한자입니다.',
     'words': [
       '松（まつ） 소나무'
@@ -16922,7 +16914,7 @@ KANJI_DATA = [
     'meaning': '송사할 송',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '소송이나 다툼을 의미하는 한자입니다.',
     'words': [
       '訴訟（そしょう） 소송'
@@ -16941,7 +16933,7 @@ KANJI_DATA = [
     'meaning': '인쇄할 쇄',
     'onyomi': 'サツ',
     'kunyomi': 'する',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '인쇄하다의 의미를 가진 한자입니다.',
     'words': [
       '印刷（いんさつ） 인쇄'
@@ -16960,7 +16952,7 @@ KANJI_DATA = [
     'meaning': '부술 쇄',
     'onyomi': 'サイ',
     'kunyomi': 'くだく、くだける',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '부수다, 깨뜨리다의 의미를 가진 한자입니다.',
     'words': [
       '粉砕（ふんさい） 분쇄'
@@ -16979,7 +16971,7 @@ KANJI_DATA = [
     'meaning': '쇠사슬 쇄',
     'onyomi': 'サ',
     'kunyomi': 'くさり',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '사슬이나 연결을 의미하는 한자입니다.',
     'words': [
       '鎖（くさり） 사슬'
@@ -17055,7 +17047,7 @@ KANJI_DATA = [
     'meaning': '머리 수',
     'onyomi': 'シュ',
     'kunyomi': 'くび',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '목이나 머리를 의미하는 기본 한자입니다.',
     'words': [
       '首（くび） 목'
@@ -17071,10 +17063,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-number',
     'kanji': '数',
-    'meaning': '셈 수',
+    'meaning': '셀 수',
     'onyomi': 'スウ、ス',
     'kunyomi': 'かず、かぞえる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '숫자나 세다를 의미하는 기본 한자입니다.',
     'words': [
       '数（かず） 수'
@@ -17093,7 +17085,7 @@ KANJI_DATA = [
     'meaning': '지킬 수',
     'onyomi': 'シュ、ス',
     'kunyomi': 'まもる、もり',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '지키다, 보호하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '守る（まもる） 지키다'
@@ -17112,7 +17104,7 @@ KANJI_DATA = [
     'meaning': '받을 수',
     'onyomi': 'ジュ',
     'kunyomi': 'うける、うかる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '받다의 의미를 가진 기본 한자입니다.',
     'words': [
       '受ける（うける） 받다'
@@ -17131,7 +17123,7 @@ KANJI_DATA = [
     'meaning': '닦을 수',
     'onyomi': 'シュウ、シュ',
     'kunyomi': 'おさめる、おさまる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '수양하다, 닦다의 의미를 가진 한자입니다.',
     'words': [
       '修理（しゅうり） 수리'
@@ -17150,7 +17142,7 @@ KANJI_DATA = [
     'meaning': '줄 수',
     'onyomi': 'ジュ',
     'kunyomi': 'さずける、さずかる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '주다, 수여하다의 의미를 가진 한자입니다.',
     'words': [
       '授業（じゅぎょう） 수업'
@@ -17169,7 +17161,7 @@ KANJI_DATA = [
     'meaning': '보낼 수',
     'onyomi': 'ユ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '수송하거나 운반하다의 의미를 가진 한자입니다.',
     'words': [
       '輸送（ゆそう） 수송'
@@ -17188,7 +17180,7 @@ KANJI_DATA = [
     'meaning': '거둘 수',
     'onyomi': 'シュウ',
     'kunyomi': 'おさまる、おさめる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '거두다, 수집하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '収入（しゅうにゅう） 수입'
@@ -17207,7 +17199,7 @@ KANJI_DATA = [
     'meaning': '드리울 수',
     'onyomi': 'スイ',
     'kunyomi': 'たれる、たらす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '늘어뜨리다의 의미를 가진 한자입니다.',
     'words': [
       '垂れる（たれる） 드리워지다'
@@ -17226,7 +17218,7 @@ KANJI_DATA = [
     'meaning': '나무 수',
     'onyomi': 'ジュ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '나무를 의미하는 한자입니다.',
     'words': [
       '樹木（じゅもく） 수목'
@@ -17264,7 +17256,7 @@ KANJI_DATA = [
     'meaning': '빼어날 수',
     'onyomi': 'シュウ',
     'kunyomi': 'ひいでる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '뛰어나다, 우수하다의 의미를 가진 한자입니다.',
     'words': [
       '優秀（ゆうしゅう） 우수'
@@ -17283,7 +17275,7 @@ KANJI_DATA = [
     'meaning': '목숨 수',
     'onyomi': 'ジュ',
     'kunyomi': 'ことぶき',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '장수나 축하를 의미하는 한자입니다.',
     'words': [
       '長寿（ちょうじゅ） 장수'
@@ -17302,7 +17294,7 @@ KANJI_DATA = [
     'meaning': '사냥할 수',
     'onyomi': 'シュ',
     'kunyomi': 'かる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '사냥하다의 의미를 가진 한자입니다.',
     'words': [
       '狩る（かる） 사냥하다'
@@ -17340,7 +17332,7 @@ KANJI_DATA = [
     'meaning': '찾을 수',
     'onyomi': 'ソウ',
     'kunyomi': 'さがす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '찾다, 수색하다의 의미를 가진 한자입니다.',
     'words': [
       '捜す（さがす） 찾다'
@@ -17378,7 +17370,7 @@ KANJI_DATA = [
     'meaning': '소매 수',
     'onyomi': 'シュウ',
     'kunyomi': 'そで',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '옷의 소매를 의미하는 한자입니다.',
     'words': [
       '袖（そで） 소매'
@@ -17397,7 +17389,7 @@ KANJI_DATA = [
     'meaning': '순수할 수',
     'onyomi': 'スイ',
     'kunyomi': 'いき',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '순수하거나 세련됨을 의미하는 한자입니다.',
     'words': [
       '純粋（じゅんすい） 순수'
@@ -17435,7 +17427,7 @@ KANJI_DATA = [
     'meaning': '드디어 수',
     'onyomi': 'スイ',
     'kunyomi': 'とげる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '마침내 이루다의 의미를 가진 한자입니다.',
     'words': [
       '遂行（すいこう） 수행'
@@ -17454,7 +17446,7 @@ KANJI_DATA = [
     'meaning': '모름지기 수',
     'onyomi': 'ス',
     'kunyomi': 'すべからく',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '반드시, 필수의 의미를 가진 한자입니다.',
     'words': [
       '必須（ひっす） 필수'
@@ -17473,7 +17465,7 @@ KANJI_DATA = [
     'meaning': '여윌 수',
     'onyomi': 'ソウ',
     'kunyomi': 'やせる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '마르다, 살이 빠지다의 의미를 가진 한자입니다.',
     'words': [
       '痩せる（やせる） 마르다'
@@ -17492,7 +17484,7 @@ KANJI_DATA = [
     'meaning': '따를 수',
     'onyomi': 'ズイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '따르다, 수반하다의 의미를 가진 한자입니다.',
     'words': [
       '随時（ずいじ） 수시'
@@ -17511,7 +17503,7 @@ KANJI_DATA = [
     'meaning': '졸음 수',
     'onyomi': 'スイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '잠이나 수면을 의미하는 기본 한자입니다.',
     'words': [
       '睡眠（すいみん） 수면'
@@ -17530,7 +17522,7 @@ KANJI_DATA = [
     'meaning': '갚을 수',
     'onyomi': 'シュウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '보답하다, 보수를 의미하는 한자입니다.',
     'words': [
       '報酬（ほうしゅう） 보수'
@@ -17549,7 +17541,7 @@ KANJI_DATA = [
     'meaning': '근심 수',
     'onyomi': 'シュウ',
     'kunyomi': 'うれえる、うれい',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '근심이나 슬픔을 의미하는 한자입니다.',
     'words': [
       '哀愁（あいしゅう） 애수'
@@ -17568,7 +17560,7 @@ KANJI_DATA = [
     'meaning': '쓸 수',
     'onyomi': 'ジュ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '필요나 수요를 의미하는 한자입니다.',
     'words': [
       '需要（じゅよう） 수요'
@@ -17587,7 +17579,7 @@ KANJI_DATA = [
     'meaning': '누구 수',
     'onyomi': '',
     'kunyomi': 'だれ',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '누구를 의미하는 기본 표현 한자입니다.',
     'words': [
       '誰（だれ） 누구'
@@ -17606,7 +17598,7 @@ KANJI_DATA = [
     'meaning': '이삭 수',
     'onyomi': 'スイ',
     'kunyomi': 'ほ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '곡식의 이삭을 의미하는 한자입니다.',
     'words': [
       '稲穂（いなほ） 벼이삭'
@@ -17625,7 +17617,7 @@ KANJI_DATA = [
     'meaning': '짐승 수',
     'onyomi': 'ジュウ',
     'kunyomi': 'けもの',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '짐승이나 야수를 의미하는 한자입니다.',
     'words': [
       '野獣（やじゅう） 야수'
@@ -17641,7 +17633,7 @@ KANJI_DATA = [
   {
     'slug': 'n1-han-marrow',
     'kanji': '髄',
-    'meaning': '뼛골 수',
+    'meaning': '골수 수',
     'onyomi': 'ズイ',
     'kunyomi': '',
     'level': 'N1',
@@ -17663,7 +17655,7 @@ KANJI_DATA = [
     'meaning': '잘 숙',
     'onyomi': 'シュク',
     'kunyomi': 'やど、やどる、やどす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '숙박하다, 묵다의 의미를 가진 기본 한자입니다.',
     'words': [
       '宿（やど） 숙소'
@@ -17682,7 +17674,7 @@ KANJI_DATA = [
     'meaning': '익을 숙',
     'onyomi': 'ジュク',
     'kunyomi': 'うれる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '익다, 숙성되다의 의미를 가진 한자입니다.',
     'words': [
       '成熟（せいじゅく） 성숙'
@@ -17739,7 +17731,7 @@ KANJI_DATA = [
     'meaning': '엄숙할 숙',
     'onyomi': 'シュク',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '엄숙하고 조용함을 의미하는 한자입니다.',
     'words': [
       '自粛（じしゅく） 자숙'
@@ -17758,7 +17750,7 @@ KANJI_DATA = [
     'meaning': '글방 숙',
     'onyomi': 'ジュク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '학원이나 사설 교육기관을 의미하는 한자입니다.',
     'words': [
       '塾（じゅく） 학원'
@@ -17777,7 +17769,7 @@ KANJI_DATA = [
     'meaning': '순할 순',
     'onyomi': 'ジュン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '순서나 따르다를 의미하는 기본 한자입니다.',
     'words': [
       '順番（じゅんばん） 순번'
@@ -17796,7 +17788,7 @@ KANJI_DATA = [
     'meaning': '순수할 순',
     'onyomi': 'ジュン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '순수하다의 의미를 가진 한자입니다.',
     'words': [
       '純粋（じゅんすい） 순수'
@@ -17815,7 +17807,7 @@ KANJI_DATA = [
     'meaning': '열흘 순',
     'onyomi': 'ジュン、シュン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '열흘 또는 제철을 의미하는 한자입니다.',
     'words': [
       '旬（しゅん） 제철'
@@ -17834,7 +17826,7 @@ KANJI_DATA = [
     'meaning': '돌 순',
     'onyomi': 'ジュン',
     'kunyomi': 'めぐる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '돌다, 순회하다의 의미를 가진 한자입니다.',
     'words': [
       '巡る（めぐる） 돌다'
@@ -17853,7 +17845,7 @@ KANJI_DATA = [
     'meaning': '방패 순',
     'onyomi': 'ジュン',
     'kunyomi': 'たて',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '방패를 의미하는 한자입니다.',
     'words': [
       '矛盾（むじゅん） 모순'
@@ -17872,7 +17864,7 @@ KANJI_DATA = [
     'meaning': '입술 순',
     'onyomi': 'シン',
     'kunyomi': 'くちびる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '입술을 의미하는 한자입니다.',
     'words': [
       '唇（くちびる） 입술'
@@ -17891,7 +17883,7 @@ KANJI_DATA = [
     'meaning': '따라죽을 순',
     'onyomi': 'ジュン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '따라 죽다의 의미를 가진 한자입니다.',
     'words': [
       '殉職（じゅんしょく） 순직'
@@ -17910,7 +17902,7 @@ KANJI_DATA = [
     'meaning': '돌 순',
     'onyomi': 'ジュン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '따르다, 순환하다의 의미를 가진 한자입니다.',
     'words': [
       '循環（じゅんかん） 순환'
@@ -17926,10 +17918,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-moment',
     'kanji': '瞬',
-    'meaning': '눈 깜짝일 순',
+    'meaning': '순간 순',
     'onyomi': 'シュン',
     'kunyomi': 'またたく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '아주 짧은 순간을 의미하는 한자입니다.',
     'words': [
       '瞬間（しゅんかん） 순간'
@@ -17948,7 +17940,7 @@ KANJI_DATA = [
     'meaning': '펼 술',
     'onyomi': 'ジュツ',
     'kunyomi': 'のべる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '설명하거나 서술하다의 의미를 가진 한자입니다.',
     'words': [
       '記述（きじゅつ） 기술'
@@ -17967,7 +17959,7 @@ KANJI_DATA = [
     'meaning': '재주 술',
     'onyomi': 'ジュツ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '기술이나 방법을 의미하는 한자입니다.',
     'words': [
       '技術（ぎじゅつ） 기술'
@@ -17986,7 +17978,7 @@ KANJI_DATA = [
     'meaning': '높을 숭',
     'onyomi': 'スウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '숭배하거나 높이다의 의미를 가진 한자입니다.',
     'words': [
       '崇拝（すうはい） 숭배'
@@ -18005,7 +17997,7 @@ KANJI_DATA = [
     'meaning': '무릎 슬',
     'onyomi': 'シツ',
     'kunyomi': 'ひざ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '무릎을 의미하는 한자입니다.',
     'words': [
       '膝（ひざ） 무릎'
@@ -18024,7 +18016,7 @@ KANJI_DATA = [
     'meaning': '주울 습',
     'onyomi': 'シュウ',
     'kunyomi': 'ひろう',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '줍다의 의미를 가진 기본 한자입니다.',
     'words': [
       '拾う（ひろう） 줍다'
@@ -18043,7 +18035,7 @@ KANJI_DATA = [
     'meaning': '익힐 습',
     'onyomi': 'シュウ',
     'kunyomi': 'ならう',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '배우다, 익히다의 의미를 가진 기본 한자입니다.',
     'words': [
       '学習（がくしゅう） 학습'
@@ -18062,7 +18054,7 @@ KANJI_DATA = [
     'meaning': '젖을 습',
     'onyomi': 'シツ',
     'kunyomi': 'しめる、しめす、しめっぽい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '젖다, 습하다의 의미를 가진 한자입니다.',
     'words': [
       '湿気（しっけ） 습기'
@@ -18081,7 +18073,7 @@ KANJI_DATA = [
     'meaning': '엄습할 습',
     'onyomi': 'シュウ',
     'kunyomi': 'おそう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '덮치다, 습격하다의 의미를 가진 한자입니다.',
     'words': [
       '襲う（おそう） 덮치다'
@@ -18100,7 +18092,7 @@ KANJI_DATA = [
     'meaning': '탈 승',
     'onyomi': 'ジョウ',
     'kunyomi': 'のる、のせる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '타다, 싣다의 의미를 가진 기본 한자입니다.',
     'words': [
       '乗る（のる） 타다'
@@ -18119,7 +18111,7 @@ KANJI_DATA = [
     'meaning': '이길 승',
     'onyomi': 'ショウ',
     'kunyomi': 'かつ、まさる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '이기다의 의미를 가진 기본 한자입니다.',
     'words': [
       '勝つ（かつ） 이기다'
@@ -18138,7 +18130,7 @@ KANJI_DATA = [
     'meaning': '이을 승',
     'onyomi': 'ショウ',
     'kunyomi': 'うけたまわる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '이어받다, 승낙하다의 의미를 가진 한자입니다.',
     'words': [
       '承知（しょうち） 승낙'
@@ -18176,7 +18168,7 @@ KANJI_DATA = [
     'meaning': '오를 승',
     'onyomi': 'ショウ',
     'kunyomi': 'のぼる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '오르다, 상승하다의 의미를 가진 한자입니다.',
     'words': [
       '上昇（じょうしょう） 상승'
@@ -18195,7 +18187,7 @@ KANJI_DATA = [
     'meaning': '중 승',
     'onyomi': 'ソウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '불교 승려를 의미하는 한자입니다.',
     'words': [
       '僧侶（そうりょ） 승려'
@@ -18211,10 +18203,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-rope',
     'kanji': '縄',
-    'meaning': '노끈 승',
+    'meaning': '줄 승',
     'onyomi': 'ジョウ',
     'kunyomi': 'なわ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '줄이나 밧줄을 의미하는 한자입니다.',
     'words': [
       '縄（なわ） 밧줄'
@@ -18233,7 +18225,7 @@ KANJI_DATA = [
     'meaning': '저자 시',
     'onyomi': 'シ',
     'kunyomi': 'いち',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '시장이나 도시를 의미하는 기본 한자입니다.',
     'words': [
       '市場（いちば） 시장'
@@ -18252,7 +18244,7 @@ KANJI_DATA = [
     'meaning': '화살 시',
     'onyomi': 'シ',
     'kunyomi': 'や',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '화살을 의미하는 기본 한자입니다.',
     'words': [
       '矢（や） 화살'
@@ -18287,10 +18279,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-begin',
     'kanji': '始',
-    'meaning': '비로소 시',
+    'meaning': '시작 시',
     'onyomi': 'シ',
     'kunyomi': 'はじめる、はじまる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '시작하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '始める（はじめる） 시작하다'
@@ -18328,7 +18320,7 @@ KANJI_DATA = [
     'meaning': '시험 시',
     'onyomi': 'シ',
     'kunyomi': 'ためす、こころみる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '시험하다, 시도하다의 의미를 가진 기본 한자입니다.',
     'words': [
       '試験（しけん） 시험'
@@ -18347,7 +18339,7 @@ KANJI_DATA = [
     'meaning': '보일 시',
     'onyomi': 'ジ、シ',
     'kunyomi': 'しめす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '보이다, 나타내다의 의미를 가진 한자입니다.',
     'words': [
       '表示（ひょうじ） 표시'
@@ -18366,7 +18358,7 @@ KANJI_DATA = [
     'meaning': '볼 시',
     'onyomi': 'シ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '보다, 시선을 의미하는 한자입니다.',
     'words': [
       '視線（しせん） 시선'
@@ -18404,7 +18396,7 @@ KANJI_DATA = [
     'meaning': '감나무 시',
     'onyomi': 'シ',
     'kunyomi': 'かき',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '감나무나 감을 의미하는 한자입니다.',
     'words': [
       '柿（かき） 감'
@@ -18423,7 +18415,7 @@ KANJI_DATA = [
     'meaning': '베풀 시',
     'onyomi': 'シ、セ',
     'kunyomi': 'ほどこす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '베풀다, 실시하다의 의미를 가진 한자입니다.',
     'words': [
       '実施（じっし） 실시'
@@ -18442,7 +18434,7 @@ KANJI_DATA = [
     'meaning': '옳을 시',
     'onyomi': 'ゼ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '옳다, 맞다의 의미를 가진 한자입니다.',
     'words': [
       '是非（ぜひ） 시비 / 꼭'
@@ -18480,7 +18472,7 @@ KANJI_DATA = [
     'meaning': '법 식',
     'onyomi': 'シキ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '형식이나 방식을 의미하는 기본 한자입니다.',
     'words': [
       '形式（けいしき） 형식'
@@ -18499,7 +18491,7 @@ KANJI_DATA = [
     'meaning': '쉴 식',
     'onyomi': 'ソク',
     'kunyomi': 'いき',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '숨이나 호흡을 의미하는 기본 한자입니다.',
     'words': [
       '息（いき） 숨'
@@ -18518,7 +18510,7 @@ KANJI_DATA = [
     'meaning': '심을 식',
     'onyomi': 'ショク',
     'kunyomi': 'うえる、うわる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '심다의 의미를 가진 기본 한자입니다.',
     'words': [
       '植える（うえる） 심다'
@@ -18537,7 +18529,7 @@ KANJI_DATA = [
     'meaning': '알 식',
     'onyomi': 'シキ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '알다, 인식하다의 의미를 가진 한자입니다.',
     'words': [
       '知識（ちしき） 지식'
@@ -18556,7 +18548,7 @@ KANJI_DATA = [
     'meaning': '씻을 식',
     'onyomi': 'ショク',
     'kunyomi': 'ふく、ぬぐう',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '닦다, 닦아내다의 의미를 가진 한자입니다.',
     'words': [
       '拭く（ふく） 닦다'
@@ -18575,7 +18567,7 @@ KANJI_DATA = [
     'meaning': '불릴 식',
     'onyomi': 'ショク',
     'kunyomi': 'ふえる、ふやす',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '늘다, 번식하다의 의미를 가진 한자입니다.',
     'words': [
       '増殖（ぞうしょく） 증식'
@@ -18594,7 +18586,7 @@ KANJI_DATA = [
     'meaning': '꾸밀 식',
     'onyomi': 'ショク',
     'kunyomi': 'かざる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '꾸미다, 장식하다의 의미를 가진 한자입니다.',
     'words': [
       '装飾（そうしょく） 장식'
@@ -18629,7 +18621,7 @@ KANJI_DATA = [
   {
     'slug': 'n4-han-say',
     'kanji': '申',
-    'meaning': '거듭 신',
+    'meaning': '아뢸 신',
     'onyomi': 'シン',
     'kunyomi': 'もうす',
     'level': 'N4',
@@ -18651,7 +18643,7 @@ KANJI_DATA = [
     'meaning': '몸 신',
     'onyomi': 'シン',
     'kunyomi': 'み',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '몸을 의미하는 기본 한자입니다.',
     'words': [
       '身体（しんたい） 신체'
@@ -18670,7 +18662,7 @@ KANJI_DATA = [
     'meaning': '귀신 신',
     'onyomi': 'シン、ジン',
     'kunyomi': 'かみ、かん、こう',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '신이나 신적인 존재를 의미하는 기본 한자입니다.',
     'words': [
       '神（かみ） 신'
@@ -18708,7 +18700,7 @@ KANJI_DATA = [
     'meaning': '믿을 신',
     'onyomi': 'シン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '믿다의 의미를 가진 기본 한자입니다.',
     'words': [
       '信じる（しんじる） 믿다'
@@ -18727,7 +18719,7 @@ KANJI_DATA = [
     'meaning': '빠를 신',
     'onyomi': 'ジン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '빠르다의 의미를 가진 한자입니다.',
     'words': [
       '迅速（じんそく） 신속'
@@ -18746,7 +18738,7 @@ KANJI_DATA = [
     'meaning': '펼 신',
     'onyomi': 'シン',
     'kunyomi': 'のびる、のばす、のべる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '늘다, 펴다의 의미를 가진 한자입니다.',
     'words': [
       '伸びる（のびる） 늘다'
@@ -18765,7 +18757,7 @@ KANJI_DATA = [
     'meaning': '매울 신',
     'onyomi': 'シン',
     'kunyomi': 'からい',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '맵다의 의미를 가진 기본 한자입니다.',
     'words': [
       '辛い（からい） 맵다'
@@ -18784,7 +18776,7 @@ KANJI_DATA = [
     'meaning': '아이 밸 신',
     'onyomi': 'シン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '임신을 의미하는 한자입니다.',
     'words': [
       '妊娠（にんしん） 임신'
@@ -18822,7 +18814,7 @@ KANJI_DATA = [
     'meaning': '삼갈 신',
     'onyomi': 'シン',
     'kunyomi': 'つつしむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '조심하다, 신중하다의 의미를 가진 한자입니다.',
     'words': [
       '慎重（しんちょう） 신중'
@@ -18841,7 +18833,7 @@ KANJI_DATA = [
     'meaning': '콩팥 신',
     'onyomi': 'ジン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '콩팥을 의미하는 한자입니다.',
     'words': [
       '腎臓（じんぞう） 신장'
@@ -18860,7 +18852,7 @@ KANJI_DATA = [
     'meaning': '섶 신',
     'onyomi': 'シン',
     'kunyomi': 'たきぎ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '땔나무를 의미하는 한자입니다.',
     'words': [
       '薪（たきぎ） 장작'
@@ -18879,7 +18871,7 @@ KANJI_DATA = [
     'meaning': '집 실',
     'onyomi': 'シツ',
     'kunyomi': 'むろ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '방을 의미하는 기본 한자입니다.',
     'words': [
       '教室（きょうしつ） 교실'
@@ -18898,7 +18890,7 @@ KANJI_DATA = [
     'meaning': '열매 실',
     'onyomi': 'ジツ',
     'kunyomi': 'み、みのる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '열매나 결과를 의미하는 기본 한자입니다.',
     'words': [
       '実（み） 열매'
@@ -18917,7 +18909,7 @@ KANJI_DATA = [
     'meaning': '잃을 실',
     'onyomi': 'シツ',
     'kunyomi': 'うしなう',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '잃다의 의미를 가진 기본 한자입니다.',
     'words': [
       '失う（うしなう） 잃다'
@@ -18936,7 +18928,7 @@ KANJI_DATA = [
     'meaning': '마음 심',
     'onyomi': 'シン',
     'kunyomi': 'こころ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '마음을 의미하는 기본 한자입니다.',
     'words': [
       '心（こころ） 마음'
@@ -18955,7 +18947,7 @@ KANJI_DATA = [
     'meaning': '깊을 심',
     'onyomi': 'シン',
     'kunyomi': 'ふかい、ふかまる、ふかめる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '깊다의 의미를 가진 기본 한자입니다.',
     'words': [
       '深い（ふかい） 깊다'
@@ -18971,10 +18963,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-core',
     'kanji': '芯',
-    'meaning': '등심초 심',
+    'meaning': '심지 심',
     'onyomi': 'シン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '중심이나 심지를 의미하는 한자입니다.',
     'words': [
       '中心（ちゅうしん） 중심'
@@ -18993,7 +18985,7 @@ KANJI_DATA = [
     'meaning': '심할 심',
     'onyomi': 'ジン',
     'kunyomi': 'はなはだ、はなはだしい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '매우, 심하다의 의미를 가진 한자입니다.',
     'words': [
       '甚だしい（はなはだしい） 매우 심하다'
@@ -19012,7 +19004,7 @@ KANJI_DATA = [
     'meaning': '찾을 심',
     'onyomi': 'ジン',
     'kunyomi': 'たずねる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '묻다, 찾다의 의미를 가진 한자입니다.',
     'words': [
       '尋ねる（たずねる） 묻다'
@@ -19031,7 +19023,7 @@ KANJI_DATA = [
     'meaning': '살필 심',
     'onyomi': 'シン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '조사하고 심사하다의 의미를 가진 한자입니다.',
     'words': [
       '審査（しんさ） 심사'
@@ -19069,7 +19061,7 @@ KANJI_DATA = [
     'meaning': '쌍 쌍',
     'onyomi': 'ソウ',
     'kunyomi': 'ふた',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '둘이나 쌍을 의미하는 한자입니다.',
     'words': [
       '双子（ふたご） 쌍둥이'
@@ -19088,7 +19080,7 @@ KANJI_DATA = [
     'meaning': '성씨 씨',
     'onyomi': 'シ',
     'kunyomi': 'うじ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '성씨를 의미하는 한자입니다.',
     'words': [
       '氏名（しめい） 성명'
@@ -19107,7 +19099,7 @@ KANJI_DATA = [
     'meaning': '아이 아',
     'onyomi': 'ジ、ニ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '아이를 의미하는 기본 한자입니다.',
     'words': [
       '児童（じどう） 아동'
@@ -19126,7 +19118,7 @@ KANJI_DATA = [
     'meaning': '싹 아',
     'onyomi': 'ガ',
     'kunyomi': 'め',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '싹이나 새싹을 의미하는 기본 한자입니다.',
     'words': [
       '芽（め） 싹'
@@ -19145,7 +19137,7 @@ KANJI_DATA = [
     'meaning': '나 아',
     'onyomi': 'ガ',
     'kunyomi': 'われ、わ',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '나 자신을 의미하는 기본 한자입니다.',
     'words': [
       '我（われ） 나'
@@ -19164,7 +19156,7 @@ KANJI_DATA = [
     'meaning': '어금니 아',
     'onyomi': 'ガ、ゲ',
     'kunyomi': 'きば',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '송곳니나 이빨을 의미하는 한자입니다.',
     'words': [
       '牙（きば） 송곳니'
@@ -19202,7 +19194,7 @@ KANJI_DATA = [
     'meaning': '맑을 아',
     'onyomi': 'ガ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '우아하고 고상함을 의미하는 한자입니다.',
     'words': [
       '優雅（ゆうが） 우아'
@@ -19221,7 +19213,7 @@ KANJI_DATA = [
     'meaning': '주릴 아',
     'onyomi': 'ガ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '굶주림을 의미하는 한자입니다.',
     'words': [
       '飢餓（きが） 기아'
@@ -19240,7 +19232,7 @@ KANJI_DATA = [
     'meaning': '악할 악',
     'onyomi': 'アク、オ',
     'kunyomi': 'わるい',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '나쁘다의 의미를 가진 기본 한자입니다.',
     'words': [
       '悪い（わるい） 나쁘다'
@@ -19259,7 +19251,7 @@ KANJI_DATA = [
     'meaning': '큰 산 악',
     'onyomi': 'ガク',
     'kunyomi': 'たけ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '높은 산을 의미하는 한자입니다.',
     'words': [
       '山岳（さんがく） 산악'
@@ -19278,7 +19270,7 @@ KANJI_DATA = [
     'meaning': '쥘 악',
     'onyomi': 'アク',
     'kunyomi': 'にぎる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '손으로 꽉 쥐거나 잡는 것을 의미하는 한자입니다.',
     'words': [
       '握手（あくしゅ） 악수'
@@ -19297,7 +19289,7 @@ KANJI_DATA = [
     'meaning': '턱 악',
     'onyomi': 'ガク',
     'kunyomi': 'あご',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '사람이나 동물의 턱 부분을 의미하는 한자입니다.',
     'words': [
       '顎骨（がくこつ） 턱뼈'
@@ -19316,7 +19308,7 @@ KANJI_DATA = [
     'meaning': '낯 안',
     'onyomi': 'ガン',
     'kunyomi': 'かお',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '사람의 얼굴을 의미하는 기본 한자입니다.',
     'words': [
       '笑顔（えがお） 미소'
@@ -19354,7 +19346,7 @@ KANJI_DATA = [
     'meaning': '언덕 안',
     'onyomi': 'ガン',
     'kunyomi': 'きし',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '강이나 바다의 가장자리, 언덕을 의미합니다.',
     'words': [
       '海岸（かいがん） 해안'
@@ -19373,7 +19365,7 @@ KANJI_DATA = [
     'meaning': '책상 안',
     'onyomi': 'アン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '생각이나 계획, 안건을 의미하는 한자입니다.',
     'words': [
       '案内（あんない） 안내'
@@ -19392,7 +19384,7 @@ KANJI_DATA = [
     'meaning': '눈 안',
     'onyomi': 'ガン、ゲン',
     'kunyomi': 'まなこ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '눈을 의미하는 비교적 문어적인 한자입니다.',
     'words': [
       '眼科（がんか） 안과'
@@ -19430,7 +19422,7 @@ KANJI_DATA = [
     'meaning': '바위 암',
     'onyomi': 'ガン',
     'kunyomi': 'いわ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '큰 바위를 의미하는 기본 한자입니다.',
     'words': [
       '岩山（いわやま） 바위산'
@@ -19468,7 +19460,7 @@ KANJI_DATA = [
     'meaning': '나 암',
     'onyomi': '',
     'kunyomi': 'おれ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '남성이 사용하는 1인칭 표현입니다.',
     'words': [
       '俺達（おれたち） 우리들'
@@ -19487,7 +19479,7 @@ KANJI_DATA = [
     'meaning': '숨을 암',
     'onyomi': '',
     'kunyomi': 'やみ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '빛이 전혀 없는 깊은 어둠을 의미합니다.',
     'words': [
       '闇夜（やみよ） 암흑의 밤'
@@ -19506,7 +19498,7 @@ KANJI_DATA = [
     'meaning': '누를 압',
     'onyomi': 'アツ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '누르거나 압박하는 힘을 의미합니다.',
     'words': [
       '圧力（あつりょく） 압력'
@@ -19525,7 +19517,7 @@ KANJI_DATA = [
     'meaning': '누를 압',
     'onyomi': 'オウ',
     'kunyomi': 'おさえる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '누르거나 밀다라는 의미입니다.',
     'words': [
       '押す（おす） 누르다'
@@ -19544,7 +19536,7 @@ KANJI_DATA = [
     'meaning': '가운데 앙',
     'onyomi': 'オウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '중앙이나 중심을 의미합니다.',
     'words': [
       '中央（ちゅうおう） 중앙'
@@ -19563,7 +19555,7 @@ KANJI_DATA = [
     'meaning': '우러를 앙',
     'onyomi': 'ギョウ、コウ',
     'kunyomi': 'おおぐ、おおせ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '우러러보거나 존경하는 의미를 가진 한자입니다.',
     'words': [
       '仰ぐ（あおぐ） 우러르다'
@@ -19582,7 +19574,7 @@ KANJI_DATA = [
     'meaning': '사랑 애',
     'onyomi': 'アイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '사랑을 의미하는 가장 기본적인 한자입니다.',
     'words': [
       '愛情（あいじょう） 애정'
@@ -19601,7 +19593,7 @@ KANJI_DATA = [
     'meaning': '슬플 애',
     'onyomi': 'アイ',
     'kunyomi': 'あわれ、あわれむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '슬픔이나 연민의 감정을 나타내는 한자입니다.',
     'words': [
       '悲哀（ひあい） 비애'
@@ -19634,12 +19626,29 @@ KANJI_DATA = [
     ]
   },
   {
+  'slug': 'n2-han-greeting-part',
+  'kanji': '拶',
+  'meaning': '핍박할 찰',
+  'onyomi': 'サツ',
+  'kunyomi': '',
+  'level': 'N2',
+  'desc': '단독으로 쓰이기보다는 “挨拶(인사)”에서 함께 사용되는 한자입니다.',
+  'words': [
+    '挨拶（あいさつ） 인사'
+  ],
+  'example_jp': 'きちんと挨拶する。',
+  'example_ko': '제대로 인사하다.',
+  'related': [
+    '挨'
+  ]
+},
+  {
     'slug': 'n2-han-shore',
     'kanji': '涯',
     'meaning': '물가 애',
     'onyomi': 'ガイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '물가나 끝을 의미하는 한자입니다.',
     'words': [
       '生涯（しょうがい） 생애'
@@ -19658,7 +19667,7 @@ KANJI_DATA = [
     'meaning': '언덕 애',
     'onyomi': 'ガイ',
     'kunyomi': 'がけ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '가파른 절벽이나 낭떠러지를 의미합니다.',
     'words': [
       '崖下（がけした） 절벽 아래'
@@ -19696,7 +19705,7 @@ KANJI_DATA = [
     'meaning': '진 액',
     'onyomi': 'エキ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '흐르는 물질, 액체를 의미합니다.',
     'words': [
       '液体（えきたい） 액체'
@@ -19715,7 +19724,7 @@ KANJI_DATA = [
     'meaning': '이마 액',
     'onyomi': 'ガク',
     'kunyomi': 'ひたい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '이마 또는 금액을 의미하는 한자입니다.',
     'words': [
       '金額（きんがく） 금액'
@@ -19734,7 +19743,7 @@ KANJI_DATA = [
     'meaning': '액 액',
     'onyomi': 'ヤク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '재앙이나 불운을 의미합니다.',
     'words': [
       '厄年（やくどし） 액년'
@@ -19753,7 +19762,7 @@ KANJI_DATA = [
     'meaning': '앵두 앵',
     'onyomi': 'オウ',
     'kunyomi': 'さくら',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '벚꽃을 의미하는 대표적인 일본 문화 한자입니다.',
     'words': [
       '桜花（おうか） 벚꽃'
@@ -19772,7 +19781,7 @@ KANJI_DATA = [
     'meaning': '밤 야',
     'onyomi': 'ヤ',
     'kunyomi': 'よ、よる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '밤을 의미하는 기본 한자입니다.',
     'words': [
       '夜中（よなか） 한밤중'
@@ -19791,7 +19800,7 @@ KANJI_DATA = [
     'meaning': '들 야',
     'onyomi': 'ヤ',
     'kunyomi': 'の',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '들판이나 자연을 의미합니다.',
     'words': [
       '野菜（やさい） 채소'
@@ -19807,7 +19816,7 @@ KANJI_DATA = [
   {
     'slug': 'n1-han-metallurgy',
     'kanji': '冶',
-    'meaning': '불릴 야',
+    'meaning': '쇠불릴 야',
     'onyomi': 'ヤ',
     'kunyomi': '',
     'level': 'N1',
@@ -19829,7 +19838,7 @@ KANJI_DATA = [
     'meaning': '약할 약',
     'onyomi': 'ジャク',
     'kunyomi': 'よわい、よわまる、よわめる、よわる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '힘이 약한 상태를 의미하는 기본 한자입니다.',
     'words': [
       '弱点（じゃくてん） 약점'
@@ -19848,7 +19857,7 @@ KANJI_DATA = [
     'meaning': '약 약',
     'onyomi': 'ヤク',
     'kunyomi': 'くすり',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '병을 치료하는 약을 의미합니다.',
     'words': [
       '薬局（やっきょく） 약국'
@@ -19867,7 +19876,7 @@ KANJI_DATA = [
     'meaning': '맺을 약',
     'onyomi': 'ヤク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '약속이나 계약을 의미합니다.',
     'words': [
       '約束（やくそく） 약속'
@@ -19886,7 +19895,7 @@ KANJI_DATA = [
     'meaning': '같을 약',
     'onyomi': 'ジャク、ニャク',
     'kunyomi': 'わかい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '젊음이나 비슷함을 의미합니다.',
     'words': [
       '若者（わかもの） 젊은이'
@@ -19905,7 +19914,7 @@ KANJI_DATA = [
     'meaning': '뛸 약',
     'onyomi': 'ヤク',
     'kunyomi': 'おどる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '뛰거나 활발히 움직이는 것을 의미합니다.',
     'words': [
       '活躍（かつやく） 활약'
@@ -19962,7 +19971,7 @@ KANJI_DATA = [
     'meaning': '볕 양',
     'onyomi': 'ヨウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '햇빛이나 밝은 기운을 의미합니다.',
     'words': [
       '太陽（たいよう） 태양'
@@ -19981,7 +19990,7 @@ KANJI_DATA = [
     'meaning': '모양 양',
     'onyomi': 'ヨウ',
     'kunyomi': 'さま',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '모양이나 상태, 존칭 표현으로 사용됩니다.',
     'words': [
       '様子（ようす） 상태'
@@ -20000,7 +20009,7 @@ KANJI_DATA = [
     'meaning': '기를 양',
     'onyomi': 'ヨウ',
     'kunyomi': 'やしなう',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '기르거나 돌보는 것을 의미합니다.',
     'words': [
       '養う（やしなう） 기르다'
@@ -20019,7 +20028,7 @@ KANJI_DATA = [
     'meaning': '날릴 양',
     'onyomi': 'ヨウ',
     'kunyomi': 'あげる、あがる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '들어 올리거나 날리는 것을 의미합니다.',
     'words': [
       '掲揚（けいよう） 게양'
@@ -20076,7 +20085,7 @@ KANJI_DATA = [
     'meaning': '아가씨 양',
     'onyomi': 'ジョウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '아가씨나 젊은 여성을 높여 이르는 말에 쓰이는 한자입니다.',
     'words': [
       '令嬢（れいじょう） 영애'
@@ -20095,7 +20104,7 @@ KANJI_DATA = [
     'meaning': '사양할 양',
     'onyomi': 'ジョウ',
     'kunyomi': 'ゆずる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '양보하거나 남에게 넘겨주는 뜻을 가진 한자입니다.',
     'words': [
       '譲る（ゆずる） 양보하다'
@@ -20190,7 +20199,7 @@ KANJI_DATA = [
     'meaning': '거느릴 어',
     'onyomi': 'ギョ、ゴ',
     'kunyomi': 'おん',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '존칭이나 높임 표현, 다스린다는 뜻에 쓰이는 한자입니다.',
     'words': [
       '御飯（ごはん） 밥'
@@ -20209,7 +20218,7 @@ KANJI_DATA = [
     'meaning': '억 억',
     'onyomi': 'オク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '수의 단위인 억을 뜻하는 한자입니다.',
     'words': [
       '一億（いちおく） 1억'
@@ -20228,7 +20237,7 @@ KANJI_DATA = [
     'meaning': '누를 억',
     'onyomi': 'ヨク',
     'kunyomi': 'おさえる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '눌러서 억제하거나 참는 뜻을 가진 한자입니다.',
     'words': [
       '抑える（おさえる） 억누르다'
@@ -20247,7 +20256,7 @@ KANJI_DATA = [
     'meaning': '생각할 억',
     'onyomi': 'オク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '기억하거나 떠올리는 뜻을 가진 한자입니다.',
     'words': [
       '記憶（きおく） 기억'
@@ -20304,7 +20313,7 @@ KANJI_DATA = [
     'meaning': '엄할 엄',
     'onyomi': 'ゲン、ゴン',
     'kunyomi': 'おごそか、きびしい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '엄격하거나 장엄한 상태를 나타내는 한자입니다.',
     'words': [
       '厳しい（きびしい） 엄하다'
@@ -20342,7 +20351,7 @@ KANJI_DATA = [
     'meaning': '나/남을 여',
     'onyomi': 'ヨ',
     'kunyomi': 'あまる、あます',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '남다, 여분이 있다는 뜻을 가진 한자입니다.',
     'words': [
       '余る（あまる） 남다'
@@ -20358,10 +20367,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-give',
     'kanji': '与',
-    'meaning': '더불/줄 여',
+    'meaning': '줄 여',
     'onyomi': 'ヨ',
     'kunyomi': 'あたえる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '주다, 부여하다의 뜻을 가진 한자입니다.',
     'words': [
       '与える（あたえる） 주다'
@@ -20399,7 +20408,7 @@ KANJI_DATA = [
     'meaning': '부릴 역',
     'onyomi': 'ヤク、エキ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '역할, 임무, 부역 등의 뜻을 가진 한자입니다.',
     'words': [
       '役目（やくめ） 역할'
@@ -20437,7 +20446,7 @@ KANJI_DATA = [
     'meaning': '바꿀 역/쉬울 이',
     'onyomi': 'エキ、イ',
     'kunyomi': 'やさしい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '쉽다, 바뀌다의 뜻으로 쓰이는 한자입니다.',
     'words': [
       '容易（ようい） 용이'
@@ -20456,7 +20465,7 @@ KANJI_DATA = [
     'meaning': '거스를 역',
     'onyomi': 'ギャク',
     'kunyomi': 'さか、さからう',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '거꾸로, 반대, 거스르다의 뜻을 가진 한자입니다.',
     'words': [
       '逆転（ぎゃくてん） 역전'
@@ -20475,7 +20484,7 @@ KANJI_DATA = [
     'meaning': '지경 역',
     'onyomi': 'イキ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '일정한 범위나 구역을 뜻하는 한자입니다.',
     'words': [
       '地域（ちいき） 지역'
@@ -20494,7 +20503,7 @@ KANJI_DATA = [
     'meaning': '번역할 역',
     'onyomi': 'ヤク',
     'kunyomi': 'わけ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '번역, 이유, 사정을 뜻하는 한자입니다.',
     'words': [
       '翻訳（ほんやく） 번역'
@@ -20513,7 +20522,7 @@ KANJI_DATA = [
     'meaning': '전염병 역',
     'onyomi': 'エキ、ヤク',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '전염병이나 역병을 뜻하는 한자입니다.',
     'words': [
       '疫病（えきびょう） 역병'
@@ -20551,7 +20560,7 @@ KANJI_DATA = [
     'meaning': '그럴 연',
     'onyomi': 'ゼン、ネン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '그렇다, 그러한 상태를 나타내는 한자입니다.',
     'words': [
       '自然（しぜん） 자연'
@@ -20570,7 +20579,7 @@ KANJI_DATA = [
     'meaning': '펼 연',
     'onyomi': 'エン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '연기하다, 펼치다, 설명하다의 뜻을 가진 한자입니다.',
     'words': [
       '演技（えんぎ） 연기'
@@ -20589,7 +20598,7 @@ KANJI_DATA = [
     'meaning': '탈 연',
     'onyomi': 'ネン',
     'kunyomi': 'もえる、もやす、もす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '타다, 태우다의 뜻을 가진 한자입니다.',
     'words': [
       '燃える（もえる） 타다'
@@ -20608,7 +20617,7 @@ KANJI_DATA = [
     'meaning': '늘일 연',
     'onyomi': 'エン',
     'kunyomi': 'のびる、のべる、のばす',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '늘이다, 연장하다의 뜻을 가진 한자입니다.',
     'words': [
       '延期（えんき） 연기'
@@ -20627,7 +20636,7 @@ KANJI_DATA = [
     'meaning': '물 따라갈 연',
     'onyomi': 'エン',
     'kunyomi': 'そう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '물가나 선을 따라가다의 뜻을 가진 한자입니다.',
     'words': [
       '沿岸（えんがん） 연안'
@@ -20665,7 +20674,7 @@ KANJI_DATA = [
     'meaning': '연할 연',
     'onyomi': 'ナン',
     'kunyomi': 'やわらか、やわらかい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '부드럽고 유연한 상태를 뜻하는 한자입니다.',
     'words': [
       '軟らかい（やわらかい） 부드럽다'
@@ -20684,7 +20693,7 @@ KANJI_DATA = [
     'meaning': '연기 연',
     'onyomi': 'エン',
     'kunyomi': 'けむり、けむる、けむい、けむたい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '연기나 김을 뜻하는 한자입니다.',
     'words': [
       '煙草（たばこ） 담배'
@@ -20722,7 +20731,7 @@ KANJI_DATA = [
     'meaning': '인연 연',
     'onyomi': 'エン',
     'kunyomi': 'ふち',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '인연, 관계, 가장자리의 뜻을 가진 한자입니다.',
     'words': [
       '縁起（えんぎ） 인연, 징조'
@@ -20741,7 +20750,7 @@ KANJI_DATA = [
     'meaning': '더울 열',
     'onyomi': 'ネツ',
     'kunyomi': 'あつい',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '뜨겁다, 열을 뜻하는 기본 한자입니다.',
     'words': [
       '熱い（あつい） 뜨겁다'
@@ -20798,7 +20807,7 @@ KANJI_DATA = [
     'meaning': '소금 염',
     'onyomi': 'エン',
     'kunyomi': 'しお',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '소금을 뜻하는 기본 한자입니다.',
     'words': [
       '食塩（しょくえん） 식염'
@@ -20817,7 +20826,7 @@ KANJI_DATA = [
     'meaning': '물들 염',
     'onyomi': 'セン',
     'kunyomi': 'そめる、そまる、しみる、しみ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '물들이다, 스며들다의 뜻을 가진 한자입니다.',
     'words': [
       '染める（そめる） 물들이다'
@@ -20836,7 +20845,7 @@ KANJI_DATA = [
     'meaning': '불꽃 염',
     'onyomi': 'エン',
     'kunyomi': 'ほのお',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '타오르는 불꽃이나 화염을 뜻하는 한자입니다.',
     'words': [
       '炎上（えんじょう） 불타오름, 논란 확산'
@@ -20874,7 +20883,7 @@ KANJI_DATA = [
     'meaning': '고울 염',
     'onyomi': 'エン',
     'kunyomi': 'つや、つややか、あでやか',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '윤기 있고 아름다운 상태를 의미하는 한자입니다.',
     'words': [
       '艶やか（つややか） 윤기 있는'
@@ -20893,7 +20902,7 @@ KANJI_DATA = [
     'meaning': '잎 엽',
     'onyomi': 'ヨウ',
     'kunyomi': 'は',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '나뭇잎을 의미하는 기본 한자입니다.',
     'words': [
       '落葉（らくよう） 낙엽'
@@ -20912,7 +20921,7 @@ KANJI_DATA = [
     'meaning': '헤엄칠 영',
     'onyomi': 'エイ',
     'kunyomi': 'およぐ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '물에서 헤엄치는 것을 의미합니다.',
     'words': [
       '水泳（すいえい） 수영'
@@ -20931,7 +20940,7 @@ KANJI_DATA = [
     'meaning': '꽃부리 영',
     'onyomi': 'エイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '뛰어남, 꽃의 중심, 또는 영국을 의미하는 한자입니다.',
     'words': [
       '英語（えいご） 영어'
@@ -20950,7 +20959,7 @@ KANJI_DATA = [
     'meaning': '영화 영',
     'onyomi': 'エイ',
     'kunyomi': 'さかえる、はえ',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '번영하거나 빛나는 상태를 의미합니다.',
     'words': [
       '栄える（さかえる） 번영하다'
@@ -20969,7 +20978,7 @@ KANJI_DATA = [
     'meaning': '길 영',
     'onyomi': 'エイ',
     'kunyomi': 'ながい',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '오래 지속됨을 의미하는 기본 한자입니다.',
     'words': [
       '永遠（えいえん） 영원'
@@ -20988,7 +20997,7 @@ KANJI_DATA = [
     'meaning': '경영할 영',
     'onyomi': 'エイ',
     'kunyomi': 'いとなむ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '사업이나 일을 운영하는 것을 의미합니다.',
     'words': [
       '経営（けいえい） 경영'
@@ -21026,7 +21035,7 @@ KANJI_DATA = [
     'meaning': '맞을 영',
     'onyomi': 'ゲイ',
     'kunyomi': 'むかえる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '맞이하거나 환영하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '歓迎（かんげい） 환영'
@@ -21045,7 +21054,7 @@ KANJI_DATA = [
     'meaning': '읊을 영',
     'onyomi': 'エイ',
     'kunyomi': 'よむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '시나 노래를 읊는 것을 의미합니다.',
     'words': [
       '詠む（よむ） 읊다'
@@ -21064,7 +21073,7 @@ KANJI_DATA = [
     'meaning': '그림자 영',
     'onyomi': 'エイ',
     'kunyomi': 'かげ',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '빛에 의해 생기는 그림자를 의미합니다.',
     'words': [
       '影響（えいきょう） 영향'
@@ -21102,7 +21111,7 @@ KANJI_DATA = [
     'meaning': '재주 예',
     'onyomi': 'ゲイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '재능이나 예술과 관련된 뜻을 가진 한자입니다.',
     'words': [
       '芸術（げいじゅつ） 예술'
@@ -21121,7 +21130,7 @@ KANJI_DATA = [
     'meaning': '맡길 예',
     'onyomi': 'ヨ',
     'kunyomi': 'あずける、あずかる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '맡기거나 보관하는 뜻을 가진 한자입니다.',
     'words': [
       '預ける（あずける） 맡기다'
@@ -21140,7 +21149,7 @@ KANJI_DATA = [
     'meaning': '날카로울 예',
     'onyomi': 'エイ',
     'kunyomi': 'するどい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '날카롭거나 예리한 상태를 의미합니다.',
     'words': [
       '鋭い（するどい） 날카롭다'
@@ -21159,7 +21168,7 @@ KANJI_DATA = [
     'meaning': '벨 예',
     'onyomi': '',
     'kunyomi': 'かる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '풀이나 머리를 베는 것을 의미합니다.',
     'words': [
       '刈る（かる） 베다'
@@ -21178,7 +21187,7 @@ KANJI_DATA = [
     'meaning': '이를 예',
     'onyomi': 'ケイ',
     'kunyomi': 'もうでる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '신사나 절을 참배하는 것을 의미합니다.',
     'words': [
       '参詣（さんけい） 참배'
@@ -21194,10 +21203,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-honor',
     'kanji': '誉',
-    'meaning': '기릴 예',
+    'meaning': '명예 예',
     'onyomi': 'ヨ',
     'kunyomi': 'ほまれ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '명예나 칭찬을 의미하는 한자입니다.',
     'words': [
       '名誉（めいよ） 명예'
@@ -21254,7 +21263,7 @@ KANJI_DATA = [
     'meaning': '그르칠 오',
     'onyomi': 'ゴ',
     'kunyomi': 'あやまる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '실수하거나 잘못하는 것을 의미합니다.',
     'words': [
       '誤る（あやまる） 잘못하다'
@@ -21273,7 +21282,7 @@ KANJI_DATA = [
     'meaning': '더러울 오',
     'onyomi': 'オ',
     'kunyomi': 'けがす、けがれる、よごす',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '더럽히거나 더러워지는 상태를 의미합니다.',
     'words': [
       '汚れる（よごれる） 더러워지다'
@@ -21292,7 +21301,7 @@ KANJI_DATA = [
     'meaning': '성씨 오',
     'onyomi': 'ゴ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '중국 성씨나 지명에 쓰이는 한자입니다.',
     'words': [
       '呉服（ごふく） 기모노 옷감'
@@ -21311,7 +21320,7 @@ KANJI_DATA = [
     'meaning': '즐길 오',
     'onyomi': 'ゴ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '즐기거나 오락과 관련된 뜻을 가진 한자입니다.',
     'words': [
       '娯楽（ごらく） 오락'
@@ -21330,7 +21339,7 @@ KANJI_DATA = [
     'meaning': '깨달을 오',
     'onyomi': 'ゴ',
     'kunyomi': 'さとる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '깨닫거나 이해하는 뜻을 가진 한자입니다.',
     'words': [
       '悟る（さとる） 깨닫다'
@@ -21349,7 +21358,7 @@ KANJI_DATA = [
     'meaning': '깊을 오',
     'onyomi': 'オウ',
     'kunyomi': 'おく',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '안쪽 깊은 곳을 의미하는 한자입니다.',
     'words': [
       '奥深い（おくぶかい） 깊다'
@@ -21387,7 +21396,7 @@ KANJI_DATA = [
     'meaning': '구슬 옥',
     'onyomi': 'ギョク',
     'kunyomi': 'たま',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '구슬이나 보석을 의미하는 기본 한자입니다.',
     'words': [
       '宝玉（ほうぎょく） 보석'
@@ -21406,7 +21415,7 @@ KANJI_DATA = [
     'meaning': '집 옥',
     'onyomi': 'オク',
     'kunyomi': 'や',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '집이나 가게를 의미하는 기본 한자입니다.',
     'words': [
       '本屋（ほんや） 서점'
@@ -21422,10 +21431,10 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-fertile',
     'kanji': '沃',
-    'meaning': '물 댈 옥',
+    'meaning': '기름질 옥',
     'onyomi': 'ヨク',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '물이 많고 기름진 상태를 의미합니다.',
     'words': [
       '肥沃（ひよく） 비옥'
@@ -21444,7 +21453,7 @@ KANJI_DATA = [
     'meaning': '감옥 옥',
     'onyomi': 'ゴク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '죄인을 가두는 감옥을 의미합니다.',
     'words': [
       '地獄（じごく） 지옥'
@@ -21463,7 +21472,7 @@ KANJI_DATA = [
     'meaning': '따뜻할 온',
     'onyomi': 'オン',
     'kunyomi': 'あたたかい',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '따뜻한 상태를 의미하는 기본 한자입니다.',
     'words': [
       '温度（おんど） 온도'
@@ -21482,7 +21491,7 @@ KANJI_DATA = [
     'meaning': '편안할 온',
     'onyomi': 'オン',
     'kunyomi': 'おだやか',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '차분하고 평온한 상태를 의미합니다.',
     'words': [
       '穏やか（おだやか） 온화하다'
@@ -21501,7 +21510,7 @@ KANJI_DATA = [
     'meaning': '늙은이 옹',
     'onyomi': 'オウ',
     'kunyomi': 'おきな',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '늙은 남자를 의미하는 한자입니다.',
     'words': [
       '翁（おきな） 노인'
@@ -21520,7 +21529,7 @@ KANJI_DATA = [
     'meaning': '낄 옹',
     'onyomi': 'ヨウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '끌어안거나 지지하는 뜻을 가진 한자입니다.',
     'words': [
       '擁護（ようご） 옹호'
@@ -21539,7 +21548,7 @@ KANJI_DATA = [
     'meaning': '기와 와',
     'onyomi': 'ガ',
     'kunyomi': 'かわら',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '지붕에 쓰이는 기와를 의미합니다.',
     'words': [
       '瓦屋根（かわらやね） 기와지붕'
@@ -21558,7 +21567,7 @@ KANJI_DATA = [
     'meaning': '소용돌이 와',
     'onyomi': 'カ',
     'kunyomi': 'うず',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '물이나 공기의 소용돌이를 의미합니다.',
     'words': [
       '渦巻き（うずまき） 소용돌이'
@@ -21577,7 +21586,7 @@ KANJI_DATA = [
     'meaning': '완전할 완',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '완전하거나 끝났음을 의미하는 기본 한자입니다.',
     'words': [
       '完成（かんせい） 완성'
@@ -21596,7 +21605,7 @@ KANJI_DATA = [
     'meaning': '완연할 완',
     'onyomi': '',
     'kunyomi': 'あてる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '보내는 대상이나 목적지를 지정할 때 쓰입니다.',
     'words': [
       '宛先（あてさき） 수신인'
@@ -21634,7 +21643,7 @@ KANJI_DATA = [
     'meaning': '팔뚝 완',
     'onyomi': 'ワン',
     'kunyomi': 'うで',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '팔이나 실력을 의미하는 한자입니다.',
     'words': [
       '腕前（うでまえ） 실력'
@@ -21653,7 +21662,7 @@ KANJI_DATA = [
     'meaning': '완고할 완',
     'onyomi': 'ガン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '고집이 세고 완고한 상태를 의미합니다.',
     'words': [
       '頑固（がんこ） 완고'
@@ -21672,7 +21681,7 @@ KANJI_DATA = [
     'meaning': '느릴 완',
     'onyomi': 'カン',
     'kunyomi': 'ゆるい、ゆるやか、ゆるむ、ゆるめる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '느슨하거나 완만한 상태를 의미합니다.',
     'words': [
       '緩い（ゆるい） 느슨하다'
@@ -21691,7 +21700,7 @@ KANJI_DATA = [
     'meaning': '임금 왕',
     'onyomi': 'オウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '왕이나 군주를 의미하는 기본 한자입니다.',
     'words': [
       '王様（おうさま） 왕'
@@ -21710,7 +21719,7 @@ KANJI_DATA = [
     'meaning': '갈 왕',
     'onyomi': 'オウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '가다, 왕래하다의 뜻을 가진 한자입니다.',
     'words': [
       '往復（おうふく） 왕복'
@@ -21783,10 +21792,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-weekday',
     'kanji': '曜',
-    'meaning': '빛날 요',
+    'meaning': '요일 요',
     'onyomi': 'ヨウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '요일에 사용되는 한자입니다.',
     'words': [
       '月曜（げつよう） 월요일'
@@ -21805,7 +21814,7 @@ KANJI_DATA = [
     'meaning': '요긴할 요',
     'onyomi': 'ヨウ',
     'kunyomi': 'いる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '필요하거나 중요함을 의미합니다.',
     'words': [
       '必要（ひつよう） 필요'
@@ -21838,31 +21847,53 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n2-han-mysterious',
-    'kanji': '妖',
-    'meaning': '아리따울 요',
-    'onyomi': 'ヨウ',
-    'kunyomi': 'あやしい',
-    'level': 'N2',
-    'desc': '요염하거나 신비로운 느낌을 의미합니다.',
-    'words': [
-      '妖怪（ようかい） 요괴'
-    ],
-    'example_jp': '妖しい光。',
-    'example_ko': '수상한 빛.',
-    'related': [
-      '怪',
-      '不思議',
-      '魅'
-    ]
-  },
+  'slug': 'n2-han-mysterious',
+  'kanji': '妖',
+  'meaning': '요사할 요',
+  'onyomi': 'ヨウ',
+  'kunyomi': '',
+  'level': 'N1',
+  'desc': '요괴나 기이하고 신비로운 존재를 나타내는 한자입니다. ',
+  'words': [
+    '妖怪（ようかい） 요괴',
+    '妖精（ようせい） 요정'
+  ],
+  'example_jp': '妖怪が現れる。',
+  'example_ko': '요괴가 나타나다.',
+  'related': [
+    '怪',
+    '魔',
+    '魅'
+  ]
+},
+{
+  'slug': 'n3-han-donburi',
+  'kanji': '丼',
+  'meaning': '덮밥 동',
+  'onyomi': 'ドン',
+  'kunyomi': '',
+  'level': 'N3',
+  'desc': '밥 위에 반찬을 얹어 먹는 덮밥을 의미하는 한자입니다. ※ 상용한자는 아닙니다.',
+  'words': [
+    '丼（どん） 덮밥',
+    '牛丼（ぎゅうどん） 규동',
+    '親子丼（おやこどん） 오야코동'
+  ],
+  'example_jp': '牛丼を食べる。',
+  'example_ko': '규동을 먹다.',
+  'related': [
+    '食',
+    '飯',
+    '米'
+  ]
+},
   {
     'slug': 'n3-han-shake',
     'kanji': '揺',
     'meaning': '흔들 요',
     'onyomi': 'ヨウ',
     'kunyomi': 'ゆれる、ゆらぐ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '흔들리거나 움직이는 상태를 의미합니다.',
     'words': [
       '動揺（どうよう） 동요'
@@ -21881,7 +21912,7 @@ KANJI_DATA = [
     'meaning': '허리 요',
     'onyomi': 'ヨウ',
     'kunyomi': 'こし',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '허리 부분을 의미합니다.',
     'words': [
       '腰痛（ようつう） 요통'
@@ -21900,7 +21931,7 @@ KANJI_DATA = [
     'meaning': '기와 가마 요',
     'onyomi': 'ヨウ',
     'kunyomi': 'かま',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '도자기 등을 굽는 가마를 의미합니다.',
     'words': [
       '窯元（かまもと） 도자기 제작자'
@@ -21938,7 +21969,7 @@ KANJI_DATA = [
     'meaning': '목욕할 욕',
     'onyomi': 'ヨク',
     'kunyomi': 'あびる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '목욕하거나 물을 뒤집어쓰는 뜻입니다.',
     'words': [
       '入浴（にゅうよく） 입욕'
@@ -21957,7 +21988,7 @@ KANJI_DATA = [
     'meaning': '하고자 할 욕',
     'onyomi': 'ヨク',
     'kunyomi': 'ほしい',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '욕망이나 원함을 의미합니다.',
     'words': [
       '欲しい（ほしい） 갖고 싶다'
@@ -21976,7 +22007,7 @@ KANJI_DATA = [
     'meaning': '욕될 욕',
     'onyomi': 'ジョク',
     'kunyomi': 'はずかしめる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '부끄럽게 하거나 모욕하는 뜻입니다.',
     'words': [
       '侮辱（ぶじょく） 모욕'
@@ -21995,7 +22026,7 @@ KANJI_DATA = [
     'meaning': '쓸 용',
     'onyomi': 'ヨウ',
     'kunyomi': 'もちいる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '사용하거나 쓰는 것을 의미합니다.',
     'words': [
       '使用（しよう） 사용'
@@ -22014,7 +22045,7 @@ KANJI_DATA = [
     'meaning': '날랠 용',
     'onyomi': 'ユウ',
     'kunyomi': 'いさむ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '용기나 씩씩함을 의미합니다.',
     'words': [
       '勇気（ゆうき） 용기'
@@ -22028,24 +22059,25 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n4-han-form',
-    'kanji': '容',
-    'meaning': '모양 용',
-    'onyomi': 'ヨウ',
-    'kunyomi': '',
-    'level': 'N4',
-    'desc': '모양이나 모습, 용모를 의미합니다.',
-    'words': [
-      '内容（ないよう） 내용'
-    ],
-    'example_jp': '内容を確認する。',
-    'example_ko': '내용을 확인하다.',
-    'related': [
-      '形',
-      '姿',
-      '外'
-    ]
-  },
+  'slug': 'n4-han-form',
+  'kanji': '容',
+  'meaning': '얼굴 용',
+  'onyomi': 'ヨウ',
+  'kunyomi': '',
+  'level': 'N2',
+  'desc': '사람의 얼굴이나 모습, 용모를 의미하는 한자입니다.',
+  'words': [
+    '容姿（ようし） 용모',
+    '美容（びよう） 미용'
+  ],
+  'example_jp': '彼は整った容姿をしている。',
+  'example_ko': '그는 단정한 용모를 가지고 있다.',
+  'related': [
+    '顔',
+    '形',
+    '姿'
+  ]
+},
   {
     'slug': 'n1-han-redundant',
     'kanji': '冗',
@@ -22068,7 +22100,7 @@ KANJI_DATA = [
   {
     'slug': 'n1-han-ordinary',
     'kanji': '庸',
-    'meaning': '떳떳할 용',
+    'meaning': '쓸 용',
     'onyomi': 'ヨウ',
     'kunyomi': '',
     'level': 'N1',
@@ -22090,7 +22122,7 @@ KANJI_DATA = [
     'meaning': '물 솟을 용',
     'onyomi': 'ユウ',
     'kunyomi': 'わく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '물이나 감정이 솟아오르는 것을 의미합니다.',
     'words': [
       '湧く（わく） 솟다'
@@ -22109,7 +22141,7 @@ KANJI_DATA = [
     'meaning': '녹을 용',
     'onyomi': 'ヨウ',
     'kunyomi': 'とける、とかす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '녹거나 녹이는 것을 의미합니다.',
     'words': [
       '溶ける（とける） 녹다'
@@ -22128,7 +22160,7 @@ KANJI_DATA = [
     'meaning': '뛸 용',
     'onyomi': 'ヨウ',
     'kunyomi': 'おどる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '춤추거나 뛰는 것을 의미합니다.',
     'words': [
       '踊る（おどる） 춤추다'
@@ -22144,7 +22176,7 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-right',
     'kanji': '右',
-    'meaning': '오른쪽 우',
+    'meaning': '오른 우',
     'onyomi': 'ウ、ユウ',
     'kunyomi': 'みぎ',
     'level': 'N5',
@@ -22223,7 +22255,7 @@ KANJI_DATA = [
     'meaning': '깃 우',
     'onyomi': 'ウ',
     'kunyomi': 'はね',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '새의 깃이나 날개를 의미합니다.',
     'words': [
       '羽毛（うもう） 깃털'
@@ -22242,7 +22274,7 @@ KANJI_DATA = [
     'meaning': '집 우',
     'onyomi': 'ウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '집이나 공간, 우주를 의미하는 한자입니다.',
     'words': [
       '宇宙（うちゅう） 우주'
@@ -22261,7 +22293,7 @@ KANJI_DATA = [
     'meaning': '우편 우',
     'onyomi': 'ユウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '우편과 관련된 한자입니다.',
     'words': [
       '郵便（ゆうびん） 우편'
@@ -22280,7 +22312,7 @@ KANJI_DATA = [
     'meaning': '넉넉할 우',
     'onyomi': 'ユウ',
     'kunyomi': 'やさしい、すぐれる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '부드럽고 뛰어난 상태를 의미합니다.',
     'words': [
       '優しい（やさしい） 상냥하다'
@@ -22299,7 +22331,7 @@ KANJI_DATA = [
     'meaning': '또 우',
     'onyomi': '',
     'kunyomi': 'また',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '다시, 또를 의미합니다.',
     'words': [
       '又来る（またくる） 다시 오다'
@@ -22318,7 +22350,7 @@ KANJI_DATA = [
     'meaning': '토란 우',
     'onyomi': '',
     'kunyomi': 'いも',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '고구마, 감자 등 덩이줄기 식물을 의미합니다.',
     'words': [
       '芋料理（いもりょうり） 감자요리'
@@ -22337,7 +22369,7 @@ KANJI_DATA = [
     'meaning': '짝 우',
     'onyomi': 'グウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '짝이나 우연을 의미하는 한자입니다.',
     'words': [
       '偶然（ぐうぜん） 우연'
@@ -22356,7 +22388,7 @@ KANJI_DATA = [
     'meaning': '만날 우',
     'onyomi': 'グウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '만나거나 대우하는 것을 의미합니다.',
     'words': [
       '待遇（たいぐう） 대우'
@@ -22375,7 +22407,7 @@ KANJI_DATA = [
     'meaning': '모퉁이 우',
     'onyomi': 'グウ',
     'kunyomi': 'すみ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '구석이나 모퉁이를 의미합니다.',
     'words': [
       '隅（すみ） 구석'
@@ -22394,7 +22426,7 @@ KANJI_DATA = [
     'meaning': '어리석을 우',
     'onyomi': 'グ',
     'kunyomi': 'おろか',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '어리석음을 의미합니다.',
     'words': [
       '愚か（おろか） 어리석다'
@@ -22413,7 +22445,7 @@ KANJI_DATA = [
     'meaning': '염려할 우',
     'onyomi': 'グ',
     'kunyomi': 'おそれ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '걱정하거나 우려하는 뜻입니다.',
     'words': [
       '憂虞（ゆうぐ） 근심'
@@ -22432,7 +22464,7 @@ KANJI_DATA = [
     'meaning': '근심 우',
     'onyomi': 'ユウ',
     'kunyomi': 'うれえる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '걱정이나 근심을 의미합니다.',
     'words': [
       '憂う（うれう） 근심하다'
@@ -22451,7 +22483,7 @@ KANJI_DATA = [
     'meaning': '구름 운',
     'onyomi': 'ウン',
     'kunyomi': 'くも',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '하늘에 떠 있는 구름을 의미합니다.',
     'words': [
       '雲海（うんかい） 운해'
@@ -22470,7 +22502,7 @@ KANJI_DATA = [
     'meaning': '옮길 운',
     'onyomi': 'ウン',
     'kunyomi': 'はこぶ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '옮기다, 운반하다의 뜻과 함께 운이나 흐름의 의미로도 자주 쓰이는 기본 한자입니다.',
     'words': [
       '運転（うんてん） 운전',
@@ -22487,7 +22519,7 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-rhyme',
     'kanji': '韻',
-    'meaning': '운율 운',
+    'meaning': '운 운',
     'onyomi': 'イン',
     'kunyomi': '',
     'level': 'N2',
@@ -22506,7 +22538,7 @@ KANJI_DATA = [
   {
     'slug': 'n1-han-depression',
     'kanji': '鬱',
-    'meaning': '막힐 울',
+    'meaning': '답답할 울',
     'onyomi': 'ウツ',
     'kunyomi': '',
     'level': 'N1',
@@ -22528,7 +22560,7 @@ KANJI_DATA = [
     'meaning': '수컷 웅',
     'onyomi': 'ユウ',
     'kunyomi': 'おす、お',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '수컷이나 힘차고 웅장한 느낌을 나타내는 한자입니다.',
     'words': [
       '英雄（えいゆう） 영웅'
@@ -22547,7 +22579,7 @@ KANJI_DATA = [
     'meaning': '곰 웅',
     'onyomi': '',
     'kunyomi': 'くま',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '곰을 의미하는 한자입니다.',
     'words': [
       '熊本（くまもと） 구마모토'
@@ -22586,7 +22618,7 @@ KANJI_DATA = [
     'meaning': '으뜸 원',
     'onyomi': 'ゲン、ガン',
     'kunyomi': 'もと',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '근본, 원래, 시작의 뜻을 가진 기본 한자입니다.',
     'words': [
       '元気（げんき） 건강함, 기운'
@@ -22624,7 +22656,7 @@ KANJI_DATA = [
     'meaning': '멀 원',
     'onyomi': 'エン、オン',
     'kunyomi': 'とおい',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '멀다를 의미하는 기본 한자입니다.',
     'words': [
       '遠足（えんそく） 소풍'
@@ -22643,7 +22675,7 @@ KANJI_DATA = [
     'meaning': '동산 원',
     'onyomi': 'エン',
     'kunyomi': 'その',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '정원, 공원, 동산을 의미하는 기본 한자입니다.',
     'words': [
       '公園（こうえん） 공원'
@@ -22700,7 +22732,7 @@ KANJI_DATA = [
     'meaning': '원할 원',
     'onyomi': 'ガン',
     'kunyomi': 'ねがう',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '바라다, 소원하다의 뜻을 가진 한자입니다.',
     'words': [
       '願う（ねがう） 바라다',
@@ -22720,7 +22752,7 @@ KANJI_DATA = [
     'meaning': '근원 원',
     'onyomi': 'ゲン',
     'kunyomi': 'みなもと',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '물이나 사물의 시작점, 근원을 의미합니다.',
     'words': [
       '資源（しげん） 자원'
@@ -22758,7 +22790,7 @@ KANJI_DATA = [
     'meaning': '담 원',
     'onyomi': '',
     'kunyomi': 'かき',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '담장이나 울타리를 의미하는 한자입니다.',
     'words': [
       '石垣（いしがき） 돌담'
@@ -22777,7 +22809,7 @@ KANJI_DATA = [
     'meaning': '도울 원',
     'onyomi': 'エン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '도와주거나 지원하는 뜻을 가진 한자입니다.',
     'words': [
       '応援（おうえん） 응원',
@@ -22797,7 +22829,7 @@ KANJI_DATA = [
     'meaning': '미인 원',
     'onyomi': 'エン',
     'kunyomi': 'ひめ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '아름다운 여성이나 공주를 의미하는 한자입니다.',
     'words': [
       '才媛（さいえん） 재원'
@@ -22816,7 +22848,7 @@ KANJI_DATA = [
     'meaning': '원숭이 원',
     'onyomi': 'エン',
     'kunyomi': 'さる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '원숭이를 의미하는 한자입니다.',
     'words': [
       '猿山（さるやま） 원숭이 산'
@@ -22829,6 +22861,26 @@ KANJI_DATA = [
       '森'
     ]
   },
+  {
+  'slug': 'n1-han-hill',
+  'kanji': '岡',
+  'meaning': '언덕 강',
+  'onyomi': 'コウ',
+  'kunyomi': 'おか',
+  'level': 'N1',
+  'desc': '언덕이나 높게 솟은 지형을 의미하는 한자입니다.',
+  'words': [
+    '岡（おか） 언덕',
+    '福岡（ふくおか） 후쿠오카'
+  ],
+  'example_jp': '岡の上から町を眺める。',
+  'example_ko': '언덕 위에서 마을을 바라보다.',
+  'related': [
+    '丘',
+    '山',
+    '坂'
+  ]
+},
   {
     'slug': 'n5-han-moon-month',
     'kanji': '月',
@@ -22855,7 +22907,7 @@ KANJI_DATA = [
     'meaning': '넘을 월',
     'onyomi': 'エツ',
     'kunyomi': 'こす、こえる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '넘다, 건너다의 뜻을 가진 한자입니다.',
     'words': [
       '越える（こえる） 넘다'
@@ -22874,7 +22926,7 @@ KANJI_DATA = [
     'meaning': '맡길 위',
     'onyomi': 'イ',
     'kunyomi': 'ゆだねる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '맡기다, 위임하다의 뜻을 가진 한자입니다.',
     'words': [
       '委員（いいん） 위원'
@@ -22893,7 +22945,7 @@ KANJI_DATA = [
     'meaning': '자리 위',
     'onyomi': 'イ',
     'kunyomi': 'くらい',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '지위, 순위, 위치를 나타내는 한자입니다.',
     'words': [
       '地位（ちい） 지위'
@@ -22909,7 +22961,7 @@ KANJI_DATA = [
   {
     'slug': 'n4-han-surround',
     'kanji': '囲',
-    'meaning': '에워쌀 위',
+    'meaning': '둘러쌀 위',
     'onyomi': 'イ',
     'kunyomi': 'かこむ、かこう',
     'level': 'N4',
@@ -22950,7 +23002,7 @@ KANJI_DATA = [
     'meaning': '지킬 위',
     'onyomi': 'エイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '지키다, 방위하다의 뜻을 가진 한자입니다.',
     'words': [
       '衛星（えいせい） 위성',
@@ -22970,7 +23022,7 @@ KANJI_DATA = [
     'meaning': '위태할 위',
     'onyomi': 'キ',
     'kunyomi': 'あぶない、あやうい、あやぶむ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '위험하거나 위태로운 상태를 의미하는 기본 한자입니다.',
     'words': [
       '危険（きけん） 위험'
@@ -22989,7 +23041,7 @@ KANJI_DATA = [
     'meaning': '위엄 위',
     'onyomi': 'イ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '위엄이나 강한 기세를 나타내는 한자입니다.',
     'words': [
       '威力（いりょく） 위력'
@@ -23008,7 +23060,7 @@ KANJI_DATA = [
     'meaning': '할 위',
     'onyomi': 'イ',
     'kunyomi': 'ため、なす、なる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '하다, 이루다, ~을 위하여의 뜻으로 쓰이는 한자입니다.',
     'words': [
       '為替（かわせ） 환율',
@@ -23047,7 +23099,7 @@ KANJI_DATA = [
     'meaning': '거짓 위',
     'onyomi': 'ギ',
     'kunyomi': 'にせ、いつわる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '거짓되거나 가짜인 것을 의미합니다.',
     'words': [
       '偽物（にせもの） 가짜'
@@ -23066,7 +23118,7 @@ KANJI_DATA = [
     'meaning': '벼슬 위',
     'onyomi': 'イ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '군 계급이나 벼슬 이름에 쓰이는 한자입니다.',
     'words': [
       '中尉（ちゅうい） 중위'
@@ -23085,7 +23137,7 @@ KANJI_DATA = [
     'meaning': '클 위',
     'onyomi': 'イ',
     'kunyomi': 'えらい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '훌륭하고 위대한 상태를 의미합니다.',
     'words': [
       '偉大（いだい） 위대'
@@ -23104,7 +23156,7 @@ KANJI_DATA = [
     'meaning': '어긋날 위',
     'onyomi': 'イ',
     'kunyomi': 'ちがう、ちがえる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '다르다, 어긋나다를 의미하는 기본 한자입니다.',
     'words': [
       '間違い（まちがい） 틀림, 실수'
@@ -23123,7 +23175,7 @@ KANJI_DATA = [
     'meaning': '위로할 위',
     'onyomi': 'イ',
     'kunyomi': 'なぐさめる、なぐさむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '위로하거나 마음을 달래는 뜻을 가진 한자입니다.',
     'words': [
       '慰める（なぐさめる） 위로하다'
@@ -23139,10 +23191,10 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-latitude-weft',
     'kanji': '緯',
-    'meaning': '위도 위',
+    'meaning': '씨 위',
     'onyomi': 'イ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '위도나 씨줄을 뜻하는 한자입니다.',
     'words': [
       '緯度（いど） 위도'
@@ -23161,7 +23213,7 @@ KANJI_DATA = [
     'meaning': '말미암을 유',
     'onyomi': 'ユ、ユウ、ユイ',
     'kunyomi': 'よし',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '이유, 유래, 사정의 뜻을 가진 한자입니다.',
     'words': [
       '理由（りゆう） 이유',
@@ -23181,7 +23233,7 @@ KANJI_DATA = [
     'meaning': '있을 유',
     'onyomi': 'ユウ、ウ',
     'kunyomi': 'ある',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '있다, 가지다를 의미하는 기본 한자입니다.',
     'words': [
       '有名（ゆうめい） 유명'
@@ -23200,7 +23252,7 @@ KANJI_DATA = [
     'meaning': '기름 유',
     'onyomi': 'ユ',
     'kunyomi': 'あぶら',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '기름을 의미하는 기본 한자입니다.',
     'words': [
       '石油（せきゆ） 석유'
@@ -23219,7 +23271,7 @@ KANJI_DATA = [
     'meaning': '놀 유',
     'onyomi': 'ユウ、ユ',
     'kunyomi': 'あそぶ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '놀다, 유람하다의 뜻을 가진 기본 한자입니다.',
     'words': [
       '遊ぶ（あそぶ） 놀다'
@@ -23238,7 +23290,7 @@ KANJI_DATA = [
     'meaning': '어릴 유',
     'onyomi': 'ヨウ',
     'kunyomi': 'おさない',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '어리다, 유년기의 뜻을 가진 기본 한자입니다.',
     'words': [
       '幼い（おさない） 어리다'
@@ -23257,7 +23309,7 @@ KANJI_DATA = [
     'meaning': '젖 유',
     'onyomi': 'ニュウ',
     'kunyomi': 'ちち、ち',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '젖, 우유, 유방과 관련된 뜻을 가진 한자입니다.',
     'words': [
       '牛乳（ぎゅうにゅう） 우유'
@@ -23276,7 +23328,7 @@ KANJI_DATA = [
     'meaning': '남길 유',
     'onyomi': 'イ、ユイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '남기다, 유산으로 남겨두는 것을 의미합니다.',
     'words': [
       '遺産（いさん） 유산'
@@ -23295,7 +23347,7 @@ KANJI_DATA = [
     'meaning': '부드러울 유',
     'onyomi': 'ジュウ、ニュウ',
     'kunyomi': 'やわらかい',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '부드럽고 유연한 상태를 의미하는 기본 한자입니다.',
     'words': [
       '柔らかい（やわらかい） 부드럽다'
@@ -23314,7 +23366,7 @@ KANJI_DATA = [
     'meaning': '그윽할 유',
     'onyomi': 'ユウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '희미하고 깊은 느낌이나 고요한 상태를 의미합니다.',
     'words': [
       '幽霊（ゆうれい） 유령'
@@ -23333,7 +23385,7 @@ KANJI_DATA = [
     'meaning': '오직 유',
     'onyomi': 'ユイ、イ',
     'kunyomi': 'ただ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '오직, 단지라는 뜻을 가진 한자입니다.',
     'words': [
       '唯一（ゆいいつ） 유일'
@@ -23347,13 +23399,33 @@ KANJI_DATA = [
     ]
   },
   {
+  'slug': 'n1-han-alternate',
+  'kanji': '迭',
+  'meaning': '갈마들 질',
+  'onyomi': 'テツ',
+  'kunyomi': '',
+  'level': 'N1',
+  'desc': '서로 번갈아 바뀌거나 교체되는 것을 의미하는 한자입니다. ※ 상용한자는 아닙니다.',
+  'words': [
+    '交迭（こうてつ） 교체',
+    '更迭（こうてつ） 경질, 교체'
+  ],
+  'example_jp': '社長が更迭された。',
+  'example_ko': '사장이 교체되었다.',
+  'related': [
+    '替',
+    '換',
+    '変'
+  ]
+},
+  {
     'slug': 'n2-han-leisure',
     'kanji': '悠',
-    'meaning': '유유자적할 유',
+    'meaning': '멀 유',
     'onyomi': 'ユウ',
     'kunyomi': '',
-    'level': 'N2',
-    'desc': '느긋하고 여유로운 상태를 의미합니다.',
+    'level': 'N1',
+    'desc': '멀거나 느긋하고 여유로운 상태를 의미합니다.',
     'words': [
       '悠々（ゆうゆう） 유유자적'
     ],
@@ -23371,7 +23443,7 @@ KANJI_DATA = [
     'meaning': '즐거울 유',
     'onyomi': 'ユ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '즐겁고 유쾌한 상태를 의미합니다.',
     'words': [
       '愉快（ゆかい） 유쾌'
@@ -23409,7 +23481,7 @@ KANJI_DATA = [
     'meaning': '오히려 유',
     'onyomi': 'ユウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '여전히, 오히려의 뜻을 가진 한자입니다.',
     'words': [
       '猶予（ゆうよ） 유예'
@@ -23428,7 +23500,7 @@ KANJI_DATA = [
     'meaning': '넉넉할 유',
     'onyomi': 'ユウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '여유롭고 넉넉한 상태를 의미합니다.',
     'words': [
       '余裕（よゆう） 여유'
@@ -23447,7 +23519,7 @@ KANJI_DATA = [
     'meaning': '꾈 유',
     'onyomi': 'ユウ',
     'kunyomi': 'さそう',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '유혹하거나 권유하는 뜻을 가진 한자입니다.',
     'words': [
       '誘う（さそう） 권하다'
@@ -23466,7 +23538,7 @@ KANJI_DATA = [
     'meaning': '벼리 유',
     'onyomi': 'イ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '유지하거나 이어가는 뜻을 가진 한자입니다.',
     'words': [
       '維持（いじ） 유지'
@@ -23485,7 +23557,7 @@ KANJI_DATA = [
     'meaning': '타이를 유',
     'onyomi': 'ユ',
     'kunyomi': 'さとす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '깨닫게 하거나 타이르는 뜻을 가진 한자입니다.',
     'words': [
       '諭す（さとす） 타이르다'
@@ -23504,7 +23576,7 @@ KANJI_DATA = [
     'meaning': '선비 유',
     'onyomi': 'ジュ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '유학자나 학자를 의미하는 한자입니다.',
     'words': [
       '儒学（じゅがく） 유학'
@@ -23523,7 +23595,7 @@ KANJI_DATA = [
     'meaning': '병 나을 유',
     'onyomi': 'ユ',
     'kunyomi': 'いやす',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '병이나 마음을 치유하는 것을 의미합니다.',
     'words': [
       '癒す（いやす） 치유하다'
@@ -23561,7 +23633,7 @@ KANJI_DATA = [
     'meaning': '고기 육',
     'onyomi': 'ニク',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '고기나 살을 의미하는 기본 한자입니다.',
     'words': [
       '牛肉（ぎゅうにく） 소고기'
@@ -23580,7 +23652,7 @@ KANJI_DATA = [
     'meaning': '기를 육',
     'onyomi': 'イク',
     'kunyomi': 'そだつ、そだてる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '기르다, 자라다를 의미하는 기본 한자입니다.',
     'words': [
       '教育（きょういく） 교육'
@@ -23599,7 +23671,7 @@ KANJI_DATA = [
     'meaning': '불을 윤',
     'onyomi': 'ジュン',
     'kunyomi': 'うるおう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '촉촉하고 윤택한 상태를 의미합니다.',
     'words': [
       '潤う（うるおう） 윤택해지다'
@@ -23618,7 +23690,7 @@ KANJI_DATA = [
     'meaning': '녹을 융',
     'onyomi': 'ユウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '녹아서 합쳐지는 것을 의미합니다.',
     'words': [
       '融合（ゆうごう） 융합'
@@ -23637,7 +23709,7 @@ KANJI_DATA = [
     'meaning': '은 은',
     'onyomi': 'ギン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '은(金属)을 의미하는 기본 한자입니다.',
     'words': [
       '銀行（ぎんこう） 은행'
@@ -23656,7 +23728,7 @@ KANJI_DATA = [
     'meaning': '은혜 은',
     'onyomi': 'オン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '은혜나 고마움을 의미합니다.',
     'words': [
       '恩人（おんじん） 은인'
@@ -23675,7 +23747,7 @@ KANJI_DATA = [
     'meaning': '숨을 은',
     'onyomi': 'イン',
     'kunyomi': 'かくす、かくれる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '숨기거나 숨어 있는 상태를 의미합니다.',
     'words': [
       '隠す（かくす） 숨기다'
@@ -23713,7 +23785,7 @@ KANJI_DATA = [
     'meaning': '소리 음',
     'onyomi': 'オン、イン',
     'kunyomi': 'おと、ね',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '소리를 의미하는 기본 한자입니다.',
     'words': [
       '音楽（おんがく） 음악'
@@ -23751,7 +23823,7 @@ KANJI_DATA = [
     'meaning': '읊을 음',
     'onyomi': 'ギン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '시를 읊거나 노래를 부르는 뜻입니다.',
     'words': [
       '吟味（ぎんみ） 음미'
@@ -23770,7 +23842,7 @@ KANJI_DATA = [
     'meaning': '그늘 음',
     'onyomi': 'イン',
     'kunyomi': 'かげ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '그늘이나 보이지 않는 부분을 의미합니다.',
     'words': [
       '陰影（いんえい） 음영'
@@ -23808,7 +23880,7 @@ KANJI_DATA = [
     'meaning': '울 읍',
     'onyomi': 'キュウ',
     'kunyomi': 'なく',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '울다를 의미하는 기본 한자입니다.',
     'words': [
       '泣く（なく） 울다'
@@ -23827,7 +23899,7 @@ KANJI_DATA = [
     'meaning': '응할 응',
     'onyomi': 'オウ',
     'kunyomi': 'こたえる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '응답하거나 대응하는 뜻을 가진 기본 한자입니다.',
     'words': [
       '対応（たいおう） 대응'
@@ -23846,7 +23918,7 @@ KANJI_DATA = [
     'meaning': '엉길 응',
     'onyomi': 'ギョウ',
     'kunyomi': 'こる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '엉기거나 굳어지는 상태를 의미합니다.',
     'words': [
       '凝る（こる） 뭉치다'
@@ -23865,7 +23937,7 @@ KANJI_DATA = [
     'meaning': '의원 의',
     'onyomi': 'イ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '의료와 관련된 기본 한자입니다.',
     'words': [
       '医者（いしゃ） 의사'
@@ -23884,7 +23956,7 @@ KANJI_DATA = [
     'meaning': '뜻 의',
     'onyomi': 'イ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '의미나 생각을 나타내는 기본 한자입니다.',
     'words': [
       '意味（いみ） 의미'
@@ -23903,7 +23975,7 @@ KANJI_DATA = [
     'meaning': '옷 의',
     'onyomi': 'イ',
     'kunyomi': 'ころも',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '옷을 의미하는 기본 한자입니다.',
     'words': [
       '衣服（いふく） 의복'
@@ -23922,7 +23994,7 @@ KANJI_DATA = [
     'meaning': '의논할 의',
     'onyomi': 'ギ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '논의하거나 의논하는 뜻을 가진 한자입니다.',
     'words': [
       '会議（かいぎ） 회의'
@@ -23941,7 +24013,7 @@ KANJI_DATA = [
     'meaning': '옳을 의',
     'onyomi': 'ギ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '올바름이나 정의를 의미하는 한자입니다.',
     'words': [
       '正義（せいぎ） 정의'
@@ -23960,7 +24032,7 @@ KANJI_DATA = [
     'meaning': '의심할 의',
     'onyomi': 'ギ',
     'kunyomi': 'うたがう',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '의심하거나 확신하지 못하는 상태를 의미합니다.',
     'words': [
       '疑問（ぎもん） 의문'
@@ -23979,7 +24051,7 @@ KANJI_DATA = [
     'meaning': '의지할 의',
     'onyomi': 'イ、エ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '의지하거나 따르는 뜻을 가진 한자입니다.',
     'words': [
       '依頼（いらい） 의뢰'
@@ -23998,7 +24070,7 @@ KANJI_DATA = [
     'meaning': '마땅 의',
     'onyomi': 'ギ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '적절하거나 마땅함을 의미합니다.',
     'words': [
       '適宜（てきぎ） 적절히'
@@ -24017,7 +24089,7 @@ KANJI_DATA = [
     'meaning': '의자 의',
     'onyomi': 'イ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '의자를 의미하는 한자입니다.',
     'words': [
       '椅子（いす） 의자'
@@ -24036,7 +24108,7 @@ KANJI_DATA = [
     'meaning': '거동 의',
     'onyomi': 'ギ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '의식이나 예절을 의미하는 한자입니다.',
     'words': [
       '儀式（ぎしき） 의식'
@@ -24055,7 +24127,7 @@ KANJI_DATA = [
     'meaning': '비길 의',
     'onyomi': 'ギ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '비슷하게 하거나 모방하는 뜻을 가진 한자입니다.',
     'words': [
       '模擬（もぎ） 모의'
@@ -24132,7 +24204,7 @@ KANJI_DATA = [
     'meaning': '옮길 이',
     'onyomi': 'イ',
     'kunyomi': 'うつる、うつす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '장소나 상태를 옮기거나 바꾸는 뜻을 가진 한자입니다.',
     'words': [
       '移動（いどう） 이동'
@@ -24151,7 +24223,7 @@ KANJI_DATA = [
     'meaning': '다를 이',
     'onyomi': 'イ',
     'kunyomi': 'ことなる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '다르거나 특별하다는 뜻을 가진 한자입니다.',
     'words': [
       '異なる（ことなる） 다르다'
@@ -24189,7 +24261,7 @@ KANJI_DATA = [
     'meaning': '미끼 이',
     'onyomi': 'ジ',
     'kunyomi': 'えさ、え',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '동물에게 주는 먹이나 미끼를 의미합니다.',
     'words': [
       '餌をやる（えさをやる） 먹이를 주다'
@@ -24208,7 +24280,7 @@ KANJI_DATA = [
     'meaning': '더할 익',
     'onyomi': 'エキ、ヤク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '이익이나 도움이 되는 것을 의미합니다.',
     'words': [
       '利益（りえき） 이익'
@@ -24246,7 +24318,7 @@ KANJI_DATA = [
     'meaning': '빠질 익',
     'onyomi': 'デキ',
     'kunyomi': 'おぼれる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '물에 빠지거나 어떤 것에 지나치게 빠지는 뜻을 가진 한자입니다.',
     'words': [
       '溺れる（おぼれる） 빠지다'
@@ -24265,7 +24337,7 @@ KANJI_DATA = [
     'meaning': '날개 익',
     'onyomi': 'ヨク',
     'kunyomi': 'つばさ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '새나 비행기의 날개를 의미합니다.',
     'words': [
       '右翼（うよく） 우익',
@@ -24304,7 +24376,7 @@ KANJI_DATA = [
     'meaning': '끌 인',
     'onyomi': 'イン',
     'kunyomi': 'ひく、ひける',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '끌다, 당기다를 의미하는 기본 한자입니다.',
     'words': [
       '引く（ひく） 끌다'
@@ -24323,7 +24395,7 @@ KANJI_DATA = [
     'meaning': '도장 인',
     'onyomi': 'イン',
     'kunyomi': 'しるし',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '도장, 표시, 인상을 의미하는 기본 한자입니다.',
     'words': [
       '印象（いんしょう） 인상'
@@ -24342,7 +24414,7 @@ KANJI_DATA = [
     'meaning': '인할 인',
     'onyomi': 'イン',
     'kunyomi': 'よる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '원인이나 이유를 의미하는 한자입니다.',
     'words': [
       '原因（げんいん） 원인'
@@ -24380,7 +24452,7 @@ KANJI_DATA = [
     'meaning': '알 인',
     'onyomi': 'ニン',
     'kunyomi': 'みとめる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '인정하다, 확인하다를 의미하는 기본 한자입니다.',
     'words': [
       '確認（かくにん） 확인'
@@ -24399,7 +24471,7 @@ KANJI_DATA = [
     'meaning': '칼날 인',
     'onyomi': 'ジン',
     'kunyomi': 'は',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '칼이나 검의 날을 의미합니다.',
     'words': [
       '刃物（はもの） 칼붙이'
@@ -24418,7 +24490,7 @@ KANJI_DATA = [
     'meaning': '참을 인',
     'onyomi': 'ニン',
     'kunyomi': 'しのぶ、しのばせる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '참다, 견디다, 몰래 숨기다의 뜻을 가진 한자입니다.',
     'words': [
       '忍者（にんじゃ） 닌자'
@@ -24437,7 +24509,7 @@ KANJI_DATA = [
     'meaning': '혼인 인',
     'onyomi': 'イン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '혼인이나 인척 관계를 의미하는 한자입니다.',
     'words': [
       '婚姻（こんいん） 혼인'
@@ -24530,11 +24602,11 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-deviate',
     'kanji': '逸',
-    'meaning': '편안할 일',
+    'meaning': '달아날 일',
     'onyomi': 'イツ',
     'kunyomi': '',
-    'level': 'N2',
-    'desc': '벗어나다, 놓치다, 뛰어나다의 뜻으로 쓰이는 한자입니다.',
+    'level': 'N1',
+    'desc': '벗어나다, 놓치다, 달아나다의 뜻으로 쓰이는 한자입니다.',
     'words': [
       '逸話（いつわ） 일화'
     ],
@@ -24552,7 +24624,7 @@ KANJI_DATA = [
     'meaning': '맡길 임',
     'onyomi': 'ニン',
     'kunyomi': 'まかせる、まかす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '맡기다, 책임, 임무를 의미하는 한자입니다.',
     'words': [
       '責任（せきにん） 책임'
@@ -24571,7 +24643,7 @@ KANJI_DATA = [
     'meaning': '품삯 임',
     'onyomi': 'チン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '품삯, 임금, 요금 등을 의미합니다.',
     'words': [
       '運賃（うんちん） 운임'
@@ -24628,7 +24700,7 @@ KANJI_DATA = [
     'meaning': '남을 잉',
     'onyomi': 'ジョウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '남음, 여분, 과잉을 의미하는 한자입니다.',
     'words': [
       '過剰（かじょう） 과잉'
@@ -24666,7 +24738,7 @@ KANJI_DATA = [
     'meaning': '글자 자',
     'onyomi': 'ジ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '글자, 문자, 글씨를 의미하는 기본 한자입니다.',
     'words': [
       '漢字（かんじ） 한자'
@@ -24701,11 +24773,11 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-older-sister',
     'kanji': '姉',
-    'meaning': '손윗누이 자',
+    'meaning': '누이 자',
     'onyomi': 'シ',
     'kunyomi': 'あね、ねえ',
-    'level': 'N5',
-    'desc': '손윗누이, 언니를 의미하는 기본 한자입니다.',
+    'level': 'N4',
+    'desc': '누이, 언니를 의미하는 기본 한자입니다.',
     'words': [
       '姉妹（しまい） 자매'
     ],
@@ -24723,7 +24795,7 @@ KANJI_DATA = [
     'meaning': '놈 자',
     'onyomi': 'シャ',
     'kunyomi': 'もの',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '사람, 자를 의미하는 기본 한자입니다.',
     'words': [
       '患者（かんじゃ） 환자'
@@ -24742,7 +24814,7 @@ KANJI_DATA = [
     'meaning': '재물 자',
     'onyomi': 'シ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '재산, 자본, 자격의 뜻을 가진 한자입니다.',
     'words': [
       '資金（しきん） 자금'
@@ -24761,7 +24833,7 @@ KANJI_DATA = [
     'meaning': '모양 자',
     'onyomi': 'シ',
     'kunyomi': 'すがた',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '모습, 자태, 형태를 의미합니다.',
     'words': [
       '姿勢（しせい） 자세'
@@ -24780,7 +24852,7 @@ KANJI_DATA = [
     'meaning': '자석 자',
     'onyomi': 'ジ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '자석이나 자기에 관한 뜻을 가진 한자입니다.',
     'words': [
       '磁石（じしゃく） 자석'
@@ -24799,7 +24871,7 @@ KANJI_DATA = [
     'meaning': '찌를 자',
     'onyomi': 'シ',
     'kunyomi': 'さす、ささる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '찌르다, 박히다의 뜻을 가진 한자입니다.',
     'words': [
       '刺激（しげき） 자극'
@@ -24818,7 +24890,7 @@ KANJI_DATA = [
     'meaning': '가시나무 자',
     'onyomi': '',
     'kunyomi': 'いばら',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '가시가 많은 덤불이나 가시나무를 의미합니다.',
     'words': [
       '茨の道（いばらのみち） 가시밭길'
@@ -24853,10 +24925,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-purple',
     'kanji': '紫',
-    'meaning': '자주빛 자',
+    'meaning': '자줏빛 자',
     'onyomi': 'シ',
     'kunyomi': 'むらさき',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '자주색, 보라색을 의미하는 한자입니다.',
     'words': [
       '紫色（むらさきいろ） 보라색'
@@ -24870,32 +24942,12 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n3-han-nourish',
-    'kanji': '滋',
-    'meaning': '불을 자',
-    'onyomi': 'ジ',
-    'kunyomi': '',
-    'level': 'N3',
-    'desc': '기르거나 불어나게 하여 윤택하게 만드는 뜻을 가진 한자입니다.',
-    'words': [
-      '滋養（じよう） 자양',
-      '滋賀（しが） 시가'
-    ],
-    'example_jp': '体を滋養する。',
-    'example_ko': '몸을 자양하다.',
-    'related': [
-      '養',
-      '潤',
-      '豊'
-    ]
-  },
-  {
     'slug': 'n4-han-boil',
     'kanji': '煮',
     'meaning': '삶을 자',
     'onyomi': 'シャ',
     'kunyomi': 'にる、にえる、にやす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '재료를 삶거나 끓여 익히는 뜻을 가진 한자입니다.',
     'words': [
       '煮る（にる） 삶다, 졸이다'
@@ -24914,7 +24966,7 @@ KANJI_DATA = [
     'meaning': '사랑 자',
     'onyomi': 'ジ',
     'kunyomi': 'いつくしむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '사랑하고 자애롭게 돌보는 뜻을 가진 한자입니다.',
     'words': [
       '慈愛（じあい） 자애'
@@ -24933,7 +24985,7 @@ KANJI_DATA = [
     'meaning': '암컷 자',
     'onyomi': 'シ',
     'kunyomi': 'めす、め',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '암컷을 의미하는 한자입니다.',
     'words': [
       '雌鳥（めすどり） 암컷 새'
@@ -24971,7 +25023,7 @@ KANJI_DATA = [
     'meaning': '지을 작',
     'onyomi': 'サク、サ',
     'kunyomi': 'つくる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '만들다, 짓다를 의미하는 기본 한자입니다.',
     'words': [
       '作文（さくぶん） 작문',
@@ -24991,7 +25043,7 @@ KANJI_DATA = [
     'meaning': '어제 작',
     'onyomi': 'サク',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '어제나 지난 시점을 의미하는 기본 한자입니다.',
     'words': [
       '昨日（きのう） 어제',
@@ -25011,7 +25063,7 @@ KANJI_DATA = [
     'meaning': '술 부을 작',
     'onyomi': 'シャク',
     'kunyomi': 'くむ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '술을 따라 주거나 상황을 헤아리는 뜻을 가진 한자입니다.',
     'words': [
       '酌む（くむ） 술을 따르다, 헤아리다'
@@ -25049,7 +25101,7 @@ KANJI_DATA = [
     'meaning': '남을 잔',
     'onyomi': 'ザン',
     'kunyomi': 'のこる、のこす',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '남다, 남기다를 의미하는 한자입니다.',
     'words': [
       '残る（のこる） 남다',
@@ -25069,7 +25121,7 @@ KANJI_DATA = [
     'meaning': '사다리 잔',
     'onyomi': 'サン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '잔교나 발판, 선반 같은 구조물을 의미하는 한자입니다.',
     'words': [
       '桟橋（さんばし） 잔교, 부두'
@@ -25107,7 +25159,7 @@ KANJI_DATA = [
     'meaning': '잠길 잠',
     'onyomi': 'セン',
     'kunyomi': 'ひそむ、もぐる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '물속에 잠기거나 숨어드는 뜻을 가진 한자입니다.',
     'words': [
       '潜る（もぐる） 잠수하다',
@@ -25127,7 +25179,7 @@ KANJI_DATA = [
     'meaning': '잠깐 잠',
     'onyomi': 'ザン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '잠시, 잠깐의 뜻을 가진 한자입니다.',
     'words': [
       '暫定（ざんてい） 잠정'
@@ -25146,7 +25198,7 @@ KANJI_DATA = [
     'meaning': '섞일 잡',
     'onyomi': 'ザツ、ゾウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '여러 가지가 섞여 어수선한 상태를 의미하는 기본 한자입니다.',
     'words': [
       '雑誌（ざっし） 잡지',
@@ -25163,7 +25215,7 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-long-leader',
     'kanji': '長',
-    'meaning': '긴 장',
+    'meaning': '길 장',
     'onyomi': 'チョウ',
     'kunyomi': 'ながい',
     'level': 'N5',
@@ -25186,7 +25238,7 @@ KANJI_DATA = [
     'meaning': '마당 장',
     'onyomi': 'ジョウ',
     'kunyomi': 'ば',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '장소나 현장을 의미하는 기본 한자입니다.',
     'words': [
       '場所（ばしょ） 장소',
@@ -25206,7 +25258,7 @@ KANJI_DATA = [
     'meaning': '글 장',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '글의 장이나 조항을 의미하는 한자입니다.',
     'words': [
       '文章（ぶんしょう） 문장',
@@ -25226,7 +25278,7 @@ KANJI_DATA = [
     'meaning': '장막 장',
     'onyomi': 'チョウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '장부나 휘장처럼 둘러치는 막을 의미하는 한자입니다.',
     'words': [
       '手帳（てちょう） 수첩',
@@ -25246,7 +25298,7 @@ KANJI_DATA = [
     'meaning': '창자 장',
     'onyomi': 'チョウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '창자나 장기를 의미하는 한자입니다.',
     'words': [
       '胃腸（いちょう） 위장'
@@ -25265,7 +25317,7 @@ KANJI_DATA = [
     'meaning': '베풀 장',
     'onyomi': 'チョウ',
     'kunyomi': 'はる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '늘이다, 펴다, 팽팽하게 당기다의 뜻을 가진 한자입니다.',
     'words': [
       '張る（はる） 치다, 당기다',
@@ -25285,7 +25337,7 @@ KANJI_DATA = [
     'meaning': '장수 장',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '장수나 미래에 대한 뜻으로 쓰이는 한자입니다.',
     'words': [
       '将来（しょうらい） 장래',
@@ -25305,7 +25357,7 @@ KANJI_DATA = [
     'meaning': '꾸밀 장',
     'onyomi': 'ソウ、ショウ',
     'kunyomi': 'よそおう',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '차리다, 꾸미다, 장식하다의 뜻을 가진 한자입니다.',
     'words': [
       '服装（ふくそう） 복장',
@@ -25325,7 +25377,7 @@ KANJI_DATA = [
     'meaning': '막을 장',
     'onyomi': 'ショウ',
     'kunyomi': 'さわる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '막거나 방해하는 것을 의미하는 한자입니다.',
     'words': [
       '故障（こしょう） 고장',
@@ -25345,7 +25397,7 @@ KANJI_DATA = [
     'meaning': '감출 장',
     'onyomi': 'ゾウ',
     'kunyomi': 'くら',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '저장하거나 감추는 곳을 의미하는 한자입니다.',
     'words': [
       '冷蔵庫（れいぞうこ） 냉장고',
@@ -25419,10 +25471,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-vigorous',
     'kanji': '壮',
-    'meaning': '장할 장',
+    'meaning': '씩씩할 장',
     'onyomi': 'ソウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '씩씩하고 장대한 상태를 의미하는 한자입니다.',
     'words': [
       '壮大（そうだい） 장대함'
@@ -25438,10 +25490,10 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-villa-vigorous',
     'kanji': '荘',
-    'meaning': '씩씩할/별장 장',
+    'meaning': '장엄할 장',
     'onyomi': 'ソウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '별장이나 장중한 느낌을 나타내는 한자입니다.',
     'words': [
       '別荘（べっそう） 별장'
@@ -25460,7 +25512,7 @@ KANJI_DATA = [
     'meaning': '손바닥 장',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '손바닥이나 손안에 쥐는 것을 의미하는 한자입니다.',
     'words': [
       '掌握（しょうあく） 장악'
@@ -25479,7 +25531,7 @@ KANJI_DATA = [
     'meaning': '단장할 장',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '화장하거나 단장하는 뜻을 가진 한자입니다.',
     'words': [
       '化粧（けしょう） 화장'
@@ -25498,7 +25550,7 @@ KANJI_DATA = [
     'meaning': '장사지낼 장',
     'onyomi': 'ソウ',
     'kunyomi': 'ほうむる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '장례를 치르거나 묻는 것을 의미합니다.',
     'words': [
       '葬式（そうしき） 장례식'
@@ -25517,7 +25569,7 @@ KANJI_DATA = [
     'meaning': '장려할 장',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '권장하고 장려하는 뜻을 가진 한자입니다.',
     'words': [
       '奨学金（しょうがくきん） 장학금'
@@ -25536,7 +25588,7 @@ KANJI_DATA = [
     'meaning': '재주 재',
     'onyomi': 'サイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '재능이나 나이를 셀 때 쓰이는 기본 한자입니다.',
     'words': [
       '才能（さいのう） 재능',
@@ -25556,7 +25608,7 @@ KANJI_DATA = [
     'meaning': '재목 재',
     'onyomi': 'ザイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '재료나 인재를 의미하는 한자입니다.',
     'words': [
       '材料（ざいりょう） 재료',
@@ -25576,7 +25628,7 @@ KANJI_DATA = [
     'meaning': '두 재',
     'onyomi': 'サイ、サ',
     'kunyomi': 'ふたたび',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '다시, 재차를 의미하는 기본 한자입니다.',
     'words': [
       '再会（さいかい） 재회'
@@ -25595,7 +25647,7 @@ KANJI_DATA = [
     'meaning': '있을 재',
     'onyomi': 'ザイ',
     'kunyomi': 'ある',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '존재하다, 있다를 의미하는 기본 한자입니다.',
     'words': [
       '現在（げんざい） 현재',
@@ -25615,7 +25667,7 @@ KANJI_DATA = [
     'meaning': '재앙 재',
     'onyomi': 'サイ',
     'kunyomi': 'わざわい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '재해나 재앙을 의미하는 한자입니다.',
     'words': [
       '災害（さいがい） 재해'
@@ -25634,7 +25686,7 @@ KANJI_DATA = [
     'meaning': '재물 재',
     'onyomi': 'ザイ、サイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '재산이나 자산을 의미하는 한자입니다.',
     'words': [
       '財産（ざいさん） 재산'
@@ -25650,7 +25702,7 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-judge-cut',
     'kanji': '裁',
-    'meaning': '마를 재',
+    'meaning': '재단할 재',
     'onyomi': 'サイ',
     'kunyomi': 'たつ、さばく',
     'level': 'N3',
@@ -25672,7 +25724,7 @@ KANJI_DATA = [
     'meaning': '재상 재',
     'onyomi': 'サイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '정치를 맡는 높은 관리나 다스리는 뜻을 가진 한자입니다.',
     'words': [
       '宰相（さいしょう） 재상'
@@ -25691,7 +25743,7 @@ KANJI_DATA = [
     'meaning': '심을 재',
     'onyomi': 'サイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '식물을 심어 기르거나 재배하는 뜻을 가진 한자입니다.',
     'words': [
       '栽培（さいばい） 재배'
@@ -25710,7 +25762,7 @@ KANJI_DATA = [
     'meaning': '재계할/집 재',
     'onyomi': 'サイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '몸과 마음을 깨끗이 하여 재계하거나, 서재를 뜻할 때 쓰이는 한자입니다.',
     'words': [
       '書斎（しょさい） 서재'
@@ -25729,7 +25781,7 @@ KANJI_DATA = [
     'meaning': '실을 재',
     'onyomi': 'サイ',
     'kunyomi': 'のせる、のる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '물건을 싣거나 글을 실어 올리는 뜻을 가진 한자입니다.',
     'words': [
       '掲載（けいさい） 게재'
@@ -25748,7 +25800,7 @@ KANJI_DATA = [
     'meaning': '다툴 쟁',
     'onyomi': 'ソウ',
     'kunyomi': 'あらそう',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '다투다, 경쟁하다를 의미하는 기본 한자입니다.',
     'words': [
       '争う（あらそう） 다투다',
@@ -25768,7 +25820,7 @@ KANJI_DATA = [
     'meaning': '낮을 저',
     'onyomi': 'テイ',
     'kunyomi': 'ひくい、ひくめる、ひくまる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '낮다를 의미하는 기본 한자입니다.',
     'words': [
       '低い（ひくい） 낮다',
@@ -25788,7 +25840,7 @@ KANJI_DATA = [
     'meaning': '밑 저',
     'onyomi': 'テイ',
     'kunyomi': 'そこ',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '바닥이나 맨 아래를 의미하는 한자입니다.',
     'words': [
       '海底（かいてい） 해저'
@@ -25826,7 +25878,7 @@ KANJI_DATA = [
     'meaning': '나타날 저',
     'onyomi': 'チョ',
     'kunyomi': 'あらわす、いちじるしい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '드러나다, 뚜렷하다, 저술하다의 뜻을 가진 한자입니다.',
     'words': [
       '著者（ちょしゃ） 저자',
@@ -25865,7 +25917,7 @@ KANJI_DATA = [
     'meaning': '막을 저',
     'onyomi': 'テイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '맞서다, 저항하다의 뜻을 가진 한자입니다.',
     'words': [
       '抵抗（ていこう） 저항'
@@ -25884,7 +25936,7 @@ KANJI_DATA = [
     'meaning': '집 저',
     'onyomi': 'テイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '저택이나 큰 집을 의미하는 한자입니다.',
     'words': [
       '官邸（かんてい） 관저'
@@ -25903,7 +25955,7 @@ KANJI_DATA = [
     'meaning': '젓가락 저',
     'onyomi': '',
     'kunyomi': 'はし',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '젓가락을 의미하는 한자입니다.',
     'words': [
       '箸を使う（はしをつかう） 젓가락을 쓰다'
@@ -25922,7 +25974,7 @@ KANJI_DATA = [
     'meaning': '붉을 적',
     'onyomi': 'セキ、シャク',
     'kunyomi': 'あか、あかい、あからむ、あからめる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '빨간색을 의미하는 기본 한자입니다.',
     'words': [
       '赤い（あかい） 빨갛다',
@@ -25942,7 +25994,7 @@ KANJI_DATA = [
     'meaning': '피리 적',
     'onyomi': 'テキ',
     'kunyomi': 'ふえ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '피리나 플루트 같은 관악기를 의미합니다.',
     'words': [
       '笛を吹く（ふえをふく） 피리를 불다'
@@ -25961,7 +26013,7 @@ KANJI_DATA = [
     'meaning': '과녁 적',
     'onyomi': 'テキ',
     'kunyomi': 'まと',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '과녁이나 목표를 의미하는 한자입니다.',
     'words': [
       '目的（もくてき） 목적'
@@ -26000,7 +26052,7 @@ KANJI_DATA = [
     'meaning': '맞을 적',
     'onyomi': 'テキ',
     'kunyomi': 'かなう',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '적이나 맞설 상대를 의미하는 한자입니다.',
     'words': [
       '敵（てき） 적',
@@ -26020,7 +26072,7 @@ KANJI_DATA = [
     'meaning': '대적할 적',
     'onyomi': 'テキ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '알맞다, 적합하다의 뜻을 가진 한자입니다.',
     'words': [
       '適当（てきとう） 적당',
@@ -26040,7 +26092,7 @@ KANJI_DATA = [
     'meaning': '길쌈할 적',
     'onyomi': 'セキ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '본래 실을 잣는 뜻에서 발전해 성과나 업적을 의미하는 한자입니다.',
     'words': [
       '成績（せいせき） 성적',
@@ -26060,7 +26112,7 @@ KANJI_DATA = [
     'meaning': '고요할 적',
     'onyomi': 'セキ、ジャク',
     'kunyomi': 'さび、さびしい、さびれる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '조용하고 쓸쓸한 상태를 의미하는 한자입니다.',
     'words': [
       '寂しい（さびしい） 쓸쓸하다'
@@ -26079,7 +26131,7 @@ KANJI_DATA = [
     'meaning': '도둑 적',
     'onyomi': 'ゾク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '도둑이나 적대적인 무리를 의미하는 한자입니다.',
     'words': [
       '海賊（かいぞく） 해적'
@@ -26098,7 +26150,7 @@ KANJI_DATA = [
     'meaning': '발자취 적',
     'onyomi': 'セキ',
     'kunyomi': 'あと',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '지나간 자국이나 흔적을 의미하는 한자입니다.',
     'words': [
       '足跡（あしあと） 발자국',
@@ -26118,7 +26170,7 @@ KANJI_DATA = [
     'meaning': '물방울 적',
     'onyomi': 'テキ',
     'kunyomi': 'しずく、したたる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '물방울이 떨어지는 것을 의미하는 한자입니다.',
     'words': [
       '水滴（すいてき） 물방울'
@@ -26137,7 +26189,7 @@ KANJI_DATA = [
     'meaning': '정실 적',
     'onyomi': 'チャク',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '정실에서 난 자식이나 정통 계승을 의미하는 한자입니다.',
     'words': [
       '嫡子（ちゃくし） 적자'
@@ -26156,7 +26208,7 @@ KANJI_DATA = [
     'meaning': '딸 적',
     'onyomi': 'テキ',
     'kunyomi': 'つむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '따다, 뽑다, 지적하다의 뜻을 가진 한자입니다.',
     'words': [
       '摘む（つむ） 따다',
@@ -26176,7 +26228,7 @@ KANJI_DATA = [
     'meaning': '문서 적',
     'onyomi': 'セキ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '호적, 국적, 장부 같은 문서 기록을 의미하는 한자입니다.',
     'words': [
       '国籍（こくせき） 국적',
@@ -26255,7 +26307,7 @@ KANJI_DATA = [
     'meaning': '온전할 전',
     'onyomi': 'ゼン',
     'kunyomi': 'まったく',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '전체, 모두, 완전함을 의미하는 기본 한자입니다.',
     'words': [
       '全部（ぜんぶ） 전부',
@@ -26295,7 +26347,7 @@ KANJI_DATA = [
     'meaning': '전할 전',
     'onyomi': 'デン',
     'kunyomi': 'つたえる、つたわる、つたう',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '전하다, 전달되다를 의미하는 기본 한자입니다.',
     'words': [
       '伝言（でんごん） 전언',
@@ -26315,7 +26367,7 @@ KANJI_DATA = [
     'meaning': '법 전',
     'onyomi': 'テン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '법전, 전례, 기준이 되는 문서를 의미하는 한자입니다.',
     'words': [
       '辞典（じてん） 사전',
@@ -26335,7 +26387,7 @@ KANJI_DATA = [
     'meaning': '싸움 전',
     'onyomi': 'セン',
     'kunyomi': 'いくさ、たたかう',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '전쟁이나 싸움을 의미하는 한자입니다.',
     'words': [
       '戦争（せんそう） 전쟁',
@@ -26355,7 +26407,7 @@ KANJI_DATA = [
     'meaning': '돈 전',
     'onyomi': 'セン',
     'kunyomi': 'ぜに',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '돈이나 동전을 의미하는 한자입니다.',
     'words': [
       '小銭（こぜに） 잔돈'
@@ -26374,7 +26426,7 @@ KANJI_DATA = [
     'meaning': '오로지 전',
     'onyomi': 'セン',
     'kunyomi': 'もっぱら',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '오로지 한 가지에 집중하거나 전문적으로 하는 뜻을 가진 한자입니다.',
     'words': [
       '専門（せんもん） 전문'
@@ -26393,7 +26445,7 @@ KANJI_DATA = [
     'meaning': '펼 전',
     'onyomi': 'テン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '펼치다, 전개하다, 전시하다의 뜻을 가진 한자입니다.',
     'words': [
       '発展（はってん） 발전',
@@ -26427,12 +26479,32 @@ KANJI_DATA = [
     ]
   },
   {
+  'slug': 'n2-han-bottle',
+  'kanji': '瓶',
+  'meaning': '병 병',
+  'onyomi': 'ビン',
+  'kunyomi': '',
+  'level': 'N2',
+  'desc': '액체 등을 담는 병이나 용기를 의미하는 한자입니다. ※ 상용한자는 아닙니다.',
+  'words': [
+    '瓶（びん） 병',
+    '花瓶（かびん） 꽃병'
+  ],
+  'example_jp': '瓶に水を入れる。',
+  'example_ko': '병에 물을 넣다.',
+  'related': [
+    '容',
+    '器',
+    '水'
+  ]
+},
+  {
     'slug': 'n3-han-palace-lord',
     'kanji': '殿',
     'meaning': '전각 전',
     'onyomi': 'デン、テン',
     'kunyomi': 'との、どの',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '궁전이나 높은 사람에 대한 호칭에 쓰이는 한자입니다.',
     'words': [
       '殿様（とのさま） 영주',
@@ -26449,7 +26521,7 @@ KANJI_DATA = [
   {
     'slug': 'n1-han-fill',
     'kanji': '塡',
-    'meaning': '메울 전/누를 진',
+    'meaning': '메울 전',
     'onyomi': 'テン',
     'kunyomi': '',
     'level': 'N1',
@@ -26471,7 +26543,7 @@ KANJI_DATA = [
     'meaning': '달일 전',
     'onyomi': 'セン',
     'kunyomi': 'いる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '달이다, 볶다, 약이나 차를 우려내는 뜻을 가진 한자입니다.',
     'words': [
       '煎茶（せんちゃ） 센차'
@@ -26506,10 +26578,10 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-note-slip',
     'kanji': '箋',
-    'meaning': '찌지 전',
+    'meaning': '쪽지 전',
     'onyomi': 'セン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '짧은 글을 적는 종이쪽지나 편지지를 의미하는 한자입니다.',
     'words': [
       '便箋（びんせん） 편지지'
@@ -26525,10 +26597,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-cut',
     'kanji': '切',
-    'meaning': '끊을 절/모두 체',
+    'meaning': '끊을 절',
     'onyomi': 'セツ、サイ',
     'kunyomi': 'きる、きれる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '자르다, 끊다를 의미하는 기본 한자입니다.',
     'words': [
       '切る（きる） 자르다',
@@ -26548,7 +26620,7 @@ KANJI_DATA = [
     'meaning': '꺾을 절',
     'onyomi': 'セツ',
     'kunyomi': 'おる、おれる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '꺾다, 접다, 부러지다를 의미하는 한자입니다.',
     'words': [
       '折る（おる） 꺾다',
@@ -26568,7 +26640,7 @@ KANJI_DATA = [
     'meaning': '마디 절',
     'onyomi': 'セツ、セチ',
     'kunyomi': 'ふし',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '마디, 절, 계절의 구분을 의미하는 기본 한자입니다.',
     'words': [
       '季節（きせつ） 계절'
@@ -26587,7 +26659,7 @@ KANJI_DATA = [
     'meaning': '끊을 절',
     'onyomi': 'ゼツ',
     'kunyomi': 'たえる、たやす、たつ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '끊어지다, 끝나다, 완전히 없어지다를 의미하는 한자입니다.',
     'words': [
       '絶対（ぜったい） 절대',
@@ -26645,7 +26717,7 @@ KANJI_DATA = [
     'meaning': '점 점',
     'onyomi': 'テン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '점, 표시, 점수 등을 의미하는 기본 한자입니다.',
     'words': [
       '点数（てんすう） 점수'
@@ -26664,7 +26736,7 @@ KANJI_DATA = [
     'meaning': '점령할/점칠 점',
     'onyomi': 'セン',
     'kunyomi': 'しめる、うらなう',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '차지하다, 점치다의 뜻을 가진 한자입니다.',
     'words': [
       '占う（うらなう） 점치다',
@@ -26684,7 +26756,7 @@ KANJI_DATA = [
     'meaning': '붙을 점',
     'onyomi': 'ネン',
     'kunyomi': 'ねばる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '끈적거리거나 끈기 있게 버티는 뜻을 가진 한자입니다.',
     'words': [
       '粘る（ねばる） 버티다',
@@ -26704,7 +26776,7 @@ KANJI_DATA = [
     'meaning': '점점 점',
     'onyomi': 'ゼン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '점차, 서서히를 의미하는 한자입니다.',
     'words': [
       '漸く（ようやく） 겨우',
@@ -26724,7 +26796,7 @@ KANJI_DATA = [
     'meaning': '이을 접',
     'onyomi': 'セツ',
     'kunyomi': 'つぐ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '잇다, 접하다, 접촉하다를 의미하는 한자입니다.',
     'words': [
       '接続（せつぞく） 접속',
@@ -26744,7 +26816,7 @@ KANJI_DATA = [
     'meaning': '바를 정',
     'onyomi': 'ショウ、セイ',
     'kunyomi': 'ただしい、ただす、まさ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '바르다, 정확하다를 의미하는 기본 한자입니다.',
     'words': [
       '正しい（ただしい） 바르다',
@@ -26764,7 +26836,7 @@ KANJI_DATA = [
     'meaning': '밭두둑 정',
     'onyomi': 'チョウ',
     'kunyomi': 'まち',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '마을, 거리, 동네를 의미하는 기본 한자입니다.',
     'words': [
       '町中（まちなか） 시내'
@@ -26783,7 +26855,7 @@ KANJI_DATA = [
     'meaning': '고무래/장정 정',
     'onyomi': 'チョウ、テイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '정중함, 구획, 물건을 세는 단위 등에 쓰이는 한자입니다.',
     'words': [
       '丁寧（ていねい） 정중함'
@@ -26802,7 +26874,7 @@ KANJI_DATA = [
     'meaning': '정할 정',
     'onyomi': 'テイ、ジョウ',
     'kunyomi': 'さだめる、さだまる、さだか',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '정하다, 결정되다를 의미하는 기본 한자입니다.',
     'words': [
       '予定（よてい） 예정',
@@ -26822,7 +26894,7 @@ KANJI_DATA = [
     'meaning': '뜰 정',
     'onyomi': 'テイ',
     'kunyomi': 'にわ',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '뜰이나 정원을 의미하는 한자입니다.',
     'words': [
       '家庭（かてい） 가정',
@@ -26842,7 +26914,7 @@ KANJI_DATA = [
     'meaning': '가지런할 정',
     'onyomi': 'セイ',
     'kunyomi': 'ととのう、ととのえる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '정리하다, 가지런하게 하다를 의미하는 한자입니다.',
     'words': [
       '整理（せいり） 정리',
@@ -26862,7 +26934,7 @@ KANJI_DATA = [
     'meaning': '머무를 정',
     'onyomi': 'テイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '멈추다, 정지하다를 의미하는 한자입니다.',
     'words': [
       '停車（ていしゃ） 정차'
@@ -26881,7 +26953,7 @@ KANJI_DATA = [
     'meaning': '고요할 정',
     'onyomi': 'セイ、ジョウ',
     'kunyomi': 'しずか、しずまる、しずめる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '조용하고 고요한 상태를 의미하는 기본 한자입니다.',
     'words': [
       '静か（しずか） 조용함'
@@ -26900,7 +26972,7 @@ KANJI_DATA = [
     'meaning': '정사 정',
     'onyomi': 'セイ、ショウ',
     'kunyomi': 'まつりごと',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '정치나 나라를 다스리는 일을 의미하는 한자입니다.',
     'words': [
       '政治（せいじ） 정치'
@@ -26919,7 +26991,7 @@ KANJI_DATA = [
     'meaning': '뜻 정',
     'onyomi': 'ジョウ、セイ',
     'kunyomi': 'なさけ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '감정, 정, 사정을 의미하는 기본 한자입니다.',
     'words': [
       '気持ち（きもち） 기분',
@@ -26936,10 +27008,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-han-degree-extent',
     'kanji': '程',
-    'meaning': '한도/길 정',
+    'meaning': '한도 정',
     'onyomi': 'テイ',
     'kunyomi': 'ほど',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '정도, 한도, 분량을 의미하는 한자입니다.',
     'words': [
       '程度（ていど） 정도'
@@ -26958,7 +27030,7 @@ KANJI_DATA = [
     'meaning': '정할 정',
     'onyomi': 'セイ、ショウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '정밀함, 정수, 정신을 의미하는 한자입니다.',
     'words': [
       '精力（せいりょく） 정력',
@@ -26978,7 +27050,7 @@ KANJI_DATA = [
     'meaning': '정수리 정',
     'onyomi': 'チョウ',
     'kunyomi': 'いただく、いただき',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '정상, 꼭대기, 머리 위를 의미하는 한자입니다.',
     'words': [
       '頂上（ちょうじょう） 정상'
@@ -26997,7 +27069,7 @@ KANJI_DATA = [
     'meaning': '우물 정',
     'onyomi': 'セイ',
     'kunyomi': 'い',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '우물을 의미하는 한자입니다.',
     'words': [
       '井戸（いど） 우물'
@@ -27011,31 +27083,12 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n3-han-bowl',
-    'kanji': '丼',
-    'meaning': '우물 정',
-    'onyomi': 'トン',
-    'kunyomi': 'どんぶり',
-    'level': 'N3',
-    'desc': '덮밥이나 사발을 나타낼 때 쓰이는 한자입니다.',
-    'words': [
-      '牛丼（ぎゅうどん） 규동'
-    ],
-    'example_jp': '昼に牛丼を食べる。',
-    'example_ko': '점심에 규동을 먹다.',
-    'related': [
-      '食',
-      '器',
-      '飯'
-    ]
-  },
-  {
     'slug': 'n2-han-present-submit',
     'kanji': '呈',
     'meaning': '드릴 정',
     'onyomi': 'テイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '드리다, 나타내다, 제출하다의 뜻을 가진 한자입니다.',
     'words': [
       '贈呈（ぞうてい） 증정'
@@ -27054,7 +27107,7 @@ KANJI_DATA = [
     'meaning': '조정 정',
     'onyomi': 'テイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '조정이나 법정을 의미하는 한자입니다.',
     'words': [
       '法廷（ほうてい） 법정',
@@ -27074,7 +27127,7 @@ KANJI_DATA = [
     'meaning': '칠 정',
     'onyomi': 'セイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '정벌하거나 멀리 나아가 치는 뜻을 가진 한자입니다.',
     'words': [
       '遠征（えんせい） 원정'
@@ -27093,7 +27146,7 @@ KANJI_DATA = [
     'meaning': '정자 정',
     'onyomi': 'テイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '정자나 작은 집을 의미하는 한자입니다.',
     'words': [
       '料亭（りょうてい） 요정'
@@ -27131,7 +27184,7 @@ KANJI_DATA = [
     'meaning': '바로잡을 정',
     'onyomi': 'テイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '잘못된 것을 바로잡아 고치는 뜻을 가진 한자입니다.',
     'words': [
       '訂正（ていせい） 정정'
@@ -27150,7 +27203,7 @@ KANJI_DATA = [
     'meaning': '깨끗할 정',
     'onyomi': 'ジョウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '깨끗하고 맑은 상태를 의미하는 한자입니다.',
     'words': [
       '浄化（じょうか） 정화'
@@ -27169,7 +27222,7 @@ KANJI_DATA = [
     'meaning': '염탐할 정',
     'onyomi': 'テイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '정찰하거나 몰래 살피는 뜻을 가진 한자입니다.',
     'words': [
       '探偵（たんてい） 탐정'
@@ -27207,7 +27260,7 @@ KANJI_DATA = [
     'meaning': '배 정',
     'onyomi': 'テイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '작은 배나 보트를 의미하는 한자입니다.',
     'words': [
       'ボート艇（てい） 정',
@@ -27227,7 +27280,7 @@ KANJI_DATA = [
     'meaning': '덩이 정',
     'onyomi': 'ジョウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '금속 덩이나 자물쇠, 알약 단위 등에 쓰이는 한자입니다.',
     'words': [
       '錠前（じょうまえ） 자물쇠',
@@ -27247,7 +27300,7 @@ KANJI_DATA = [
     'meaning': '아우 제',
     'onyomi': 'テイ、ダイ、デ',
     'kunyomi': 'おとうと',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '남동생이나 아우를 의미하는 기본 한자입니다.',
     'words': [
       '兄弟（きょうだい） 형제'
@@ -27266,7 +27319,7 @@ KANJI_DATA = [
     'meaning': '차례 제',
     'onyomi': 'ダイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '순서나 번호를 나타낼 때 쓰이는 한자입니다.',
     'words': [
       '第一（だいいち） 제1'
@@ -27285,7 +27338,7 @@ KANJI_DATA = [
     'meaning': '제사 제',
     'onyomi': 'サイ',
     'kunyomi': 'まつる、まつり',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '제사나 축제를 의미하는 한자입니다.',
     'words': [
       '祭り（まつり） 축제'
@@ -27324,7 +27377,7 @@ KANJI_DATA = [
     'meaning': '절제할 제',
     'onyomi': 'セイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '억제하거나 제도를 세워 다스리는 뜻을 가진 한자입니다.',
     'words': [
       '制度（せいど） 제도',
@@ -27344,7 +27397,7 @@ KANJI_DATA = [
     'meaning': '끌 제',
     'onyomi': 'テイ',
     'kunyomi': 'さげる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '내세우다, 제출하다, 들고 가다의 뜻을 가진 한자입니다.',
     'words': [
       '提出（ていしゅつ） 제출',
@@ -27364,7 +27417,7 @@ KANJI_DATA = [
     'meaning': '지을 제',
     'onyomi': 'セイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '물건을 만들거나 제조하는 뜻을 가진 한자입니다.',
     'words': [
       '製品（せいひん） 제품',
@@ -27384,7 +27437,7 @@ KANJI_DATA = [
     'meaning': '즈음 제',
     'onyomi': 'サイ',
     'kunyomi': 'きわ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '어떤 때나 경우, 경계에 가까운 부분을 의미하는 한자입니다.',
     'words': [
       '実際（じっさい） 실제',
@@ -27404,7 +27457,7 @@ KANJI_DATA = [
     'meaning': '덜 제',
     'onyomi': 'ジョ、ジ',
     'kunyomi': 'のぞく',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '제거하다, 제외하다의 뜻을 가진 한자입니다.',
     'words': [
       '削除（さくじょ） 삭제',
@@ -27424,7 +27477,7 @@ KANJI_DATA = [
     'meaning': '건널 제',
     'onyomi': 'サイ',
     'kunyomi': 'すむ、すます',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '끝나다, 해결되다, 마치다의 뜻을 가진 한자입니다.',
     'words': [
       '経済（けいざい） 경제',
@@ -27444,7 +27497,7 @@ KANJI_DATA = [
     'meaning': '모두 제',
     'onyomi': 'ショ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '여러 가지, 모든 것을 두루 가리키는 한자입니다.',
     'words': [
       '諸国（しょこく） 여러 나라',
@@ -27464,7 +27517,7 @@ KANJI_DATA = [
     'meaning': '가지런할 제',
     'onyomi': 'セイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '가지런히 맞추거나 한꺼번에 정돈하는 뜻을 가진 한자입니다.',
     'words': [
       '一斉（いっせい） 일제히'
@@ -27483,7 +27536,7 @@ KANJI_DATA = [
     'meaning': '임금 제',
     'onyomi': 'テイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '황제나 제왕을 의미하는 한자입니다.',
     'words': [
       '皇帝（こうてい） 황제'
@@ -27502,7 +27555,7 @@ KANJI_DATA = [
     'meaning': '약제 제',
     'onyomi': 'ザイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '약제나 혼합된 재료를 의미하는 한자입니다.',
     'words': [
       '洗剤（せんざい） 세제',
@@ -27522,7 +27575,7 @@ KANJI_DATA = [
     'meaning': '둑 제',
     'onyomi': 'テイ',
     'kunyomi': 'つつみ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '강둑이나 제방을 의미하는 한자입니다.',
     'words': [
       '堤防（ていぼう） 제방'
@@ -27541,7 +27594,7 @@ KANJI_DATA = [
     'meaning': '이를 조',
     'onyomi': 'ソウ、サッ',
     'kunyomi': 'はやい、はやまる、はやめる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '이르다, 빠르다를 의미하는 기본 한자입니다.',
     'words': [
       '早い（はやい） 이르다',
@@ -27561,7 +27614,7 @@ KANJI_DATA = [
     'meaning': '새 조',
     'onyomi': 'チョウ',
     'kunyomi': 'とり',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '새를 의미하는 기본 한자입니다.',
     'words': [
       '小鳥（ことり） 작은 새'
@@ -27580,7 +27633,7 @@ KANJI_DATA = [
     'meaning': '짤 조',
     'onyomi': 'ソ',
     'kunyomi': 'くむ、くみ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '짜다, 조를 만들다를 의미하는 기본 한자입니다.',
     'words': [
       '組む（くむ） 짜다',
@@ -27600,7 +27653,7 @@ KANJI_DATA = [
     'meaning': '아침 조',
     'onyomi': 'チョウ',
     'kunyomi': 'あさ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '아침을 의미하는 기본 한자입니다.',
     'words': [
       '朝食（ちょうしょく） 아침 식사'
@@ -27619,7 +27672,7 @@ KANJI_DATA = [
     'meaning': '도울 조',
     'onyomi': 'ジョ',
     'kunyomi': 'たすける、たすかる、すけ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '돕다, 구하다를 의미하는 기본 한자입니다.',
     'words': [
       '助ける（たすける） 돕다',
@@ -27636,10 +27689,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-han-investigate-adjust',
     'kanji': '調',
-    'meaning': '조사할 조',
+    'meaning': '고를 조',
     'onyomi': 'チョウ',
     'kunyomi': 'しらべる、ととのう、ととのえる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '조사하다, 맞추다, 조절하다의 뜻을 가진 한자입니다.',
     'words': [
       '調べる（しらべる） 조사하다',
@@ -27679,7 +27732,7 @@ KANJI_DATA = [
     'meaning': '비칠 조',
     'onyomi': 'ショウ',
     'kunyomi': 'てる、てらす、てれる',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '비추다, 밝히다의 뜻을 가진 한자입니다.',
     'words': [
       '照明（しょうめい） 조명',
@@ -27719,7 +27772,7 @@ KANJI_DATA = [
     'meaning': '할아버지 조',
     'onyomi': 'ソ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '조상이나 선대를 의미하는 한자입니다.',
     'words': [
       '祖先（そせん） 조상'
@@ -27738,7 +27791,7 @@ KANJI_DATA = [
     'meaning': '지을 조',
     'onyomi': 'ゾウ',
     'kunyomi': 'つくる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '만들다, 건조하다의 뜻을 가진 한자입니다.',
     'words': [
       '建造（けんぞう） 건조',
@@ -27758,7 +27811,7 @@ KANJI_DATA = [
     'meaning': '밀물/조수 조',
     'onyomi': 'チョウ',
     'kunyomi': 'しお',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '바닷물의 조수나 시대의 흐름을 의미하는 한자입니다.',
     'words': [
       '潮風（しおかぜ） 바닷바람'
@@ -27777,7 +27830,7 @@ KANJI_DATA = [
     'meaning': '잡을 조',
     'onyomi': 'ソウ',
     'kunyomi': 'みさお、あやつる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '조종하다, 다루다, 지조를 지키다의 뜻을 가진 한자입니다.',
     'words': [
       '操作（そうさ） 조작',
@@ -27797,7 +27850,7 @@ KANJI_DATA = [
     'meaning': '손톱 조',
     'onyomi': '',
     'kunyomi': 'つめ、つま',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '손톱이나 발톱, 짐승의 발톱을 의미하는 한자입니다.',
     'words': [
       '爪を切る（つめをきる） 손톱을 깎다'
@@ -27816,7 +27869,7 @@ KANJI_DATA = [
     'meaning': '조상할 조',
     'onyomi': 'チョウ',
     'kunyomi': 'とむらう',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '죽은 이를 슬퍼하고 조문하는 뜻을 가진 한자입니다.',
     'words': [
       '弔う（とむらう） 조문하다'
@@ -27835,7 +27888,7 @@ KANJI_DATA = [
     'meaning': '막힐 조',
     'onyomi': 'ソ',
     'kunyomi': 'はばむ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '가로막다, 방해하다의 뜻을 가진 한자입니다.',
     'words': [
       '阻止（そし） 저지'
@@ -27873,7 +27926,7 @@ KANJI_DATA = [
     'meaning': '둘 조',
     'onyomi': 'ソ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '놓아두다, 처리하다의 뜻을 가진 한자입니다.',
     'words': [
       '措置（そち） 조치'
@@ -27908,10 +27961,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-rough-coarse',
     'kanji': '粗',
-    'meaning': '조잡할 조',
+    'meaning': '거칠 조',
     'onyomi': 'ソ',
     'kunyomi': 'あらい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '거칠고 세밀하지 않은 상태를 의미하는 한자입니다.',
     'words': [
       '粗い（あらい） 거칠다',
@@ -27931,7 +27984,7 @@ KANJI_DATA = [
     'meaning': '새길 조',
     'onyomi': 'チョウ',
     'kunyomi': 'ほる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '새기다, 조각하다의 뜻을 가진 한자입니다.',
     'words': [
       '彫刻（ちょうこく） 조각'
@@ -27950,7 +28003,7 @@ KANJI_DATA = [
     'meaning': '바라볼 조',
     'onyomi': 'チョウ',
     'kunyomi': 'ながめる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '멀리 바라보거나 조망하는 뜻을 가진 한자입니다.',
     'words': [
       '眺める（ながめる） 바라보다'
@@ -27966,10 +28019,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-han-fish-angle',
     'kanji': '釣',
-    'meaning': '낚을/낚시 조',
+    'meaning': '낚을 조',
     'onyomi': 'チョウ',
     'kunyomi': 'つる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '낚시하다, 걸다의 뜻을 가진 한자입니다.',
     'words': [
       '釣る（つる） 낚다',
@@ -28008,7 +28061,7 @@ KANJI_DATA = [
     'meaning': '만날 조',
     'onyomi': 'ソウ',
     'kunyomi': 'あう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '뜻밖의 일을 만나거나 재난을 겪는 뜻을 가진 한자입니다.',
     'words': [
       '遭難（そうなん） 조난'
@@ -28027,7 +28080,7 @@ KANJI_DATA = [
     'meaning': '비웃을 조',
     'onyomi': 'チョウ',
     'kunyomi': 'あざける',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '비웃거나 조롱하는 뜻을 가진 한자입니다.',
     'words': [
       '嘲笑（ちょうしょう） 조소'
@@ -28046,7 +28099,7 @@ KANJI_DATA = [
     'meaning': '구유 조',
     'onyomi': 'ソウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '구유, 통, 액체를 담는 큰 용기를 의미하는 한자입니다.',
     'words': [
       '水槽（すいそう） 수조'
@@ -28084,7 +28137,7 @@ KANJI_DATA = [
     'meaning': '고치 켤 조',
     'onyomi': '',
     'kunyomi': 'くる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '실을 감아 올리거나 반복해서 다루는 뜻을 가진 한자입니다.',
     'words': [
       '繰り返す（くりかえす） 반복하다'
@@ -28103,7 +28156,7 @@ KANJI_DATA = [
     'meaning': '마름 조',
     'onyomi': 'ソウ',
     'kunyomi': 'も',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '물속에서 자라는 해조류나 수초를 의미하는 한자입니다.',
     'words': [
       '海藻（かいそう） 해조'
@@ -28201,7 +28254,7 @@ KANJI_DATA = [
     'meaning': '마칠 졸',
     'onyomi': 'ソツ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '마치다, 졸업하다를 의미하는 한자입니다.',
     'words': [
       '卒業（そつぎょう） 졸업'
@@ -28258,7 +28311,7 @@ KANJI_DATA = [
     'meaning': '씨 종',
     'onyomi': 'シュ',
     'kunyomi': 'たね',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '씨앗이나 종류를 의미하는 한자입니다.',
     'words': [
       '種類（しゅるい） 종류'
@@ -28277,7 +28330,7 @@ KANJI_DATA = [
     'meaning': '마루 종',
     'onyomi': 'シュウ、ソウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '종교나 중심 사상을 의미하는 한자입니다.',
     'words': [
       '宗教（しゅうきょう） 종교'
@@ -28296,7 +28349,7 @@ KANJI_DATA = [
     'meaning': '좇을 종',
     'onyomi': 'ジュウ、ショウ、ジュ',
     'kunyomi': 'したがう、したがえる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '따르거나 복종하는 것을 의미하는 한자입니다.',
     'words': [
       '従う（したがう） 따르다'
@@ -28315,7 +28368,7 @@ KANJI_DATA = [
     'meaning': '세로 종',
     'onyomi': 'ジュウ',
     'kunyomi': 'たて',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '세로 방향을 의미하는 한자입니다.',
     'words': [
       '縦（たて） 세로'
@@ -28334,7 +28387,7 @@ KANJI_DATA = [
     'meaning': '종기 종',
     'onyomi': 'シュ',
     'kunyomi': 'はれる、はらす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '붓거나 종기가 나는 것을 의미하는 한자입니다.',
     'words': [
       '腫れる（はれる） 붓다'
@@ -28372,7 +28425,7 @@ KANJI_DATA = [
     'meaning': '쇠북 종',
     'onyomi': 'ショウ',
     'kunyomi': 'かね',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '종이나 쇠북을 의미하는 한자입니다.',
     'words': [
       '鐘（かね） 종'
@@ -28410,7 +28463,7 @@ KANJI_DATA = [
     'meaning': '자리 좌',
     'onyomi': 'セキ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '자리나 좌석을 의미하는 한자입니다.',
     'words': [
       '席（せき） 자리'
@@ -28429,7 +28482,7 @@ KANJI_DATA = [
     'meaning': '도울 좌',
     'onyomi': 'サ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '돕거나 보조하는 역할을 의미하는 한자입니다.',
     'words': [
       '補佐（ほさ） 보좌'
@@ -28448,7 +28501,7 @@ KANJI_DATA = [
     'meaning': '꺾을 좌',
     'onyomi': 'ザ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '좌절하거나 꺾이는 것을 의미하는 한자입니다.',
     'words': [
       '挫折（ざせつ） 좌절'
@@ -28467,7 +28520,7 @@ KANJI_DATA = [
     'meaning': '허물 죄',
     'onyomi': 'ザイ',
     'kunyomi': 'つみ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '죄나 잘못을 의미하는 한자입니다.',
     'words': [
       '犯罪（はんざい） 범죄'
@@ -28486,7 +28539,7 @@ KANJI_DATA = [
     'meaning': '달릴 주',
     'onyomi': 'ソウ',
     'kunyomi': 'はしる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '달리다를 의미하는 기본 한자입니다.',
     'words': [
       '走る（はしる） 달리다'
@@ -28505,7 +28558,7 @@ KANJI_DATA = [
     'meaning': '낮 주',
     'onyomi': 'チュウ',
     'kunyomi': 'ひる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '낮 시간을 의미하는 기본 한자입니다.',
     'words': [
       '昼ご飯（ひるごはん） 점심'
@@ -28543,7 +28596,7 @@ KANJI_DATA = [
     'meaning': '주인 주',
     'onyomi': 'シュ、ス',
     'kunyomi': 'ぬし、おも',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '주인이나 중심이 되는 것을 의미하는 한자입니다.',
     'words': [
       '主人（しゅじん） 주인'
@@ -28562,7 +28615,7 @@ KANJI_DATA = [
     'meaning': '고을 주',
     'onyomi': 'シュウ、ス',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '행정 구역이나 지역을 의미하는 한자입니다.',
     'words': [
       '九州（きゅうしゅう） 규슈'
@@ -28581,7 +28634,7 @@ KANJI_DATA = [
     'meaning': '살 주',
     'onyomi': 'ジュウ',
     'kunyomi': 'すむ、すまう',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '살다, 거주하다를 의미하는 한자입니다.',
     'words': [
       '住む（すむ） 살다'
@@ -28638,7 +28691,7 @@ KANJI_DATA = [
     'meaning': '술 주',
     'onyomi': 'シュ',
     'kunyomi': 'さけ、さか',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '술을 의미하는 기본 한자입니다.',
     'words': [
       '酒（さけ） 술'
@@ -28692,10 +28745,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-play-music',
     'kanji': '奏',
-    'meaning': '연주할 주',
+    'meaning': '아뢸 주',
     'onyomi': 'ソウ',
     'kunyomi': 'かなでる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '악기를 연주하는 것을 의미하는 한자입니다.',
     'words': [
       '演奏（えんそう） 연주'
@@ -28711,7 +28764,7 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-stock',
     'kanji': '株',
-    'meaning': '주식 주',
+    'meaning': '그루 주',
     'onyomi': '',
     'kunyomi': 'かぶ',
     'level': 'N3',
@@ -28771,7 +28824,7 @@ KANJI_DATA = [
     'meaning': '팔꿈치 주',
     'onyomi': '',
     'kunyomi': 'ひじ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '팔꿈치를 의미하는 한자입니다.',
     'words': [
       '肘（ひじ） 팔꿈치'
@@ -28847,7 +28900,7 @@ KANJI_DATA = [
     'meaning': '머무를 주',
     'onyomi': 'チュウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '머무르거나 주차하는 것을 의미하는 한자입니다.',
     'words': [
       '駐車（ちゅうしゃ） 주차'
@@ -28863,10 +28916,10 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-cast',
     'kanji': '鋳',
-    'meaning': '쇠불릴 주',
+    'meaning': '부어 만들 주',
     'onyomi': 'チュウ',
     'kunyomi': 'いる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '쇠를 녹여 부어 만드는 것을 의미하는 한자입니다.',
     'words': [
       '鋳造（ちゅうぞう） 주조'
@@ -28901,10 +28954,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-standard',
     'kanji': '準',
-    'meaning': '준비할 준',
+    'meaning': '준할 준',
     'onyomi': 'ジュン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '기준이나 준비를 의미하는 한자입니다.',
     'words': [
       '準備（じゅんび） 준비'
@@ -28923,7 +28976,7 @@ KANJI_DATA = [
     'meaning': '준걸 준',
     'onyomi': 'シュン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '재능이 뛰어난 사람을 의미하는 한자입니다.',
     'words': [
       '俊才（しゅんさい） 준재'
@@ -28934,25 +28987,6 @@ KANJI_DATA = [
       '優',
       '秀',
       '才'
-    ]
-  },
-  {
-    'slug': 'n2-han-standard',
-    'kanji': '准',
-    'meaning': '승인할 준',
-    'onyomi': 'ジュン',
-    'kunyomi': '',
-    'level': 'N2',
-    'desc': '허가하거나 기준에 맞음을 의미하는 한자입니다.',
-    'words': [
-      '批准（ひじゅん） 비준'
-    ],
-    'example_jp': '計画が批准された。',
-    'example_ko': '계획이 승인되었다.',
-    'related': [
-      '承',
-      '許',
-      '可'
     ]
   },
   {
@@ -29038,7 +29072,7 @@ KANJI_DATA = [
     'meaning': '무리 중',
     'onyomi': 'シュウ、シュ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '많은 사람들을 의미하는 한자입니다.',
     'words': [
       '大衆（たいしゅう） 대중'
@@ -29057,7 +29091,7 @@ KANJI_DATA = [
     'meaning': '곧 즉',
     'onyomi': 'ソク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '즉시, 바로를 의미하는 한자입니다.',
     'words': [
       '即時（そくじ） 즉시'
@@ -29076,7 +29110,7 @@ KANJI_DATA = [
     'meaning': '즙 즙',
     'onyomi': 'ジュウ',
     'kunyomi': 'しる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '즙이나 국물을 의미하는 한자입니다.',
     'words': [
       '味噌汁（みそしる） 된장국'
@@ -29095,7 +29129,7 @@ KANJI_DATA = [
     'meaning': '증거 증',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '증명이나 증거를 의미하는 한자입니다.',
     'words': [
       '証明（しょうめい） 증명'
@@ -29114,7 +29148,7 @@ KANJI_DATA = [
     'meaning': '더할 증',
     'onyomi': 'ゾウ',
     'kunyomi': 'ます、ふえる、ふやす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '늘어나거나 증가함을 의미하는 한자입니다.',
     'words': [
       '増加（ぞうか） 증가'
@@ -29152,7 +29186,7 @@ KANJI_DATA = [
     'meaning': '증세 증',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '병의 증상을 의미하는 한자입니다.',
     'words': [
       '症状（しょうじょう） 증상'
@@ -29171,7 +29205,7 @@ KANJI_DATA = [
     'meaning': '일찍 증',
     'onyomi': 'ソウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '이전에, 일찍을 의미하는 한자입니다.',
     'words': [
       '未曽有（みぞう） 미증유'
@@ -29209,7 +29243,7 @@ KANJI_DATA = [
     'meaning': '줄 증',
     'onyomi': 'ゾウ、ソウ',
     'kunyomi': 'おくる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '선물이나 증여를 의미하는 한자입니다.',
     'words': [
       '贈り物（おくりもの） 선물'
@@ -29228,7 +29262,7 @@ KANJI_DATA = [
     'meaning': '그칠 지',
     'onyomi': 'シ',
     'kunyomi': 'とまる、とめる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '멈추거나 그침을 의미하는 기본 한자입니다.',
     'words': [
       '止まる（とまる） 멈추다'
@@ -29247,7 +29281,7 @@ KANJI_DATA = [
     'meaning': '땅 지',
     'onyomi': 'チ、ジ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '땅이나 장소를 의미하는 기본 한자입니다.',
     'words': [
       '土地（とち） 토지'
@@ -29266,7 +29300,7 @@ KANJI_DATA = [
     'meaning': '못 지',
     'onyomi': 'チ',
     'kunyomi': 'いけ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '연못이나 물이 고인 곳을 의미하는 기본 한자입니다.',
     'words': [
       '池（いけ） 연못'
@@ -29285,7 +29319,7 @@ KANJI_DATA = [
     'meaning': '알 지',
     'onyomi': 'チ',
     'kunyomi': 'しる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '알다, 인식하다를 의미하는 기본 한자입니다.',
     'words': [
       '知る（しる） 알다'
@@ -29304,7 +29338,7 @@ KANJI_DATA = [
     'meaning': '종이 지',
     'onyomi': 'シ',
     'kunyomi': 'かみ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '종이를 의미하는 기본 한자입니다.',
     'words': [
       '紙（かみ） 종이'
@@ -29323,7 +29357,7 @@ KANJI_DATA = [
     'meaning': '가질 지',
     'onyomi': 'ジ',
     'kunyomi': 'もつ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '가지다, 들다를 의미하는 기본 한자입니다.',
     'words': [
       '持つ（もつ） 가지다'
@@ -29342,7 +29376,7 @@ KANJI_DATA = [
     'meaning': '가리킬 지',
     'onyomi': 'シ',
     'kunyomi': 'ゆび、さす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '손가락이나 가리키는 것을 의미하는 기본 한자입니다.',
     'words': [
       '指（ゆび） 손가락'
@@ -29380,7 +29414,7 @@ KANJI_DATA = [
     'meaning': '뜻 지',
     'onyomi': 'シ',
     'kunyomi': 'こころざし',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '뜻이나 목표를 의미하는 한자입니다.',
     'words': [
       '志（こころざし） 뜻'
@@ -29399,7 +29433,7 @@ KANJI_DATA = [
     'meaning': '가지 지',
     'onyomi': 'シ',
     'kunyomi': 'えだ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '나뭇가지를 의미하는 한자입니다.',
     'words': [
       '枝（えだ） 가지'
@@ -29418,7 +29452,7 @@ KANJI_DATA = [
     'meaning': '이를 지',
     'onyomi': 'シ',
     'kunyomi': 'いたる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '도달하다를 의미하는 한자입니다.',
     'words': [
       '至る（いたる） 이르다'
@@ -29437,7 +29471,7 @@ KANJI_DATA = [
     'meaning': '기록할 지',
     'onyomi': 'シ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '기록이나 잡지를 의미하는 한자입니다.',
     'words': [
       '雑誌（ざっし） 잡지'
@@ -29456,7 +29490,7 @@ KANJI_DATA = [
     'meaning': '뜻 지',
     'onyomi': 'シ',
     'kunyomi': 'むね',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '요점이나 뜻을 의미하는 한자입니다.',
     'words': [
       '趣旨（しゅし） 취지'
@@ -29472,10 +29506,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-grass',
     'kanji': '芝',
-    'meaning': '잡초 지',
+    'meaning': '잔디 지',
     'onyomi': '',
     'kunyomi': 'しば',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '잔디를 의미하는 한자입니다.',
     'words': [
       '芝生（しばふ） 잔디밭'
@@ -29513,7 +29547,7 @@ KANJI_DATA = [
     'meaning': '복 지',
     'onyomi': 'シ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '복지나 행복을 의미하는 한자입니다.',
     'words': [
       '福祉（ふくし） 복지'
@@ -29532,7 +29566,7 @@ KANJI_DATA = [
     'meaning': '기름 지',
     'onyomi': 'シ',
     'kunyomi': 'あぶら',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '기름이나 지방을 의미하는 한자입니다.',
     'words': [
       '脂（あぶら） 기름'
@@ -29551,7 +29585,7 @@ KANJI_DATA = [
     'meaning': '늦을 지',
     'onyomi': 'チ',
     'kunyomi': 'おそい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '늦거나 느림을 의미하는 한자입니다.',
     'words': [
       '遅い（おそい） 느리다'
@@ -29570,7 +29604,7 @@ KANJI_DATA = [
     'meaning': '담글 지',
     'onyomi': '',
     'kunyomi': 'つける、つかる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '물에 담그는 것을 의미하는 한자입니다.',
     'words': [
       '漬物（つけもの） 절임'
@@ -29608,7 +29642,7 @@ KANJI_DATA = [
     'meaning': '곧을 직',
     'onyomi': 'チョク、ジキ',
     'kunyomi': 'なおす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '곧거나 바로를 의미하는 기본 한자입니다.',
     'words': [
       '直す（なおす） 고치다'
@@ -29627,7 +29661,7 @@ KANJI_DATA = [
     'meaning': '직분 직',
     'onyomi': 'ショク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '직업이나 직무를 의미하는 한자입니다.',
     'words': [
       '職業（しょくぎょう） 직업'
@@ -29646,7 +29680,7 @@ KANJI_DATA = [
     'meaning': '짤 직',
     'onyomi': 'ショク、シキ',
     'kunyomi': 'おる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '천을 짜는 것을 의미하는 한자입니다.',
     'words': [
       '組織（そしき） 조직'
@@ -29665,7 +29699,7 @@ KANJI_DATA = [
     'meaning': '참 진',
     'onyomi': 'シン',
     'kunyomi': 'ま',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '참되거나 진실함을 의미하는 기본 한자입니다.',
     'words': [
       '真実（しんじつ） 진실'
@@ -29684,7 +29718,7 @@ KANJI_DATA = [
     'meaning': '나아갈 진',
     'onyomi': 'シン',
     'kunyomi': 'すすむ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '앞으로 나아감을 의미하는 기본 한자입니다.',
     'words': [
       '進む（すすむ） 나아가다'
@@ -29703,7 +29737,7 @@ KANJI_DATA = [
     'meaning': '다할 진',
     'onyomi': 'ジン',
     'kunyomi': 'つくす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '다하다, 끝나다를 의미하는 한자입니다.',
     'words': [
       '尽くす（つくす） 다하다'
@@ -29722,7 +29756,7 @@ KANJI_DATA = [
     'meaning': '나루 진',
     'onyomi': 'シン',
     'kunyomi': 'つ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '나루터나 항구를 의미하는 한자입니다.',
     'words': [
       '津（つ） 나루'
@@ -29741,7 +29775,7 @@ KANJI_DATA = [
     'meaning': '보배 진',
     'onyomi': 'チン',
     'kunyomi': 'めずらしい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '드물거나 귀한 것을 의미하는 한자입니다.',
     'words': [
       '珍しい（めずらしい） 드물다'
@@ -29760,7 +29794,7 @@ KANJI_DATA = [
     'meaning': '진칠 진',
     'onyomi': 'ジン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '군대의 진이나 진영을 의미하는 한자입니다.',
     'words': [
       '陣地（じんち） 진지'
@@ -29779,7 +29813,7 @@ KANJI_DATA = [
     'meaning': '떨칠 진',
     'onyomi': 'シン',
     'kunyomi': 'ふる、ふるう、ふれる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '흔들거나 떨치는 것을 의미하는 한자입니다.',
     'words': [
       '振る（ふる） 흔들다'
@@ -29795,10 +29829,10 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-display',
     'kanji': '陳',
-    'meaning': '베풀/묵을 진',
+    'meaning': '늘어놓을 진',
     'onyomi': 'チン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '늘어놓거나 진열하는 것을 의미하는 한자입니다.',
     'words': [
       '陳列（ちんれつ） 진열'
@@ -29817,7 +29851,7 @@ KANJI_DATA = [
     'meaning': '진찰할 진',
     'onyomi': 'シン',
     'kunyomi': 'みる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '진찰하거나 검사하는 것을 의미하는 한자입니다.',
     'words': [
       '診察（しんさつ） 진찰'
@@ -29855,7 +29889,7 @@ KANJI_DATA = [
     'meaning': '진압할 진',
     'onyomi': 'チン',
     'kunyomi': 'しずめる、しずまる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '가라앉히거나 진정시키는 것을 의미하는 한자입니다.',
     'words': [
       '鎮静（ちんせい） 진정'
@@ -29874,7 +29908,7 @@ KANJI_DATA = [
     'meaning': '바탕 질',
     'onyomi': 'シツ、シチ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '성질이나 품질을 의미하는 기본 한자입니다.',
     'words': [
       '品質（ひんしつ） 품질'
@@ -29893,7 +29927,7 @@ KANJI_DATA = [
     'meaning': '꾸짖을 질',
     'onyomi': 'シツ',
     'kunyomi': 'しかる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '꾸짖거나 혼내는 것을 의미하는 한자입니다.',
     'words': [
       '叱る（しかる） 꾸짖다'
@@ -29907,31 +29941,12 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n1-han-change',
-    'kanji': '迭',
-    'meaning': '경질할 질',
-    'onyomi': 'テツ',
-    'kunyomi': '',
-    'level': 'N1',
-    'desc': '교체하거나 바꾸는 것을 의미하는 한자입니다.',
-    'words': [
-      '交迭（こうてつ） 교체'
-    ],
-    'example_jp': '人事が迭された。',
-    'example_ko': '인사가 교체되었다.',
-    'related': [
-      '替',
-      '換',
-      '変'
-    ]
-  },
-  {
     'slug': 'n3-han-disease',
     'kanji': '疾',
     'meaning': '병 질',
     'onyomi': 'シツ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '질병이나 빠름을 의미하는 한자입니다.',
     'words': [
       '疾患（しっかん） 질환'
@@ -29969,7 +29984,7 @@ KANJI_DATA = [
     'meaning': '막힐 질',
     'onyomi': 'チツ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '막히거나 질식하는 것을 의미하는 한자입니다.',
     'words': [
       '窒息（ちっそく） 질식'
@@ -29988,7 +30003,7 @@ KANJI_DATA = [
     'meaning': '미워할 질',
     'onyomi': 'シツ',
     'kunyomi': 'ねたむ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '질투하거나 시기하는 것을 의미하는 한자입니다.',
     'words': [
       '嫉妬（しっと） 질투'
@@ -30026,7 +30041,7 @@ KANJI_DATA = [
     'meaning': '모을 집',
     'onyomi': 'シュウ',
     'kunyomi': 'あつまる、あつめる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '모이거나 모으는 것을 의미하는 기본 한자입니다.',
     'words': [
       '集まる（あつまる） 모이다'
@@ -30045,7 +30060,7 @@ KANJI_DATA = [
     'meaning': '잡을 집',
     'onyomi': 'シツ、シュウ',
     'kunyomi': 'とる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '잡거나 집행하는 것을 의미하는 한자입니다.',
     'words': [
       '執行（しっこう） 집행'
@@ -30064,7 +30079,7 @@ KANJI_DATA = [
     'meaning': '부를 징',
     'onyomi': 'チョウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '징조나 징수 등을 의미하는 한자입니다.',
     'words': [
       '特徴（とくちょう） 특징'
@@ -30083,7 +30098,7 @@ KANJI_DATA = [
     'meaning': '맑을 징',
     'onyomi': 'チョウ',
     'kunyomi': 'すむ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '맑고 깨끗한 상태를 의미하는 한자입니다.',
     'words': [
       '澄む（すむ） 맑다'
@@ -30102,7 +30117,7 @@ KANJI_DATA = [
     'meaning': '징계할 징',
     'onyomi': 'チョウ',
     'kunyomi': 'こりる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '징계하거나 벌을 주는 것을 의미하는 한자입니다.',
     'words': [
       '懲戒（ちょうかい） 징계'
@@ -30140,7 +30155,7 @@ KANJI_DATA = [
     'meaning': '차 차',
     'onyomi': 'チャ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '차를 의미하는 기본 한자입니다.',
     'words': [
       'お茶（おちゃ） 차'
@@ -30159,7 +30174,7 @@ KANJI_DATA = [
     'meaning': '버금 차',
     'onyomi': 'ジ、シ',
     'kunyomi': 'つぎ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '다음이나 순서를 의미하는 기본 한자입니다.',
     'words': [
       '次（つぎ） 다음'
@@ -30178,7 +30193,7 @@ KANJI_DATA = [
     'meaning': '다를 차',
     'onyomi': 'サ',
     'kunyomi': 'さす',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '차이나 차이를 의미하는 한자입니다.',
     'words': [
       '差（さ） 차이'
@@ -30235,7 +30250,7 @@ KANJI_DATA = [
     'meaning': '가릴 차',
     'onyomi': 'シャ',
     'kunyomi': 'さえぎる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '가리거나 막는 것을 의미하는 한자입니다.',
     'words': [
       '遮る（さえぎる） 막다'
@@ -30254,7 +30269,7 @@ KANJI_DATA = [
     'meaning': '붙을 착',
     'onyomi': 'チャク',
     'kunyomi': 'きる、つく',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '입거나 도착함을 의미하는 기본 한자입니다.',
     'words': [
       '着る（きる） 입다'
@@ -30273,7 +30288,7 @@ KANJI_DATA = [
     'meaning': '잡을 착',
     'onyomi': 'ソク',
     'kunyomi': 'とらえる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '붙잡거나 포착하는 것을 의미하는 한자입니다.',
     'words': [
       '捉える（とらえる） 잡다'
@@ -30292,7 +30307,7 @@ KANJI_DATA = [
     'meaning': '짤 착',
     'onyomi': 'サク',
     'kunyomi': 'しぼる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '짜내거나 압착하는 것을 의미하는 한자입니다.',
     'words': [
       '搾る（しぼる） 짜다'
@@ -30311,7 +30326,7 @@ KANJI_DATA = [
     'meaning': '어긋날 착',
     'onyomi': 'サク',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '어긋나거나 혼동되는 것을 의미하는 한자입니다.',
     'words': [
       '錯覚（さっかく） 착각'
@@ -30330,7 +30345,7 @@ KANJI_DATA = [
     'meaning': '도울 찬',
     'onyomi': 'サン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '찬성하거나 돕는 것을 의미하는 한자입니다.',
     'words': [
       '賛成（さんせい） 찬성'
@@ -30349,7 +30364,7 @@ KANJI_DATA = [
     'meaning': '편지 찰',
     'onyomi': 'サツ',
     'kunyomi': 'ふだ',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '표지나 표식을 의미하는 한자입니다.',
     'words': [
       '札（ふだ） 표지'
@@ -30368,7 +30383,7 @@ KANJI_DATA = [
     'meaning': '살필 찰',
     'onyomi': 'サツ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '살피거나 관찰하는 것을 의미하는 한자입니다.',
     'words': [
       '観察（かんさつ） 관찰'
@@ -30401,50 +30416,12 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n1-han-press',
-    'kanji': '拶',
-    'meaning': '핍박할 찰',
-    'onyomi': 'サツ',
-    'kunyomi': '',
-    'level': 'N1',
-    'desc': '압박하거나 다그치는 것을 의미하는 한자입니다.',
-    'words': [
-      '拶問（さつもん） 고문'
-    ],
-    'example_jp': '拶問する。',
-    'example_ko': '압박하다.',
-    'related': [
-      '迫',
-      '圧',
-      '強'
-    ]
-  },
-  {
-    'slug': 'n3-han-rub',
-    'kanji': '擦',
-    'meaning': '문지를 찰',
-    'onyomi': 'サツ',
-    'kunyomi': 'する、すれる',
-    'level': 'N3',
-    'desc': '문지르거나 마찰을 의미하는 한자입니다.',
-    'words': [
-      '擦る（する） 문지르다'
-    ],
-    'example_jp': '手を擦る。',
-    'example_ko': '손을 문지르다.',
-    'related': [
-      '摩',
-      '触',
-      '動'
-    ]
-  },
-  {
     'slug': 'n5-han-participate',
     'kanji': '参',
     'meaning': '참여할 참',
     'onyomi': 'サン',
     'kunyomi': 'まいる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '참가하거나 참여하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '参加（さんか） 참가'
@@ -30463,7 +30440,7 @@ KANJI_DATA = [
     'meaning': '참혹할 참',
     'onyomi': 'サン、ザン',
     'kunyomi': 'むごい',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '비참하거나 잔혹함을 의미하는 한자입니다.',
     'words': [
       '惨事（さんじ） 참사'
@@ -30482,7 +30459,7 @@ KANJI_DATA = [
     'meaning': '벨 참',
     'onyomi': 'ザン',
     'kunyomi': 'きる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '베거나 자르는 것을 의미하는 한자입니다.',
     'words': [
       '斬る（きる） 베다'
@@ -30501,7 +30478,7 @@ KANJI_DATA = [
     'meaning': '곳집 창',
     'onyomi': 'ソウ',
     'kunyomi': 'くら',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '창고를 의미하는 한자입니다.',
     'words': [
       '倉庫（そうこ） 창고'
@@ -30520,7 +30497,7 @@ KANJI_DATA = [
     'meaning': '부를 창',
     'onyomi': 'ショウ',
     'kunyomi': 'となえる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '노래하거나 외치는 것을 의미하는 한자입니다.',
     'words': [
       '合唱（がっしょう） 합창'
@@ -30539,7 +30516,7 @@ KANJI_DATA = [
     'meaning': '창 창',
     'onyomi': 'ソウ',
     'kunyomi': 'まど',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '창문을 의미하는 기본 한자입니다.',
     'words': [
       '窓（まど） 창문'
@@ -30558,7 +30535,7 @@ KANJI_DATA = [
     'meaning': '비롯할 창',
     'onyomi': 'ソウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '새롭게 만들거나 시작하는 것을 의미하는 한자입니다.',
     'words': [
       '創作（そうさく） 창작',
@@ -30597,7 +30574,7 @@ KANJI_DATA = [
     'meaning': '나물 채',
     'onyomi': 'サイ',
     'kunyomi': 'な',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '채소나 나물을 의미하는 기본 한자입니다.',
     'words': [
       '野菜（やさい） 야채'
@@ -30616,7 +30593,7 @@ KANJI_DATA = [
     'meaning': '캘 채',
     'onyomi': 'サイ',
     'kunyomi': 'とる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '채취하거나 선택하는 것을 의미하는 한자입니다.',
     'words': [
       '採用（さいよう） 채용',
@@ -30655,7 +30632,7 @@ KANJI_DATA = [
     'meaning': '채색 채',
     'onyomi': 'サイ',
     'kunyomi': 'いろどる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '색을 더하거나 아름답게 꾸미는 것을 의미하는 한자입니다.',
     'words': [
       '色彩（しきさい） 색채',
@@ -30675,7 +30652,7 @@ KANJI_DATA = [
     'meaning': '빚 채',
     'onyomi': 'サイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '빚이나 채무를 의미하는 한자입니다.',
     'words': [
       '借金（しゃっきん） 빚',
@@ -30695,7 +30672,7 @@ KANJI_DATA = [
     'meaning': '꾸짖을 책',
     'onyomi': 'セキ',
     'kunyomi': 'せめる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '꾸짖거나 책임을 묻는 것을 의미하는 한자입니다.',
     'words': [
       '責任（せきにん） 책임',
@@ -30715,7 +30692,7 @@ KANJI_DATA = [
     'meaning': '책 책',
     'onyomi': 'サツ、サク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '책의 권수를 세는 단위 한자입니다.',
     'words': [
       '一冊（いっさつ） 한 권'
@@ -30734,7 +30711,7 @@ KANJI_DATA = [
     'meaning': '꾀 책',
     'onyomi': 'サク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '계책이나 방안을 의미하는 한자입니다.',
     'words': [
       '対策（たいさく） 대책',
@@ -30754,7 +30731,7 @@ KANJI_DATA = [
     'meaning': '울타리 책',
     'onyomi': 'サク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '울타리나 막는 구조물을 의미하는 한자입니다.',
     'words': [
       '柵（さく） 울타리'
@@ -30773,7 +30750,7 @@ KANJI_DATA = [
     'meaning': '아내 처',
     'onyomi': 'サイ',
     'kunyomi': 'つま',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '아내를 의미하는 기본 한자입니다.',
     'words': [
       '妻（つま） 아내'
@@ -30792,7 +30769,7 @@ KANJI_DATA = [
     'meaning': '곳 처',
     'onyomi': 'ショ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '처리하거나 장소를 의미하는 한자입니다.',
     'words': [
       '処理（しょり） 처리',
@@ -30812,7 +30789,7 @@ KANJI_DATA = [
     'meaning': '쓸쓸할 처',
     'onyomi': 'セイ',
     'kunyomi': 'すごい、すさまじい',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '굉장하거나 처참한 상태를 의미하는 한자입니다.',
     'words': [
       '凄い（すごい） 대단하다'
@@ -30869,7 +30846,7 @@ KANJI_DATA = [
     'meaning': '넓힐 척',
     'onyomi': 'タク',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '개척하거나 넓혀 나가는 것을 의미하는 한자입니다.',
     'words': [
       '開拓（かいたく） 개척'
@@ -30888,7 +30865,7 @@ KANJI_DATA = [
     'meaning': '외짝 척',
     'onyomi': 'セキ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '한쪽이나 짝이 없는 것을 세는 한자입니다.',
     'words': [
       '一隻（いっせき） 한 척'
@@ -31021,7 +30998,7 @@ KANJI_DATA = [
     'meaning': '얕을 천',
     'onyomi': 'セン',
     'kunyomi': 'あさい',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '얕음을 의미하는 기본 한자입니다.',
     'words': [
       '浅い（あさい） 얕다'
@@ -31040,7 +31017,7 @@ KANJI_DATA = [
     'meaning': '샘 천',
     'onyomi': 'セン',
     'kunyomi': 'いずみ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '샘물이나 온천의 근원을 의미하는 한자입니다.',
     'words': [
       '温泉（おんせん） 온천',
@@ -31079,7 +31056,7 @@ KANJI_DATA = [
     'meaning': '옮길 천',
     'onyomi': 'セン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '옮기거나 옮겨 가는 것을 의미하는 한자입니다.',
     'words': [
       '移遷（いせん） 이전',
@@ -31118,7 +31095,7 @@ KANJI_DATA = [
     'meaning': '쇠 철',
     'onyomi': 'テツ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '철이나 쇠를 의미하는 기본 한자입니다.',
     'words': [
       '鉄（てつ） 철',
@@ -31157,7 +31134,7 @@ KANJI_DATA = [
     'meaning': '밝을 철',
     'onyomi': 'テツ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '지혜롭고 사리에 밝은 뜻을 가진 한자입니다.',
     'words': [
       '哲学（てつがく） 철학'
@@ -31176,7 +31153,7 @@ KANJI_DATA = [
     'meaning': '통할 철',
     'onyomi': 'テツ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '꿰뚫거나 철저함을 의미하는 한자입니다.',
     'words': [
       '徹底（てってい） 철저'
@@ -31195,7 +31172,7 @@ KANJI_DATA = [
     'meaning': '거둘 철',
     'onyomi': 'テツ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '철수하거나 거두어들이는 것을 의미하는 한자입니다.',
     'words': [
       '撤回（てっかい） 철회'
@@ -31214,7 +31191,7 @@ KANJI_DATA = [
     'meaning': '더할 첨',
     'onyomi': 'テン',
     'kunyomi': 'そえる、そう',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '덧붙이거나 곁들이는 것을 의미하는 한자입니다.',
     'words': [
       '添付（てんぷ） 첨부',
@@ -31229,12 +31206,32 @@ KANJI_DATA = [
     ]
   },
   {
+  'slug': 'n1-han-boat',
+  'kanji': '舟',
+  'meaning': '배 주',
+  'onyomi': 'シュウ',
+  'kunyomi': 'ふね、ふな',
+  'level': 'N1',
+  'desc': '배나 작은 배를 의미하는 한자입니다.',
+  'words': [
+    '舟（ふね） 배',
+    '小舟（こぶね） 작은 배'
+  ],
+  'example_jp': '小さな舟で川を渡る。',
+  'example_ko': '작은 배로 강을 건너다.',
+  'related': [
+    '船',
+    '川',
+    '海'
+  ]
+},
+  {
     'slug': 'n4-han-fold',
     'kanji': '畳',
-    'meaning': '거듭 첩',
+    'meaning': '다다미 첩',
     'onyomi': 'ジョウ',
     'kunyomi': 'たたむ、たたみ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '접거나 다다미를 의미하는 한자입니다.',
     'words': [
       '畳（たたみ） 다다미',
@@ -31254,7 +31251,7 @@ KANJI_DATA = [
     'meaning': '붙일 첩',
     'onyomi': 'チョウ、テン',
     'kunyomi': 'はる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '붙이거나 부착하는 것을 의미하는 한자입니다.',
     'words': [
       '貼る（はる） 붙이다'
@@ -31273,7 +31270,7 @@ KANJI_DATA = [
     'meaning': '푸를 청',
     'onyomi': 'セイ',
     'kunyomi': 'あお、あおい',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '파란색이나 푸름을 의미하는 기본 한자입니다.',
     'words': [
       '青い（あおい） 푸르다'
@@ -31292,7 +31289,7 @@ KANJI_DATA = [
     'meaning': '갤 청',
     'onyomi': 'セイ',
     'kunyomi': 'はれる、はらす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '날이 개거나 맑아짐을 의미하는 기본 한자입니다.',
     'words': [
       '晴れる（はれる） 개다'
@@ -31330,7 +31327,7 @@ KANJI_DATA = [
     'meaning': '관청 청',
     'onyomi': 'チョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '관청이나 행정 기관을 의미하는 한자입니다.',
     'words': [
       '市役所（しやくしょ） 시청',
@@ -31350,7 +31347,7 @@ KANJI_DATA = [
     'meaning': '청할 청',
     'onyomi': 'セイ、シン',
     'kunyomi': 'こう、うける',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '부탁하거나 요청하는 것을 의미하는 한자입니다.',
     'words': [
       '要請（ようせい） 요청',
@@ -31370,7 +31367,7 @@ KANJI_DATA = [
     'meaning': '들을 청',
     'onyomi': 'チョウ',
     'kunyomi': 'きく',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '귀 기울여 듣는 것을 의미하는 한자입니다.',
     'words': [
       '聴く（きく） 듣다',
@@ -31390,7 +31387,7 @@ KANJI_DATA = [
     'meaning': '몸 체',
     'onyomi': 'タイ、テイ',
     'kunyomi': 'からだ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '몸이나 신체를 의미하는 기본 한자입니다.',
     'words': [
       '体（からだ） 몸',
@@ -31407,7 +31404,7 @@ KANJI_DATA = [
   {
     'slug': 'n1-han-deliver-step',
     'kanji': '逓',
-    'meaning': '갈릴 체',
+    'meaning': '갈마들 체',
     'onyomi': 'テイ',
     'kunyomi': '',
     'level': 'N1',
@@ -31429,7 +31426,7 @@ KANJI_DATA = [
     'meaning': '잡을 체',
     'onyomi': 'タイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '붙잡거나 체포하는 것을 의미하는 한자입니다.',
     'words': [
       '逮捕（たいほ） 체포'
@@ -31448,7 +31445,7 @@ KANJI_DATA = [
     'meaning': '바꿀 체',
     'onyomi': 'タイ',
     'kunyomi': 'かえる、かわる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '바꾸거나 교체하는 것을 의미하는 한자입니다.',
     'words': [
       '取り替える（とりかえる） 교체하다'
@@ -31467,7 +31464,7 @@ KANJI_DATA = [
     'meaning': '막힐 체',
     'onyomi': 'タイ',
     'kunyomi': 'とどこおる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '막히거나 정체되는 것을 의미하는 한자입니다.',
     'words': [
       '渋滞（じゅうたい） 정체',
@@ -31487,7 +31484,7 @@ KANJI_DATA = [
     'meaning': '맺을 체',
     'onyomi': 'テイ',
     'kunyomi': 'しまる、しめる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '묶거나 조이고 마무리하는 것을 의미하는 한자입니다.',
     'words': [
       '締切（しめきり） 마감',
@@ -31507,7 +31504,7 @@ KANJI_DATA = [
     'meaning': '살필 체',
     'onyomi': 'テイ、タイ',
     'kunyomi': 'あきらめる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '체념하거나 포기하는 뜻으로 자주 쓰이는 한자입니다.',
     'words': [
       '諦める（あきらめる） 포기하다'
@@ -31526,7 +31523,7 @@ KANJI_DATA = [
     'meaning': '풀 초',
     'onyomi': 'ソウ',
     'kunyomi': 'くさ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '풀이나 초목을 의미하는 기본 한자입니다.',
     'words': [
       '草（くさ） 풀',
@@ -31546,7 +31543,7 @@ KANJI_DATA = [
     'meaning': '분초 초',
     'onyomi': 'ビョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '시간의 단위인 초를 의미하는 한자입니다.',
     'words': [
       '一秒（いちびょう） 1초'
@@ -31565,7 +31562,7 @@ KANJI_DATA = [
     'meaning': '처음 초',
     'onyomi': 'ショ',
     'kunyomi': 'はじめ、はじめて、はつ、うい、そめる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '처음이나 시작을 의미하는 기본 한자입니다.',
     'words': [
       '初めて（はじめて） 처음으로',
@@ -31585,7 +31582,7 @@ KANJI_DATA = [
     'meaning': '부를 초',
     'onyomi': 'ショウ',
     'kunyomi': 'まねく',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '부르거나 초대하는 것을 의미하는 한자입니다.',
     'words': [
       '招待（しょうたい） 초대',
@@ -31644,7 +31641,7 @@ KANJI_DATA = [
     'meaning': '식초 초',
     'onyomi': 'サク',
     'kunyomi': 'す',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '식초를 의미하는 한자입니다.',
     'words': [
       '酢（す） 식초'
@@ -31663,7 +31660,7 @@ KANJI_DATA = [
     'meaning': '탈 초',
     'onyomi': 'ショウ',
     'kunyomi': 'こげる、こがす、こがれる、あせる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '타거나 초조해하는 것을 의미하는 한자입니다.',
     'words': [
       '焦る（あせる） 초조해하다',
@@ -31683,7 +31680,7 @@ KANJI_DATA = [
     'meaning': '화약 초',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '초석이나 화약의 재료를 뜻하는 한자입니다.',
     'words': [
       '硝子（がらす） 유리',
@@ -31703,7 +31700,7 @@ KANJI_DATA = [
     'meaning': '뛰어넘을 초',
     'onyomi': 'チョウ',
     'kunyomi': 'こえる、こす',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '넘어서거나 초과하는 것을 의미하는 한자입니다.',
     'words': [
       '超える（こえる） 넘다',
@@ -31762,7 +31759,7 @@ KANJI_DATA = [
     'meaning': '재촉할 촉',
     'onyomi': 'ソク',
     'kunyomi': 'うながす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '재촉하거나 촉진하는 것을 의미하는 한자입니다.',
     'words': [
       '促進（そくしん） 촉진',
@@ -31782,7 +31779,7 @@ KANJI_DATA = [
     'meaning': '닿을 촉',
     'onyomi': 'ショク',
     'kunyomi': 'ふれる、さわる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '닿거나 접촉하는 것을 의미하는 한자입니다.',
     'words': [
       '触る（さわる） 만지다',
@@ -31821,7 +31818,7 @@ KANJI_DATA = [
     'meaning': '마을 촌',
     'onyomi': 'ソン',
     'kunyomi': 'むら',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '마을을 의미하는 기본 한자입니다.',
     'words': [
       '村（むら） 마을'
@@ -31840,7 +31837,7 @@ KANJI_DATA = [
     'meaning': '마디 촌',
     'onyomi': 'スン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '길이의 단위나 짧은 정도를 뜻하는 한자입니다.',
     'words': [
       '寸法（すんぽう） 치수'
@@ -31856,10 +31853,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-han-total',
     'kanji': '総',
-    'meaning': '다 총',
+    'meaning': '거느릴 총',
     'onyomi': 'ソウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '전체나 모두를 의미하는 한자입니다.',
     'words': [
       '総合（そうごう） 종합',
@@ -31879,7 +31876,7 @@ KANJI_DATA = [
     'meaning': '무덤 총',
     'onyomi': '',
     'kunyomi': 'つか',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '무덤이나 흙무더기를 의미하는 한자입니다.',
     'words': [
       '塚（つか） 무덤'
@@ -31898,7 +31895,7 @@ KANJI_DATA = [
     'meaning': '총 총',
     'onyomi': 'ジュウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '총기를 의미하는 한자입니다.',
     'words': [
       '銃声（じゅうせい） 총성'
@@ -31914,10 +31911,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-han-take-photo',
     'kanji': '撮',
-    'meaning': '사진 찍을 촬',
+    'meaning': '찍을 촬',
     'onyomi': 'サツ',
     'kunyomi': 'とる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '사진을 찍거나 장면을 촬영하는 것을 의미하는 한자입니다.',
     'words': [
       '撮影（さつえい） 촬영',
@@ -31937,7 +31934,7 @@ KANJI_DATA = [
     'meaning': '가장 최',
     'onyomi': 'サイ',
     'kunyomi': 'もっとも',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '가장, 최고를 의미하는 기본 한자입니다.',
     'words': [
       '最高（さいこう） 최고',
@@ -31957,7 +31954,7 @@ KANJI_DATA = [
     'meaning': '재촉할 최',
     'onyomi': 'サイ',
     'kunyomi': 'もよおす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '행사를 열거나 재촉하는 뜻을 가진 한자입니다.',
     'words': [
       '開催（かいさい） 개최',
@@ -31977,7 +31974,7 @@ KANJI_DATA = [
     'meaning': '가을 추',
     'onyomi': 'シュウ',
     'kunyomi': 'あき',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '가을을 의미하는 기본 한자입니다.',
     'words': [
       '秋（あき） 가을'
@@ -31996,7 +31993,7 @@ KANJI_DATA = [
     'meaning': '쫓을 추',
     'onyomi': 'ツイ',
     'kunyomi': 'おう',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '쫓아가거나 뒤따르는 것을 의미하는 한자입니다.',
     'words': [
       '追う（おう） 쫓다',
@@ -32016,7 +32013,7 @@ KANJI_DATA = [
     'meaning': '밀 추',
     'onyomi': 'スイ',
     'kunyomi': 'おす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '밀거나 추측, 추천의 뜻으로 쓰이는 한자입니다.',
     'words': [
       '推薦（すいせん） 추천',
@@ -32036,7 +32033,7 @@ KANJI_DATA = [
     'meaning': '뽑을 추',
     'onyomi': 'チュウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '뽑아내거나 추출하는 것을 의미하는 한자입니다.',
     'words': [
       '抽選（ちゅうせん） 추첨',
@@ -32094,7 +32091,7 @@ KANJI_DATA = [
     'meaning': '떨어질 추',
     'onyomi': 'ツイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '떨어지거나 추락하는 것을 의미하는 한자입니다.',
     'words': [
       '墜落（ついらく） 추락'
@@ -32113,7 +32110,7 @@ KANJI_DATA = [
     'meaning': '추할 추',
     'onyomi': 'シュウ',
     'kunyomi': 'みにくい',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '못생기거나 추한 상태를 의미하는 한자입니다.',
     'words': [
       '醜い（みにくい） 추하다'
@@ -32132,7 +32129,7 @@ KANJI_DATA = [
     'meaning': '빌 축',
     'onyomi': 'シュク、シュウ',
     'kunyomi': 'いわう',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '축하하거나 기원하는 것을 의미하는 한자입니다.',
     'words': [
       '祝う（いわう） 축하하다',
@@ -32152,7 +32149,7 @@ KANJI_DATA = [
     'meaning': '쌓을 축',
     'onyomi': 'チク',
     'kunyomi': 'きずく',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '쌓거나 건설하는 것을 의미하는 한자입니다.',
     'words': [
       '建築（けんちく） 건축',
@@ -32172,7 +32169,7 @@ KANJI_DATA = [
     'meaning': '줄일 축',
     'onyomi': 'シュク',
     'kunyomi': 'ちぢむ、ちぢまる、ちぢめる、ちぢれる、ちぢらす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '줄어들거나 줄이는 것을 의미하는 한자입니다.',
     'words': [
       '短縮（たんしゅく） 단축',
@@ -32231,7 +32228,7 @@ KANJI_DATA = [
     'meaning': '굴대 축',
     'onyomi': 'ジク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '회전의 중심이 되는 축을 의미하는 한자입니다.',
     'words': [
       '地軸（ちじく） 지축',
@@ -32251,7 +32248,7 @@ KANJI_DATA = [
     'meaning': '모을 축',
     'onyomi': 'チク',
     'kunyomi': 'たくわえる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '모아 두거나 저축하는 것을 의미하는 한자입니다.',
     'words': [
       '貯蓄（ちょちく） 저축',
@@ -32271,7 +32268,7 @@ KANJI_DATA = [
     'meaning': '찰 축',
     'onyomi': 'シュウ',
     'kunyomi': 'ける',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '발로 차는 동작을 의미하는 한자입니다.',
     'words': [
       '蹴る（ける） 차다'
@@ -32290,7 +32287,7 @@ KANJI_DATA = [
     'meaning': '봄 춘',
     'onyomi': 'シュン',
     'kunyomi': 'はる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '봄을 의미하는 기본 한자입니다.',
     'words': [
       '春（はる） 봄'
@@ -32329,7 +32326,7 @@ KANJI_DATA = [
     'meaning': '벌레 충',
     'onyomi': 'チュウ',
     'kunyomi': 'むし',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '벌레를 의미하는 기본 한자입니다.',
     'words': [
       '虫（むし） 벌레'
@@ -32348,7 +32345,7 @@ KANJI_DATA = [
     'meaning': '충성 충',
     'onyomi': 'チュウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '충성스럽고 진심 어린 마음을 의미하는 한자입니다.',
     'words': [
       '忠実（ちゅうじつ） 충실'
@@ -32367,7 +32364,7 @@ KANJI_DATA = [
     'meaning': '채울 충',
     'onyomi': 'ジュウ',
     'kunyomi': 'あてる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '채우거나 충당하는 것을 의미하는 한자입니다.',
     'words': [
       '充電（じゅうでん） 충전',
@@ -32387,7 +32384,7 @@ KANJI_DATA = [
     'meaning': '화할 충',
     'onyomi': 'チュウ',
     'kunyomi': 'おき',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '바다 한가운데 먼 앞바다를 의미하는 한자입니다.',
     'words': [
       '沖（おき） 먼바다'
@@ -32426,7 +32423,7 @@ KANJI_DATA = [
     'meaning': '찌를 충',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '충돌하거나 세게 부딪치는 것을 의미하는 한자입니다.',
     'words': [
       '衝突（しょうとつ） 충돌'
@@ -32445,7 +32442,7 @@ KANJI_DATA = [
     'meaning': '가질 취',
     'onyomi': 'シュ',
     'kunyomi': 'とる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '가지거나 취하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '取る（とる） 취하다'
@@ -32464,7 +32461,7 @@ KANJI_DATA = [
     'meaning': '나아갈 취',
     'onyomi': 'シュウ、ジュ',
     'kunyomi': 'つく、つける',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '어떤 상태나 직업에 나아가다의 뜻을 가진 한자입니다.',
     'words': [
       '就職（しゅうしょく） 취직'
@@ -32483,7 +32480,7 @@ KANJI_DATA = [
     'meaning': '불 취',
     'onyomi': 'スイ',
     'kunyomi': 'ふく',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '바람이 불거나 입으로 불어내는 것을 의미하는 기본 한자입니다.',
     'words': [
       '吹く（ふく） 불다'
@@ -32502,7 +32499,7 @@ KANJI_DATA = [
     'meaning': '불 땔 취',
     'onyomi': 'スイ',
     'kunyomi': 'たく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '불로 밥을 짓는 것을 의미하는 한자입니다.',
     'words': [
       '炊飯（すいはん） 취반',
@@ -32522,7 +32519,7 @@ KANJI_DATA = [
     'meaning': '냄새 취',
     'onyomi': 'シュウ',
     'kunyomi': 'くさい、におう',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '냄새가 나거나 악취를 의미하는 한자입니다.',
     'words': [
       '臭い（くさい） 냄새나다'
@@ -32541,7 +32538,7 @@ KANJI_DATA = [
     'meaning': '취할 취',
     'onyomi': 'スイ',
     'kunyomi': 'よう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '술이나 분위기에 취하는 것을 의미하는 한자입니다.',
     'words': [
       '酔う（よう） 취하다'
@@ -32560,7 +32557,7 @@ KANJI_DATA = [
     'meaning': '뜻 취',
     'onyomi': 'シュ',
     'kunyomi': 'おもむき',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '취지, 흥취, 정취 등을 의미하는 한자입니다.',
     'words': [
       '趣味（しゅみ） 취미',
@@ -32580,7 +32577,7 @@ KANJI_DATA = [
     'meaning': '곁 측',
     'onyomi': 'ソク',
     'kunyomi': 'がわ',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '옆이나 한쪽을 의미하는 한자입니다.',
     'words': [
       '右側（みぎがわ） 오른쪽',
@@ -32600,7 +32597,7 @@ KANJI_DATA = [
     'meaning': '헤아릴 측',
     'onyomi': 'ソク',
     'kunyomi': 'はかる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '길이, 깊이, 정도를 재는 것을 의미하는 한자입니다.',
     'words': [
       '測る（はかる） 재다',
@@ -32620,7 +32617,7 @@ KANJI_DATA = [
     'meaning': '층 층',
     'onyomi': 'ソウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '겹이나 층을 의미하는 한자입니다.',
     'words': [
       '地層（ちそう） 지층',
@@ -32640,7 +32637,7 @@ KANJI_DATA = [
     'meaning': '이 치',
     'onyomi': 'シ',
     'kunyomi': 'は',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '이를 의미하는 기본 한자입니다.',
     'words': [
       '歯（は） 이',
@@ -32660,7 +32657,7 @@ KANJI_DATA = [
     'meaning': '다스릴 치',
     'onyomi': 'ジ、チ',
     'kunyomi': 'おさめる、おさまる、なおる、なおす',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '다스리거나 치료하는 뜻을 가진 한자입니다.',
     'words': [
       '政治（せいじ） 정치',
@@ -32680,7 +32677,7 @@ KANJI_DATA = [
     'meaning': '둘 치',
     'onyomi': 'チ',
     'kunyomi': 'おく',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '두거나 놓는 것을 의미하는 기본 한자입니다.',
     'words': [
       '置く（おく） 두다'
@@ -32699,7 +32696,7 @@ KANJI_DATA = [
     'meaning': '값 치',
     'onyomi': 'チ',
     'kunyomi': 'ね、あたい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '값이나 가치를 의미하는 한자입니다.',
     'words': [
       '値段（ねだん） 가격',
@@ -32719,7 +32716,7 @@ KANJI_DATA = [
     'meaning': '부끄러울 치',
     'onyomi': 'チ',
     'kunyomi': 'はじ、はじる、はじらう、はずかしい',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '부끄러움이나 수치를 의미하는 한자입니다.',
     'words': [
       '恥ずかしい（はずかしい） 부끄럽다'
@@ -32738,7 +32735,7 @@ KANJI_DATA = [
     'meaning': '이를 치',
     'onyomi': 'チ',
     'kunyomi': 'いたす',
-    'level': 'N2',
+    'level': 'N1',
     'desc': "이르게 하거나 정중한 말로 '하다'를 나타내는 한자입니다.",
     'words': [
       '一致（いっち） 일치',
@@ -32815,7 +32812,7 @@ KANJI_DATA = [
     'meaning': '법칙 칙',
     'onyomi': 'ソク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '규칙이나 법칙을 의미하는 한자입니다.',
     'words': [
       '規則（きそく） 규칙',
@@ -32854,7 +32851,7 @@ KANJI_DATA = [
     'meaning': '친할 친',
     'onyomi': 'シン',
     'kunyomi': 'おや、したしい、したしむ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '부모나 친함을 의미하는 기본 한자입니다.',
     'words': [
       '親（おや） 부모',
@@ -32894,7 +32891,7 @@ KANJI_DATA = [
     'meaning': '옻 칠',
     'onyomi': 'シツ',
     'kunyomi': 'うるし',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '옻이나 칠을 의미하는 한자입니다.',
     'words': [
       '漆器（しっき） 칠기'
@@ -32913,7 +32910,7 @@ KANJI_DATA = [
     'meaning': '바늘 침',
     'onyomi': 'シン',
     'kunyomi': 'はり',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '바늘을 의미하는 한자입니다.',
     'words': [
       '針（はり） 바늘'
@@ -32932,7 +32929,7 @@ KANJI_DATA = [
     'meaning': '잠길 침',
     'onyomi': 'チン',
     'kunyomi': 'しずむ、しずめる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '가라앉거나 잠기는 것을 의미하는 한자입니다.',
     'words': [
       '沈む（しずむ） 가라앉다',
@@ -32952,7 +32949,7 @@ KANJI_DATA = [
     'meaning': '베개 침',
     'onyomi': 'チン',
     'kunyomi': 'まくら',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '베개를 의미하는 한자입니다.',
     'words': [
       '枕（まくら） 베개'
@@ -32991,7 +32988,7 @@ KANJI_DATA = [
     'meaning': '잠길 침',
     'onyomi': 'シン',
     'kunyomi': 'ひたす、ひたる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '물에 잠기거나 적시는 것을 의미하는 한자입니다.',
     'words': [
       '浸す（ひたす） 적시다',
@@ -33011,7 +33008,7 @@ KANJI_DATA = [
     'meaning': '잘 침',
     'onyomi': 'シン',
     'kunyomi': 'ねる、ねかす',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '잠을 자거나 눕는 것을 의미하는 기본 한자입니다.',
     'words': [
       '寝る（ねる） 자다'
@@ -33030,7 +33027,7 @@ KANJI_DATA = [
     'meaning': '일컬을 칭',
     'onyomi': 'ショウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '이름을 부르거나 칭하는 것을 의미하는 한자입니다.',
     'words': [
       '名称（めいしょう） 명칭'
@@ -33049,7 +33046,7 @@ KANJI_DATA = [
     'meaning': '쾌할 쾌',
     'onyomi': 'カイ',
     'kunyomi': 'こころよい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '상쾌하거나 기분 좋은 상태를 의미하는 한자입니다.',
     'words': [
       '快適（かいてき） 쾌적'
@@ -33068,7 +33065,7 @@ KANJI_DATA = [
     'meaning': '칠 타',
     'onyomi': 'ダ',
     'kunyomi': 'うつ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '치거나 때리는 것을 의미하는 기본 한자입니다.',
     'words': [
       '打つ（うつ） 치다'
@@ -33087,7 +33084,7 @@ KANJI_DATA = [
     'meaning': '다를 타',
     'onyomi': 'タ',
     'kunyomi': 'ほか',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '다른 것을 의미하는 기본 한자입니다.',
     'words': [
       '他（ほか） 다른 것'
@@ -33106,7 +33103,7 @@ KANJI_DATA = [
     'meaning': '온당할 타',
     'onyomi': 'ダ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '적절하거나 타당함을 의미하는 한자입니다.',
     'words': [
       '妥当（だとう） 타당'
@@ -33125,7 +33122,7 @@ KANJI_DATA = [
     'meaning': '침 타',
     'onyomi': 'ダ',
     'kunyomi': 'つば',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '침을 의미하는 한자입니다.',
     'words': [
       '唾（つば） 침'
@@ -33141,10 +33138,10 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-fall-degenerate',
     'kanji': '堕',
-    'meaning': '떨어질 타',
+    'meaning': '타락할 타',
     'onyomi': 'ダ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '타락하거나 떨어지는 것을 의미하는 한자입니다.',
     'words': [
       '堕落（だらく） 타락'
@@ -33182,7 +33179,7 @@ KANJI_DATA = [
     'meaning': '높을 탁',
     'onyomi': 'タク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '뛰어나거나 높음을 의미하는 한자입니다.',
     'words': [
       '卓越（たくえつ） 탁월'
@@ -33201,7 +33198,7 @@ KANJI_DATA = [
     'meaning': '부탁할 탁',
     'onyomi': 'タク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '맡기거나 부탁하는 것을 의미하는 한자입니다.',
     'words': [
       '委託（いたく） 위탁'
@@ -33220,7 +33217,7 @@ KANJI_DATA = [
     'meaning': '흐릴 탁',
     'onyomi': 'ダク',
     'kunyomi': 'にごる、にごす',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '탁하거나 흐려지는 상태를 의미하는 한자입니다.',
     'words': [
       '濁る（にごる） 흐려지다'
@@ -33258,7 +33255,7 @@ KANJI_DATA = [
     'meaning': '숯 탄',
     'onyomi': 'タン',
     'kunyomi': 'すみ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '숯을 의미하는 기본 한자입니다.',
     'words': [
       '炭（すみ） 숯'
@@ -33277,7 +33274,7 @@ KANJI_DATA = [
     'meaning': '낳을 탄',
     'onyomi': 'タン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '태어나거나 탄생하는 것을 의미하는 한자입니다.',
     'words': [
       '誕生（たんじょう） 탄생'
@@ -33296,7 +33293,7 @@ KANJI_DATA = [
     'meaning': '탄알 탄',
     'onyomi': 'ダン',
     'kunyomi': 'ひく、はずむ、たま',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '탄환이나 튕기는 것을 의미하는 한자입니다.',
     'words': [
       '弾（たま） 탄알'
@@ -33315,7 +33312,7 @@ KANJI_DATA = [
     'meaning': '탄식할 탄',
     'onyomi': 'タン',
     'kunyomi': 'なげく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '한탄하거나 슬퍼하는 것을 의미하는 한자입니다.',
     'words': [
       '嘆く（なげく） 한탄하다'
@@ -33353,7 +33350,7 @@ KANJI_DATA = [
     'meaning': '벗을 탈',
     'onyomi': 'ダツ',
     'kunyomi': 'ぬぐ、ぬげる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '벗거나 빠져나오는 것을 의미하는 한자입니다.',
     'words': [
       '脱ぐ（ぬぐ） 벗다'
@@ -33372,7 +33369,7 @@ KANJI_DATA = [
     'meaning': '빼앗을 탈',
     'onyomi': 'ダツ',
     'kunyomi': 'うばう',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '빼앗거나 강제로 가져가는 것을 의미하는 한자입니다.',
     'words': [
       '奪う（うばう） 빼앗다'
@@ -33391,7 +33388,7 @@ KANJI_DATA = [
     'meaning': '찾을 탐',
     'onyomi': 'タン',
     'kunyomi': 'さぐる、さがす',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '찾거나 탐색하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '探す（さがす） 찾다'
@@ -33407,7 +33404,7 @@ KANJI_DATA = [
   {
     'slug': 'n1-han-greed',
     'kanji': '貪',
-    'meaning': '탐할 탐',
+    'meaning': '탐낼 탐',
     'onyomi': 'ドン',
     'kunyomi': 'むさぼる',
     'level': 'N1',
@@ -33429,7 +33426,7 @@ KANJI_DATA = [
     'meaning': '탑 탑',
     'onyomi': 'トウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '탑이나 높은 건축물을 의미하는 한자입니다.',
     'words': [
       '塔（とう） 탑'
@@ -33448,7 +33445,7 @@ KANJI_DATA = [
     'meaning': '탈 탑',
     'onyomi': 'トウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '올라타거나 싣는 것을 의미하는 한자입니다.',
     'words': [
       '搭乗（とうじょう） 탑승'
@@ -33467,7 +33464,7 @@ KANJI_DATA = [
     'meaning': '끓일 탕',
     'onyomi': 'トウ',
     'kunyomi': 'ゆ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '뜨거운 물을 의미하는 기본 한자입니다.',
     'words': [
       'お湯（おゆ） 뜨거운 물'
@@ -33486,7 +33483,7 @@ KANJI_DATA = [
     'meaning': '클 태',
     'onyomi': 'タイ、タ',
     'kunyomi': 'ふとい、ふとる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '굵거나 큰 것을 의미하는 기본 한자입니다.',
     'words': [
       '太い（ふとい） 굵다'
@@ -33505,7 +33502,7 @@ KANJI_DATA = [
     'meaning': '모습 태',
     'onyomi': 'タイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '상태나 형태를 의미하는 한자입니다.',
     'words': [
       '状態（じょうたい） 상태'
@@ -33521,7 +33518,7 @@ KANJI_DATA = [
   {
     'slug': 'n1-han-excess-remove',
     'kanji': '汰',
-    'meaning': '사치할 태',
+    'meaning': '일 태',
     'onyomi': 'タ',
     'kunyomi': '',
     'level': 'N1',
@@ -33543,7 +33540,7 @@ KANJI_DATA = [
     'meaning': '게으를 태',
     'onyomi': 'タイ',
     'kunyomi': 'おこたる、なまける',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '게으르거나 소홀히 하는 것을 의미하는 한자입니다.',
     'words': [
       '怠ける（なまける） 게으르다'
@@ -33562,7 +33559,7 @@ KANJI_DATA = [
     'meaning': '아이 밸 태',
     'onyomi': 'タイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '태아나 임신과 관련된 뜻을 가진 한자입니다.',
     'words': [
       '胎児（たいじ） 태아'
@@ -33581,7 +33578,7 @@ KANJI_DATA = [
     'meaning': '클 태',
     'onyomi': 'タイ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '평온하고 안정된 상태를 의미하는 한자입니다.',
     'words': [
       '安泰（あんたい） 안태'
@@ -33595,31 +33592,31 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n4-han-pack-animal',
-    'kanji': '駄',
-    'meaning': '짐 실을 태',
-    'onyomi': 'ダ',
-    'kunyomi': '',
-    'level': 'N4',
-    'desc': '짐을 실어 나르는 것과 관련된 한자입니다.',
-    'words': [
-      '駄目（だめ） 안 됨'
-    ],
-    'example_jp': 'それは駄目だ。',
-    'example_ko': '그건 안 된다.',
-    'related': [
-      '荷',
-      '運',
-      '馬'
-    ]
-  },
+  'slug': 'n4-han-pack-animal',
+  'kanji': '駄',
+  'meaning': '쓸모없을 타',
+  'onyomi': 'ダ',
+  'kunyomi': '',
+  'level': 'N4',
+  'desc': '쓸모없거나 허용되지 않는 상태를 나타내는 한자입니다.',
+  'words': [
+    '駄目（だめ） 안 됨, 소용없음'
+  ],
+  'example_jp': 'それは駄目だ。',
+  'example_ko': '그건 안 된다.',
+  'related': [
+    '無',
+    '否',
+    '不可'
+  ]
+},
   {
     'slug': 'n4-han-house',
     'kanji': '宅',
     'meaning': '집 택',
     'onyomi': 'タク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '집이나 주거를 의미하는 한자입니다.',
     'words': [
       '自宅（じたく） 자택'
@@ -33638,7 +33635,7 @@ KANJI_DATA = [
     'meaning': '가릴 택',
     'onyomi': 'タク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '선택하거나 가려내는 것을 의미하는 한자입니다.',
     'words': [
       '選択（せんたく） 선택'
@@ -33657,7 +33654,7 @@ KANJI_DATA = [
     'meaning': '못 택',
     'onyomi': 'タク',
     'kunyomi': 'さわ',
-    'level': 'N5',
+    'level': 'N1',
     'desc': '늪이나 물이 많은 곳을 의미하는 기본 한자입니다.',
     'words': [
       '沢（さわ） 늪'
@@ -33695,7 +33692,7 @@ KANJI_DATA = [
     'meaning': '칠 토',
     'onyomi': 'トウ',
     'kunyomi': 'うつ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '토벌하거나 공격하는 것을 의미하는 한자입니다.',
     'words': [
       '討論（とうろん） 토론'
@@ -33714,7 +33711,7 @@ KANJI_DATA = [
     'meaning': '토할 토',
     'onyomi': 'ト',
     'kunyomi': 'はく',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '토하거나 내뱉는 것을 의미하는 기본 한자입니다.',
     'words': [
       '吐く（はく） 토하다'
@@ -33733,7 +33730,7 @@ KANJI_DATA = [
     'meaning': '통할 통',
     'onyomi': 'ツウ、ツ',
     'kunyomi': 'とおる、とおす、かよう',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '통하거나 지나가는 것을 의미하는 기본 한자입니다.',
     'words': [
       '通る（とおる） 지나가다'
@@ -33752,7 +33749,7 @@ KANJI_DATA = [
     'meaning': '거느릴 통',
     'onyomi': 'トウ',
     'kunyomi': 'すべる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '통합하거나 거느리는 것을 의미하는 한자입니다.',
     'words': [
       '統一（とういつ） 통일'
@@ -33771,7 +33768,7 @@ KANJI_DATA = [
     'meaning': '아플 통',
     'onyomi': 'ツウ',
     'kunyomi': 'いたい、いたむ、いためる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '아픔이나 통증을 의미하는 기본 한자입니다.',
     'words': [
       '痛い（いたい） 아프다'
@@ -33790,7 +33787,7 @@ KANJI_DATA = [
     'meaning': '통 통',
     'onyomi': 'トウ',
     'kunyomi': 'つつ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '속이 빈 통이나 원통형 물체를 의미하는 한자입니다.',
     'words': [
       '筒（つつ） 통'
@@ -33809,7 +33806,7 @@ KANJI_DATA = [
     'meaning': '물러날 퇴',
     'onyomi': 'タイ',
     'kunyomi': 'しりぞく、しりぞける',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '물러나거나 후퇴하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '退く（しりぞく） 물러나다',
@@ -33826,7 +33823,7 @@ KANJI_DATA = [
   {
     'slug': 'n1-han-pile',
     'kanji': '堆',
-    'meaning': '언덕 퇴',
+    'meaning': '쌓을 퇴',
     'onyomi': 'タイ',
     'kunyomi': 'うずたかい',
     'level': 'N1',
@@ -33848,7 +33845,7 @@ KANJI_DATA = [
     'meaning': '던질 투',
     'onyomi': 'トウ',
     'kunyomi': 'なげる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '던지거나 투입하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '投げる（なげる） 던지다'
@@ -33886,7 +33883,7 @@ KANJI_DATA = [
     'meaning': '사무칠 투',
     'onyomi': 'トウ',
     'kunyomi': 'すく、すかす、すける',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '비치거나 통과하는 것을 의미하는 한자입니다.',
     'words': [
       '透明（とうめい） 투명'
@@ -33905,7 +33902,7 @@ KANJI_DATA = [
     'meaning': '싸울 투',
     'onyomi': 'トウ',
     'kunyomi': 'たたかう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '싸우거나 경쟁하는 것을 의미하는 한자입니다.',
     'words': [
       '戦闘（せんとう） 전투'
@@ -33924,7 +33921,7 @@ KANJI_DATA = [
     'meaning': '특별할 특',
     'onyomi': 'トク',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '특별하거나 다른 것과 구별됨을 의미하는 기본 한자입니다.',
     'words': [
       '特別（とくべつ） 특별'
@@ -33943,7 +33940,7 @@ KANJI_DATA = [
     'meaning': '물결 파',
     'onyomi': 'ハ',
     'kunyomi': 'なみ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '물결이나 파도를 의미하는 기본 한자입니다.',
     'words': [
       '波（なみ） 파도'
@@ -33962,7 +33959,7 @@ KANJI_DATA = [
     'meaning': '깨뜨릴 파',
     'onyomi': 'ハ',
     'kunyomi': 'やぶる、やぶれる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '깨뜨리거나 부수는 것을 의미하는 기본 한자입니다.',
     'words': [
       '破る（やぶる） 깨다'
@@ -33981,7 +33978,7 @@ KANJI_DATA = [
     'meaning': '갈래 파',
     'onyomi': 'ハ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '파벌이나 갈래를 의미하는 한자입니다.',
     'words': [
       '派（は） 파벌'
@@ -34057,7 +34054,7 @@ KANJI_DATA = [
     'meaning': '언덕 판',
     'onyomi': 'ハン',
     'kunyomi': 'さか',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '언덕이나 비탈길을 의미하는 기본 한자입니다.',
     'words': [
       '坂（さか） 언덕'
@@ -34076,7 +34073,7 @@ KANJI_DATA = [
     'meaning': '널빤지 판',
     'onyomi': 'ハン、バン',
     'kunyomi': 'いた',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '판자나 널을 의미하는 기본 한자입니다.',
     'words': [
       '板（いた） 판자'
@@ -34095,7 +34092,7 @@ KANJI_DATA = [
     'meaning': '판단할 판',
     'onyomi': 'ハン、バン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '판단하거나 구별하는 것을 의미하는 한자입니다.',
     'words': [
       '判断（はんだん） 판단'
@@ -34114,7 +34111,7 @@ KANJI_DATA = [
     'meaning': '판목 판',
     'onyomi': 'ハン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '판이나 인쇄판을 의미하는 한자입니다.',
     'words': [
       '出版（しゅっぱん） 출판'
@@ -34152,7 +34149,7 @@ KANJI_DATA = [
     'meaning': '팔 판',
     'onyomi': 'ハン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '판매하는 것을 의미하는 한자입니다.',
     'words': [
       '販売（はんばい） 판매'
@@ -34190,7 +34187,7 @@ KANJI_DATA = [
     'meaning': '조개 패',
     'onyomi': 'カイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '조개를 의미하는 기본 한자입니다.',
     'words': [
       '貝（かい） 조개'
@@ -34209,7 +34206,7 @@ KANJI_DATA = [
     'meaning': '패할 패',
     'onyomi': 'ハイ',
     'kunyomi': 'やぶれる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '패배하거나 실패하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '失敗（しっぱい） 실패'
@@ -34228,7 +34225,7 @@ KANJI_DATA = [
     'meaning': '염불 소리 패',
     'onyomi': '',
     'kunyomi': 'うた',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '노래나 가락을 의미하는 한자입니다.',
     'words': [
       '唄（うた） 노래'
@@ -34266,7 +34263,7 @@ KANJI_DATA = [
     'meaning': '부풀 팽',
     'onyomi': 'ボウ',
     'kunyomi': 'ふくらむ、ふくれる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '부풀거나 팽창하는 것을 의미하는 한자입니다.',
     'words': [
       '膨らむ（ふくらむ） 부풀다'
@@ -34285,7 +34282,7 @@ KANJI_DATA = [
     'meaning': '편할 편',
     'onyomi': 'ベン、ビン',
     'kunyomi': 'たより',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '편리함이나 소식을 의미하는 기본 한자입니다.',
     'words': [
       '便利（べんり） 편리'
@@ -34304,7 +34301,7 @@ KANJI_DATA = [
     'meaning': '엮을 편',
     'onyomi': 'ヘン',
     'kunyomi': 'あむ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '엮거나 편집하는 것을 의미하는 한자입니다.',
     'words': [
       '編集（へんしゅう） 편집'
@@ -34323,7 +34320,7 @@ KANJI_DATA = [
     'meaning': '조각 편',
     'onyomi': 'ヘン',
     'kunyomi': 'かた',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '조각이나 한쪽을 의미하는 기본 한자입니다.',
     'words': [
       '片方（かたほう） 한쪽'
@@ -34342,7 +34339,7 @@ KANJI_DATA = [
     'meaning': '치우칠 편',
     'onyomi': 'ヘン',
     'kunyomi': 'かたよる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '한쪽으로 치우치는 것을 의미하는 한자입니다.',
     'words': [
       '偏見（へんけん） 편견'
@@ -34361,7 +34358,7 @@ KANJI_DATA = [
     'meaning': '두루 편',
     'onyomi': 'ヘン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '널리 두루 퍼짐을 의미하는 한자입니다.',
     'words': [
       '普遍（ふへん） 보편'
@@ -34380,7 +34377,7 @@ KANJI_DATA = [
     'meaning': '평평할 평',
     'onyomi': 'ヘイ、ビョウ',
     'kunyomi': 'たいら、ひら',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '평평하거나 고른 상태를 의미하는 기본 한자입니다.',
     'words': [
       '平ら（たいら） 평평함'
@@ -34399,7 +34396,7 @@ KANJI_DATA = [
     'meaning': '평할 평',
     'onyomi': 'ヒョウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '평가하거나 비평하는 것을 의미하는 한자입니다.',
     'words': [
       '評価（ひょうか） 평가'
@@ -34418,7 +34415,7 @@ KANJI_DATA = [
     'meaning': '들 평',
     'onyomi': '',
     'kunyomi': 'つぼ',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '면적 단위를 의미하는 한자입니다.',
     'words': [
       '一坪（ひとつぼ） 한 평'
@@ -34437,7 +34434,7 @@ KANJI_DATA = [
     'meaning': '허파 폐',
     'onyomi': 'ハイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '폐를 의미하는 한자입니다.',
     'words': [
       '肺（はい） 폐'
@@ -34456,7 +34453,7 @@ KANJI_DATA = [
     'meaning': '대궐 섬돌 폐',
     'onyomi': 'ヘイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '궁전의 계단이나 왕을 높여 부르는 말에 쓰이는 한자입니다.',
     'words': [
       '陛下（へいか） 폐하'
@@ -34475,7 +34472,7 @@ KANJI_DATA = [
     'meaning': '닫을 폐',
     'onyomi': 'ヘイ',
     'kunyomi': 'しまる、しめる、とじる、とざす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '닫거나 막는 것을 의미하는 한자입니다.',
     'words': [
       '閉める（しめる） 닫다'
@@ -34491,7 +34488,7 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-abolish',
     'kanji': '廃',
-    'meaning': '버릴 폐',
+    'meaning': '폐할 폐',
     'onyomi': 'ハイ',
     'kunyomi': 'すたれる、すたる',
     'level': 'N3',
@@ -34513,7 +34510,7 @@ KANJI_DATA = [
     'meaning': '화폐 폐',
     'onyomi': 'ヘイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '돈이나 화폐를 의미하는 한자입니다.',
     'words': [
       '貨幣（かへい） 화폐'
@@ -34570,7 +34567,7 @@ KANJI_DATA = [
     'meaning': '쌀 포',
     'onyomi': 'ホウ',
     'kunyomi': 'つつむ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '싸거나 감싸는 것을 의미하는 기본 한자입니다.',
     'words': [
       '包む（つつむ） 싸다'
@@ -34589,7 +34586,7 @@ KANJI_DATA = [
     'meaning': '베 포',
     'onyomi': 'フ',
     'kunyomi': 'ぬの',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '천이나 헝겊을 의미하는 기본 한자입니다.',
     'words': [
       '布（ぬの） 천'
@@ -34608,7 +34605,7 @@ KANJI_DATA = [
     'meaning': '두려워할 포',
     'onyomi': 'フ',
     'kunyomi': 'こわい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '무섭거나 두려운 감정을 의미하는 한자입니다.',
     'words': [
       '怖い（こわい） 무섭다'
@@ -34627,7 +34624,7 @@ KANJI_DATA = [
     'meaning': '안을 포',
     'onyomi': 'ホウ',
     'kunyomi': 'だく、いだく、かかえる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '안거나 품에 안는 것을 의미하는 한자입니다.',
     'words': [
       '抱く（だく） 안다'
@@ -34646,7 +34643,7 @@ KANJI_DATA = [
     'meaning': '거품 포',
     'onyomi': 'ホウ',
     'kunyomi': 'あわ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '거품이나 물방울을 의미하는 한자입니다.',
     'words': [
       '泡（あわ） 거품'
@@ -34684,7 +34681,7 @@ KANJI_DATA = [
     'meaning': '잡을 포',
     'onyomi': 'ホ',
     'kunyomi': 'とらえる、とらわれる、とる、つかまえる、つかまる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '붙잡거나 체포하는 것을 의미하는 한자입니다.',
     'words': [
       '捕まえる（つかまえる） 붙잡다',
@@ -34704,7 +34701,7 @@ KANJI_DATA = [
     'meaning': '대포 포',
     'onyomi': 'ホウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '대포나 포격에 관련된 한자입니다.',
     'words': [
       '砲台（ほうだい） 포대'
@@ -34723,7 +34720,7 @@ KANJI_DATA = [
     'meaning': '개 포',
     'onyomi': 'ホ',
     'kunyomi': 'うら',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '바닷가나 물가의 굽은 곳을 의미하는 한자입니다.',
     'words': [
       '浦（うら） 갯가'
@@ -34761,7 +34758,7 @@ KANJI_DATA = [
     'meaning': '배부를 포',
     'onyomi': 'ホウ',
     'kunyomi': 'あきる、あかす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '질리거나 충분하여 싫증 나는 상태를 의미하는 한자입니다.',
     'words': [
       '飽きる（あきる） 질리다'
@@ -34780,7 +34777,7 @@ KANJI_DATA = [
     'meaning': '펼 포',
     'onyomi': 'ホ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '가게나 길을 펼쳐 놓는 뜻에 쓰이는 한자입니다.',
     'words': [
       '店舗（てんぽ） 점포',
@@ -34800,7 +34797,7 @@ KANJI_DATA = [
     'meaning': '기릴 포',
     'onyomi': 'ホウ',
     'kunyomi': 'ほめる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '칭찬하거나 기리는 것을 의미하는 한자입니다.',
     'words': [
       '褒める（ほめる） 칭찬하다'
@@ -34819,7 +34816,7 @@ KANJI_DATA = [
     'meaning': '사나울 폭',
     'onyomi': 'ボウ、バク',
     'kunyomi': 'あばく、あばれる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '난폭하거나 거칠게 날뛰는 것을 의미하는 한자입니다.',
     'words': [
       '暴力（ぼうりょく） 폭력'
@@ -34838,7 +34835,7 @@ KANJI_DATA = [
     'meaning': '폭 폭',
     'onyomi': 'フク',
     'kunyomi': 'はば',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '너비나 폭을 의미하는 기본 한자입니다.',
     'words': [
       '幅（はば） 폭'
@@ -34857,7 +34854,7 @@ KANJI_DATA = [
     'meaning': '불터질 폭',
     'onyomi': 'バク',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '폭발하는 것을 의미하는 한자입니다.',
     'words': [
       '爆発（ばくはつ） 폭발'
@@ -34876,7 +34873,7 @@ KANJI_DATA = [
     'meaning': '겉 표',
     'onyomi': 'ヒョウ',
     'kunyomi': 'おもて、あらわす、あらわれる',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '겉면이나 드러내는 것을 의미하는 기본 한자입니다.',
     'words': [
       '表（おもて） 겉',
@@ -34896,7 +34893,7 @@ KANJI_DATA = [
     'meaning': '표 표',
     'onyomi': 'ヒョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '표나 투표 용지를 의미하는 한자입니다.',
     'words': [
       '投票（とうひょう） 투표'
@@ -34915,7 +34912,7 @@ KANJI_DATA = [
     'meaning': '표할 표',
     'onyomi': 'ヒョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '표시나 목표, 기준을 의미하는 한자입니다.',
     'words': [
       '目標（もくひょう） 목표',
@@ -34932,10 +34929,10 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-straw-bag',
     'kanji': '俵',
-    'meaning': '나누어 줄 표',
+    'meaning': '가마니 표',
     'onyomi': 'ヒョウ',
     'kunyomi': 'たわら',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '짚으로 만든 부대나 쌀가마니를 의미하는 한자입니다.',
     'words': [
       '米俵（こめだわら） 쌀가마니'
@@ -34973,7 +34970,7 @@ KANJI_DATA = [
     'meaning': '물건 품',
     'onyomi': 'ヒン',
     'kunyomi': 'しな',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '물건이나 품질을 의미하는 기본 한자입니다.',
     'words': [
       '品物（しなもの） 물건',
@@ -34993,7 +34990,7 @@ KANJI_DATA = [
     'meaning': '바람 풍',
     'onyomi': 'フウ、フ',
     'kunyomi': 'かぜ、かざ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '바람을 의미하는 기본 한자입니다.',
     'words': [
       '風（かぜ） 바람'
@@ -35012,7 +35009,7 @@ KANJI_DATA = [
     'meaning': '풍년 풍',
     'onyomi': 'ホウ',
     'kunyomi': 'ゆたか',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '풍부하고 넉넉한 상태를 의미하는 한자입니다.',
     'words': [
       '豊か（ゆたか） 풍부하다'
@@ -35031,7 +35028,7 @@ KANJI_DATA = [
     'meaning': '가죽 피',
     'onyomi': 'ヒ',
     'kunyomi': 'かわ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '가죽이나 껍질을 의미하는 기본 한자입니다.',
     'words': [
       '皮（かわ） 껍질'
@@ -35050,7 +35047,7 @@ KANJI_DATA = [
     'meaning': '저 피',
     'onyomi': 'ヒ',
     'kunyomi': 'かれ、かの',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '그, 저 사람을 의미하는 기본 한자입니다.',
     'words': [
       '彼（かれ） 그'
@@ -35069,7 +35066,7 @@ KANJI_DATA = [
     'meaning': '헤칠 피',
     'onyomi': 'ヒ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '펴거나 드러내는 것을 의미하는 한자입니다.',
     'words': [
       '披露（ひろう） 피로'
@@ -35088,7 +35085,7 @@ KANJI_DATA = [
     'meaning': '피곤할 피',
     'onyomi': 'ヒ',
     'kunyomi': 'つかれる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '피곤하거나 지친 상태를 의미하는 한자입니다.',
     'words': [
       '疲れる（つかれる） 피곤하다'
@@ -35107,7 +35104,7 @@ KANJI_DATA = [
     'meaning': '입을 피',
     'onyomi': 'ヒ',
     'kunyomi': 'こうむる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '어떤 피해나 영향을 입는 것을 의미하는 한자입니다.',
     'words': [
       '被害（ひがい） 피해',
@@ -35127,7 +35124,7 @@ KANJI_DATA = [
     'meaning': '피할 피',
     'onyomi': 'ヒ',
     'kunyomi': 'さける',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '피하거나 회피하는 것을 의미하는 한자입니다.',
     'words': [
       '避ける（さける） 피하다'
@@ -35146,7 +35143,7 @@ KANJI_DATA = [
     'meaning': '붓 필',
     'onyomi': 'ヒツ',
     'kunyomi': 'ふで',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '붓이나 필기도구를 의미하는 기본 한자입니다.',
     'words': [
       '筆（ふで） 붓'
@@ -35165,7 +35162,7 @@ KANJI_DATA = [
     'meaning': '반드시 필',
     'onyomi': 'ヒツ',
     'kunyomi': 'かならず',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '반드시, 꼭을 의미하는 기본 한자입니다.',
     'words': [
       '必ず（かならず） 반드시'
@@ -35184,7 +35181,7 @@ KANJI_DATA = [
     'meaning': '짝 필',
     'onyomi': 'ヒツ',
     'kunyomi': 'ひき',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '작은 동물을 세는 단위로 쓰이는 기본 한자입니다.',
     'words': [
       '一匹（いっぴき） 한 마리'
@@ -35203,7 +35200,7 @@ KANJI_DATA = [
     'meaning': '모자랄 핍',
     'onyomi': 'ボウ',
     'kunyomi': 'とぼしい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '부족하거나 빈약한 상태를 의미하는 한자입니다.',
     'words': [
       '乏しい（とぼしい） 부족하다'
@@ -35260,7 +35257,7 @@ KANJI_DATA = [
     'meaning': '여름 하',
     'onyomi': 'カ、ゲ',
     'kunyomi': 'なつ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '여름을 의미하는 기본 한자입니다.',
     'words': [
       '夏（なつ） 여름'
@@ -35279,7 +35276,7 @@ KANJI_DATA = [
     'meaning': '멜 하',
     'onyomi': 'カ',
     'kunyomi': 'に',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '짐이나 짐을 지는 것을 의미하는 기본 한자입니다.',
     'words': [
       '荷物（にもつ） 짐'
@@ -35298,7 +35295,7 @@ KANJI_DATA = [
     'meaning': '물 하',
     'onyomi': 'カ',
     'kunyomi': 'かわ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '큰 강을 의미하는 기본 한자입니다.',
     'words': [
       '河川（かせん） 하천'
@@ -35317,7 +35314,7 @@ KANJI_DATA = [
     'meaning': '하례할 하',
     'onyomi': 'ガ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '축하하거나 기뻐하는 뜻을 가진 한자입니다.',
     'words': [
       '祝賀（しゅくが） 축하'
@@ -35431,10 +35428,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-han-limit',
     'kanji': '限',
-    'meaning': '제한할 한',
+    'meaning': '한계 한',
     'onyomi': 'ゲン',
     'kunyomi': 'かぎる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '한계나 제한을 의미하는 한자입니다.',
     'words': [
       '制限（せいげん） 제한',
@@ -35454,7 +35451,7 @@ KANJI_DATA = [
     'meaning': '땀 한',
     'onyomi': 'カン',
     'kunyomi': 'あせ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '땀을 의미하는 한자입니다.',
     'words': [
       '汗（あせ） 땀'
@@ -35530,7 +35527,7 @@ KANJI_DATA = [
     'meaning': '벨 할',
     'onyomi': 'カツ',
     'kunyomi': 'わる、わり、われる、さく',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '나누거나 깨지는 것을 의미하는 기본 한자입니다.',
     'words': [
       '割る（わる） 나누다',
@@ -35550,7 +35547,7 @@ KANJI_DATA = [
     'meaning': '다스릴 할',
     'onyomi': 'カツ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '관할하거나 지배하는 것을 의미하는 한자입니다.',
     'words': [
       '管轄（かんかつ） 관할'
@@ -35569,7 +35566,7 @@ KANJI_DATA = [
     'meaning': '머금을 함',
     'onyomi': 'ガン',
     'kunyomi': 'ふくむ、ふくめる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '포함하거나 머금는 것을 의미하는 한자입니다.',
     'words': [
       '含む（ふくむ） 포함하다'
@@ -35588,7 +35585,7 @@ KANJI_DATA = [
     'meaning': '빠질 함',
     'onyomi': 'カン',
     'kunyomi': 'おちいる、おとしいれる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '빠지거나 함정에 빠뜨리는 것을 의미하는 한자입니다.',
     'words': [
       '陥る（おちいる） 빠지다'
@@ -35607,7 +35604,7 @@ KANJI_DATA = [
     'meaning': '큰 배 함',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '군함이나 큰 배를 의미하는 한자입니다.',
     'words': [
       '軍艦（ぐんかん） 군함'
@@ -35626,7 +35623,7 @@ KANJI_DATA = [
     'meaning': '합할 합',
     'onyomi': 'ゴウ、ガッ、カッ',
     'kunyomi': 'あう、あわす、あわせる',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '맞다, 합치다를 의미하는 기본 한자입니다.',
     'words': [
       '合う（あう） 맞다',
@@ -35646,7 +35643,7 @@ KANJI_DATA = [
     'meaning': '항구 항',
     'onyomi': 'コウ',
     'kunyomi': 'みなと',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '배가 드나드는 항구를 의미하는 한자입니다.',
     'words': [
       '港（みなと） 항구'
@@ -35665,7 +35662,7 @@ KANJI_DATA = [
     'meaning': '배 항',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '배나 비행기가 나아가는 것을 의미하는 한자입니다.',
     'words': [
       '航空（こうくう） 항공',
@@ -35685,7 +35682,7 @@ KANJI_DATA = [
     'meaning': '겨룰 항',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '맞서거나 저항하는 것을 의미하는 한자입니다.',
     'words': [
       '抵抗（ていこう） 저항'
@@ -35723,7 +35720,7 @@ KANJI_DATA = [
     'meaning': '항목 항',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '항목이나 조목을 의미하는 한자입니다.',
     'words': [
       '事項（じこう） 사항',
@@ -35743,7 +35740,7 @@ KANJI_DATA = [
     'meaning': '바다 해',
     'onyomi': 'カイ',
     'kunyomi': 'うみ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '바다를 의미하는 기본 한자입니다.',
     'words': [
       '海（うみ） 바다'
@@ -35762,7 +35759,7 @@ KANJI_DATA = [
     'meaning': '해할 해',
     'onyomi': 'ガイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '해나 피해를 의미하는 한자입니다.',
     'words': [
       '被害（ひがい） 피해',
@@ -35782,7 +35779,7 @@ KANJI_DATA = [
     'meaning': '풀 해',
     'onyomi': 'カイ、ゲ',
     'kunyomi': 'とく、とける、とかす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '풀거나 해결하는 것을 의미하는 한자입니다.',
     'words': [
       '解く（とく） 풀다',
@@ -35802,7 +35799,7 @@ KANJI_DATA = [
     'meaning': '마땅 해',
     'onyomi': 'ガイ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '해당하거나 마땅함을 의미하는 한자입니다.',
     'words': [
       '該当（がいとう） 해당'
@@ -35898,7 +35895,7 @@ KANJI_DATA = [
     'meaning': '씨 핵',
     'onyomi': 'カク',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '핵심이나 씨앗의 중심을 의미하는 한자입니다.',
     'words': [
       '核心（かくしん） 핵심',
@@ -35938,7 +35935,7 @@ KANJI_DATA = [
     'meaning': '다행 행',
     'onyomi': 'コウ',
     'kunyomi': 'さいわい、さち、しあわせ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '행복이나 다행을 의미하는 기본 한자입니다.',
     'words': [
       '幸せ（しあわせ） 행복'
@@ -35957,7 +35954,7 @@ KANJI_DATA = [
     'meaning': '향할 향',
     'onyomi': 'コウ',
     'kunyomi': 'むく、むかう、むける、むこう',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '향하거나 방향을 뜻하는 기본 한자입니다.',
     'words': [
       '向かう（むかう） 향하다'
@@ -35976,7 +35973,7 @@ KANJI_DATA = [
     'meaning': '시골 향',
     'onyomi': 'キョウ、ゴウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '고향이나 시골을 의미하는 한자입니다.',
     'words': [
       '故郷（こきょう） 고향'
@@ -36014,7 +36011,7 @@ KANJI_DATA = [
     'meaning': '향기 향',
     'onyomi': 'コウ',
     'kunyomi': 'か、かおり、かおる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '향기나 냄새를 의미하는 기본 한자입니다.',
     'words': [
       '香り（かおり） 향기'
@@ -36033,7 +36030,7 @@ KANJI_DATA = [
     'meaning': '울릴 향',
     'onyomi': 'キョウ',
     'kunyomi': 'ひびく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '울리거나 영향을 미치는 것을 의미하는 한자입니다.',
     'words': [
       '影響（えいきょう） 영향',
@@ -36053,7 +36050,7 @@ KANJI_DATA = [
     'meaning': '허락할 허',
     'onyomi': 'キョ',
     'kunyomi': 'ゆるす',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '허락하거나 용서하는 것을 의미하는 한자입니다.',
     'words': [
       '許可（きょか） 허가',
@@ -36073,7 +36070,7 @@ KANJI_DATA = [
     'meaning': '빌 허',
     'onyomi': 'キョ、コ',
     'kunyomi': 'むなしい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '비어 있거나 헛된 것을 의미하는 한자입니다.',
     'words': [
       '虚しい（むなしい） 허무하다',
@@ -36093,7 +36090,7 @@ KANJI_DATA = [
     'meaning': '법 헌',
     'onyomi': 'ケン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '법규나 헌법을 의미하는 한자입니다.',
     'words': [
       '憲法（けんぽう） 헌법'
@@ -36128,7 +36125,7 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-offer-dedicate',
     'kanji': '献',
-    'meaning': '드릴 헌',
+    'meaning': '바칠 헌',
     'onyomi': 'ケン、コン',
     'kunyomi': '',
     'level': 'N3',
@@ -36171,7 +36168,7 @@ KANJI_DATA = [
     'meaning': '험할 험',
     'onyomi': 'ケン',
     'kunyomi': 'けわしい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '험하거나 위험한 상태를 의미하는 한자입니다.',
     'words': [
       '危険（きけん） 위험',
@@ -36191,7 +36188,7 @@ KANJI_DATA = [
     'meaning': '가죽 혁',
     'onyomi': 'カク',
     'kunyomi': 'かわ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '가죽이나 개혁을 의미하는 한자입니다.',
     'words': [
       '革（かわ） 가죽',
@@ -36230,7 +36227,7 @@ KANJI_DATA = [
     'meaning': '고을 현',
     'onyomi': 'ケン',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '일본의 행정구역을 의미하는 기본 한자입니다.',
     'words': [
       '県（けん） 현'
@@ -36249,7 +36246,7 @@ KANJI_DATA = [
     'meaning': '나타날 현',
     'onyomi': 'ゲン',
     'kunyomi': 'あらわれる、あらわす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '나타나거나 현실을 의미하는 기본 한자입니다.',
     'words': [
       '現在（げんざい） 현재'
@@ -36284,10 +36281,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-string',
     'kanji': '弦',
-    'meaning': '시위 현',
+    'meaning': '활줄 현',
     'onyomi': 'ゲン',
     'kunyomi': 'つる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '활의 줄이나 현을 의미하는 한자입니다.',
     'words': [
       '弦（つる） 현'
@@ -36306,7 +36303,7 @@ KANJI_DATA = [
     'meaning': '뱃전 현',
     'onyomi': 'ゲン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '배의 옆부분을 의미하는 한자입니다.',
     'words': [
       '左舷（さげん） 좌현'
@@ -36325,7 +36322,7 @@ KANJI_DATA = [
     'meaning': '어질 현',
     'onyomi': 'ケン',
     'kunyomi': 'かしこい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '지혜롭고 현명한 상태를 의미하는 한자입니다.',
     'words': [
       '賢い（かしこい） 현명하다'
@@ -36344,7 +36341,7 @@ KANJI_DATA = [
     'meaning': '나타날 현',
     'onyomi': 'ケン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '드러나거나 명백해지는 것을 의미하는 한자입니다.',
     'words': [
       '顕著（けんちょ） 현저'
@@ -36363,7 +36360,7 @@ KANJI_DATA = [
     'meaning': '달 현',
     'onyomi': 'ケン、ケ',
     'kunyomi': 'かける、かかる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '걸거나 매다는 것을 의미하는 한자입니다.',
     'words': [
       '懸ける（かける） 걸다'
@@ -36382,7 +36379,7 @@ KANJI_DATA = [
     'meaning': '피 혈',
     'onyomi': 'ケツ',
     'kunyomi': 'ち',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '피를 의미하는 기본 한자입니다.',
     'words': [
       '血（ち） 피'
@@ -36401,7 +36398,7 @@ KANJI_DATA = [
     'meaning': '구멍 혈',
     'onyomi': 'ケツ',
     'kunyomi': 'あな',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '구멍이나 빈 공간을 의미하는 기본 한자입니다.',
     'words': [
       '穴（あな） 구멍'
@@ -36420,7 +36417,7 @@ KANJI_DATA = [
     'meaning': '싫어할 혐',
     'onyomi': 'ケン、ゲン',
     'kunyomi': 'きらう、いや',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '싫어하거나 꺼리는 것을 의미하는 한자입니다.',
     'words': [
       '嫌い（きらい） 싫어함'
@@ -36439,7 +36436,7 @@ KANJI_DATA = [
     'meaning': '화합할 협',
     'onyomi': 'キョウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '협력하거나 힘을 합치는 것을 의미하는 한자입니다.',
     'words': [
       '協力（きょうりょく） 협력'
@@ -36458,7 +36455,7 @@ KANJI_DATA = [
     'meaning': '골짜기 협',
     'onyomi': 'キョウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '깊은 골짜기를 의미하는 한자입니다.',
     'words': [
       '峡谷（きょうこく） 협곡'
@@ -36477,7 +36474,7 @@ KANJI_DATA = [
     'meaning': '낄 협',
     'onyomi': 'キョウ',
     'kunyomi': 'はさむ、はさまる',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '끼우거나 사이에 두는 것을 의미하는 한자입니다.',
     'words': [
       '挟む（はさむ） 끼우다'
@@ -36496,7 +36493,7 @@ KANJI_DATA = [
     'meaning': '좁을 협',
     'onyomi': 'キョウ',
     'kunyomi': 'せまい、せばめる、せばまる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '좁은 상태를 의미하는 한자입니다.',
     'words': [
       '狭い（せまい） 좁다'
@@ -36515,7 +36512,7 @@ KANJI_DATA = [
     'meaning': '위협할 협',
     'onyomi': 'キョウ',
     'kunyomi': 'おびやかす、おどす、おどかす',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '겁주거나 위협하는 것을 의미하는 한자입니다.',
     'words': [
       '脅す（おどす） 위협하다'
@@ -36529,31 +36526,32 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n5-han-side',
-    'kanji': '脇',
-    'meaning': '옆구리 협',
-    'onyomi': '',
-    'kunyomi': 'わき',
-    'level': 'N5',
-    'desc': '옆이나 옆구리를 의미하는 기본 한자입니다.',
-    'words': [
-      '脇（わき） 옆'
-    ],
-    'example_jp': '脇に置く。',
-    'example_ko': '옆에 두다.',
-    'related': [
-      '側',
-      '横',
-      '体'
-    ]
-  },
+  'slug': 'n2-han-side',
+  'kanji': '脇',
+  'meaning': '겨드랑이 협',
+  'onyomi': '',
+  'kunyomi': 'わき',
+  'level': 'N2',
+  'desc': '겨드랑이나 옆, 옆쪽을 의미하는 한자입니다. ',
+  'words': [
+    '脇（わき） 옆, 겨드랑이',
+    '脇役（わきやく） 조연'
+  ],
+  'example_jp': '荷物を脇に置く。',
+  'example_ko': '짐을 옆에 두다.',
+  'related': [
+    '側',
+    '横',
+    '体'
+  ]
+},
   {
     'slug': 'n2-han-cheek',
     'kanji': '頬',
     'meaning': '뺨 협',
     'onyomi': '',
     'kunyomi': 'ほお',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '뺨을 의미하는 한자입니다.',
     'words': [
       '頬（ほお） 뺨'
@@ -36569,10 +36567,10 @@ KANJI_DATA = [
   {
     'slug': 'n5-han-older-brother',
     'kanji': '兄',
-    'meaning': '맏 형',
+    'meaning': '형 형',
     'onyomi': 'キョウ、ケイ',
     'kunyomi': 'あに、にい',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '형을 의미하는 기본 한자입니다.',
     'words': [
       '兄（あに） 형'
@@ -36591,7 +36589,7 @@ KANJI_DATA = [
     'meaning': '모양 형',
     'onyomi': 'ケイ、ギョウ',
     'kunyomi': 'かた、かたち',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '모양이나 형태를 의미하는 기본 한자입니다.',
     'words': [
       '形（かたち） 형태'
@@ -36610,7 +36608,7 @@ KANJI_DATA = [
     'meaning': '모형 형',
     'onyomi': 'ケイ',
     'kunyomi': 'かた',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '틀이나 유형을 의미하는 기본 한자입니다.',
     'words': [
       '型（かた） 형식'
@@ -36629,7 +36627,7 @@ KANJI_DATA = [
     'meaning': '형벌 형',
     'onyomi': 'ケイ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '형벌이나 처벌을 의미하는 한자입니다.',
     'words': [
       '刑事（けいじ） 형사'
@@ -36643,31 +36641,31 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n2-han-beam',
-    'kanji': '桁',
-    'meaning': '도리 형',
-    'onyomi': 'コウ',
-    'kunyomi': 'けた',
-    'level': 'N2',
-    'desc': '건축 구조의 들보나 자릿수를 의미하는 한자입니다.',
-    'words': [
-      '桁（けた） 자리수'
-    ],
-    'example_jp': '桁が違う。',
-    'example_ko': '자리수가 다르다.',
-    'related': [
-      '木',
-      '建',
-      '数'
-    ]
-  },
+  'slug': 'n2-han-beam',
+  'kanji': '桁',
+  'meaning': '들보 항',
+  'onyomi': 'コウ',
+  'kunyomi': 'けた',
+  'level': 'N2',
+  'desc': '건축 구조의 들보나 숫자의 자릿수를 의미하는 한자입니다.',
+  'words': [
+    '桁（けた） 자리수'
+  ],
+  'example_jp': '桁が違う。',
+  'example_ko': '자리수가 다르다.',
+  'related': [
+    '木',
+    '建',
+    '数'
+  ]
+},
   {
     'slug': 'n3-han-firefly',
     'kanji': '蛍',
     'meaning': '반딧불 형',
     'onyomi': 'ケイ',
     'kunyomi': 'ほたる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '반딧불을 의미하는 한자입니다.',
     'words': [
       '蛍（ほたる） 반딧불'
@@ -36686,7 +36684,7 @@ KANJI_DATA = [
     'meaning': '저울대 형',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '균형이나 저울을 의미하는 한자입니다.',
     'words': [
       '均衡（きんこう） 균형'
@@ -36705,7 +36703,7 @@ KANJI_DATA = [
     'meaning': '은혜 혜',
     'onyomi': 'ケイ、エ',
     'kunyomi': 'めぐむ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '은혜나 혜택을 의미하는 한자입니다.',
     'words': [
       '恵み（めぐみ） 은혜'
@@ -36724,7 +36722,7 @@ KANJI_DATA = [
     'meaning': '집 호',
     'onyomi': 'コ',
     'kunyomi': 'と',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '문이나 집을 의미하는 기본 한자입니다.',
     'words': [
       '戸（と） 문'
@@ -36743,7 +36741,7 @@ KANJI_DATA = [
     'meaning': '이름 호',
     'onyomi': 'ゴウ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '번호나 이름을 의미하는 기본 한자입니다.',
     'words': [
       '番号（ばんごう） 번호'
@@ -36762,7 +36760,7 @@ KANJI_DATA = [
     'meaning': '호수 호',
     'onyomi': 'コ',
     'kunyomi': 'みずうみ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '호수를 의미하는 기본 한자입니다.',
     'words': [
       '湖（みずうみ） 호수'
@@ -36781,7 +36779,7 @@ KANJI_DATA = [
     'meaning': '좋을 호',
     'onyomi': 'コウ',
     'kunyomi': 'すく、このむ',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '좋아하거나 선호하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '好き（すき） 좋아함'
@@ -36800,7 +36798,7 @@ KANJI_DATA = [
     'meaning': '도울 호',
     'onyomi': 'ゴ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '지키거나 보호하는 것을 의미하는 한자입니다.',
     'words': [
       '保護（ほご） 보호'
@@ -36819,7 +36817,7 @@ KANJI_DATA = [
     'meaning': '부를 호',
     'onyomi': 'コ',
     'kunyomi': 'よぶ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '부르거나 호출하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '呼ぶ（よぶ） 부르다'
@@ -36838,7 +36836,7 @@ KANJI_DATA = [
     'meaning': '서로 호',
     'onyomi': 'ゴ',
     'kunyomi': 'たがい',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '서로 간의 관계를 의미하는 기본 한자입니다.',
     'words': [
       '互い（たがい） 서로'
@@ -36857,7 +36855,7 @@ KANJI_DATA = [
     'meaning': '범 호',
     'onyomi': 'コ',
     'kunyomi': 'とら',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '호랑이를 의미하는 한자입니다.',
     'words': [
       '虎（とら） 호랑이'
@@ -36876,7 +36874,7 @@ KANJI_DATA = [
     'meaning': '활 호',
     'onyomi': 'コ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '활 모양이나 곡선을 의미하는 한자입니다.',
     'words': [
       '円弧（えんこ） 원호'
@@ -36895,7 +36893,7 @@ KANJI_DATA = [
     'meaning': '호걸 호',
     'onyomi': 'ゴウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '호쾌하거나 뛰어난 사람을 의미하는 한자입니다.',
     'words': [
       '豪華（ごうか） 호화'
@@ -36914,7 +36912,7 @@ KANJI_DATA = [
     'meaning': '미혹할 혹',
     'onyomi': 'ワク',
     'kunyomi': 'まどう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '혼란스럽거나 미혹되는 상태를 의미하는 한자입니다.',
     'words': [
       '迷惑（めいわく） 폐',
@@ -36934,7 +36932,7 @@ KANJI_DATA = [
     'meaning': '심할 혹',
     'onyomi': 'コク',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '심하거나 잔인한 상태를 의미하는 한자입니다.',
     'words': [
       '酷い（ひどい） 심하다'
@@ -36953,7 +36951,7 @@ KANJI_DATA = [
     'meaning': '섞을 혼',
     'onyomi': 'コン',
     'kunyomi': 'まざる、まぜる、こむ',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '섞이거나 혼합되는 것을 의미하는 한자입니다.',
     'words': [
       '混ぜる（まぜる） 섞다'
@@ -36972,7 +36970,7 @@ KANJI_DATA = [
     'meaning': '혼인할 혼',
     'onyomi': 'コン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '결혼을 의미하는 한자입니다.',
     'words': [
       '結婚（けっこん） 결혼'
@@ -36991,7 +36989,7 @@ KANJI_DATA = [
     'meaning': '넋 혼',
     'onyomi': 'コン',
     'kunyomi': 'たましい',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '영혼이나 정신을 의미하는 한자입니다.',
     'words': [
       '魂（たましい） 영혼'
@@ -37010,7 +37008,7 @@ KANJI_DATA = [
     'meaning': '붉을 홍',
     'onyomi': 'コウ、ク',
     'kunyomi': 'べに、くれない',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '붉은 색을 의미하는 한자입니다.',
     'words': [
       '紅（べに） 붉은색',
@@ -37030,7 +37028,7 @@ KANJI_DATA = [
     'meaning': '넓을 홍',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '크고 넓은 물이나 홍수를 의미하는 한자입니다.',
     'words': [
       '洪水（こうずい） 홍수'
@@ -37049,7 +37047,7 @@ KANJI_DATA = [
     'meaning': '무지개 홍',
     'onyomi': '',
     'kunyomi': 'にじ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '무지개를 의미하는 기본 한자입니다.',
     'words': [
       '虹（にじ） 무지개'
@@ -37106,7 +37104,7 @@ KANJI_DATA = [
     'meaning': '그림 화',
     'onyomi': 'ガ、カク',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '그림이나 계획을 의미하는 기본 한자입니다.',
     'words': [
       '映画（えいが） 영화',
@@ -37145,7 +37143,7 @@ KANJI_DATA = [
     'meaning': '될 화',
     'onyomi': 'カ、ケ',
     'kunyomi': 'ばける、ばかす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '변하거나 변화하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '変化（へんか） 변화'
@@ -37164,7 +37162,7 @@ KANJI_DATA = [
     'meaning': '화할 화',
     'onyomi': 'ワ',
     'kunyomi': 'なごむ、やわらぐ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '조화나 평화를 의미하는 기본 한자입니다.',
     'words': [
       '平和（へいわ） 평화'
@@ -37183,7 +37181,7 @@ KANJI_DATA = [
     'meaning': '재물 화',
     'onyomi': 'カ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '재물이나 화폐를 의미하는 한자입니다.',
     'words': [
       '通貨（つうか） 통화'
@@ -37202,7 +37200,7 @@ KANJI_DATA = [
     'meaning': '빛날 화',
     'onyomi': 'カ、ケ',
     'kunyomi': 'はなやか',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '화려하거나 빛나는 상태를 의미하는 한자입니다.',
     'words': [
       '華やか（はなやか） 화려하다'
@@ -37240,7 +37238,7 @@ KANJI_DATA = [
     'meaning': '신발 화',
     'onyomi': 'カ',
     'kunyomi': 'くつ',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '신발을 의미하는 기본 한자입니다.',
     'words': [
       '靴（くつ） 신발'
@@ -37259,7 +37257,7 @@ KANJI_DATA = [
     'meaning': '굳을 확',
     'onyomi': 'カク',
     'kunyomi': 'たしか、たしかめる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '확실함을 의미하는 기본 한자입니다.',
     'words': [
       '確認（かくにん） 확인'
@@ -37297,7 +37295,7 @@ KANJI_DATA = [
     'meaning': '거둘 확',
     'onyomi': 'カク',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '수확하는 것을 의미하는 한자입니다.',
     'words': [
       '収穫（しゅうかく） 수확'
@@ -37316,7 +37314,7 @@ KANJI_DATA = [
     'meaning': '둥글 환',
     'onyomi': 'ガン',
     'kunyomi': 'まる、まるい',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '둥근 형태를 의미하는 기본 한자입니다.',
     'words': [
       '丸い（まるい） 둥글다'
@@ -37335,7 +37333,7 @@ KANJI_DATA = [
     'meaning': '헛보일 환',
     'onyomi': 'ケン',
     'kunyomi': 'まぼろし',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '환상이나 실체 없는 것을 의미하는 한자입니다.',
     'words': [
       '幻想（げんそう） 환상'
@@ -37354,7 +37352,7 @@ KANJI_DATA = [
     'meaning': '근심 환',
     'onyomi': 'カン',
     'kunyomi': 'わずらう',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '병이나 걱정을 앓는 것을 의미하는 한자입니다.',
     'words': [
       '患者（かんじゃ） 환자'
@@ -37373,7 +37371,7 @@ KANJI_DATA = [
     'meaning': '부를 환',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '부르거나 환기하는 것을 의미하는 한자입니다.',
     'words': [
       '召喚（しょうかん） 소환'
@@ -37392,7 +37390,7 @@ KANJI_DATA = [
     'meaning': '바꿀 환',
     'onyomi': 'カン',
     'kunyomi': 'かえる、かわる',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '바꾸거나 교환하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '交換（こうかん） 교환'
@@ -37411,7 +37409,7 @@ KANJI_DATA = [
     'meaning': '기쁠 환',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '기쁨이나 환영을 의미하는 한자입니다.',
     'words': [
       '歓迎（かんげい） 환영'
@@ -37430,7 +37428,7 @@ KANJI_DATA = [
     'meaning': '돌아올 환',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '되돌아오거나 반환하는 것을 의미하는 한자입니다.',
     'words': [
       '返還（へんかん） 반환'
@@ -37449,7 +37447,7 @@ KANJI_DATA = [
     'meaning': '고리 환',
     'onyomi': 'カン',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '고리나 순환을 의미하는 한자입니다.',
     'words': [
       '環境（かんきょう） 환경'
@@ -37468,7 +37466,7 @@ KANJI_DATA = [
     'meaning': '살 활',
     'onyomi': 'カツ',
     'kunyomi': 'いかす',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '살거나 활동하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '生活（せいかつ） 생활'
@@ -37487,7 +37485,7 @@ KANJI_DATA = [
     'meaning': '미끄러울 활',
     'onyomi': 'カツ、コツ',
     'kunyomi': 'すべる、なめらか',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '미끄럽거나 부드러운 상태를 의미하는 한자입니다.',
     'words': [
       '滑る（すべる） 미끄러지다'
@@ -37506,7 +37504,7 @@ KANJI_DATA = [
     'meaning': '누를 황',
     'onyomi': 'オウ、コウ',
     'kunyomi': 'き',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '노란색을 의미하는 기본 한자입니다.',
     'words': [
       '黄色（きいろ） 노란색'
@@ -37525,7 +37523,7 @@ KANJI_DATA = [
     'meaning': '임금 황',
     'onyomi': 'コウ、オウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '황제나 왕을 의미하는 한자입니다.',
     'words': [
       '天皇（てんのう） 천황'
@@ -37544,7 +37542,7 @@ KANJI_DATA = [
     'meaning': '상황 황',
     'onyomi': 'キョウ',
     'kunyomi': '',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '상황이나 상태를 의미하는 한자입니다.',
     'words': [
       '状況（じょうきょう） 상황'
@@ -37563,7 +37561,7 @@ KANJI_DATA = [
     'meaning': '거칠 황',
     'onyomi': 'コウ',
     'kunyomi': 'あらい、あれる',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '거칠거나 황폐한 상태를 의미하는 한자입니다.',
     'words': [
       '荒れる（あれる） 거칠어지다'
@@ -37579,10 +37577,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-han-panic',
     'kanji': '慌',
-    'meaning': '어리둥절할 황',
+    'meaning': '어리둥절 황',
     'onyomi': 'コウ',
     'kunyomi': 'あわてる',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '당황하거나 서두르는 상태를 의미하는 한자입니다.',
     'words': [
       '慌てる（あわてる） 당황하다'
@@ -37620,7 +37618,7 @@ KANJI_DATA = [
     'meaning': '돌 회',
     'onyomi': 'カイ、エ',
     'kunyomi': 'まわる、まわす',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '돌거나 회전하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '回る（まわる） 돌다'
@@ -37639,7 +37637,7 @@ KANJI_DATA = [
     'meaning': '그림 회',
     'onyomi': 'エ、カイ',
     'kunyomi': '',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '그림을 의미하는 기본 한자입니다.',
     'words': [
       '絵（え） 그림'
@@ -37658,7 +37656,7 @@ KANJI_DATA = [
     'meaning': '재 회',
     'onyomi': 'カイ',
     'kunyomi': 'はい',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '재를 의미하는 기본 한자입니다.',
     'words': [
       '灰（はい） 재'
@@ -37677,7 +37675,7 @@ KANJI_DATA = [
     'meaning': '뉘우칠 회',
     'onyomi': 'カイ',
     'kunyomi': 'くいる、くやむ',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '후회하거나 뉘우치는 것을 의미하는 한자입니다.',
     'words': [
       '後悔（こうかい） 후회'
@@ -37691,50 +37689,32 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n2-han-horse-chestnut',
-    'kanji': '栃',
-    'meaning': '상수리나무 회',
-    'onyomi': '',
-    'kunyomi': 'とち',
-    'level': 'N2',
-    'desc': '상수리나무를 의미하는 한자입니다.',
-    'words': [
-      '栃（とち） 상수리나무'
-    ],
-    'example_jp': '栃の木がある。',
-    'example_ko': '상수리나무가 있다.',
-    'related': [
-      '木',
-      '森',
-      '林'
-    ]
-  },
-  {
-    'slug': 'n2-han-bribe',
-    'kanji': '賄',
-    'meaning': '뇌물 회',
-    'onyomi': 'ワイ',
-    'kunyomi': 'まかなう',
-    'level': 'N2',
-    'desc': '뇌물이나 비용을 충당하는 것을 의미하는 한자입니다.',
-    'words': [
-      '賄賂（わいろ） 뇌물'
-    ],
-    'example_jp': '賄賂を受け取る。',
-    'example_ko': '뇌물을 받다.',
-    'related': [
-      '金',
-      '財',
-      '罪'
-    ]
-  },
+  'slug': 'n1-han-horse-chestnut',
+  'kanji': '栃',
+  'meaning': '칠엽수 치',
+  'onyomi': '',
+  'kunyomi': 'とち',
+  'level': 'N1',
+  'desc': '칠엽수나무를 의미하는 한자입니다. ',
+  'words': [
+    '栃（とち） 칠엽수나무',
+    '栃木（とちぎ） 도치기(일본 지명)'
+  ],
+  'example_jp': '栃の木が生えている。',
+  'example_ko': '칠엽수 나무가 자라고 있다.',
+  'related': [
+    '木',
+    '森',
+    '林'
+  ]
+},
   {
     'slug': 'n3-han-embrace',
     'kanji': '懐',
     'meaning': '품을 회',
     'onyomi': 'カイ',
     'kunyomi': 'なつかしい、ふところ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '품거나 그리워하는 감정을 의미하는 한자입니다.',
     'words': [
       '懐かしい（なつかしい） 그립다'
@@ -37753,7 +37733,7 @@ KANJI_DATA = [
     'meaning': '얻을 획',
     'onyomi': 'カク',
     'kunyomi': 'える',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '얻거나 획득하는 것을 의미하는 한자입니다.',
     'words': [
       '獲得（かくとく） 획득'
@@ -37772,7 +37752,7 @@ KANJI_DATA = [
     'meaning': '가로 횡',
     'onyomi': 'オウ',
     'kunyomi': 'よこ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '가로나 옆 방향을 의미하는 기본 한자입니다.',
     'words': [
       '横（よこ） 가로'
@@ -37788,10 +37768,10 @@ KANJI_DATA = [
   {
     'slug': 'n4-han-effect',
     'kanji': '効',
-    'meaning': '효과 효',
+    'meaning': '효험 효',
     'onyomi': 'コウ',
     'kunyomi': 'きく',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '효과나 효능을 의미하는 한자입니다.',
     'words': [
       '効果（こうか） 효과'
@@ -37810,7 +37790,7 @@ KANJI_DATA = [
     'meaning': '효도 효',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '부모를 공경하고 효도하는 뜻을 가진 한자입니다.',
     'words': [
       '孝行（こうこう） 효행'
@@ -37829,7 +37809,7 @@ KANJI_DATA = [
     'meaning': '새벽 효',
     'onyomi': 'ギョウ',
     'kunyomi': 'あかつき',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '새벽이나 밝아오는 때를 의미하는 한자입니다.',
     'words': [
       '暁（あかつき） 새벽'
@@ -37848,7 +37828,7 @@ KANJI_DATA = [
     'meaning': '삭힐 효',
     'onyomi': 'コウ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '발효 작용을 의미하는 한자입니다.',
     'words': [
       '発酵（はっこう） 발효'
@@ -37907,7 +37887,7 @@ KANJI_DATA = [
     'meaning': '두터울 후',
     'onyomi': 'コウ',
     'kunyomi': 'あつい',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '두껍거나 두터운 상태를 의미하는 한자입니다.',
     'words': [
       '厚い（あつい） 두껍다'
@@ -37983,7 +37963,7 @@ KANJI_DATA = [
     'meaning': '목구멍 후',
     'onyomi': 'コウ',
     'kunyomi': 'のど',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '목구멍을 의미하는 한자입니다.',
     'words': [
       '喉（のど） 목'
@@ -38021,7 +38001,7 @@ KANJI_DATA = [
     'meaning': '가르칠 훈',
     'onyomi': 'クン',
     'kunyomi': '',
-    'level': 'N4',
+    'level': 'N3',
     'desc': '가르침이나 훈계를 의미하는 한자입니다.',
     'words': [
       '教訓（きょうくん） 교훈'
@@ -38056,7 +38036,7 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-fragrance',
     'kanji': '薫',
-    'meaning': '향 풀 훈',
+    'meaning': '향기 훈',
     'onyomi': 'クン',
     'kunyomi': 'かおる',
     'level': 'N2',
@@ -38097,7 +38077,7 @@ KANJI_DATA = [
     'meaning': '휘두를 휘',
     'onyomi': 'キ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '휘두르거나 발휘하는 것을 의미하는 한자입니다.',
     'words': [
       '発揮（はっき） 발휘'
@@ -38135,7 +38115,7 @@ KANJI_DATA = [
     'meaning': '빛날 휘',
     'onyomi': 'キ',
     'kunyomi': 'かがやく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '빛나거나 영광스러운 상태를 의미하는 한자입니다.',
     'words': [
       '輝く（かがやく） 빛나다'
@@ -38173,7 +38153,7 @@ KANJI_DATA = [
     'meaning': '이끌 휴',
     'onyomi': 'ケイ',
     'kunyomi': 'たずさえる、たずさわる',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '휴대하거나 함께 관계하는 것을 의미하는 한자입니다.',
     'words': [
       '携帯（けいたい） 휴대'
@@ -38192,7 +38172,7 @@ KANJI_DATA = [
     'meaning': '가슴 흉',
     'onyomi': 'キョウ',
     'kunyomi': 'むね、むな',
-    'level': 'N4',
+    'level': 'N2',
     'desc': '가슴을 의미하는 한자입니다.',
     'words': [
       '胸（むね） 가슴'
@@ -38230,7 +38210,7 @@ KANJI_DATA = [
     'meaning': '검을 흑',
     'onyomi': 'コク',
     'kunyomi': 'くろ、くろい',
-    'level': 'N5',
+    'level': 'N4',
     'desc': '검은색을 의미하는 기본 한자입니다.',
     'words': [
       '黒（くろ） 검정',
@@ -38250,7 +38230,7 @@ KANJI_DATA = [
     'meaning': '흔적 흔',
     'onyomi': 'コン',
     'kunyomi': 'あと',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '흔적이나 자국을 의미하는 한자입니다.',
     'words': [
       '痕跡（こんせき） 흔적'
@@ -38269,7 +38249,7 @@ KANJI_DATA = [
     'meaning': '마실 흡',
     'onyomi': 'キュウ',
     'kunyomi': 'すう',
-    'level': 'N5',
+    'level': 'N2',
     'desc': '들이마시거나 빨아들이는 것을 의미하는 기본 한자입니다.',
     'words': [
       '吸う（すう） 들이마시다'
@@ -38288,7 +38268,7 @@ KANJI_DATA = [
     'meaning': '일어날 흥',
     'onyomi': 'コウ、キョウ',
     'kunyomi': 'おこる、おこす',
-    'level': 'N4',
+    'level': 'N1',
     'desc': '흥이 일어나거나 일으키는 것을 의미하는 한자입니다.',
     'words': [
       '興味（きょうみ） 흥미'
@@ -38326,7 +38306,7 @@ KANJI_DATA = [
     'meaning': '기쁠 희',
     'onyomi': 'キ',
     'kunyomi': 'よろこぶ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '기뻐하는 것을 의미하는 기본 한자입니다.',
     'words': [
       '喜ぶ（よろこぶ） 기뻐하다'
@@ -38342,10 +38322,10 @@ KANJI_DATA = [
   {
     'slug': 'n3-han-princess',
     'kanji': '姫',
-    'meaning': '계집 희',
+    'meaning': '공주 희',
     'onyomi': '',
     'kunyomi': 'ひめ',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '공주나 귀한 여성을 의미하는 한자입니다.',
     'words': [
       '姫（ひめ） 공주'
@@ -38364,7 +38344,7 @@ KANJI_DATA = [
     'meaning': '놀이 희',
     'onyomi': 'ギ',
     'kunyomi': 'たわむれる',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '장난하거나 유희하는 것을 의미하는 한자입니다.',
     'words': [
       '戯れる（たわむれる） 장난하다'
@@ -38380,10 +38360,10 @@ KANJI_DATA = [
   {
     'slug': 'n2-han-sacrifice',
     'kanji': '犠',
-    'meaning': '희생할 희',
+    'meaning': '희생 희',
     'onyomi': 'ギ',
     'kunyomi': '',
-    'level': 'N2',
+    'level': 'N1',
     'desc': '희생을 의미하는 한자입니다.',
     'words': [
       '犠牲（ぎせい） 희생'
@@ -38402,7 +38382,7 @@ KANJI_DATA = [
     'meaning': '꾸짖을 힐',
     'onyomi': 'キツ',
     'kunyomi': 'つめる、つまる、つむ',
-    'level': 'N3',
+    'level': 'N2',
     'desc': '채우거나 막히는 것을 의미하는 한자입니다.',
     'words': [
       '詰める（つめる） 채우다'
@@ -38416,32 +38396,32 @@ KANJI_DATA = [
     ]
   },
   {
-    'slug': 'n3-han-komu',
-    'kanji': '込',
-    'meaning': '담다',
-    'onyomi': '',
-    'kunyomi': 'こむ、こめる',
-    'level': 'N3',
-    'desc': '안으로 들어가거나 가득 차는 뜻으로 쓰이는 일본 한자입니다.',
-    'words': [
-      '人込み（ひとごみ） 인파',
-      '申し込む（もうしこむ） 신청하다'
-    ],
-    'example_jp': '電車が混み込む。',
-    'example_ko': '전철이 붐비다.',
-    'related': [
-      '入',
-      '混',
-      '満'
-    ]
-  },
+  'slug': 'n3-han-komu',
+  'kanji': '込',
+  'meaning': '들어갈 입',
+  'onyomi': '',
+  'kunyomi': 'こむ、こめる',
+  'level': 'N3',
+  'desc': '안으로 들어가거나 가득 차는 의미로 쓰이는 일본 한자입니다.',
+  'words': [
+    '人込み（ひとごみ） 인파',
+    '申し込む（もうしこむ） 신청하다'
+  ],
+  'example_jp': '電車が混んでいる。',
+  'example_ko': '전철이 붐비고 있다.',
+  'related': [
+    '入',
+    '混',
+    '満'
+  ]
+},
   {
     'slug': 'n5-han-hatake',
     'kanji': '畑',
-    'meaning': '밭',
+    'meaning': '밭 전',
     'onyomi': '',
     'kunyomi': 'はた、はたけ',
-    'level': 'N5',
+    'level': 'N3',
     'desc': '밭을 의미하는 일본 한자입니다.',
     'words': [
       '畑（はたけ） 밭'
@@ -38455,12 +38435,52 @@ KANJI_DATA = [
     ]
   },
   {
+  'slug': 'n1-han-provide',
+  'kanji': '賄',
+  'meaning': '충당할 회',
+  'onyomi': 'ワイ',
+  'kunyomi': 'まかなう',
+  'level': 'N1',
+  'desc': '비용이나 식사를 마련하거나 충당하는 것을 의미하는 한자입니다. ',
+  'words': [
+    '賄う（まかなう） 마련하다, 충당하다',
+    '賄賂（わいろ） 뇌물'
+  ],
+  'example_jp': '生活費を賄う。',
+  'example_ko': '생활비를 충당하다.',
+  'related': [
+    '費',
+    '供',
+    '支'
+  ]
+},
+{
+  'slug': 'n2-han-nourish',
+  'kanji': '滋',
+  'meaning': '불을 자',
+  'onyomi': 'ジ',
+  'kunyomi': '',
+  'level': 'N2',
+  'desc': '영양이 풍부하거나 늘어나고 자라는 것을 의미하는 한자입니다.',
+  'words': [
+    '滋養（じよう） 자양',
+    '滋味（じみ） 자미, 깊은 맛'
+  ],
+  'example_jp': '滋養のある食事を取る。',
+  'example_ko': '영양이 풍부한 식사를 하다.',
+  'related': [
+    '養',
+    '増',
+    '育'
+  ]
+},
+  {
     'slug': 'n3-han-frame',
     'kanji': '枠',
     'meaning': '테두리',
     'onyomi': '',
     'kunyomi': 'わく',
-    'level': 'N3',
+    'level': 'N1',
     'desc': '테두리나 틀을 의미하는 일본 한자입니다.',
     'words': [
       '枠（わく） 틀'
