@@ -27322,9 +27322,15 @@ def jlpt_kanji_home():
 
 @app.route('/jlpt/kanji/detail/<slug>')
 def jlpt_kanji_detail(slug):
-    kanji_item = next((item for item in KANJI_DATA if item.get("slug") == slug), None)
-    if not kanji_item:
+    current_index = next(
+        (i for i, item in enumerate(KANJI_DATA) if item.get("slug") == slug),
+        None
+    )
+
+    if current_index is None:
         abort(404)
+
+    kanji_item = KANJI_DATA[current_index]
 
     related_items = []
     related_values = kanji_item.get("related", []) or []
@@ -27343,10 +27349,15 @@ def jlpt_kanji_detail(slug):
             related_items.append(found)
             seen_slugs.add(found.get("slug"))
 
+    prev_item = KANJI_DATA[current_index - 1] if current_index > 0 else None
+    next_item = KANJI_DATA[current_index + 1] if current_index < len(KANJI_DATA) - 1 else None
+
     return render_template(
         'jlpt_kanji_detail.html',
         item=kanji_item,
-        related_items=related_items
+        related_items=related_items,
+        prev_item=prev_item,
+        next_item=next_item
     )
 
 @app.context_processor
