@@ -13,7 +13,11 @@
     --line:rgba(15,23,42,.10);
     --pri:#2563eb;
     --pri2:#1d4ed8;
+    --pri3:#0f52d6;
+    --soft:#eff6ff;
+    --soft2:#f8fbff;
     --shadow:0 12px 28px rgba(15,23,42,.06);
+    --shadow-strong:0 18px 34px rgba(37,99,235,.14);
   }
 
   .kanji-detail-wrap{
@@ -235,11 +239,154 @@
     line-height: 1;
   }
 
+  /* 예문 아래 이전/다음 */
+  .move-box{
+    border-radius: 22px;
+    padding: 18px;
+    background:
+      radial-gradient(700px 220px at 0% 0%, rgba(37,99,235,.14), transparent 55%),
+      radial-gradient(620px 220px at 100% 0%, rgba(99,102,241,.12), transparent 55%),
+      linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+    border: 1px solid rgba(37,99,235,.16);
+    box-shadow: var(--shadow-strong);
+  }
+
+  .move-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom: 14px;
+  }
+
+  .move-title{
+    margin:0;
+    font-size: 18px;
+    font-weight: 950;
+    color: var(--text);
+  }
+
+  .move-sub{
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--pri2);
+    background: rgba(37,99,235,.08);
+    border: 1px solid rgba(37,99,235,.14);
+    padding: 7px 10px;
+    border-radius: 999px;
+    line-height: 1;
+  }
+
+  .move-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:12px;
+  }
+
+  .move-link{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-height: 96px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    text-decoration:none;
+    background: #fff;
+    border: 1px solid rgba(37,99,235,.18);
+    box-shadow: 0 10px 18px rgba(37,99,235,.08);
+    transition: .16s ease;
+  }
+
+  .move-link:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 16px 26px rgba(37,99,235,.14);
+    border-color: rgba(37,99,235,.28);
+  }
+
+  .move-link.disabled{
+    pointer-events:none;
+    opacity:.48;
+    box-shadow:none;
+    background:#f8fafc;
+  }
+
+  .move-top{
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--muted);
+    margin-bottom: 9px;
+  }
+
+  .move-main{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .move-main.right{
+    justify-content:flex-end;
+  }
+
+  .move-arrow{
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(180deg, var(--pri) 0%, var(--pri3) 100%);
+    color:#fff;
+    font-size: 17px;
+    font-weight: 900;
+    flex: 0 0 auto;
+    box-shadow: 0 8px 16px rgba(37,99,235,.22);
+  }
+
+  .move-main.right .move-arrow{
+    order: 2;
+  }
+
+  .move-text{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    min-width:0;
+  }
+
+  .move-main.right .move-text{
+    align-items:flex-end;
+    text-align:right;
+  }
+
+  .move-kanji{
+    font-size: 24px;
+    line-height: 1.1;
+    font-weight: 950;
+    color: var(--text);
+  }
+
+  .move-meaning{
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 800;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .detail-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top: 2px;
+  }
+
   .back-btn{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    margin-top: 8px;
     height: 44px;
     padding: 0 16px;
     border-radius: 14px;
@@ -271,6 +418,23 @@
 
     .info-label{
       width:auto;
+    }
+
+    .move-grid{
+      grid-template-columns: 1fr;
+    }
+
+    .move-main.right{
+      justify-content:flex-start;
+    }
+
+    .move-main.right .move-arrow{
+      order: 0;
+    }
+
+    .move-main.right .move-text{
+      align-items:flex-start;
+      text-align:left;
     }
   }
 </style>
@@ -359,32 +523,77 @@
         </div>
       </section>
 
-      <section class="info-box">
-        <h2>관련 한자</h2>
+      <!-- 예문 바로 아래 이전/다음 -->
+      <section class="move-box">
+        <div class="move-head">
+          <h2 class="move-title">다음 한자도 이어서 보기</h2>
+          <div class="move-sub">내부 학습 링크</div>
+        </div>
 
-        {% if related_items %}
-          <div class="related-list">
-            {% for rel in related_items %}
-              <a class="related-item" href="{{ url_for('jlpt_kanji_detail', slug=rel.slug) }}">
-                <span>{{ rel.kanji }}</span>
-                <span>{{ rel.meaning }}</span>
-              </a>
-            {% endfor %}
-          </div>
-        {% else %}
+        <div class="move-grid">
+          {% if prev_item %}
+            <a class="move-link" href="{{ url_for('jlpt_kanji_detail', slug=prev_item.slug) }}">
+              <div class="move-top">이전 한자</div>
+              <div class="move-main">
+                <span class="move-arrow">←</span>
+                <div class="move-text">
+                  <span class="move-kanji">{{ prev_item.kanji }}</span>
+                  <span class="move-meaning">{{ prev_item.meaning or '뜻 정보 없음' }}</span>
+                </div>
+              </div>
+            </a>
+          {% else %}
+            <div class="move-link disabled">
+              <div class="move-top">이전 한자</div>
+              <div class="move-main">
+                <span class="move-arrow">←</span>
+                <div class="move-text">
+                  <span class="move-kanji">없음</span>
+                  <span class="move-meaning">첫 번째 한자입니다.</span>
+                </div>
+              </div>
+            </div>
+          {% endif %}
 
-        {% endif %}
+          {% if next_item %}
+            <a class="move-link" href="{{ url_for('jlpt_kanji_detail', slug=next_item.slug) }}">
+              <div class="move-top" style="text-align:right;">다음 한자</div>
+              <div class="move-main right">
+                <div class="move-text">
+                  <span class="move-kanji">{{ next_item.kanji }}</span>
+                  <span class="move-meaning">{{ next_item.meaning or '뜻 정보 없음' }}</span>
+                </div>
+                <span class="move-arrow">→</span>
+              </div>
+            </a>
+          {% else %}
+            <div class="move-link disabled">
+              <div class="move-top" style="text-align:right;">다음 한자</div>
+              <div class="move-main right">
+                <div class="move-text">
+                  <span class="move-kanji">없음</span>
+                  <span class="move-meaning">마지막 한자입니다.</span>
+                </div>
+                <span class="move-arrow">→</span>
+              </div>
+            </div>
+          {% endif %}
+        </div>
       </section>
 
       <section class="keyword-box">
 
         <div class="keyword-chip-wrap">
           <span class="keyword-chip">{{ item.kanji }} 뜻</span>
-          <span class="keyword-chip">{{ item.meaning }} 한자</span>
+          <span class="keyword-chip">{{ item.meaning or '한자 뜻' }}</span>
+          <span class="keyword-chip">{{ item.kanji }} 음독</span>
+          <span class="keyword-chip">{{ item.kanji }} 훈독</span>
         </div>
       </section>
 
-      <a class="back-btn" href="{{ url_for('jlpt_kanji_home') }}">← 한자 목록으로 돌아가기</a>
+      <div class="detail-actions">
+        <a class="back-btn" href="{{ url_for('jlpt_kanji_home') }}">← 한자 목록으로 돌아가기</a>
+      </div>
     </div>
   </section>
 </div>
