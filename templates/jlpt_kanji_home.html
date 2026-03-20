@@ -118,8 +118,18 @@
     box-shadow: 0 14px 28px rgba(37,99,235,.22);
   }
 
-  .filter-wrap{
+  .filter-group{
     margin-top: 16px;
+  }
+
+  .filter-group-title{
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--muted);
+  }
+
+  .filter-wrap{
     display:flex;
     flex-wrap:wrap;
     gap: 10px;
@@ -151,6 +161,20 @@
     background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     color: #fff;
     border-color: transparent;
+  }
+
+  .filter-tag.level-n5{ border-color: rgba(16,185,129,.20); color:#047857; }
+  .filter-tag.level-n4{ border-color: rgba(59,130,246,.20); color:#1d4ed8; }
+  .filter-tag.level-n3{ border-color: rgba(139,92,246,.20); color:#6d28d9; }
+  .filter-tag.level-n2{ border-color: rgba(245,158,11,.20); color:#b45309; }
+  .filter-tag.level-n1{ border-color: rgba(239,68,68,.20); color:#b91c1c; }
+
+  .filter-tag.active.level-n5,
+  .filter-tag.active.level-n4,
+  .filter-tag.active.level-n3,
+  .filter-tag.active.level-n2,
+  .filter-tag.active.level-n1{
+    color:#fff;
   }
 
   .search-summary{
@@ -241,7 +265,7 @@
   .kanji-top{
     display:flex;
     align-items:flex-start;
-    justify-content:flex-start;
+    justify-content:space-between;
     gap: 12px;
     margin-bottom: 10px;
   }
@@ -251,6 +275,57 @@
     font-weight: 900;
     color: var(--text);
     line-height: 1;
+  }
+
+  .kanji-level-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width: 52px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 950;
+    line-height: 1;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+
+  .kanji-level-N5{
+    background:#ecfdf5;
+    color:#047857;
+    border-color:#a7f3d0;
+  }
+
+  .kanji-level-N4{
+    background:#eff6ff;
+    color:#1d4ed8;
+    border-color:#bfdbfe;
+  }
+
+  .kanji-level-N3{
+    background:#f5f3ff;
+    color:#6d28d9;
+    border-color:#ddd6fe;
+  }
+
+  .kanji-level-N2{
+    background:#fffbeb;
+    color:#b45309;
+    border-color:#fde68a;
+  }
+
+  .kanji-level-N1{
+    background:#fef2f2;
+    color:#b91c1c;
+    border-color:#fecaca;
+  }
+
+  .kanji-level-OTHER{
+    background:#f8fafc;
+    color:#475569;
+    border-color:#e2e8f0;
   }
 
   .kanji-detail-btn{
@@ -335,15 +410,15 @@
       <h1 class="kanji-title">🈶 일본어 한자 2136개 모음</h1>
       <p class="kanji-desc">
         일본어에서 자주 쓰이는 한자는 총 <strong>2136개</strong>가 있으며, 이 페이지는 그 한자들을 한눈에 보기 쉽게 정리한 페이지입니다.<br>
-        각 한자마다 <strong>뜻, 한자음, 설명, 관련 단어, 예문, 관련 한자</strong>를 함께 확인할 수 있어 일본어 공부에 활용하기 좋습니다.<br>
-        아래의 <strong>한자음 초성 분류(ㄱ~ㅎ)</strong>는 한국어식 한자음 기준으로 묶어두어, 비슷한 소리의 한자를 함께 익히는 데 도움이 됩니다.<br>
-        검색창에서는 <strong>한자 / 뜻 / 한자음</strong>만 간단하게 검색할 수 있습니다.
+        각 한자마다 <strong>뜻, 한자음, 설명, 관련 단어, 예문</strong>을 함께 확인할 수 있어 일본어 공부에 활용하기 좋습니다.<br>
+        아래의 <strong>한자음 초성 분류(ㄱ~ㅎ)</strong>와 <strong>JLPT 레벨 태그(N5~N1)</strong>를 함께 사용하면 원하는 한자를 더 빠르게 찾을 수 있습니다.<br>
+        검색창에서는 <strong>한자 / 뜻 / 한자음</strong>을 간단하게 검색할 수 있습니다.
       </p>
 
       <div class="search-box">
         <h2>원하는 한자를 바로 찾아보세요</h2>
         <p>
-          예) 暇 / 틈 / 가
+          예) 暇 / 틈 / 가 / N3
         </p>
 
         <form class="kanji-search" method="GET" action="{{ url_for('jlpt_kanji_home') }}">
@@ -352,22 +427,54 @@
             name="q"
             value="{{ q or '' }}"
             placeholder="예) 暇 / 틈 / 가">
+          <input type="hidden" name="initial" value="{{ selected_initial or 'ALL' }}">
+          <input type="hidden" name="level" value="{{ selected_level or 'ALL' }}">
           <button type="submit">검색하기</button>
         </form>
 
-        <div class="filter-wrap">
-          <a class="filter-tag {% if selected_initial == 'ALL' and not q %}active{% endif %}"
-             href="{{ url_for('jlpt_kanji_home') }}">전체</a>
-          {% for ini in initials %}
-            <a class="filter-tag {% if selected_initial == ini %}active{% endif %}"
-               href="{{ url_for('jlpt_kanji_home', q=q, initial=ini) }}">{{ ini }}</a>
-          {% endfor %}
+        <div class="filter-group">
+          <div class="filter-group-title">한자음 초성</div>
+          <div class="filter-wrap">
+            <a class="filter-tag {% if selected_initial == 'ALL' %}active{% endif %}"
+               href="{{ url_for('jlpt_kanji_home', q=q, level=selected_level) }}">전체</a>
+            {% for ini in initials %}
+              <a class="filter-tag {% if selected_initial == ini %}active{% endif %}"
+                 href="{{ url_for('jlpt_kanji_home', q=q, initial=ini, level=selected_level) }}">{{ ini }}</a>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-group-title">JLPT 레벨</div>
+          <div class="filter-wrap">
+            <a class="filter-tag {% if selected_level == 'ALL' %}active{% endif %}"
+               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial) }}">전체</a>
+
+            <a class="filter-tag level-n5 {% if selected_level == 'N5' %}active{% endif %}"
+               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N5') }}">N5</a>
+
+            <a class="filter-tag level-n4 {% if selected_level == 'N4' %}active{% endif %}"
+               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N4') }}">N4</a>
+
+            <a class="filter-tag level-n3 {% if selected_level == 'N3' %}active{% endif %}"
+               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N3') }}">N3</a>
+
+            <a class="filter-tag level-n2 {% if selected_level == 'N2' %}active{% endif %}"
+               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N2') }}">N2</a>
+
+            <a class="filter-tag level-n1 {% if selected_level == 'N1' %}active{% endif %}"
+               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N1') }}">N1</a>
+          </div>
         </div>
 
         <div class="search-summary">
           <span class="search-summary-badge">
             {% if q %}
               검색 결과 {{ kanji_list|length }}개
+            {% elif selected_level != 'ALL' and selected_initial != 'ALL' %}
+              {{ selected_level }} / {{ selected_initial }} 계열 한자 {{ kanji_list|length }}개
+            {% elif selected_level != 'ALL' %}
+              {{ selected_level }} 한자 {{ kanji_list|length }}개
             {% elif selected_initial != 'ALL' %}
               {{ selected_initial }} 계열 한자 {{ kanji_list|length }}개
             {% else %}
@@ -385,6 +492,10 @@
         <h2 class="kanji-box-title">
           {% if q %}
             🔎 "{{ q }}" 검색 결과
+          {% elif selected_level != 'ALL' and selected_initial != 'ALL' %}
+            📚 "{{ selected_level }}" / "{{ selected_initial }}" 한자 목록
+          {% elif selected_level != 'ALL' %}
+            📚 "{{ selected_level }}" 한자 목록
           {% elif selected_initial != 'ALL' %}
             📚 "{{ selected_initial }}" 계열 한자 목록
           {% else %}
@@ -399,10 +510,14 @@
           {% for item in kanji_list %}
             {% set sound = item.meaning.split()[-1] if item.meaning else '-' %}
             {% set meaning_text = item.meaning.rsplit(' ', 1)[0] if item.meaning and ' ' in item.meaning else (item.meaning or '-') %}
+            {% set level_text = item.level if item.level else 'OTHER' %}
 
             <article class="kanji-card">
               <div class="kanji-top">
                 <div class="kanji-char">{{ item.kanji }}</div>
+                <div class="kanji-level-badge kanji-level-{{ level_text }}">
+                  {{ item.level or '기타' }}
+                </div>
               </div>
 
               <div class="kanji-row">
@@ -413,6 +528,11 @@
               <div class="kanji-row">
                 <div class="kanji-label">한자음</div>
                 <div class="kanji-value">{{ sound }}</div>
+              </div>
+
+              <div class="kanji-row">
+                <div class="kanji-label">레벨</div>
+                <div class="kanji-value">{{ item.level or '-' }}</div>
               </div>
 
               <div class="kanji-row">
@@ -428,7 +548,7 @@
         </div>
       {% else %}
         <div class="empty-box">
-          검색 결과가 없습니다. 다른 검색어를 입력하거나 전체 버튼을 눌러 다시 확인해보세요.
+          검색 결과가 없습니다. 다른 검색어를 입력하거나 필터를 다시 선택해보세요.
         </div>
       {% endif %}
     </section>
