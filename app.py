@@ -27289,19 +27289,34 @@ def get_korean_initial(text):
 def jlpt_kanji_home():
     q = request.args.get('q', '').strip()
     selected_initial = request.args.get('initial', 'ALL').strip()
+    selected_level = request.args.get('level', 'ALL').strip().upper()
 
     initials = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
+    level_options = ['N5', 'N4', 'N3', 'N2', 'N1']
+
     if selected_initial not in initials and selected_initial != 'ALL':
         selected_initial = 'ALL'
 
+    if selected_level not in level_options and selected_level != 'ALL':
+        selected_level = 'ALL'
+
     filtered_kanji = KANJI_DATA
 
+    # 1) 초성 필터
     if selected_initial != 'ALL':
         filtered_kanji = [
             item for item in filtered_kanji
             if get_korean_initial(get_kanji_korean_sound(item.get('meaning', ''))) == selected_initial
         ]
 
+    # 2) 레벨 필터
+    if selected_level != 'ALL':
+        filtered_kanji = [
+            item for item in filtered_kanji
+            if str(item.get('level', '')).upper() == selected_level
+        ]
+
+    # 3) 검색 필터
     if q:
         q_lower = q.lower()
         filtered_kanji = [
@@ -27309,6 +27324,7 @@ def jlpt_kanji_home():
             if q_lower in str(item.get('kanji', '')).lower()
             or q_lower in get_kanji_meaning_text(item.get('meaning', '')).lower()
             or q_lower in get_kanji_korean_sound(item.get('meaning', '')).lower()
+            or q_lower in str(item.get('level', '')).lower()
         ]
 
     return render_template(
@@ -27316,9 +27332,9 @@ def jlpt_kanji_home():
         kanji_list=filtered_kanji,
         q=q,
         initials=initials,
-        selected_initial=selected_initial
+        selected_initial=selected_initial,
+        selected_level=selected_level
     )
-
 
 @app.route('/jlpt/kanji/detail/<slug>')
 def jlpt_kanji_detail(slug):
