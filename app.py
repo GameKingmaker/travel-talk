@@ -27376,6 +27376,156 @@ def jlpt_kanji_detail(slug):
         next_item=next_item
     )
 
+
+@app.route('/quiz/kanji')
+def quiz_kanji_home():
+    level_options = ['ALL', 'N5', 'N4', 'N3', 'N2', 'N1']
+    count_options = [10, 20, 30]
+
+    return render_template(
+        'quiz_kanji_home.html',
+        level_options=level_options,
+        count_options=count_options
+    )
+
+
+def get_primary_meaning(item):
+    return (item.get("meaning") or "").strip()
+
+
+def get_total_kanji_count_by_level(level='ALL'):
+    level = (level or 'ALL').strip().upper()
+
+    count = 0
+    for item in KANJI_DATA:
+        if not item.get("kanji") or not item.get("meaning"):
+            continue
+        if level != 'ALL' and str(item.get("level", "")).upper() != level:
+            continue
+        count += 1
+
+    return count
+
+def get_filtered_kanji(level='ALL', exclude_slugs=None):
+    level = (level or 'ALL').strip().upper()
+    exclude_slugs = set(exclude_slugs or [])
+
+    pool = []
+    for item in KANJI_DATA:
+        if not item.get("kanji") or not item.get("meaning"):
+            continue
+        if level != 'ALL' and str(item.get("level", "")).upper() != level:
+            continue
+        if item.get("slug") in exclude_slugs:
+            continue
+        pool.append(item)
+
+    return pool
+
+
+def build_kanji_match_game(level='ALL', count=10, exclude_slugs=None):
+    pool = get_filtered_kanji(level, exclude_slugs=exclude_slugs)
+    total_level_count = get_total_kanji_count_by_level(level)
+
+    # 같은 kanji/meaning 중복 방지
+    unique_pool = []
+    seen = set()
+
+    for item in pool:
+        kanji = (item.get("kanji") or "").strip()
+        meaning = get_primary_meaning(item)
+        key = (kanji, meaning)
+        if not kanji or not meaning:
+            continue
+        if key in seen:
+            continue
+        seen.add(key)
+        unique_pool.append(item)
+
+    total_remaining = len(unique_pool)
+
+    if total_remaining == 0:
+        return {
+            "level": level,
+            "count": 0,
+            "requested_count": count,
+            "kanji_cards": [],
+            "meaning_cards": [],
+            "used_slugs": [],
+            "remaining_after_this_round": 0,
+            "total_remaining_before_start": 0,
+        }
+
+    actual_count = min(count, total_remaining)
+    selected = random.sample(unique_pool, actual_count)
+
+    kanji_cards = []
+    meaning_cards = []
+    used_slugs = []
+
+    for idx, item in enumerate(selected, start=1):
+        pair_id = f"pair_{idx}"
+        used_slugs.append(item.get("slug", ""))
+
+        kanji_cards.append({
+            "pair_id": pair_id,
+            "text": item["kanji"],
+            "slug": item.get("slug", ""),
+        })
+        meaning_cards.append({
+            "pair_id": pair_id,
+            "text": get_primary_meaning(item),
+            "slug": item.get("slug", ""),
+        })
+
+    random.shuffle(kanji_cards)
+    random.shuffle(meaning_cards)
+
+    return {
+    "level": level,
+    "count": actual_count,
+    "requested_count": count,
+    "kanji_cards": kanji_cards,
+    "meaning_cards": meaning_cards,
+    "used_slugs": used_slugs,
+    "remaining_after_this_round": total_remaining - actual_count,
+    "total_remaining_before_start": total_remaining,
+    "total_level_count": total_level_count,
+}
+
+
+@app.route('/quiz/kanji/play')
+def quiz_kanji_play():
+    level = request.args.get('level', 'ALL').strip().upper()
+
+    try:
+        count = int(request.args.get('count', '10'))
+    except ValueError:
+        count = 10
+
+    if count not in [10, 20, 30]:
+        count = 10
+
+    exclude_raw = request.args.get('exclude', '').strip()
+    exclude_slugs = [x for x in exclude_raw.split(',') if x.strip()] if exclude_raw else []
+
+    game_data = build_kanji_match_game(
+        level=level,
+        count=count,
+        exclude_slugs=exclude_slugs
+    )
+
+    if game_data["count"] == 0:
+        flash("해당 레벨에서 더 이상 플레이할 한자가 없습니다.")
+        return redirect(url_for('quiz_kanji_home'))
+
+    return render_template(
+        'quiz_kanji_play.html',
+        game_data=game_data
+    )
+
+
+
 @app.context_processor
 def inject_helpers():
     return {"is_admin": is_admin}
