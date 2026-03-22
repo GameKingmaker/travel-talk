@@ -402,6 +402,42 @@
       font-size: 28px;
     }
   }
+  .filter-wrap-level{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .filter-level-tags{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .kanji-game-link-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px 16px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:800;
+    color:#fff;
+    background:linear-gradient(135deg, #4f7cff, #2f5cf0);
+    box-shadow:0 6px 16px rgba(47,92,240,0.22);
+    white-space:nowrap;
+    transition:all .18s ease;
+  }
+
+  .kanji-game-link-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 10px 20px rgba(47,92,240,0.28);
+  }
+
 </style>
 
 <div class="kanji-wrap">
@@ -445,27 +481,34 @@
         </div>
 
         <div class="filter-group">
-          <div class="filter-group-title">JLPT 레벨</div>
-          <div class="filter-wrap">
-            <a class="filter-tag {% if selected_level == 'ALL' %}active{% endif %}"
-               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial) }}">전체</a>
+  <div class="filter-group-title">JLPT 레벨</div>
 
-            <a class="filter-tag level-n5 {% if selected_level == 'N5' %}active{% endif %}"
-               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N5') }}">N5</a>
+  <div class="filter-wrap filter-wrap-level">
+    <div class="filter-level-tags">
+      <a class="filter-tag {% if selected_level == 'ALL' %}active{% endif %}"
+         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial) }}">전체</a>
 
-            <a class="filter-tag level-n4 {% if selected_level == 'N4' %}active{% endif %}"
-               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N4') }}">N4</a>
+      <a class="filter-tag level-n5 {% if selected_level == 'N5' %}active{% endif %}"
+         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N5') }}">N5</a>
 
-            <a class="filter-tag level-n3 {% if selected_level == 'N3' %}active{% endif %}"
-               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N3') }}">N3</a>
+      <a class="filter-tag level-n4 {% if selected_level == 'N4' %}active{% endif %}"
+         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N4') }}">N4</a>
 
-            <a class="filter-tag level-n2 {% if selected_level == 'N2' %}active{% endif %}"
-               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N2') }}">N2</a>
+      <a class="filter-tag level-n3 {% if selected_level == 'N3' %}active{% endif %}"
+         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N3') }}">N3</a>
 
-            <a class="filter-tag level-n1 {% if selected_level == 'N1' %}active{% endif %}"
-               href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N1') }}">N1</a>
-          </div>
-        </div>
+      <a class="filter-tag level-n2 {% if selected_level == 'N2' %}active{% endif %}"
+         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N2') }}">N2</a>
+
+      <a class="filter-tag level-n1 {% if selected_level == 'N1' %}active{% endif %}"
+         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N1') }}">N1</a>
+    </div>
+
+    <a class="kanji-game-link-btn" href="{{ url_for('quiz_kanji_home') }}">
+      🎮 한자게임 하러가기
+    </a>
+  </div>
+</div>
 
         <div class="search-summary">
           <span class="search-summary-badge">
