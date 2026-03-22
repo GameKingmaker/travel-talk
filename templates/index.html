@@ -808,9 +808,15 @@
 
     <div class="menu-grid">
 
-      <a class="menu-card" href="{{ url_for('travel_phrases_50') }}">
-        <div class="menu-name">📘 필수회화 50문장</div>
-        <div class="menu-desc">여행 전에 꼭 쓰는 문장만 50개로 빠르게 암기해요.</div>
+
+      <a class="menu-card" href="{{ url_for('jlpt_kanji_home') }}" aria-label="한자 모음으로 이동">
+        <div class="menu-name">📖 한자 모음</div>
+        <div class="menu-desc">일본어 상용한자 2136자 모음 공부할수 있어요. [시작하기]</div>
+      </a>
+
+      <a class="menu-card" href="{{ url_for('meaning') }}" aria-label="일본어표현뜻으로 이동">
+        <div class="menu-name">📖 일본어 표현 미니사전</div>
+        <div class="menu-desc">표현의 뜻을 발음·일본어·한국어 의미로 빠르게 확인할 수 있어요.</div>
       </a>
 
       <a class="menu-card" href="{{ url_for('situations') }}">
@@ -823,24 +829,9 @@
         <div class="menu-desc">자주 쓰는 단어를 카테고리별로 정리해 바로 외워요.</div>
       </a>
 
-      <a class="menu-card" href="{{ url_for('board') }}" aria-label="일반게시판으로 이동">
-        <div class="menu-name">💬 일반게시판</div>
-        <div class="menu-desc">질문·후기·정보 공유! 자유롭게 글을 남겨보세요.</div>
-      </a>
-
-      <a class="menu-card" href="{{ url_for('meaning') }}" aria-label="일본어표현뜻으로 이동">
-        <div class="menu-name">📖 일본어 표현 미니사전</div>
-        <div class="menu-desc">표현의 뜻을 발음·일본어·한국어 의미로 빠르게 확인할 수 있어요.</div>
-      </a>
-
-      <a class="menu-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황별 회화 퀴즈로 이동">
-        <div class="menu-name">🎮 상황별 회화 퀴즈</div>
-        <div class="menu-desc">실전 대화 느낌으로 문제를 풀며 표현을 익혀요. [시작하기]</div>
-      </a>
-
-      <a class="menu-card" href="{{ url_for('travel_start') }}" aria-label="일본여행 시뮬레이션으로 이동">
-        <div class="menu-name">🧳 일본여행 시뮬레이션</div>
-        <div class="menu-desc">여행 흐름대로 선택하며 회화를 자연스럽게 연습해요. [시작하기]</div>
+      <a class="menu-card" href="{{ url_for('quiz_kanji_home') }}" aria-label="한자 게임으로 이동">
+        <div class="menu-name">🎮 한자 게임</div>
+        <div class="menu-desc">한자와 뜻 짝 맞추기 게임으로 재미있게 외워봐요. [시작하기]</div>
       </a>
 
       <a class="menu-card" href="{{ url_for('word_game') }}" aria-label="단어게임으로 이동">
@@ -848,6 +839,15 @@
         <div class="menu-desc">게임처럼 즐기면서 단어를 빠르게 익히고 기억해요. [시작하기]</div>
       </a>
 
+      <a class="menu-card" href="{{ url_for('board') }}" aria-label="일반게시판으로 이동">
+        <div class="menu-name">💬 일반게시판</div>
+        <div class="menu-desc">질문·후기·정보 공유! 자유롭게 글을 남겨보세요.</div>
+      </a>
+
+      <a class="menu-card" href="{{ url_for('travel_phrases_50') }}">
+        <div class="menu-name">📘 필수회화 50문장</div>
+        <div class="menu-desc">여행 전에 꼭 쓰는 문장만 50개로 빠르게 암기해요.</div>
+      </a>
     </div>
   </section>
 
