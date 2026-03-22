@@ -1492,8 +1492,11 @@
   const POSITION_TRY_COUNT = 30;
   const MIN_WORD_GAP_X = 240;
   const MIN_WORD_GAP_Y = 95;
+  const LINE_RIGHT_GAP = 18;
+  const LINE_WIDTH = 8;
 
   let spawnEvery = FIXED_SPAWN;
+  let gameOverX = 0;
   let spawnTimer = null;
   let scoreSaved = false;
 
@@ -1889,12 +1892,20 @@
     `;
     arena.appendChild(el);
 
+    const width = el.offsetWidth || 180;
+    const answerParts = splitAnswers(it.ko);
+    const answerExact = answerParts.map(part => basicNormalize(part)).filter(Boolean);
+    const answerVariantSets = answerParts.map(part => generateAnswerVariants(part));
+
     active.push({
       el,
       x: pos.x,
       y: pos.y,
+      width,
       speed: FIXED_SPEED + Math.random() * 1.2,
-      word: it
+      word: it,
+      answerExact,
+      answerVariantSets,
     });
 
     el.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
@@ -1949,66 +1960,84 @@
     return null;
   }
 
-  function tick(){
-    if (!running) return;
+  function updateGameOverX(){
+  const arenaWidth = arena.clientWidth;
+  const lineWidth = 8;
+  const rightGap = 18;
+  gameOverX = arenaWidth - rightGap - lineWidth;
+}
 
-    const lineRect = lineEl.getBoundingClientRect();
-    const lineLeft = lineRect.left;
-    const lineRight = lineRect.right;
-    const gameType = getGameType();
+function tick(){
+  if (!running) return;
 
-    for (const a of [...active]){
-      a.x += (a.speed / 60);
-      a.el.style.transform = `translate(${a.x}px, ${a.y}px)`;
+  const gameType = getGameType();
 
-      const r = a.el.getBoundingClientRect();
+  for (let i = active.length - 1; i >= 0; i--){
+    const a = active[i];
+    a.x += a.speed / 60;
+    a.el.style.transform = `translate(${a.x}px, ${a.y}px)`;
 
-      if (gameType === "speed"){
-        if (r.right >= lineLeft){
-          gameOver("카드가 선에 닿아 게임이 종료되었어요.");
-          return;
-        }
-      } else {
-        if (r.left >= lineRight){
-          finishWord(a, false);
-        }
+    const wordWidth = a.width || 180;
+    const rightX = a.x + wordWidth;
+
+    if (gameType === "speed"){
+      if (rightX >= gameOverX){
+        gameOver("카드가 선에 닿아 게임이 종료되었어요.");
+        return;
+      }
+    } else {
+      if (a.x >= gameOverX + 8){
+        finishWord(a, false);
       }
     }
-
-    if (pool.length === 0 && active.length === 0){
-      if (getGameType() === "speed"){
-        gameClear("모든 단어를 끝까지 막아내며 클리어했어요.");
-      } else {
-        gameClear("타이핑 마라톤이 끝까지 완료되었어요.");
-      }
-      return;
-    }
-
-    rafId = requestAnimationFrame(tick);
   }
 
+  if (pool.length === 0 && active.length === 0){
+    if (getGameType() === "speed"){
+      gameClear("모든 단어를 끝까지 막아내며 클리어했어요.");
+    } else {
+      gameClear("타이핑 마라톤이 끝까지 완료되었어요.");
+    }
+    return;
+  }
+
+  rafId = requestAnimationFrame(tick);
+}
   function tryHit(){
     if (!running) return;
 
     const v = norm(input.value);
     if (!v){
       input.value = "";
-      input.focus();
       return;
     }
 
-    const idx = active.findIndex(a => isCorrectAnswer(v, a.word.ko));
-    if (idx === -1){
-      input.value = "";
-      input.focus();
-      return;
-    }
+    const userExact = basicNormalize(v);
+    const userVariants = generateAnswerVariants(v);
 
-    const a = active[idx];
-    finishWord(a, true);
+    for (let i = 0; i < active.length; i++){
+      const a = active[i];
+
+      if (a.answerExact && a.answerExact.includes(userExact)){
+        finishWord(a, true);
+        input.value = "";
+        return;
+      }
+
+      if (a.answerVariantSets){
+        for (const answerVariants of a.answerVariantSets){
+          for (const uv of userVariants){
+            if (answerVariants.has(uv)){
+              finishWord(a, true);
+              input.value = "";
+              return;
+            }
+          }
+        }
+      }
+    }
 
     input.value = "";
-    input.focus();
   }
 
   function startGame(){
@@ -2021,28 +2050,29 @@
     finishedWords = 0;
 
     spawnEvery = FIXED_SPAWN;
-
+    updateGameOverX();
     setHUD();
 
     running = true;
     overlay.style.display = "none";
     input.value = "";
-    input.focus();
 
     for (let i = 0; i < INITIAL_SPAWN_COUNT; i++){
-      setTimeout(() => {
-        if (running) spawnWord();
-      }, i * 700);
+      spawnWord();
     }
 
     if (spawnTimer) clearInterval(spawnTimer);
     spawnTimer = setInterval(() => {
-      if (!running) return;
+      if (!running || !pool.length) return;
       spawnWord();
     }, spawnEvery);
 
     if (rafId) cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(tick);
+
+    setTimeout(() => {
+      input.focus();
+    }, 0);
   }
 
   async function openOverlay(){
@@ -2126,19 +2156,42 @@
     await restartCurrentGame();
   });
 
-  submitBtn.addEventListener("click", () => {
-    tryHit();
-  });
+  let isComposing = false;
 
-  input.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter") return;
-    if (e.isComposing || e.keyCode === 229) return;
-    e.preventDefault();
-    tryHit();
-  });
+function submitTypedAnswer(){
+  tryHit();
+}
+
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  submitTypedAnswer();
+});
+
+input.addEventListener("compositionstart", () => {
+  isComposing = true;
+});
+
+input.addEventListener("compositionend", () => {
+  isComposing = false;
+});
+
+input.addEventListener("keydown", (e) => {
+  if (e.key !== "Enter") return;
+  e.preventDefault();
+});
+
+input.addEventListener("keyup", (e) => {
+  if (e.key !== "Enter") return;
+  if (isComposing || e.isComposing || e.keyCode === 229) return;
+
+  e.preventDefault();
+  submitTypedAnswer();
+});
+  window.addEventListener("resize", updateGameOverX);
 
   currentRankScope = getRankScope();
   updateRankLink();
+  console.log("WG_FULL_FIXED_20260323");
   openOverlay().catch(()=>{});
 })();
 </script>
