@@ -27287,6 +27287,8 @@ def get_korean_initial(text):
 
 @app.route('/jlpt/kanji')
 def jlpt_kanji_home():
+    user = current_user()
+
     q = request.args.get('q', '').strip()
     selected_initial = request.args.get('initial', 'ALL').strip()
     selected_level = request.args.get('level', 'ALL').strip().upper()
@@ -27329,6 +27331,7 @@ def jlpt_kanji_home():
 
     return render_template(
         'jlpt_kanji_home.html',
+        user=user,
         kanji_list=filtered_kanji,
         q=q,
         initials=initials,
@@ -27338,6 +27341,8 @@ def jlpt_kanji_home():
 
 @app.route('/jlpt/kanji/detail/<slug>')
 def jlpt_kanji_detail(slug):
+    user = current_user()
+
     current_index = next(
         (i for i, item in enumerate(KANJI_DATA) if item.get("slug") == slug),
         None
@@ -27370,6 +27375,7 @@ def jlpt_kanji_detail(slug):
 
     return render_template(
         'jlpt_kanji_detail.html',
+        user=user,
         item=kanji_item,
         related_items=related_items,
         prev_item=prev_item,
@@ -27379,11 +27385,14 @@ def jlpt_kanji_detail(slug):
 
 @app.route('/quiz/kanji')
 def quiz_kanji_home():
+    user = current_user()
+
     level_options = ['ALL', 'N5', 'N4', 'N3', 'N2', 'N1']
     count_options = [10, 20, 30]
 
     return render_template(
         'quiz_kanji_home.html',
+        user=user,
         level_options=level_options,
         count_options=count_options
     )
@@ -27496,6 +27505,8 @@ def build_kanji_match_game(level='ALL', count=10, exclude_slugs=None):
 
 @app.route('/quiz/kanji/play')
 def quiz_kanji_play():
+    user = current_user()
+
     level = request.args.get('level', 'ALL').strip().upper()
 
     try:
@@ -27521,9 +27532,9 @@ def quiz_kanji_play():
 
     return render_template(
         'quiz_kanji_play.html',
+        user=user,
         game_data=game_data
     )
-
 
 
 @app.context_processor
