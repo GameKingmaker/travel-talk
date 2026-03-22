@@ -1,0 +1,849 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  :root{
+    --bg: #eef3ff;
+    --card: rgba(255,255,255,0.88);
+    --line: #d9e4fb;
+    --line-strong: #bfd0f5;
+    --text: #1e2c47;
+    --sub: #5e6c86;
+    --blue: #2f6df6;
+    --blue-soft: #edf3ff;
+    --green: #1fa855;
+    --green-soft: #ebf9ef;
+    --red: #d84d4d;
+    --red-soft: #fff1f1;
+    --shadow: 0 14px 40px rgba(44, 76, 140, 0.10);
+    --radius-xl: 28px;
+    --radius-lg: 20px;
+    --radius-md: 16px;
+  }
+
+  body{
+    background: linear-gradient(180deg, #edf2ff 0%, #f7f9ff 100%);
+  }
+
+  .kanji-play-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 28px 18px 44px;
+  }
+
+  /* 상단 */
+  .play-top-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(246,250,255,0.95) 100%);
+    border: 1px solid rgba(210,223,249,0.9);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    margin-bottom: 22px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .play-top-card::before{
+    content:"";
+    position:absolute;
+    top:-30px;
+    right:-30px;
+    width:180px;
+    height:180px;
+    background: radial-gradient(circle, rgba(89,143,255,0.18) 0%, rgba(89,143,255,0) 70%);
+    pointer-events:none;
+  }
+
+  .play-head-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+
+  .play-title-wrap h1 {
+    margin: 0 0 10px;
+    font-size: 44px;
+    line-height: 1.15;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .play-sub {
+    margin: 0;
+    color: var(--sub);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .play-sub b{
+    color: var(--text);
+  }
+
+  .study-link-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    min-height:48px;
+    padding:0 18px;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:800;
+    color: var(--blue);
+    background: var(--blue-soft);
+    border:1px solid #cfe0ff;
+    box-shadow: 0 6px 18px rgba(47,109,246,0.08);
+    transition: all .16s ease;
+    white-space: nowrap;
+  }
+
+  .study-link-btn:hover{
+    transform: translateY(-1px);
+    background:#e5efff;
+    border-color:#bfd4ff;
+  }
+
+  .play-status-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    gap: 12px;
+    margin-bottom: 18px;
+    align-items:center;
+  }
+
+  .status-box {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: #f7faff;
+    border: 1px solid var(--line);
+    color: #38527d;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-weight: 800;
+    font-size: 17px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+
+  .status-box.timer-box{
+    background: linear-gradient(135deg, #edf4ff 0%, #f7fbff 100%);
+    border-color: #c7dafb;
+    color:#234577;
+  }
+
+  .status-box .num{
+    color: var(--text);
+    font-weight: 900;
+  }
+
+  .play-action-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .back-btn,
+  .retry-btn,
+  .next-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    height: 48px;
+    padding: 0 18px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    transition: all .16s ease;
+  }
+
+  .back-btn {
+    background: #eef3fb;
+    color: #314666;
+    border:1px solid #d8e2f2;
+  }
+
+  .back-btn:hover{
+    transform: translateY(-1px);
+    background:#e8eef9;
+  }
+
+  .retry-btn {
+    background: linear-gradient(135deg, #2f6df6 0%, #4a82ff 100%);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(47,109,246,0.20);
+  }
+
+  .retry-btn:hover,
+  .next-btn:hover{
+    transform: translateY(-1px);
+    filter: brightness(1.02);
+  }
+
+  .next-btn {
+    background: linear-gradient(135deg, #17a550 0%, #28ba62 100%);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(23,165,80,0.18);
+  }
+
+  /* 게임판 */
+  .play-main-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px minmax(0, 1fr);
+    gap: 18px;
+    align-items: stretch;
+    min-height: 720px;
+  }
+
+  .play-panel,
+  .play-center {
+    background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(250,252,255,0.92) 100%);
+    border: 1px solid rgba(214,226,247,0.95);
+    border-radius: var(--radius-xl);
+    padding: 22px;
+    box-shadow: var(--shadow);
+    min-height: 720px;
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .play-panel h2,
+  .play-center h2 {
+    margin: 0 0 14px;
+    font-size: 34px;
+    line-height:1.15;
+    letter-spacing:-0.02em;
+    color: var(--text);
+    flex: 0 0 auto;
+  }
+
+  .panel-sub{
+    margin:0 0 14px;
+    color:var(--sub);
+    font-size:15px;
+    line-height:1.55;
+  }
+
+  .card-list {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 6px;
+    align-content: start;
+  }
+
+  .card-list::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .card-list::-webkit-scrollbar-thumb {
+    background: #c8d6f2;
+    border-radius: 999px;
+  }
+
+  .card-list::-webkit-scrollbar-track {
+    background: #eef3fb;
+    border-radius: 999px;
+  }
+
+  #kanjiList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(92px, max-content));
+    gap: 12px;
+    justify-content: start;
+  }
+
+  #meaningList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+    gap: 12px;
+    justify-content: start;
+  }
+
+  .match-card {
+    border: 1px solid #d8e2f3;
+    background: linear-gradient(180deg, #fbfdff 0%, #f4f8ff 100%);
+    border-radius: 18px;
+    cursor: pointer;
+    color: #22314f;
+    padding: 12px 16px;
+    transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+
+  .kanji-card {
+    min-height: 74px;
+    min-width: 96px;
+    font-size: 38px;
+    font-weight: 900;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+  }
+
+  .meaning-card {
+    min-height: 76px;
+    font-size: 20px;
+    font-weight: 850;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    line-height: 1.28;
+    padding: 12px 14px;
+  }
+
+  .match-card:hover {
+    transform: translateY(-2px);
+    border-color: #a9c3fb;
+    background: linear-gradient(180deg, #ffffff 0%, #eef5ff 100%);
+    box-shadow: 0 8px 22px rgba(66,113,205,0.10);
+  }
+
+  .match-card.selected {
+    border-color: #2f6df6;
+    background: linear-gradient(180deg, #eef4ff 0%, #e6efff 100%);
+    box-shadow: inset 0 0 0 1px #2f6df6, 0 8px 22px rgba(47,109,246,0.12);
+  }
+
+  .match-card.matched {
+    background: linear-gradient(180deg, #eefcf3 0%, #e6f8eb 100%);
+    border-color: #31a85d;
+    color: #1f7a43;
+    box-shadow: 0 8px 18px rgba(49,168,93,0.12);
+  }
+
+  .match-card.wrong {
+    background: linear-gradient(180deg, #fff5f5 0%, #ffefef 100%);
+    border-color: #e14d4d;
+    color: #b33232;
+    box-shadow: 0 8px 18px rgba(225,77,77,0.10);
+  }
+
+  /* 가운데 */
+  .play-center{
+    justify-content:flex-start;
+    position:relative;
+  }
+
+  .center-note{
+    font-size:15px;
+    color:var(--sub);
+    line-height:1.6;
+    margin-bottom:4px;
+  }
+
+  .center-preview {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    margin: 26px 0 20px;
+  }
+
+  .preview-box {
+    min-height: 124px;
+    border-radius: 24px;
+    border: 2px dashed #c6d5f2;
+    background: linear-gradient(180deg, #fbfdff 0%, #f4f8ff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 14px;
+    color: #2a3c5d;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.95);
+  }
+
+  .preview-kanji {
+    font-size: 58px;
+    font-weight: 900;
+  }
+
+  .preview-meaning {
+    font-size: 24px;
+    font-weight: 850;
+    line-height:1.35;
+  }
+
+  .preview-plus {
+    font-size: 30px;
+    font-weight: 900;
+    color: #7a8dad;
+  }
+
+  .judge-box {
+    min-height: 84px;
+    border-radius: 20px;
+    background: #f7faff;
+    border: 1px solid #dbe5fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 14px;
+    font-size: 20px;
+    font-weight: 850;
+    color: #35507b;
+    margin-top: 8px;
+    line-height:1.45;
+  }
+
+  .judge-box.judge-correct {
+    background: var(--green-soft);
+    border-color: #9ad2ab;
+    color: #217443;
+  }
+
+  .judge-box.judge-wrong {
+    background: var(--red-soft);
+    border-color: #f2b2b2;
+    color: #b53939;
+  }
+
+  /* 클리어 */
+  .clear-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 18px;
+    backdrop-filter: blur(3px);
+  }
+
+  .clear-modal.hidden {
+    display: none;
+  }
+
+  .clear-card {
+    width: 100%;
+    max-width: 560px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(248,251,255,0.98) 100%);
+    border-radius: 28px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+    border:1px solid #dde7fb;
+  }
+
+  .clear-card h2 {
+    margin: 0 0 10px;
+    font-size: 38px;
+    color: #1c2940;
+    letter-spacing:-0.02em;
+  }
+
+  .clear-card p {
+    margin: 0 0 18px;
+    color: #56657f;
+    font-size: 18px;
+    line-height:1.6;
+  }
+
+  .clear-stats {
+    background: #f6f9ff;
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 18px;
+    color: #314666;
+    line-height: 1.9;
+    font-size: 18px;
+    border:1px solid #dce6fb;
+  }
+
+  .clear-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 1100px) {
+    .play-main-grid {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .play-panel,
+    .play-center {
+      height: auto;
+      min-height: auto;
+    }
+
+    .play-center {
+      order: -1;
+    }
+
+    .card-list {
+      max-height: 420px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .kanji-play-wrap {
+      padding: 16px 12px 36px;
+    }
+
+    .play-title-wrap h1,
+    .play-top-card h1 {
+      font-size: 30px;
+    }
+
+    .play-sub {
+      font-size:16px;
+    }
+
+    .play-status-row{
+      grid-template-columns: 1fr;
+    }
+
+    .kanji-card {
+      font-size: 30px;
+      min-height: 62px;
+      min-width: 82px;
+    }
+
+    .meaning-card {
+      font-size: 18px;
+      min-height: 58px;
+    }
+
+    .preview-kanji {
+      font-size: 44px;
+    }
+
+    .preview-meaning {
+      font-size: 20px;
+    }
+
+    .center-preview {
+      grid-template-columns: 1fr;
+    }
+
+    .preview-plus {
+      display: none;
+    }
+
+    #kanjiList,
+    #meaningList {
+      grid-template-columns: repeat(auto-fit, minmax(90px, max-content));
+    }
+
+    .study-link-btn{
+      width:100%;
+    }
+  }
+</style>
+
+<div class="kanji-play-wrap">
+  <div class="play-top-card">
+    <div class="play-head-top">
+      <div class="play-title-wrap">
+        <h1>한자 짝맞추기 게임</h1>
+        <p class="play-sub">
+          레벨:
+          <b>{{ '전체' if game_data.level == 'ALL' else game_data.level }}</b>
+          / 이번 판:
+          <b>{{ game_data.count }}개</b>
+        </p>
+      </div>
+
+      <a href="{{ url_for('jlpt_kanji_home') }}" class="study-link-btn">
+        📘 한자 공부하러 가기
+      </a>
+    </div>
+<p class="play-guide-text">
+        이 게임은 한자와 뜻을 맞춰 학습하는 게임입니다.<br>
+        <b>한 판이 끝난 후 이어서 하기</b>를 통해 같은 레벨의 남은 한자를 계속 플레이할 수 있어요.
+        </p>
+    <div class="play-status-row">
+  <div class="status-box">
+    📚 {{ '전체' if game_data.level == 'ALL' else game_data.level }} 총 한자:
+    <span class="num">{{ game_data.total_level_count }}개</span>
+  </div>
+
+  <div class="status-box">
+    🎯 현재 게임:
+    <span class="num">{{ game_data.count }}개 모드</span>
+  </div>
+
+  <div class="status-box">
+    📌 현재 판 남은 개수:
+    <span class="num" id="remainingCount">{{ game_data.count }}개</span>
+  </div>
+
+  <div class="status-box timer-box">
+    ⏱ 경과 시간:
+    <span class="num" id="timerText">0초</span>
+  </div>
+</div>
+
+    <div class="play-action-row">
+      <a href="{{ url_for('quiz_kanji_home') }}" class="back-btn">← 설정으로 돌아가기</a>
+      <a href="{{ url_for('quiz_kanji_play', level=game_data.level, count=game_data.requested_count, exclude=request.args.get('exclude', '')) }}" class="retry-btn">다시 시작</a>
+    </div>
+  </div>
+
+  <div class="play-main-grid">
+    <div class="play-panel">
+      <h2>한자</h2>
+      <p class="panel-sub">왼쪽에서 한자를 먼저 하나 선택하세요.</p>
+      <div class="card-list" id="kanjiList">
+        {% for card in game_data.kanji_cards %}
+        <button
+          type="button"
+          class="match-card kanji-card"
+          data-type="kanji"
+          data-pair-id="{{ card.pair_id }}"
+          data-slug="{{ card.slug }}"
+        >
+          {{ card.text }}
+        </button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="play-center">
+      <h2>선택한 짝</h2>
+      <p class="center-note">한자 1개와 뜻 1개를 선택하면 여기에서 <br>정답 여부를 확인할 수 있어요.</p>
+
+      <div class="center-preview">
+        <div class="preview-box preview-kanji" id="selectedKanji">?</div>
+        <div class="preview-plus">+</div>
+        <div class="preview-box preview-meaning" id="selectedMeaning">?</div>
+      </div>
+
+      <div class="judge-box" id="judgeBox">한자와 뜻을 하나씩 <br>선택하세요</div>
+    </div>
+
+    <div class="play-panel">
+      <h2>뜻</h2>
+      <p class="panel-sub">오른쪽에서 맞는 뜻을 선택해 <br>짝을 완성하세요.</p>
+      <div class="card-list" id="meaningList">
+        {% for card in game_data.meaning_cards %}
+        <button
+          type="button"
+          class="match-card meaning-card"
+          data-type="meaning"
+          data-pair-id="{{ card.pair_id }}"
+          data-slug="{{ card.slug }}"
+        >
+          {{ card.text }}
+        </button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div id="clearModal" class="clear-modal hidden">
+    <div class="clear-card">
+      <h2>클리어!</h2>
+      <p>이번 판의 한자와 뜻을 모두 맞췄어요.</p>
+
+      <div class="clear-stats">
+        <div>걸린 시간: <b id="finalElapsedText">0초</b></div>
+        <div>
+          다음 남은 개수:
+          <b id="finalRemainingAfter">{{ game_data.remaining_after_this_round }}</b>개
+        </div>
+      </div>
+
+      <div class="clear-actions">
+        <a href="{{ url_for('quiz_kanji_home') }}" class="back-btn">게임 홈으로 가기</a>
+
+        {% set current_exclude = request.args.get('exclude', '') %}
+        {% if current_exclude %}
+          {% set next_exclude = current_exclude + ',' + (game_data.used_slugs|join(',')) %}
+        {% else %}
+          {% set next_exclude = game_data.used_slugs|join(',') %}
+        {% endif %}
+
+        {% if game_data.remaining_after_this_round > 0 %}
+        <a
+          href="{{ url_for('quiz_kanji_play', level=game_data.level, count=game_data.requested_count, exclude=next_exclude) }}"
+          class="next-btn"
+          id="nextGameBtn"
+        >
+          남은 {{ game_data.remaining_after_this_round }}개 이어서 하기
+        </a>
+        {% else %}
+        <a href="{{ url_for('quiz_kanji_home') }}" class="next-btn">
+          해당 레벨 전체 완료
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let selectedKanjiCard = null;
+  let selectedMeaningCard = null;
+  let locked = false;
+  let remainingCount = {{ game_data.count|tojson }};
+
+  const selectedKanjiBox = document.getElementById('selectedKanji');
+  const selectedMeaningBox = document.getElementById('selectedMeaning');
+  const judgeBox = document.getElementById('judgeBox');
+  const remainingCountEl = document.getElementById('remainingCount');
+
+  const clearModal = document.getElementById('clearModal');
+  const finalElapsedText = document.getElementById('finalElapsedText');
+
+  let startTime = Date.now();
+  let timerId = null;
+  const timerTextEl = document.getElementById('timerText');
+
+  function formatSeconds(sec) {
+    sec = Math.floor(sec);
+    const minutes = Math.floor(sec / 60);
+    const seconds = sec % 60;
+
+    if (minutes > 0) return `${minutes}분 ${seconds}초`;
+    return `${seconds}초`;
+  }
+
+  function startTimer() {
+    timerId = setInterval(() => {
+      const elapsedSec = (Date.now() - startTime) / 1000;
+      timerTextEl.textContent = formatSeconds(elapsedSec);
+    }, 200);
+  }
+
+  function stopTimer() {
+    if (timerId) {
+      clearInterval(timerId);
+      timerId = null;
+    }
+  }
+
+  function updateCenterPreview() {
+    selectedKanjiBox.textContent = selectedKanjiCard ? selectedKanjiCard.textContent.trim() : '?';
+    selectedMeaningBox.textContent = selectedMeaningCard ? selectedMeaningCard.textContent.trim() : '?';
+  }
+
+  function showJudge(message, type='idle') {
+    judgeBox.textContent = message;
+    judgeBox.classList.remove('judge-correct', 'judge-wrong');
+    if (type === 'correct') judgeBox.classList.add('judge-correct');
+    if (type === 'wrong') judgeBox.classList.add('judge-wrong');
+  }
+
+  function checkMatch() {
+    if (!selectedKanjiCard || !selectedMeaningCard || locked) return;
+
+    locked = true;
+
+    const kanjiPairId = selectedKanjiCard.dataset.pairId;
+    const meaningPairId = selectedMeaningCard.dataset.pairId;
+
+    if (kanjiPairId === meaningPairId) {
+      remainingCount -= 1;
+      remainingCountEl.textContent = remainingCount;
+
+      showJudge('정답입니다. 짝이 제거됩니다.', 'correct');
+
+      selectedKanjiCard.classList.add('matched');
+      selectedMeaningCard.classList.add('matched');
+
+      setTimeout(() => {
+        selectedKanjiCard.remove();
+        selectedMeaningCard.remove();
+        selectedKanjiCard = null;
+        selectedMeaningCard = null;
+        updateCenterPreview();
+
+        locked = false;
+        showJudge('다음 한자와 뜻을 선택하세요');
+
+        if (remainingCount === 0) {
+          stopTimer();
+          const elapsedSec = (Date.now() - startTime) / 1000;
+          finalElapsedText.textContent = formatSeconds(elapsedSec);
+          clearModal.classList.remove('hidden');
+        }
+      }, 650);
+
+    } else {
+      showJudge('오답입니다. 다시 선택해보세요.', 'wrong');
+
+      selectedKanjiCard.classList.add('wrong');
+      selectedMeaningCard.classList.add('wrong');
+
+      setTimeout(() => {
+        selectedKanjiCard.classList.remove('selected', 'wrong');
+        selectedMeaningCard.classList.remove('selected', 'wrong');
+        selectedKanjiCard = null;
+        selectedMeaningCard = null;
+        updateCenterPreview();
+
+        locked = false;
+        showJudge('한자와 뜻을 하나씩 선택하세요');
+      }, 850);
+    }
+  }
+
+  document.querySelectorAll('.kanji-card').forEach(card => {
+    card.addEventListener('click', () => {
+      if (locked || card.classList.contains('matched')) return;
+
+      if (selectedKanjiCard) {
+        selectedKanjiCard.classList.remove('selected');
+      }
+
+      selectedKanjiCard = card;
+      selectedKanjiCard.classList.add('selected');
+      updateCenterPreview();
+      checkMatch();
+    });
+  });
+
+  document.querySelectorAll('.meaning-card').forEach(card => {
+    card.addEventListener('click', () => {
+      if (locked || card.classList.contains('matched')) return;
+
+      if (selectedMeaningCard) {
+        selectedMeaningCard.classList.remove('selected');
+      }
+
+      selectedMeaningCard = card;
+      selectedMeaningCard.classList.add('selected');
+      updateCenterPreview();
+      checkMatch();
+    });
+  });
+
+  startTimer();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
+     crossorigin="anonymous"></script>
+<!-- content-ad-2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9733127689125901"
+     data-ad-slot="5907060346"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+{% endblock %}
