@@ -31,7 +31,6 @@
     padding: 28px 18px 44px;
   }
 
-  /* 상단 */
   .play-top-card {
     position: relative;
     background: linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(246,250,255,0.95) 100%);
@@ -192,7 +191,6 @@
     box-shadow: 0 10px 24px rgba(23,165,80,0.18);
   }
 
-  /* 게임판 */
   .play-main-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 340px minmax(0, 1fr);
@@ -336,7 +334,6 @@
     box-shadow: 0 8px 18px rgba(225,77,77,0.10);
   }
 
-  /* 가운데 */
   .play-center{
     justify-content:flex-start;
     position:relative;
@@ -417,7 +414,6 @@
     color: #b53939;
   }
 
-  /* 클리어 */
   .clear-modal {
     position: fixed;
     inset: 0;
@@ -498,295 +494,246 @@
     }
   }
 
+  /* 모바일 전용: 한 화면 안에 선택박스 + 한자/뜻 2열 */
   @media (max-width: 768px) {
-  .kanji-play-wrap {
-    padding: 12px 10px 28px;
+    html, body {
+      height: 100%;
+    }
+
+    .kanji-play-wrap {
+      padding: 10px 8px 20px;
+    }
+
+    .play-top-card {
+      padding: 14px 12px;
+      margin-bottom: 10px;
+      border-radius: 18px;
+    }
+
+    .play-head-top {
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .play-title-wrap h1,
+    .play-top-card h1 {
+      font-size: 24px;
+      margin: 0 0 6px;
+    }
+
+    .play-sub,
+    .play-guide-text {
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .play-status-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .status-box {
+      min-width: 0;
+      font-size: 12px;
+      line-height: 1.35;
+      padding: 9px 10px;
+      border-radius: 12px;
+    }
+
+    .play-action-row {
+      gap: 8px;
+    }
+
+    .back-btn,
+    .retry-btn,
+    .next-btn,
+    .study-link-btn {
+      width: 100%;
+      min-width: 0;
+      height: 42px;
+      font-size: 14px;
+      border-radius: 12px;
+    }
+
+    .play-main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "center center"
+        "kanji meaning";
+      gap: 10px;
+      align-items: stretch;
+      height: calc(100dvh - 360px);
+      min-height: 520px;
+    }
+
+    .play-main-grid > .play-panel:nth-child(1) {
+      grid-area: kanji;
+    }
+
+    .play-main-grid > .play-center {
+      grid-area: center;
+    }
+
+    .play-main-grid > .play-panel:nth-child(3) {
+      grid-area: meaning;
+    }
+
+    .play-panel,
+    .play-center {
+      min-height: 0;
+      height: 100%;
+      padding: 14px 12px;
+      border-radius: 18px;
+    }
+
+    .play-panel h2,
+    .play-center h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .panel-sub,
+    .center-note {
+      font-size: 12px;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .play-center {
+      height: auto;
+      min-height: 0;
+    }
+
+    .center-preview {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 10px 0 8px;
+    }
+
+    .preview-plus {
+      display: none;
+    }
+
+    .preview-box {
+      min-height: 68px;
+      padding: 8px;
+      border-radius: 16px;
+    }
+
+    .preview-kanji {
+      font-size: 32px;
+    }
+
+    .preview-meaning {
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .judge-box {
+      min-height: 48px;
+      margin-top: 4px;
+      padding: 8px;
+      border-radius: 14px;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .card-list {
+      flex: 1 1 auto;
+      min-height: 0;
+      max-height: none;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    #kanjiList {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    #meaningList {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .match-card {
+      border-radius: 14px;
+      padding: 8px;
+    }
+
+    .kanji-card {
+      min-width: 0;
+      width: 100%;
+      min-height: 64px;
+      font-size: 28px;
+    }
+
+    .meaning-card {
+      min-width: 0;
+      width: 100%;
+      min-height: 64px;
+      font-size: 15px;
+      line-height: 1.25;
+      padding: 10px 8px;
+    }
+
+    .clear-card {
+      padding: 20px 14px;
+      border-radius: 20px;
+    }
+
+    .clear-card h2 {
+      font-size: 26px;
+    }
+
+    .clear-card p,
+    .clear-stats {
+      font-size: 14px;
+    }
   }
 
-  .play-top-card {
-    padding: 18px 16px;
-    margin-bottom: 14px;
-    border-radius: 22px;
-  }
+  @media (max-width: 430px) {
+    .play-main-grid {
+      height: calc(100dvh - 335px);
+      min-height: 500px;
+    }
 
-  .play-title-wrap h1,
-  .play-top-card h1 {
-    font-size: 28px;
-    margin-bottom: 8px;
-  }
+    .play-title-wrap h1,
+    .play-top-card h1 {
+      font-size: 22px;
+    }
 
-  .play-sub,
-  .play-guide-text {
-    font-size: 14px;
-    line-height: 1.55;
-  }
+    .status-box {
+      font-size: 11px;
+      padding: 8px 9px;
+    }
 
-  .play-status-row {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    margin-bottom: 14px;
-  }
+    .kanji-card {
+      min-height: 58px;
+      font-size: 24px;
+    }
 
-  .status-box {
-    font-size: 14px;
-    padding: 10px 12px;
-    border-radius: 14px;
-  }
+    .meaning-card {
+      min-height: 58px;
+      font-size: 14px;
+    }
 
-  .play-action-row {
-    gap: 8px;
-  }
+    .preview-box {
+      min-height: 60px;
+    }
 
-  .back-btn,
-  .retry-btn,
-  .next-btn {
-    min-width: 0;
-    width: 100%;
-    height: 44px;
-    font-size: 14px;
-    border-radius: 12px;
-  }
+    .preview-kanji {
+      font-size: 28px;
+    }
 
-  .play-main-grid {
-    gap: 12px;
+    .preview-meaning {
+      font-size: 14px;
+    }
   }
-
-  .play-panel,
-  .play-center {
-    padding: 16px 14px;
-    border-radius: 22px;
-  }
-
-  .play-panel h2,
-  .play-center h2 {
-    font-size: 26px;
-    margin-bottom: 10px;
-  }
-
-  .panel-sub,
-  .center-note {
-    font-size: 13px;
-    line-height: 1.45;
-    margin-bottom: 10px;
-  }
-
-  /* 가운데 선택 영역 축소 */
-  .play-center {
-    min-height: auto;
-    height: auto;
-  }
-
-  .center-preview {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    margin: 14px 0 12px;
-  }
-
-  .preview-plus {
-    display: none;
-  }
-
-  .preview-box {
-    min-height: 76px;
-    padding: 10px;
-    border-radius: 18px;
-  }
-
-  .preview-kanji {
-    font-size: 36px;
-  }
-
-  .preview-meaning {
-    font-size: 18px;
-    line-height: 1.3;
-  }
-
-  .judge-box {
-    min-height: 60px;
-    font-size: 15px;
-    padding: 10px;
-    border-radius: 16px;
-    margin-top: 4px;
-  }
-
-  /* 모바일 카드 영역 높이 확보 */
-  .card-list {
-    max-height: 460px;
-    padding-right: 4px;
-  }
-
-  /* 한자/뜻 3칸 -> 2칸 */
-  #kanjiList {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  #meaningList {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .match-card {
-    border-radius: 16px;
-    padding: 10px 8px;
-  }
-
-  .kanji-card {
-    min-width: 0;
-    width: 100%;
-    min-height: 78px;
-    font-size: 32px;
-  }
-
-  .meaning-card {
-    min-width: 0;
-    width: 100%;
-    min-height: 78px;
-    font-size: 17px;
-    line-height: 1.25;
-    padding: 10px 8px;
-  }
-
-  .study-link-btn {
-    width: 100%;
-    min-height: 44px;
-    font-size: 14px;
-  }
-
-  .clear-card {
-    padding: 22px 16px;
-    border-radius: 22px;
-  }
-
-  .clear-card h2 {
-    font-size: 28px;
-  }
-
-  .clear-card p,
-  .clear-stats {
-    font-size: 15px;
-  }
-}
-/* ✅ 모바일 전용 */
-@media (max-width: 768px) {
-
-  /* 전체 게임 영역 */
-  .quiz-main {
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 140px);
-  }
-
-  /* 선택한 짝 박스 줄이기 */
-  .selected-pair-box {
-    padding: 10px;
-    margin-bottom: 8px;
-  }
-
-  /* 한자 + 뜻 영역을 좌우로 */
-  .quiz-game-area {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    height: 100%;
-  }
-
-  /* 왼쪽 한자 */
-  .kanji-section {
-    width: 50%;
-    height: 100%;
-    overflow-y: auto;
-  }
-
-  /* 오른쪽 뜻 */
-  .meaning-section {
-    width: 50%;
-    height: 100%;
-    overflow-y: auto;
-  }
-
-  /* 카드 크기 줄이기 */
-  .kanji-card,
-  .meaning-card {
-    min-height: 55px;
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  /* 한자 크기만 유지 */
-  .kanji-card .kanji {
-    font-size: 28px;
-  }
-}
-/* ✅ 모바일 전용 */
-@media (max-width: 768px) {
-
-  /* 전체 구조 */
-  .play-main-grid {
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 120px);
-    gap: 8px;
-  }
-
-  /* 👉 선택한 짝 먼저 나오게 */
-  .play-center {
-    order: -1;
-    padding: 10px;
-  }
-
-  /* 👉 한자 + 뜻을 좌우 배치 */
-  .play-panel {
-    width: 50%;
-    height: 100%;
-  }
-
-  /* 👉 두 패널을 감싸는 flex */
-  .play-main-grid > .play-panel {
-    display: inline-block;
-    vertical-align: top;
-  }
-
-  /* 👉 핵심: 한자/뜻 가로 배치 */
-  .play-main-grid {
-    flex-wrap: wrap;
-  }
-
-  .play-main-grid > .play-panel:nth-of-type(1),
-  .play-main-grid > .play-panel:nth-of-type(3) {
-    width: 50%;
-    height: calc(100vh - 220px);
-    overflow-y: auto;
-  }
-
-  /* 가운데는 작게 */
-  .play-center {
-    width: 100%;
-  }
-
-  /* 카드 크기 줄이기 */
-  .match-card {
-    min-height: 55px;
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  /* 한자 크게 유지 */
-  .kanji-card {
-    font-size: 24px;
-  }
-
-  /* 선택 영역 줄이기 */
-  .preview-box {
-    height: 45px;
-    font-size: 16px;
-  }
-
-  .judge-box {
-    font-size: 14px;
-    padding: 8px;
-  }
-}
 </style>
 
 <div class="kanji-play-wrap">
