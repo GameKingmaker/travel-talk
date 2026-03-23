@@ -667,6 +667,126 @@
     font-size: 15px;
   }
 }
+/* ✅ 모바일 전용 */
+@media (max-width: 768px) {
+
+  /* 전체 게임 영역 */
+  .quiz-main {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 140px);
+  }
+
+  /* 선택한 짝 박스 줄이기 */
+  .selected-pair-box {
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+
+  /* 한자 + 뜻 영역을 좌우로 */
+  .quiz-game-area {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    height: 100%;
+  }
+
+  /* 왼쪽 한자 */
+  .kanji-section {
+    width: 50%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  /* 오른쪽 뜻 */
+  .meaning-section {
+    width: 50%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  /* 카드 크기 줄이기 */
+  .kanji-card,
+  .meaning-card {
+    min-height: 55px;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  /* 한자 크기만 유지 */
+  .kanji-card .kanji {
+    font-size: 28px;
+  }
+}
+/* ✅ 모바일 전용 */
+@media (max-width: 768px) {
+
+  /* 전체 구조 */
+  .play-main-grid {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 120px);
+    gap: 8px;
+  }
+
+  /* 👉 선택한 짝 먼저 나오게 */
+  .play-center {
+    order: -1;
+    padding: 10px;
+  }
+
+  /* 👉 한자 + 뜻을 좌우 배치 */
+  .play-panel {
+    width: 50%;
+    height: 100%;
+  }
+
+  /* 👉 두 패널을 감싸는 flex */
+  .play-main-grid > .play-panel {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  /* 👉 핵심: 한자/뜻 가로 배치 */
+  .play-main-grid {
+    flex-wrap: wrap;
+  }
+
+  .play-main-grid > .play-panel:nth-of-type(1),
+  .play-main-grid > .play-panel:nth-of-type(3) {
+    width: 50%;
+    height: calc(100vh - 220px);
+    overflow-y: auto;
+  }
+
+  /* 가운데는 작게 */
+  .play-center {
+    width: 100%;
+  }
+
+  /* 카드 크기 줄이기 */
+  .match-card {
+    min-height: 55px;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  /* 한자 크게 유지 */
+  .kanji-card {
+    font-size: 24px;
+  }
+
+  /* 선택 영역 줄이기 */
+  .preview-box {
+    height: 45px;
+    font-size: 16px;
+  }
+
+  .judge-box {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
 </style>
 
 <div class="kanji-play-wrap">
