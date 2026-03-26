@@ -1,0 +1,697 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  :root{
+    --rk-bg:#eef3ff;
+    --rk-card:#ffffff;
+    --rk-card-2:#f8fbff;
+    --rk-line:#dbe5fb;
+    --rk-line-strong:#bdd0ff;
+    --rk-blue:#2f6df6;
+    --rk-blue-dark:#1f4fc4;
+    --rk-navy:#16233b;
+    --rk-sub:#6c7b97;
+    --rk-gold:#f2c94c;
+    --rk-silver:#c0cad8;
+    --rk-bronze:#d69a6c;
+    --rk-shadow:0 18px 40px rgba(33, 57, 120, 0.10);
+    --rk-shadow-soft:0 10px 22px rgba(33, 57, 120, 0.06);
+    --rk-radius-xl:30px;
+    --rk-radius-lg:22px;
+    --rk-radius-md:16px;
+    --rk-radius-sm:12px;
+  }
+
+  .bh-ranking-wrap{
+    max-width:1260px;
+    margin:0 auto;
+    padding:38px 18px 72px;
+  }
+
+  .bh-ranking-hero{
+    position:relative;
+    margin-bottom:22px;
+    border-radius:34px;
+    padding:28px 28px 24px;
+    background:
+      radial-gradient(circle at top left, rgba(47,109,246,0.16), transparent 28%),
+      linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(246,250,255,0.98) 100%);
+    border:1px solid rgba(22,35,59,0.06);
+    box-shadow:
+      0 22px 48px rgba(33, 57, 120, 0.10),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+    overflow:hidden;
+  }
+
+  .bh-ranking-hero::after{
+    content:"";
+    position:absolute;
+    right:-40px;
+    top:-50px;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(47,109,246,0.14) 0%, rgba(47,109,246,0.02) 65%, transparent 75%);
+    pointer-events:none;
+  }
+
+  .bh-ranking-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+
+  .bh-ranking-title{
+    margin:0;
+    font-size:clamp(40px, 5.2vw, 70px);
+    line-height:0.95;
+    letter-spacing:-0.055em;
+    font-weight:1000;
+    color:var(--rk-navy);
+    text-shadow:0 10px 24px rgba(47,109,246,0.10);
+  }
+
+  .bh-ranking-sub{
+    margin:14px 0 0;
+    color:var(--rk-sub);
+    font-size:15px;
+    line-height:1.85;
+    word-break:keep-all;
+  }
+
+  .bh-ranking-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .bh-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    padding:0 18px;
+    border-radius:18px;
+    border:1px solid rgba(22, 35, 59, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(246,249,255,0.98) 100%);
+    color:var(--rk-navy);
+    text-decoration:none;
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:-0.01em;
+    box-shadow:var(--rk-shadow-soft);
+    transition:
+      transform .16s ease,
+      box-shadow .16s ease,
+      border-color .16s ease,
+      background .16s ease;
+    white-space:nowrap;
+  }
+
+  .bh-btn:hover{
+    transform:translateY(-1px);
+    border-color:#c7d7ff;
+    box-shadow:0 14px 26px rgba(33, 57, 120, 0.10);
+    background:linear-gradient(180deg, #ffffff 0%, #f1f6ff 100%);
+  }
+
+  .bh-mode-tabs{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+
+  .bh-mode-tab{
+    min-width:82px;
+    min-height:46px;
+    padding:0 18px;
+    border-radius:999px;
+    border:1px solid rgba(22, 35, 59, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(246,249,255,0.98) 100%);
+    color:var(--rk-navy);
+    text-decoration:none;
+    font-size:15px;
+    font-weight:900;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    transition:
+      transform .16s ease,
+      border-color .16s ease,
+      box-shadow .16s ease,
+      background .16s ease;
+    box-shadow:var(--rk-shadow-soft);
+  }
+
+  .bh-mode-tab:hover{
+    transform:translateY(-1px);
+    border-color:#c7d7ff;
+    box-shadow:0 12px 22px rgba(33, 57, 120, 0.08);
+  }
+
+  .bh-mode-tab.active{
+    background:linear-gradient(180deg, #6ea3ff 0%, #2f6df6 58%, #2359cf 100%);
+    color:#fff;
+    border-color:#4f84f7;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.20),
+      0 14px 24px rgba(47,109,246,0.24);
+  }
+
+  .bh-ranking-grid{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) 360px;
+    gap:20px;
+    align-items:start;
+  }
+
+  .bh-card{
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.99) 0%, rgba(246,250,255,0.98) 100%);
+    border:1px solid rgba(22, 35, 59, 0.06);
+    border-radius:var(--rk-radius-xl);
+    box-shadow:
+      0 20px 44px rgba(33, 57, 120, 0.10),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+    overflow:hidden;
+    backdrop-filter:blur(6px);
+  }
+
+  .bh-card-head{
+    padding:20px 22px;
+    border-bottom:1px solid rgba(22, 35, 59, 0.05);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+    background:
+      radial-gradient(circle at top left, rgba(47,109,246,.10), transparent 24%),
+      linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  }
+
+  .bh-card-head h2,
+  .bh-card-head h3{
+    margin:0;
+    font-size:28px;
+    line-height:1.15;
+    letter-spacing:-0.03em;
+    font-weight:1000;
+    color:var(--rk-navy);
+  }
+
+  .bh-pill{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:32px;
+    padding:0 13px;
+    border-radius:999px;
+    border:1px solid #d7e3ff;
+    background:linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+    color:var(--rk-blue);
+    font-size:12px;
+    font-weight:900;
+    white-space:nowrap;
+    box-shadow:0 6px 14px rgba(47,109,246,0.06);
+  }
+
+  .bh-table-wrap{
+    overflow-x:auto;
+  }
+
+  .bh-table-wrap::-webkit-scrollbar{
+    height:8px;
+  }
+
+  .bh-table-wrap::-webkit-scrollbar-thumb{
+    background:#d4dff8;
+    border-radius:999px;
+  }
+
+  table{
+    width:100%;
+    min-width:620px;
+    border-collapse:separate;
+    border-spacing:0;
+  }
+
+  thead th{
+    position:sticky;
+    top:0;
+    z-index:1;
+  }
+
+  th, td{
+    padding:15px 12px;
+    text-align:center;
+    border-bottom:1px solid rgba(22,35,59,0.05);
+    font-size:14px;
+  }
+
+  th{
+    background:linear-gradient(180deg, #fbfdff 0%, #f4f8ff 100%);
+    color:var(--rk-sub);
+    font-weight:900;
+    font-size:12px;
+    letter-spacing:-0.01em;
+  }
+
+  td{
+    color:var(--rk-navy);
+    font-weight:800;
+    background:#fff;
+    transition:background .14s ease;
+  }
+
+  tbody tr:hover td{
+    background:#f9fbff;
+  }
+
+  tbody tr:last-child td{
+    border-bottom:none;
+  }
+
+  .rank-col{
+    width:78px;
+    font-weight:1000;
+  }
+
+  .user-col{
+    font-weight:950;
+    letter-spacing:-0.01em;
+  }
+
+  .score-strong{
+    font-weight:1000;
+    color:var(--rk-blue-dark);
+  }
+
+  .top1 td{
+    background:
+      linear-gradient(180deg, rgba(255,215,79,0.24) 0%, rgba(255,215,79,0.08) 100%);
+  }
+
+  .top2 td{
+    background:
+      linear-gradient(180deg, rgba(210,220,235,0.24) 0%, rgba(210,220,235,0.08) 100%);
+  }
+
+  .top3 td{
+    background:
+      linear-gradient(180deg, rgba(225,170,120,0.24) 0%, rgba(225,170,120,0.08) 100%);
+  }
+
+  .top1 .rank-col{
+    color:#9a6b00;
+  }
+
+  .top2 .rank-col{
+    color:#617186;
+  }
+
+  .top3 .rank-col{
+    color:#9a5b29;
+  }
+
+  .top1 .user-col,
+  .top2 .user-col,
+  .top3 .user-col{
+    font-weight:1000;
+  }
+
+  .bh-empty{
+    padding:36px 22px 38px;
+    color:var(--rk-sub);
+    font-size:15px;
+    line-height:1.9;
+    text-align:left;
+  }
+
+  .bh-side-body{
+    padding:18px;
+  }
+
+  .bh-info-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .bh-info-chip{
+    border:1px solid rgba(22, 35, 59, 0.07);
+    border-radius:20px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(244,248,255,0.98) 100%);
+    padding:18px 16px;
+    box-shadow:
+      0 12px 22px rgba(33, 57, 120, 0.06),
+      inset 0 1px 0 rgba(255,255,255,0.92);
+  }
+
+  .bh-info-chip b{
+    display:block;
+    margin-bottom:8px;
+    color:var(--rk-blue-dark);
+    font-size:14px;
+    font-weight:950;
+    letter-spacing:-0.01em;
+  }
+
+  .bh-info-chip span{
+    color:var(--rk-navy);
+    font-size:15px;
+    line-height:1.8;
+    word-break:keep-all;
+  }
+
+  .bh-note{
+    margin-top:14px;
+    padding:16px 16px;
+    border-radius:20px;
+    border:1px solid #d9e6ff;
+    background:
+      linear-gradient(180deg, #f8fbff 0%, #f1f6ff 100%);
+    color:var(--rk-sub);
+    font-size:13px;
+    line-height:1.9;
+    word-break:keep-all;
+  }
+
+  @media (max-width: 980px){
+    .bh-ranking-grid{
+      grid-template-columns:1fr;
+    }
+  }
+
+  @media (max-width: 768px){
+    .bh-ranking-wrap{
+      padding:18px 10px 48px;
+    }
+
+    .bh-ranking-hero{
+      border-radius:24px;
+      padding:18px 16px 16px;
+      margin-bottom:16px;
+    }
+
+    .bh-ranking-head{
+      align-items:flex-start;
+      gap:16px;
+    }
+
+    .bh-ranking-title{
+      font-size:clamp(34px, 10vw, 46px);
+      line-height:1.02;
+    }
+
+    .bh-ranking-sub{
+      font-size:13px;
+      margin-top:10px;
+      line-height:1.75;
+    }
+
+    .bh-ranking-actions{
+      width:100%;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .bh-btn{
+      min-height:44px;
+      font-size:13px;
+      padding:0 12px;
+      border-radius:14px;
+    }
+
+    .bh-mode-tabs{
+      gap:8px;
+      margin-bottom:16px;
+    }
+
+    .bh-mode-tab{
+      min-width:68px;
+      min-height:42px;
+      padding:0 14px;
+      font-size:13px;
+    }
+
+    .bh-card{
+      border-radius:22px;
+    }
+
+    .bh-card-head{
+      padding:16px 14px;
+    }
+
+    .bh-card-head h2,
+    .bh-card-head h3{
+      font-size:22px;
+    }
+
+    .bh-side-body{
+      padding:14px;
+    }
+
+    .bh-info-chip{
+      border-radius:16px;
+      padding:14px 14px;
+    }
+
+    .bh-info-chip b{
+      font-size:13px;
+      margin-bottom:6px;
+    }
+
+    .bh-info-chip span{
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .bh-note{
+      padding:14px 14px;
+      border-radius:16px;
+      font-size:12px;
+      line-height:1.8;
+    }
+
+    .bh-empty{
+      padding:24px 14px 26px;
+      font-size:13px;
+      line-height:1.8;
+    }
+
+    th, td{
+      padding:13px 8px;
+      font-size:12px;
+    }
+
+    .rank-col{
+      width:64px;
+    }
+  }
+
+  @media (max-width: 520px){
+    .bh-ranking-actions{
+      grid-template-columns:1fr;
+    }
+
+    .bh-card-head{
+      align-items:flex-start;
+    }
+
+    .bh-pill{
+      min-height:28px;
+      font-size:11px;
+      padding:0 10px;
+    }
+
+    table{
+      min-width:540px;
+    }
+  }
+</style>
+
+<div class="bh-ranking-wrap">
+  <div class="bh-ranking-hero">
+    <div class="bh-ranking-head">
+      <div>
+        <h1 class="bh-ranking-title">🃏 JLPT 단어 카드 챌린지 랭킹</h1>
+        <p class="bh-ranking-sub">
+          JLPT 레벨 기반 카드 챌린지 통합 랭킹입니다.<br>
+          <b>최종 라운드</b> → <b>맞춘 개수</b> 순으로 순위가 정해집니다.
+        </p>
+      </div>
+
+      <div class="bh-ranking-actions">
+        <a class="bh-btn" href="{{ url_for('bomb_hunt_start') }}">← JLPT카드게임 홈화면</a>
+        <a class="bh-btn" href="{{ url_for('quiz') }}">← 전체게임목록</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bh-mode-tabs">
+    <a class="bh-mode-tab {% if selected_mode == 'easy' %}active{% endif %}"
+       href="{{ url_for('bomb_hunt_ranking', mode='easy') }}">초급</a>
+    <a class="bh-mode-tab {% if selected_mode == 'normal' %}active{% endif %}"
+       href="{{ url_for('bomb_hunt_ranking', mode='normal') }}">중급</a>
+    <a class="bh-mode-tab {% if selected_mode == 'hard' %}active{% endif %}"
+       href="{{ url_for('bomb_hunt_ranking', mode='hard') }}">고급</a>
+    <a class="bh-mode-tab {% if selected_mode == 'master' %}active{% endif %}"
+       href="{{ url_for('bomb_hunt_ranking', mode='master') }}">마스터</a>
+  </div>
+
+  <div class="bh-ranking-grid">
+    <div class="bh-card">
+      <div class="bh-card-head">
+        <h2>🏆 통합 랭킹 TOP 20</h2>
+        <span class="bh-pill">
+          {% if selected_mode == 'easy' %}초급 (N5)
+          {% elif selected_mode == 'normal' %}중급 (N4)
+          {% elif selected_mode == 'hard' %}고급 (N3)
+          {% else %}마스터 (N2+N1)
+          {% endif %}
+        </span>
+      </div>
+
+      {% if not ranking_rows or ranking_rows|length == 0 %}
+        <div class="bh-empty">
+          아직 이 난이도의 랭킹 기록이 없습니다.<br>
+          먼저 플레이해서 첫 기록을 남겨보세요!
+        </div>
+      {% else %}
+        <div class="bh-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th class="rank-col">순위</th>
+                <th>닉네임</th>
+                <th>최종 라운드</th>
+                <th>맞춘 개수</th>
+                <th>날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in ranking_rows %}
+                {% set rank = loop.index %}
+                <tr class="{% if rank == 1 %}top1{% elif rank == 2 %}top2{% elif rank == 3 %}top3{% endif %}">
+                  <td class="rank-col">
+                    {% if rank == 1 %}🥇
+                    {% elif rank == 2 %}🥈
+                    {% elif rank == 3 %}🥉
+                    {% else %}{{ rank }}
+                    {% endif %}
+                  </td>
+                  <td class="user-col">{{ row['nickname'] }}</td>
+                  <td class="score-strong">
+                    {{ row['max_round_label'] if row.get('max_round_label') else row['max_round'] }}
+                  </td>
+                  <td class="score-strong">{{ row['total_found'] }}개</td>
+                  <td>
+                    {% if row['created_at'] %}
+                      {{ row['created_at'][:10] }}
+                    {% else %}
+                      -
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="bh-card">
+      <div class="bh-card-head">
+        <h3>📌 랭킹 안내</h3>
+        <span class="bh-pill">
+          {% if selected_mode == 'easy' %}초급
+          {% elif selected_mode == 'normal' %}중급
+          {% elif selected_mode == 'hard' %}고급
+          {% else %}마스터
+          {% endif %}
+        </span>
+      </div>
+
+      <div class="bh-side-body">
+        <div class="bh-info-grid">
+          {% if user %}
+            <div class="bh-info-chip">
+              <b>내 랭킹</b>
+              <span>
+                {% if my_rank %}
+                  {{ my_rank }}위
+                {% else %}
+                  -
+                {% endif %}
+              </span>
+            </div>
+
+            <div class="bh-info-chip">
+              <b>내 최고기록</b>
+              <span>
+                {% if my_record %}
+                  {{ my_record['max_round_label'] if my_record.get('max_round_label') else my_record['max_round'] }}
+                  / {{ my_record['total_found'] }}개
+                {% else %}
+                  기록 없음
+                {% endif %}
+              </span>
+            </div>
+          {% else %}
+            <div class="bh-info-chip">
+              <b>내 랭킹</b>
+              <span>-</span>
+            </div>
+
+            <div class="bh-info-chip">
+              <b>내 최고기록</b>
+              <span>로그인 후 확인 가능</span>
+            </div>
+          {% endif %}
+
+          <div class="bh-info-chip">
+            <b>정렬 우선순위</b>
+            <span>
+              1순위: 최종 라운드<br>
+              2순위: 맞춘 개수
+            </span>
+          </div>
+
+          <div class="bh-info-chip">
+            <b>라운드 표기</b>
+            <span>
+              예: 1-5, 2-3, 7-4 형식으로 표시됩니다.<br>
+              숫자 앞자리는 주제 라운드, 뒤 숫자는 해당 라운드의 문제 진행 단계입니다.
+            </span>
+          </div>
+
+          <div class="bh-info-chip">
+            <b>난이도 기준</b>
+            <span>
+              초급 = N5<br>
+              중급 = N4<br>
+              고급 = N3<br>
+              마스터 = N2 + N1
+            </span>
+          </div>
+        </div>
+
+        <div class="bh-note">
+          로그인한 회원은 난이도별로 최고 기록 1개만 유지됩니다.<br>
+          더 높은 라운드 또는 더 많은 정답을 기록하면 기존 기록이 갱신됩니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
