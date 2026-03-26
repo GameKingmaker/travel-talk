@@ -1,0 +1,1296 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  :root {
+    --bg1: #edf2ff;
+    --bg2: #f8fbff;
+    --card: rgba(255,255,255,0.97);
+    --line: #d7e4fb;
+    --line-strong: #91b3ff;
+    --blue: #4f86ff;
+    --blue-dark: #2f5fd6;
+    --text: #1d2b49;
+    --sub: #66738f;
+    --danger: #e85b5b;
+    --danger-soft: #fff2f2;
+    --success: #20a65a;
+    --success-soft: #eefcf4;
+    --warn-soft: #fff8ea;
+    --warn-line: #f2d39a;
+    --shadow: 0 14px 34px rgba(54, 92, 173, 0.12);
+  }
+
+  .challenge-play-wrap {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 18px 16px 28px;
+    min-height: 100vh;
+  }
+
+  .challenge-shell {
+    background: linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(247,250,255,0.97) 100%);
+    border: 2px solid var(--line-strong);
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    padding: 18px;
+  }
+
+  .play-main {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .side-panel,
+  .game-panel {
+    background: linear-gradient(180deg, #fbfdff 0%, #f4f8ff 100%);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 18px;
+    min-height: 760px;
+  }
+
+  .game-title {
+    margin: 0 0 8px;
+    font-size: 34px;
+    font-weight: 1000;
+    color: var(--blue-dark);
+    letter-spacing: -0.04em;
+  }
+
+  .game-sub {
+    margin: 0 0 14px;
+    color: var(--sub);
+    font-size: 14px;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+
+  .hp-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+
+  .hp-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .hp-title {
+    font-size: 14px;
+    color: var(--sub);
+    font-weight: 800;
+  }
+
+  .hp-value {
+    font-size: 18px;
+    color: var(--blue-dark);
+    font-weight: 900;
+  }
+
+  .hp-bar-outer {
+    position: relative;
+    width: 100%;
+    height: 22px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #eef2f7 0%, #e3e8f1 100%);
+    border: 1px solid #cfd9ea;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+  }
+
+  .hp-bar-inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ff5c5c 0%, #ff3f3f 45%, #e12626 100%);
+    transition: width 0.35s ease, transform 0.18s ease, filter 0.18s ease;
+  }
+
+  .hp-bar-inner.hit {
+    transform: scaleY(1.08);
+    filter: brightness(1.08);
+  }
+
+  .hp-hit-flash {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0);
+    pointer-events: none;
+    transition: background 0.18s ease;
+  }
+
+  .hp-hit-flash.show {
+    background: rgba(255, 120, 120, 0.25);
+  }
+
+  .hp-help {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--sub);
+  }
+
+  .guide-card,
+  .result-box-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+
+  .guide-card h3,
+  .result-box-card h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+    color: var(--blue-dark);
+    font-weight: 900;
+  }
+
+  .guide-card ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.75;
+  }
+
+  .side-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .action-btn {
+    width: 100%;
+    min-height: 50px;
+    border: none;
+    border-radius: 14px;
+    padding: 0 16px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .action-btn.primary {
+    background: linear-gradient(135deg, #5b8cff 0%, #76a3ff 100%);
+    color: #fff;
+  }
+
+  .action-btn.secondary {
+    background: #fff;
+    color: var(--blue-dark);
+    border: 1px solid #cfe0ff;
+  }
+
+  .action-btn.ghost {
+    background: linear-gradient(135deg, #7ca7ff 0%, #4f86ff 100%);
+    color: #fff;
+  }
+
+  .action-btn:disabled {
+    opacity: 0.45;
+    cursor: default;
+    transform: none !important;
+  }
+
+  .game-top-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .mini-stat-box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 10px 12px;
+    min-height: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .mini-stat-label {
+    font-size: 11px;
+    color: var(--sub);
+    margin-bottom: 4px;
+    font-weight: 800;
+  }
+
+  .mini-stat-value {
+    font-size: 24px;
+    font-weight: 950;
+    color: var(--text);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .prompt-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 24px;
+    border: 1px solid #cfe0ff;
+    background:
+      radial-gradient(circle at top left, rgba(79, 134, 255, 0.12), transparent 28%),
+      linear-gradient(180deg, #eef5ff 0%, #e9f1ff 100%);
+    box-shadow: 0 10px 22px rgba(79, 134, 255, 0.08);
+    min-height: 150px;
+    padding: 20px 18px;
+    margin-bottom: 14px;
+  }
+
+  .prompt-content {
+    width: 100%;
+  }
+
+  .prompt-topic {
+    font-size: 28px;
+    font-weight: 950;
+    color: var(--blue-dark);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+    word-break: keep-all;
+  }
+
+  .prompt-meaning {
+    font-size: 52px;
+    font-weight: 950;
+    color: var(--blue-dark);
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+    word-break: keep-all;
+  }
+
+  .board-box {
+    position: relative;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(244,248,255,0.95) 100%);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 22px 20px 24px;
+    min-height: 620px;
+    overflow: hidden;
+  }
+
+  .word-board {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 18px;
+    align-content: start;
+  }
+
+  .word-item.word-card {
+    width: 100%;
+    min-height: 138px;
+    border: 1px solid #cad9fb;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+    box-shadow:
+      0 8px 18px rgba(54, 92, 173, 0.08),
+      inset 0 1px 0 rgba(255,255,255,0.92);
+    padding: 14px 12px;
+    cursor: pointer;
+    transition:
+      transform 0.14s ease,
+      opacity 0.28s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease,
+      background 0.18s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .word-item.word-card:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: #9fbbff;
+  }
+
+  .word-inner {
+    width: 100%;
+    min-height: 112px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .word-jp {
+    font-size: clamp(22px, 1.9vw, 34px);
+    font-weight: 950;
+    line-height: 1.12;
+    color: #182338;
+    letter-spacing: -0.04em;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    text-align: center;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .word-reading {
+    font-size: clamp(15px, 1.2vw, 21px);
+    font-weight: 900;
+    line-height: 1.2;
+    color: #44526f;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    text-align: center;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .word-meaning {
+    margin-top: 4px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    background: #f7fbff;
+    color: #3459b8;
+    font-size: clamp(12px, 0.95vw, 16px);
+    font-weight: 900;
+    line-height: 1.3;
+    display: none;
+    text-align: center;
+    border: 1px solid #d8e5ff;
+    max-width: 100%;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .word-item.show-meaning .word-meaning {
+    display: block;
+  }
+
+  .word-item.correct {
+    border-color: #94d8af;
+    background: linear-gradient(180deg, #f7fff9 0%, #ecfbf1 100%);
+  }
+
+  .word-item.correct .word-jp,
+  .word-item.correct .word-reading {
+    color: #1f7f49;
+  }
+
+  .word-item.burst {
+    animation: cardBurstFade 0.42s ease forwards;
+    pointer-events: none;
+  }
+
+  .word-item.wrong {
+    animation: wrongShake 0.28s ease;
+  }
+
+  .word-item.disabled-board {
+    pointer-events: none;
+    opacity: 0.72;
+  }
+
+  .board-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(239,244,255,0.92) 0%, rgba(232,239,255,0.95) 100%);
+    backdrop-filter: blur(2px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    padding: 18px;
+  }
+
+  .board-overlay.show {
+    display: flex;
+  }
+
+  .overlay-card {
+    width: min(100%, 560px);
+    background: rgba(255,255,255,0.97);
+    border: 1px solid #cad9fb;
+    border-radius: 24px;
+    box-shadow: 0 18px 36px rgba(54, 92, 173, 0.14);
+    padding: 26px 20px;
+    text-align: center;
+  }
+
+  .overlay-round {
+    font-size: 34px;
+    font-weight: 950;
+    color: var(--blue-dark);
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+  }
+
+  .overlay-desc {
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+
+  .overlay-count {
+    margin-top: 16px;
+    font-size: 54px;
+    font-weight: 1000;
+    color: var(--blue);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .stage-next-wrap {
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .stage-next-wrap.hidden {
+    display: none;
+  }
+
+  .stage-next-btn {
+    min-width: 280px;
+    max-width: 100%;
+  }
+
+  @keyframes cardBurstFade {
+    0% { transform: scale(1); opacity: 1; }
+    35% { transform: scale(1.04); opacity: 1; }
+    100% { transform: scale(0.84); opacity: 0; }
+  }
+
+  @keyframes wrongShake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+    100% { transform: translateX(0); }
+  }
+
+  .result-box {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: linear-gradient(180deg, rgba(239,244,255,0.78) 0%, rgba(232,239,255,0.84) 100%);
+    backdrop-filter: blur(3px);
+    z-index: 7;
+  }
+
+  .result-box.show {
+    display: flex;
+  }
+
+  .result-box-card {
+    width: min(100%, 620px);
+    margin: 0;
+    border: 1px solid #cad9fb;
+    border-radius: 24px;
+    box-shadow: 0 18px 36px rgba(54, 92, 173, 0.14);
+    padding: 22px 20px 18px;
+  }
+
+  .result-list {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text);
+    text-align: left;
+  }
+
+  .result-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  .result-actions .action-btn {
+    width: auto;
+    min-width: 150px;
+  }
+
+  @media (max-width: 1100px) {
+    .play-main {
+      grid-template-columns: 1fr;
+    }
+
+    .side-panel,
+    .game-panel {
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .challenge-play-wrap {
+      padding: 10px 8px 18px;
+    }
+
+    .challenge-shell {
+      padding: 10px;
+      border-radius: 22px;
+    }
+
+    .side-panel,
+    .game-panel {
+      padding: 12px;
+      border-radius: 18px;
+    }
+
+    .game-title {
+      font-size: 28px;
+    }
+
+    .game-top-stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .mini-stat-box {
+      min-height: 64px;
+      padding: 10px 12px;
+      border-radius: 14px;
+    }
+
+    .mini-stat-label {
+      font-size: 11px;
+    }
+
+    .mini-stat-value {
+      font-size: 21px;
+    }
+
+    .prompt-box {
+      min-height: 120px;
+      padding: 16px 14px;
+    }
+
+    .prompt-topic {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .prompt-meaning {
+      font-size: 30px;
+    }
+
+    .board-box {
+      padding: 14px 12px 16px;
+      border-radius: 18px;
+      min-height: 430px;
+    }
+
+    .word-board {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 10px;
+    }
+
+    .word-item.word-card {
+      min-height: 128px;
+      border-radius: 18px;
+      padding: 12px 10px;
+    }
+
+    .word-jp {
+      font-size: clamp(20px, 5vw, 28px);
+    }
+
+    .word-reading {
+      font-size: clamp(14px, 3.8vw, 18px);
+    }
+
+    .overlay-card,
+    .result-box-card {
+      padding: 22px 14px;
+      border-radius: 18px;
+    }
+
+    .overlay-round {
+      font-size: 27px;
+    }
+
+    .overlay-desc {
+      font-size: 14px;
+    }
+
+    .overlay-count {
+      font-size: 44px;
+    }
+
+    .stage-next-btn {
+      min-width: 0;
+      width: 100%;
+    }
+
+    .result-actions .action-btn {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+</style>
+
+<div class="challenge-play-wrap">
+  <div class="challenge-shell">
+    <div class="play-main">
+      <aside class="side-panel">
+        <h1 class="game-title">JLPT 단어<br> 카드 챌린지</h1>
+        <p class="game-sub">
+          JLPT 분류별 카드판에서 제시어와 일치하는 일본어 카드를 찾아보세요.
+          시간 초과나 오답 시 HP가 감소하고, HP가 모두 소진되면 게임이 종료됩니다.
+        </p>
+
+        <div class="hp-card">
+          <div class="hp-card-top">
+            <span class="hp-title">남은 HP</span>
+            <span class="hp-value" id="hpTextLabel">20HP</span>
+          </div>
+
+          <div class="hp-bar-outer">
+            <div id="hpBarInner" class="hp-bar-inner"></div>
+            <div id="hpHitFlash" class="hp-hit-flash"></div>
+          </div>
+
+          <div class="hp-help">
+            오답 또는 시간 초과 시 HP가 1 감소합니다. HP가 0이 되면 종료됩니다.
+          </div>
+        </div>
+
+        <div class="guide-card">
+          <h3>현재 규칙</h3>
+          <ul>
+            <li>각 분류(title) 하나가 한 라운드입니다.</li>
+            <li>한 라운드에는 보기 15개, 문제 5개가 출제됩니다.</li>
+            <li>시간 초과 시 HP만 줄고 같은 문제를 다시 진행합니다.</li>
+            <li>5문제 완료 후 남은 카드 뜻이 공개되며 다음 라운드로 이동합니다.</li>
+          </ul>
+        </div>
+
+        <div class="side-actions">
+          <button id="restartBtn" class="action-btn primary" type="button">다시 시작</button>
+          <button id="rankingBtn" class="action-btn secondary" type="button">랭킹 보기</button>
+          <button id="homeBtn" class="action-btn secondary" type="button">JLPT단어게임 홈으로</button>
+          <button id="backBtn" class="action-btn secondary" type="button">전체 게임 목록으로</button>
+        </div>
+      </aside>
+
+      <section class="game-panel">
+        <div class="game-top-stats">
+          <div class="mini-stat-box">
+            <div class="mini-stat-label">난이도</div>
+            <div class="mini-stat-value" id="difficultyLabel">초급</div>
+          </div>
+          <div class="mini-stat-box">
+            <div class="mini-stat-label">현재 라운드</div>
+            <div class="mini-stat-value" id="roundLabel">1-1</div>
+          </div>
+          <div class="mini-stat-box">
+            <div class="mini-stat-label">남은 시간</div>
+            <div class="mini-stat-value" id="countdownLabel">30초</div>
+          </div>
+          <div class="mini-stat-box">
+            <div class="mini-stat-label">맞춘 개수</div>
+            <div class="mini-stat-value" id="foundLabel">0</div>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-content">
+            <div class="prompt-topic" id="promptTopic">사람·관계·기본 표현</div>
+            <div class="prompt-meaning" id="promptMeaning">가족</div>
+          </div>
+        </div>
+
+        <div class="board-box">
+          <div id="wordBoard" class="word-board"></div>
+
+          <div id="boardOverlay" class="board-overlay show">
+            <div class="overlay-card">
+              <div id="overlayRound" class="overlay-round">1라운드</div>
+              <div id="overlayDesc" class="overlay-desc">주제: 사람·관계·기본 표현</div>
+              <div id="overlayCount" class="overlay-count">5</div>
+            </div>
+          </div>
+
+          <div id="resultBox" class="result-box">
+            <div class="result-box-card">
+              <h3 id="resultTitle">게임 결과</h3>
+              <ul id="resultList" class="result-list"></ul>
+
+              <div class="result-actions">
+                <button id="resultRestartBtn" class="action-btn primary" type="button">한 번 더 플레이</button>
+                <button id="resultRankingBtn" class="action-btn secondary" type="button">랭킹 보기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="stageNextWrap" class="stage-next-wrap hidden">
+          <button id="nextRoundBtn" class="action-btn ghost stage-next-btn" type="button">다음 주제로 진행하기</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+  const GAME_ROUNDS = {{ game_rounds|tojson|safe }};
+  const GAME_SETTINGS = {{ game_settings|tojson|safe }};
+  const DIFFICULTY = "{{ difficulty|default('easy') }}";
+
+  let hp = GAME_SETTINGS.hp || 20;
+  let totalFound = 0;
+  let gameEnded = false;
+  let isTransitioning = false;
+  let isSavingResult = false;
+  let isEndingGame = false;
+  let isStageActive = false;
+  let isWaitingNextRound = false;
+
+  let majorRound = 1;
+  let subRound = 1;
+
+  let currentRoundIndex = 0;
+  let currentRoundData = null;
+  let currentBoardItems = [];
+  let currentQuestionItems = [];
+  let currentQuestion = null;
+
+  let countdownRemaining = GAME_SETTINGS.time_per_question || 30;
+  let countdownInterval = null;
+
+  let introCountdown = 5;
+  let introInterval = null;
+
+  const difficultyLabel = document.getElementById("difficultyLabel");
+  const roundLabel = document.getElementById("roundLabel");
+  const countdownLabel = document.getElementById("countdownLabel");
+  const foundLabel = document.getElementById("foundLabel");
+  const promptTopic = document.getElementById("promptTopic");
+  const promptMeaning = document.getElementById("promptMeaning");
+  const wordBoard = document.getElementById("wordBoard");
+  const resultBox = document.getElementById("resultBox");
+  const resultTitle = document.getElementById("resultTitle");
+  const resultList = document.getElementById("resultList");
+
+  const hpTextLabel = document.getElementById("hpTextLabel");
+  const hpBarInner = document.getElementById("hpBarInner");
+  const hpHitFlash = document.getElementById("hpHitFlash");
+
+  const boardOverlay = document.getElementById("boardOverlay");
+  const overlayRound = document.getElementById("overlayRound");
+  const overlayDesc = document.getElementById("overlayDesc");
+  const overlayCount = document.getElementById("overlayCount");
+
+  const stageNextWrap = document.getElementById("stageNextWrap");
+  const nextRoundBtn = document.getElementById("nextRoundBtn");
+
+  const restartBtn = document.getElementById("restartBtn");
+  const rankingBtn = document.getElementById("rankingBtn");
+  const backBtn = document.getElementById("backBtn");
+  const resultRestartBtn = document.getElementById("resultRestartBtn");
+  const resultRankingBtn = document.getElementById("resultRankingBtn");
+  const homeBtn = document.getElementById("homeBtn");
+
+  function shuffle(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function getDifficultyLabelText() {
+    if (DIFFICULTY === "easy") return "초급";
+    if (DIFFICULTY === "normal") return "중급";
+    if (DIFFICULTY === "hard") return "고급";
+    return "마스터";
+  }
+
+  function getRoundLabelText(roundNo = majorRound, stageNo = subRound) {
+    return `${roundNo}-${stageNo}`;
+  }
+
+  function getRoundSortValue(roundNo = majorRound, stageNo = subRound) {
+    return roundNo * 100 + stageNo;
+  }
+
+  function setPromptArea() {
+    promptTopic.textContent = currentRoundData ? currentRoundData.title : "";
+    promptMeaning.textContent = currentQuestion ? currentQuestion.meaning : "";
+  }
+
+  function updateHpBar() {
+    const hpPercent = Math.max(0, (hp / GAME_SETTINGS.hp) * 100);
+    hpTextLabel.textContent = `${hp}HP`;
+    hpBarInner.style.width = `${hpPercent}%`;
+  }
+
+  function updateTopBar() {
+    difficultyLabel.textContent = getDifficultyLabelText();
+    roundLabel.textContent = getRoundLabelText();
+    countdownLabel.textContent = `${countdownRemaining}초`;
+    foundLabel.textContent = totalFound;
+    updateHpBar();
+  }
+
+  function playHpHitEffect() {
+    hpBarInner.classList.add("hit");
+    hpHitFlash.classList.add("show");
+
+    setTimeout(() => {
+      hpBarInner.classList.remove("hit");
+      hpHitFlash.classList.remove("show");
+    }, 220);
+  }
+
+  function stopCountdown() {
+    if (countdownInterval) {
+      clearInterval(countdownInterval);
+      countdownInterval = null;
+    }
+  }
+
+  function startQuestionTimer() {
+    stopCountdown();
+    countdownRemaining = GAME_SETTINGS.time_per_question;
+    updateTopBar();
+    isStageActive = true;
+
+    countdownInterval = setInterval(() => {
+      if (gameEnded || !isStageActive || isTransitioning || isWaitingNextRound) return;
+
+      countdownRemaining -= 1;
+      if (countdownRemaining < 0) countdownRemaining = 0;
+      updateTopBar();
+
+      if (countdownRemaining <= 0) {
+        stopCountdown();
+        isStageActive = false;
+        handleTimeOver();
+      }
+    }, 1000);
+  }
+
+  function stopIntroCountdown() {
+    if (introInterval) {
+      clearInterval(introInterval);
+      introInterval = null;
+    }
+  }
+
+  function showOverlay(roundText, descText, countSec) {
+    overlayRound.textContent = roundText;
+    overlayDesc.textContent = descText;
+    overlayCount.textContent = countSec;
+    boardOverlay.classList.add("show");
+  }
+
+  function hideOverlay() {
+    boardOverlay.classList.remove("show");
+  }
+
+  function disableBoard() {
+    document.querySelectorAll(".word-item").forEach(el => {
+      el.classList.add("disabled-board");
+      el.disabled = true;
+    });
+  }
+
+  function enableBoard() {
+    document.querySelectorAll(".word-item").forEach(el => {
+      if (!el.classList.contains("disabled-board-permanent")) {
+        el.classList.remove("disabled-board");
+        el.disabled = false;
+      }
+    });
+  }
+
+  function showNextRoundButton(show) {
+    stageNextWrap.classList.toggle("hidden", !show);
+    nextRoundBtn.disabled = !show;
+  }
+
+  function buildCurrentRound() {
+    currentRoundData = GAME_ROUNDS[currentRoundIndex] || null;
+    if (!currentRoundData) return false;
+
+    const roundItems = shuffle(currentRoundData.items).slice(0, 15).map(item => ({
+      ...item,
+      isSolved: false
+    }));
+
+    currentBoardItems = roundItems;
+    currentQuestionItems = shuffle([...roundItems]).slice(0, 5);
+    currentQuestion = currentQuestionItems[0] || null;
+
+    if (!currentQuestion) return false;
+
+    setPromptArea();
+    renderBoard();
+    disableBoard();
+    return true;
+  }
+
+  function renderBoard() {
+    wordBoard.innerHTML = "";
+
+    currentBoardItems.forEach((item) => {
+      const btn = document.createElement("button");
+      btn.className = "word-item word-card";
+      btn.type = "button";
+      btn.dataset.key = item.key;
+      btn.disabled = true;
+
+      btn.innerHTML = `
+        <div class="word-inner">
+          <div class="word-jp">${item.jp}</div>
+          <div class="word-reading">${item.reading || "&nbsp;"}</div>
+          <div class="word-meaning">${item.meaning}</div>
+        </div>
+      `;
+
+      if (item.isSolved) {
+        btn.classList.add("correct", "disabled-board-permanent");
+        btn.style.visibility = "hidden";
+      }
+
+      btn.addEventListener("click", () => handleCardClick(btn, item));
+      wordBoard.appendChild(btn);
+    });
+  }
+
+  function showRemainingMeanings() {
+    document.querySelectorAll(".word-item").forEach(btn => {
+      if (btn.style.visibility !== "hidden") {
+        btn.classList.add("show-meaning");
+      }
+    });
+  }
+
+  function startRoundIntro() {
+    stopCountdown();
+    stopIntroCountdown();
+
+    isStageActive = false;
+    isTransitioning = true;
+    isWaitingNextRound = false;
+    showNextRoundButton(false);
+    resultBox.classList.remove("show");
+
+    if (!buildCurrentRound()) {
+      handleGameEnd(true, "all_clear");
+      return;
+    }
+
+    const roundText = `${majorRound}-1 라운드`;
+    const descText = `${currentRoundData.title}`;
+
+    introCountdown = 5;
+    showOverlay(roundText, descText, introCountdown);
+
+    introInterval = setInterval(() => {
+      if (gameEnded) {
+        stopIntroCountdown();
+        return;
+      }
+
+      introCountdown -= 1;
+
+      if (introCountdown > 0) {
+        showOverlay(roundText, descText, introCountdown);
+        return;
+      }
+
+      stopIntroCountdown();
+      isTransitioning = false;
+      startCurrentQuestion();
+    }, 1000);
+  }
+
+  function startCurrentQuestion() {
+    hideOverlay();
+    setPromptArea();
+    updateTopBar();
+    enableBoard();
+    startQuestionTimer();
+  }
+
+  function moveToNextQuestion() {
+    const nextIndex = subRound - 1;
+    currentQuestion = currentQuestionItems[nextIndex] || null;
+
+    if (!currentQuestion) {
+      finishCurrentRound();
+      return;
+    }
+
+    setPromptArea();
+    startCurrentQuestion();
+  }
+
+  function finishCurrentRound() {
+    isStageActive = false;
+    isWaitingNextRound = true;
+    stopCountdown();
+    disableBoard();
+    showRemainingMeanings();
+    showNextRoundButton(true);
+  }
+
+  function revealWrongCard(buttonEl) {
+    buttonEl.classList.add("wrong");
+    setTimeout(() => {
+      buttonEl.classList.remove("wrong");
+    }, 280);
+  }
+
+  function handleCardClick(buttonEl, item) {
+    if (gameEnded || isTransitioning || !isStageActive || isWaitingNextRound) return;
+    if (buttonEl.disabled) return;
+
+    const isCorrect = item.key === currentQuestion.key;
+
+    if (isCorrect) {
+      isStageActive = false;
+      stopCountdown();
+
+      buttonEl.disabled = true;
+      buttonEl.classList.add("correct", "disabled-board-permanent");
+      item.isSolved = true;
+      totalFound += 1;
+
+      setTimeout(() => {
+        buttonEl.classList.add("burst");
+      }, 90);
+
+      setTimeout(() => {
+        buttonEl.style.visibility = "hidden";
+      }, 430);
+
+      updateTopBar();
+
+      if (subRound >= 5) {
+        setTimeout(() => {
+          finishCurrentRound();
+        }, 650);
+      } else {
+        subRound += 1;
+        setTimeout(() => {
+          moveToNextQuestion();
+        }, 650);
+      }
+      return;
+    }
+
+    hp -= 1;
+    if (hp < 0) hp = 0;
+    updateTopBar();
+    playHpHitEffect();
+    revealWrongCard(buttonEl);
+
+    if (hp <= 0) {
+      stopCountdown();
+      isStageActive = false;
+      setTimeout(() => {
+        handleGameEnd(false, "hp_zero");
+      }, 320);
+      return;
+    }
+  }
+
+  function handleTimeOver() {
+    hp -= 1;
+    if (hp < 0) hp = 0;
+    updateTopBar();
+    playHpHitEffect();
+
+    if (hp <= 0) {
+      setTimeout(() => {
+        handleGameEnd(false, "hp_zero");
+      }, 320);
+      return;
+    }
+
+    setTimeout(() => {
+      startCurrentQuestion();
+    }, 450);
+  }
+
+  function moveToNextMajorRound() {
+    if (gameEnded) return;
+
+    if (currentRoundIndex >= GAME_ROUNDS.length - 1) {
+      handleGameEnd(true, "all_clear");
+      return;
+    }
+
+    currentRoundIndex += 1;
+    majorRound += 1;
+    subRound = 1;
+    updateTopBar();
+    startRoundIntro();
+  }
+
+  function showResult(title, items) {
+    resultTitle.textContent = title;
+    resultList.innerHTML = "";
+
+    items.forEach(text => {
+      const li = document.createElement("li");
+      li.textContent = text;
+      resultList.appendChild(li);
+    });
+
+    resultBox.classList.add("show");
+  }
+
+  async function saveBombHuntResult(resultData) {
+    try {
+      const res = await fetch("/quiz/bomb_hunt/save_result", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(resultData)
+      });
+      await res.json();
+    } catch (error) {
+      console.error("결과 저장 실패:", error);
+    }
+  }
+
+  function handleGameEnd(isClear, reason = "") {
+    if (isEndingGame) return;
+    isEndingGame = true;
+    gameEnded = true;
+    isStageActive = false;
+    isWaitingNextRound = false;
+
+    stopCountdown();
+    stopIntroCountdown();
+    disableBoard();
+    hideOverlay();
+    showNextRoundButton(false);
+
+    const finalRoundLabel = `${majorRound}-${subRound}`;
+    const finalRoundValue = getRoundSortValue(majorRound, subRound);
+
+    const result = {
+      mode: DIFFICULTY,
+      totalFound: totalFound,
+      maxRound: finalRoundValue,
+      elapsedSeconds: 0
+    };
+
+    if (!isSavingResult) {
+      isSavingResult = true;
+      saveBombHuntResult(result).finally(() => {
+        isSavingResult = false;
+      });
+    }
+
+    if (isClear) {
+      showResult("클리어 성공", [
+        `난이도: ${getDifficultyLabelText()}`,
+        `최종 라운드: ${finalRoundLabel}`,
+        `맞춘 개수: ${totalFound}개`,
+        `랭킹 기준: 최종 라운드 → 맞춘 개수`
+      ]);
+    } else {
+      const endReasonText = reason === "hp_zero" ? "HP 소진" : "게임 종료";
+      showResult("게임 오버", [
+        `난이도: ${getDifficultyLabelText()}`,
+        `최종 라운드: ${finalRoundLabel}`,
+        `맞춘 개수: ${totalFound}개`,
+        `종료 사유: ${endReasonText}`,
+        `랭킹 기준: 최종 라운드 → 맞춘 개수`
+      ]);
+    }
+  }
+
+  function restartGame() {
+    stopCountdown();
+    stopIntroCountdown();
+
+    hp = GAME_SETTINGS.hp || 20;
+    totalFound = 0;
+    gameEnded = false;
+    isTransitioning = false;
+    isSavingResult = false;
+    isEndingGame = false;
+    isStageActive = false;
+    isWaitingNextRound = false;
+
+    majorRound = 1;
+    subRound = 1;
+    currentRoundIndex = 0;
+    currentRoundData = null;
+    currentBoardItems = [];
+    currentQuestionItems = [];
+    currentQuestion = null;
+
+    resultBox.classList.remove("show");
+    showNextRoundButton(false);
+    updateTopBar();
+    startRoundIntro();
+  }
+
+  nextRoundBtn.addEventListener("click", () => {
+    moveToNextMajorRound();
+  });
+
+  restartBtn.addEventListener("click", restartGame);
+  resultRestartBtn.addEventListener("click", restartGame);
+
+  rankingBtn.addEventListener("click", () => {
+    window.location.href = "/quiz/bomb_hunt/ranking";
+  });
+
+  resultRankingBtn.addEventListener("click", () => {
+    window.location.href = "/quiz/bomb_hunt/ranking";
+  });
+
+  homeBtn.addEventListener("click", () => {
+    window.location.href = "/quiz/bomb_hunt";
+  });
+
+  backBtn.addEventListener("click", () => {
+    window.location.href = "/quiz";
+  });
+
+  restartGame();
+</script>
+
+{% endblock %}
