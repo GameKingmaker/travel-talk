@@ -15,6 +15,113 @@
 <meta name="keywords" content="{{ seo_keywords }}">
 
 <style>
+  :root{
+    --line-soft:#dfe5ef;
+    --line-mid:#cfd7e4;
+    --line-deep:#bcc7d8;
+    --text-main:#111827;
+    --text-sub:#5f6b7b;
+    --card-top-1:#fffefd;
+    --card-top-2:#f8f7f3;
+    --gold-1:#e2d6c6;
+    --gold-2:#cbb79a;
+    --gold-3:#b4946c;
+    --blue-1:#5f8ef7;
+    --blue-2:#4c7df3;
+  }
+
+  /* ===== 상단 메뉴/버튼 톤 업 ===== */
+  .topbar{
+    background: rgba(255,255,255,0.84) !important;
+    border-bottom: 1px solid rgba(189, 198, 214, 0.55) !important;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .topbar-inner{
+    position: relative;
+  }
+
+  .topbar-inner::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-1px;
+    height:1px;
+    background: linear-gradient(90deg, rgba(0,0,0,0), rgba(191, 198, 210, 0.55), rgba(0,0,0,0));
+    pointer-events:none;
+  }
+
+  .nav a{
+    position: relative;
+    color: #4b5563 !important;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    padding: 10px 12px !important;
+    transition: all .18s ease;
+  }
+
+  .nav a:hover{
+    color: #1f2937 !important;
+    background: rgba(255,255,255,0.78);
+    border-color: rgba(193, 201, 213, 0.55);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+  }
+
+  .nav a.active{
+    color: #1f2937 !important;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(246,248,252,0.96));
+    border-color: rgba(193, 201, 213, 0.62);
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.06);
+  }
+
+  .auth .btn,
+  .auth a.btn,
+  .auth button{
+    border-radius: 16px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.2px;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+    transition: all .18s ease;
+  }
+
+  .auth .btn:not(.btn-primary),
+  .auth a:not(.btn-primary){
+    background: linear-gradient(180deg, #ffffff 0%, #f4f7fb 100%) !important;
+    border: 1px solid rgba(196, 203, 214, 0.72) !important;
+    color: #24324a !important;
+  }
+
+  .auth .btn:not(.btn-primary):hover,
+  .auth a:not(.btn-primary):hover{
+    border-color: rgba(164, 178, 200, 0.8) !important;
+    box-shadow: 0 12px 22px rgba(15, 23, 42, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .auth .btn-primary,
+  .auth a.btn-primary{
+    background: linear-gradient(135deg, var(--blue-1) 0%, var(--blue-2) 100%) !important;
+    border: 1px solid rgba(76,125,243,0.18) !important;
+    color: #fff !important;
+    box-shadow: 0 12px 26px rgba(76,125,243,0.22) !important;
+  }
+
+  .auth .btn-primary:hover,
+  .auth a.btn-primary:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px rgba(76,125,243,0.26) !important;
+  }
+
+  body{
+    background:
+      radial-gradient(circle at 10% 0%, rgba(226, 232, 255, 0.35) 0%, rgba(226,232,255,0) 32%),
+      radial-gradient(circle at 90% 10%, rgba(245, 239, 228, 0.35) 0%, rgba(245,239,228,0) 30%),
+      linear-gradient(180deg, #f7f9ff 0%, #f1f4fb 100%);
+  }
+
   .home-wrap{
     max-width: 1120px;
     margin: 0 auto;
@@ -28,81 +135,85 @@
     box-shadow: 0 16px 38px rgba(15, 23, 42, 0.06);
   }
 
-  /* ===== 상단 소개 박스 : 감성형 프리미엄 ===== */
+  /* ===== 상단 소개 박스 ===== */
   .hero-info{
-  position: relative;
-  padding: 0;
-  margin-bottom: 22px;
-  border-radius: 34px;
-  overflow: hidden;
-  border: none;
-  box-shadow:
-    0 26px 60px rgba(15, 23, 42, 0.14),
-    0 10px 24px rgba(249, 115, 22, 0.10);
-  background: transparent;
+    position: relative;
+    padding: 0;
+    margin-bottom: 22px;
+    border-radius: 34px;
+    overflow: hidden;
+    border: 1px solid rgba(210, 217, 228, 0.8);
+    box-shadow:
+      0 26px 60px rgba(15, 23, 42, 0.10),
+      0 10px 24px rgba(249, 115, 22, 0.06);
+    background: transparent;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-  width: 100%;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-}
   .hero-top{
-  position: relative;
-  padding: 54px 34px 48px;
-  text-align: center;
+    position: relative;
+    padding: 54px 34px 48px;
+    text-align: center;
+    background:
+      radial-gradient(circle at 15% 15%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 40%),
+      radial-gradient(circle at 85% 10%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 35%),
+      linear-gradient(180deg,#f7f3ea 0%,#f1eadc 100%);
+    color:#1f2937;
+  }
 
-  background:
-    radial-gradient(circle at 15% 15%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 40%),
-    radial-gradient(circle at 85% 10%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 35%),
-    linear-gradient(180deg,#f7f3ea 0%,#f1eadc 100%);
-
-  color:#1f2937;
-}
   .hero-top::after{
     content:"";
     position:absolute;
     inset:0;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.03), rgba(255,255,255,0));
+    background: linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(255,255,255,0));
     pointer-events:none;
   }
 
   .hero-badge{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:36px;
-  padding:0 14px;
-
-  border-radius:999px;
-
-  background:#ffffff;
-  border:1px solid #e5e7eb;
-
-  color:#374151;
-  font-size:12px;
-  font-weight:800;
-
-  margin-bottom:18px;
-
-  box-shadow:0 6px 18px rgba(0,0,0,0.05);
-}
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:36px;
+    padding:0 14px;
+    border-radius:999px;
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    color:#374151;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:18px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.05);
+  }
 
   .hero-title{
-  margin: 0;
-  font-size: 40px;
-  line-height: 1.2;
-  letter-spacing: -1.15px;
-  font-weight: 900;
-  color:#111111;
-}
+    margin: 0;
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: -1.15px;
+    font-weight: 900;
+    color:#111111;
+  }
+
+  .hero-title::after{
+    content:"";
+    display:block;
+    width:80px;
+    height:3px;
+    margin:18px auto 0;
+    background:#d6cfc2;
+    border-radius:2px;
+  }
 
   .hero-lead{
-  max-width: 760px;
-  margin: 18px auto 0;
-  font-size: 17px;
-  line-height: 1.9;
-  color:#374151;
-}
+    max-width: 760px;
+    margin: 18px auto 0;
+    font-size: 17px;
+    line-height: 1.9;
+    color:#374151;
+  }
 
   .hero-grid{
     display: grid;
@@ -113,46 +224,32 @@
   }
 
   .hero-panel{
-  padding:22px 20px 20px;
-
-  border-radius:22px;
-
-  background:#ffffff;
-
-  border:1px solid #e5e7eb;
-
-  box-shadow:0 10px 30px rgba(0,0,0,0.05);
-}
+    padding:22px 20px 20px;
+    border-radius:22px;
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    box-shadow:0 10px 30px rgba(0,0,0,0.05);
+  }
 
   .hero-panel h3{
-  color:#111827;
-}
+    color:#111827;
+  }
 
-.hero-panel p,
-.hero-highlight .v,
-.hero-list li{
-  word-break: keep-all;
-}
+  .hero-panel p,
+  .hero-highlight .v,
+  .hero-list li{
+    word-break: keep-all;
+  }
 
-.hero-list{
-  color:#374151;
-}
+  .hero-list{
+    color:#374151;
+  }
+
   .hero-list li{
     margin: 2px 0;
   }
-.hero-title::after{
-  content:"";
-  display:block;
 
-  width:80px;
-  height:3px;
-
-  margin:18px auto 0;
-
-  background:#d6cfc2;
-  border-radius:2px;
-}
-  /* ===== 아래 하이라이트 영역 : 다크 프리미엄 ===== */
+  /* ===== 아래 하이라이트 영역 ===== */
   .hero-highlight-wrap{
     position: relative;
     padding: 46px 30px 34px;
@@ -255,194 +352,200 @@
     letter-spacing: -0.28px;
     word-break: keep-all;
   }
-.content-section{
-  margin-bottom: 24px;
-}
 
-.today-wrap{
-  margin-bottom: 28px;
-}
+  .content-section{
+    margin-bottom: 24px;
+  }
 
-.content-section,
-.today-wrap{
-  width: 100%;
-}
+  .today-wrap{
+    margin-bottom: 28px;
+  }
 
-.hero-info,
-.today-card,
-.menu-wrap{
-  width: 100%;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-}
+  .content-section,
+  .today-wrap{
+    width: 100%;
+  }
 
-/* ===== 오늘의 회화 카드 ===== */
-.today-card{
-  position: relative;
-  background: linear-gradient(180deg, #fffefd 0%, #f8f6f1 100%);
-  border: 1.5px solid #d7dcd6;
-  border-radius: 30px;
-  box-shadow:
-    0 18px 40px rgba(15, 23, 42, 0.06),
-    inset 0 1px 0 rgba(255,255,255,0.92);
-  padding: 24px 24px 26px;
-  overflow: hidden;
+  .hero-info,
+  .today-card,
+  .menu-wrap{
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
 
-  width: 100%;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-}
+  /* ===== 오늘의 회화 카드 ===== */
+  .today-card{
+    position: relative;
+    background: linear-gradient(180deg, #fffefd 0%, #f8f6f1 100%);
+    border: 1.5px solid #d7dcd6;
+    border-radius: 30px;
+    box-shadow:
+      0 18px 40px rgba(15, 23, 42, 0.06),
+      inset 0 1px 0 rgba(255,255,255,0.92);
+    padding: 24px 24px 26px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-.today-card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:4px;
-  background: linear-gradient(90deg, #dfd4c3 0%, #cdb79c 50%, #b99870 100%);
-}
+  .today-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:4px;
+    background: linear-gradient(90deg, #dfd4c3 0%, #cdb79c 50%, #b99870 100%);
+  }
 
-.today-title{
-  margin: 0;
-  font-size: 24px;
-  line-height: 1.3;
-  font-weight: 900;
-  letter-spacing: -0.45px;
-  color: #111827;
-}
+  .today-title{
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.3;
+    font-weight: 900;
+    letter-spacing: -0.45px;
+    color: #111827;
+  }
 
-.today-sub{
-  margin: 8px 0 0;
-  font-size: 14px;
-  color: #6b7280;
-  line-height: 1.7;
-}
+  .today-sub{
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.7;
+  }
 
-.today-box{
-  margin-top: 18px;
-  border-radius: 22px;
-  border: 1.5px solid #d4dae3;
-  background: linear-gradient(180deg, #fcfcfb 0%, #f4f5f6 100%);
-  overflow: hidden;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.82),
-    0 4px 12px rgba(15, 23, 42, 0.03);
-}
+  .today-box{
+    margin-top: 18px;
+    border-radius: 22px;
+    border: 1.5px solid #d4dae3;
+    background: linear-gradient(180deg, #fcfcfb 0%, #f4f5f6 100%);
+    overflow: hidden;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.82),
+      0 4px 12px rgba(15, 23, 42, 0.03);
+  }
 
-.today-box .row{
+  .today-box .row{
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 17px 18px;
+    border-bottom: 1.5px solid #d7dde5;
+  }
+
+  .today-box .row:last-child{
+    border-bottom: none;
+  }
+
+  .today-box .label{
+    font-size: 15px;
+    font-weight: 900;
+    color: #3f4855;
+  }
+
+  .today-box .value{
+    font-size: 17px;
+    line-height: 1.8;
+    color: #111827;
+    font-weight: 700;
+    word-break: keep-all;
+  }
+
+  .tts-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 108px;
+    height: 42px;
+    padding: 0 15px;
+    border-radius: 999px;
+    border: 1.5px solid #cfd6df;
+    background: linear-gradient(180deg, #ffffff 0%, #eef1f4 100%);
+    color: #111827;
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow:
+      0 8px 18px rgba(15, 23, 42, 0.06),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+
+  .tts-btn:hover{
+    transform: translateY(-1px);
+    border-color: #bfc8d3;
+    box-shadow:
+      0 12px 22px rgba(15, 23, 42, 0.08),
+      inset 0 1px 0 rgba(255,255,255,0.95);
+  }
+
+  .intro-box{
+    margin-top: 16px;
+    padding: 18px 18px 16px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #f7f8fa 0%, #f1f3f6 100%);
+    border: 1.5px solid #d5dbe4;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.84);
+  }
+
+  .intro-box p{
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.85;
+    color: #556070;
+  }
+
+  .intro-box p + p{
+    margin-top: 8px;
+  }
+
+  /* ===== 메뉴 섹션 ===== */
+  .menu-wrap{
+    width: 100%;
+    max-width: 1000px;
+    margin: 8px auto 0;
+    box-sizing: border-box;
+  }
+
+  .menu-block + .menu-block{
+    margin-top: 34px;
+  }
+
+  .menu-title{
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 900;
+    letter-spacing: -0.45px;
+    color: #111827;
+  }
+
+  .menu-sub{
+    margin: 8px 0 18px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #64748b;
+  }
+
+  .menu-grid{
   display: grid;
-  grid-template-columns: 90px 1fr auto;
-  gap: 10px;
-  align-items: center;
-  padding: 17px 18px;
-  border-bottom: 1.5px solid #d7dde5;
-}
-
-.today-box .row:last-child{
-  border-bottom: none;
-}
-
-.today-box .label{
-  font-size: 15px;
-  font-weight: 900;
-  color: #3f4855;
-}
-
-.today-box .value{
-  font-size: 17px;
-  line-height: 1.8;
-  color: #111827;
-  font-weight: 700;
-  word-break: keep-all;
-}
-
-.tts-btn{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 108px;
-  height: 42px;
-  padding: 0 15px;
-  border-radius: 999px;
-  border: 1.5px solid #cfd6df;
-  background: linear-gradient(180deg, #ffffff 0%, #eef1f4 100%);
-  color: #111827;
-  font-size: 13px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow:
-    0 8px 18px rgba(15, 23, 42, 0.06),
-    inset 0 1px 0 rgba(255,255,255,0.9);
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-}
-
-.tts-btn:hover{
-  transform: translateY(-1px);
-  border-color: #bfc8d3;
-  box-shadow:
-    0 12px 22px rgba(15, 23, 42, 0.08),
-    inset 0 1px 0 rgba(255,255,255,0.95);
-}
-
-.intro-box{
-  margin-top: 16px;
-  padding: 18px 18px 16px;
-  border-radius: 20px;
-  background: linear-gradient(180deg, #f7f8fa 0%, #f1f3f6 100%);
-  border: 1.5px solid #d5dbe4;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.84);
-}
-
-.intro-box p{
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.85;
-  color: #556070;
-}
-
-.intro-box p + p{
-  margin-top: 8px;
-}
-
-/* ===== 메뉴 섹션 ===== */
-.menu-wrap{
-  width: 100%;
-  max-width: 1000px;
-  margin: 8px auto 0;
-  box-sizing: border-box;
-}
-
-.menu-title{
-  margin: 0;
-  font-size: 26px;
-  line-height: 1.25;
-  font-weight: 900;
-  letter-spacing: -0.45px;
-  color: #111827;
-}
-
-.menu-sub{
-  margin: 8px 0 18px;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #64748b;
-}
-
-.menu-grid{
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 16px;
 }
 
 .menu-card{
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   text-decoration: none;
-  padding: 22px 18px 18px;
+  padding: 20px 18px 18px;
   border-radius: 24px;
   background: linear-gradient(180deg, #fffefd 0%, #f8f7f3 100%);
   border: 1.5px solid #d6dcd6;
@@ -451,6 +554,9 @@
     inset 0 1px 0 rgba(255,255,255,0.88);
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
   overflow: hidden;
+
+  min-height: 172px;
+  aspect-ratio: 1 / 1;
 }
 
 .menu-card::before{
@@ -471,299 +577,346 @@
     inset 0 1px 0 rgba(255,255,255,0.92);
 }
 
+.menu-card.game-card::before{
+  background: linear-gradient(90deg, #d7def8 0%, #98b2f6 50%, #5f8ef7 100%);
+}
+
+.menu-card.game-card{
+  background: linear-gradient(180deg, #ffffff 0%, #f6f8ff 100%);
+  border-color: #d5def1;
+}
+
+.menu-card.game-card:hover{
+  border-color: #bfd0f5;
+}
+
 .menu-name{
-  font-size: 18px;
-  line-height: 1.45;
+  font-size: 17px;
+  line-height: 1.4;
   font-weight: 900;
-  letter-spacing: -0.28px;
+  letter-spacing: -0.3px;
   color: #0f172a;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  word-break: keep-all;
 }
 
 .menu-desc{
-  font-size: 13.5px;
-  line-height: 1.8;
+  font-size: 13px;
+  line-height: 1.7;
   color: #5f6b7b;
+  word-break: keep-all;
+  letter-spacing: -0.1px;
 }
 
-/* 빈 상태 메시지 */
-.today-empty{
-  padding:16px 18px;
-  border:1.5px dashed #cfd6df;
-  border-radius:16px;
-  color:#6b7280;
-  background:#f8f9fb;
-  margin:14px;
-}
-
-@media (max-width: 900px){
-  .home-wrap{
-    padding: 16px 14px 36px;
+  /* 빈 상태 메시지 */
+  .today-empty{
+    padding:16px 18px;
+    border:1.5px dashed #cfd6df;
+    border-radius:16px;
+    color:#6b7280;
+    background:#f8f9fb;
+    margin:14px;
   }
 
-  .hero-info,
-  .today-card,
-  .menu-wrap{
-    max-width: 100%;
-  }
-
-  .hero-top{
-    padding: 34px 20px 28px;
-  }
-
-  .hero-title{
-    font-size: 30px;
-    line-height: 1.3;
-  }
-
-  .hero-lead{
-    font-size: 15px;
-    line-height: 1.8;
-    margin-top: 14px;
-  }
-
-  .hero-grid{
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-top: 22px;
-  }
-
-  .hero-panel{
-    padding: 18px 16px;
-    border-radius: 18px;
-  }
-
-  .hero-panel h3{
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-
-  .hero-panel p,
-  .hero-list li{
-    font-size: 14px;
-    line-height: 1.75;
-    word-break: keep-all;
-  }
-
-  .hero-highlight-wrap{
-    padding: 28px 18px 22px;
-  }
-
-  .hero-highlight-title{
-    font-size: 26px;
-    line-height: 1.35;
-  }
-
-  .hero-highlight{
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .hero-highlight .item{
-    min-height: auto;
-    padding: 18px 16px;
-    border-radius: 20px;
-  }
-
-  .hero-highlight .v{
-    font-size: 16px;
-    line-height: 1.75;
-  }
-
+  @media (max-width: 1100px){
   .menu-grid{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+  @media (max-width: 900px){
+    .home-wrap{
+      padding: 16px 14px 36px;
+    }
+
+    .hero-info,
+    .today-card,
+    .menu-wrap{
+      max-width: 100%;
+    }
+
+    .hero-top{
+      padding: 34px 20px 28px;
+    }
+
+    .hero-title{
+      font-size: 30px;
+      line-height: 1.3;
+    }
+
+    .hero-lead{
+      font-size: 15px;
+      line-height: 1.8;
+      margin-top: 14px;
+    }
+
+    .hero-grid{
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .hero-panel{
+      padding: 18px 16px;
+      border-radius: 18px;
+    }
+
+    .hero-panel h3{
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .hero-panel p,
+    .hero-list li{
+      font-size: 14px;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+
+    .hero-highlight-wrap{
+      padding: 28px 18px 22px;
+    }
+
+    .hero-highlight-title{
+      font-size: 26px;
+      line-height: 1.35;
+    }
+
+    .hero-highlight{
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .hero-highlight .item{
+      min-height: auto;
+      padding: 18px 16px;
+      border-radius: 20px;
+    }
+
+    .hero-highlight .v{
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .menu-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .menu-card{
+    aspect-ratio: auto;
+    min-height: 150px;
+  }
+}
+
+  @media (max-width: 600px){
+    .home-wrap{
+      padding: 12px 10px 28px;
+    }
+
+    .hero-info{
+      border-radius: 22px;
+      margin-bottom: 18px;
+    }
+
+    .hero-top{
+      padding: 24px 14px 20px;
+    }
+
+    .hero-badge{
+      min-height: 30px;
+      padding: 0 10px;
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+
+    .hero-title{
+      font-size: 24px;
+      line-height: 1.35;
+      letter-spacing: -0.6px;
+    }
+
+    .hero-title::after{
+      width: 54px;
+      margin: 12px auto 0;
+    }
+
+    .hero-lead{
+      font-size: 13.5px;
+      line-height: 1.75;
+      margin-top: 12px;
+    }
+
+    .hero-grid{
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .hero-panel{
+      padding: 14px 12px;
+      border-radius: 16px;
+    }
+
+    .hero-panel h3{
+      font-size: 18px;
+      line-height: 1.45;
+      margin: 0 0 8px;
+    }
+
+    .hero-panel p{
+      font-size: 13.5px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .hero-list{
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .hero-list li{
+      font-size: 13.5px;
+      line-height: 1.65;
+      margin: 3px 0;
+    }
+
+    .hero-highlight-wrap{
+      padding: 22px 12px 18px;
+    }
+
+    .hero-highlight-head{
+      margin-bottom: 14px;
+    }
+
+    .hero-highlight-eyebrow{
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .hero-highlight-title{
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    .hero-highlight{
+      gap: 12px;
+    }
+
+    .hero-highlight .item{
+      padding: 16px 14px;
+      border-radius: 18px;
+    }
+
+    .hero-highlight .k{
+      min-height: 28px;
+      padding: 0 10px;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .hero-highlight .v{
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .today-box .row{
+      grid-template-columns: 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .tts-btn{
+      width: 100%;
+    }
+
+    .menu-grid{
     grid-template-columns: 1fr;
   }
-}
 
-@media (max-width: 600px){
-  .home-wrap{
-    padding: 12px 10px 28px;
-  }
-
-  .hero-info{
-    border-radius: 22px;
-    margin-bottom: 18px;
-  }
-
-  .hero-top{
-    padding: 24px 14px 20px;
-  }
-
-  .hero-badge{
-    min-height: 30px;
-    padding: 0 10px;
-    font-size: 11px;
-    margin-bottom: 12px;
-  }
-
-  .hero-title{
-    font-size: 24px;
-    line-height: 1.35;
-    letter-spacing: -0.6px;
-  }
-
-  .hero-title::after{
-    width: 54px;
-    margin: 12px auto 0;
-  }
-
-  .hero-lead{
-    font-size: 13.5px;
-    line-height: 1.75;
-    margin-top: 12px;
-  }
-
-  .hero-grid{
-    gap: 12px;
-    margin-top: 18px;
-  }
-
-  .hero-panel{
-    padding: 14px 12px;
-    border-radius: 16px;
-  }
-
-  .hero-panel h3{
-    font-size: 18px;
-    line-height: 1.45;
-    margin: 0 0 8px;
-  }
-
-  .hero-panel p{
-    font-size: 13.5px;
-    line-height: 1.7;
-    margin: 0;
-  }
-
-  .hero-list{
-    padding-left: 18px;
-    margin: 0;
-  }
-
-  .hero-list li{
-    font-size: 13.5px;
-    line-height: 1.65;
-    margin: 3px 0;
-  }
-
-  .hero-highlight-wrap{
-    padding: 22px 12px 18px;
-  }
-
-  .hero-highlight-head{
-    margin-bottom: 14px;
-  }
-
-  .hero-highlight-eyebrow{
-    font-size: 12px;
-    margin-bottom: 6px;
-  }
-
-  .hero-highlight-title{
-    font-size: 22px;
-    line-height: 1.35;
-  }
-
-  .hero-highlight{
-    gap: 12px;
-  }
-
-  .hero-highlight .item{
-    padding: 16px 14px;
-    border-radius: 18px;
-  }
-
-  .hero-highlight .k{
-    min-height: 28px;
-    padding: 0 10px;
-    font-size: 11px;
-    margin-bottom: 10px;
-  }
-
-  .hero-highlight .v{
-    font-size: 15px;
-    line-height: 1.7;
+  .menu-card{
+    min-height: auto;
+    aspect-ratio: auto;
   }
 }
-
 </style>
 
 <div class="home-wrap">
 
   <section class="content-section">
-  <div class="hero-info">
+    <div class="hero-info">
 
-    <div class="hero-top">
-      <div class="hero-badge">무료 일본어 학습 사이트</div>
+      <div class="hero-top">
+        <div class="hero-badge">무료 일본어 학습 사이트</div>
 
-      <h1 class="hero-title">일본어 공부방은 이런 사이트예요</h1>
+        <h1 class="hero-title">일본어 공부방은 이런 사이트예요</h1>
 
-      <p class="hero-lead">
-        일본어 공부방(Japanese Study Room)은 <b>무료로 일본어 회화와 JLPT 시험 공부를 할 수 있는 일본어 학습 사이트</b>입니다.
-        일본어 회화 연습부터 JLPT N5~N1 시험 대비까지 다양한 학습 콘텐츠를 제공하며,
-        초보자부터 중급·고급 학습자까지 누구나 쉽고 편하게 일본어를 공부할 수 있도록 구성되어 있습니다.
-      </p>
+        <p class="hero-lead">
+          일본어 공부방(Japanese Study Room)은 <b>무료로 일본어 회화와 JLPT 시험 공부를 할 수 있는 일본어 학습 사이트</b>입니다.
+          일본어 회화 연습부터 JLPT N5~N1 시험 대비까지 다양한 학습 콘텐츠를 제공하며,
+          초보자부터 중급·고급 학습자까지 누구나 쉽고 편하게 일본어를 공부할 수 있도록 구성되어 있습니다.
+        </p>
 
-      <div class="hero-grid">
-        <div class="hero-panel">
-          <h3>무엇을 공부할 수 있나요?</h3>
-          <p>
-            일본어 공부방은 <b>일본어 회화 공부방</b>과 <b>JLPT 공부방</b> 두 가지 학습 공간을 제공하는 커뮤니티형 일본어 공부 사이트입니다.
-            단순 회화 연습부터 JLPT N5~N1 단어·문장·문법 학습까지, <b>학습 목적에 맞춰 원하는 공부를 선택</b>할 수 있도록 구성되어 있습니다.
-          </p>
-        </div>
+        <div class="hero-grid">
+          <div class="hero-panel">
+            <h3>무엇을 공부할 수 있나요?</h3>
+            <p>
+              일본어 공부방은 <b>일본어 회화 공부방</b>과 <b>JLPT 공부방</b> 두 가지 학습 공간을 제공하는 커뮤니티형 일본어 공부 사이트입니다.
+              단순 회화 연습부터 JLPT N5~N1 단어·문장·문법 학습까지, <b>학습 목적에 맞춰 원하는 공부를 선택</b>할 수 있도록 구성되어 있습니다.
+            </p>
+          </div>
 
-        <div class="hero-panel">
-          <h3>제공하는 학습 콘텐츠</h3>
-          <ul class="hero-list">
-            <li>상황별 일본어 회화</li>
-            <li>일본어 단어 학습</li>
-            <li>JLPT N5~N1 시험 대비</li>
-            <li>일본 여행 필수 표현</li>
-            <li>일본어 퀴즈 및 학습 기능</li>
-          </ul>
+          <div class="hero-panel">
+            <h3>제공하는 학습 콘텐츠</h3>
+            <ul class="hero-list">
+              <li>상황별 일본어 회화</li>
+              <li>일본어 단어 학습</li>
+              <li>JLPT N5~N1 시험 대비</li>
+              <li>일본 여행 필수 표현</li>
+              <li>일본어 퀴즈 및 학습 기능</li>
+            </ul>
+          </div>
         </div>
       </div>
+
+      <div class="hero-highlight-wrap">
+        <div class="hero-highlight-head">
+          <div class="hero-highlight-eyebrow">핵심 학습 기능</div>
+          <h2 class="hero-highlight-title">일본어 공부방에서 가능한 학습</h2>
+        </div>
+
+        <div class="hero-highlight">
+          <div class="item">
+            <div class="k">일본어 회화 공부방</div>
+            <div class="v">공항, 식당, 호텔, 쇼핑, 교통 등 다양한 상황별 표현을 자연스럽게 익힐 수 있어요.</div>
+          </div>
+
+          <div class="item">
+            <div class="k">JLPT 공부방</div>
+            <div class="v">히라가나·가타카나 기초부터 JLPT N5, N4, N3, N2, N1까지 단계별로 학습할 수 있어요.</div>
+          </div>
+
+          <div class="item">
+            <div class="k">학습노트 / 복습 기능</div>
+            <div class="v">단어·문장·문법을 저장해 관리하고, 발음/뜻 가리기 기능으로 빠르게 점검할 수 있어요.</div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-    <div class="hero-highlight-wrap">
-      <div class="hero-highlight-head">
-        <div class="hero-highlight-eyebrow">핵심 학습 기능</div>
-        <h2 class="hero-highlight-title">일본어 공부방에서 가능한 학습</h2>
-      </div>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
+       crossorigin="anonymous"></script>
+  <!-- content-ad-2 -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9733127689125901"
+       data-ad-slot="5907060346"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 
-      <div class="hero-highlight">
-        <div class="item">
-          <div class="k">일본어 회화 공부방</div>
-          <div class="v">공항, 식당, 호텔, 쇼핑, 교통 등 다양한 상황별 표현을 자연스럽게 익힐 수 있어요.</div>
-        </div>
-
-        <div class="item">
-          <div class="k">JLPT 공부방</div>
-          <div class="v">히라가나·가타카나 기초부터 JLPT N5, N4, N3, N2, N1까지 단계별로 학습할 수 있어요.</div>
-        </div>
-
-        <div class="item">
-          <div class="k">학습노트 / 복습 기능</div>
-          <div class="v">단어·문장·문법을 저장해 관리하고, 발음/뜻 가리기 기능으로 빠르게 점검할 수 있어요.</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
-     crossorigin="anonymous"></script>
-<!-- content-ad-2 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9733127689125901"
-     data-ad-slot="5907060346"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
   <!-- ✅ 오늘의 회화 -->
   <section class="today-wrap">
     <div class="today-card">
@@ -803,55 +956,106 @@
 
   <!-- ✅ 메뉴 섹션 -->
   <section class="menu-wrap">
-    <h3 class="menu-title">학습 메뉴</h3>
-    <p class="menu-sub">원하는 학습을 선택해서 바로 시작해요.</p>
 
-    <div class="menu-grid">
+    <!-- 학습 메뉴 -->
+    <div class="menu-block">
+      <h3 class="menu-title">학습 메뉴</h3>
+      <p class="menu-sub">원하는 학습을 선택해서 바로 시작해요.</p>
 
+      <div class="menu-grid">
 
-      <a class="menu-card" href="{{ url_for('jlpt_kanji_home') }}" aria-label="한자 모음으로 이동">
-        <div class="menu-name">📖 한자 모음</div>
-        <div class="menu-desc">일본어 상용한자 2136자 모음 공부할수 있어요. [시작하기]</div>
-      </a>
+        <a class="menu-card" href="{{ url_for('jlpt_kanji_home') }}" aria-label="한자 모음으로 이동">
+          <div class="menu-name">📖 한자 모음</div>
+          <div class="menu-desc">상용한자 2136자를 단계별로 공부해요.</div>
+        </a>
 
-      <a class="menu-card" href="{{ url_for('meaning') }}" aria-label="일본어표현뜻으로 이동">
-        <div class="menu-name">📖 일본어 표현 미니사전</div>
-        <div class="menu-desc">표현의 뜻을 발음·일본어·한국어 의미로 빠르게 확인할 수 있어요.</div>
-      </a>
+        <a class="menu-card" href="{{ url_for('meaning') }}" aria-label="일본어 표현 미니사전으로 이동">
+          <div class="menu-name">📚 일본어 표현 <br>미니사전</div>
+          <div class="menu-desc">표현 뜻과 발음을 빠르게 찾아봐요.</div>
+        </a>
 
-      <a class="menu-card" href="{{ url_for('situations') }}">
-        <div class="menu-name">📍 상황별 회화</div>
-        <div class="menu-desc">공항·호텔·교통·식당 등 상황별 핵심 표현을 모았어요.</div>
-      </a>
+        <a class="menu-card" href="{{ url_for('situations') }}" aria-label="상황별 회화로 이동">
+          <div class="menu-name">📍 상황별 회화</div>
+          <div class="menu-desc">상황별 핵심 회화를 모아 학습해요.</div>
+        </a>
 
-      <a class="menu-card" href="{{ url_for('words_categories') }}" aria-label="단어모음으로 이동">
-        <div class="menu-name">🧠 단어모음</div>
-        <div class="menu-desc">자주 쓰는 단어를 카테고리별로 정리해 바로 외워요.</div>
-      </a>
+        <a class="menu-card" href="{{ url_for('words_categories') }}" aria-label="단어모음으로 이동">
+          <div class="menu-name">🧠 단어 모음</div>
+          <div class="menu-desc">자주 쓰는 단어를 주제별로 외워요.</div>
+        </a>
 
-      <a class="menu-card" href="{{ url_for('quiz_kanji_home') }}" aria-label="한자 게임으로 이동">
-        <div class="menu-name">🎮 한자 게임</div>
-        <div class="menu-desc">한자와 뜻 짝 맞추기 게임으로 재미있게 외워봐요. [시작하기]</div>
-      </a>
+        <a class="menu-card" href="{{ url_for('jlpt_kana_home') }}" aria-label="기초 일본어로 이동">
+          <div class="menu-name">🌱 기초</div>
+          <div class="menu-desc">히라가나·가타카나·발음 기초를 배워요.</div>
+        </a>
 
-      <a class="menu-card" href="{{ url_for('word_game') }}" aria-label="단어게임으로 이동">
-        <div class="menu-name">🕹️ 단어게임</div>
-        <div class="menu-desc">게임처럼 즐기면서 단어를 빠르게 익히고 기억해요. [시작하기]</div>
-      </a>
+        <a class="menu-card" href="{{ url_for('jlpt_n5_home') }}" aria-label="JLPT N5 홈으로 이동">
+          <div class="menu-name">📝 JLPT N5</div>
+          <div class="menu-desc">N5 단어/문장/문법/테스트 공부</div>
+        </a>
 
-      <a class="menu-card" href="{{ url_for('board') }}" aria-label="일반게시판으로 이동">
-        <div class="menu-name">💬 일반게시판</div>
-        <div class="menu-desc">질문·후기·정보 공유! 자유롭게 글을 남겨보세요.</div>
-      </a>
+        <a class="menu-card" href="{{ url_for('jlpt_n4_home') }}" aria-label="JLPT N4 홈으로 이동">
+          <div class="menu-name">📝 JLPT N4</div>
+          <div class="menu-desc">N4 단어/문장/문법/테스트 공부</div>
+        </a>
 
-      <a class="menu-card" href="{{ url_for('travel_phrases_50') }}">
-        <div class="menu-name">📘 필수회화 50문장</div>
-        <div class="menu-desc">여행 전에 꼭 쓰는 문장만 50개로 빠르게 암기해요.</div>
-      </a>
+        <a class="menu-card" href="{{ url_for('jlpt_n3_home') }}" aria-label="JLPT N3 홈으로 이동">
+          <div class="menu-name">📝 JLPT N3</div>
+          <div class="menu-desc">N3 단어/문장/문법/테스트 공부</div>
+        </a>
+
+        <a class="menu-card" href="{{ url_for('jlpt_n2_home') }}" aria-label="JLPT N2 홈으로 이동">
+          <div class="menu-name">📝 JLPT N2</div>
+          <div class="menu-desc">N2 단어/문장/문법/테스트 공부</div>
+        </a>
+
+        <a class="menu-card" href="{{ url_for('jlpt_n1_home') }}" aria-label="JLPT N1 홈으로 이동">
+          <div class="menu-name">📝 JLPT N1</div>
+          <div class="menu-desc">N1 단어/문장/문법/테스트 공부</div>
+        </a>
+
+      </div>
     </div>
+
+    <!-- 게임 메뉴 -->
+    <div class="menu-block">
+      <h3 class="menu-title">게임 메뉴</h3>
+      <p class="menu-sub">게임처럼 즐기면서 일본어를 반복 학습해요.</p>
+
+      <div class="menu-grid">
+
+        <a class="menu-card game-card" href="{{ url_for('bomb_hunt_start') }}" aria-label="JLPT 단어 카드 챌린지로 이동">
+          <div class="menu-name">🃏 JLPT 단어 <br>카드 챌린지</div>
+          <div class="menu-desc">뜻을 보고 일본어 찾기 게임</div>
+        </a>
+
+        <a class="menu-card game-card" href="{{ url_for('word_game') }}" aria-label="단어게임으로 이동">
+          <div class="menu-name">🕹️ 단어 게임</div>
+          <div class="menu-desc">지나가는 단어의 뜻을 익혀요.</div>
+        </a>
+
+        <a class="menu-card game-card" href="{{ url_for('quiz_kanji_home') }}" aria-label="한자 게임으로 이동">
+          <div class="menu-name">🎮 한자 게임</div>
+          <div class="menu-desc">한자와 뜻을 맞추며 외워봐요.</div>
+        </a>
+
+        <a class="menu-card game-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황별 퀴즈로 이동">
+          <div class="menu-name">❓ 상황별 퀴즈</div>
+          <div class="menu-desc">상황에 맞는 표현을 골라봐요.</div>
+        </a>
+
+        <a class="menu-card game-card" href="{{ url_for('travel_start') }}" aria-label="일본 여행 시뮬레이션으로 이동">
+          <div class="menu-name">🧳 일본 여행 <br>시뮬레이션</div>
+          <div class="menu-desc">여행 시뮬레이션 게임</div>
+        </a>
+
+      </div>
+    </div>
+
   </section>
 
 </div>
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
      crossorigin="anonymous"></script>
 <!-- content-ad-1 -->
@@ -864,6 +1068,7 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
 {# ✅ TTS: 기본 브라우저 SpeechSynthesis (서버 없이도 동작) #}
 <script>
 (function(){
