@@ -2,83 +2,486 @@
 {% block content %}
 
 <style>
-  .wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 48px; }
-  .search-row{ display:flex; gap:10px; margin-top:14px; }
+  :root{
+    --bg-1:#f5f7ff;
+    --bg-2:#eef2fb;
+    --card:#ffffff;
+    --card-soft:#fbfcff;
+    --line:#dfe6f1;
+    --line-strong:#d2dae8;
+    --text:#111827;
+    --sub:#667085;
+    --blue:#4f7df3;
+    --blue-dark:#3f6fe8;
+    --blue-soft:#edf3ff;
+    --gold-1:#e2d6c6;
+    --gold-2:#cbb79a;
+    --shadow:0 14px 34px rgba(15, 23, 42, 0.06);
+    --shadow-soft:0 8px 20px rgba(15, 23, 42, 0.04);
+  }
+
+  body{
+    background:
+      radial-gradient(circle at 12% 0%, rgba(225,232,255,.45) 0%, rgba(225,232,255,0) 30%),
+      radial-gradient(circle at 86% 8%, rgba(245,238,226,.38) 0%, rgba(245,238,226,0) 26%),
+      linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:28px 18px 56px;
+  }
+
+  /* 상단 헤더 카드 */
+  .search-hero{
+    position:relative;
+    background: linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(251,252,255,.96) 100%);
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:28px 26px 24px;
+    box-shadow: var(--shadow);
+    overflow:hidden;
+  }
+
+  .search-hero::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:4px;
+    background: linear-gradient(90deg, var(--gold-1) 0%, var(--gold-2) 55%, #b5946f 100%);
+  }
+
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:32px;
+    padding:0 12px;
+    border-radius:999px;
+    border:1px solid #e6eaf2;
+    background:#fff;
+    color:#49556a;
+    font-size:12px;
+    font-weight:800;
+    box-shadow:0 6px 14px rgba(15,23,42,0.04);
+  }
+
+  .page-head h1{
+    margin:14px 0 8px;
+    font-size:42px;
+    line-height:1.18;
+    letter-spacing:-1px;
+    font-weight:900;
+    color:var(--text);
+  }
+
+  .page-guide{
+    margin:0;
+    color:var(--sub);
+    font-size:15px;
+    line-height:1.8;
+  }
+
+  .search-row{
+    display:flex;
+    gap:12px;
+    margin-top:18px;
+  }
+
   .search-row input{
-    flex:1; height:44px; border-radius:14px; border:1px solid rgba(15, 23, 42, 0.10);
-    padding:0 14px; outline:none;
+    flex:1;
+    height:52px;
+    border-radius:16px;
+    border:1.5px solid var(--line-strong);
+    background:linear-gradient(180deg, #ffffff 0%, #fafcff 100%);
+    padding:0 16px;
+    outline:none;
+    font-size:15px;
+    color:var(--text);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+    transition:border-color .15s ease, box-shadow .15s ease;
   }
+
+  .search-row input:focus{
+    border-color:#b8c8ee;
+    box-shadow:0 0 0 4px rgba(79,125,243,.10);
+  }
+
   .search-row button{
-    height:44px; padding:0 16px; border-radius:14px; border:none;
-    background:#2563eb; color:#fff; font-weight:800; cursor:pointer;
+    height:52px;
+    padding:0 20px;
+    border-radius:16px;
+    border:1px solid rgba(79,125,243,.15);
+    background:linear-gradient(135deg, #5d8cf6 0%, var(--blue) 100%);
+    color:#fff;
+    font-size:14px;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:0 12px 24px rgba(79,125,243,.20);
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    white-space:nowrap;
   }
-  .card{
-    margin-top:16px; background:#ffffff; border:1px solid rgba(15, 23, 42, 0.08);
-    border-radius:16px; padding:14px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+
+  .search-row button:hover{
+    transform:translateY(-1px);
+    box-shadow:0 16px 28px rgba(79,125,243,.24);
+    background:linear-gradient(135deg, #567ff0 0%, var(--blue-dark) 100%);
   }
-  table{ width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:14px; }
-  th, td{ text-align:left; padding:10px 12px; border-bottom:1px solid rgba(15, 23, 42, 0.06); font-size:14px; }
-  th{ background:#f8fafc; font-weight:900; }
-  tr:last-child td{ border-bottom:none; }
-  .muted{ color:#6b7280; font-size:12px; margin-top:10px; }
+
+  .search-meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:14px;
+  }
+
+  .muted{
+    color:#6b7280;
+    font-size:13px;
+    line-height:1.7;
+    margin:0;
+  }
+
+  .back-link{
+    color:var(--blue);
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  .back-link:hover{
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+
+  /* 결과 카드 */
+  .results-card{
+    margin-top:18px;
+    background:linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(250,252,255,.98) 100%);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:14px;
+    box-shadow: var(--shadow);
+  }
+
+  .results-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:6px 6px 14px;
+  }
+
+  .results-title{
+    margin:0;
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:-0.3px;
+    color:var(--text);
+  }
+
+  .results-count{
+    display:inline-flex;
+    align-items:center;
+    height:32px;
+    padding:0 12px;
+    border-radius:999px;
+    background:var(--blue-soft);
+    color:var(--blue-dark);
+    font-size:12px;
+    font-weight:900;
+    border:1px solid #d7e3ff;
+  }
+
+  .table-wrap{
+    overflow-x:auto;
+    border-radius:18px;
+    border:1px solid #e7edf6;
+    background:#fff;
+  }
+
+  table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    min-width:860px;
+  }
+
+  th, td{
+    text-align:left;
+    padding:15px 14px;
+    border-bottom:1px solid rgba(15,23,42,0.06);
+    vertical-align:middle;
+  }
+
+  th{
+    background:linear-gradient(180deg, #fbfcff 0%, #f4f7fc 100%);
+    font-size:13px;
+    color:#344054;
+    font-weight:900;
+    letter-spacing:-0.15px;
+  }
+
+  td{
+    font-size:14px;
+    color:var(--text);
+    line-height:1.75;
+    background:#fff;
+  }
+
+  tbody tr:hover td{
+    background:#fcfdff;
+  }
+
+  tr:last-child td{
+    border-bottom:none;
+  }
+
+  th:first-child{
+    border-top-left-radius:14px;
+  }
+  th:last-child{
+    border-top-right-radius:14px;
+  }
+
+  .result-link{
+    display:inline-flex;
+    align-items:center;
+    padding:8px 12px;
+    border-radius:999px;
+    background:linear-gradient(180deg, #f5f8ff 0%, #edf3ff 100%);
+    border:1px solid #d9e4ff;
+    color:#476fe0;
+    font-size:12px;
+    font-weight:800;
+    line-height:1.45;
+    text-decoration:none;
+    box-shadow:0 4px 10px rgba(79,125,243,.06);
+  }
+
+  .result-link:hover{
+    background:linear-gradient(180deg, #eef4ff 0%, #e7efff 100%);
+    border-color:#c9d8ff;
+  }
+
+  .cell-main{
+    font-weight:700;
+    color:#101828;
+  }
+
+  .cell-sub{
+    display:block;
+    margin-top:2px;
+    font-size:12px;
+    color:#7a8495;
+  }
+
+  .empty-box{
+    padding:26px 20px;
+    border:1.5px dashed #d6e0f4;
+    border-radius:18px;
+    color:#64748b;
+    background:linear-gradient(180deg, #fcfdff 0%, #f8fbff 100%);
+    text-align:center;
+  }
+
+  .empty-icon{
+    font-size:26px;
+    margin-bottom:8px;
+  }
+
+  .empty-title{
+    font-size:16px;
+    font-weight:900;
+    color:#24324a;
+    margin-bottom:6px;
+  }
+
+  .empty-desc{
+    font-size:14px;
+    line-height:1.8;
+    color:#6b7280;
+  }
+
+  .helper-card{
+    margin-top:14px;
+    padding:16px 18px;
+    border-radius:18px;
+    background:linear-gradient(180deg, #fffefd 0%, #f8f6f1 100%);
+    border:1px solid #e8e1d5;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .helper-title{
+    margin:0 0 6px;
+    font-size:15px;
+    font-weight:900;
+    color:#1f2937;
+  }
+
+  .helper-desc{
+    margin:0;
+    font-size:13px;
+    line-height:1.8;
+    color:#6b7280;
+  }
+
+  @media (max-width: 900px){
+    .page-head h1{
+      font-size:32px;
+      line-height:1.25;
+    }
+
+    .search-hero{
+      padding:22px 18px 18px;
+      border-radius:22px;
+    }
+
+    .search-row{
+      flex-direction:column;
+    }
+
+    .search-row button{
+      width:100%;
+    }
+
+    .results-head{
+      align-items:flex-start;
+      flex-direction:column;
+    }
+  }
+
+  @media (max-width: 600px){
+    .wrap{
+      padding:18px 12px 38px;
+    }
+
+    .page-head h1{
+      font-size:26px;
+    }
+
+    .page-guide{
+      font-size:14px;
+    }
+
+    .results-card{
+      padding:10px;
+      border-radius:18px;
+    }
+
+    th, td{
+      padding:12px 10px;
+    }
+  }
 </style>
 
 <div class="wrap">
-  <section class="page-head">
+  <section class="page-head search-hero">
+    <div class="hero-badge">단어 검색</div>
     <h1>단어모음 전체 검색</h1>
-    <p class="page-guide">한자 / 가나 / 발음 / 뜻으로 검색할 수 있어요.</p>
+    <p class="page-guide">한자 · 가나 · 발음 · 뜻으로 원하는 단어를 한 번에 찾아보세요.</p>
 
     <form method="GET" action="{{ url_for('words_search') }}" class="search-row">
       <input type="text" name="q" value="{{ q or '' }}" placeholder="예: 今 / いま / 이마 / 지금">
       <button type="submit">검색</button>
     </form>
 
-    {% if q %}
-      <p class="muted">검색어: <b>{{ q|e }}</b> · 결과: <b>{{ results|length }}</b>개</p>
-    {% endif %}
+    <div class="search-meta">
+      {% if q %}
+        <p class="muted">검색어: <b>{{ q|e }}</b> · 결과: <b>{{ results|length }}</b>개</p>
+      {% else %}
+        <p class="muted">원하는 단어를 입력하면 관련 결과를 아래에서 바로 확인할 수 있어요.</p>
+      {% endif %}
 
-    <div style="margin-top:10px;">
-      <a href="{{ url_for('words_categories') }}" style="color:#2563eb; text-decoration:underline; text-underline-offset:3px;">← 단어모음 목록</a>
+      <a href="{{ url_for('words_categories') }}" class="back-link">← 단어모음 목록</a>
     </div>
   </section>
 
-  <div class="card">
+  <div class="results-card">
     {% if results and results|length > 0 %}
-      <table>
-        <thead>
-          <tr>
-            <th style="width:160px;">분류</th>
-            <th style="width:22%;">한자</th>
-            <th style="width:22%;">가나</th>
-            <th style="width:22%;">발음</th>
-            <th>뜻</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for r in results %}
-          <tr>
-            <td>
-              <a href="{{ url_for('words_detail', cat_key=r.cat_key) }}"
-                 class="result-link">
-                {{ r.cat_title|e }}
-              </a>
-            </td>
-            <td>{{ (r.kanji or r.jp or '')|e }}</td>
-            <td>{{ (r.kana or '')|e }}</td>
-            <td>{{ (r.pron or '')|e }}</td>
-            <td>{{ (r.ko or '')|e }}</td>
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
+      <div class="results-head">
+        <h2 class="results-title">검색 결과</h2>
+        <div class="results-count">{{ results|length }}개 결과</div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:180px;">분류</th>
+              <th style="width:18%;">한자</th>
+              <th style="width:18%;">가나</th>
+              <th style="width:18%;">발음</th>
+              <th>뜻</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for r in results %}
+            <tr>
+              <td>
+                <a href="{{ url_for('words_detail', cat_key=r.cat_key) }}" class="result-link">
+                  {{ r.cat_title|e }}
+                </a>
+              </td>
+              <td>
+                <span class="cell-main">{{ (r.kanji or r.jp or '')|e }}</span>
+              </td>
+              <td>
+                <span class="cell-main">{{ (r.kana or '')|e }}</span>
+              </td>
+              <td>
+                <span class="cell-main">{{ (r.pron or '')|e }}</span>
+              </td>
+              <td>
+                <span class="cell-main">{{ (r.ko or '')|e }}</span>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="helper-card">
+        <h3 class="helper-title">검색 팁</h3>
+        <p class="helper-desc">한자, 가나, 발음, 한국어 뜻 중 편한 방식으로 검색해도 결과를 찾을 수 있어요.</p>
+      </div>
     {% else %}
       {% if q %}
-        <div style="padding:14px 16px; border:1px dashed #d9e2f5; border-radius:14px; color:#64748b; background:#fbfdff;">
-          검색 결과가 없습니다.
+        <div class="empty-box">
+          <div class="empty-icon">🔎</div>
+          <div class="empty-title">검색 결과가 없어요</div>
+          <div class="empty-desc">
+            다른 한자, 가나, 발음 또는 뜻으로 다시 검색해 보세요.
+          </div>
+        </div>
+      {% else %}
+        <div class="empty-box">
+          <div class="empty-icon">📚</div>
+          <div class="empty-title">찾고 싶은 단어를 검색해 보세요</div>
+          <div class="empty-desc">
+            예시처럼 한자, 가나, 발음, 한국어 뜻으로 입력하면 관련 단어를 쉽게 찾을 수 있어요.
+          </div>
         </div>
       {% endif %}
     {% endif %}
   </div>
 </div>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
+     crossorigin="anonymous"></script>
+<!-- content-ad-2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9733127689125901"
+     data-ad-slot="5907060346"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 {% endblock %}
