@@ -448,6 +448,23 @@ def ensure_jlpt_word_favorites_table(conn):
     )
     """)
 
+def ensure_bomb_hunt_rankings_table(conn):
+    conn.execute("""
+    CREATE TABLE IF NOT EXISTS bomb_hunt_rankings (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      username TEXT,
+      nickname TEXT NOT NULL,
+      difficulty TEXT NOT NULL,
+      total_found INTEGER DEFAULT 0,
+      max_round INTEGER DEFAULT 1,
+      elapsed_seconds REAL DEFAULT 0,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      UNIQUE(user_id, difficulty)
+    )
+    """)
+
 # -------------------------
 # DB helpers
 # -------------------------
@@ -1017,6 +1034,8 @@ def init_db() -> None:
         ensure_word_favorites_table(conn)
         migrate_password_resets_table(conn)
 
+        # 13) bomb_hunt_rankings
+        ensure_bomb_hunt_rankings_table(conn)
 
         conn.commit()
     finally:
@@ -7823,52 +7842,52 @@ N5_WORDS = {
     "title": "사람·관계·기본 표현",
     "items": [
         {"kanji":"私","kana":"わたし","pron":"와타시","ko":"나, 저","tts_text":"私"},
-        {"kanji":"","kana":"あなた","pron":"아나타","ko":"당신","tts_text":"あなた"},
+        {"kanji":"","kana":"あなた","pron":"아나타","ko":"당신, 너","tts_text":"あなた"},
         {"kanji":"人","kana":"ひと","pron":"히토","ko":"사람","tts_text":"人"},
         {"kanji":"友達","kana":"ともだち","pron":"토모다치","ko":"친구","tts_text":"友達"},
-        {"kanji":"家族","kana":"かぞく","pron":"카조쿠","ko":"가족","tts_text":"家族"},
+        {"kanji":"家族","kana":"かぞく","pron":"카조쿠","ko":"가족, 식구","tts_text":"家族"},
         {"kanji":"学生","kana":"がくせい","pron":"가쿠세이","ko":"학생","tts_text":"学生"},
-        {"kanji":"先生","kana":"せんせい","pron":"센세이","ko":"선생님","tts_text":"先生"},
+        {"kanji":"先生","kana":"せんせい","pron":"센세이","ko":"선생님, 스승","tts_text":"先生"},
         {"kanji":"会社","kana":"かいしゃ","pron":"카이샤","ko":"회사","tts_text":"会社"},
         {"kanji":"学校","kana":"がっこう","pron":"각코","ko":"학교","tts_text":"学校"},
-        {"kanji":"家","kana":"いえ","pron":"이에","ko":"집","tts_text":"家"},
+        {"kanji":"家","kana":"いえ","pron":"이에","ko":"집, 집안","tts_text":"家"},
 
-        {"kanji":"子ども","kana":"こども","pron":"코도모","ko":"아이","tts_text":"子ども"},
-        {"kanji":"大人","kana":"おとな","pron":"오토나","ko":"어른","tts_text":"大人"},
+        {"kanji":"子ども","kana":"こども","pron":"코도모","ko":"아이, 어린이","tts_text":"子ども"},
+        {"kanji":"大人","kana":"おとな","pron":"오토나","ko":"어른, 성인","tts_text":"大人"},
         {"kanji":"男","kana":"おとこ","pron":"오토코","ko":"남자","tts_text":"男"},
         {"kanji":"女","kana":"おんな","pron":"온나","ko":"여자","tts_text":"女"},
-        {"kanji":"名前","kana":"なまえ","pron":"나마에","ko":"이름","tts_text":"名前"},
-        {"kanji":"国","kana":"くに","pron":"쿠니","ko":"나라","tts_text":"国"},
+        {"kanji":"名前","kana":"なまえ","pron":"나마에","ko":"이름, 성함","tts_text":"名前"},
+        {"kanji":"国","kana":"くに","pron":"쿠니","ko":"나라, 국가","tts_text":"国"},
         {"kanji":"日本","kana":"にほん","pron":"니혼","ko":"일본","tts_text":"日本"},
         {"kanji":"韓国","kana":"かんこく","pron":"칸코쿠","ko":"한국","tts_text":"韓国"},
-        {"kanji":"皆","kana":"みんな","pron":"민나","ko":"모두","tts_text":"皆"},
-        {"kanji":"一人","kana":"ひとり","pron":"히토리","ko":"한 사람","tts_text":"一人"},
+        {"kanji":"皆","kana":"みんな","pron":"민나","ko":"모두, 다들","tts_text":"皆"},
+        {"kanji":"一人","kana":"ひとり","pron":"히토리","ko":"한 사람, 혼자","tts_text":"一人"},
 
         {"kanji":"","kana":"これ","pron":"코레","ko":"이것","tts_text":"これ"},
         {"kanji":"","kana":"それ","pron":"소레","ko":"그것","tts_text":"それ"},
         {"kanji":"","kana":"あれ","pron":"아레","ko":"저것","tts_text":"あれ"},
         {"kanji":"","kana":"ここ","pron":"코코","ko":"여기","tts_text":"ここ"},
         {"kanji":"","kana":"そこ","pron":"소코","ko":"거기","tts_text":"そこ"},
-        {"kanji":"","kana":"あそこ","pron":"아소코","ko":"저기","tts_text":"あそこ"},
+        {"kanji":"","kana":"あそこ","pron":"아소코","ko":"저기, 저곳","tts_text":"あそこ"},
 
-        {"kanji":"","kana":"だれ","pron":"다레","ko":"누구","tts_text":"だれ"},
-        {"kanji":"","kana":"なに","pron":"나니","ko":"무엇","tts_text":"なに"},
+        {"kanji":"","kana":"だれ","pron":"다레","ko":"누구, 누구야","tts_text":"だれ"},
+        {"kanji":"","kana":"なに","pron":"나니","ko":"무엇, 뭐","tts_text":"なに"},
         {"kanji":"","kana":"どこ","pron":"도코","ko":"어디","tts_text":"どこ"},
         {"kanji":"","kana":"いつ","pron":"이츠","ko":"언제","tts_text":"いつ"},
-        {"kanji":"","kana":"どう","pron":"도오","ko":"어떻게","tts_text":"どう"},
-        {"kanji":"","kana":"どうして","pron":"도오시테","ko":"왜","tts_text":"どうして"},
+        {"kanji":"","kana":"どう","pron":"도오","ko":"어떻게, 어떠해","tts_text":"どう"},
+        {"kanji":"","kana":"どうして","pron":"도오시테","ko":"왜, 어째서","tts_text":"どうして"},
 
-        {"kanji":"","kana":"はい","pron":"하이","ko":"네","tts_text":"はい"},
+        {"kanji":"","kana":"はい","pron":"하이","ko":"네, 예","tts_text":"はい"},
         {"kanji":"","kana":"いいえ","pron":"이이에","ko":"아니요","tts_text":"いいえ"},
-        {"kanji":"","kana":"お願いします","pron":"오네가이시마스","ko":"부탁합니다","tts_text":"お願いします"},
-        {"kanji":"","kana":"ください","pron":"쿠다사이","ko":"주세요","tts_text":"ください"},
-        {"kanji":"大丈夫","kana":"だいじょうぶ","pron":"다이죠부","ko":"괜찮다","tts_text":"大丈夫"},
-        {"kanji":"","kana":"ありがとう","pron":"아리가토","ko":"고마워요","tts_text":"ありがとう"},
-        {"kanji":"","kana":"すみません","pron":"스미마센","ko":"죄송합니다","tts_text":"すみません"},
+        {"kanji":"","kana":"お願いします","pron":"오네가이시마스","ko":"부탁합니다, 부탁드려요","tts_text":"お願いします"},
+        {"kanji":"","kana":"ください","pron":"쿠다사이","ko":"주세요, 주십시오","tts_text":"ください"},
+        {"kanji":"大丈夫","kana":"だいじょうぶ","pron":"다이죠부","ko":"괜찮다, 문제없다","tts_text":"大丈夫"},
+        {"kanji":"","kana":"ありがとう","pron":"아리가토","ko":"고마워요, 감사합니다","tts_text":"ありがとう"},
+        {"kanji":"","kana":"すみません","pron":"스미마센","ko":"죄송합니다, 실례합니다","tts_text":"すみません"},
         {"kanji":"","kana":"はい、そうです","pron":"하이 소오데스","ko":"네, 맞아요","tts_text":"はい、そうです"},
-        {"kanji":"違います","kana":"ちがいます","pron":"치가이마스","ko":"아닙니다","tts_text":"違います"}
+        {"kanji":"違います","kana":"ちがいます","pron":"치가이마스","ko":"아닙니다, 틀립니다","tts_text":"違います"}
     ]
-    },
+},
     "sec02": {
     "title": "시간·날짜·요일·숫자",
     "items": [
@@ -7876,16 +7895,16 @@ N5_WORDS = {
         {"kanji":"今日","kana":"きょう","pron":"쿄오","ko":"오늘","tts_text":"今日"},
         {"kanji":"昨日","kana":"きのう","pron":"키노오","ko":"어제","tts_text":"昨日"},
         {"kanji":"明日","kana":"あした","pron":"아시타","ko":"내일","tts_text":"明日"},
-        {"kanji":"今","kana":"いま","pron":"이마","ko":"지금","tts_text":"今"},
-        {"kanji":"毎日","kana":"まいにち","pron":"마이니치","ko":"매일","tts_text":"毎日"},
-        {"kanji":"朝","kana":"あさ","pron":"아사","ko":"아침","tts_text":"朝"},
+        {"kanji":"今","kana":"いま","pron":"이마","ko":"지금, 이제","tts_text":"今"},
+        {"kanji":"毎日","kana":"まいにち","pron":"마이니치","ko":"매일, 날마다","tts_text":"毎日"},
+        {"kanji":"朝","kana":"あさ","pron":"아사","ko":"아침, 오전","tts_text":"朝"},
         {"kanji":"昼","kana":"ひる","pron":"히루","ko":"낮, 점심","tts_text":"昼"},
-        {"kanji":"夜","kana":"よる","pron":"요루","ko":"밤","tts_text":"夜"},
+        {"kanji":"夜","kana":"よる","pron":"요루","ko":"밤, 저녁","tts_text":"夜"},
         {"kanji":"時間","kana":"じかん","pron":"지칸","ko":"시간","tts_text":"時間"},
-        {"kanji":"週","kana":"しゅう","pron":"슈우","ko":"주(week)","tts_text":"週"},
+        {"kanji":"週","kana":"しゅう","pron":"슈우","ko":"주, 주간","tts_text":"週"},
 
         {"kanji":"年","kana":"とし","pron":"토시","ko":"해, 년","tts_text":"年"},
-        {"kanji":"月","kana":"つき","pron":"츠키","ko":"달","tts_text":"月"},
+        {"kanji":"月","kana":"つき","pron":"츠키","ko":"달, 월","tts_text":"月"},
         {"kanji":"日","kana":"ひ","pron":"히","ko":"날, 하루","tts_text":"日"},
 
         # ---- 요일 ----
@@ -7914,33 +7933,33 @@ N5_WORDS = {
         {"kanji":"分","kana":"ふん","pron":"훈","ko":"분","tts_text":"分"},
         {"kanji":"午前","kana":"ごぜん","pron":"고젠","ko":"오전","tts_text":"午前"},
         {"kanji":"午後","kana":"ごご","pron":"고고","ko":"오후","tts_text":"午後"},
-        {"kanji":"","kana":"いつも","pron":"이츠모","ko":"항상","tts_text":"いつも"},
-        {"kanji":"時々","kana":"ときどき","pron":"토키도키","ko":"가끔","tts_text":"時々"},
+        {"kanji":"","kana":"いつも","pron":"이츠모","ko":"항상, 늘","tts_text":"いつも"},
+        {"kanji":"時々","kana":"ときどき","pron":"토키도키","ko":"가끔, 때때로","tts_text":"時々"},
         {"kanji":"早い","kana":"はやい","pron":"하야이","ko":"이르다, 빠르다","tts_text":"早い"},
-        {"kanji":"遅い","kana":"おそい","pron":"오소이","ko":"늦다","tts_text":"遅い"},
+        {"kanji":"遅い","kana":"おそい","pron":"오소이","ko":"늦다, 느리다","tts_text":"遅い"},
 
         # ---- (추가) 시험 자주 나오는 시간표현/날짜 ----
         {"kanji":"今日","kana":"きょう","pron":"쿄오","ko":"오늘(복습용)","tts_text":"今日"},
-        {"kanji":"今週","kana":"こんしゅう","pron":"콘슈우","ko":"이번 주","tts_text":"今週"},
-        {"kanji":"来週","kana":"らいしゅう","pron":"라이슈우","ko":"다음 주","tts_text":"来週"},
-        {"kanji":"先週","kana":"せんしゅう","pron":"센슈우","ko":"지난 주","tts_text":"先週"},
-        {"kanji":"今月","kana":"こんげつ","pron":"콘게츠","ko":"이번 달","tts_text":"今月"},
-        {"kanji":"来月","kana":"らいげつ","pron":"라이게츠","ko":"다음 달","tts_text":"来月"},
-        {"kanji":"先月","kana":"せんげつ","pron":"센게츠","ko":"지난달","tts_text":"先月"},
-        {"kanji":"今年","kana":"ことし","pron":"코토시","ko":"올해","tts_text":"今年"},
-        {"kanji":"来年","kana":"らいねん","pron":"라이넨","ko":"내년","tts_text":"来年"},
-        {"kanji":"去年","kana":"きょねん","pron":"쿄넨","ko":"작년","tts_text":"去年"},
+        {"kanji":"今週","kana":"こんしゅう","pron":"콘슈우","ko":"이번 주, 금주","tts_text":"今週"},
+        {"kanji":"来週","kana":"らいしゅう","pron":"라이슈우","ko":"다음 주, 내주","tts_text":"来週"},
+        {"kanji":"先週","kana":"せんしゅう","pron":"센슈우","ko":"지난 주, 저번 주","tts_text":"先週"},
+        {"kanji":"今月","kana":"こんげつ","pron":"콘게츠","ko":"이번 달, 금월","tts_text":"今月"},
+        {"kanji":"来月","kana":"らいげつ","pron":"라이게츠","ko":"다음 달, 내달","tts_text":"来月"},
+        {"kanji":"先月","kana":"せんげつ","pron":"센게츠","ko":"지난달, 저번 달","tts_text":"先月"},
+        {"kanji":"今年","kana":"ことし","pron":"코토시","ko":"올해, 금년","tts_text":"今年"},
+        {"kanji":"来年","kana":"らいねん","pron":"라이넨","ko":"내년, 다음 해","tts_text":"来年"},
+        {"kanji":"去年","kana":"きょねん","pron":"쿄넨","ko":"작년, 지난해","tts_text":"去年"},
         {"kanji":"毎週","kana":"まいしゅう","pron":"마이슈우","ko":"매주","tts_text":"毎週"},
-        {"kanji":"毎月","kana":"まいつき","pron":"마이츠키","ko":"매달","tts_text":"毎月"}
+        {"kanji":"毎月","kana":"まいつき","pron":"마이츠키","ko":"매달, 매월","tts_text":"毎月"}
     ]
-    },
+},
         "sec03": {
     "title": "장소·시설·교통·이동",
     "items": [
         # ---- 장소·시설 ----
         {"kanji":"駅","kana":"えき","pron":"에키","ko":"역","tts_text":"駅"},
         {"kanji":"空港","kana":"くうこう","pron":"쿠우코오","ko":"공항","tts_text":"空港"},
-        {"kanji":"店","kana":"みせ","pron":"미세","ko":"가게","tts_text":"店"},
+        {"kanji":"店","kana":"みせ","pron":"미세","ko":"가게, 상점","tts_text":"店"},
         {"kanji":"","kana":"スーパー","pron":"수우파아","ko":"슈퍼마켓","tts_text":"スーパー"},
         {"kanji":"","kana":"コンビニ","pron":"콘비니","ko":"편의점","tts_text":"コンビニ"},
         {"kanji":"","kana":"レストラン","pron":"레스토랑","ko":"레스토랑","tts_text":"レストラン"},
@@ -7952,68 +7971,68 @@ N5_WORDS = {
         {"kanji":"郵便局","kana":"ゆうびんきょく","pron":"유우빈쿄쿠","ko":"우체국","tts_text":"郵便局"},
         {"kanji":"学校","kana":"がっこう","pron":"각코오","ko":"학교","tts_text":"学校"},
         {"kanji":"会社","kana":"かいしゃ","pron":"카이샤","ko":"회사","tts_text":"会社"},
-        {"kanji":"家","kana":"いえ","pron":"이에","ko":"집","tts_text":"家"},
-        {"kanji":"部屋","kana":"へや","pron":"헤야","ko":"방","tts_text":"部屋"},
+        {"kanji":"家","kana":"いえ","pron":"이에","ko":"집, 집안","tts_text":"家"},
+        {"kanji":"部屋","kana":"へや","pron":"헤야","ko":"방, 방 안","tts_text":"部屋"},
         {"kanji":"","kana":"トイレ","pron":"토이레","ko":"화장실","tts_text":"トイレ"},
         {"kanji":"入口","kana":"いりぐち","pron":"이리구치","ko":"입구","tts_text":"入口"},
         {"kanji":"出口","kana":"でぐち","pron":"데구치","ko":"출구","tts_text":"出口"},
-        {"kanji":"道","kana":"みち","pron":"미치","ko":"길","tts_text":"道"},
-        {"kanji":"交差点","kana":"こうさてん","pron":"코오사텐","ko":"교차로","tts_text":"交差点"},
+        {"kanji":"道","kana":"みち","pron":"미치","ko":"길, 도로","tts_text":"道"},
+        {"kanji":"交差点","kana":"こうさてん","pron":"코오사텐","ko":"교차로, 사거리","tts_text":"交差点"},
 
         # ---- 교통수단 ----
-        {"kanji":"電車","kana":"でんしゃ","pron":"덴샤","ko":"전철","tts_text":"電車"},
+        {"kanji":"電車","kana":"でんしゃ","pron":"덴샤","ko":"전철, 기차","tts_text":"電車"},
         {"kanji":"地下鉄","kana":"ちかてつ","pron":"치카테츠","ko":"지하철","tts_text":"地下鉄"},
         {"kanji":"","kana":"バス","pron":"바스","ko":"버스","tts_text":"バス"},
         {"kanji":"","kana":"タクシー","pron":"타쿠시이","ko":"택시","tts_text":"タクシー"},
-        {"kanji":"車","kana":"くるま","pron":"쿠루마","ko":"차","tts_text":"車"},
+        {"kanji":"車","kana":"くるま","pron":"쿠루마","ko":"차, 자동차","tts_text":"車"},
         {"kanji":"自転車","kana":"じてんしゃ","pron":"지텐샤","ko":"자전거","tts_text":"自転車"},
 
         # ---- 이동·방향 ----
         {"kanji":"歩く","kana":"あるく","pron":"아루쿠","ko":"걷다","tts_text":"歩く"},
         {"kanji":"行く","kana":"いく","pron":"이쿠","ko":"가다","tts_text":"行く"},
         {"kanji":"来る","kana":"くる","pron":"쿠루","ko":"오다","tts_text":"来る"},
-        {"kanji":"帰る","kana":"かえる","pron":"카에루","ko":"돌아가다","tts_text":"帰る"},
+        {"kanji":"帰る","kana":"かえる","pron":"카에루","ko":"돌아가다, 귀가하다","tts_text":"帰る"},
 
         {"kanji":"右","kana":"みぎ","pron":"미기","ko":"오른쪽","tts_text":"右"},
         {"kanji":"左","kana":"ひだり","pron":"히다리","ko":"왼쪽","tts_text":"左"},
-        {"kanji":"前","kana":"まえ","pron":"마에","ko":"앞","tts_text":"前"},
-        {"kanji":"後ろ","kana":"うしろ","pron":"우시로","ko":"뒤","tts_text":"後ろ"},
+        {"kanji":"前","kana":"まえ","pron":"마에","ko":"앞, 이전","tts_text":"前"},
+        {"kanji":"後ろ","kana":"うしろ","pron":"우시로","ko":"뒤, 뒤쪽","tts_text":"後ろ"},
         {"kanji":"中","kana":"なか","pron":"나카","ko":"안, 속","tts_text":"中"},
-        {"kanji":"外","kana":"そと","pron":"소토","ko":"밖","tts_text":"外"},
-        {"kanji":"近く","kana":"ちかく","pron":"치카쿠","ko":"가까이","tts_text":"近く"},
+        {"kanji":"外","kana":"そと","pron":"소토","ko":"밖, 외부","tts_text":"外"},
+        {"kanji":"近く","kana":"ちかく","pron":"치카쿠","ko":"가까이, 근처","tts_text":"近く"},
         {"kanji":"遠い","kana":"とおい","pron":"토오이","ko":"멀다","tts_text":"遠い"},
 
         # ---- 시험 자주 나오는 위치 표현 ----
-        {"kanji":"上","kana":"うえ","pron":"우에","ko":"위","tts_text":"上"},
-        {"kanji":"下","kana":"した","pron":"시타","ko":"아래","tts_text":"下"},
-        {"kanji":"横","kana":"よこ","pron":"요코","ko":"옆","tts_text":"横"},
+        {"kanji":"上","kana":"うえ","pron":"우에","ko":"위, 위쪽","tts_text":"上"},
+        {"kanji":"下","kana":"した","pron":"시타","ko":"아래, 밑","tts_text":"下"},
+        {"kanji":"横","kana":"よこ","pron":"요코","ko":"옆, 가로","tts_text":"横"},
         {"kanji":"近所","kana":"きんじょ","pron":"킨조","ko":"근처, 동네","tts_text":"近所"}
     ]
-    },
+},
        "sec04": {
     "title": "기본 동사·행동",
     "items": [
         # ---- 일상 기본 동작 ----
         {"kanji":"食べる","kana":"たべる","pron":"타베루","ko":"먹다","tts_text":"食べる"},
         {"kanji":"飲む","kana":"のむ","pron":"노무","ko":"마시다","tts_text":"飲む"},
-        {"kanji":"見る","kana":"みる","pron":"미루","ko":"보다","tts_text":"見る"},
-        {"kanji":"聞く","kana":"きく","pron":"키쿠","ko":"듣다 / 묻다","tts_text":"聞く"},
-        {"kanji":"話す","kana":"はなす","pron":"하나스","ko":"말하다","tts_text":"話す"},
+        {"kanji":"見る","kana":"みる","pron":"미루","ko":"보다, 구경하다","tts_text":"見る"},
+        {"kanji":"聞く","kana":"きく","pron":"키쿠","ko":"듣다, 묻다","tts_text":"聞く"},
+        {"kanji":"話す","kana":"はなす","pron":"하나스","ko":"말하다, 이야기하다","tts_text":"話す"},
         {"kanji":"読む","kana":"よむ","pron":"요무","ko":"읽다","tts_text":"読む"},
         {"kanji":"書く","kana":"かく","pron":"카쿠","ko":"쓰다","tts_text":"書く"},
-        {"kanji":"買う","kana":"かう","pron":"카우","ko":"사다","tts_text":"買う"},
-        {"kanji":"使う","kana":"つかう","pron":"츠카우","ko":"사용하다","tts_text":"使う"},
+        {"kanji":"買う","kana":"かう","pron":"카우","ko":"사다, 구매하다","tts_text":"買う"},
+        {"kanji":"使う","kana":"つかう","pron":"츠카우","ko":"사용하다, 쓰다","tts_text":"使う"},
         {"kanji":"作る","kana":"つくる","pron":"츠쿠루","ko":"만들다","tts_text":"作る"},
 
         # ---- 생활·활동 ----
         {"kanji":"","kana":"する","pron":"스루","ko":"하다","tts_text":"する"},
         {"kanji":"勉強する","kana":"べんきょうする","pron":"벤쿄오 스루","ko":"공부하다","tts_text":"勉強する"},
-        {"kanji":"働く","kana":"はたらく","pron":"하타라쿠","ko":"일하다","tts_text":"働く"},
-        {"kanji":"休む","kana":"やすむ","pron":"야스무","ko":"쉬다","tts_text":"休む"},
-        {"kanji":"起きる","kana":"おきる","pron":"오키루","ko":"일어나다","tts_text":"起きる"},
-        {"kanji":"寝る","kana":"ねる","pron":"네루","ko":"자다","tts_text":"寝る"},
-        {"kanji":"出る","kana":"でる","pron":"데루","ko":"나가다","tts_text":"出る"},
-        {"kanji":"入る","kana":"はいる","pron":"하이루","ko":"들어가다","tts_text":"入る"},
+        {"kanji":"働く","kana":"はたらく","pron":"하타라쿠","ko":"일하다, 근무하다","tts_text":"働く"},
+        {"kanji":"休む","kana":"やすむ","pron":"야스무","ko":"쉬다, 휴식하다","tts_text":"休む"},
+        {"kanji":"起きる","kana":"おきる","pron":"오키루","ko":"일어나다, 깨다","tts_text":"起きる"},
+        {"kanji":"寝る","kana":"ねる","pron":"네루","ko":"자다, 잠들다","tts_text":"寝る"},
+        {"kanji":"出る","kana":"でる","pron":"데루","ko":"나가다, 나오다","tts_text":"出る"},
+        {"kanji":"入る","kana":"はいる","pron":"하이루","ko":"들어가다, 들어오다","tts_text":"入る"},
         {"kanji":"座る","kana":"すわる","pron":"스와루","ko":"앉다","tts_text":"座る"},
         {"kanji":"立つ","kana":"たつ","pron":"타츠","ko":"서다","tts_text":"立つ"},
 
@@ -8021,29 +8040,29 @@ N5_WORDS = {
         {"kanji":"待つ","kana":"まつ","pron":"마츠","ko":"기다리다","tts_text":"待つ"},
         {"kanji":"持つ","kana":"もつ","pron":"모츠","ko":"가지다, 들다","tts_text":"持つ"},
         {"kanji":"置く","kana":"おく","pron":"오쿠","ko":"놓다","tts_text":"置く"},
-        {"kanji":"取る","kana":"とる","pron":"토루","ko":"잡다, 취하다","tts_text":"取る"},
+        {"kanji":"取る","kana":"とる","pron":"토루","ko":"잡다, 취하다, 가져가다","tts_text":"取る"},
         {"kanji":"開ける","kana":"あける","pron":"아케루","ko":"열다","tts_text":"開ける"},
         {"kanji":"閉める","kana":"しめる","pron":"시메루","ko":"닫다","tts_text":"閉める"},
         {"kanji":"始める","kana":"はじめる","pron":"하지메루","ko":"시작하다","tts_text":"始める"},
-        {"kanji":"終わる","kana":"おわる","pron":"오와루","ko":"끝나다","tts_text":"終わる"},
+        {"kanji":"終わる","kana":"おわる","pron":"오와루","ko":"끝나다, 끝내다","tts_text":"終わる"},
 
         # ---- 학습·사고 ----
-        {"kanji":"教える","kana":"おしえる","pron":"오시에루","ko":"가르치다","tts_text":"教える"},
+        {"kanji":"教える","kana":"おしえる","pron":"오시에루","ko":"가르치다, 알려주다","tts_text":"教える"},
         {"kanji":"習う","kana":"ならう","pron":"나라우","ko":"배우다","tts_text":"習う"},
         {"kanji":"分かる","kana":"わかる","pron":"와카루","ko":"알다, 이해하다","tts_text":"分かる"},
-        {"kanji":"知る","kana":"しる","pron":"시루","ko":"알게 되다","tts_text":"知る"},
+        {"kanji":"知る","kana":"しる","pron":"시루","ko":"알게 되다, 알다","tts_text":"知る"},
         {"kanji":"考える","kana":"かんがえる","pron":"칸가에루","ko":"생각하다","tts_text":"考える"},
-        {"kanji":"決める","kana":"きめる","pron":"키메루","ko":"정하다","tts_text":"決める"},
+        {"kanji":"決める","kana":"きめる","pron":"키메루","ko":"정하다, 결정하다","tts_text":"決める"},
         {"kanji":"忘れる","kana":"わすれる","pron":"와스레루","ko":"잊다","tts_text":"忘れる"},
-        {"kanji":"覚える","kana":"おぼえる","pron":"오보에루","ko":"외우다","tts_text":"覚える"},
+        {"kanji":"覚える","kana":"おぼえる","pron":"오보에루","ko":"외우다, 기억하다","tts_text":"覚える"},
 
         # ---- 대인 행동 ----
         {"kanji":"会う","kana":"あう","pron":"아우","ko":"만나다","tts_text":"会う"},
-        {"kanji":"呼ぶ","kana":"よぶ","pron":"요부","ko":"부르다","tts_text":"呼ぶ"},
-        {"kanji":"助ける","kana":"たすける","pron":"타스케루","ko":"돕다","tts_text":"助ける"},
-        {"kanji":"行う","kana":"おこなう","pron":"오코나우","ko":"행하다","tts_text":"行う"}
+        {"kanji":"呼ぶ","kana":"よぶ","pron":"요부","ko":"부르다, 호출하다","tts_text":"呼ぶ"},
+        {"kanji":"助ける","kana":"たすける","pron":"타스케루","ko":"돕다, 도와주다","tts_text":"助ける"},
+        {"kanji":"行う","kana":"おこなう","pron":"오코나우","ko":"행하다, 실시하다","tts_text":"行う"}
     ]
-    },
+},
             "sec05": {
     "title": "형용사·상태 표현",
     "items": [
@@ -8056,21 +8075,21 @@ N5_WORDS = {
         {"kanji":"少ない","kana":"すくない","pron":"스쿠나이","ko":"적다","tts_text":"少ない"},
 
         # ---- 가격·높낮이 ----
-        {"kanji":"高い","kana":"たかい","pron":"타카이","ko":"비싸다 / 높다","tts_text":"高い"},
+        {"kanji":"高い","kana":"たかい","pron":"타카이","ko":"비싸다, 높다","tts_text":"高い"},
         {"kanji":"安い","kana":"やすい","pron":"야스이","ko":"싸다","tts_text":"安い"},
         {"kanji":"重い","kana":"おもい","pron":"오모이","ko":"무겁다","tts_text":"重い"},
         {"kanji":"軽い","kana":"かるい","pron":"카루이","ko":"가볍다","tts_text":"軽い"},
 
         # ---- 시간·거리 ----
-        {"kanji":"早い","kana":"はやい","pron":"하야이","ko":"빠르다 / 이르다","tts_text":"早い"},
-        {"kanji":"遅い","kana":"おそい","pron":"오소이","ko":"느리다 / 늦다","tts_text":"遅い"},
+        {"kanji":"早い","kana":"はやい","pron":"하야이","ko":"빠르다, 이르다","tts_text":"早い"},
+        {"kanji":"遅い","kana":"おそい","pron":"오소이","ko":"느리다, 늦다","tts_text":"遅い"},
         {"kanji":"近い","kana":"ちかい","pron":"치카이","ko":"가깝다","tts_text":"近い"},
         {"kanji":"遠い","kana":"とおい","pron":"토오이","ko":"멀다","tts_text":"遠い"},
 
         # ---- 강도·밝기 ----
-        {"kanji":"強い","kana":"つよい","pron":"츠요이","ko":"강하다","tts_text":"強い"},
+        {"kanji":"強い","kana":"つよい","pron":"츠요이","ko":"강하다, 세다","tts_text":"強い"},
         {"kanji":"弱い","kana":"よわい","pron":"요와이","ko":"약하다","tts_text":"弱い"},
-        {"kanji":"明るい","kana":"あかるい","pron":"아카루이","ko":"밝다","tts_text":"明るい"},
+        {"kanji":"明るい","kana":"あかるい","pron":"아카루이","ko":"밝다, 환하다","tts_text":"明るい"},
         {"kanji":"暗い","kana":"くらい","pron":"쿠라이","ko":"어둡다","tts_text":"暗い"},
 
         # ---- 날씨·온도 ----
@@ -8081,49 +8100,49 @@ N5_WORDS = {
 
         # ---- 상태·난이도 ----
         {"kanji":"忙しい","kana":"いそがしい","pron":"이소가시이","ko":"바쁘다","tts_text":"忙しい"},
-        {"kanji":"暇","kana":"ひま","pron":"히마","ko":"한가하다","tts_text":"暇"},
+        {"kanji":"暇","kana":"ひま","pron":"히마","ko":"한가하다, 시간이 많다","tts_text":"暇"},
         {"kanji":"難しい","kana":"むずかしい","pron":"무즈카시이","ko":"어렵다","tts_text":"難しい"},
-        {"kanji":"簡単","kana":"かんたん","pron":"칸탄","ko":"간단하다","tts_text":"簡単"},
+        {"kanji":"簡単","kana":"かんたん","pron":"칸탄","ko":"간단하다, 쉽다","tts_text":"簡単"},
         {"kanji":"便利","kana":"べんり","pron":"벤리","ko":"편리하다","tts_text":"便利"},
         {"kanji":"不便","kana":"ふべん","pron":"후벤","ko":"불편하다","tts_text":"不便"},
 
         # ---- 감정·평가 ----
-        {"kanji":"元気","kana":"げんき","pron":"겡키","ko":"건강하다 / 활기차다","tts_text":"元気"},
+        {"kanji":"元気","kana":"げんき","pron":"겡키","ko":"건강하다, 활기차다","tts_text":"元気"},
         {"kanji":"静か","kana":"しずか","pron":"시즈카","ko":"조용하다","tts_text":"静か"},
-        {"kanji":"","kana":"にぎやか","pron":"니기야카","ko":"번화하다","tts_text":"にぎやか"},
-        {"kanji":"","kana":"きれい","pron":"키레이","ko":"깨끗하다 / 예쁘다","tts_text":"きれい"},
+        {"kanji":"","kana":"にぎやか","pron":"니기야카","ko":"번화하다, 시끌벅적하다","tts_text":"にぎやか"},
+        {"kanji":"","kana":"きれい","pron":"키레이","ko":"깨끗하다, 예쁘다","tts_text":"きれい"},
         {"kanji":"汚い","kana":"きたない","pron":"키타나이","ko":"더럽다","tts_text":"汚い"},
 
         # ---- 선호·중요도 ----
         {"kanji":"好き","kana":"すき","pron":"스키","ko":"좋아하다","tts_text":"好き"},
         {"kanji":"嫌い","kana":"きらい","pron":"키라이","ko":"싫어하다","tts_text":"嫌い"},
-        {"kanji":"大切","kana":"たいせつ","pron":"타이세츠","ko":"중요하다","tts_text":"大切"},
+        {"kanji":"大切","kana":"たいせつ","pron":"타이세츠","ko":"중요하다, 소중하다","tts_text":"大切"},
         {"kanji":"必要","kana":"ひつよう","pron":"히츠요오","ko":"필요하다","tts_text":"必要"},
-        {"kanji":"危ない","kana":"あぶない","pron":"아부나이","ko":"위험하다","tts_text":"危ない"}
+        {"kanji":"危ない","kana":"あぶない","pron":"아부나이","ko":"위험하다, 위험스럽다","tts_text":"危ない"}
     ]
-    },
-            "sec06": {
+},
+"sec06": {
     "title": "조사와 함께 쓰이는 핵심 표현",
     "items": [
         # ---- 이동·방향 ----
         {"kanji":"会う","kana":"あう","pron":"아우","ko":"만나다 (に)","tts_text":"会う"},
         {"kanji":"行く","kana":"いく","pron":"이쿠","ko":"가다 (へ / に)","tts_text":"行く"},
         {"kanji":"来る","kana":"くる","pron":"쿠루","ko":"오다 (へ / に)","tts_text":"来る"},
-        {"kanji":"帰る","kana":"かえる","pron":"카에루","ko":"돌아가다 (へ)","tts_text":"帰る"},
-        {"kanji":"入る","kana":"はいる","pron":"하이루","ko":"들어가다 (に)","tts_text":"入る"},
-        {"kanji":"出る","kana":"でる","pron":"데루","ko":"나가다 / 나오다 (を)","tts_text":"出る"},
+        {"kanji":"帰る","kana":"かえる","pron":"카에루","ko":"돌아가다, 귀가하다 (へ)","tts_text":"帰る"},
+        {"kanji":"入る","kana":"はいる","pron":"하이루","ko":"들어가다, 들어오다 (に)","tts_text":"入る"},
+        {"kanji":"出る","kana":"でる","pron":"데루","ko":"나가다, 나오다 (を)","tts_text":"出る"},
         {"kanji":"渡る","kana":"わたる","pron":"와타루","ko":"건너다 (を)","tts_text":"渡る"},
         {"kanji":"歩く","kana":"あるく","pron":"아루쿠","ko":"걷다 (を)","tts_text":"歩く"},
         {"kanji":"乗る","kana":"のる","pron":"노루","ko":"타다 (に)","tts_text":"乗る"},
         {"kanji":"降りる","kana":"おりる","pron":"오리루","ko":"내리다 (を)","tts_text":"降りる"},
 
         # ---- 존재·생활 ----
-        {"kanji":"住む","kana":"すむ","pron":"스무","ko":"살다 (に)","tts_text":"住む"},
+        {"kanji":"住む","kana":"すむ","pron":"스무","ko":"살다, 거주하다 (に)","tts_text":"住む"},
         {"kanji":"","kana":"いる","pron":"이루","ko":"있다 (사람·동물) (に)","tts_text":"いる"},
         {"kanji":"","kana":"ある","pron":"아루","ko":"있다 (사물) (に)","tts_text":"ある"},
-        {"kanji":"使う","kana":"つかう","pron":"츠카우","ko":"사용하다 (を)","tts_text":"使う"},
+        {"kanji":"使う","kana":"つかう","pron":"츠카우","ko":"사용하다, 쓰다 (を)","tts_text":"使う"},
         {"kanji":"作る","kana":"つくる","pron":"츠쿠루","ko":"만들다 (を)","tts_text":"作る"},
-        {"kanji":"買う","kana":"かう","pron":"카우","ko":"사다 (を)","tts_text":"買う"},
+        {"kanji":"買う","kana":"かう","pron":"카우","ko":"사다, 구매하다 (を)","tts_text":"買う"},
         {"kanji":"売る","kana":"うる","pron":"우루","ko":"팔다 (を)","tts_text":"売る"},
         {"kanji":"借りる","kana":"かりる","pron":"카리루","ko":"빌리다 (を)","tts_text":"借りる"},
         {"kanji":"貸す","kana":"かす","pron":"카스","ko":"빌려주다 (を)","tts_text":"貸す"},
@@ -8132,28 +8151,28 @@ N5_WORDS = {
         # ---- 식사·행동 ----
         {"kanji":"食べる","kana":"たべる","pron":"타베루","ko":"먹다 (を)","tts_text":"食べる"},
         {"kanji":"飲む","kana":"のむ","pron":"노무","ko":"마시다 (を)","tts_text":"飲む"},
-        {"kanji":"見る","kana":"みる","pron":"미루","ko":"보다 (を)","tts_text":"見る"},
-        {"kanji":"聞く","kana":"きく","pron":"키쿠","ko":"듣다 / 묻다 (を)","tts_text":"聞く"},
-        {"kanji":"話す","kana":"はなす","pron":"하나스","ko":"말하다 (を)","tts_text":"話す"},
-        {"kanji":"教える","kana":"おしえる","pron":"오시에루","ko":"가르치다 (を / に)","tts_text":"教える"},
+        {"kanji":"見る","kana":"みる","pron":"미루","ko":"보다, 구경하다 (を)","tts_text":"見る"},
+        {"kanji":"聞く","kana":"きく","pron":"키쿠","ko":"듣다, 묻다 (を)","tts_text":"聞く"},
+        {"kanji":"話す","kana":"はなす","pron":"하나스","ko":"말하다, 이야기하다 (を)","tts_text":"話す"},
+        {"kanji":"教える","kana":"おしえる","pron":"오시에루","ko":"가르치다, 알려주다 (を / に)","tts_text":"教える"},
         {"kanji":"習う","kana":"ならう","pron":"나라우","ko":"배우다 (を)","tts_text":"習う"},
         {"kanji":"勉強する","kana":"べんきょうする","pron":"벤쿄오스루","ko":"공부하다 (を)","tts_text":"勉強する"},
-        {"kanji":"働く","kana":"はたらく","pron":"하타라쿠","ko":"일하다 (で)","tts_text":"働く"},
-        {"kanji":"休む","kana":"やすむ","pron":"야스무","ko":"쉬다 (を)","tts_text":"休む"},
+        {"kanji":"働く","kana":"はたらく","pron":"하타라쿠","ko":"일하다, 근무하다 (で)","tts_text":"働く"},
+        {"kanji":"休む","kana":"やすむ","pron":"야스무","ko":"쉬다, 휴식하다 (を)","tts_text":"休む"},
 
         # ---- 동작·변화 ----
         {"kanji":"待つ","kana":"まつ","pron":"마츠","ko":"기다리다 (を)","tts_text":"待つ"},
         {"kanji":"入れる","kana":"いれる","pron":"이레루","ko":"넣다 (を)","tts_text":"入れる"},
-        {"kanji":"出す","kana":"だす","pron":"다스","ko":"내다 (を)","tts_text":"出す"},
+        {"kanji":"出す","kana":"だす","pron":"다스","ko":"내다, 꺼내다 (を)","tts_text":"出す"},
         {"kanji":"止める","kana":"とめる","pron":"토메루","ko":"멈추다 (を)","tts_text":"止める"},
         {"kanji":"始める","kana":"はじめる","pron":"하지메루","ko":"시작하다 (を)","tts_text":"始める"},
-        {"kanji":"終わる","kana":"おわる","pron":"오와루","ko":"끝나다 (が)","tts_text":"終わる"},
+        {"kanji":"終わる","kana":"おわる","pron":"오와루","ko":"끝나다, 끝내다 (が)","tts_text":"終わる"},
         {"kanji":"開ける","kana":"あける","pron":"아케루","ko":"열다 (を)","tts_text":"開ける"},
         {"kanji":"閉める","kana":"しめる","pron":"시메루","ko":"닫다 (を)","tts_text":"閉める"},
-        {"kanji":"","kana":"つける","pron":"츠케루","ko":"켜다 / 붙이다 (を)","tts_text":"つける"},
-        {"kanji":"消す","kana":"けす","pron":"케스","ko":"끄다 / 지우다 (を)","tts_text":"消す"}
+        {"kanji":"","kana":"つける","pron":"츠케루","ko":"켜다, 붙이다 (を)","tts_text":"つける"},
+        {"kanji":"消す","kana":"けす","pron":"케스","ko":"끄다, 지우다 (を)","tts_text":"消す"}
     ]
-    },
+},
         "sec07": {
     "title": "숫자·수량·단위 표현",
     "items": [
@@ -8175,88 +8194,87 @@ N5_WORDS = {
         {"kanji":"万","kana":"まん","pron":"만","ko":"만","tts_text":"万"},
 
         # ---- 화폐·단위 ----
-        {"kanji":"円","kana":"えん","pron":"엔","ko":"엔 (일본 화폐 단위)","tts_text":"円"},
+        {"kanji":"円","kana":"えん","pron":"엔","ko":"엔, 엔화","tts_text":"円"},
         {"kanji":"個","kana":"こ","pron":"코","ko":"개 (사물 단위)","tts_text":"個"},
-        {"kanji":"人","kana":"にん","pron":"닌","ko":"명 (사람 수)","tts_text":"人"},
+        {"kanji":"人","kana":"にん","pron":"닌","ko":"명, 사람 수","tts_text":"人"},
         {"kanji":"台","kana":"だい","pron":"다이","ko":"대 (기계·차량)","tts_text":"台"},
         {"kanji":"枚","kana":"まい","pron":"마이","ko":"장 (종이·얇은 것)","tts_text":"枚"},
-        {"kanji":"本","kana":"ほん","pron":"혼","ko":"개 (길고 둥근 것)","tts_text":"本"},
-        {"kanji":"杯","kana":"はい","pron":"하이","ko":"잔","tts_text":"杯"},
+        {"kanji":"本","kana":"ほん","pron":"혼","ko":"개, 자루 (길고 둥근 것)","tts_text":"本"},
+        {"kanji":"杯","kana":"はい","pron":"하이","ko":"잔, 컵","tts_text":"杯"},
 
         # ---- 고유 수사 ----
-        {"kanji":"一つ","kana":"ひとつ","pron":"히토츠","ko":"한 개","tts_text":"一つ"},
-        {"kanji":"二つ","kana":"ふたつ","pron":"후타츠","ko":"두 개","tts_text":"二つ"},
-        {"kanji":"三つ","kana":"みっつ","pron":"밋츠","ko":"세 개","tts_text":"三つ"},
-        {"kanji":"四つ","kana":"よっつ","pron":"욧츠","ko":"네 개","tts_text":"四つ"},
-        {"kanji":"五つ","kana":"いつつ","pron":"이츠츠","ko":"다섯 개","tts_text":"五つ"},
+        {"kanji":"一つ","kana":"ひとつ","pron":"히토츠","ko":"한 개, 하나","tts_text":"一つ"},
+        {"kanji":"二つ","kana":"ふたつ","pron":"후타츠","ko":"두 개, 둘","tts_text":"二つ"},
+        {"kanji":"三つ","kana":"みっつ","pron":"밋츠","ko":"세 개, 셋","tts_text":"三つ"},
+        {"kanji":"四つ","kana":"よっつ","pron":"욧츠","ko":"네 개, 넷","tts_text":"四つ"},
+        {"kanji":"五つ","kana":"いつつ","pron":"이츠츠","ko":"다섯 개, 다섯","tts_text":"五つ"},
 
         # ---- 질문·양 ----
-        {"kanji":"","kana":"いくつ","pron":"이쿠츠","ko":"몇 개","tts_text":"いくつ"},
-        {"kanji":"","kana":"いくら","pron":"이쿠라","ko":"얼마 (가격)","tts_text":"いくら"},
-        {"kanji":"全部","kana":"ぜんぶ","pron":"젠부","ko":"전부","tts_text":"全部"},
-        {"kanji":"半分","kana":"はんぶん","pron":"한분","ko":"절반","tts_text":"半分"},
+        {"kanji":"","kana":"いくつ","pron":"이쿠츠","ko":"몇 개, 몇 살","tts_text":"いくつ"},
+        {"kanji":"","kana":"いくら","pron":"이쿠라","ko":"얼마, 얼마예요","tts_text":"いくら"},
+        {"kanji":"全部","kana":"ぜんぶ","pron":"젠부","ko":"전부, 모두","tts_text":"全部"},
+        {"kanji":"半分","kana":"はんぶん","pron":"한분","ko":"절반, 반","tts_text":"半分"},
         {"kanji":"多い","kana":"おおい","pron":"오오이","ko":"많다","tts_text":"多い"},
         {"kanji":"少ない","kana":"すくない","pron":"스쿠나이","ko":"적다","tts_text":"少ない"},
 
         # ---- 범위·정도 ----
-        {"kanji":"同じ","kana":"おなじ","pron":"오나지","ko":"같다","tts_text":"同じ"},
-        {"kanji":"全部で","kana":"ぜんぶで","pron":"젠부데","ko":"전부 합해서","tts_text":"全部で"},
-        {"kanji":"","kana":"ぐらい","pron":"구라이","ko":"~정도","tts_text":"ぐらい"},
+        {"kanji":"同じ","kana":"おなじ","pron":"오나지","ko":"같다, 동일하다","tts_text":"同じ"},
+        {"kanji":"全部で","kana":"ぜんぶで","pron":"젠부데","ko":"전부 합해서, 모두 해서","tts_text":"全部で"},
+        {"kanji":"","kana":"ぐらい","pron":"구라이","ko":"~정도, ~쯤","tts_text":"ぐらい"},
         {"kanji":"以上","kana":"いじょう","pron":"이죠오","ko":"이상","tts_text":"以上"},
         {"kanji":"以下","kana":"いか","pron":"이카","ko":"이하","tts_text":"以下"},
-        {"kanji":"","kana":"だけ","pron":"다케","ko":"~만","tts_text":"だけ"},
+        {"kanji":"","kana":"だけ","pron":"다케","ko":"~만, ~뿐","tts_text":"だけ"},
         {"kanji":"","kana":"しか","pron":"시카","ko":"~밖에 (+부정)","tts_text":"しか"},
         {"kanji":"約","kana":"やく","pron":"야쿠","ko":"약, 대략","tts_text":"約"},
-        {"kanji":"毎","kana":"まい","pron":"마이","ko":"매~","tts_text":"毎"}
+        {"kanji":"毎","kana":"まい","pron":"마이","ko":"매~, 매번","tts_text":"毎"}
     ]
-    },
-       
-        "sec08": {
+},
+"sec08": {
     "title": "위치·방향·장소 표현",
     "items": [
         # ---- 기본 위치 ----
-        {"kanji":"上","kana":"うえ","pron":"우에","ko":"위","tts_text":"上"},
-        {"kanji":"下","kana":"した","pron":"시타","ko":"아래","tts_text":"下"},
+        {"kanji":"上","kana":"うえ","pron":"우에","ko":"위, 위쪽","tts_text":"上"},
+        {"kanji":"下","kana":"した","pron":"시타","ko":"아래, 밑","tts_text":"下"},
         {"kanji":"中","kana":"なか","pron":"나카","ko":"안, 속","tts_text":"中"},
-        {"kanji":"外","kana":"そと","pron":"소토","ko":"밖","tts_text":"外"},
-        {"kanji":"前","kana":"まえ","pron":"마에","ko":"앞","tts_text":"前"},
-        {"kanji":"後ろ","kana":"うしろ","pron":"우시로","ko":"뒤","tts_text":"後ろ"},
+        {"kanji":"外","kana":"そと","pron":"소토","ko":"밖, 외부","tts_text":"外"},
+        {"kanji":"前","kana":"まえ","pron":"마에","ko":"앞, 이전","tts_text":"前"},
+        {"kanji":"後ろ","kana":"うしろ","pron":"우시로","ko":"뒤, 뒤쪽","tts_text":"後ろ"},
         {"kanji":"右","kana":"みぎ","pron":"미기","ko":"오른쪽","tts_text":"右"},
         {"kanji":"左","kana":"ひだり","pron":"히다리","ko":"왼쪽","tts_text":"左"},
-        {"kanji":"隣","kana":"となり","pron":"토나리","ko":"옆","tts_text":"隣"},
+        {"kanji":"隣","kana":"となり","pron":"토나리","ko":"옆, 이웃","tts_text":"隣"},
         {"kanji":"近く","kana":"ちかく","pron":"치카쿠","ko":"가까이, 근처","tts_text":"近く"},
 
         # ---- 방향·지시 ----
-        {"kanji":"遠く","kana":"とおく","pron":"토오쿠","ko":"멀리","tts_text":"遠く"},
+        {"kanji":"遠く","kana":"とおく","pron":"토오쿠","ko":"멀리, 먼 곳","tts_text":"遠く"},
         {"kanji":"向こう","kana":"むこう","pron":"무코오","ko":"저쪽, 맞은편","tts_text":"向こう"},
-        {"kanji":"","kana":"こちら","pron":"코치라","ko":"이쪽(정중)","tts_text":"こちら"},
-        {"kanji":"","kana":"そちら","pron":"소치라","ko":"그쪽(정중)","tts_text":"そちら"},
-        {"kanji":"","kana":"あちら","pron":"아치라","ko":"저쪽(정중)","tts_text":"あちら"},
-        {"kanji":"","kana":"どちら","pron":"도치라","ko":"어느 쪽","tts_text":"どちら"},
+        {"kanji":"","kana":"こちら","pron":"코치라","ko":"이쪽(정중), 여기(정중)","tts_text":"こちら"},
+        {"kanji":"","kana":"そちら","pron":"소치라","ko":"그쪽(정중), 거기(정중)","tts_text":"そちら"},
+        {"kanji":"","kana":"あちら","pron":"아치라","ko":"저쪽(정중), 저기(정중)","tts_text":"あちら"},
+        {"kanji":"","kana":"どちら","pron":"도치라","ko":"어느 쪽, 어디(정중)","tts_text":"どちら"},
         {"kanji":"","kana":"ここ","pron":"코코","ko":"여기","tts_text":"ここ"},
         {"kanji":"","kana":"そこ","pron":"소코","ko":"거기","tts_text":"そこ"},
-        {"kanji":"","kana":"あそこ","pron":"아소코","ko":"저기","tts_text":"あそこ"},
+        {"kanji":"","kana":"あそこ","pron":"아소코","ko":"저기, 저곳","tts_text":"あそこ"},
         {"kanji":"","kana":"どこ","pron":"도코","ko":"어디","tts_text":"どこ"},
 
         # ---- 장소·시설 ----
-        {"kanji":"場所","kana":"ばしょ","pron":"바쇼","ko":"장소","tts_text":"場所"},
+        {"kanji":"場所","kana":"ばしょ","pron":"바쇼","ko":"장소, 곳","tts_text":"場所"},
         {"kanji":"入口","kana":"いりぐち","pron":"이리구치","ko":"입구","tts_text":"入口"},
         {"kanji":"出口","kana":"でぐち","pron":"데구치","ko":"출구","tts_text":"出口"},
-        {"kanji":"道","kana":"みち","pron":"미치","ko":"길","tts_text":"道"},
-        {"kanji":"角","kana":"かど","pron":"카도","ko":"모퉁이","tts_text":"角"},
-        {"kanji":"交差点","kana":"こうさてん","pron":"코오사텐","ko":"교차로","tts_text":"交差点"},
+        {"kanji":"道","kana":"みち","pron":"미치","ko":"길, 도로","tts_text":"道"},
+        {"kanji":"角","kana":"かど","pron":"카도","ko":"모퉁이, 구석","tts_text":"角"},
+        {"kanji":"交差点","kana":"こうさてん","pron":"코오사텐","ko":"교차로, 사거리","tts_text":"交差点"},
         {"kanji":"橋","kana":"はし","pron":"하시","ko":"다리","tts_text":"橋"},
         {"kanji":"公園","kana":"こうえん","pron":"코오엔","ko":"공원","tts_text":"公園"},
         {"kanji":"駅","kana":"えき","pron":"에키","ko":"역","tts_text":"駅"},
         {"kanji":"建物","kana":"たてもの","pron":"타테모노","ko":"건물","tts_text":"建物"},
 
         # ---- 실내·생활 공간 ----
-        {"kanji":"部屋","kana":"へや","pron":"헤야","ko":"방","tts_text":"部屋"},
+        {"kanji":"部屋","kana":"へや","pron":"헤야","ko":"방, 방 안","tts_text":"部屋"},
         {"kanji":"教室","kana":"きょうしつ","pron":"쿄오시츠","ko":"교실","tts_text":"教室"},
-        {"kanji":"店","kana":"みせ","pron":"미세","ko":"가게","tts_text":"店"},
+        {"kanji":"店","kana":"みせ","pron":"미세","ko":"가게, 상점","tts_text":"店"},
         {"kanji":"会社","kana":"かいしゃ","pron":"카이샤","ko":"회사","tts_text":"会社"},
         {"kanji":"学校","kana":"がっこう","pron":"각코오","ko":"학교","tts_text":"学校"},
-        {"kanji":"家","kana":"いえ","pron":"이에","ko":"집","tts_text":"家"},
+        {"kanji":"家","kana":"いえ","pron":"이에","ko":"집, 집안","tts_text":"家"},
 
         # ---- 조사 결합 표현 (시험 빈출) ----
         {"kanji":"近くに","kana":"ちかくに","pron":"치카쿠니","ko":"근처에","tts_text":"近くに"},
@@ -8264,21 +8282,21 @@ N5_WORDS = {
         {"kanji":"上に","kana":"うえに","pron":"우에니","ko":"위에","tts_text":"上に"},
         {"kanji":"下に","kana":"したに","pron":"시타니","ko":"아래에","tts_text":"下に"}
     ]
-    },
+},
     "sec09": {
     "title": "음식·음료·쇼핑·일상 사물",
     "items": [
         # ---- 음식·음료 ----
         {"kanji":"食べ物","kana":"たべもの","pron":"타베모노","ko":"음식","tts_text":"食べ物"},
         {"kanji":"飲み物","kana":"のみもの","pron":"노미모노","ko":"음료","tts_text":"飲み物"},
-        {"kanji":"ご飯","kana":"ごはん","pron":"고항","ko":"밥","tts_text":"ご飯"},
+        {"kanji":"ご飯","kana":"ごはん","pron":"고항","ko":"밥, 식사","tts_text":"ご飯"},
         {"kanji":"パン","kana":"パン","pron":"팡","ko":"빵","tts_text":"パン"},
         {"kanji":"肉","kana":"にく","pron":"니쿠","ko":"고기","tts_text":"肉"},
-        {"kanji":"魚","kana":"さかな","pron":"사카나","ko":"생선","tts_text":"魚"},
-        {"kanji":"野菜","kana":"やさい","pron":"야사이","ko":"채소","tts_text":"野菜"},
+        {"kanji":"魚","kana":"さかな","pron":"사카나","ko":"생선, 물고기","tts_text":"魚"},
+        {"kanji":"野菜","kana":"やさい","pron":"야사이","ko":"채소, 야채","tts_text":"野菜"},
         {"kanji":"果物","kana":"くだもの","pron":"쿠다모노","ko":"과일","tts_text":"果物"},
         {"kanji":"水","kana":"みず","pron":"미즈","ko":"물","tts_text":"水"},
-        {"kanji":"お茶","kana":"おちゃ","pron":"오챠","ko":"차","tts_text":"お茶"},
+        {"kanji":"お茶","kana":"おちゃ","pron":"오챠","ko":"차, 녹차","tts_text":"お茶"},
 
         # ---- 음료·외식 ----
         {"kanji":"牛乳","kana":"ぎゅうにゅう","pron":"규우뉴우","ko":"우유","tts_text":"牛乳"},
@@ -8289,59 +8307,58 @@ N5_WORDS = {
         {"kanji":"一人前","kana":"ひとりまえ","pron":"히토리마에","ko":"1인분","tts_text":"一人前"},
 
         # ---- 쇼핑·돈 ----
-        {"kanji":"店","kana":"みせ","pron":"미세","ko":"가게","tts_text":"店"},
-        {"kanji":"買い物","kana":"かいもの","pron":"카이모노","ko":"쇼핑","tts_text":"買い物"},
+        {"kanji":"店","kana":"みせ","pron":"미세","ko":"가게, 상점","tts_text":"店"},
+        {"kanji":"買い物","kana":"かいもの","pron":"카이모노","ko":"쇼핑, 물건 사기","tts_text":"買い物"},
         {"kanji":"お金","kana":"おかね","pron":"오카네","ko":"돈","tts_text":"お金"},
-        {"kanji":"値段","kana":"ねだん","pron":"네단","ko":"가격","tts_text":"値段"},
-        {"kanji":"円","kana":"えん","pron":"엔","ko":"엔(일본 화폐)","tts_text":"円"},
+        {"kanji":"値段","kana":"ねだん","pron":"네단","ko":"가격, 값","tts_text":"値段"},
+        {"kanji":"円","kana":"えん","pron":"엔","ko":"엔, 엔화","tts_text":"円"},
         {"kanji":"安い","kana":"やすい","pron":"야스이","ko":"싸다","tts_text":"安い"},
-        {"kanji":"高い","kana":"たかい","pron":"타카이","ko":"비싸다","tts_text":"高い"},
-        {"kanji":"いくら","kana":"いくら","pron":"이쿠라","ko":"얼마","tts_text":"いくら"},
-        {"kanji":"払う","kana":"はらう","pron":"하라우","ko":"지불하다","tts_text":"払う"},
+        {"kanji":"高い","kana":"たかい","pron":"타카이","ko":"비싸다, 높다","tts_text":"高い"},
+        {"kanji":"","kana":"いくら","pron":"이쿠라","ko":"얼마, 얼마예요","tts_text":"いくら"},
+        {"kanji":"払う","kana":"はらう","pron":"하라우","ko":"지불하다, 계산하다","tts_text":"払う"},
         {"kanji":"カード","kana":"カード","pron":"카아도","ko":"카드","tts_text":"カード"},
 
         # ---- 일상 사물 ----
-        {"kanji":"物","kana":"もの","pron":"모노","ko":"물건","tts_text":"物"},
+        {"kanji":"物","kana":"もの","pron":"모노","ko":"물건, 것","tts_text":"物"},
         {"kanji":"本","kana":"ほん","pron":"혼","ko":"책","tts_text":"本"},
         {"kanji":"かばん","kana":"かばん","pron":"카방","ko":"가방","tts_text":"かばん"},
         {"kanji":"財布","kana":"さいふ","pron":"사이후","ko":"지갑","tts_text":"財布"},
         {"kanji":"携帯","kana":"けいたい","pron":"케이타이","ko":"휴대폰","tts_text":"携帯"},
-        {"kanji":"鍵","kana":"かぎ","pron":"카기","ko":"열쇠","tts_text":"鍵"},
+        {"kanji":"鍵","kana":"かぎ","pron":"카기","ko":"열쇠, 키","tts_text":"鍵"},
         {"kanji":"机","kana":"つくえ","pron":"츠쿠에","ko":"책상","tts_text":"机"},
         {"kanji":"椅子","kana":"いす","pron":"이스","ko":"의자","tts_text":"椅子"},
         {"kanji":"服","kana":"ふく","pron":"후쿠","ko":"옷","tts_text":"服"},
         {"kanji":"靴","kana":"くつ","pron":"쿠츠","ko":"신발","tts_text":"靴"}
     ]
-    },
-        "sec10": {
+},
+ "sec10": {
     "title": "상태·감정·반응 표현",
     "items": [
-        {"kanji":"疲れる","kana":"つかれる","pron":"츠카레루","ko":"피곤해지다","tts_text":"疲れる"},
+        {"kanji":"疲れる","kana":"つかれる","pron":"츠카레루","ko":"피곤해지다, 지치다","tts_text":"疲れる"},
         {"kanji":"楽しい","kana":"たのしい","pron":"타노시이","ko":"즐겁다","tts_text":"楽しい"},
         {"kanji":"つまらない","kana":"つまらない","pron":"츠마라나이","ko":"재미없다","tts_text":"つまらない"},
         {"kanji":"嬉しい","kana":"うれしい","pron":"우레시이","ko":"기쁘다","tts_text":"嬉しい"},
         {"kanji":"悲しい","kana":"かなしい","pron":"카나시이","ko":"슬프다","tts_text":"悲しい"},
         {"kanji":"怖い","kana":"こわい","pron":"코와이","ko":"무섭다","tts_text":"怖い"},
-        {"kanji":"安心","kana":"あんしん","pron":"안신","ko":"안심","tts_text":"安心"},
-        {"kanji":"心配","kana":"しんぱい","pron":"심파이","ko":"걱정","tts_text":"心配"},
+        {"kanji":"安心","kana":"あんしん","pron":"안신","ko":"안심, 안심하다","tts_text":"安心"},
+        {"kanji":"心配","kana":"しんぱい","pron":"심파이","ko":"걱정, 걱정하다","tts_text":"心配"},
         {"kanji":"大変","kana":"たいへん","pron":"타이헨","ko":"힘들다, 큰일이다","tts_text":"大変"},
-        {"kanji":"無理","kana":"むり","pron":"무리","ko":"무리","tts_text":"無理"},
+        {"kanji":"無理","kana":"むり","pron":"무리","ko":"무리, 불가능","tts_text":"無理"},
 
-        {"kanji":"必要","kana":"ひつよう","pron":"히츠요오","ko":"필요","tts_text":"必要"},
+        {"kanji":"必要","kana":"ひつよう","pron":"히츠요오","ko":"필요, 필요하다","tts_text":"必要"},
         {"kanji":"要らない","kana":"いらない","pron":"이라나이","ko":"필요 없다","tts_text":"要らない"},
-        {"kanji":"足りる","kana":"たりる","pron":"타리루","ko":"충분하다","tts_text":"足りる"},
+        {"kanji":"足りる","kana":"たりる","pron":"타리루","ko":"충분하다, 모자라지 않다","tts_text":"足りる"},
         {"kanji":"足りない","kana":"たりない","pron":"타리나이","ko":"부족하다","tts_text":"足りない"},
-        {"kanji":"大丈夫","kana":"だいじょうぶ","pron":"다이죠오부","ko":"괜찮다","tts_text":"大丈夫"},
+        {"kanji":"大丈夫","kana":"だいじょうぶ","pron":"다이죠오부","ko":"괜찮다, 문제없다","tts_text":"大丈夫"},
 
-        {"kanji":"上手","kana":"じょうず","pron":"죠오즈","ko":"잘하다","tts_text":"上手"},
-        {"kanji":"下手","kana":"へた","pron":"헤타","ko":"못하다","tts_text":"下手"},
-        {"kanji":"大好き","kana":"だいすき","pron":"다이스키","ko":"아주 좋아함","tts_text":"大好き"},
-        {"kanji":"嫌","kana":"いや","pron":"이야","ko":"싫다","tts_text":"嫌"},
-        {"kanji":"面白い","kana":"おもしろい","pron":"오모시로이","ko":"재미있다","tts_text":"面白い"},
+        {"kanji":"上手","kana":"じょうず","pron":"죠오즈","ko":"잘하다, 능숙하다","tts_text":"上手"},
+        {"kanji":"下手","kana":"へた","pron":"헤타","ko":"못하다, 서툴다","tts_text":"下手"},
+        {"kanji":"大好き","kana":"だいすき","pron":"다이스키","ko":"아주 좋아하다","tts_text":"大好き"},
+        {"kanji":"嫌","kana":"いや","pron":"이야","ko":"싫다, 싫어하다","tts_text":"嫌"},
+        {"kanji":"面白い","kana":"おもしろい","pron":"오모시로이","ko":"재미있다, 흥미롭다","tts_text":"面白い"},
         {"kanji":"眠い","kana":"ねむい","pron":"네무이","ko":"졸리다","tts_text":"眠い"}
     ]
-    },
- 
+},
 }
 
 N4_WORDS = {
@@ -8350,23 +8367,23 @@ N4_WORDS = {
     "title": "사람·관계·사회 표현",
     "items": [
     {"kanji":"両親","kana":"りょうしん","pron":"료오신","ko":"부모","tts_text":"両親"},
-    {"kanji":"兄弟","kana":"きょうだい","pron":"쿄오다이","ko":"형제","tts_text":"兄弟"},
+    {"kanji":"兄弟","kana":"きょうだい","pron":"쿄오다이","ko":"형제, 남매","tts_text":"兄弟"},
     {"kanji":"夫","kana":"おっと","pron":"옷또","ko":"남편","tts_text":"夫"},
     {"kanji":"妻","kana":"つま","pron":"츠마","ko":"아내","tts_text":"妻"},
     {"kanji":"先輩","kana":"せんぱい","pron":"센파이","ko":"선배","tts_text":"先輩"},
     {"kanji":"後輩","kana":"こうはい","pron":"코오하이","ko":"후배","tts_text":"後輩"},
-    {"kanji":"大人","kana":"おとな","pron":"오토나","ko":"어른","tts_text":"大人"},
+    {"kanji":"大人","kana":"おとな","pron":"오토나","ko":"어른, 성인","tts_text":"大人"},
     {"kanji":"若者","kana":"わかもの","pron":"와카모노","ko":"젊은이","tts_text":"若者"},
-    {"kanji":"客","kana":"きゃく","pron":"캬쿠","ko":"손님","tts_text":"客"},
-    {"kanji":"知り合い","kana":"しりあい","pron":"시리아이","ko":"아는 사람","tts_text":"知り合い"},
+    {"kanji":"客","kana":"きゃく","pron":"캬쿠","ko":"손님, 고객","tts_text":"客"},
+    {"kanji":"知り合い","kana":"しりあい","pron":"시리아이","ko":"아는 사람, 지인","tts_text":"知り合い"},
 
-    {"kanji":"有名","kana":"ゆうめい","pron":"유우메이","ko":"유명함","tts_text":"有名"},
-    {"kanji":"親切","kana":"しんせつ","pron":"신세츠","ko":"친절함","tts_text":"親切"},
-    {"kanji":"失礼","kana":"しつれい","pron":"시츠레이","ko":"실례","tts_text":"失礼"},
-    {"kanji":"真面目","kana":"まじめ","pron":"마지메","ko":"성실함","tts_text":"真面目"},
+    {"kanji":"有名","kana":"ゆうめい","pron":"유우메이","ko":"유명함, 유명하다","tts_text":"有名"},
+    {"kanji":"親切","kana":"しんせつ","pron":"신세츠","ko":"친절함, 친절하다","tts_text":"親切"},
+    {"kanji":"失礼","kana":"しつれい","pron":"시츠레이","ko":"실례, 무례","tts_text":"失礼"},
+    {"kanji":"真面目","kana":"まじめ","pron":"마지메","ko":"성실함, 진지함","tts_text":"真面目"},
     {"kanji":"自由","kana":"じゆう","pron":"지유우","ko":"자유","tts_text":"自由"},
     {"kanji":"不安","kana":"ふあん","pron":"후안","ko":"불안","tts_text":"不安"},
-    {"kanji":"安心","kana":"あんしん","pron":"안신","ko":"안심","tts_text":"安心"},
+    {"kanji":"安心","kana":"あんしん","pron":"안신","ko":"안심, 안심하다","tts_text":"安心"},
     {"kanji":"約束","kana":"やくそく","pron":"야쿠소쿠","ko":"약속","tts_text":"約束"},
     {"kanji":"意見","kana":"いけん","pron":"이켄","ko":"의견","tts_text":"意見"},
     {"kanji":"理由","kana":"りゆう","pron":"리유우","ko":"이유","tts_text":"理由"},
@@ -8376,54 +8393,54 @@ N4_WORDS = {
     {"kanji":"文化","kana":"ぶんか","pron":"분카","ko":"문화","tts_text":"文化"},
     {"kanji":"習慣","kana":"しゅうかん","pron":"슈우칸","ko":"습관","tts_text":"習慣"},
     {"kanji":"経験","kana":"けいけん","pron":"케이켄","ko":"경험","tts_text":"経験"},
-    {"kanji":"将来","kana":"しょうらい","pron":"쇼오라이","ko":"장래","tts_text":"将来"},
+    {"kanji":"将来","kana":"しょうらい","pron":"쇼오라이","ko":"장래, 미래","tts_text":"将来"},
     {"kanji":"生活","kana":"せいかつ","pron":"세이카츠","ko":"생활","tts_text":"生活"},
     {"kanji":"人生","kana":"じんせい","pron":"진세이","ko":"인생","tts_text":"人生"},
     {"kanji":"場合","kana":"ばあい","pron":"바아이","ko":"경우","tts_text":"場合"},
-    {"kanji":"立場","kana":"たちば","pron":"타치바","ko":"입장","tts_text":"立場"},
+    {"kanji":"立場","kana":"たちば","pron":"타치바","ko":"입장, 위치","tts_text":"立場"},
 
     {"kanji":"集まり","kana":"あつまり","pron":"아츠마리","ko":"모임","tts_text":"集まり"},
-    {"kanji":"相談","kana":"そうだん","pron":"소오단","ko":"상담","tts_text":"相談"},
+    {"kanji":"相談","kana":"そうだん","pron":"소오단","ko":"상담, 상의","tts_text":"相談"},
     {"kanji":"紹介","kana":"しょうかい","pron":"쇼오카이","ko":"소개","tts_text":"紹介"},
     {"kanji":"連絡","kana":"れんらく","pron":"렌라쿠","ko":"연락","tts_text":"連絡"},
-    {"kanji":"注意","kana":"ちゅうい","pron":"츄우이","ko":"주의","tts_text":"注意"}
+    {"kanji":"注意","kana":"ちゅうい","pron":"츄우이","ko":"주의, 주의하다","tts_text":"注意"}
     ]
-    },
+},
     "sec03": {
     "title": "장소·시설·환경",
     "items": [
     {"kanji":"建物","kana":"たてもの","pron":"타테모노","ko":"건물","tts_text":"建物"},
-    {"kanji":"周り","kana":"まわり","pron":"마와리","ko":"주위","tts_text":"周り"},
+    {"kanji":"周り","kana":"まわり","pron":"마와리","ko":"주위, 주변","tts_text":"周り"},
     {"kanji":"田舎","kana":"いなか","pron":"이나카","ko":"시골","tts_text":"田舎"},
     {"kanji":"都会","kana":"とかい","pron":"토카이","ko":"도시","tts_text":"都会"},
-    {"kanji":"近所","kana":"きんじょ","pron":"킨죠","ko":"근처","tts_text":"近所"},
+    {"kanji":"近所","kana":"きんじょ","pron":"킨죠","ko":"근처, 동네","tts_text":"近所"},
     {"kanji":"自然","kana":"しぜん","pron":"시젠","ko":"자연","tts_text":"自然"},
-    {"kanji":"景色","kana":"けしき","pron":"케시키","ko":"경치","tts_text":"景色"},
+    {"kanji":"景色","kana":"けしき","pron":"케시키","ko":"경치, 풍경","tts_text":"景色"},
     {"kanji":"空","kana":"そら","pron":"소라","ko":"하늘","tts_text":"空"},
     {"kanji":"海","kana":"うみ","pron":"우미","ko":"바다","tts_text":"海"},
     {"kanji":"山","kana":"やま","pron":"야마","ko":"산","tts_text":"山"},
 
-    {"kanji":"川","kana":"かわ","pron":"카와","ko":"강","tts_text":"川"},
+    {"kanji":"川","kana":"かわ","pron":"카와","ko":"강, 하천","tts_text":"川"},
     {"kanji":"公園","kana":"こうえん","pron":"코오엔","ko":"공원","tts_text":"公園"},
     {"kanji":"道路","kana":"どうろ","pron":"도로","ko":"도로","tts_text":"道路"},
     {"kanji":"橋","kana":"はし","pron":"하시","ko":"다리","tts_text":"橋"},
-    {"kanji":"場所","kana":"ばしょ","pron":"바쇼","ko":"장소","tts_text":"場所"},
-    {"kanji":"角","kana":"かど","pron":"카도","ko":"모퉁이","tts_text":"角"},
-    {"kanji":"向こう","kana":"むこう","pron":"무코오","ko":"저쪽","tts_text":"向こう"},
-    {"kanji":"隣","kana":"となり","pron":"토나리","ko":"옆","tts_text":"隣"},
-    {"kanji":"裏","kana":"うら","pron":"우라","ko":"뒤쪽","tts_text":"裏"},
+    {"kanji":"場所","kana":"ばしょ","pron":"바쇼","ko":"장소, 곳","tts_text":"場所"},
+    {"kanji":"角","kana":"かど","pron":"카도","ko":"모퉁이, 구석","tts_text":"角"},
+    {"kanji":"向こう","kana":"むこう","pron":"무코오","ko":"저쪽, 맞은편","tts_text":"向こう"},
+    {"kanji":"隣","kana":"となり","pron":"토나리","ko":"옆, 이웃","tts_text":"隣"},
+    {"kanji":"裏","kana":"うら","pron":"우라","ko":"뒤쪽, 뒷면","tts_text":"裏"},
     {"kanji":"表","kana":"おもて","pron":"오모테","ko":"겉, 앞","tts_text":"表"},
 
-    {"kanji":"中","kana":"なか","pron":"나카","ko":"안","tts_text":"中"},
-    {"kanji":"外","kana":"そと","pron":"소토","ko":"밖","tts_text":"外"},
-    {"kanji":"上","kana":"うえ","pron":"우에","ko":"위","tts_text":"上"},
-    {"kanji":"下","kana":"した","pron":"시타","ko":"아래","tts_text":"下"},
-    {"kanji":"横","kana":"よこ","pron":"요코","ko":"옆","tts_text":"横"},
-    {"kanji":"遠く","kana":"とおく","pron":"토오쿠","ko":"멀리","tts_text":"遠く"},
-    {"kanji":"近く","kana":"ちかく","pron":"치카쿠","ko":"가까이","tts_text":"近く"},
-    {"kanji":"真ん中","kana":"まんなか","pron":"만나카","ko":"한가운데","tts_text":"真ん中"},
-    {"kanji":"左側","kana":"ひだりがわ","pron":"히다리가와","ko":"왼쪽","tts_text":"左側"},
-    {"kanji":"右側","kana":"みぎがわ","pron":"미기가와","ko":"오른쪽","tts_text":"右側"},
+    {"kanji":"中","kana":"なか","pron":"나카","ko":"안, 속","tts_text":"中"},
+    {"kanji":"外","kana":"そと","pron":"소토","ko":"밖, 외부","tts_text":"外"},
+    {"kanji":"上","kana":"うえ","pron":"우에","ko":"위, 위쪽","tts_text":"上"},
+    {"kanji":"下","kana":"した","pron":"시타","ko":"아래, 밑","tts_text":"下"},
+    {"kanji":"横","kana":"よこ","pron":"요코","ko":"옆, 가로","tts_text":"横"},
+    {"kanji":"遠く","kana":"とおく","pron":"토오쿠","ko":"멀리, 먼 곳","tts_text":"遠く"},
+    {"kanji":"近く","kana":"ちかく","pron":"치카쿠","ko":"가까이, 근처","tts_text":"近く"},
+    {"kanji":"真ん中","kana":"まんなか","pron":"만나카","ko":"한가운데, 중앙","tts_text":"真ん中"},
+    {"kanji":"左側","kana":"ひだりがわ","pron":"히다리가와","ko":"왼쪽, 좌측","tts_text":"左側"},
+    {"kanji":"右側","kana":"みぎがわ","pron":"미기가와","ko":"오른쪽, 우측","tts_text":"右側"},
 
     {"kanji":"入口","kana":"いりぐち","pron":"이리구치","ko":"입구","tts_text":"入口"},
     {"kanji":"出口","kana":"でぐち","pron":"데구치","ko":"출구","tts_text":"出口"},
@@ -8434,49 +8451,48 @@ N4_WORDS = {
     {"kanji":"近くに","kana":"ちかくに","pron":"치카쿠니","ko":"근처에","tts_text":"近くに"},
     {"kanji":"中に","kana":"なかに","pron":"나카니","ko":"안에","tts_text":"中に"},
     {"kanji":"外で","kana":"そとで","pron":"소토데","ko":"밖에서","tts_text":"外で"},
-    {"kanji":"家の中","kana":"いえのなか","pron":"이에노 나카","ko":"집 안","tts_text":"家の中"}
+    {"kanji":"家の中","kana":"いえのなか","pron":"이에노나카","ko":"집 안","tts_text":"家の中"}
     ]
-    },
+},
 
     "sec04": {
     "title": "동작·이동·변화",
     "items": [
     {"kanji":"動く","kana":"うごく","pron":"우고쿠","ko":"움직이다","tts_text":"動く"},
-    {"kanji":"運ぶ","kana":"はこぶ","pron":"하코부","ko":"나르다","tts_text":"運ぶ"},
-    {"kanji":"集める","kana":"あつめる","pron":"아츠메루","ko":"모으다","tts_text":"集める"},
-    {"kanji":"増える","kana":"ふえる","pron":"후에루","ko":"늘다","tts_text":"増える"},
-    {"kanji":"減る","kana":"へる","pron":"헤루","ko":"줄다","tts_text":"減る"},
-    {"kanji":"変わる","kana":"かわる","pron":"카와루","ko":"변하다","tts_text":"変わる"},
-    {"kanji":"続く","kana":"つづく","pron":"츠즈쿠","ko":"계속되다","tts_text":"続く"},
-    {"kanji":"止まる","kana":"とまる","pron":"토마루","ko":"멈추다","tts_text":"止まる"},
-    {"kanji":"進む","kana":"すすむ","pron":"스스무","ko":"나아가다","tts_text":"進む"},
-    {"kanji":"戻る","kana":"もどる","pron":"모도루","ko":"돌아오다","tts_text":"戻る"},
+    {"kanji":"運ぶ","kana":"はこぶ","pron":"하코부","ko":"나르다, 옮기다","tts_text":"運ぶ"},
+    {"kanji":"集める","kana":"あつめる","pron":"아츠메루","ko":"모으다, 수집하다","tts_text":"集める"},
+    {"kanji":"増える","kana":"ふえる","pron":"후에루","ko":"늘다, 증가하다","tts_text":"増える"},
+    {"kanji":"減る","kana":"へる","pron":"헤루","ko":"줄다, 감소하다","tts_text":"減る"},
+    {"kanji":"変わる","kana":"かわる","pron":"카와루","ko":"변하다, 바뀌다","tts_text":"変わる"},
+    {"kanji":"続く","kana":"つづく","pron":"츠즈쿠","ko":"계속되다, 이어지다","tts_text":"続く"},
+    {"kanji":"止まる","kana":"とまる","pron":"토마루","ko":"멈추다, 정지하다","tts_text":"止まる"},
+    {"kanji":"進む","kana":"すすむ","pron":"스스무","ko":"나아가다, 진행되다","tts_text":"進む"},
+    {"kanji":"戻る","kana":"もどる","pron":"모도루","ko":"돌아오다, 돌아가다","tts_text":"戻る"},
 
-    {"kanji":"通る","kana":"とおる","pron":"토오루","ko":"지나가다","tts_text":"通る"},
-    {"kanji":"渡す","kana":"わたす","pron":"와타스","ko":"건네다","tts_text":"渡す"},
-    {"kanji":"受ける","kana":"うける","pron":"우케루","ko":"받다","tts_text":"受ける"},
+    {"kanji":"通る","kana":"とおる","pron":"토오루","ko":"지나가다, 통과하다","tts_text":"通る"},
+    {"kanji":"渡す","kana":"わたす","pron":"와타스","ko":"건네다, 넘겨주다","tts_text":"渡す"},
+    {"kanji":"受ける","kana":"うける","pron":"우케루","ko":"받다, 수강하다","tts_text":"受ける"},
     {"kanji":"比べる","kana":"くらべる","pron":"쿠라베루","ko":"비교하다","tts_text":"比べる"},
-    {"kanji":"選ぶ","kana":"えらぶ","pron":"에라부","ko":"고르다","tts_text":"選ぶ"},
-    {"kanji":"決まる","kana":"きまる","pron":"키마루","ko":"정해지다","tts_text":"決まる"},
-    {"kanji":"起こる","kana":"おこる","pron":"오코루","ko":"일어나다","tts_text":"起こる"},
-    {"kanji":"直す","kana":"なおす","pron":"나오스","ko":"고치다","tts_text":"直す"},
-    {"kanji":"続ける","kana":"つづける","pron":"츠즈케루","ko":"계속하다","tts_text":"続ける"},
-    {"kanji":"止める","kana":"とめる","pron":"토메루","ko":"멈추게 하다","tts_text":"止める"},
+    {"kanji":"選ぶ","kana":"えらぶ","pron":"에라부","ko":"고르다, 선택하다","tts_text":"選ぶ"},
+    {"kanji":"決まる","kana":"きまる","pron":"키마루","ko":"정해지다, 결정되다","tts_text":"決まる"},
+    {"kanji":"起こる","kana":"おこる","pron":"오코루","ko":"일어나다, 발생하다","tts_text":"起こる"},
+    {"kanji":"直す","kana":"なおす","pron":"나오스","ko":"고치다, 수정하다","tts_text":"直す"},
+    {"kanji":"続ける","kana":"つづける","pron":"츠즈케루","ko":"계속하다, 이어가다","tts_text":"続ける"},
+    {"kanji":"止める","kana":"とめる","pron":"토메루","ko":"멈추게 하다, 세우다","tts_text":"止める"},
 
-    {"kanji":"壊れる","kana":"こわれる","pron":"코와레루","ko":"고장나다","tts_text":"壊れる"},
-    {"kanji":"直る","kana":"なおる","pron":"나오루","ko":"고쳐지다","tts_text":"直る"},
-    {"kanji":"落ちる","kana":"おちる","pron":"오치루","ko":"떨어지다","tts_text":"落ちる"},
+    {"kanji":"壊れる","kana":"こわれる","pron":"코와레루","ko":"고장나다, 부서지다","tts_text":"壊れる"},
+    {"kanji":"直る","kana":"なおる","pron":"나오루","ko":"고쳐지다, 낫다","tts_text":"直る"},
+    {"kanji":"落ちる","kana":"おちる","pron":"오치루","ko":"떨어지다, 하락하다","tts_text":"落ちる"},
     {"kanji":"拾う","kana":"ひろう","pron":"히로오","ko":"줍다","tts_text":"拾う"},
-    {"kanji":"触る","kana":"さわる","pron":"사와루","ko":"만지다","tts_text":"触る"},
-    {"kanji":"離れる","kana":"はなれる","pron":"하나레루","ko":"떨어지다","tts_text":"離れる"},
-    {"kanji":"近づく","kana":"ちかづく","pron":"치카즈쿠","ko":"가까워지다","tts_text":"近づく"},
-    {"kanji":"通じる","kana":"つうじる","pron":"츠우지루","ko":"통하다","tts_text":"通じる"},
-    {"kanji":"間に合う","kana":"まにあう","pron":"마니아우","ko":"시간에 맞다","tts_text":"間に合う"},
-    {"kanji":"遅れる","kana":"おくれる","pron":"오쿠레루","ko":"늦다","tts_text":"遅れる"}
+    {"kanji":"触る","kana":"さわる","pron":"사와루","ko":"만지다, 건드리다","tts_text":"触る"},
+    {"kanji":"離れる","kana":"はなれる","pron":"하나레루","ko":"떨어지다, 멀어지다","tts_text":"離れる"},
+    {"kanji":"近づく","kana":"ちかづく","pron":"치카즈쿠","ko":"가까워지다, 다가가다","tts_text":"近づく"},
+    {"kanji":"通じる","kana":"つうじる","pron":"츠우지루","ko":"통하다, 전해지다","tts_text":"通じる"},
+    {"kanji":"間に合う","kana":"まにあう","pron":"마니아우","ko":"시간에 맞다, 늦지 않다","tts_text":"間に合う"},
+    {"kanji":"遅れる","kana":"おくれる","pron":"오쿠레루","ko":"늦다, 지각하다","tts_text":"遅れる"}
     ]
-    },
-
-    "sec05": {
+},
+"sec05": {
     "title": "형용사·상태 심화",
     "items": [
     {"kanji":"深い","kana":"ふかい","pron":"후카이","ko":"깊다","tts_text":"深い"},
@@ -8485,188 +8501,185 @@ N4_WORDS = {
     {"kanji":"狭い","kana":"せまい","pron":"세마이","ko":"좁다","tts_text":"狭い"},
     {"kanji":"重たい","kana":"おもたい","pron":"오모타이","ko":"무겁다","tts_text":"重たい"},
     {"kanji":"軽い","kana":"かるい","pron":"카루이","ko":"가볍다","tts_text":"軽い"},
-    {"kanji":"柔らかい","kana":"やわらかい","pron":"야와라카이","ko":"부드럽다","tts_text":"柔らかい"},
-    {"kanji":"固い","kana":"かたい","pron":"카타이","ko":"단단하다","tts_text":"固い"},
-    {"kanji":"細かい","kana":"こまかい","pron":"코마카이","ko":"자잘하다","tts_text":"細かい"},
-    {"kanji":"大切","kana":"たいせつ","pron":"타이세츠","ko":"중요하다","tts_text":"大切"},
+    {"kanji":"柔らかい","kana":"やわらかい","pron":"야와라카이","ko":"부드럽다, 연하다","tts_text":"柔らかい"},
+    {"kanji":"固い","kana":"かたい","pron":"카타이","ko":"단단하다, 굳다","tts_text":"固い"},
+    {"kanji":"細かい","kana":"こまかい","pron":"코마카이","ko":"자잘하다, 세세하다","tts_text":"細かい"},
+    {"kanji":"大切","kana":"たいせつ","pron":"타이세츠","ko":"중요하다, 소중하다","tts_text":"大切"},
 
-    {"kanji":"必要","kana":"ひつよう","pron":"히츠요오","ko":"필요하다","tts_text":"必要"},
-    {"kanji":"十分","kana":"じゅうぶん","pron":"쥬우분","ko":"충분하다","tts_text":"十分"},
-    {"kanji":"無理","kana":"むり","pron":"무리","ko":"무리","tts_text":"無理"},
-    {"kanji":"危険","kana":"きけん","pron":"키켄","ko":"위험","tts_text":"危険"},
-    {"kanji":"安全","kana":"あんぜん","pron":"안젠","ko":"안전","tts_text":"安全"},
-    {"kanji":"不思議","kana":"ふしぎ","pron":"후시기","ko":"신기하다","tts_text":"不思議"},
-    {"kanji":"残念","kana":"ざんねん","pron":"잔넨","ko":"아쉽다","tts_text":"残念"},
-    {"kanji":"大事","kana":"だいじ","pron":"다이지","ko":"중요함","tts_text":"大事"},
-    {"kanji":"特別","kana":"とくべつ","pron":"토쿠베츠","ko":"특별함","tts_text":"特別"},
-    {"kanji":"普通","kana":"ふつう","pron":"후츠우","ko":"보통","tts_text":"普通"},
+    {"kanji":"必要","kana":"ひつよう","pron":"히츠요오","ko":"필요하다, 필요함","tts_text":"必要"},
+    {"kanji":"十分","kana":"じゅうぶん","pron":"쥬우분","ko":"충분하다, 충분히","tts_text":"十分"},
+    {"kanji":"無理","kana":"むり","pron":"무리","ko":"무리, 불가능","tts_text":"無理"},
+    {"kanji":"危険","kana":"きけん","pron":"키켄","ko":"위험, 위험하다","tts_text":"危険"},
+    {"kanji":"安全","kana":"あんぜん","pron":"안젠","ko":"안전, 안전하다","tts_text":"安全"},
+    {"kanji":"不思議","kana":"ふしぎ","pron":"후시기","ko":"신기하다, 이상하다","tts_text":"不思議"},
+    {"kanji":"残念","kana":"ざんねん","pron":"잔넨","ko":"아쉽다, 유감이다","tts_text":"残念"},
+    {"kanji":"大事","kana":"だいじ","pron":"다이지","ko":"중요함, 소중함","tts_text":"大事"},
+    {"kanji":"特別","kana":"とくべつ","pron":"토쿠베츠","ko":"특별함, 특별하다","tts_text":"特別"},
+    {"kanji":"普通","kana":"ふつう","pron":"후츠우","ko":"보통, 평범함","tts_text":"普通"},
 
-    {"kanji":"簡単","kana":"かんたん","pron":"칸탄","ko":"간단하다","tts_text":"簡単"},
+    {"kanji":"簡単","kana":"かんたん","pron":"칸탄","ko":"간단하다, 쉽다","tts_text":"簡単"},
     {"kanji":"複雑","kana":"ふくざつ","pron":"후쿠자츠","ko":"복잡하다","tts_text":"複雑"},
     {"kanji":"静か","kana":"しずか","pron":"시즈카","ko":"조용하다","tts_text":"静か"},
-    {"kanji":"にぎやか","kana":"にぎやか","pron":"니기야카","ko":"번화하다","tts_text":"にぎやか"},
-    {"kanji":"正しい","kana":"ただしい","pron":"타다시이","ko":"옳다","tts_text":"正しい"},
-    {"kanji":"間違い","kana":"まちがい","pron":"마치가이","ko":"틀림","tts_text":"間違い"},
-    {"kanji":"強い","kana":"つよい","pron":"츠요이","ko":"강하다","tts_text":"強い"},
+    {"kanji":"にぎやか","kana":"にぎやか","pron":"니기야카","ko":"번화하다, 시끌벅적하다","tts_text":"にぎやか"},
+    {"kanji":"正しい","kana":"ただしい","pron":"타다시이","ko":"옳다, 바르다","tts_text":"正しい"},
+    {"kanji":"間違い","kana":"まちがい","pron":"마치가이","ko":"틀림, 실수","tts_text":"間違い"},
+    {"kanji":"強い","kana":"つよい","pron":"츠요이","ko":"강하다, 세다","tts_text":"強い"},
     {"kanji":"弱い","kana":"よわい","pron":"요와이","ko":"약하다","tts_text":"弱い"},
     {"kanji":"痛い","kana":"いたい","pron":"이타이","ko":"아프다","tts_text":"痛い"},
     {"kanji":"眠い","kana":"ねむい","pron":"네무이","ko":"졸리다","tts_text":"眠い"}
     ]
-    },
-
+},
     "sec06": {
     "title": "부사·연결 표현",
     "items": [
     {"kanji":"特に","kana":"とくに","pron":"토쿠니","ko":"특히","tts_text":"特に"},
-    {"kanji":"大体","kana":"だいたい","pron":"다이타이","ko":"대체로","tts_text":"大体"},
-    {"kanji":"例えば","kana":"たとえば","pron":"타토에바","ko":"예를 들면","tts_text":"例えば"},
+    {"kanji":"大体","kana":"だいたい","pron":"다이타이","ko":"대체로, 대략","tts_text":"大体"},
+    {"kanji":"例えば","kana":"たとえば","pron":"타토에바","ko":"예를 들면, 예를 들어","tts_text":"例えば"},
     {"kanji":"もちろん","kana":"もちろん","pron":"모치론","ko":"물론","tts_text":"もちろん"},
-    {"kanji":"実は","kana":"じつは","pron":"지츠와","ko":"사실은","tts_text":"実は"},
-    {"kanji":"やはり","kana":"やはり","pron":"야하리","ko":"역시","tts_text":"やはり"},
-    {"kanji":"しかも","kana":"しかも","pron":"시카모","ko":"게다가","tts_text":"しかも"},
-    {"kanji":"それに","kana":"それに","pron":"소레니","ko":"그에 더해","tts_text":"それに"},
-    {"kanji":"その後","kana":"そのあと","pron":"소노아토","ko":"그 후","tts_text":"その後"},
-    {"kanji":"その前","kana":"そのまえ","pron":"소노마에","ko":"그 전","tts_text":"その前"},
+    {"kanji":"実は","kana":"じつは","pron":"지츠와","ko":"사실은, 실은","tts_text":"実は"},
+    {"kanji":"やはり","kana":"やはり","pron":"야하리","ko":"역시, 예상대로","tts_text":"やはり"},
+    {"kanji":"しかも","kana":"しかも","pron":"시카모","ko":"게다가, 더욱이","tts_text":"しかも"},
+    {"kanji":"それに","kana":"それに","pron":"소레니","ko":"그에 더해, 게다가","tts_text":"それに"},
+    {"kanji":"その後","kana":"そのあと","pron":"소노아토","ko":"그 후, 그 뒤","tts_text":"その後"},
+    {"kanji":"その前","kana":"そのまえ","pron":"소노마에","ko":"그 전, 그 이전","tts_text":"その前"},
 
     {"kanji":"以上","kana":"いじょう","pron":"이죠오","ko":"이상","tts_text":"以上"},
     {"kanji":"以下","kana":"いか","pron":"이카","ko":"이하","tts_text":"以下"},
-    {"kanji":"以外","kana":"いがい","pron":"이가이","ko":"이외","tts_text":"以外"},
+    {"kanji":"以外","kana":"いがい","pron":"이가이","ko":"이외, 그 밖","tts_text":"以外"},
     {"kanji":"一方","kana":"いっぽう","pron":"잇뽀오","ko":"한편","tts_text":"一方"},
-    {"kanji":"途中で","kana":"とちゅうで","pron":"토츄우데","ko":"도중에","tts_text":"途中で"},
+    {"kanji":"途中で","kana":"とちゅうで","pron":"토츄우데","ko":"도중에, 중간에","tts_text":"途中で"},
     {"kanji":"そのまま","kana":"そのまま","pron":"소노마마","ko":"그대로","tts_text":"そのまま"},
     {"kanji":"別に","kana":"べつに","pron":"베츠니","ko":"특별히","tts_text":"別に"},
     {"kanji":"ほとんど","kana":"ほとんど","pron":"호톤도","ko":"거의","tts_text":"ほとんど"},
     {"kanji":"必ずしも","kana":"かならずしも","pron":"카나라즈시모","ko":"반드시~는 아니다","tts_text":"必ずしも"},
-    {"kanji":"だいたい","kana":"だいたい","pron":"다이타이","ko":"대략","tts_text":"だいたい"},
+    {"kanji":"だいたい","kana":"だいたい","pron":"다이타이","ko":"대략, 대체로","tts_text":"だいたい"},
 
-    {"kanji":"しっかり","kana":"しっかり","pron":"식카리","ko":"확실히","tts_text":"しっかり"},
-    {"kanji":"たしかに","kana":"たしかに","pron":"타시카니","ko":"확실히","tts_text":"たしかに"},
+    {"kanji":"しっかり","kana":"しっかり","pron":"식카리","ko":"확실히, 단단히","tts_text":"しっかり"},
+    {"kanji":"たしかに","kana":"たしかに","pron":"타시카니","ko":"확실히, 분명히","tts_text":"たしかに"},
     {"kanji":"急に","kana":"きゅうに","pron":"큐우니","ko":"갑자기","tts_text":"急に"},
-    {"kanji":"ゆっくり","kana":"ゆっくり","pron":"윳쿠리","ko":"천천히","tts_text":"ゆっくり"},
-    {"kanji":"すっかり","kana":"すっかり","pron":"슷카리","ko":"완전히","tts_text":"すっかり"},
-    {"kanji":"たまに","kana":"たまに","pron":"타마니","ko":"가끔","tts_text":"たまに"},
-    {"kanji":"どうしても","kana":"どうしても","pron":"도오시테모","ko":"어쩔 수 없이","tts_text":"どうしても"},
-    {"kanji":"すでに","kana":"すでに","pron":"스데니","ko":"이미","tts_text":"すでに"},
-    {"kanji":"まだ","kana":"まだ","pron":"마다","ko":"아직","tts_text":"まだ"},
-    {"kanji":"もうすぐ","kana":"もうすぐ","pron":"모오스구","ko":"곧","tts_text":"もうすぐ"}
+    {"kanji":"ゆっくり","kana":"ゆっくり","pron":"윳쿠리","ko":"천천히, 느긋하게","tts_text":"ゆっくり"},
+    {"kanji":"すっかり","kana":"すっかり","pron":"슷카리","ko":"완전히, 말끔히","tts_text":"すっかり"},
+    {"kanji":"たまに","kana":"たまに","pron":"타마니","ko":"가끔, 이따금","tts_text":"たまに"},
+    {"kanji":"どうしても","kana":"どうしても","pron":"도오시테모","ko":"어쩔 수 없이, 아무래도","tts_text":"どうしても"},
+    {"kanji":"すでに","kana":"すでに","pron":"스데니","ko":"이미, 벌써","tts_text":"すでに"},
+    {"kanji":"まだ","kana":"まだ","pron":"마다","ko":"아직, 아직도","tts_text":"まだ"},
+    {"kanji":"もうすぐ","kana":"もうすぐ","pron":"모오스구","ko":"곧, 머지않아","tts_text":"もうすぐ"}
     ]
-    },
-
-    "sec07": {
+},
+"sec07": {
     "title": "감정·상태·반응",
     "items": [
     {"kanji":"驚く","kana":"おどろく","pron":"오도로쿠","ko":"놀라다","tts_text":"驚く"},
-    {"kanji":"喜ぶ","kana":"よろこぶ","pron":"요로코부","ko":"기뻐하다","tts_text":"喜ぶ"},
+    {"kanji":"喜ぶ","kana":"よろこぶ","pron":"요로코부","ko":"기뻐하다, 반기다","tts_text":"喜ぶ"},
     {"kanji":"悲しむ","kana":"かなしむ","pron":"카나시무","ko":"슬퍼하다","tts_text":"悲しむ"},
-    {"kanji":"怒る","kana":"おこる","pron":"오코루","ko":"화내다","tts_text":"怒る"},
+    {"kanji":"怒る","kana":"おこる","pron":"오코루","ko":"화내다, 성내다","tts_text":"怒る"},
     {"kanji":"怖がる","kana":"こわがる","pron":"코와가루","ko":"무서워하다","tts_text":"怖がる"},
     {"kanji":"安心する","kana":"あんしんする","pron":"안신스루","ko":"안심하다","tts_text":"安心する"},
     {"kanji":"心配する","kana":"しんぱいする","pron":"심파이스루","ko":"걱정하다","tts_text":"心配する"},
-    {"kanji":"緊張","kana":"きんちょう","pron":"킨쵸오","ko":"긴장","tts_text":"緊張"},
-    {"kanji":"不安","kana":"ふあん","pron":"후안","ko":"불안","tts_text":"不安"},
-    {"kanji":"安心","kana":"あんしん","pron":"안신","ko":"안심","tts_text":"安心"},
+    {"kanji":"緊張","kana":"きんちょう","pron":"킨쵸오","ko":"긴장, 긴장함","tts_text":"緊張"},
+    {"kanji":"不安","kana":"ふあん","pron":"후안","ko":"불안, 불안함","tts_text":"不安"},
+    {"kanji":"安心","kana":"あんしん","pron":"안신","ko":"안심, 안도","tts_text":"安心"},
 
-    {"kanji":"満足","kana":"まんぞく","pron":"만조쿠","ko":"만족","tts_text":"満足"},
-    {"kanji":"失敗","kana":"しっぱい","pron":"싯파이","ko":"실패","tts_text":"失敗"},
+    {"kanji":"満足","kana":"まんぞく","pron":"만조쿠","ko":"만족, 만족함","tts_text":"満足"},
+    {"kanji":"失敗","kana":"しっぱい","pron":"싯파이","ko":"실패, 실수","tts_text":"失敗"},
     {"kanji":"成功","kana":"せいこう","pron":"세이코오","ko":"성공","tts_text":"成功"},
-    {"kanji":"疲れ","kana":"つかれ","pron":"츠카레","ko":"피로","tts_text":"疲れ"},
-    {"kanji":"元気","kana":"げんき","pron":"겐키","ko":"기운","tts_text":"元気"},
-    {"kanji":"大丈夫","kana":"だいじょうぶ","pron":"다이죠오부","ko":"괜찮다","tts_text":"大丈夫"},
-    {"kanji":"残念","kana":"ざんねん","pron":"잔넨","ko":"아쉽다","tts_text":"残念"},
-    {"kanji":"大変","kana":"たいへん","pron":"타이헨","ko":"힘들다","tts_text":"大変"},
-    {"kanji":"無理","kana":"むり","pron":"무리","ko":"무리","tts_text":"無理"},
-    {"kanji":"安心感","kana":"あんしんかん","pron":"안신칸","ko":"안정감","tts_text":"安心感"},
+    {"kanji":"疲れ","kana":"つかれ","pron":"츠카레","ko":"피로, 피곤함","tts_text":"疲れ"},
+    {"kanji":"元気","kana":"げんき","pron":"겐키","ko":"기운, 건강","tts_text":"元気"},
+    {"kanji":"大丈夫","kana":"だいじょうぶ","pron":"다이죠오부","ko":"괜찮다, 문제없다","tts_text":"大丈夫"},
+    {"kanji":"残念","kana":"ざんねん","pron":"잔넨","ko":"아쉽다, 유감이다","tts_text":"残念"},
+    {"kanji":"大変","kana":"たいへん","pron":"타이헨","ko":"힘들다, 큰일이다","tts_text":"大変"},
+    {"kanji":"無理","kana":"むり","pron":"무리","ko":"무리, 불가능","tts_text":"無理"},
+    {"kanji":"安心感","kana":"あんしんかん","pron":"안신칸","ko":"안정감, 안심되는 느낌","tts_text":"安心感"},
 
-    {"kanji":"寂しい","kana":"さびしい","pron":"사비시이","ko":"외롭다","tts_text":"寂しい"},
+    {"kanji":"寂しい","kana":"さびしい","pron":"사비시이","ko":"외롭다, 쓸쓸하다","tts_text":"寂しい"},
     {"kanji":"嬉しい","kana":"うれしい","pron":"우레시이","ko":"기쁘다","tts_text":"嬉しい"},
-    {"kanji":"嫌","kana":"いや","pron":"이야","ko":"싫다","tts_text":"嫌"},
-    {"kanji":"好き","kana":"すき","pron":"스키","ko":"좋아함","tts_text":"好き"},
-    {"kanji":"大好き","kana":"だいすき","pron":"다이스키","ko":"아주 좋아함","tts_text":"大好き"},
-    {"kanji":"苦手","kana":"にがて","pron":"니가테","ko":"서투름","tts_text":"苦手"},
-    {"kanji":"得意","kana":"とくい","pron":"토쿠이","ko":"잘함","tts_text":"得意"},
+    {"kanji":"嫌","kana":"いや","pron":"이야","ko":"싫다, 싫어함","tts_text":"嫌"},
+    {"kanji":"好き","kana":"すき","pron":"스키","ko":"좋아함, 좋아하다","tts_text":"好き"},
+    {"kanji":"大好き","kana":"だいすき","pron":"다이스키","ko":"아주 좋아함, 매우 좋아하다","tts_text":"大好き"},
+    {"kanji":"苦手","kana":"にがて","pron":"니가테","ko":"서투름, 자신 없음","tts_text":"苦手"},
+    {"kanji":"得意","kana":"とくい","pron":"토쿠이","ko":"잘함, 자신 있음","tts_text":"得意"},
     {"kanji":"心","kana":"こころ","pron":"코코로","ko":"마음","tts_text":"心"},
-    {"kanji":"気持ち","kana":"きもち","pron":"키모치","ko":"기분","tts_text":"気持ち"},
+    {"kanji":"気持ち","kana":"きもち","pron":"키모치","ko":"기분, 마음","tts_text":"気持ち"},
     {"kanji":"感情","kana":"かんじょう","pron":"칸죠오","ko":"감정","tts_text":"感情"}
     ]
-    },
+},
 
     "sec08": {
     "title": "사고·의견·판단",
     "items": [
-    {"kanji":"考え","kana":"かんがえ","pron":"칸가에","ko":"생각","tts_text":"考え"},
+    {"kanji":"考え","kana":"かんがえ","pron":"칸가에","ko":"생각, 의견","tts_text":"考え"},
     {"kanji":"意見","kana":"いけん","pron":"이켄","ko":"의견","tts_text":"意見"},
     {"kanji":"判断","kana":"はんだん","pron":"한단","ko":"판단","tts_text":"判断"},
     {"kanji":"理由","kana":"りゆう","pron":"리유우","ko":"이유","tts_text":"理由"},
-    {"kanji":"答え","kana":"こたえ","pron":"코타에","ko":"대답","tts_text":"答え"},
+    {"kanji":"答え","kana":"こたえ","pron":"코타에","ko":"대답, 답","tts_text":"答え"},
     {"kanji":"問題","kana":"もんだい","pron":"몬다이","ko":"문제","tts_text":"問題"},
     {"kanji":"結果","kana":"けっか","pron":"켁카","ko":"결과","tts_text":"結果"},
     {"kanji":"方法","kana":"ほうほう","pron":"호오호오","ko":"방법","tts_text":"方法"},
-    {"kanji":"意味","kana":"いみ","pron":"이미","ko":"의미","tts_text":"意味"},
+    {"kanji":"意味","kana":"いみ","pron":"이미","ko":"의미, 뜻","tts_text":"意味"},
     {"kanji":"理由","kana":"りゆう","pron":"리유우","ko":"이유","tts_text":"理由"},
 
     {"kanji":"選択","kana":"せんたく","pron":"센타쿠","ko":"선택","tts_text":"選択"},
     {"kanji":"確認","kana":"かくにん","pron":"카쿠닌","ko":"확인","tts_text":"確認"},
     {"kanji":"理解","kana":"りかい","pron":"리카이","ko":"이해","tts_text":"理解"},
-    {"kanji":"勘違い","kana":"かんちがい","pron":"칸치가이","ko":"착각","tts_text":"勘違い"},
+    {"kanji":"勘違い","kana":"かんちがい","pron":"칸치가이","ko":"착각, 오해","tts_text":"勘違い"},
     {"kanji":"予想","kana":"よそう","pron":"요소오","ko":"예상","tts_text":"予想"},
-    {"kanji":"意外","kana":"いがい","pron":"이가이","ko":"의외","tts_text":"意外"},
-    {"kanji":"本当","kana":"ほんとう","pron":"혼토오","ko":"진짜","tts_text":"本当"},
-    {"kanji":"嘘","kana":"うそ","pron":"우소","ko":"거짓말","tts_text":"嘘"},
+    {"kanji":"意外","kana":"いがい","pron":"이가이","ko":"의외, 뜻밖","tts_text":"意外"},
+    {"kanji":"本当","kana":"ほんとう","pron":"혼토오","ko":"진짜, 정말","tts_text":"本当"},
+    {"kanji":"嘘","kana":"うそ","pron":"우소","ko":"거짓말, 거짓","tts_text":"嘘"},
     {"kanji":"事実","kana":"じじつ","pron":"지지츠","ko":"사실","tts_text":"事実"},
     {"kanji":"正解","kana":"せいかい","pron":"세이카이","ko":"정답","tts_text":"正解"},
 
-    {"kanji":"間違い","kana":"まちがい","pron":"마치가이","ko":"틀림","tts_text":"間違い"},
-    {"kanji":"可能","kana":"かのう","pron":"카노오","ko":"가능","tts_text":"可能"},
-    {"kanji":"不可能","kana":"ふかのう","pron":"후카노오","ko":"불가능","tts_text":"不可能"},
+    {"kanji":"間違い","kana":"まちがい","pron":"마치가이","ko":"틀림, 실수","tts_text":"間違い"},
+    {"kanji":"可能","kana":"かのう","pron":"카노오","ko":"가능, 가능함","tts_text":"可能"},
+    {"kanji":"不可能","kana":"ふかのう","pron":"후카노오","ko":"불가능, 불가능함","tts_text":"不可能"},
     {"kanji":"条件","kana":"じょうけん","pron":"죠오켄","ko":"조건","tts_text":"条件"},
     {"kanji":"決定","kana":"けってい","pron":"켓테이","ko":"결정","tts_text":"決定"},
-    {"kanji":"選ぶ","kana":"えらぶ","pron":"에라부","ko":"고르다","tts_text":"選ぶ"},
+    {"kanji":"選ぶ","kana":"えらぶ","pron":"에라부","ko":"고르다, 선택하다","tts_text":"選ぶ"},
     {"kanji":"信じる","kana":"しんじる","pron":"신지루","ko":"믿다","tts_text":"信じる"},
     {"kanji":"疑う","kana":"うたがう","pron":"우타가우","ko":"의심하다","tts_text":"疑う"},
     {"kanji":"考える","kana":"かんがえる","pron":"칸가에루","ko":"생각하다","tts_text":"考える"},
     {"kanji":"比べる","kana":"くらべる","pron":"쿠라베루","ko":"비교하다","tts_text":"比べる"}
     ]
-    },
-
-    "sec09": {
+},
+"sec09": {
     "title": "음식·쇼핑·일상",
     "items": [
     {"kanji":"材料","kana":"ざいりょう","pron":"자이료오","ko":"재료","tts_text":"材料"},
     {"kanji":"味","kana":"あじ","pron":"아지","ko":"맛","tts_text":"味"},
     {"kanji":"料理","kana":"りょうり","pron":"료오리","ko":"요리","tts_text":"料理"},
     {"kanji":"注文","kana":"ちゅうもん","pron":"츄우몬","ko":"주문","tts_text":"注文"},
-    {"kanji":"値段","kana":"ねだん","pron":"네단","ko":"가격","tts_text":"値段"},
-    {"kanji":"割引","kana":"わりびき","pron":"와리비키","ko":"할인","tts_text":"割引"},
-    {"kanji":"商品","kana":"しょうひん","pron":"쇼오힌","ko":"상품","tts_text":"商品"},
-    {"kanji":"買い物","kana":"かいもの","pron":"카이모노","ko":"쇼핑","tts_text":"買い物"},
-    {"kanji":"支払う","kana":"しはらう","pron":"시하라우","ko":"지불하다","tts_text":"支払う"},
+    {"kanji":"値段","kana":"ねだん","pron":"네단","ko":"가격, 값","tts_text":"値段"},
+    {"kanji":"割引","kana":"わりびき","pron":"와리비키","ko":"할인, 할인함","tts_text":"割引"},
+    {"kanji":"商品","kana":"しょうひん","pron":"쇼오힌","ko":"상품, 물건","tts_text":"商品"},
+    {"kanji":"買い物","kana":"かいもの","pron":"카이모노","ko":"쇼핑, 물건 사기","tts_text":"買い物"},
+    {"kanji":"支払う","kana":"しはらう","pron":"시하라우","ko":"지불하다, 계산하다","tts_text":"支払う"},
     {"kanji":"予約","kana":"よやく","pron":"요야쿠","ko":"예약","tts_text":"予約"},
 
-    {"kanji":"満席","kana":"まんせき","pron":"만세키","ko":"만석","tts_text":"満席"},
-    {"kanji":"空席","kana":"くうせき","pron":"쿠우세키","ko":"빈자리","tts_text":"空席"},
-    {"kanji":"袋","kana":"ふくろ","pron":"후쿠로","ko":"봉지","tts_text":"袋"},
-    {"kanji":"箱","kana":"はこ","pron":"하코","ko":"상자","tts_text":"箱"},
+    {"kanji":"満席","kana":"まんせき","pron":"만세키","ko":"만석, 자리가 없음","tts_text":"満席"},
+    {"kanji":"空席","kana":"くうせき","pron":"쿠우세키","ko":"빈자리, 공석","tts_text":"空席"},
+    {"kanji":"袋","kana":"ふくろ","pron":"후쿠로","ko":"봉지, 주머니","tts_text":"袋"},
+    {"kanji":"箱","kana":"はこ","pron":"하코","ko":"상자, 박스","tts_text":"箱"},
     {"kanji":"量","kana":"りょう","pron":"료오","ko":"양","tts_text":"量"},
-    {"kanji":"少なめ","kana":"すくなめ","pron":"스쿠나메","ko":"적게","tts_text":"少なめ"},
-    {"kanji":"多め","kana":"おおめ","pron":"오오메","ko":"많게","tts_text":"多め"},
+    {"kanji":"少なめ","kana":"すくなめ","pron":"스쿠나메","ko":"적게, 적은 편","tts_text":"少なめ"},
+    {"kanji":"多め","kana":"おおめ","pron":"오오메","ko":"많게, 많은 편","tts_text":"多め"},
     {"kanji":"追加","kana":"ついか","pron":"츠이카","ko":"추가","tts_text":"追加"},
     {"kanji":"準備","kana":"じゅんび","pron":"쥰비","ko":"준비","tts_text":"準備"},
-    {"kanji":"片付け","kana":"かたづけ","pron":"카타즈케","ko":"정리","tts_text":"片付け"},
+    {"kanji":"片付け","kana":"かたづけ","pron":"카타즈케","ko":"정리, 치우기","tts_text":"片付け"},
 
     {"kanji":"洗う","kana":"あらう","pron":"아라우","ko":"씻다","tts_text":"洗う"},
     {"kanji":"掃除","kana":"そうじ","pron":"소오지","ko":"청소","tts_text":"掃除"},
-    {"kanji":"洗濯","kana":"せんたく","pron":"센타쿠","ko":"세탁","tts_text":"洗濯"},
+    {"kanji":"洗濯","kana":"せんたく","pron":"센타쿠","ko":"세탁, 빨래","tts_text":"洗濯"},
     {"kanji":"用意","kana":"ようい","pron":"요오이","ko":"준비","tts_text":"用意"},
-    {"kanji":"暮らす","kana":"くらす","pron":"쿠라스","ko":"생활하다","tts_text":"暮らす"},
+    {"kanji":"暮らす","kana":"くらす","pron":"쿠라스","ko":"생활하다, 살다","tts_text":"暮らす"},
     {"kanji":"生活","kana":"せいかつ","pron":"세이카츠","ko":"생활","tts_text":"生活"},
     {"kanji":"習慣","kana":"しゅうかん","pron":"슈우칸","ko":"습관","tts_text":"習慣"},
     {"kanji":"忙しい","kana":"いそがしい","pron":"이소가시이","ko":"바쁘다","tts_text":"忙しい"},
-    {"kanji":"暇","kana":"ひま","pron":"히마","ko":"한가함","tts_text":"暇"},
-    {"kanji":"普段","kana":"ふだん","pron":"후단","ko":"평소","tts_text":"普段"}
+    {"kanji":"暇","kana":"ひま","pron":"히마","ko":"한가함, 여유","tts_text":"暇"},
+    {"kanji":"普段","kana":"ふだん","pron":"후단","ko":"평소, 평상시","tts_text":"普段"}
     ]
-    },
+},
 
-    "sec10": {
+    "sec02": {
     "title": "시험·공부·능력",
     "items": [
     {"kanji":"勉強","kana":"べんきょう","pron":"벤쿄오","ko":"공부","tts_text":"勉強"},
@@ -8676,33 +8689,33 @@ N4_WORDS = {
     {"kanji":"試験","kana":"しけん","pron":"시켄","ko":"시험","tts_text":"試験"},
     {"kanji":"点数","kana":"てんすう","pron":"텐스우","ko":"점수","tts_text":"点数"},
     {"kanji":"合格","kana":"ごうかく","pron":"고오카쿠","ko":"합격","tts_text":"合格"},
-    {"kanji":"失敗","kana":"しっぱい","pron":"싯파이","ko":"실패","tts_text":"失敗"},
+    {"kanji":"失敗","kana":"しっぱい","pron":"싯파이","ko":"실패, 실수","tts_text":"失敗"},
     {"kanji":"成功","kana":"せいこう","pron":"세이코오","ko":"성공","tts_text":"成功"},
     {"kanji":"能力","kana":"のうりょく","pron":"노오료쿠","ko":"능력","tts_text":"能力"},
 
-    {"kanji":"上手","kana":"じょうず","pron":"죠오즈","ko":"잘함","tts_text":"上手"},
-    {"kanji":"下手","kana":"へた","pron":"헤타","ko":"못함","tts_text":"下手"},
-    {"kanji":"得意","kana":"とくい","pron":"토쿠이","ko":"특기","tts_text":"得意"},
-    {"kanji":"苦手","kana":"にがて","pron":"니가테","ko":"약점","tts_text":"苦手"},
-    {"kanji":"覚える","kana":"おぼえる","pron":"오보에루","ko":"외우다","tts_text":"覚える"},
+    {"kanji":"上手","kana":"じょうず","pron":"죠오즈","ko":"잘함, 능숙함","tts_text":"上手"},
+    {"kanji":"下手","kana":"へた","pron":"헤타","ko":"못함, 서툼","tts_text":"下手"},
+    {"kanji":"得意","kana":"とくい","pron":"토쿠이","ko":"특기, 잘함","tts_text":"得意"},
+    {"kanji":"苦手","kana":"にがて","pron":"니가테","ko":"약점, 서투름","tts_text":"苦手"},
+    {"kanji":"覚える","kana":"おぼえる","pron":"오보에루","ko":"외우다, 기억하다","tts_text":"覚える"},
     {"kanji":"忘れる","kana":"わすれる","pron":"와스레루","ko":"잊다","tts_text":"忘れる"},
     {"kanji":"理解","kana":"りかい","pron":"리카이","ko":"이해","tts_text":"理解"},
     {"kanji":"説明","kana":"せつめい","pron":"세츠메이","ko":"설명","tts_text":"説明"},
     {"kanji":"質問","kana":"しつもん","pron":"시츠몬","ko":"질문","tts_text":"質問"},
-    {"kanji":"答え","kana":"こたえ","pron":"코타에","ko":"답","tts_text":"答え"},
+    {"kanji":"答え","kana":"こたえ","pron":"코타에","ko":"답, 대답","tts_text":"答え"},
 
-    {"kanji":"間違える","kana":"まちがえる","pron":"마치가에루","ko":"틀리다","tts_text":"間違える"},
-    {"kanji":"正しい","kana":"ただしい","pron":"타다시이","ko":"옳다","tts_text":"正しい"},
-    {"kanji":"簡単","kana":"かんたん","pron":"칸탄","ko":"간단하다","tts_text":"簡単"},
+    {"kanji":"間違える","kana":"まちがえる","pron":"마치가에루","ko":"틀리다, 잘못하다","tts_text":"間違える"},
+    {"kanji":"正しい","kana":"ただしい","pron":"타다시이","ko":"옳다, 바르다","tts_text":"正しい"},
+    {"kanji":"簡単","kana":"かんたん","pron":"칸탄","ko":"간단하다, 쉽다","tts_text":"簡単"},
     {"kanji":"難しい","kana":"むずかしい","pron":"무즈카시이","ko":"어렵다","tts_text":"難しい"},
-    {"kanji":"必要","kana":"ひつよう","pron":"히츠요오","ko":"필요","tts_text":"必要"},
+    {"kanji":"必要","kana":"ひつよう","pron":"히츠요오","ko":"필요, 필요하다","tts_text":"必要"},
     {"kanji":"努力","kana":"どりょく","pron":"도료쿠","ko":"노력","tts_text":"努力"},
     {"kanji":"結果","kana":"けっか","pron":"켁카","ko":"결과","tts_text":"結果"},
     {"kanji":"成長","kana":"せいちょう","pron":"세이쵸오","ko":"성장","tts_text":"成長"},
     {"kanji":"目標","kana":"もくひょう","pron":"모쿠효오","ko":"목표","tts_text":"目標"},
     {"kanji":"自信","kana":"じしん","pron":"지신","ko":"자신감","tts_text":"自信"}
     ]
-    }
+}
 
 }
 N3_WORDS = {
@@ -8713,8 +8726,8 @@ N3_WORDS = {
     {"kanji":"態度","kana":"たいど","pron":"타이도","ko":"태도","tts_text":"態度"},
     {"kanji":"印象","kana":"いんしょう","pron":"인쇼오","ko":"인상","tts_text":"印象"},
     {"kanji":"関係","kana":"かんけい","pron":"칸케이","ko":"관계","tts_text":"関係"},
-    {"kanji":"友人","kana":"ゆうじん","pron":"유우진","ko":"친구(격식)","tts_text":"友人"},
-    {"kanji":"仲間","kana":"なかま","pron":"나카마","ko":"동료","tts_text":"仲間"},
+    {"kanji":"友人","kana":"ゆうじん","pron":"유우진","ko":"친구, 지인(격식)","tts_text":"友人"},
+    {"kanji":"仲間","kana":"なかま","pron":"나카마","ko":"동료, 같은 편","tts_text":"仲間"},
     {"kanji":"先輩","kana":"せんぱい","pron":"센파이","ko":"선배","tts_text":"先輩"},
     {"kanji":"後輩","kana":"こうはい","pron":"코오하이","ko":"후배","tts_text":"後輩"},
     {"kanji":"上司","kana":"じょうし","pron":"죠오시","ko":"상사","tts_text":"上司"},
@@ -8725,11 +8738,11 @@ N3_WORDS = {
     {"kanji":"親戚","kana":"しんせき","pron":"신세키","ko":"친척","tts_text":"親戚"},
     {"kanji":"夫婦","kana":"ふうふ","pron":"후우후","ko":"부부","tts_text":"夫婦"},
     {"kanji":"本人","kana":"ほんにん","pron":"혼닌","ko":"본인","tts_text":"本人"},
-    {"kanji":"相手","kana":"あいて","pron":"아이테","ko":"상대","tts_text":"相手"},
-    {"kanji":"周囲","kana":"しゅうい","pron":"슈우이","ko":"주위","tts_text":"周囲"},
+    {"kanji":"相手","kana":"あいて","pron":"아이테","ko":"상대, 상대방","tts_text":"相手"},
+    {"kanji":"周囲","kana":"しゅうい","pron":"슈우이","ko":"주위, 주변","tts_text":"周囲"},
     {"kanji":"世代","kana":"せだい","pron":"세다이","ko":"세대","tts_text":"世代"},
     {"kanji":"社会","kana":"しゃかい","pron":"샤카이","ko":"사회","tts_text":"社会"},
-    {"kanji":"人間","kana":"にんげん","pron":"닌겐","ko":"인간","tts_text":"人間"},
+    {"kanji":"人間","kana":"にんげん","pron":"닌겐","ko":"인간, 사람","tts_text":"人間"},
 
     {"kanji":"立場","kana":"たちば","pron":"타치바","ko":"입장, 처지","tts_text":"立場"},
     {"kanji":"責任","kana":"せきにん","pron":"세키닌","ko":"책임","tts_text":"責任"},
@@ -8737,48 +8750,48 @@ N3_WORDS = {
     {"kanji":"権利","kana":"けんり","pron":"켄리","ko":"권리","tts_text":"権利"},
     {"kanji":"約束","kana":"やくそく","pron":"야쿠소쿠","ko":"약속","tts_text":"約束"},
     {"kanji":"協力","kana":"きょうりょく","pron":"쿄오료쿠","ko":"협력","tts_text":"協力"},
-    {"kanji":"相談","kana":"そうだん","pron":"소오단","ko":"상담","tts_text":"相談"},
+    {"kanji":"相談","kana":"そうだん","pron":"소오단","ko":"상담, 상의","tts_text":"相談"},
     {"kanji":"紹介","kana":"しょうかい","pron":"쇼오카이","ko":"소개","tts_text":"紹介"},
     {"kanji":"意見","kana":"いけん","pron":"이켄","ko":"의견","tts_text":"意見"},
     {"kanji":"不満","kana":"ふまん","pron":"후만","ko":"불만","tts_text":"不満"},
 
-    {"kanji":"文句","kana":"もんく","pron":"몬쿠","ko":"불평","tts_text":"文句"},
-    {"kanji":"評判","kana":"ひょうばん","pron":"효오반","ko":"평판","tts_text":"評判"},
+    {"kanji":"文句","kana":"もんく","pron":"몬쿠","ko":"불평, 불만","tts_text":"文句"},
+    {"kanji":"評判","kana":"ひょうばん","pron":"효오반","ko":"평판, 소문","tts_text":"評判"},
     {"kanji":"噂","kana":"うわさ","pron":"우와사","ko":"소문","tts_text":"噂"},
     {"kanji":"礼儀","kana":"れいぎ","pron":"레이기","ko":"예의","tts_text":"礼儀"},
     {"kanji":"挨拶","kana":"あいさつ","pron":"아이사츠","ko":"인사","tts_text":"挨拶"},
-    {"kanji":"迷惑","kana":"めいわく","pron":"메이와쿠","ko":"폐","tts_text":"迷惑"},
+    {"kanji":"迷惑","kana":"めいわく","pron":"메이와쿠","ko":"폐, 민폐","tts_text":"迷惑"},
     {"kanji":"冗談","kana":"じょうだん","pron":"죠오단","ko":"농담","tts_text":"冗談"},
     {"kanji":"本気","kana":"ほんき","pron":"혼키","ko":"진심","tts_text":"本気"},
-    {"kanji":"真面目","kana":"まじめ","pron":"마지메","ko":"성실함","tts_text":"真面目"},
+    {"kanji":"真面目","kana":"まじめ","pron":"마지메","ko":"성실함, 진지함","tts_text":"真面目"},
     {"kanji":"素直","kana":"すなお","pron":"스나오","ko":"솔직함","tts_text":"素直"},
 
     {"kanji":"大人しい","kana":"おとなしい","pron":"오토나시이","ko":"얌전하다","tts_text":"大人しい"},
-    {"kanji":"親切","kana":"しんせつ","pron":"신세츠","ko":"친절","tts_text":"親切"},
-    {"kanji":"失礼","kana":"しつれい","pron":"시츠레이","ko":"실례","tts_text":"失礼"},
+    {"kanji":"親切","kana":"しんせつ","pron":"신세츠","ko":"친절, 친절하다","tts_text":"親切"},
+    {"kanji":"失礼","kana":"しつれい","pron":"시츠레이","ko":"실례, 무례","tts_text":"失礼"},
     {"kanji":"無礼","kana":"ぶれい","pron":"부레이","ko":"무례","tts_text":"無礼"},
-    {"kanji":"丁寧","kana":"ていねい","pron":"테이네이","ko":"정중함","tts_text":"丁寧"},
-    {"kanji":"冷静","kana":"れいせい","pron":"레이세이","ko":"냉정","tts_text":"冷静"},
-    {"kanji":"正直","kana":"しょうじき","pron":"쇼오지키","ko":"정직","tts_text":"正直"},
-    {"kanji":"誠実","kana":"せいじつ","pron":"세이지츠","ko":"성실","tts_text":"誠実"},
+    {"kanji":"丁寧","kana":"ていねい","pron":"테이네이","ko":"정중함, 정중하다","tts_text":"丁寧"},
+    {"kanji":"冷静","kana":"れいせい","pron":"레이세이","ko":"냉정, 침착함","tts_text":"冷静"},
+    {"kanji":"正直","kana":"しょうじき","pron":"쇼오지키","ko":"정직, 솔직함","tts_text":"正直"},
+    {"kanji":"誠実","kana":"せいじつ","pron":"세이지츠","ko":"성실, 진실함","tts_text":"誠実"},
     {"kanji":"積極的","kana":"せっきょくてき","pron":"셋쿄쿠테키","ko":"적극적","tts_text":"積極的"},
     {"kanji":"消極的","kana":"しょうきょくてき","pron":"쇼오쿄쿠테키","ko":"소극적","tts_text":"消極的"}
     ]
-    },
+},
 
     "sec02": {
     "title": "시간·일정·빈도",
     "items": [
-    {"kanji":"予定","kana":"よてい","pron":"요테이","ko":"예정","tts_text":"予定"},
+    {"kanji":"予定","kana":"よてい","pron":"요테이","ko":"예정, 계획","tts_text":"予定"},
     {"kanji":"計画","kana":"けいかく","pron":"케이카쿠","ko":"계획","tts_text":"計画"},
     {"kanji":"約束","kana":"やくそく","pron":"야쿠소쿠","ko":"약속","tts_text":"約束"},
     {"kanji":"締め切り","kana":"しめきり","pron":"시메키리","ko":"마감","tts_text":"締め切り"},
-    {"kanji":"期限","kana":"きげん","pron":"키겐","ko":"기한","tts_text":"期限"},
+    {"kanji":"期限","kana":"きげん","pron":"키겐","ko":"기한, 마감기한","tts_text":"期限"},
     {"kanji":"日程","kana":"にってい","pron":"닛테이","ko":"일정","tts_text":"日程"},
     {"kanji":"都合","kana":"つごう","pron":"츠고오","ko":"사정, 형편","tts_text":"都合"},
     {"kanji":"準備","kana":"じゅんび","pron":"쥰비","ko":"준비","tts_text":"準備"},
-    {"kanji":"開始","kana":"かいし","pron":"카이시","ko":"개시","tts_text":"開始"},
-    {"kanji":"終了","kana":"しゅうりょう","pron":"슈우료오","ko":"종료","tts_text":"終了"},
+    {"kanji":"開始","kana":"かいし","pron":"카이시","ko":"개시, 시작","tts_text":"開始"},
+    {"kanji":"終了","kana":"しゅうりょう","pron":"슈우료오","ko":"종료, 끝","tts_text":"終了"},
 
     {"kanji":"途中","kana":"とちゅう","pron":"토츄우","ko":"도중","tts_text":"途中"},
     {"kanji":"最初","kana":"さいしょ","pron":"사이쇼","ko":"처음","tts_text":"最初"},
@@ -8787,22 +8800,22 @@ N3_WORDS = {
     {"kanji":"当時","kana":"とうじ","pron":"토오지","ko":"당시","tts_text":"当時"},
     {"kanji":"以前","kana":"いぜん","pron":"이젠","ko":"이전","tts_text":"以前"},
     {"kanji":"以降","kana":"いこう","pron":"이코오","ko":"이후","tts_text":"以降"},
-    {"kanji":"今後","kana":"こんご","pron":"콘고","ko":"금후","tts_text":"今後"},
-    {"kanji":"しばらく","kana":"しばらく","pron":"시바라쿠","ko":"잠시","tts_text":"しばらく"},
+    {"kanji":"今後","kana":"こんご","pron":"콘고","ko":"앞으로, 향후","tts_text":"今後"},
+    {"kanji":"しばらく","kana":"しばらく","pron":"시바라쿠","ko":"잠시, 한동안","tts_text":"しばらく"},
     {"kanji":"しばしば","kana":"しばしば","pron":"시바시바","ko":"자주","tts_text":"しばしば"},
 
-    {"kanji":"たびたび","kana":"たびたび","pron":"타비타비","ko":"자주","tts_text":"たびたび"},
+    {"kanji":"たびたび","kana":"たびたび","pron":"타비타비","ko":"자주, 여러 번","tts_text":"たびたび"},
     {"kanji":"だんだん","kana":"だんだん","pron":"단단","ko":"점점","tts_text":"だんだん"},
-    {"kanji":"次第に","kana":"しだいに","pron":"시다이니","ko":"차차","tts_text":"次第に"},
+    {"kanji":"次第に","kana":"しだいに","pron":"시다이니","ko":"차차, 점점","tts_text":"次第に"},
     {"kanji":"急に","kana":"きゅうに","pron":"큐우니","ko":"갑자기","tts_text":"急に"},
-    {"kanji":"すぐに","kana":"すぐに","pron":"스구니","ko":"즉시","tts_text":"すぐに"},
+    {"kanji":"すぐに","kana":"すぐに","pron":"스구니","ko":"즉시, 바로","tts_text":"すぐに"},
     {"kanji":"とうとう","kana":"とうとう","pron":"토오토오","ko":"드디어","tts_text":"とうとう"},
     {"kanji":"やっと","kana":"やっと","pron":"얏토","ko":"겨우","tts_text":"やっと"},
     {"kanji":"結局","kana":"けっきょく","pron":"켓쿄쿠","ko":"결국","tts_text":"結局"},
-    {"kanji":"ようやく","kana":"ようやく","pron":"요오야쿠","ko":"겨우","tts_text":"ようやく"},
+    {"kanji":"ようやく","kana":"ようやく","pron":"요오야쿠","ko":"겨우, 간신히","tts_text":"ようやく"},
     {"kanji":"いつの間にか","kana":"いつのまにか","pron":"이츠노마니카","ko":"어느새","tts_text":"いつの間にか"},
 
-    {"kanji":"早めに","kana":"はやめに","pron":"하야메니","ko":"일찍","tts_text":"早めに"},
+    {"kanji":"早めに","kana":"はやめに","pron":"하야메니","ko":"일찍, 미리","tts_text":"早めに"},
     {"kanji":"遅めに","kana":"おそめに","pron":"오소메니","ko":"늦게","tts_text":"遅めに"},
     {"kanji":"前もって","kana":"まえもって","pron":"마에못테","ko":"미리","tts_text":"前もって"},
     {"kanji":"しばらくして","kana":"しばらくして","pron":"시바라쿠시테","ko":"잠시 후","tts_text":"しばらくして"},
@@ -8813,7 +8826,7 @@ N3_WORDS = {
     {"kanji":"毎月","kana":"まいつき","pron":"마이츠키","ko":"매달","tts_text":"毎月"},
     {"kanji":"毎年","kana":"まいとし","pron":"마이토시","ko":"매년","tts_text":"毎年"}
     ]
-    },
+},
 
     "sec03": {
     "title": "이동·교통·여행",
@@ -8825,11 +8838,11 @@ N3_WORDS = {
     {"kanji":"運転","kana":"うんてん","pron":"운텐","ko":"운전","tts_text":"運転"},
     {"kanji":"免許","kana":"めんきょ","pron":"멘쿄","ko":"면허","tts_text":"免許"},
     {"kanji":"交通","kana":"こうつう","pron":"코오츠우","ko":"교통","tts_text":"交通"},
-    {"kanji":"渋滞","kana":"じゅうたい","pron":"쥬우타이","ko":"정체","tts_text":"渋滞"},
+    {"kanji":"渋滞","kana":"じゅうたい","pron":"쥬우타이","ko":"정체, 교통체증","tts_text":"渋滞"},
     {"kanji":"案内","kana":"あんない","pron":"안나이","ko":"안내","tts_text":"案内"},
     {"kanji":"地図","kana":"ちず","pron":"치즈","ko":"지도","tts_text":"地図"},
 
-    {"kanji":"道順","kana":"みちじゅん","pron":"미치쥰","ko":"길 순서","tts_text":"道順"},
+    {"kanji":"道順","kana":"みちじゅん","pron":"미치쥰","ko":"길 순서, 경로","tts_text":"道順"},
     {"kanji":"目的地","kana":"もくてきち","pron":"모쿠테키치","ko":"목적지","tts_text":"目的地"},
     {"kanji":"出発","kana":"しゅっぱつ","pron":"슈파츠","ko":"출발","tts_text":"出発"},
     {"kanji":"到着","kana":"とうちゃく","pron":"토오차쿠","ko":"도착","tts_text":"到着"},
@@ -8862,30 +8875,29 @@ N3_WORDS = {
     {"kanji":"通路","kana":"つうろ","pron":"츠우로","ko":"통로","tts_text":"通路"},
     {"kanji":"窓側","kana":"まどがわ","pron":"마도가와","ko":"창가 쪽","tts_text":"窓側"}
     ]
-    },
-
-    "sec04": {
+},
+"sec04": {
     "title": "일·회사·비즈니스",
     "items": [
     {"kanji":"会議","kana":"かいぎ","pron":"카이기","ko":"회의","tts_text":"会議"},
     {"kanji":"資料","kana":"しりょう","pron":"시료오","ko":"자료","tts_text":"資料"},
     {"kanji":"報告","kana":"ほうこく","pron":"호오코쿠","ko":"보고","tts_text":"報告"},
     {"kanji":"連絡","kana":"れんらく","pron":"렌라쿠","ko":"연락","tts_text":"連絡"},
-    {"kanji":"相談","kana":"そうだん","pron":"소오단","ko":"상담","tts_text":"相談"},
+    {"kanji":"相談","kana":"そうだん","pron":"소오단","ko":"상담, 상의","tts_text":"相談"},
     {"kanji":"確認","kana":"かくにん","pron":"카쿠닌","ko":"확인","tts_text":"確認"},
-    {"kanji":"予定","kana":"よてい","pron":"요테이","ko":"예정","tts_text":"予定"},
+    {"kanji":"予定","kana":"よてい","pron":"요테이","ko":"예정, 계획","tts_text":"予定"},
     {"kanji":"計画","kana":"けいかく","pron":"케이카쿠","ko":"계획","tts_text":"計画"},
     {"kanji":"準備","kana":"じゅんび","pron":"쥰비","ko":"준비","tts_text":"準備"},
-    {"kanji":"対応","kana":"たいおう","pron":"타이오오","ko":"대응","tts_text":"対応"},
+    {"kanji":"対応","kana":"たいおう","pron":"타이오오","ko":"대응, 처리","tts_text":"対応"},
 
-    {"kanji":"手続き","kana":"てつづき","pron":"테츠즈키","ko":"절차","tts_text":"手続き"},
+    {"kanji":"手続き","kana":"てつづき","pron":"테츠즈키","ko":"절차, 수속","tts_text":"手続き"},
     {"kanji":"申請","kana":"しんせい","pron":"신세이","ko":"신청","tts_text":"申請"},
     {"kanji":"許可","kana":"きょか","pron":"쿄카","ko":"허가","tts_text":"許可"},
     {"kanji":"禁止","kana":"きんし","pron":"킨시","ko":"금지","tts_text":"禁止"},
     {"kanji":"規則","kana":"きそく","pron":"키소쿠","ko":"규칙","tts_text":"規則"},
-    {"kanji":"必要","kana":"ひつよう","pron":"히츠요오","ko":"필요","tts_text":"必要"},
-    {"kanji":"重要","kana":"じゅうよう","pron":"쥬우요오","ko":"중요","tts_text":"重要"},
-    {"kanji":"大事","kana":"だいじ","pron":"다이지","ko":"중요","tts_text":"大事"},
+    {"kanji":"必要","kana":"ひつよう","pron":"히츠요오","ko":"필요, 필요함","tts_text":"必要"},
+    {"kanji":"重要","kana":"じゅうよう","pron":"쥬우요오","ko":"중요, 중요함","tts_text":"重要"},
+    {"kanji":"大事","kana":"だいじ","pron":"다이지","ko":"중요, 소중함","tts_text":"大事"},
     {"kanji":"問題","kana":"もんだい","pron":"몬다이","ko":"문제","tts_text":"問題"},
     {"kanji":"解決","kana":"かいけつ","pron":"카이케츠","ko":"해결","tts_text":"解決"},
 
@@ -8893,7 +8905,7 @@ N3_WORDS = {
     {"kanji":"結果","kana":"けっか","pron":"켁카","ko":"결과","tts_text":"結果"},
     {"kanji":"提案","kana":"ていあん","pron":"테이안","ko":"제안","tts_text":"提案"},
     {"kanji":"意見","kana":"いけん","pron":"이켄","ko":"의견","tts_text":"意見"},
-    {"kanji":"相談する","kana":"そうだんする","pron":"소오단스루","ko":"상담하다","tts_text":"相談する"},
+    {"kanji":"相談する","kana":"そうだんする","pron":"소오단스루","ko":"상담하다, 상의하다","tts_text":"相談する"},
     {"kanji":"確認する","kana":"かくにんする","pron":"카쿠닌스루","ko":"확인하다","tts_text":"確認する"},
     {"kanji":"説明","kana":"せつめい","pron":"세츠메이","ko":"설명","tts_text":"説明"},
     {"kanji":"説明する","kana":"せつめいする","pron":"세츠메이스루","ko":"설명하다","tts_text":"説明する"},
@@ -8904,14 +8916,14 @@ N3_WORDS = {
     {"kanji":"責任","kana":"せきにん","pron":"세키닌","ko":"책임","tts_text":"責任"},
     {"kanji":"職場","kana":"しょくば","pron":"쇼쿠바","ko":"직장","tts_text":"職場"},
     {"kanji":"部署","kana":"ぶしょ","pron":"부쇼","ko":"부서","tts_text":"部署"},
-    {"kanji":"給料","kana":"きゅうりょう","pron":"큐우료오","ko":"급료","tts_text":"給料"},
+    {"kanji":"給料","kana":"きゅうりょう","pron":"큐우료오","ko":"급여, 월급","tts_text":"給料"},
     {"kanji":"残業","kana":"ざんぎょう","pron":"잔교오","ko":"잔업","tts_text":"残業"},
     {"kanji":"出張","kana":"しゅっちょう","pron":"슛쵸오","ko":"출장","tts_text":"出張"},
     {"kanji":"退職","kana":"たいしょく","pron":"타이쇼쿠","ko":"퇴직","tts_text":"退職"},
     {"kanji":"就職","kana":"しゅうしょく","pron":"슈우쇼쿠","ko":"취직","tts_text":"就職"},
     {"kanji":"面接","kana":"めんせつ","pron":"멘세츠","ko":"면접","tts_text":"面接"}
     ]
-    },
+},
 
     "sec05": {
     "title": "공부·시험·능력",
@@ -8930,19 +8942,19 @@ N3_WORDS = {
     {"kanji":"練習","kana":"れんしゅう","pron":"렌슈우","ko":"연습","tts_text":"練習"},
     {"kanji":"復習","kana":"ふくしゅう","pron":"후쿠슈우","ko":"복습","tts_text":"復習"},
     {"kanji":"予習","kana":"よしゅう","pron":"요슈우","ko":"예습","tts_text":"予習"},
-    {"kanji":"覚える","kana":"おぼえる","pron":"오보에루","ko":"외우다","tts_text":"覚える"},
+    {"kanji":"覚える","kana":"おぼえる","pron":"오보에루","ko":"외우다, 기억하다","tts_text":"覚える"},
     {"kanji":"暗記","kana":"あんき","pron":"안키","ko":"암기","tts_text":"暗記"},
     {"kanji":"理解","kana":"りかい","pron":"리카이","ko":"이해","tts_text":"理解"},
     {"kanji":"集中","kana":"しゅうちゅう","pron":"슈우츄우","ko":"집중","tts_text":"集中"},
     {"kanji":"注意","kana":"ちゅうい","pron":"츄우이","ko":"주의","tts_text":"注意"},
     {"kanji":"確認","kana":"かくにん","pron":"카쿠닌","ko":"확인","tts_text":"確認"},
-    {"kanji":"間違い","kana":"まちがい","pron":"마치가이","ko":"틀림","tts_text":"間違い"},
+    {"kanji":"間違い","kana":"まちがい","pron":"마치가이","ko":"틀림, 실수","tts_text":"間違い"},
 
-    {"kanji":"解答","kana":"かいとう","pron":"카이토오","ko":"해답","tts_text":"解答"},
+    {"kanji":"解答","kana":"かいとう","pron":"카이토오","ko":"해답, 답안","tts_text":"解答"},
     {"kanji":"説明","kana":"せつめい","pron":"세츠메이","ko":"설명","tts_text":"説明"},
     {"kanji":"質問","kana":"しつもん","pron":"시츠몬","ko":"질문","tts_text":"質問"},
     {"kanji":"答える","kana":"こたえる","pron":"코타에루","ko":"대답하다","tts_text":"答える"},
-    {"kanji":"調べる","kana":"しらべる","pron":"시라베루","ko":"조사하다","tts_text":"調べる"},
+    {"kanji":"調べる","kana":"しらべる","pron":"시라베루","ko":"조사하다, 찾아보다","tts_text":"調べる"},
     {"kanji":"研究","kana":"けんきゅう","pron":"켄큐우","ko":"연구","tts_text":"研究"},
     {"kanji":"経験","kana":"けいけん","pron":"케이켄","ko":"경험","tts_text":"経験"},
     {"kanji":"能力","kana":"のうりょく","pron":"노오료쿠","ko":"능력","tts_text":"能力"},
@@ -8953,16 +8965,15 @@ N3_WORDS = {
     {"kanji":"進歩","kana":"しんぽ","pron":"신포","ko":"진보","tts_text":"進歩"},
     {"kanji":"成長","kana":"せいちょう","pron":"세이쵸오","ko":"성장","tts_text":"成長"},
     {"kanji":"自信","kana":"じしん","pron":"지신","ko":"자신감","tts_text":"自信"},
-    {"kanji":"失敗","kana":"しっぱい","pron":"싯파이","ko":"실패","tts_text":"失敗"},
+    {"kanji":"失敗","kana":"しっぱい","pron":"싯파이","ko":"실패, 실수","tts_text":"失敗"},
     {"kanji":"成功","kana":"せいこう","pron":"세이코오","ko":"성공","tts_text":"成功"},
     {"kanji":"緊張","kana":"きんちょう","pron":"킨쵸오","ko":"긴장","tts_text":"緊張"},
     {"kanji":"安心","kana":"あんしん","pron":"안신","ko":"안심","tts_text":"安心"},
     {"kanji":"不安","kana":"ふあん","pron":"후안","ko":"불안","tts_text":"不安"},
     {"kanji":"準備する","kana":"じゅんびする","pron":"쥰비스루","ko":"준비하다","tts_text":"準備する"}
     ]
-    },
-
-    "sec06": {
+},
+"sec06": {
     "title": "의사소통·정보",
     "items": [
     {"kanji":"会話","kana":"かいわ","pron":"카이와","ko":"회화","tts_text":"会話"},
@@ -8972,20 +8983,20 @@ N3_WORDS = {
     {"kanji":"文章","kana":"ぶんしょう","pron":"분쇼오","ko":"문장","tts_text":"文章"},
     {"kanji":"単語","kana":"たんご","pron":"탄고","ko":"단어","tts_text":"単語"},
     {"kanji":"漢字","kana":"かんじ","pron":"칸지","ko":"한자","tts_text":"漢字"},
-    {"kanji":"意味","kana":"いみ","pron":"이미","ko":"의미","tts_text":"意味"},
+    {"kanji":"意味","kana":"いみ","pron":"이미","ko":"의미, 뜻","tts_text":"意味"},
     {"kanji":"内容","kana":"ないよう","pron":"나이요오","ko":"내용","tts_text":"内容"},
     {"kanji":"情報","kana":"じょうほう","pron":"죠오호오","ko":"정보","tts_text":"情報"},
 
     {"kanji":"連絡","kana":"れんらく","pron":"렌라쿠","ko":"연락","tts_text":"連絡"},
     {"kanji":"報告","kana":"ほうこく","pron":"호오코쿠","ko":"보고","tts_text":"報告"},
-    {"kanji":"相談","kana":"そうだん","pron":"소오단","ko":"상담","tts_text":"相談"},
+    {"kanji":"相談","kana":"そうだん","pron":"소오단","ko":"상담, 상의","tts_text":"相談"},
     {"kanji":"伝える","kana":"つたえる","pron":"츠타에루","ko":"전하다","tts_text":"伝える"},
     {"kanji":"知らせる","kana":"しらせる","pron":"시라세루","ko":"알리다","tts_text":"知らせる"},
     {"kanji":"聞き返す","kana":"ききかえす","pron":"키키카에스","ko":"되묻다","tts_text":"聞き返す"},
     {"kanji":"理解する","kana":"りかいする","pron":"리카이스루","ko":"이해하다","tts_text":"理解する"},
     {"kanji":"誤解","kana":"ごかい","pron":"고카이","ko":"오해","tts_text":"誤解"},
     {"kanji":"確認する","kana":"かくにんする","pron":"카쿠닌스루","ko":"확인하다","tts_text":"確認する"},
-    {"kanji":"納得","kana":"なっとく","pron":"낫토쿠","ko":"납득","tts_text":"納得"},
+    {"kanji":"納得","kana":"なっとく","pron":"낫토쿠","ko":"납득, 이해","tts_text":"納得"},
 
     {"kanji":"同意","kana":"どうい","pron":"도오이","ko":"동의","tts_text":"同意"},
     {"kanji":"反対","kana":"はんたい","pron":"한타이","ko":"반대","tts_text":"反対"},
@@ -9004,20 +9015,20 @@ N3_WORDS = {
     {"kanji":"番組","kana":"ばんぐみ","pron":"반구미","ko":"프로그램","tts_text":"番組"},
     {"kanji":"連載","kana":"れんさい","pron":"렌사이","ko":"연재","tts_text":"連載"},
     {"kanji":"広告","kana":"こうこく","pron":"코오코쿠","ko":"광고","tts_text":"広告"},
-    {"kanji":"宣伝","kana":"せんでん","pron":"센덴","ko":"선전","tts_text":"宣伝"},
+    {"kanji":"宣伝","kana":"せんでん","pron":"센덴","ko":"선전, 홍보","tts_text":"宣伝"},
     {"kanji":"噂","kana":"うわさ","pron":"우와사","ko":"소문","tts_text":"噂"},
-    {"kanji":"評判","kana":"ひょうばん","pron":"효오반","ko":"평판","tts_text":"評判"},
-    {"kanji":"通知","kana":"つうち","pron":"츠우치","ko":"통지","tts_text":"通知"}
+    {"kanji":"評判","kana":"ひょうばん","pron":"효오반","ko":"평판, 소문","tts_text":"評判"},
+    {"kanji":"通知","kana":"つうち","pron":"츠우치","ko":"통지, 알림","tts_text":"通知"}
     ]
-    },
+},
 
     "sec07": {
     "title": "건강·몸·병원",
     "items": [
-    {"kanji":"体調","kana":"たいちょう","pron":"타이쵸오","ko":"몸상태","tts_text":"体調"},
+    {"kanji":"体調","kana":"たいちょう","pron":"타이쵸오","ko":"몸상태, 컨디션","tts_text":"体調"},
     {"kanji":"健康","kana":"けんこう","pron":"켄코오","ko":"건강","tts_text":"健康"},
-    {"kanji":"病気","kana":"びょうき","pron":"뵤오키","ko":"병","tts_text":"病気"},
-    {"kanji":"怪我","kana":"けが","pron":"케가","ko":"부상","tts_text":"怪我"},
+    {"kanji":"病気","kana":"びょうき","pron":"뵤오키","ko":"병, 질병","tts_text":"病気"},
+    {"kanji":"怪我","kana":"けが","pron":"케가","ko":"부상, 상처","tts_text":"怪我"},
     {"kanji":"熱","kana":"ねつ","pron":"네츠","ko":"열","tts_text":"熱"},
     {"kanji":"咳","kana":"せき","pron":"세키","ko":"기침","tts_text":"咳"},
     {"kanji":"頭痛","kana":"ずつう","pron":"즈츠우","ko":"두통","tts_text":"頭痛"},
@@ -9038,7 +9049,7 @@ N3_WORDS = {
 
     {"kanji":"症状","kana":"しょうじょう","pron":"쇼오죠오","ko":"증상","tts_text":"症状"},
     {"kanji":"痛み","kana":"いたみ","pron":"이타미","ko":"통증","tts_text":"痛み"},
-    {"kanji":"疲れ","kana":"つかれ","pron":"츠카레","ko":"피로","tts_text":"疲れ"},
+    {"kanji":"疲れ","kana":"つかれ","pron":"츠카레","ko":"피로, 피곤함","tts_text":"疲れ"},
     {"kanji":"睡眠","kana":"すいみん","pron":"스이민","ko":"수면","tts_text":"睡眠"},
     {"kanji":"食欲","kana":"しょくよく","pron":"쇼쿠요쿠","ko":"식욕","tts_text":"食欲"},
     {"kanji":"運動","kana":"うんどう","pron":"운도오","ko":"운동","tts_text":"運動"},
@@ -9058,9 +9069,8 @@ N3_WORDS = {
     {"kanji":"目薬","kana":"めぐすり","pron":"메구스리","ko":"안약","tts_text":"目薬"},
     {"kanji":"風邪","kana":"かぜ","pron":"카제","ko":"감기","tts_text":"風邪"}
     ]
-    },
-
-    "sec08": {
+},
+"sec08": {
     "title": "자연·날씨·환경",
     "items": [
     {"kanji":"天気予報","kana":"てんきよほう","pron":"텐키요호오","ko":"일기예보","tts_text":"天気予報"},
@@ -9068,7 +9078,7 @@ N3_WORDS = {
     {"kanji":"湿度","kana":"しつど","pron":"시츠도","ko":"습도","tts_text":"湿度"},
     {"kanji":"強風","kana":"きょうふう","pron":"쿄오후우","ko":"강풍","tts_text":"強風"},
     {"kanji":"台風","kana":"たいふう","pron":"타이후우","ko":"태풍","tts_text":"台風"},
-    {"kanji":"雷","kana":"かみなり","pron":"카미나리","ko":"천둥","tts_text":"雷"},
+    {"kanji":"雷","kana":"かみなり","pron":"카미나리","ko":"천둥, 번개","tts_text":"雷"},
     {"kanji":"雪","kana":"ゆき","pron":"유키","ko":"눈","tts_text":"雪"},
     {"kanji":"雨","kana":"あめ","pron":"아메","ko":"비","tts_text":"雨"},
     {"kanji":"雲","kana":"くも","pron":"쿠모","ko":"구름","tts_text":"雲"},
@@ -9107,26 +9117,26 @@ N3_WORDS = {
     {"kanji":"虫","kana":"むし","pron":"무시","ko":"벌레","tts_text":"虫"},
     {"kanji":"花粉","kana":"かふん","pron":"카푼","ko":"꽃가루","tts_text":"花粉"}
     ]
-    },
+},
 
     "sec09": {
     "title": "소비·금전·쇼핑",
     "items": [
-    {"kanji":"値段","kana":"ねだん","pron":"네단","ko":"가격","tts_text":"値段"},
+    {"kanji":"値段","kana":"ねだん","pron":"네단","ko":"가격, 값","tts_text":"値段"},
     {"kanji":"料金","kana":"りょうきん","pron":"료오킨","ko":"요금","tts_text":"料金"},
-    {"kanji":"支払い","kana":"しはらい","pron":"시하라이","ko":"지불","tts_text":"支払い"},
+    {"kanji":"支払い","kana":"しはらい","pron":"시하라이","ko":"지불, 결제","tts_text":"支払い"},
     {"kanji":"現金","kana":"げんきん","pron":"겐킨","ko":"현금","tts_text":"現金"},
     {"kanji":"財布","kana":"さいふ","pron":"사이후","ko":"지갑","tts_text":"財布"},
     {"kanji":"レシート","kana":"レシート","pron":"레시이토","ko":"영수증","tts_text":"レシート"},
     {"kanji":"領収書","kana":"りょうしゅうしょ","pron":"료오슈우쇼","ko":"영수증(격식)","tts_text":"領収書"},
-    {"kanji":"割引","kana":"わりびき","pron":"와리비키","ko":"할인","tts_text":"割引"},
-    {"kanji":"値引き","kana":"ねびき","pron":"네비키","ko":"값 깎음","tts_text":"値引き"},
+    {"kanji":"割引","kana":"わりびき","pron":"와리비키","ko":"할인, 할인함","tts_text":"割引"},
+    {"kanji":"値引き","kana":"ねびき","pron":"네비키","ko":"값 깎음, 할인","tts_text":"値引き"},
     {"kanji":"返品","kana":"へんぴん","pron":"헨핀","ko":"반품","tts_text":"返品"},
 
     {"kanji":"交換","kana":"こうかん","pron":"코오칸","ko":"교환","tts_text":"交換"},
     {"kanji":"在庫","kana":"ざいこ","pron":"자이코","ko":"재고","tts_text":"在庫"},
     {"kanji":"品切れ","kana":"しなぎれ","pron":"시나기레","ko":"품절","tts_text":"品切れ"},
-    {"kanji":"商品","kana":"しょうひん","pron":"쇼오힌","ko":"상품","tts_text":"商品"},
+    {"kanji":"商品","kana":"しょうひん","pron":"쇼오힌","ko":"상품, 물건","tts_text":"商品"},
     {"kanji":"品質","kana":"ひんしつ","pron":"힌시츠","ko":"품질","tts_text":"品質"},
     {"kanji":"説明書","kana":"せつめいしょ","pron":"세츠메이쇼","ko":"설명서","tts_text":"説明書"},
     {"kanji":"保証","kana":"ほしょう","pron":"호쇼오","ko":"보증","tts_text":"保証"},
@@ -9145,20 +9155,19 @@ N3_WORDS = {
     {"kanji":"貯金","kana":"ちょきん","pron":"초킨","ko":"저금","tts_text":"貯金"},
     {"kanji":"借金","kana":"しゃっきん","pron":"샥킨","ko":"빚","tts_text":"借金"},
 
-    {"kanji":"給料","kana":"きゅうりょう","pron":"큐우료오","ko":"급료","tts_text":"給料"},
+    {"kanji":"給料","kana":"きゅうりょう","pron":"큐우료오","ko":"급료, 월급","tts_text":"給料"},
     {"kanji":"収入","kana":"しゅうにゅう","pron":"슈우뉴우","ko":"수입","tts_text":"収入"},
     {"kanji":"出費","kana":"しゅっぴ","pron":"슛피","ko":"지출","tts_text":"出費"},
     {"kanji":"価格","kana":"かかく","pron":"카카쿠","ko":"가격(격식)","tts_text":"価格"},
-    {"kanji":"安売り","kana":"やすうり","pron":"야스우리","ko":"싸게 팜","tts_text":"安売り"},
+    {"kanji":"安売り","kana":"やすうり","pron":"야스우리","ko":"싸게 팜, 세일","tts_text":"安売り"},
     {"kanji":"高級","kana":"こうきゅう","pron":"코오큐우","ko":"고급","tts_text":"高級"},
     {"kanji":"中古","kana":"ちゅうこ","pron":"츄우코","ko":"중고","tts_text":"中古"},
     {"kanji":"新品","kana":"しんぴん","pron":"신핀","ko":"새 제품","tts_text":"新品"},
     {"kanji":"人気","kana":"にんき","pron":"닌키","ko":"인기","tts_text":"人気"},
     {"kanji":"流行","kana":"りゅうこう","pron":"류우코오","ko":"유행","tts_text":"流行"}
     ]
-    },
-
-    "sec10": {
+},
+"sec10": {
     "title": "상태·감정·평가",
     "items": [
     {"kanji":"気分","kana":"きぶん","pron":"키분","ko":"기분","tts_text":"気分"},
@@ -9188,1289 +9197,1242 @@ N3_WORDS = {
     {"kanji":"厳しい","kana":"きびしい","pron":"키비시이","ko":"엄격하다","tts_text":"厳しい"},
     {"kanji":"優しい","kana":"やさしい","pron":"야사시이","ko":"상냥하다","tts_text":"優しい"},
     {"kanji":"素晴らしい","kana":"すばらしい","pron":"스바라시이","ko":"훌륭하다","tts_text":"素晴らしい"},
-    {"kanji":"便利","kana":"べんり","pron":"벤리","ko":"편리","tts_text":"便利"},
-    {"kanji":"不便","kana":"ふべん","pron":"후벤","ko":"불편","tts_text":"不便"},
+    {"kanji":"便利","kana":"べんり","pron":"벤리","ko":"편리, 편리하다","tts_text":"便利"},
+    {"kanji":"不便","kana":"ふべん","pron":"후벤","ko":"불편, 불편하다","tts_text":"不便"},
     {"kanji":"難しい","kana":"むずかしい","pron":"무즈카시이","ko":"어렵다","tts_text":"難しい"},
-    {"kanji":"複雑","kana":"ふくざつ","pron":"후쿠자츠","ko":"복잡","tts_text":"複雑"},
-    {"kanji":"簡単","kana":"かんたん","pron":"칸탄","ko":"간단","tts_text":"簡単"},
+    {"kanji":"複雑","kana":"ふくざつ","pron":"후쿠자츠","ko":"복잡, 복잡하다","tts_text":"複雑"},
+    {"kanji":"簡単","kana":"かんたん","pron":"칸탄","ko":"간단, 쉽다","tts_text":"簡単"},
 
     {"kanji":"正しい","kana":"ただしい","pron":"타다시이","ko":"올바르다","tts_text":"正しい"},
-    {"kanji":"確か","kana":"たしか","pron":"타시카","ko":"확실함","tts_text":"確か"},
-    {"kanji":"確実","kana":"かくじつ","pron":"카쿠지츠","ko":"확실","tts_text":"確実"},
-    {"kanji":"大切","kana":"たいせつ","pron":"타이세츠","ko":"중요","tts_text":"大切"},
-    {"kanji":"重要","kana":"じゅうよう","pron":"쥬우요오","ko":"중요","tts_text":"重要"},
+    {"kanji":"確か","kana":"たしか","pron":"타시카","ko":"확실함, 아마","tts_text":"確か"},
+    {"kanji":"確実","kana":"かくじつ","pron":"카쿠지츠","ko":"확실, 확실함","tts_text":"確実"},
+    {"kanji":"大切","kana":"たいせつ","pron":"타이세츠","ko":"중요, 소중함","tts_text":"大切"},
+    {"kanji":"重要","kana":"じゅうよう","pron":"쥬우요오","ko":"중요, 중요함","tts_text":"重要"},
     {"kanji":"特別","kana":"とくべつ","pron":"토쿠베츠","ko":"특별","tts_text":"特別"},
     {"kanji":"普通","kana":"ふつう","pron":"후츠우","ko":"보통","tts_text":"普通"},
     {"kanji":"異常","kana":"いじょう","pron":"이죠오","ko":"이상(비정상)","tts_text":"異常"},
     {"kanji":"危険","kana":"きけん","pron":"키켄","ko":"위험","tts_text":"危険"},
     {"kanji":"安全","kana":"あんぜん","pron":"안젠","ko":"안전","tts_text":"安全"}
     ]
-    }
+}
 }
 
 N2_WORDS = {
   "sec01": {
-    "title": "논리·업무·추상",
-    "items": [
-      {"kanji":"傾向","kana":"けいこう","pron":"케이코오","ko":"경향","tts_text":"傾向"},
-      {"kanji":"動向","kana":"どうこう","pron":"도오코오","ko":"동향","tts_text":"動向"},
-      {"kanji":"方針","kana":"ほうしん","pron":"호오신","ko":"방침","tts_text":"方針"},
-      {"kanji":"対策","kana":"たいさく","pron":"타이사쿠","ko":"대책","tts_text":"対策"},
-      {"kanji":"課題","kana":"かだい","pron":"카다이","ko":"과제","tts_text":"課題"},
-      {"kanji":"問題点","kana":"もんだいてん","pron":"몬다이텐","ko":"문제점","tts_text":"問題点"},
-      {"kanji":"原因","kana":"げんいん","pron":"겐인","ko":"원인","tts_text":"原因"},
-      {"kanji":"背景","kana":"はいけい","pron":"하이케이","ko":"배경","tts_text":"背景"},
-      {"kanji":"目的","kana":"もくてき","pron":"모쿠테키","ko":"목적","tts_text":"目的"},
-      {"kanji":"結論","kana":"けつろん","pron":"켓론","ko":"결론","tts_text":"結論"},
+  "title": "논리·업무·추상",
+  "items": [
+    {"kanji":"傾向","kana":"けいこう","pron":"케이코오","ko":"경향","tts_text":"傾向"},
+    {"kanji":"動向","kana":"どうこう","pron":"도오코오","ko":"동향","tts_text":"動向"},
+    {"kanji":"方針","kana":"ほうしん","pron":"호오신","ko":"방침","tts_text":"方針"},
+    {"kanji":"対策","kana":"たいさく","pron":"타이사쿠","ko":"대책","tts_text":"対策"},
+    {"kanji":"課題","kana":"かだい","pron":"카다이","ko":"과제/문제 과제","tts_text":"課題"},
+    {"kanji":"問題点","kana":"もんだいてん","pron":"몬다이텐","ko":"문제점","tts_text":"問題点"},
+    {"kanji":"原因","kana":"げんいん","pron":"겐인","ko":"원인","tts_text":"原因"},
+    {"kanji":"背景","kana":"はいけい","pron":"하이케이","ko":"배경/배후 사정","tts_text":"背景"},
+    {"kanji":"目的","kana":"もくてき","pron":"모쿠테키","ko":"목적","tts_text":"目的"},
+    {"kanji":"結論","kana":"けつろん","pron":"켓론","ko":"결론","tts_text":"結論"},
 
-      {"kanji":"影響","kana":"えいきょう","pron":"에이쿄오","ko":"영향","tts_text":"影響"},
-      {"kanji":"効果","kana":"こうか","pron":"코오카","ko":"효과","tts_text":"効果"},
-      {"kanji":"成果","kana":"せいか","pron":"세이카","ko":"성과","tts_text":"成果"},
-      {"kanji":"結果","kana":"けっか","pron":"켓카","ko":"결과","tts_text":"結果"},
-      {"kanji":"可能性","kana":"かのうせい","pron":"카노오세이","ko":"가능성","tts_text":"可能性"},
-      {"kanji":"必要性","kana":"ひつようせい","pron":"히츠요오세이","ko":"필요성","tts_text":"必要性"},
-      {"kanji":"重要性","kana":"じゅうようせい","pron":"주우요오세이","ko":"중요성","tts_text":"重要性"},
-      {"kanji":"優先","kana":"ゆうせん","pron":"유우센","ko":"우선","tts_text":"優先"},
-      {"kanji":"最適","kana":"さいてき","pron":"사이테키","ko":"최적","tts_text":"最適"},
-      {"kanji":"適切","kana":"てきせつ","pron":"테키세츠","ko":"적절","tts_text":"適切"},
+    {"kanji":"影響","kana":"えいきょう","pron":"에이쿄오","ko":"영향","tts_text":"影響"},
+    {"kanji":"効果","kana":"こうか","pron":"코오카","ko":"효과","tts_text":"効果"},
+    {"kanji":"成果","kana":"せいか","pron":"세이카","ko":"성과","tts_text":"成果"},
+    {"kanji":"結果","kana":"けっか","pron":"켓카","ko":"결과","tts_text":"結果"},
+    {"kanji":"可能性","kana":"かのうせい","pron":"카노오세이","ko":"가능성","tts_text":"可能性"},
+    {"kanji":"必要性","kana":"ひつようせい","pron":"히츠요오세이","ko":"필요성","tts_text":"必要性"},
+    {"kanji":"重要性","kana":"じゅうようせい","pron":"주우요오세이","ko":"중요성","tts_text":"重要性"},
+    {"kanji":"優先","kana":"ゆうせん","pron":"유우센","ko":"우선/우선시함","tts_text":"優先"},
+    {"kanji":"最適","kana":"さいてき","pron":"사이테키","ko":"최적/가장 알맞음","tts_text":"最適"},
+    {"kanji":"適切","kana":"てきせつ","pron":"테키세츠","ko":"적절/알맞음","tts_text":"適切"},
 
-      {"kanji":"実施","kana":"じっし","pron":"짓시","ko":"실시","tts_text":"実施"},
-      {"kanji":"導入","kana":"どうにゅう","pron":"도오뉴우","ko":"도입","tts_text":"導入"},
-      {"kanji":"運用","kana":"うんよう","pron":"운요오","ko":"운용","tts_text":"運用"},
-      {"kanji":"管理","kana":"かんり","pron":"칸리","ko":"관리","tts_text":"管理"},
-      {"kanji":"調整","kana":"ちょうせい","pron":"초오세이","ko":"조정","tts_text":"調整"},
-      {"kanji":"改善","kana":"かいぜん","pron":"카이젠","ko":"개선","tts_text":"改善"},
-      {"kanji":"改革","kana":"かいかく","pron":"카이카쿠","ko":"개혁","tts_text":"改革"},
-      {"kanji":"検討","kana":"けんとう","pron":"켄토오","ko":"검토","tts_text":"検討"},
-      {"kanji":"分析","kana":"ぶんせき","pron":"분세키","ko":"분석","tts_text":"分析"},
-      {"kanji":"評価","kana":"ひょうか","pron":"효오카","ko":"평가","tts_text":"評価"},
+    {"kanji":"実施","kana":"じっし","pron":"짓시","ko":"실시","tts_text":"実施"},
+    {"kanji":"導入","kana":"どうにゅう","pron":"도오뉴우","ko":"도입","tts_text":"導入"},
+    {"kanji":"運用","kana":"うんよう","pron":"운요오","ko":"운용","tts_text":"運用"},
+    {"kanji":"管理","kana":"かんり","pron":"칸리","ko":"관리/통제","tts_text":"管理"},
+    {"kanji":"調整","kana":"ちょうせい","pron":"초오세이","ko":"조정","tts_text":"調整"},
+    {"kanji":"改善","kana":"かいぜん","pron":"카이젠","ko":"개선","tts_text":"改善"},
 
-      {"kanji":"確認","kana":"かくにん","pron":"카쿠닌","ko":"확인","tts_text":"確認"},
-      {"kanji":"把握","kana":"はあく","pron":"하아쿠","ko":"파악","tts_text":"把握"},
-      {"kanji":"判断","kana":"はんだん","pron":"한단","ko":"판단","tts_text":"判断"},
-      {"kanji":"決定","kana":"けってい","pron":"켓테이","ko":"결정","tts_text":"決定"},
-      {"kanji":"提案","kana":"ていあん","pron":"테이안","ko":"제안","tts_text":"提案"},
-      {"kanji":"提示","kana":"ていじ","pron":"테이지","ko":"제시","tts_text":"提示"},
-      {"kanji":"説明","kana":"せつめい","pron":"세츠메이","ko":"설명","tts_text":"説明"},
-      {"kanji":"説明責任","kana":"せつめいせきにん","pron":"세츠메이 세키닌","ko":"설명 책임","tts_text":"説明責任"},
-      {"kanji":"報告","kana":"ほうこく","pron":"호오코쿠","ko":"보고","tts_text":"報告"},
-      {"kanji":"連絡","kana":"れんらく","pron":"렌라쿠","ko":"연락","tts_text":"連絡"},
+    {"kanji":"評価","kana":"ひょうか","pron":"효오카","ko":"평가/평판","tts_text":"評価"},
+    {"kanji":"判断","kana":"はんだん","pron":"한단","ko":"판단/판정","tts_text":"判断"},
+    {"kanji":"提示","kana":"ていじ","pron":"테이지","ko":"제시/제출해서 보여줌","tts_text":"提示"},
+    {"kanji":"相談","kana":"そうだん","pron":"소오단","ko":"상담/상의","tts_text":"相談"},
+    {"kanji":"交渉","kana":"こうしょう","pron":"코오쇼오","ko":"교섭/협상","tts_text":"交渉"},
+    {"kanji":"条件","kana":"じょうけん","pron":"죠오켄","ko":"조건/요건","tts_text":"条件"},
+    {"kanji":"対応","kana":"たいおう","pron":"타이오오","ko":"대응/응대","tts_text":"対応"},
+    {"kanji":"対処","kana":"たいしょ","pron":"타이쇼","ko":"대처/처리","tts_text":"対処"},
 
-      {"kanji":"相談","kana":"そうだん","pron":"소오단","ko":"상담","tts_text":"相談"},
-      {"kanji":"交渉","kana":"こうしょう","pron":"코오쇼오","ko":"교섭","tts_text":"交渉"},
-      {"kanji":"合意","kana":"ごうい","pron":"고오이","ko":"합의","tts_text":"合意"},
-      {"kanji":"契約","kana":"けいやく","pron":"케이야쿠","ko":"계약","tts_text":"契約"},
-      {"kanji":"条件","kana":"じょうけん","pron":"죠오켄","ko":"조건","tts_text":"条件"},
-      {"kanji":"要件","kana":"ようけん","pron":"요오켄","ko":"요건","tts_text":"要件"},
-      {"kanji":"手続き","kana":"てつづき","pron":"테츠즈키","ko":"절차","tts_text":"手続き"},
-      {"kanji":"対応","kana":"たいおう","pron":"타이오오","ko":"대응","tts_text":"対応"},
-      {"kanji":"処理","kana":"しょり","pron":"쇼리","ko":"처리","tts_text":"処理"},
-      {"kanji":"対処","kana":"たいしょ","pron":"타이쇼","ko":"대처","tts_text":"対処"},
+    {"kanji":"維持","kana":"いじ","pron":"이지","ko":"유지/지탱","tts_text":"維持"},
+    {"kanji":"更新","kana":"こうしん","pron":"코오신","ko":"갱신/업데이트","tts_text":"更新"},
+    {"kanji":"発生","kana":"はっせい","pron":"핫세이","ko":"발생/생김","tts_text":"発生"},
+    {"kanji":"発展","kana":"はってん","pron":"핫텐","ko":"발전/진전","tts_text":"発展"},
+    {"kanji":"進展","kana":"しんてん","pron":"신텐","ko":"진전/발전","tts_text":"進展"},
+    {"kanji":"促進","kana":"そくしん","pron":"소쿠신","ko":"촉진/앞당김","tts_text":"促進"},
+    {"kanji":"抑制","kana":"よくせい","pron":"요쿠세이","ko":"억제/억누름","tts_text":"抑制"},
 
-      {"kanji":"維持","kana":"いじ","pron":"이지","ko":"유지","tts_text":"維持"},
-      {"kanji":"継続","kana":"けいぞく","pron":"케이조쿠","ko":"지속","tts_text":"継続"},
-      {"kanji":"中止","kana":"ちゅうし","pron":"츄우시","ko":"중지","tts_text":"中止"},
-      {"kanji":"延期","kana":"えんき","pron":"엔키","ko":"연기","tts_text":"延期"},
-      {"kanji":"変更","kana":"へんこう","pron":"헨코오","ko":"변경","tts_text":"変更"},
-      {"kanji":"更新","kana":"こうしん","pron":"코오신","ko":"갱신","tts_text":"更新"},
-      {"kanji":"削減","kana":"さくげん","pron":"사쿠겐","ko":"삭감","tts_text":"削減"},
-      {"kanji":"増加","kana":"ぞうか","pron":"조오카","ko":"증가","tts_text":"増加"},
-      {"kanji":"拡大","kana":"かくだい","pron":"카쿠다이","ko":"확대","tts_text":"拡大"},
-      {"kanji":"縮小","kana":"しゅくしょう","pron":"슈쿠쇼오","ko":"축소","tts_text":"縮小"},
+    {"kanji":"確保","kana":"かくほ","pron":"카쿠호","ko":"확보/보장해서 확보함","tts_text":"確保"},
+    {"kanji":"提供","kana":"ていきょう","pron":"테이쿄오","ko":"제공/내놓음","tts_text":"提供"},
+    {"kanji":"共有","kana":"きょうゆう","pron":"쿄오유우","ko":"공유/함께 가짐","tts_text":"共有"},
+    {"kanji":"関連","kana":"かんれん","pron":"칸렌","ko":"관련/관계","tts_text":"関連"},
 
-      {"kanji":"発生","kana":"はっせい","pron":"핫세이","ko":"발생","tts_text":"発生"},
-      {"kanji":"発展","kana":"はってん","pron":"핫텐","ko":"발전","tts_text":"発展"},
-      {"kanji":"進展","kana":"しんてん","pron":"신텐","ko":"진전","tts_text":"進展"},
-      {"kanji":"停滞","kana":"ていたい","pron":"테이타이","ko":"정체","tts_text":"停滞"},
-      {"kanji":"改善する","kana":"かいぜんする","pron":"카이젠 스루","ko":"개선하다","tts_text":"改善する"},
-      {"kanji":"検討する","kana":"けんとうする","pron":"켄토오 스루","ko":"검토하다","tts_text":"検討する"},
-      {"kanji":"提案する","kana":"ていあんする","pron":"테이안 스루","ko":"제안하다","tts_text":"提案する"},
-      {"kanji":"実施する","kana":"じっしする","pron":"짓시 스루","ko":"실시하다","tts_text":"実施する"},
-      {"kanji":"対応する","kana":"たいおうする","pron":"타이오오 스루","ko":"대응하다","tts_text":"対応する"},
-      {"kanji":"把握する","kana":"はあくする","pron":"하아쿠 스루","ko":"파악하다","tts_text":"把握する"},
-
-      {"kanji":"促進","kana":"そくしん","pron":"소쿠신","ko":"촉진","tts_text":"促進"},
-      {"kanji":"抑制","kana":"よくせい","pron":"요쿠세이","ko":"억제","tts_text":"抑制"},
-      {"kanji":"達成","kana":"たっせい","pron":"탓세이","ko":"달성","tts_text":"達成"},
-      {"kanji":"実現","kana":"じつげん","pron":"짓겐","ko":"실현","tts_text":"実現"},
-      {"kanji":"確保","kana":"かくほ","pron":"카쿠호","ko":"확보","tts_text":"確保"},
-      {"kanji":"提供","kana":"ていきょう","pron":"테이쿄오","ko":"제공","tts_text":"提供"},
-      {"kanji":"共有","kana":"きょうゆう","pron":"쿄오유우","ko":"공유","tts_text":"共有"},
-      {"kanji":"配慮","kana":"はいりょ","pron":"하이료","ko":"배려","tts_text":"配慮"},
-      {"kanji":"影響する","kana":"えいきょうする","pron":"에이쿄오 스루","ko":"영향을 미치다","tts_text":"影響する"},
-      {"kanji":"関連","kana":"かんれん","pron":"칸렌","ko":"관련","tts_text":"関連"},
-
-      {"kanji":"一方で","kana":"いっぽうで","pron":"잇포오데","ko":"한편으로는","tts_text":"一方で"},
-      {"kanji":"それに対して","kana":"それにたいして","pron":"소레니 타이시테","ko":"그에 반해","tts_text":"それに対して"},
-      {"kanji":"したがって","kana":"したがって","pron":"시타갓테","ko":"따라서","tts_text":"したがって"},
-      {"kanji":"つまり","kana":"つまり","pron":"츠마리","ko":"즉","tts_text":"つまり"},
-      {"kanji":"なお","kana":"なお","pron":"나오","ko":"덧붙여","tts_text":"なお"},
-      {"kanji":"一応","kana":"いちおう","pron":"이치오오","ko":"일단","tts_text":"一応"},
-      {"kanji":"むしろ","kana":"むしろ","pron":"무시로","ko":"오히려","tts_text":"むしろ"},
-      {"kanji":"あくまで","kana":"あくまで","pron":"아쿠마데","ko":"어디까지나/끝까지","tts_text":"あくまで"},
-      {"kanji":"いずれ","kana":"いずれ","pron":"이즈레","ko":"언젠가/어느 쪽이든","tts_text":"いずれ"},
-      {"kanji":"各自","kana":"かくじ","pron":"카쿠지","ko":"각자","tts_text":"各自"}
-    ]
-  },
+    {"kanji":"なお","kana":"なお","pron":"나오","ko":"덧붙여/또한","tts_text":"なお"},
+    {"kanji":"一応","kana":"いちおう","pron":"이치오오","ko":"일단/우선","tts_text":"一応"}
+  ]
+},
 
   "sec02": {
-    "title": "경제·회사·비즈니스",
-    "items": [
-      {"kanji":"経営","kana":"けいえい","pron":"케이에이","ko":"경영","tts_text":"経営"},
-      {"kanji":"企業","kana":"きぎょう","pron":"키교오","ko":"기업","tts_text":"企業"},
-      {"kanji":"経済","kana":"けいざい","pron":"케이자이","ko":"경제","tts_text":"経済"},
-      {"kanji":"景気","kana":"けいき","pron":"케이키","ko":"경기(경제)","tts_text":"景気"},
-      {"kanji":"市場","kana":"しじょう","pron":"시죠오","ko":"시장","tts_text":"市場"},
-      {"kanji":"需要","kana":"じゅよう","pron":"쥬요오","ko":"수요","tts_text":"需要"},
-      {"kanji":"供給","kana":"きょうきゅう","pron":"쿄오큐우","ko":"공급","tts_text":"供給"},
-      {"kanji":"取引","kana":"とりひき","pron":"토리히키","ko":"거래","tts_text":"取引"},
-      {"kanji":"取扱い","kana":"とりあつかい","pron":"토리아츠카이","ko":"취급","tts_text":"取扱い"},
-      {"kanji":"販売","kana":"はんばい","pron":"한바이","ko":"판매","tts_text":"販売"},
+  "title": "경제·회사·비즈니스",
+  "items": [
+    {"kanji":"経営","kana":"けいえい","pron":"케이에이","ko":"경영/운영","tts_text":"経営"},
+    {"kanji":"企業","kana":"きぎょう","pron":"키교오","ko":"기업","tts_text":"企業"},
+    {"kanji":"経済","kana":"けいざい","pron":"케이자이","ko":"경제","tts_text":"経済"},
+    {"kanji":"景気","kana":"けいき","pron":"케이키","ko":"경기(경제)/경제 상황","tts_text":"景気"},
+    {"kanji":"市場","kana":"しじょう","pron":"시죠오","ko":"시장/마켓","tts_text":"市場"},
+    {"kanji":"需要","kana":"じゅよう","pron":"쥬요오","ko":"수요","tts_text":"需要"},
+    {"kanji":"供給","kana":"きょうきゅう","pron":"쿄오큐우","ko":"공급","tts_text":"供給"},
+    {"kanji":"取引","kana":"とりひき","pron":"토리히키","ko":"거래/거래 행위","tts_text":"取引"},
+    {"kanji":"取扱い","kana":"とりあつかい","pron":"토리아츠카이","ko":"취급/다룸","tts_text":"取扱い"},
+    {"kanji":"販売","kana":"はんばい","pron":"한바이","ko":"판매/판매함","tts_text":"販売"},
 
-      {"kanji":"売上","kana":"うりあげ","pron":"우리아게","ko":"매출","tts_text":"売上"},
-      {"kanji":"利益","kana":"りえき","pron":"리에키","ko":"이익","tts_text":"利益"},
-      {"kanji":"損失","kana":"そんしつ","pron":"손시츠","ko":"손실","tts_text":"損失"},
-      {"kanji":"収益","kana":"しゅうえき","pron":"슈우에키","ko":"수익","tts_text":"収益"},
-      {"kanji":"収支","kana":"しゅうし","pron":"슈우시","ko":"수지","tts_text":"収支"},
-      {"kanji":"予算","kana":"よさん","pron":"요산","ko":"예산","tts_text":"予算"},
-      {"kanji":"費用","kana":"ひよう","pron":"히요오","ko":"비용","tts_text":"費用"},
-      {"kanji":"支出","kana":"ししゅつ","pron":"시슈츠","ko":"지출","tts_text":"支出"},
-      {"kanji":"投資","kana":"とうし","pron":"토오시","ko":"투자","tts_text":"投資"},
-      {"kanji":"融資","kana":"ゆうし","pron":"유우시","ko":"융자","tts_text":"融資"},
+    {"kanji":"売上","kana":"うりあげ","pron":"우리아게","ko":"매출/판매액","tts_text":"売上"},
+    {"kanji":"利益","kana":"りえき","pron":"리에키","ko":"이익/이득","tts_text":"利益"},
+    {"kanji":"損失","kana":"そんしつ","pron":"손시츠","ko":"손실/손해","tts_text":"損失"},
+    {"kanji":"収益","kana":"しゅうえき","pron":"슈우에키","ko":"수익/수입","tts_text":"収益"},
+    {"kanji":"収支","kana":"しゅうし","pron":"슈우시","ko":"수지/수입과 지출","tts_text":"収支"},
+    {"kanji":"予算","kana":"よさん","pron":"요산","ko":"예산","tts_text":"予算"},
+    {"kanji":"費用","kana":"ひよう","pron":"히요오","ko":"비용/경비","tts_text":"費用"},
+    {"kanji":"支出","kana":"ししゅつ","pron":"시슈츠","ko":"지출","tts_text":"支出"},
+    {"kanji":"投資","kana":"とうし","pron":"토오시","ko":"투자","tts_text":"投資"},
+    {"kanji":"融資","kana":"ゆうし","pron":"유우시","ko":"융자/대출","tts_text":"融資"},
 
-      {"kanji":"金融","kana":"きんゆう","pron":"킨유우","ko":"금융","tts_text":"金融"},
-      {"kanji":"株式","kana":"かぶしき","pron":"카부시키","ko":"주식","tts_text":"株式"},
-      {"kanji":"証券","kana":"しょうけん","pron":"쇼오켄","ko":"증권","tts_text":"証券"},
-      {"kanji":"価格","kana":"かかく","pron":"카카쿠","ko":"가격(격식)","tts_text":"価格"},
-      {"kanji":"物価","kana":"ぶっか","pron":"붓카","ko":"물가","tts_text":"物価"},
-      {"kanji":"賃金","kana":"ちんぎん","pron":"친긴","ko":"임금","tts_text":"賃金"},
-      {"kanji":"雇用","kana":"こよう","pron":"코요오","ko":"고용","tts_text":"雇用"},
-      {"kanji":"採用","kana":"さいよう","pron":"사이요오","ko":"채용","tts_text":"採用"},
-      {"kanji":"人材","kana":"じんざい","pron":"진자이","ko":"인재","tts_text":"人材"},
-      {"kanji":"研修","kana":"けんしゅう","pron":"켄슈우","ko":"연수/교육","tts_text":"研修"},
+    {"kanji":"金融","kana":"きんゆう","pron":"킨유우","ko":"금융","tts_text":"金融"},
+    {"kanji":"株式","kana":"かぶしき","pron":"카부시키","ko":"주식","tts_text":"株式"},
+    {"kanji":"証券","kana":"しょうけん","pron":"쇼오켄","ko":"증권","tts_text":"証券"},
+    {"kanji":"価格","kana":"かかく","pron":"카카쿠","ko":"가격(격식)/값","tts_text":"価格"},
+    {"kanji":"物価","kana":"ぶっか","pron":"붓카","ko":"물가","tts_text":"物価"},
+    {"kanji":"賃金","kana":"ちんぎん","pron":"친긴","ko":"임금/급여","tts_text":"賃金"},
+    {"kanji":"雇用","kana":"こよう","pron":"코요오","ko":"고용","tts_text":"雇用"},
+    {"kanji":"採用","kana":"さいよう","pron":"사이요오","ko":"채용/채택","tts_text":"採用"},
+    {"kanji":"人材","kana":"じんざい","pron":"진자이","ko":"인재/인력","tts_text":"人材"},
+    {"kanji":"研修","kana":"けんしゅう","pron":"켄슈우","ko":"연수/교육","tts_text":"研修"},
 
-      {"kanji":"部署","kana":"ぶしょ","pron":"부쇼","ko":"부서","tts_text":"部署"},
-      {"kanji":"会計","kana":"かいけい","pron":"카이케이","ko":"회계","tts_text":"会計"},
-      {"kanji":"経理","kana":"けいり","pron":"케이리","ko":"경리","tts_text":"経理"},
-      {"kanji":"事務","kana":"じむ","pron":"지무","ko":"사무","tts_text":"事務"},
-      {"kanji":"総務","kana":"そうむ","pron":"소오무","ko":"총무","tts_text":"総務"},
-      {"kanji":"営業","kana":"えいぎょう","pron":"에이교오","ko":"영업","tts_text":"営業"},
-      {"kanji":"顧客","kana":"こきゃく","pron":"코캬쿠","ko":"고객","tts_text":"顧客"},
-      {"kanji":"取引先","kana":"とりひきさき","pron":"토리히키사키","ko":"거래처","tts_text":"取引先"},
-      {"kanji":"見積もり","kana":"みつもり","pron":"미츠모리","ko":"견적","tts_text":"見積もり"},
-      {"kanji":"請求","kana":"せいきゅう","pron":"세이큐우","ko":"청구","tts_text":"請求"},
+    {"kanji":"部署","kana":"ぶしょ","pron":"부쇼","ko":"부서","tts_text":"部署"},
+    {"kanji":"会計","kana":"かいけい","pron":"카이케이","ko":"회계","tts_text":"会計"},
+    {"kanji":"経理","kana":"けいり","pron":"케이리","ko":"경리","tts_text":"経理"},
+    {"kanji":"事務","kana":"じむ","pron":"지무","ko":"사무","tts_text":"事務"},
+    {"kanji":"総務","kana":"そうむ","pron":"소오무","ko":"총무","tts_text":"総務"},
+    {"kanji":"営業","kana":"えいぎょう","pron":"에이교오","ko":"영업/사업 운영","tts_text":"営業"},
+    {"kanji":"顧客","kana":"こきゃく","pron":"코캬쿠","ko":"고객/손님","tts_text":"顧客"},
+    {"kanji":"取引先","kana":"とりひきさき","pron":"토리히키사키","ko":"거래처","tts_text":"取引先"},
+    {"kanji":"見積もり","kana":"みつもり","pron":"미츠모리","ko":"견적/견적서","tts_text":"見積もり"},
+    {"kanji":"請求","kana":"せいきゅう","pron":"세이큐우","ko":"청구/요구","tts_text":"請求"},
 
-      {"kanji":"支払期限","kana":"しはらいきげん","pron":"시하라이 키겐","ko":"지불 기한","tts_text":"支払期限"},
-      {"kanji":"納期","kana":"のうき","pron":"노오키","ko":"납기","tts_text":"納期"},
-      {"kanji":"納品","kana":"のうひん","pron":"노오힌","ko":"납품","tts_text":"納品"},
-      {"kanji":"在庫","kana":"ざいこ","pron":"자이코","ko":"재고","tts_text":"在庫"},
-      {"kanji":"不足","kana":"ふそく","pron":"후소쿠","ko":"부족","tts_text":"不足"},
-      {"kanji":"過剰","kana":"かじょう","pron":"카죠오","ko":"과잉","tts_text":"過剰"},
-      {"kanji":"競争","kana":"きょうそう","pron":"쿄오소오","ko":"경쟁","tts_text":"競争"},
-      {"kanji":"競合","kana":"きょうごう","pron":"쿄오고오","ko":"경합/경쟁사","tts_text":"競合"},
-      {"kanji":"独占","kana":"どくせん","pron":"도쿠센","ko":"독점","tts_text":"独占"},
-      {"kanji":"提携","kana":"ていけい","pron":"테이케이","ko":"제휴","tts_text":"提携"},
+    {"kanji":"支払期限","kana":"しはらいきげん","pron":"시하라이 키겐","ko":"지불 기한/결제 마감일","tts_text":"支払期限"},
+    {"kanji":"納期","kana":"のうき","pron":"노오키","ko":"납기/납품 기한","tts_text":"納期"},
+    {"kanji":"納品","kana":"のうひん","pron":"노오힌","ko":"납품","tts_text":"納品"},
+    {"kanji":"在庫","kana":"ざいこ","pron":"자이코","ko":"재고/재고 물량","tts_text":"在庫"},
+    {"kanji":"不足","kana":"ふそく","pron":"후소쿠","ko":"부족/모자람","tts_text":"不足"},
+    {"kanji":"過剰","kana":"かじょう","pron":"카죠오","ko":"과잉/지나침","tts_text":"過剰"},
+    {"kanji":"競争","kana":"きょうそう","pron":"쿄오소오","ko":"경쟁","tts_text":"競争"},
+    {"kanji":"競合","kana":"きょうごう","pron":"쿄오고오","ko":"경합/경쟁사","tts_text":"競合"},
+    {"kanji":"独占","kana":"どくせん","pron":"도쿠센","ko":"독점","tts_text":"独占"},
+    {"kanji":"提携","kana":"ていけい","pron":"테이케이","ko":"제휴/협력","tts_text":"提携"},
 
-      {"kanji":"合併","kana":"がっぺい","pron":"갓페이","ko":"합병","tts_text":"合併"},
-      {"kanji":"買収","kana":"ばいしゅう","pron":"바이슈우","ko":"인수","tts_text":"買収"},
-      {"kanji":"倒産","kana":"とうさん","pron":"토오산","ko":"도산","tts_text":"倒産"},
-      {"kanji":"赤字","kana":"あかじ","pron":"아카지","ko":"적자","tts_text":"赤字"},
-      {"kanji":"黒字","kana":"くろじ","pron":"쿠로지","ko":"흑자","tts_text":"黒字"},
-      {"kanji":"見直し","kana":"みなおし","pron":"미나오시","ko":"재검토","tts_text":"見直し"},
-      {"kanji":"効率","kana":"こうりつ","pron":"코오리츠","ko":"효율","tts_text":"効率"},
-      {"kanji":"生産性","kana":"せいさんせい","pron":"세이산세이","ko":"생산성","tts_text":"生産性"},
-      {"kanji":"負担","kana":"ふたん","pron":"후탄","ko":"부담","tts_text":"負担"},
-      {"kanji":"損害","kana":"そんがい","pron":"손가이","ko":"손해/손상","tts_text":"損害"}
-    ]
-  },
+    {"kanji":"合併","kana":"がっぺい","pron":"갓페이","ko":"합병","tts_text":"合併"},
+    {"kanji":"買収","kana":"ばいしゅう","pron":"바이슈우","ko":"인수/매수","tts_text":"買収"},
+    {"kanji":"倒産","kana":"とうさん","pron":"토오산","ko":"도산/파산","tts_text":"倒産"},
+    {"kanji":"赤字","kana":"あかじ","pron":"아카지","ko":"적자","tts_text":"赤字"},
+    {"kanji":"黒字","kana":"くろじ","pron":"쿠로지","ko":"흑자","tts_text":"黒字"},
+    {"kanji":"見直し","kana":"みなおし","pron":"미나오시","ko":"재검토/다시 검토","tts_text":"見直し"},
+    {"kanji":"効率","kana":"こうりつ","pron":"코오리츠","ko":"효율","tts_text":"効率"},
+    {"kanji":"生産性","kana":"せいさんせい","pron":"세이산세이","ko":"생산성","tts_text":"生産性"},
+    {"kanji":"負担","kana":"ふたん","pron":"후탄","ko":"부담/부담감","tts_text":"負担"},
+    {"kanji":"損害","kana":"そんがい","pron":"손가이","ko":"손해/손상","tts_text":"損害"}
+  ]
+},
 
   "sec03": {
-    "title": "정치·사회·제도",
-    "items": [
-      {"kanji":"政府","kana":"せいふ","pron":"세이후","ko":"정부","tts_text":"政府"},
-      {"kanji":"行政","kana":"ぎょうせい","pron":"교오세이","ko":"행정","tts_text":"行政"},
-      {"kanji":"政策","kana":"せいさく","pron":"세이사쿠","ko":"정책","tts_text":"政策"},
-      {"kanji":"制度","kana":"せいど","pron":"세이도","ko":"제도","tts_text":"制度"},
-      {"kanji":"法律","kana":"ほうりつ","pron":"호오리츠","ko":"법률","tts_text":"法律"},
-      {"kanji":"規制","kana":"きせい","pron":"키세이","ko":"규제","tts_text":"規制"},
-      {"kanji":"条例","kana":"じょうれい","pron":"죠오레이","ko":"조례","tts_text":"条例"},
-      {"kanji":"権限","kana":"けんげん","pron":"켄겐","ko":"권한","tts_text":"権限"},
-      {"kanji":"義務","kana":"ぎむ","pron":"기무","ko":"의무","tts_text":"義務"},
-      {"kanji":"権利","kana":"けんり","pron":"켄리","ko":"권리","tts_text":"権利"},
+  "title": "정치·사회·제도",
+  "items": [
+    {"kanji":"政府","kana":"せいふ","pron":"세이후","ko":"정부","tts_text":"政府"},
+    {"kanji":"行政","kana":"ぎょうせい","pron":"교오세이","ko":"행정","tts_text":"行政"},
+    {"kanji":"政策","kana":"せいさく","pron":"세이사쿠","ko":"정책","tts_text":"政策"},
+    {"kanji":"制度","kana":"せいど","pron":"세이도","ko":"제도","tts_text":"制度"},
+    {"kanji":"法律","kana":"ほうりつ","pron":"호오리츠","ko":"법률","tts_text":"法律"},
+    {"kanji":"規制","kana":"きせい","pron":"키세이","ko":"규제/제한","tts_text":"規制"},
+    {"kanji":"条例","kana":"じょうれい","pron":"죠오레이","ko":"조례","tts_text":"条例"},
+    {"kanji":"権限","kana":"けんげん","pron":"켄겐","ko":"권한","tts_text":"権限"},
+    {"kanji":"義務","kana":"ぎむ","pron":"기무","ko":"의무","tts_text":"義務"},
+    {"kanji":"権利","kana":"けんり","pron":"켄리","ko":"권리","tts_text":"権利"},
 
-      {"kanji":"選挙","kana":"せんきょ","pron":"센쿄","ko":"선거","tts_text":"選挙"},
-      {"kanji":"議員","kana":"ぎいん","pron":"기인","ko":"의원","tts_text":"議員"},
-      {"kanji":"議会","kana":"ぎかい","pron":"기가이","ko":"의회","tts_text":"議会"},
-      {"kanji":"世論","kana":"せろん","pron":"세론","ko":"여론","tts_text":"世論"},
-      {"kanji":"反発","kana":"はんぱつ","pron":"한파츠","ko":"반발","tts_text":"反発"},
-      {"kanji":"賛否","kana":"さんぴ","pron":"산피","ko":"찬반","tts_text":"賛否"},
-      {"kanji":"承認","kana":"しょうにん","pron":"쇼오닌","ko":"승인","tts_text":"承認"},
-      {"kanji":"否決","kana":"ひけつ","pron":"히케츠","ko":"부결","tts_text":"否決"},
-      {"kanji":"可決","kana":"かけつ","pron":"카케츠","ko":"가결","tts_text":"可決"},
-      {"kanji":"署名","kana":"しょめい","pron":"쇼메이","ko":"서명","tts_text":"署名"},
+    {"kanji":"選挙","kana":"せんきょ","pron":"센쿄","ko":"선거","tts_text":"選挙"},
+    {"kanji":"議員","kana":"ぎいん","pron":"기인","ko":"의원","tts_text":"議員"},
+    {"kanji":"議会","kana":"ぎかい","pron":"기가이","ko":"의회","tts_text":"議会"},
+    {"kanji":"世論","kana":"せろん","pron":"세론","ko":"여론","tts_text":"世論"},
+    {"kanji":"反発","kana":"はんぱつ","pron":"한파츠","ko":"반발","tts_text":"反発"},
+    {"kanji":"賛否","kana":"さんぴ","pron":"산피","ko":"찬반","tts_text":"賛否"},
+    {"kanji":"承認","kana":"しょうにん","pron":"쇼오닌","ko":"승인/인정","tts_text":"承認"},
+    {"kanji":"否決","kana":"ひけつ","pron":"히케츠","ko":"부결","tts_text":"否決"},
+    {"kanji":"可決","kana":"かけつ","pron":"카케츠","ko":"가결","tts_text":"可決"},
+    {"kanji":"署名","kana":"しょめい","pron":"쇼메이","ko":"서명","tts_text":"署名"},
 
-      {"kanji":"裁判","kana":"さいばん","pron":"사이반","ko":"재판","tts_text":"裁判"},
-      {"kanji":"判決","kana":"はんけつ","pron":"한케츠","ko":"판결","tts_text":"判決"},
-      {"kanji":"被害","kana":"ひがい","pron":"히가이","ko":"피해","tts_text":"被害"},
-      {"kanji":"加害","kana":"かがい","pron":"카가이","ko":"가해","tts_text":"加害"},
-      {"kanji":"被害者","kana":"ひがいしゃ","pron":"히가이샤","ko":"피해자","tts_text":"被害者"},
-      {"kanji":"容疑者","kana":"ようぎしゃ","pron":"요오기샤","ko":"용의자","tts_text":"容疑者"},
-      {"kanji":"逮捕","kana":"たいほ","pron":"타이호","ko":"체포","tts_text":"逮捕"},
-      {"kanji":"捜査","kana":"そうさ","pron":"소오사","ko":"수사","tts_text":"捜査"},
-      {"kanji":"証拠","kana":"しょうこ","pron":"쇼오코","ko":"증거","tts_text":"証拠"},
-      {"kanji":"証明","kana":"しょうめい","pron":"쇼오메이","ko":"증명","tts_text":"証明"},
+    {"kanji":"裁判","kana":"さいばん","pron":"사이반","ko":"재판","tts_text":"裁判"},
+    {"kanji":"判決","kana":"はんけつ","pron":"한케츠","ko":"판결","tts_text":"判決"},
+    {"kanji":"被害","kana":"ひがい","pron":"히가이","ko":"피해","tts_text":"被害"},
+    {"kanji":"加害","kana":"かがい","pron":"카가이","ko":"가해","tts_text":"加害"},
+    {"kanji":"被害者","kana":"ひがいしゃ","pron":"히가이샤","ko":"피해자","tts_text":"被害者"},
+    {"kanji":"容疑者","kana":"ようぎしゃ","pron":"요오기샤","ko":"용의자","tts_text":"容疑者"},
+    {"kanji":"逮捕","kana":"たいほ","pron":"타이호","ko":"체포","tts_text":"逮捕"},
+    {"kanji":"捜査","kana":"そうさ","pron":"소오사","ko":"수사","tts_text":"捜査"},
+    {"kanji":"証拠","kana":"しょうこ","pron":"쇼오코","ko":"증거","tts_text":"証拠"},
+    {"kanji":"証明","kana":"しょうめい","pron":"쇼오메이","ko":"증명","tts_text":"証明"},
 
-      {"kanji":"税金","kana":"ぜいきん","pron":"제이킨","ko":"세금","tts_text":"税金"},
-      {"kanji":"課税","kana":"かぜい","pron":"카제이","ko":"과세","tts_text":"課税"},
-      {"kanji":"免税","kana":"めんぜい","pron":"멘제이","ko":"면세","tts_text":"免税"},
-      {"kanji":"保険","kana":"ほけん","pron":"호켄","ko":"보험","tts_text":"保険"},
-      {"kanji":"年金","kana":"ねんきん","pron":"넨킨","ko":"연금","tts_text":"年金"},
-      {"kanji":"福祉","kana":"ふくし","pron":"후쿠시","ko":"복지","tts_text":"福祉"},
-      {"kanji":"介護","kana":"かいご","pron":"카이고","ko":"간호/개호","tts_text":"介護"},
-      {"kanji":"医療","kana":"いりょう","pron":"이료오","ko":"의료","tts_text":"医療"},
-      {"kanji":"教育","kana":"きょういく","pron":"쿄오이쿠","ko":"교육","tts_text":"教育"},
-      {"kanji":"少子化","kana":"しょうしか","pron":"쇼오시카","ko":"저출산","tts_text":"少子化"},
+    {"kanji":"税金","kana":"ぜいきん","pron":"제이킨","ko":"세금","tts_text":"税金"},
+    {"kanji":"課税","kana":"かぜい","pron":"카제이","ko":"과세","tts_text":"課税"},
+    {"kanji":"免税","kana":"めんぜい","pron":"멘제이","ko":"면세","tts_text":"免税"},
+    {"kanji":"保険","kana":"ほけん","pron":"호켄","ko":"보험","tts_text":"保険"},
+    {"kanji":"年金","kana":"ねんきん","pron":"넨킨","ko":"연금","tts_text":"年金"},
+    {"kanji":"福祉","kana":"ふくし","pron":"후쿠시","ko":"복지","tts_text":"福祉"},
+    {"kanji":"介護","kana":"かいご","pron":"카이고","ko":"간호/개호","tts_text":"介護"},
+    {"kanji":"医療","kana":"いりょう","pron":"이료오","ko":"의료","tts_text":"医療"},
+    {"kanji":"教育","kana":"きょういく","pron":"쿄오이쿠","ko":"교육","tts_text":"教育"},
+    {"kanji":"少子化","kana":"しょうしか","pron":"쇼오시카","ko":"저출산","tts_text":"少子化"},
 
-      {"kanji":"高齢化","kana":"こうれいか","pron":"코오레이카","ko":"고령화","tts_text":"高齢化"},
-      {"kanji":"失業","kana":"しつぎょう","pron":"시츠교오","ko":"실업","tts_text":"失業"},
-      {"kanji":"格差","kana":"かくさ","pron":"카쿠사","ko":"격차","tts_text":"格差"},
-      {"kanji":"貧困","kana":"ひんこん","pron":"힌콘","ko":"빈곤","tts_text":"貧困"},
-      {"kanji":"治安","kana":"ちあん","pron":"치안","ko":"치안","tts_text":"治安"},
-      {"kanji":"犯罪","kana":"はんざい","pron":"한자이","ko":"범죄","tts_text":"犯罪"},
-      {"kanji":"違反","kana":"いはん","pron":"이한","ko":"위반","tts_text":"違反"},
-      {"kanji":"禁止","kana":"きんし","pron":"킨시","ko":"금지","tts_text":"禁止"},
-      {"kanji":"許可","kana":"きょか","pron":"쿄카","ko":"허가","tts_text":"許可"},
-      {"kanji":"申請","kana":"しんせい","pron":"신세이","ko":"신청","tts_text":"申請"},
+    {"kanji":"高齢化","kana":"こうれいか","pron":"코오레이카","ko":"고령화","tts_text":"高齢化"},
+    {"kanji":"失業","kana":"しつぎょう","pron":"시츠교오","ko":"실업","tts_text":"失業"},
+    {"kanji":"格差","kana":"かくさ","pron":"카쿠사","ko":"격차","tts_text":"格差"},
+    {"kanji":"貧困","kana":"ひんこん","pron":"힌콘","ko":"빈곤","tts_text":"貧困"},
+    {"kanji":"治安","kana":"ちあん","pron":"치안","ko":"치안","tts_text":"治安"},
+    {"kanji":"犯罪","kana":"はんざい","pron":"한자이","ko":"범죄","tts_text":"犯罪"},
+    {"kanji":"違反","kana":"いはん","pron":"이한","ko":"위반","tts_text":"違反"},
+    {"kanji":"禁止","kana":"きんし","pron":"킨시","ko":"금지","tts_text":"禁止"},
+    {"kanji":"許可","kana":"きょか","pron":"쿄카","ko":"허가","tts_text":"許可"},
+    {"kanji":"申請","kana":"しんせい","pron":"신세이","ko":"신청","tts_text":"申請"},
 
-      {"kanji":"提出","kana":"ていしゅつ","pron":"테이슈츠","ko":"제출","tts_text":"提出"},
-      {"kanji":"届出","kana":"とどけで","pron":"토도케데","ko":"신고(제출)","tts_text":"届出"},
-      {"kanji":"受付","kana":"うけつけ","pron":"우케츠케","ko":"접수","tts_text":"受付"},
-      {"kanji":"窓口","kana":"まどぐち","pron":"마도구치","ko":"창구","tts_text":"窓口"},
-      {"kanji":"手数料","kana":"てすうりょう","pron":"테스우료오","ko":"수수료","tts_text":"手数料"},
-      {"kanji":"本人確認","kana":"ほんにんかくにん","pron":"혼닌 카쿠닌","ko":"본인 확인","tts_text":"本人確認"},
-      {"kanji":"身分証","kana":"みぶんしょう","pron":"미분쇼오","ko":"신분증","tts_text":"身分証"},
-      {"kanji":"住民票","kana":"じゅうみんひょう","pron":"쥬우민효오","ko":"주민표(등본)","tts_text":"住民票"},
-      {"kanji":"戸籍","kana":"こせき","pron":"코세키","ko":"호적","tts_text":"戸籍"},
-      {"kanji":"印鑑","kana":"いんかん","pron":"인칸","ko":"인감/도장","tts_text":"印鑑"}
-    ]
-  },
+    {"kanji":"提出","kana":"ていしゅつ","pron":"테이슈츠","ko":"제출","tts_text":"提出"},
+    {"kanji":"届出","kana":"とどけで","pron":"토도케데","ko":"신고/제출","tts_text":"届出"},
+    {"kanji":"受付","kana":"うけつけ","pron":"우케츠케","ko":"접수","tts_text":"受付"},
+    {"kanji":"窓口","kana":"まどぐち","pron":"마도구치","ko":"창구","tts_text":"窓口"},
+    {"kanji":"手数料","kana":"てすうりょう","pron":"테스우료오","ko":"수수료","tts_text":"手数料"},
+    {"kanji":"本人確認","kana":"ほんにんかくにん","pron":"혼닌 카쿠닌","ko":"본인 확인","tts_text":"本人確認"},
+    {"kanji":"身分証","kana":"みぶんしょう","pron":"미분쇼오","ko":"신분증","tts_text":"身分証"},
+    {"kanji":"住民票","kana":"じゅうみんひょう","pron":"쥬우민효오","ko":"주민표(등본)","tts_text":"住民票"},
+    {"kanji":"戸籍","kana":"こせき","pron":"코세키","ko":"호적","tts_text":"戸籍"},
+    {"kanji":"印鑑","kana":"いんかん","pron":"인칸","ko":"인감/도장","tts_text":"印鑑"}
+  ]
+},
+"sec04": {
+  "title": "학습·연구·표현",
+  "items": [
+    {"kanji":"仮説","kana":"かせつ","pron":"카세츠","ko":"가설","tts_text":"仮説"},
+    {"kanji":"検証","kana":"けんしょう","pron":"켄쇼오","ko":"검증","tts_text":"検証"},
+    {"kanji":"根拠","kana":"こんきょ","pron":"콘쿄","ko":"근거","tts_text":"根拠"},
+    {"kanji":"裏付け","kana":"うらづけ","pron":"우라즈케","ko":"뒷받침","tts_text":"裏付け"},
+    {"kanji":"推測","kana":"すいそく","pron":"스이소쿠","ko":"추측","tts_text":"推測"},
+    {"kanji":"推定","kana":"すいてい","pron":"스이테이","ko":"추정","tts_text":"推定"},
+    {"kanji":"予測","kana":"よそく","pron":"요소쿠","ko":"예측","tts_text":"予測"},
+    {"kanji":"統計","kana":"とうけい","pron":"토오케이","ko":"통계","tts_text":"統計"},
+    {"kanji":"数値","kana":"すうち","pron":"스우치","ko":"수치","tts_text":"数値"},
+    {"kanji":"割合","kana":"わりあい","pron":"와리아이","ko":"비율","tts_text":"割合"},
 
-  "sec04": {
-    "title": "학습·연구·표현",
-    "items": [
-      {"kanji":"仮説","kana":"かせつ","pron":"카세츠","ko":"가설","tts_text":"仮説"},
-      {"kanji":"検証","kana":"けんしょう","pron":"켄쇼오","ko":"검증","tts_text":"検証"},
-      {"kanji":"根拠","kana":"こんきょ","pron":"콘쿄","ko":"근거","tts_text":"根拠"},
-      {"kanji":"裏付け","kana":"うらづけ","pron":"우라즈케","ko":"뒷받침","tts_text":"裏付け"},
-      {"kanji":"推測","kana":"すいそく","pron":"스이소쿠","ko":"추측","tts_text":"推測"},
-      {"kanji":"推定","kana":"すいてい","pron":"스이테이","ko":"추정","tts_text":"推定"},
-      {"kanji":"予測","kana":"よそく","pron":"요소쿠","ko":"예측","tts_text":"予測"},
-      {"kanji":"統計","kana":"とうけい","pron":"토오케이","ko":"통계","tts_text":"統計"},
-      {"kanji":"数値","kana":"すうち","pron":"스우치","ko":"수치","tts_text":"数値"},
-      {"kanji":"割合","kana":"わりあい","pron":"와리아이","ko":"비율","tts_text":"割合"},
+    {"kanji":"傾向がある","kana":"けいこうがある","pron":"케이코오가 아루","ko":"경향이 있다","tts_text":"傾向がある"},
+    {"kanji":"増える","kana":"ふえる","pron":"후에루","ko":"늘다","tts_text":"増える"},
+    {"kanji":"減る","kana":"へる","pron":"헤루","ko":"줄다","tts_text":"減る"},
+    {"kanji":"上昇","kana":"じょうしょう","pron":"죠오쇼오","ko":"상승","tts_text":"上昇"},
+    {"kanji":"下降","kana":"かこう","pron":"카코오","ko":"하강","tts_text":"下降"},
+    {"kanji":"維持する","kana":"いじする","pron":"이지 스루","ko":"유지하다","tts_text":"維持する"},
+    {"kanji":"変動","kana":"へんどう","pron":"헨도오","ko":"변동","tts_text":"変動"},
+    {"kanji":"安定","kana":"あんてい","pron":"안테이","ko":"안정","tts_text":"安定"},
+    {"kanji":"不安定","kana":"ふあんてい","pron":"후안테이","ko":"불안정","tts_text":"不安定"},
+    {"kanji":"影響力","kana":"えいきょうりょく","pron":"에이쿄오료쿠","ko":"영향력","tts_text":"影響力"},
 
-      {"kanji":"傾向がある","kana":"けいこうがある","pron":"케이코오가 아루","ko":"경향이 있다","tts_text":"傾向がある"},
-      {"kanji":"増える","kana":"ふえる","pron":"후에루","ko":"늘다","tts_text":"増える"},
-      {"kanji":"減る","kana":"へる","pron":"헤루","ko":"줄다","tts_text":"減る"},
-      {"kanji":"上昇","kana":"じょうしょう","pron":"죠오쇼오","ko":"상승","tts_text":"上昇"},
-      {"kanji":"下降","kana":"かこう","pron":"카코오","ko":"하강","tts_text":"下降"},
-      {"kanji":"維持する","kana":"いじする","pron":"이지 스루","ko":"유지하다","tts_text":"維持する"},
-      {"kanji":"変動","kana":"へんどう","pron":"헨도오","ko":"변동","tts_text":"変動"},
-      {"kanji":"安定","kana":"あんてい","pron":"안테이","ko":"안정","tts_text":"安定"},
-      {"kanji":"不安定","kana":"ふあんてい","pron":"후안테이","ko":"불안정","tts_text":"不安定"},
-      {"kanji":"影響力","kana":"えいきょうりょく","pron":"에이쿄오료쿠","ko":"영향력","tts_text":"影響力"},
+    {"kanji":"主張","kana":"しゅちょう","pron":"슈쵸오","ko":"주장","tts_text":"主張"},
+    {"kanji":"意図","kana":"いと","pron":"이토","ko":"의도","tts_text":"意図"},
+    {"kanji":"狙い","kana":"ねらい","pron":"네라이","ko":"노림/목적","tts_text":"狙い"},
+    {"kanji":"前提","kana":"ぜんてい","pron":"젠테이","ko":"전제","tts_text":"前提"},
+    {"kanji":"結論として","kana":"けつろんとして","pron":"켓론 토시테","ko":"결론적으로","tts_text":"結論として"},
+    {"kanji":"要するに","kana":"ようするに","pron":"요오스루니","ko":"요컨대/즉","tts_text":"要するに"},
+    {"kanji":"例えば","kana":"たとえば","pron":"타토에바","ko":"예를 들면/가령","tts_text":"例えば"},
+    {"kanji":"特に","kana":"とくに","pron":"토쿠니","ko":"특히","tts_text":"特に"},
+    {"kanji":"基本的に","kana":"きほんてきに","pron":"키혼테키니","ko":"기본적으로","tts_text":"基本的に"},
+    {"kanji":"具体的に","kana":"ぐたいてきに","pron":"구타이테키니","ko":"구체적으로","tts_text":"具体的に"},
 
-      {"kanji":"主張","kana":"しゅちょう","pron":"슈쵸오","ko":"주장","tts_text":"主張"},
-      {"kanji":"意図","kana":"いと","pron":"이토","ko":"의도","tts_text":"意図"},
-      {"kanji":"狙い","kana":"ねらい","pron":"네라이","ko":"노림/목적","tts_text":"狙い"},
-      {"kanji":"前提","kana":"ぜんてい","pron":"젠테이","ko":"전제","tts_text":"前提"},
-      {"kanji":"結論として","kana":"けつろんとして","pron":"켓론 토시테","ko":"결론적으로","tts_text":"結論として"},
-      {"kanji":"要するに","kana":"ようするに","pron":"요오스루니","ko":"요컨대","tts_text":"要するに"},
-      {"kanji":"例えば","kana":"たとえば","pron":"타토에바","ko":"예를 들면","tts_text":"例えば"},
-      {"kanji":"特に","kana":"とくに","pron":"토쿠니","ko":"특히","tts_text":"特に"},
-      {"kanji":"基本的に","kana":"きほんてきに","pron":"키혼테키니","ko":"기본적으로","tts_text":"基本的に"},
-      {"kanji":"具体的に","kana":"ぐたいてきに","pron":"구타이테키니","ko":"구체적으로","tts_text":"具体的に"},
+    {"kanji":"抽象的","kana":"ちゅうしょうてき","pron":"츄우쇼오테키","ko":"추상적","tts_text":"抽象的"},
+    {"kanji":"客観的","kana":"きゃっかんてき","pron":"캬칸테키","ko":"객관적","tts_text":"客観的"},
+    {"kanji":"主観的","kana":"しゅかんてき","pron":"슈칸테키","ko":"주관적","tts_text":"主観的"},
+    {"kanji":"論理","kana":"ろんり","pron":"론리","ko":"논리","tts_text":"論理"},
+    {"kanji":"矛盾","kana":"むじゅん","pron":"무준","ko":"모순","tts_text":"矛盾"},
+    {"kanji":"説得","kana":"せっとく","pron":"셋토쿠","ko":"설득","tts_text":"説得"},
+    {"kanji":"納得","kana":"なっとく","pron":"낫토쿠","ko":"납득","tts_text":"納得"},
+    {"kanji":"誤解","kana":"ごかい","pron":"고카이","ko":"오해","tts_text":"誤解"},
+    {"kanji":"解釈","kana":"かいしゃく","pron":"카이샤쿠","ko":"해석","tts_text":"解釈"},
+    {"kanji":"表現","kana":"ひょうげん","pron":"효오겐","ko":"표현","tts_text":"表現"},
 
-      {"kanji":"抽象的","kana":"ちゅうしょうてき","pron":"츄우쇼오테키","ko":"추상적","tts_text":"抽象的"},
-      {"kanji":"客観的","kana":"きゃっかんてき","pron":"캬칸테키","ko":"객관적","tts_text":"客観的"},
-      {"kanji":"主観的","kana":"しゅかんてき","pron":"슈칸테키","ko":"주관적","tts_text":"主観的"},
-      {"kanji":"論理","kana":"ろんり","pron":"론리","ko":"논리","tts_text":"論理"},
-      {"kanji":"矛盾","kana":"むじゅん","pron":"무준","ko":"모순","tts_text":"矛盾"},
-      {"kanji":"説得","kana":"せっとく","pron":"셋토쿠","ko":"설득","tts_text":"説得"},
-      {"kanji":"納得","kana":"なっとく","pron":"낫토쿠","ko":"납득","tts_text":"納得"},
-      {"kanji":"誤解","kana":"ごかい","pron":"고카이","ko":"오해","tts_text":"誤解"},
-      {"kanji":"解釈","kana":"かいしゃく","pron":"카이샤쿠","ko":"해석","tts_text":"解釈"},
-      {"kanji":"表現","kana":"ひょうげん","pron":"효오겐","ko":"표현","tts_text":"表現"},
+    {"kanji":"言い換える","kana":"いいかえる","pron":"이이카에루","ko":"바꿔 말하다/다르게 표현하다","tts_text":"言い換える"},
+    {"kanji":"言い切る","kana":"いいきる","pron":"이이키루","ko":"단언하다/끝까지 말하다","tts_text":"言い切る"},
+    {"kanji":"言及","kana":"げんきゅう","pron":"겐큐우","ko":"언급","tts_text":"言及"},
+    {"kanji":"指摘","kana":"してき","pron":"시테키","ko":"지적","tts_text":"指摘"},
+    {"kanji":"批判","kana":"ひはん","pron":"히한","ko":"비판","tts_text":"批判"},
+    {"kanji":"反論","kana":"はんろん","pron":"한론","ko":"반론","tts_text":"反論"},
+    {"kanji":"主導","kana":"しゅどう","pron":"슈도오","ko":"주도","tts_text":"主導"},
+    {"kanji":"段階","kana":"だんかい","pron":"단카이","ko":"단계","tts_text":"段階"},
+    {"kanji":"手段","kana":"しゅだん","pron":"슈단","ko":"수단","tts_text":"手段"},
+    {"kanji":"方法","kana":"ほうほう","pron":"호오호오","ko":"방법","tts_text":"方法"}
+  ]
+},
 
-      {"kanji":"言い換える","kana":"いいかえる","pron":"이이카에루","ko":"바꿔 말하다","tts_text":"言い換える"},
-      {"kanji":"言い切る","kana":"いいきる","pron":"이이키루","ko":"단언하다","tts_text":"言い切る"},
-      {"kanji":"言及","kana":"げんきゅう","pron":"겐큐우","ko":"언급","tts_text":"言及"},
-      {"kanji":"指摘","kana":"してき","pron":"시테키","ko":"지적","tts_text":"指摘"},
-      {"kanji":"批判","kana":"ひはん","pron":"히한","ko":"비판","tts_text":"批判"},
-      {"kanji":"反論","kana":"はんろん","pron":"한론","ko":"반론","tts_text":"反論"},
-      {"kanji":"主導","kana":"しゅどう","pron":"슈도오","ko":"주도","tts_text":"主導"},
-      {"kanji":"段階","kana":"だんかい","pron":"단카이","ko":"단계","tts_text":"段階"},
-      {"kanji":"手段","kana":"しゅだん","pron":"슈단","ko":"수단","tts_text":"手段"},
-      {"kanji":"方法","kana":"ほうほう","pron":"호오호오","ko":"방법","tts_text":"方法"}
-    ]
-  },
+
   "sec05": {
-    "title": "일상·생활·가정·소비",
-    "items": [
-      {"kanji":"生活費","kana":"せいかつひ","pron":"세이카츠히","ko":"생활비","tts_text":"生活費"},
-      {"kanji":"家計","kana":"かけい","pron":"카케이","ko":"가계","tts_text":"家計"},
-      {"kanji":"支出","kana":"ししゅつ","pron":"시슈츠","ko":"지출","tts_text":"支出"},
-      {"kanji":"収入","kana":"しゅうにゅう","pron":"슈우뉴우","ko":"수입","tts_text":"収入"},
-      {"kanji":"貯蓄","kana":"ちょちく","pron":"초치쿠","ko":"저축","tts_text":"貯蓄"},
-      {"kanji":"浪費","kana":"ろうひ","pron":"로오히","ko":"낭비","tts_text":"浪費"},
-      {"kanji":"節約","kana":"せつやく","pron":"세츠야쿠","ko":"절약","tts_text":"節約"},
-      {"kanji":"無駄遣い","kana":"むだづかい","pron":"무다즈카이","ko":"헛돈 씀","tts_text":"無駄遣い"},
-      {"kanji":"購入","kana":"こうにゅう","pron":"코오뉴우","ko":"구입","tts_text":"購入"},
-      {"kanji":"消費","kana":"しょうひ","pron":"쇼오히","ko":"소비","tts_text":"消費"},
+  "title": "일상·생활·가정·소비",
+  "items": [
+    {"kanji":"生活費","kana":"せいかつひ","pron":"세이카츠히","ko":"생활비","tts_text":"生活費"},
+    {"kanji":"家計","kana":"かけい","pron":"카케이","ko":"가계","tts_text":"家計"},
+    {"kanji":"支出","kana":"ししゅつ","pron":"시슈츠","ko":"지출","tts_text":"支出"},
+    {"kanji":"収入","kana":"しゅうにゅう","pron":"슈우뉴우","ko":"수입","tts_text":"収入"},
+    {"kanji":"貯蓄","kana":"ちょちく","pron":"초치쿠","ko":"저축","tts_text":"貯蓄"},
+    {"kanji":"浪費","kana":"ろうひ","pron":"로오히","ko":"낭비","tts_text":"浪費"},
+    {"kanji":"節約","kana":"せつやく","pron":"세츠야쿠","ko":"절약","tts_text":"節約"},
+    {"kanji":"無駄遣い","kana":"むだづかい","pron":"무다즈카이","ko":"헛돈 씀/낭비","tts_text":"無駄遣い"},
+    {"kanji":"購入","kana":"こうにゅう","pron":"코오뉴우","ko":"구입/구매","tts_text":"購入"},
+    {"kanji":"消費","kana":"しょうひ","pron":"쇼오히","ko":"소비","tts_text":"消費"},
 
-      {"kanji":"支払い","kana":"しはらい","pron":"시하라이","ko":"지불","tts_text":"支払い"},
-      {"kanji":"分割払い","kana":"ぶんかつばらい","pron":"분카츠바라이","ko":"할부 결제","tts_text":"分割払い"},
-      {"kanji":"領収書","kana":"りょうしゅうしょ","pron":"료오슈우쇼","ko":"영수증(격식)","tts_text":"領収書"},
-      {"kanji":"返金","kana":"へんきん","pron":"헨킨","ko":"환불","tts_text":"返金"},
-      {"kanji":"返品","kana":"へんぴん","pron":"헨핀","ko":"반품","tts_text":"返品"},
-      {"kanji":"交換","kana":"こうかん","pron":"코오칸","ko":"교환","tts_text":"交換"},
-      {"kanji":"保証","kana":"ほしょう","pron":"호쇼오","ko":"보증","tts_text":"保証"},
-      {"kanji":"不良品","kana":"ふりょうひん","pron":"후료오힌","ko":"불량품","tts_text":"不良品"},
-      {"kanji":"品切れ","kana":"しなぎれ","pron":"시나기레","ko":"품절","tts_text":"品切れ"},
-      {"kanji":"在庫","kana":"ざいこ","pron":"자이코","ko":"재고","tts_text":"在庫"},
+    {"kanji":"支払い","kana":"しはらい","pron":"시하라이","ko":"지불/결제","tts_text":"支払い"},
+    {"kanji":"分割払い","kana":"ぶんかつばらい","pron":"분카츠바라이","ko":"할부 결제","tts_text":"分割払い"},
+    {"kanji":"領収書","kana":"りょうしゅうしょ","pron":"료오슈우쇼","ko":"영수증(격식)/영수증","tts_text":"領収書"},
+    {"kanji":"返金","kana":"へんきん","pron":"헨킨","ko":"환불","tts_text":"返金"},
+    {"kanji":"返品","kana":"へんぴん","pron":"헨핀","ko":"반품","tts_text":"返品"},
+    {"kanji":"交換","kana":"こうかん","pron":"코오칸","ko":"교환","tts_text":"交換"},
+    {"kanji":"保証","kana":"ほしょう","pron":"호쇼오","ko":"보증/보장","tts_text":"保証"},
+    {"kanji":"不良品","kana":"ふりょうひん","pron":"후료오힌","ko":"불량품","tts_text":"不良品"},
+    {"kanji":"品切れ","kana":"しなぎれ","pron":"시나기레","ko":"품절","tts_text":"品切れ"},
+    {"kanji":"在庫","kana":"ざいこ","pron":"자이코","ko":"재고","tts_text":"在庫"},
 
-      {"kanji":"手入れ","kana":"ていれ","pron":"테이레","ko":"손질/관리","tts_text":"手入れ"},
-      {"kanji":"修理","kana":"しゅうり","pron":"슈우리","ko":"수리","tts_text":"修理"},
-      {"kanji":"故障","kana":"こしょう","pron":"코쇼오","ko":"고장","tts_text":"故障"},
-      {"kanji":"破損","kana":"はそん","pron":"하손","ko":"파손","tts_text":"破損"},
-      {"kanji":"交換する","kana":"こうかんする","pron":"코오칸 스루","ko":"교환하다","tts_text":"交換する"},
-      {"kanji":"返品する","kana":"へんぴんする","pron":"헨핀 스루","ko":"반품하다","tts_text":"返品する"},
-      {"kanji":"修理する","kana":"しゅうりする","pron":"슈우리 스루","ko":"수리하다","tts_text":"修理する"},
-      {"kanji":"点検","kana":"てんけん","pron":"텐켄","ko":"점검","tts_text":"点検"},
-      {"kanji":"掃除","kana":"そうじ","pron":"소오지","ko":"청소","tts_text":"掃除"},
-      {"kanji":"片付け","kana":"かたづけ","pron":"카타즈케","ko":"정리","tts_text":"片付け"},
+    {"kanji":"手入れ","kana":"ていれ","pron":"테이레","ko":"손질/관리","tts_text":"手入れ"},
+    {"kanji":"修理","kana":"しゅうり","pron":"슈우리","ko":"수리","tts_text":"修理"},
+    {"kanji":"故障","kana":"こしょう","pron":"코쇼오","ko":"고장","tts_text":"故障"},
+    {"kanji":"破損","kana":"はそん","pron":"하손","ko":"파손","tts_text":"破損"},
+    {"kanji":"交換する","kana":"こうかんする","pron":"코오칸 스루","ko":"교환하다","tts_text":"交換する"},
+    {"kanji":"返品する","kana":"へんぴんする","pron":"헨핀 스루","ko":"반품하다","tts_text":"返品する"},
+    {"kanji":"修理する","kana":"しゅうりする","pron":"슈우리 스루","ko":"수리하다","tts_text":"修理する"},
+    {"kanji":"点検","kana":"てんけん","pron":"텐켄","ko":"점검","tts_text":"点検"},
+    {"kanji":"掃除","kana":"そうじ","pron":"소오지","ko":"청소","tts_text":"掃除"},
+    {"kanji":"片付け","kana":"かたづけ","pron":"카타즈케","ko":"정리/정돈","tts_text":"片付け"},
 
-      {"kanji":"整理整頓","kana":"せいりせいとん","pron":"세이리 세이톤","ko":"정리정돈","tts_text":"整理整頓"},
-      {"kanji":"洗濯","kana":"せんたく","pron":"센타쿠","ko":"세탁","tts_text":"洗濯"},
-      {"kanji":"干す","kana":"ほす","pron":"호스","ko":"말리다(널다)","tts_text":"干す"},
-      {"kanji":"乾燥","kana":"かんそう","pron":"칸소오","ko":"건조","tts_text":"乾燥"},
-      {"kanji":"換気","kana":"かんき","pron":"칸키","ko":"환기","tts_text":"換気"},
-      {"kanji":"湿気","kana":"しっけ","pron":"싯케","ko":"습기","tts_text":"湿気"},
-      {"kanji":"騒音","kana":"そうおん","pron":"소오온","ko":"소음","tts_text":"騒音"},
-      {"kanji":"近所","kana":"きんじょ","pron":"킨죠","ko":"근처/이웃","tts_text":"近所"},
-      {"kanji":"近隣","kana":"きんりん","pron":"킨린","ko":"근린","tts_text":"近隣"},
-      {"kanji":"苦情","kana":"くじょう","pron":"쿠죠오","ko":"불만/항의","tts_text":"苦情"},
+    {"kanji":"整理整頓","kana":"せいりせいとん","pron":"세이리 세이톤","ko":"정리정돈","tts_text":"整理整頓"},
+    {"kanji":"洗濯","kana":"せんたく","pron":"센타쿠","ko":"세탁","tts_text":"洗濯"},
+    {"kanji":"干す","kana":"ほす","pron":"호스","ko":"말리다/널다","tts_text":"干す"},
+    {"kanji":"乾燥","kana":"かんそう","pron":"칸소오","ko":"건조","tts_text":"乾燥"},
+    {"kanji":"換気","kana":"かんき","pron":"칸키","ko":"환기","tts_text":"換気"},
+    {"kanji":"湿気","kana":"しっけ","pron":"싯케","ko":"습기","tts_text":"湿気"},
+    {"kanji":"騒音","kana":"そうおん","pron":"소오온","ko":"소음","tts_text":"騒音"},
+    {"kanji":"近所","kana":"きんじょ","pron":"킨죠","ko":"근처/이웃","tts_text":"近所"},
+    {"kanji":"近隣","kana":"きんりん","pron":"킨린","ko":"근린/근처","tts_text":"近隣"},
+    {"kanji":"苦情","kana":"くじょう","pron":"쿠죠오","ko":"불만/항의","tts_text":"苦情"},
 
-      {"kanji":"迷惑","kana":"めいわく","pron":"메이와쿠","ko":"폐","tts_text":"迷惑"},
-      {"kanji":"注意する","kana":"ちゅういする","pron":"츄우이 스루","ko":"주의하다/주다","tts_text":"注意する"},
-      {"kanji":"禁止","kana":"きんし","pron":"킨시","ko":"금지","tts_text":"禁止"},
-      {"kanji":"規則","kana":"きそく","pron":"키소쿠","ko":"규칙","tts_text":"規則"},
-      {"kanji":"マナー","kana":"マナー","pron":"마나아","ko":"매너","tts_text":"マナー"},
-      {"kanji":"習慣","kana":"しゅうかん","pron":"슈우칸","ko":"습관","tts_text":"習慣"},
-      {"kanji":"家事","kana":"かじ","pron":"카지","ko":"가사","tts_text":"家事"},
-      {"kanji":"育児","kana":"いくじ","pron":"이쿠지","ko":"육아","tts_text":"育児"},
-      {"kanji":"介護","kana":"かいご","pron":"카이고","ko":"개호/돌봄","tts_text":"介護"},
-      {"kanji":"同居","kana":"どうきょ","pron":"도오쿄","ko":"동거","tts_text":"同居"},
+    {"kanji":"迷惑","kana":"めいわく","pron":"메이와쿠","ko":"폐/민폐","tts_text":"迷惑"},
+    {"kanji":"注意する","kana":"ちゅういする","pron":"츄우이 스루","ko":"주의하다/주의 주다","tts_text":"注意する"},
+    {"kanji":"禁止","kana":"きんし","pron":"킨시","ko":"금지","tts_text":"禁止"},
+    {"kanji":"規則","kana":"きそく","pron":"키소쿠","ko":"규칙","tts_text":"規則"},
+    {"kanji":"マナー","kana":"マナー","pron":"마나아","ko":"매너","tts_text":"マナー"},
+    {"kanji":"習慣","kana":"しゅうかん","pron":"슈우칸","ko":"습관","tts_text":"習慣"},
+    {"kanji":"家事","kana":"かじ","pron":"카지","ko":"가사","tts_text":"家事"},
+    {"kanji":"育児","kana":"いくじ","pron":"이쿠지","ko":"육아","tts_text":"育児"},
+    {"kanji":"介護","kana":"かいご","pron":"카이고","ko":"개호/돌봄","tts_text":"介護"},
+    {"kanji":"同居","kana":"どうきょ","pron":"도오쿄","ko":"동거","tts_text":"同居"},
 
-      {"kanji":"別居","kana":"べっきょ","pron":"벳쿄","ko":"별거","tts_text":"別居"},
-      {"kanji":"引っ越し","kana":"ひっこし","pron":"힛코시","ko":"이사","tts_text":"引っ越し"},
-      {"kanji":"転居","kana":"てんきょ","pron":"텐쿄","ko":"전거/이사","tts_text":"転居"},
-      {"kanji":"家賃","kana":"やちん","pron":"야친","ko":"집세","tts_text":"家賃"},
-      {"kanji":"敷金","kana":"しききん","pron":"시키킨","ko":"보증금(일부)","tts_text":"敷金"},
-      {"kanji":"礼金","kana":"れいきん","pron":"레이킨","ko":"사례금(일본식)","tts_text":"礼金"},
-      {"kanji":"契約書","kana":"けいやくしょ","pron":"케이야쿠쇼","ko":"계약서","tts_text":"契約書"},
-      {"kanji":"更新料","kana":"こうしんりょう","pron":"코오신료오","ko":"갱신료","tts_text":"更新料"},
-      {"kanji":"退去","kana":"たいきょ","pron":"타이쿄","ko":"퇴거","tts_text":"退去"},
-      {"kanji":"手続き","kana":"てつづき","pron":"테츠즈키","ko":"절차","tts_text":"手続き"}
-    ]
-  },
+    {"kanji":"別居","kana":"べっきょ","pron":"벳쿄","ko":"별거","tts_text":"別居"},
+    {"kanji":"引っ越し","kana":"ひっこし","pron":"힛코시","ko":"이사","tts_text":"引っ越し"},
+    {"kanji":"転居","kana":"てんきょ","pron":"텐쿄","ko":"전거/이사","tts_text":"転居"},
+    {"kanji":"家賃","kana":"やちん","pron":"야친","ko":"집세/월세","tts_text":"家賃"},
+    {"kanji":"敷金","kana":"しききん","pron":"시키킨","ko":"보증금(일부)","tts_text":"敷金"},
+    {"kanji":"礼金","kana":"れいきん","pron":"레이킨","ko":"사례금(일본식)","tts_text":"礼金"},
+    {"kanji":"契約書","kana":"けいやくしょ","pron":"케이야쿠쇼","ko":"계약서","tts_text":"契約書"},
+    {"kanji":"更新料","kana":"こうしんりょう","pron":"코오신료오","ko":"갱신료","tts_text":"更新料"},
+    {"kanji":"退去","kana":"たいきょ","pron":"타이쿄","ko":"퇴거","tts_text":"退去"},
+    {"kanji":"手続き","kana":"てつづき","pron":"테츠즈키","ko":"절차","tts_text":"手続き"}
+  ]
+},
+"sec06": {
+  "title": "기술·미디어·인터넷",
+  "items": [
+    {"kanji":"技術","kana":"ぎじゅつ","pron":"기쥬츠","ko":"기술","tts_text":"技術"},
+    {"kanji":"機能","kana":"きのう","pron":"키노오","ko":"기능","tts_text":"機能"},
+    {"kanji":"性能","kana":"せいのう","pron":"세이노오","ko":"성능","tts_text":"性能"},
+    {"kanji":"仕様","kana":"しよう","pron":"시요오","ko":"사양/규격","tts_text":"仕様"},
+    {"kanji":"設定","kana":"せってい","pron":"셋테이","ko":"설정","tts_text":"設定"},
+    {"kanji":"調整","kana":"ちょうせい","pron":"초오세이","ko":"조정","tts_text":"調整"},
+    {"kanji":"更新","kana":"こうしん","pron":"코오신","ko":"업데이트/갱신","tts_text":"更新"},
+    {"kanji":"不具合","kana":"ふぐあい","pron":"후구아이","ko":"오류/결함","tts_text":"不具合"},
+    {"kanji":"故障","kana":"こしょう","pron":"코쇼오","ko":"고장","tts_text":"故障"},
+    {"kanji":"修復","kana":"しゅうふく","pron":"슈우후쿠","ko":"복구","tts_text":"修復"},
 
-  "sec06": {
-    "title": "기술·미디어·인터넷",
-    "items": [
-      {"kanji":"技術","kana":"ぎじゅつ","pron":"기쥬츠","ko":"기술","tts_text":"技術"},
-      {"kanji":"機能","kana":"きのう","pron":"키노오","ko":"기능","tts_text":"機能"},
-      {"kanji":"性能","kana":"せいのう","pron":"세이노오","ko":"성능","tts_text":"性能"},
-      {"kanji":"仕様","kana":"しよう","pron":"시요오","ko":"사양/규격","tts_text":"仕様"},
-      {"kanji":"設定","kana":"せってい","pron":"셋테이","ko":"설정","tts_text":"設定"},
-      {"kanji":"調整","kana":"ちょうせい","pron":"초오세이","ko":"조정","tts_text":"調整"},
-      {"kanji":"更新","kana":"こうしん","pron":"코오신","ko":"업데이트/갱신","tts_text":"更新"},
-      {"kanji":"不具合","kana":"ふぐあい","pron":"후구아이","ko":"오류/불편(결함)","tts_text":"不具合"},
-      {"kanji":"故障","kana":"こしょう","pron":"코쇼오","ko":"고장","tts_text":"故障"},
-      {"kanji":"修復","kana":"しゅうふく","pron":"슈우후쿠","ko":"복구","tts_text":"修復"},
+    {"kanji":"起動","kana":"きどう","pron":"키도오","ko":"기동/실행","tts_text":"起動"},
+    {"kanji":"再起動","kana":"さいきどう","pron":"사이키도오","ko":"재부팅","tts_text":"再起動"},
+    {"kanji":"接続","kana":"せつぞく","pron":"세츠조쿠","ko":"접속/연결","tts_text":"接続"},
+    {"kanji":"通信","kana":"つうしん","pron":"츠우신","ko":"통신","tts_text":"通信"},
+    {"kanji":"回線","kana":"かいせん","pron":"카이센","ko":"회선","tts_text":"回線"},
+    {"kanji":"速度","kana":"そくど","pron":"소쿠도","ko":"속도","tts_text":"速度"},
+    {"kanji":"遅延","kana":"ちえん","pron":"치엔","ko":"지연","tts_text":"遅延"},
+    {"kanji":"容量","kana":"ようりょう","pron":"요오료오","ko":"용량","tts_text":"容量"},
+    {"kanji":"保存","kana":"ほぞん","pron":"호존","ko":"저장","tts_text":"保存"},
+    {"kanji":"削除","kana":"さくじょ","pron":"사쿠죠","ko":"삭제","tts_text":"削除"},
 
-      {"kanji":"起動","kana":"きどう","pron":"키도오","ko":"기동","tts_text":"起動"},
-      {"kanji":"再起動","kana":"さいきどう","pron":"사이키도오","ko":"재부팅","tts_text":"再起動"},
-      {"kanji":"接続","kana":"せつぞく","pron":"세츠조쿠","ko":"접속/연결","tts_text":"接続"},
-      {"kanji":"通信","kana":"つうしん","pron":"츠우신","ko":"통신","tts_text":"通信"},
-      {"kanji":"回線","kana":"かいせん","pron":"카이센","ko":"회선","tts_text":"回線"},
-      {"kanji":"速度","kana":"そくど","pron":"소쿠도","ko":"속도","tts_text":"速度"},
-      {"kanji":"遅延","kana":"ちえん","pron":"치엔","ko":"지연","tts_text":"遅延"},
-      {"kanji":"容量","kana":"ようりょう","pron":"요오료오","ko":"용량","tts_text":"容量"},
-      {"kanji":"保存","kana":"ほぞん","pron":"호존","ko":"저장","tts_text":"保存"},
-      {"kanji":"削除","kana":"さくじょ","pron":"사쿠죠","ko":"삭제","tts_text":"削除"},
+    {"kanji":"共有","kana":"きょうゆう","pron":"쿄오유우","ko":"공유","tts_text":"共有"},
+    {"kanji":"送信","kana":"そうしん","pron":"소오신","ko":"송신","tts_text":"送信"},
+    {"kanji":"受信","kana":"じゅしん","pron":"쥬신","ko":"수신","tts_text":"受信"},
+    {"kanji":"添付","kana":"てんぷ","pron":"텐푸","ko":"첨부","tts_text":"添付"},
+    {"kanji":"ダウンロード","kana":"ダウンロード","pron":"다운로오도","ko":"다운로드","tts_text":"ダウンロード"},
+    {"kanji":"アップロード","kana":"アップロード","pron":"앗프로오도","ko":"업로드","tts_text":"アップロード"},
+    {"kanji":"ログイン","kana":"ログイン","pron":"로구인","ko":"로그인","tts_text":"ログイン"},
+    {"kanji":"ログアウト","kana":"ログアウト","pron":"로구아우토","ko":"로그아웃","tts_text":"ログアウト"},
+    {"kanji":"登録","kana":"とうろく","pron":"토오로쿠","ko":"등록","tts_text":"登録"},
+    {"kanji":"認証","kana":"にんしょう","pron":"닌쇼오","ko":"인증","tts_text":"認証"},
 
-      {"kanji":"共有","kana":"きょうゆう","pron":"쿄오유우","ko":"공유","tts_text":"共有"},
-      {"kanji":"送信","kana":"そうしん","pron":"소오신","ko":"송신","tts_text":"送信"},
-      {"kanji":"受信","kana":"じゅしん","pron":"쥬신","ko":"수신","tts_text":"受信"},
-      {"kanji":"添付","kana":"てんぷ","pron":"텐푸","ko":"첨부","tts_text":"添付"},
-      {"kanji":"ダウンロード","kana":"ダウンロード","pron":"다운로오도","ko":"다운로드","tts_text":"ダウンロード"},
-      {"kanji":"アップロード","kana":"アップロード","pron":"앗프로오도","ko":"업로드","tts_text":"アップロード"},
-      {"kanji":"ログイン","kana":"ログイン","pron":"로구인","ko":"로그인","tts_text":"ログイン"},
-      {"kanji":"ログアウト","kana":"ログアウト","pron":"로구아우토","ko":"로그아웃","tts_text":"ログアウト"},
-      {"kanji":"登録","kana":"とうろく","pron":"토오로쿠","ko":"등록","tts_text":"登録"},
-      {"kanji":"認証","kana":"にんしょう","pron":"닌쇼오","ko":"인증","tts_text":"認証"},
+    {"kanji":"暗証番号","kana":"あんしょうばんごう","pron":"안쇼오 방고오","ko":"비밀번호(PIN)","tts_text":"暗証番号"},
+    {"kanji":"個人情報","kana":"こじんじょうほう","pron":"코진 죠오호오","ko":"개인정보","tts_text":"個人情報"},
+    {"kanji":"情報漏えい","kana":"じょうほうろうえい","pron":"죠오호오 로오에이","ko":"정보 유출","tts_text":"情報漏えい"},
+    {"kanji":"セキュリティ","kana":"セキュリティ","pron":"세큐리티","ko":"보안","tts_text":"セキュリティ"},
+    {"kanji":"対策","kana":"たいさく","pron":"타이사쿠","ko":"대책","tts_text":"対策"},
+    {"kanji":"警告","kana":"けいこく","pron":"케이코쿠","ko":"경고","tts_text":"警告"},
+    {"kanji":"承認","kana":"しょうにん","pron":"쇼오닌","ko":"승인","tts_text":"承認"},
+    {"kanji":"権限","kana":"けんげん","pron":"켄겐","ko":"권한","tts_text":"権限"},
+    {"kanji":"アクセス","kana":"アクセス","pron":"아쿠세스","ko":"접근/액세스","tts_text":"アクセス"},
+    {"kanji":"制限","kana":"せいげん","pron":"세이겐","ko":"제한","tts_text":"制限"},
 
-      {"kanji":"暗証番号","kana":"あんしょうばんごう","pron":"안쇼오 방고오","ko":"비밀번호(PIN)","tts_text":"暗証番号"},
-      {"kanji":"個人情報","kana":"こじんじょうほう","pron":"코진 죠오호오","ko":"개인정보","tts_text":"個人情報"},
-      {"kanji":"情報漏えい","kana":"じょうほうろうえい","pron":"죠오호오 로오에이","ko":"정보 유출","tts_text":"情報漏えい"},
-      {"kanji":"セキュリティ","kana":"セキュリティ","pron":"세큐리티","ko":"보안","tts_text":"セキュリティ"},
-      {"kanji":"対策","kana":"たいさく","pron":"타이사쿠","ko":"대책","tts_text":"対策"},
-      {"kanji":"警告","kana":"けいこく","pron":"케이코쿠","ko":"경고","tts_text":"警告"},
-      {"kanji":"承認","kana":"しょうにん","pron":"쇼오닌","ko":"승인","tts_text":"承認"},
-      {"kanji":"権限","kana":"けんげん","pron":"켄겐","ko":"권한","tts_text":"権限"},
-      {"kanji":"アクセス","kana":"アクセス","pron":"아쿠세스","ko":"접근/액세스","tts_text":"アクセス"},
-      {"kanji":"制限","kana":"せいげん","pron":"세이겐","ko":"제한","tts_text":"制限"},
+    {"kanji":"検索","kana":"けんさく","pron":"켄사쿠","ko":"검색","tts_text":"検索"},
+    {"kanji":"検索結果","kana":"けんさくけっか","pron":"켄사쿠 켓카","ko":"검색 결과","tts_text":"検索結果"},
+    {"kanji":"通知","kana":"つうち","pron":"츠우치","ko":"알림/통지","tts_text":"通知"},
+    {"kanji":"広告","kana":"こうこく","pron":"코오코쿠","ko":"광고","tts_text":"広告"},
+    {"kanji":"配信","kana":"はいしん","pron":"하이신","ko":"송출/배신","tts_text":"配信"},
+    {"kanji":"視聴","kana":"しちょう","pron":"시쵸오","ko":"시청","tts_text":"視聴"},
+    {"kanji":"再生","kana":"さいせい","pron":"사이세이","ko":"재생","tts_text":"再生"},
+    {"kanji":"停止","kana":"ていし","pron":"테이시","ko":"정지","tts_text":"停止"},
+    {"kanji":"編集","kana":"へんしゅう","pron":"헨슈우","ko":"편집","tts_text":"編集"},
+    {"kanji":"加工","kana":"かこう","pron":"카코오","ko":"가공/편집","tts_text":"加工"},
 
-      {"kanji":"検索","kana":"けんさく","pron":"켄사쿠","ko":"검색","tts_text":"検索"},
-      {"kanji":"検索結果","kana":"けんさくけっか","pron":"켄사쿠 켓카","ko":"검색 결과","tts_text":"検索結果"},
-      {"kanji":"通知","kana":"つうち","pron":"츠우치","ko":"알림/통지","tts_text":"通知"},
-      {"kanji":"広告","kana":"こうこく","pron":"코오코쿠","ko":"광고","tts_text":"広告"},
-      {"kanji":"配信","kana":"はいしん","pron":"하이신","ko":"송출/배신","tts_text":"配信"},
-      {"kanji":"視聴","kana":"しちょう","pron":"시쵸오","ko":"시청","tts_text":"視聴"},
-      {"kanji":"再生","kana":"さいせい","pron":"사이세이","ko":"재생","tts_text":"再生"},
-      {"kanji":"停止","kana":"ていし","pron":"테이시","ko":"정지","tts_text":"停止"},
-      {"kanji":"編集","kana":"へんしゅう","pron":"헨슈우","ko":"편집","tts_text":"編集"},
-      {"kanji":"加工","kana":"かこう","pron":"카코오","ko":"가공/편집","tts_text":"加工"},
-
-      {"kanji":"印刷","kana":"いんさつ","pron":"인사츠","ko":"인쇄","tts_text":"印刷"},
-      {"kanji":"書類","kana":"しょるい","pron":"쇼루이","ko":"서류","tts_text":"書類"},
-      {"kanji":"データ","kana":"データ","pron":"데에타","ko":"데이터","tts_text":"データ"},
-      {"kanji":"資料","kana":"しりょう","pron":"시료오","ko":"자료","tts_text":"資料"},
-      {"kanji":"形式","kana":"けいしき","pron":"케이시키","ko":"형식","tts_text":"形式"},
-      {"kanji":"互換性","kana":"ごかんせい","pron":"고칸세이","ko":"호환성","tts_text":"互換性"},
-      {"kanji":"対応する","kana":"たいおうする","pron":"타이오오 스루","ko":"지원/대응하다","tts_text":"対応する"},
-      {"kanji":"利用規約","kana":"りようきやく","pron":"리요오 키야쿠","ko":"이용약관","tts_text":"利用規約"},
-      {"kanji":"規約","kana":"きやく","pron":"키야쿠","ko":"약관","tts_text":"規約"},
-      {"kanji":"同意","kana":"どうい","pron":"도오이","ko":"동의","tts_text":"同意"}
-    ]
-  },
+    {"kanji":"印刷","kana":"いんさつ","pron":"인사츠","ko":"인쇄","tts_text":"印刷"},
+    {"kanji":"書類","kana":"しょるい","pron":"쇼루이","ko":"서류","tts_text":"書類"},
+    {"kanji":"データ","kana":"データ","pron":"데에타","ko":"데이터","tts_text":"データ"},
+    {"kanji":"資料","kana":"しりょう","pron":"시료오","ko":"자료","tts_text":"資料"},
+    {"kanji":"形式","kana":"けいしき","pron":"케이시키","ko":"형식","tts_text":"形式"},
+    {"kanji":"互換性","kana":"ごかんせい","pron":"고칸세이","ko":"호환성","tts_text":"互換性"},
+    {"kanji":"対応する","kana":"たいおうする","pron":"타이오오 스루","ko":"지원/대응하다","tts_text":"対応する"},
+    {"kanji":"利用規約","kana":"りようきやく","pron":"리요오 키야쿠","ko":"이용약관","tts_text":"利用規約"},
+    {"kanji":"規約","kana":"きやく","pron":"키야쿠","ko":"약관","tts_text":"規約"},
+    {"kanji":"同意","kana":"どうい","pron":"도오이","ko":"동의","tts_text":"同意"}
+  ]
+},
   "sec07": {
-    "title": "건강·의료·몸",
-    "items": [
-      {"kanji":"診察","kana":"しんさつ","pron":"신사츠","ko":"진찰","tts_text":"診察"},
-      {"kanji":"受診","kana":"じゅしん","pron":"쥬신","ko":"진료를 받음","tts_text":"受診"},
-      {"kanji":"治療","kana":"ちりょう","pron":"치료오","ko":"치료","tts_text":"治療"},
-      {"kanji":"処方","kana":"しょほう","pron":"쇼호오","ko":"처방","tts_text":"処方"},
-      {"kanji":"処方箋","kana":"しょほうせん","pron":"쇼호오센","ko":"처방전","tts_text":"処方箋"},
-      {"kanji":"服薬","kana":"ふくやく","pron":"후쿠야쿠","ko":"복약","tts_text":"服薬"},
-      {"kanji":"副作用","kana":"ふくさよう","pron":"후쿠사요오","ko":"부작용","tts_text":"副作用"},
-      {"kanji":"検査","kana":"けんさ","pron":"켄사","ko":"검사","tts_text":"検査"},
-      {"kanji":"診断","kana":"しんだん","pron":"신단","ko":"진단","tts_text":"診断"},
-      {"kanji":"手術","kana":"しゅじゅつ","pron":"슈쥬츠","ko":"수술","tts_text":"手術"},
+  "title": "건강·의료·몸",
+  "items": [
+    {"kanji":"診察","kana":"しんさつ","pron":"신사츠","ko":"진찰","tts_text":"診察"},
+    {"kanji":"受診","kana":"じゅしん","pron":"쥬신","ko":"진료를 받음/진료","tts_text":"受診"},
+    {"kanji":"治療","kana":"ちりょう","pron":"치료오","ko":"치료","tts_text":"治療"},
+    {"kanji":"処方","kana":"しょほう","pron":"쇼호오","ko":"처방","tts_text":"処方"},
+    {"kanji":"処方箋","kana":"しょほうせん","pron":"쇼호오센","ko":"처방전","tts_text":"処方箋"},
+    {"kanji":"服薬","kana":"ふくやく","pron":"후쿠야쿠","ko":"복약/약 복용","tts_text":"服薬"},
+    {"kanji":"副作用","kana":"ふくさよう","pron":"후쿠사요오","ko":"부작용","tts_text":"副作用"},
+    {"kanji":"検査","kana":"けんさ","pron":"켄사","ko":"검사","tts_text":"検査"},
+    {"kanji":"診断","kana":"しんだん","pron":"신단","ko":"진단","tts_text":"診断"},
+    {"kanji":"手術","kana":"しゅじゅつ","pron":"슈쥬츠","ko":"수술","tts_text":"手術"},
 
-      {"kanji":"入院","kana":"にゅういん","pron":"뉴우인","ko":"입원","tts_text":"入院"},
-      {"kanji":"退院","kana":"たいいん","pron":"타이인","ko":"퇴원","tts_text":"退院"},
-      {"kanji":"通院","kana":"つういん","pron":"츠우인","ko":"통원","tts_text":"通院"},
-      {"kanji":"救急","kana":"きゅうきゅう","pron":"큐우큐우","ko":"응급","tts_text":"救急"},
-      {"kanji":"救急車","kana":"きゅうきゅうしゃ","pron":"큐우큐우샤","ko":"구급차","tts_text":"救急車"},
-      {"kanji":"応急処置","kana":"おうきゅうしょち","pron":"오오큐우 쇼치","ko":"응급처치","tts_text":"応急処置"},
-      {"kanji":"症状","kana":"しょうじょう","pron":"쇼오죠오","ko":"증상","tts_text":"症状"},
-      {"kanji":"体温","kana":"たいおん","pron":"타이온","ko":"체온","tts_text":"体温"},
-      {"kanji":"血圧","kana":"けつあつ","pron":"케츠아츠","ko":"혈압","tts_text":"血圧"},
-      {"kanji":"脈","kana":"みゃく","pron":"먀쿠","ko":"맥","tts_text":"脈"},
+    {"kanji":"入院","kana":"にゅういん","pron":"뉴우인","ko":"입원","tts_text":"入院"},
+    {"kanji":"退院","kana":"たいいん","pron":"타이인","ko":"퇴원","tts_text":"退院"},
+    {"kanji":"通院","kana":"つういん","pron":"츠우인","ko":"통원/병원에 다님","tts_text":"通院"},
+    {"kanji":"救急","kana":"きゅうきゅう","pron":"큐우큐우","ko":"응급","tts_text":"救急"},
+    {"kanji":"救急車","kana":"きゅうきゅうしゃ","pron":"큐우큐우샤","ko":"구급차","tts_text":"救急車"},
+    {"kanji":"応急処置","kana":"おうきゅうしょち","pron":"오오큐우 쇼치","ko":"응급처치","tts_text":"応急処置"},
+    {"kanji":"症状","kana":"しょうじょう","pron":"쇼오죠오","ko":"증상","tts_text":"症状"},
+    {"kanji":"体温","kana":"たいおん","pron":"타이온","ko":"체온","tts_text":"体温"},
+    {"kanji":"血圧","kana":"けつあつ","pron":"케츠아츠","ko":"혈압","tts_text":"血圧"},
+    {"kanji":"脈","kana":"みゃく","pron":"먀쿠","ko":"맥/맥박","tts_text":"脈"},
 
-      {"kanji":"痛み","kana":"いたみ","pron":"이타미","ko":"통증","tts_text":"痛み"},
-      {"kanji":"発熱","kana":"はつねつ","pron":"하츠네츠","ko":"발열","tts_text":"発熱"},
-      {"kanji":"吐き気","kana":"はきけ","pron":"하기케","ko":"메스꺼움","tts_text":"吐き気"},
-      {"kanji":"めまい","kana":"めまい","pron":"메마이","ko":"현기증","tts_text":"めまい"},
-      {"kanji":"息切れ","kana":"いきぎれ","pron":"이키기레","ko":"숨참","tts_text":"息切れ"},
-      {"kanji":"息苦しい","kana":"いきぐるしい","pron":"이키구루시이","ko":"숨이 차다","tts_text":"息苦しい"},
-      {"kanji":"咳","kana":"せき","pron":"세키","ko":"기침","tts_text":"咳"},
-      {"kanji":"くしゃみ","kana":"くしゃみ","pron":"쿠샤미","ko":"재채기","tts_text":"くしゃみ"},
-      {"kanji":"鼻水","kana":"はなみず","pron":"하나미즈","ko":"콧물","tts_text":"鼻水"},
-      {"kanji":"下痢","kana":"げり","pron":"게리","ko":"설사","tts_text":"下痢"},
+    {"kanji":"痛み","kana":"いたみ","pron":"이타미","ko":"통증","tts_text":"痛み"},
+    {"kanji":"発熱","kana":"はつねつ","pron":"하츠네츠","ko":"발열","tts_text":"発熱"},
+    {"kanji":"吐き気","kana":"はきけ","pron":"하기케","ko":"메스꺼움","tts_text":"吐き気"},
+    {"kanji":"めまい","kana":"めまい","pron":"메마이","ko":"현기증","tts_text":"めまい"},
+    {"kanji":"息切れ","kana":"いきぎれ","pron":"이키기레","ko":"숨참/호흡곤란","tts_text":"息切れ"},
+    {"kanji":"息苦しい","kana":"いきぐるしい","pron":"이키구루시이","ko":"숨이 차다/숨이 힘들다","tts_text":"息苦しい"},
+    {"kanji":"咳","kana":"せき","pron":"세키","ko":"기침","tts_text":"咳"},
+    {"kanji":"くしゃみ","kana":"くしゃみ","pron":"쿠샤미","ko":"재채기","tts_text":"くしゃみ"},
+    {"kanji":"鼻水","kana":"はなみず","pron":"하나미즈","ko":"콧물","tts_text":"鼻水"},
+    {"kanji":"下痢","kana":"げり","pron":"게리","ko":"설사","tts_text":"下痢"},
 
-      {"kanji":"便秘","kana":"べんぴ","pron":"벤피","ko":"변비","tts_text":"便秘"},
-      {"kanji":"食中毒","kana":"しょくちゅうどく","pron":"쇼쿠츄우도쿠","ko":"식중독","tts_text":"食中毒"},
-      {"kanji":"感染","kana":"かんせん","pron":"칸센","ko":"감염","tts_text":"感染"},
-      {"kanji":"感染症","kana":"かんせんしょう","pron":"칸센쇼오","ko":"감염증","tts_text":"感染症"},
-      {"kanji":"予防接種","kana":"よぼうせっしゅ","pron":"요보오 셋슈","ko":"예방접종","tts_text":"予防接種"},
-      {"kanji":"アレルギー","kana":"アレルギー","pron":"아레루기이","ko":"알레르기","tts_text":"アレルギー"},
-      {"kanji":"花粉症","kana":"かふんしょう","pron":"카푼쇼오","ko":"화분증","tts_text":"花粉症"},
-      {"kanji":"慢性","kana":"まんせい","pron":"만세이","ko":"만성","tts_text":"慢性"},
-      {"kanji":"持病","kana":"じびょう","pron":"지뵤오","ko":"지병","tts_text":"持病"},
-      {"kanji":"過労","kana":"かろう","pron":"카로오","ko":"과로","tts_text":"過労"},
+    {"kanji":"便秘","kana":"べんぴ","pron":"벤피","ko":"변비","tts_text":"便秘"},
+    {"kanji":"食中毒","kana":"しょくちゅうどく","pron":"쇼쿠츄우도쿠","ko":"식중독","tts_text":"食中毒"},
+    {"kanji":"感染","kana":"かんせん","pron":"칸센","ko":"감염","tts_text":"感染"},
+    {"kanji":"感染症","kana":"かんせんしょう","pron":"칸센쇼오","ko":"감염증","tts_text":"感染症"},
+    {"kanji":"予防接種","kana":"よぼうせっしゅ","pron":"요보오 셋슈","ko":"예방접종","tts_text":"予防接種"},
+    {"kanji":"アレルギー","kana":"アレルギー","pron":"아레루기이","ko":"알레르기","tts_text":"アレルギー"},
+    {"kanji":"花粉症","kana":"かふんしょう","pron":"카푼쇼오","ko":"화분증","tts_text":"花粉症"},
+    {"kanji":"慢性","kana":"まんせい","pron":"만세이","ko":"만성","tts_text":"慢性"},
+    {"kanji":"持病","kana":"じびょう","pron":"지뵤오","ko":"지병","tts_text":"持病"},
+    {"kanji":"過労","kana":"かろう","pron":"카로오","ko":"과로","tts_text":"過労"},
 
-      {"kanji":"睡眠不足","kana":"すいみんぶそく","pron":"스이민 부소쿠","ko":"수면 부족","tts_text":"睡眠不足"},
-      {"kanji":"ストレス","kana":"ストレス","pron":"스토레스","ko":"스트레스","tts_text":"ストレス"},
-      {"kanji":"疲労","kana":"ひろう","pron":"히로오","ko":"피로","tts_text":"疲労"},
-      {"kanji":"回復","kana":"かいふく","pron":"카이후쿠","ko":"회복","tts_text":"回復"},
-      {"kanji":"栄養","kana":"えいよう","pron":"에이요오","ko":"영양","tts_text":"栄養"},
-      {"kanji":"食欲","kana":"しょくよく","pron":"쇼쿠요쿠","ko":"식욕","tts_text":"食欲"},
-      {"kanji":"食欲不振","kana":"しょくよくふしん","pron":"쇼쿠요쿠 후신","ko":"식욕부진","tts_text":"食欲不振"},
-      {"kanji":"生活習慣","kana":"せいかつしゅうかん","pron":"세이카츠 슈우칸","ko":"생활 습관","tts_text":"生活習慣"},
-      {"kanji":"禁酒","kana":"きんしゅ","pron":"킨슈","ko":"금주","tts_text":"禁酒"},
-      {"kanji":"禁煙","kana":"きんえん","pron":"킨엔","ko":"금연","tts_text":"禁煙"},
+    {"kanji":"睡眠不足","kana":"すいみんぶそく","pron":"스이민 부소쿠","ko":"수면 부족","tts_text":"睡眠不足"},
+    {"kanji":"ストレス","kana":"ストレス","pron":"스토레스","ko":"스트레스","tts_text":"ストレス"},
+    {"kanji":"疲労","kana":"ひろう","pron":"히로오","ko":"피로","tts_text":"疲労"},
+    {"kanji":"回復","kana":"かいふく","pron":"카이후쿠","ko":"회복","tts_text":"回復"},
+    {"kanji":"栄養","kana":"えいよう","pron":"에이요오","ko":"영양","tts_text":"栄養"},
+    {"kanji":"食欲","kana":"しょくよく","pron":"쇼쿠요쿠","ko":"식욕","tts_text":"食欲"},
+    {"kanji":"食欲不振","kana":"しょくよくふしん","pron":"쇼쿠요쿠 후신","ko":"식욕부진","tts_text":"食欲不振"},
+    {"kanji":"生活習慣","kana":"せいかつしゅうかん","pron":"세이카츠 슈우칸","ko":"생활 습관","tts_text":"生活習慣"},
+    {"kanji":"禁酒","kana":"きんしゅ","pron":"킨슈","ko":"금주","tts_text":"禁酒"},
+    {"kanji":"禁煙","kana":"きんえん","pron":"킨엔","ko":"금연","tts_text":"禁煙"},
 
-      {"kanji":"体力","kana":"たいりょく","pron":"타이료쿠","ko":"체력","tts_text":"体力"},
-      {"kanji":"筋肉","kana":"きんにく","pron":"킨니쿠","ko":"근육","tts_text":"筋肉"},
-      {"kanji":"関節","kana":"かんせつ","pron":"칸세츠","ko":"관절","tts_text":"関節"},
-      {"kanji":"骨折","kana":"こっせつ","pron":"콧세츠","ko":"골절","tts_text":"骨折"},
-      {"kanji":"捻挫","kana":"ねんざ","pron":"넨자","ko":"염좌/삠","tts_text":"捻挫"}
-    ]
-  },
+    {"kanji":"体力","kana":"たいりょく","pron":"타이료쿠","ko":"체력","tts_text":"体力"},
+    {"kanji":"筋肉","kana":"きんにく","pron":"킨니쿠","ko":"근육","tts_text":"筋肉"},
+    {"kanji":"関節","kana":"かんせつ","pron":"칸세츠","ko":"관절","tts_text":"関節"},
+    {"kanji":"骨折","kana":"こっせつ","pron":"콧세츠","ko":"골절","tts_text":"骨折"},
+    {"kanji":"捻挫","kana":"ねんざ","pron":"넨자","ko":"염좌/삠","tts_text":"捻挫"}
+  ]
+},
+"sec08": {
+  "title": "자연·환경·재해",
+  "items": [
+    {"kanji":"環境問題","kana":"かんきょうもんだい","pron":"칸쿄오 몬다이","ko":"환경 문제","tts_text":"環境問題"},
+    {"kanji":"温暖化","kana":"おんだんか","pron":"온단카","ko":"온난화","tts_text":"温暖化"},
+    {"kanji":"気候","kana":"きこう","pron":"키코오","ko":"기후","tts_text":"気候"},
+    {"kanji":"異常気象","kana":"いじょうきしょう","pron":"이죠오 키쇼오","ko":"이상 기후","tts_text":"異常気象"},
+    {"kanji":"大雨","kana":"おおあめ","pron":"오오아메","ko":"폭우","tts_text":"大雨"},
+    {"kanji":"豪雨","kana":"ごうう","pron":"고오우","ko":"호우/폭우","tts_text":"豪雨"},
+    {"kanji":"洪水","kana":"こうずい","pron":"코오즈이","ko":"홍수","tts_text":"洪水"},
+    {"kanji":"浸水","kana":"しんすい","pron":"신스이","ko":"침수","tts_text":"浸水"},
+    {"kanji":"土砂崩れ","kana":"どしゃくずれ","pron":"도샤쿠즈레","ko":"산사태","tts_text":"土砂崩れ"},
+    {"kanji":"避難","kana":"ひなん","pron":"히난","ko":"피난","tts_text":"避難"},
 
-  "sec08": {
-    "title": "자연·환경·재해",
-    "items": [
-      {"kanji":"環境問題","kana":"かんきょうもんだい","pron":"칸쿄오 몬다이","ko":"환경 문제","tts_text":"環境問題"},
-      {"kanji":"温暖化","kana":"おんだんか","pron":"온단카","ko":"온난화","tts_text":"温暖化"},
-      {"kanji":"気候","kana":"きこう","pron":"키코오","ko":"기후","tts_text":"気候"},
-      {"kanji":"異常気象","kana":"いじょうきしょう","pron":"이죠오 키쇼오","ko":"이상 기후","tts_text":"異常気象"},
-      {"kanji":"大雨","kana":"おおあめ","pron":"오오아메","ko":"폭우","tts_text":"大雨"},
-      {"kanji":"豪雨","kana":"ごうう","pron":"고오우","ko":"호우","tts_text":"豪雨"},
-      {"kanji":"洪水","kana":"こうずい","pron":"코오즈이","ko":"홍수","tts_text":"洪水"},
-      {"kanji":"浸水","kana":"しんすい","pron":"신스이","ko":"침수","tts_text":"浸水"},
-      {"kanji":"土砂崩れ","kana":"どしゃくずれ","pron":"도샤쿠즈레","ko":"산사태","tts_text":"土砂崩れ"},
-      {"kanji":"避難","kana":"ひなん","pron":"히난","ko":"피난","tts_text":"避難"},
+    {"kanji":"避難所","kana":"ひなんじょ","pron":"히난죠","ko":"대피소","tts_text":"避難所"},
+    {"kanji":"警報","kana":"けいほう","pron":"케이호오","ko":"경보","tts_text":"警報"},
+    {"kanji":"注意報","kana":"ちゅういほう","pron":"츄우이호오","ko":"주의보","tts_text":"注意報"},
+    {"kanji":"台風","kana":"たいふう","pron":"타이후우","ko":"태풍","tts_text":"台風"},
+    {"kanji":"地震","kana":"じしん","pron":"지신","ko":"지진","tts_text":"地震"},
+    {"kanji":"震度","kana":"しんど","pron":"신도","ko":"진도","tts_text":"震度"},
+    {"kanji":"余震","kana":"よしん","pron":"요신","ko":"여진","tts_text":"余震"},
+    {"kanji":"津波","kana":"つなみ","pron":"츠나미","ko":"쓰나미","tts_text":"津波"},
+    {"kanji":"噴火","kana":"ふんか","pron":"훈카","ko":"분화","tts_text":"噴火"},
+    {"kanji":"火山","kana":"かざん","pron":"카잔","ko":"화산","tts_text":"火山"},
 
-      {"kanji":"避難所","kana":"ひなんじょ","pron":"히난죠","ko":"대피소","tts_text":"避難所"},
-      {"kanji":"警報","kana":"けいほう","pron":"케이호오","ko":"경보","tts_text":"警報"},
-      {"kanji":"注意報","kana":"ちゅういほう","pron":"츄우이호오","ko":"주의보","tts_text":"注意報"},
-      {"kanji":"台風","kana":"たいふう","pron":"타이후우","ko":"태풍","tts_text":"台風"},
-      {"kanji":"地震","kana":"じしん","pron":"지신","ko":"지진","tts_text":"地震"},
-      {"kanji":"震度","kana":"しんど","pron":"신도","ko":"진도","tts_text":"震度"},
-      {"kanji":"余震","kana":"よしん","pron":"요신","ko":"여진","tts_text":"余震"},
-      {"kanji":"津波","kana":"つなみ","pron":"츠나미","ko":"쓰나미","tts_text":"津波"},
-      {"kanji":"噴火","kana":"ふんか","pron":"훈카","ko":"분화","tts_text":"噴火"},
-      {"kanji":"火山","kana":"かざん","pron":"카잔","ko":"화산","tts_text":"火山"},
+    {"kanji":"火災","kana":"かさい","pron":"카사이","ko":"화재","tts_text":"火災"},
+    {"kanji":"延焼","kana":"えんしょう","pron":"엔쇼오","ko":"연소/불이 번짐","tts_text":"延焼"},
+    {"kanji":"落雷","kana":"らくらい","pron":"라쿠라이","ko":"낙뢰","tts_text":"落雷"},
+    {"kanji":"停電","kana":"ていでん","pron":"테이덴","ko":"정전","tts_text":"停電"},
+    {"kanji":"断水","kana":"だんすい","pron":"단스이","ko":"단수","tts_text":"断水"},
+    {"kanji":"被害","kana":"ひがい","pron":"히가이","ko":"피해","tts_text":"被害"},
+    {"kanji":"被害状況","kana":"ひがいじょうきょう","pron":"히가이 죠오쿄오","ko":"피해 상황","tts_text":"被害状況"},
+    {"kanji":"復旧","kana":"ふっきゅう","pron":"훗큐우","ko":"복구","tts_text":"復旧"},
+    {"kanji":"復興","kana":"ふっこう","pron":"훗코오","ko":"부흥/재건","tts_text":"復興"},
+    {"kanji":"支援","kana":"しえん","pron":"시엔","ko":"지원","tts_text":"支援"},
 
-      {"kanji":"火災","kana":"かさい","pron":"카사이","ko":"화재","tts_text":"火災"},
-      {"kanji":"延焼","kana":"えんしょう","pron":"엔쇼오","ko":"연소/불이 번짐","tts_text":"延焼"},
-      {"kanji":"落雷","kana":"らくらい","pron":"라쿠라이","ko":"낙뢰","tts_text":"落雷"},
-      {"kanji":"停電","kana":"ていでん","pron":"테이덴","ko":"정전","tts_text":"停電"},
-      {"kanji":"断水","kana":"だんすい","pron":"단스이","ko":"단수","tts_text":"断水"},
-      {"kanji":"被害","kana":"ひがい","pron":"히가이","ko":"피해","tts_text":"被害"},
-      {"kanji":"被害状況","kana":"ひがいじょうきょう","pron":"히가이 죠오쿄오","ko":"피해 상황","tts_text":"被害状況"},
-      {"kanji":"復旧","kana":"ふっきゅう","pron":"훗큐우","ko":"복구","tts_text":"復旧"},
-      {"kanji":"復興","kana":"ふっこう","pron":"훗코오","ko":"부흥/재건","tts_text":"復興"},
-      {"kanji":"支援","kana":"しえん","pron":"시엔","ko":"지원","tts_text":"支援"},
+    {"kanji":"救助","kana":"きゅうじょ","pron":"큐우죠","ko":"구조","tts_text":"救助"},
+    {"kanji":"安全確認","kana":"あんぜんかくにん","pron":"안젠 카쿠닌","ko":"안전 확인","tts_text":"安全確認"},
+    {"kanji":"危険区域","kana":"きけんくいき","pron":"키켄 쿠이키","ko":"위험 구역","tts_text":"危険区域"},
+    {"kanji":"立入禁止","kana":"たちいりきんし","pron":"타치이리 킨시","ko":"출입 금지","tts_text":"立入禁止"},
+    {"kanji":"汚染","kana":"おせん","pron":"오센","ko":"오염","tts_text":"汚染"},
+    {"kanji":"大気汚染","kana":"たいきおせん","pron":"타이키 오센","ko":"대기 오염","tts_text":"大気汚染"},
+    {"kanji":"水質","kana":"すいしつ","pron":"스이시츠","ko":"수질","tts_text":"水質"},
+    {"kanji":"水不足","kana":"みずぶそく","pron":"미즈 부소쿠","ko":"물 부족","tts_text":"水不足"},
+    {"kanji":"資源","kana":"しげん","pron":"시겐","ko":"자원","tts_text":"資源"},
+    {"kanji":"再利用","kana":"さいりよう","pron":"사이리요오","ko":"재이용","tts_text":"再利用"},
 
-      {"kanji":"救助","kana":"きゅうじょ","pron":"큐우죠","ko":"구조","tts_text":"救助"},
-      {"kanji":"安全確認","kana":"あんぜんかくにん","pron":"안젠 카쿠닌","ko":"안전 확인","tts_text":"安全確認"},
-      {"kanji":"危険区域","kana":"きけんくいき","pron":"키켄 쿠이키","ko":"위험 구역","tts_text":"危険区域"},
-      {"kanji":"立入禁止","kana":"たちいりきんし","pron":"타치이리 킨시","ko":"출입 금지","tts_text":"立入禁止"},
-      {"kanji":"汚染","kana":"おせん","pron":"오센","ko":"오염","tts_text":"汚染"},
-      {"kanji":"大気汚染","kana":"たいきおせん","pron":"타이키 오센","ko":"대기 오염","tts_text":"大気汚染"},
-      {"kanji":"水質","kana":"すいしつ","pron":"스이시츠","ko":"수질","tts_text":"水質"},
-      {"kanji":"水不足","kana":"みずぶそく","pron":"미즈 부소쿠","ko":"물 부족","tts_text":"水不足"},
-      {"kanji":"資源","kana":"しげん","pron":"시겐","ko":"자원","tts_text":"資源"},
-      {"kanji":"再利用","kana":"さいりよう","pron":"사이리요오","ko":"재이용","tts_text":"再利用"},
+    {"kanji":"リサイクル","kana":"リサイクル","pron":"리사이쿠루","ko":"리사이클","tts_text":"リサイクル"},
+    {"kanji":"節電","kana":"せつでん","pron":"세츠덴","ko":"절전","tts_text":"節電"},
+    {"kanji":"省エネ","kana":"しょうえね","pron":"쇼오에네","ko":"에너지 절약","tts_text":"省エネ"},
+    {"kanji":"排出","kana":"はいしゅつ","pron":"하이슈츠","ko":"배출","tts_text":"排出"},
+    {"kanji":"二酸化炭素","kana":"にさんかたんそ","pron":"니산카 탄소","ko":"이산화탄소","tts_text":"二酸化炭素"},
+    {"kanji":"自然保護","kana":"しぜんほご","pron":"시젠 호고","ko":"자연 보호","tts_text":"自然保護"},
+    {"kanji":"保護","kana":"ほご","pron":"호고","ko":"보호","tts_text":"保護"},
+    {"kanji":"絶滅","kana":"ぜつめつ","pron":"제츠메츠","ko":"멸종","tts_text":"絶滅"},
+    {"kanji":"生態系","kana":"せいたいけい","pron":"세이타이케이","ko":"생태계","tts_text":"生態系"},
+    {"kanji":"自然災害","kana":"しぜんさいがい","pron":"시젠 사이가이","ko":"자연재해","tts_text":"自然災害"},
 
-      {"kanji":"リサイクル","kana":"リサイクル","pron":"리사이쿠루","ko":"리사이클","tts_text":"リサイクル"},
-      {"kanji":"節電","kana":"せつでん","pron":"세츠덴","ko":"절전","tts_text":"節電"},
-      {"kanji":"省エネ","kana":"しょうえね","pron":"쇼오에네","ko":"에너지 절약","tts_text":"省エネ"},
-      {"kanji":"排出","kana":"はいしゅつ","pron":"하이슈츠","ko":"배출","tts_text":"排出"},
-      {"kanji":"二酸化炭素","kana":"にさんかたんそ","pron":"니산카 탄소","ko":"이산화탄소","tts_text":"二酸化炭素"},
-      {"kanji":"自然保護","kana":"しぜんほご","pron":"시젠 호고","ko":"자연 보호","tts_text":"自然保護"},
-      {"kanji":"保護","kana":"ほご","pron":"호고","ko":"보호","tts_text":"保護"},
-      {"kanji":"絶滅","kana":"ぜつめつ","pron":"제츠메츠","ko":"멸종","tts_text":"絶滅"},
-      {"kanji":"生態系","kana":"せいたいけい","pron":"세이타이케이","ko":"생태계","tts_text":"生態系"},
-      {"kanji":"自然災害","kana":"しぜんさいがい","pron":"시젠 사이가이","ko":"자연재해","tts_text":"自然災害"},
+    {"kanji":"被災","kana":"ひさい","pron":"히사이","ko":"피해를 입음(재해)","tts_text":"被災"},
+    {"kanji":"被災者","kana":"ひさいしゃ","pron":"히사이샤","ko":"이재민","tts_text":"被災者"},
+    {"kanji":"避難する","kana":"ひなんする","pron":"히난 스루","ko":"피난하다","tts_text":"避難する"},
+    {"kanji":"備える","kana":"そなえる","pron":"소나에루","ko":"대비하다","tts_text":"備える"},
+    {"kanji":"備蓄","kana":"びちく","pron":"비치쿠","ko":"비축","tts_text":"備蓄"}
+  ]
+},
 
-      {"kanji":"被災","kana":"ひさい","pron":"히사이","ko":"피해를 입음(재해)","tts_text":"被災"},
-      {"kanji":"被災者","kana":"ひさいしゃ","pron":"히사이샤","ko":"이재민","tts_text":"被災者"},
-      {"kanji":"避難する","kana":"ひなんする","pron":"히난 스루","ko":"피난하다","tts_text":"避難する"},
-      {"kanji":"備える","kana":"そなえる","pron":"소나에루","ko":"대비하다","tts_text":"備える"},
-      {"kanji":"備蓄","kana":"びちく","pron":"비치쿠","ko":"비축","tts_text":"備蓄"}
-    ]
-  },
   "sec09": {
-    "title": "감정·태도·성향",
-    "items": [
-      {"kanji":"感情","kana":"かんじょう","pron":"칸죠오","ko":"감정","tts_text":"感情"},
-      {"kanji":"気分","kana":"きぶん","pron":"키분","ko":"기분","tts_text":"気分"},
-      {"kanji":"不安","kana":"ふあん","pron":"후안","ko":"불안","tts_text":"不安"},
-      {"kanji":"安心","kana":"あんしん","pron":"안신","ko":"안심","tts_text":"安心"},
-      {"kanji":"緊張","kana":"きんちょう","pron":"킨쵸오","ko":"긴장","tts_text":"緊張"},
-      {"kanji":"不満","kana":"ふまん","pron":"후만","ko":"불만","tts_text":"不満"},
-      {"kanji":"満足","kana":"まんぞく","pron":"만조쿠","ko":"만족","tts_text":"満足"},
-      {"kanji":"後悔","kana":"こうかい","pron":"코오카이","ko":"후회","tts_text":"後悔"},
-      {"kanji":"反省","kana":"はんせい","pron":"한세이","ko":"반성","tts_text":"反省"},
-      {"kanji":"期待","kana":"きたい","pron":"키타이","ko":"기대","tts_text":"期待"},
+  "title": "감정·태도·성향",
+  "items": [
+    {"kanji":"感情","kana":"かんじょう","pron":"칸죠오","ko":"감정","tts_text":"感情"},
+    {"kanji":"気分","kana":"きぶん","pron":"키분","ko":"기분","tts_text":"気分"},
+    {"kanji":"不安","kana":"ふあん","pron":"후안","ko":"불안","tts_text":"不安"},
+    {"kanji":"安心","kana":"あんしん","pron":"안신","ko":"안심","tts_text":"安心"},
+    {"kanji":"緊張","kana":"きんちょう","pron":"킨쵸오","ko":"긴장","tts_text":"緊張"},
+    {"kanji":"不満","kana":"ふまん","pron":"후만","ko":"불만","tts_text":"不満"},
+    {"kanji":"満足","kana":"まんぞく","pron":"만조쿠","ko":"만족","tts_text":"満足"},
+    {"kanji":"後悔","kana":"こうかい","pron":"코오카이","ko":"후회","tts_text":"後悔"},
+    {"kanji":"反省","kana":"はんせい","pron":"한세이","ko":"반성","tts_text":"反省"},
+    {"kanji":"期待","kana":"きたい","pron":"키타이","ko":"기대","tts_text":"期待"},
 
-      {"kanji":"失望","kana":"しつぼう","pron":"시츠보오","ko":"실망","tts_text":"失望"},
-      {"kanji":"驚き","kana":"おどろき","pron":"오도로키","ko":"놀람","tts_text":"驚き"},
-      {"kanji":"喜び","kana":"よろこび","pron":"요로코비","ko":"기쁨","tts_text":"喜び"},
-      {"kanji":"怒り","kana":"いかり","pron":"이카리","ko":"분노","tts_text":"怒り"},
-      {"kanji":"悲しみ","kana":"かなしみ","pron":"카나시미","ko":"슬픔","tts_text":"悲しみ"},
-      {"kanji":"恐れ","kana":"おそれ","pron":"오소레","ko":"두려움","tts_text":"恐れ"},
-      {"kanji":"自信","kana":"じしん","pron":"지신","ko":"자신","tts_text":"自信"},
-      {"kanji":"不安定","kana":"ふあんてい","pron":"후안테이","ko":"불안정","tts_text":"不安定"},
-      {"kanji":"安定","kana":"あんてい","pron":"안테이","ko":"안정","tts_text":"安定"},
-      {"kanji":"冷静","kana":"れいせい","pron":"레이세이","ko":"냉정","tts_text":"冷静"},
+    {"kanji":"失望","kana":"しつぼう","pron":"시츠보오","ko":"실망","tts_text":"失望"},
+    {"kanji":"驚き","kana":"おどろき","pron":"오도로키","ko":"놀람","tts_text":"驚き"},
+    {"kanji":"喜び","kana":"よろこび","pron":"요로코비","ko":"기쁨","tts_text":"喜び"},
+    {"kanji":"怒り","kana":"いかり","pron":"이카리","ko":"분노","tts_text":"怒り"},
+    {"kanji":"悲しみ","kana":"かなしみ","pron":"카나시미","ko":"슬픔","tts_text":"悲しみ"},
+    {"kanji":"恐れ","kana":"おそれ","pron":"오소레","ko":"두려움","tts_text":"恐れ"},
+    {"kanji":"自信","kana":"じしん","pron":"지신","ko":"자신/자신감","tts_text":"自信"},
+    {"kanji":"不安定","kana":"ふあんてい","pron":"후안테이","ko":"불안정","tts_text":"不安定"},
+    {"kanji":"安定","kana":"あんてい","pron":"안테이","ko":"안정","tts_text":"安定"},
+    {"kanji":"冷静","kana":"れいせい","pron":"레이세이","ko":"냉정","tts_text":"冷静"},
 
-      {"kanji":"慎重","kana":"しんちょう","pron":"신쵸오","ko":"신중","tts_text":"慎重"},
-      {"kanji":"大胆","kana":"だいたん","pron":"다이탄","ko":"대담","tts_text":"大胆"},
-      {"kanji":"積極的","kana":"せっきょくてき","pron":"셋쿄쿠테키","ko":"적극적","tts_text":"積極的"},
-      {"kanji":"消極的","kana":"しょうきょくてき","pron":"쇼오쿄쿠테키","ko":"소극적","tts_text":"消極的"},
-      {"kanji":"真剣","kana":"しんけん","pron":"신켄","ko":"진지함","tts_text":"真剣"},
-      {"kanji":"本気","kana":"ほんき","pron":"혼키","ko":"진심","tts_text":"本気"},
-      {"kanji":"誠実","kana":"せいじつ","pron":"세이지츠","ko":"성실","tts_text":"誠実"},
-      {"kanji":"正直","kana":"しょうじき","pron":"쇼오지키","ko":"정직","tts_text":"正直"},
-      {"kanji":"率直","kana":"そっちょく","pron":"솟쵸쿠","ko":"솔직","tts_text":"率直"},
-      {"kanji":"謙虚","kana":"けんきょ","pron":"켄쿄","ko":"겸손","tts_text":"謙虚"},
+    {"kanji":"慎重","kana":"しんちょう","pron":"신쵸오","ko":"신중","tts_text":"慎重"},
+    {"kanji":"大胆","kana":"だいたん","pron":"다이탄","ko":"대담","tts_text":"大胆"},
+    {"kanji":"積極的","kana":"せっきょくてき","pron":"셋쿄쿠테키","ko":"적극적","tts_text":"積極的"},
+    {"kanji":"消極的","kana":"しょうきょくてき","pron":"쇼오쿄쿠테키","ko":"소극적","tts_text":"消極的"},
+    {"kanji":"真剣","kana":"しんけん","pron":"신켄","ko":"진지함/진지","tts_text":"真剣"},
+    {"kanji":"本気","kana":"ほんき","pron":"혼키","ko":"진심/진심으로 함","tts_text":"本気"},
+    {"kanji":"誠実","kana":"せいじつ","pron":"세이지츠","ko":"성실","tts_text":"誠実"},
+    {"kanji":"正直","kana":"しょうじき","pron":"쇼오지키","ko":"정직/솔직","tts_text":"正直"},
+    {"kanji":"率直","kana":"そっちょく","pron":"솟쵸쿠","ko":"솔직","tts_text":"率直"},
+    {"kanji":"謙虚","kana":"けんきょ","pron":"켄쿄","ko":"겸손","tts_text":"謙虚"},
 
-      {"kanji":"態度","kana":"たいど","pron":"타이도","ko":"태도","tts_text":"態度"},
-      {"kanji":"姿勢","kana":"しせい","pron":"시세이","ko":"자세/태도","tts_text":"姿勢"},
-      {"kanji":"立場","kana":"たちば","pron":"타치바","ko":"입장","tts_text":"立場"},
-      {"kanji":"印象","kana":"いんしょう","pron":"인쇼오","ko":"인상","tts_text":"印象"},
-      {"kanji":"評価","kana":"ひょうか","pron":"효오카","ko":"평가","tts_text":"評価"},
-      {"kanji":"評判","kana":"ひょうばん","pron":"효오반","ko":"평판","tts_text":"評判"},
-      {"kanji":"信頼","kana":"しんらい","pron":"신라이","ko":"신뢰","tts_text":"信頼"},
-      {"kanji":"疑い","kana":"うたがい","pron":"우타가이","ko":"의심","tts_text":"疑い"},
-      {"kanji":"尊敬","kana":"そんけい","pron":"손케이","ko":"존경","tts_text":"尊敬"},
-      {"kanji":"軽視","kana":"けいし","pron":"케이시","ko":"경시","tts_text":"軽視"},
+    {"kanji":"態度","kana":"たいど","pron":"타이도","ko":"태도","tts_text":"態度"},
+    {"kanji":"姿勢","kana":"しせい","pron":"시세이","ko":"자세/태도","tts_text":"姿勢"},
+    {"kanji":"立場","kana":"たちば","pron":"타치바","ko":"입장/처지","tts_text":"立場"},
+    {"kanji":"印象","kana":"いんしょう","pron":"인쇼오","ko":"인상","tts_text":"印象"},
+    {"kanji":"評価","kana":"ひょうか","pron":"효오카","ko":"평가","tts_text":"評価"},
+    {"kanji":"評判","kana":"ひょうばん","pron":"효오반","ko":"평판","tts_text":"評判"},
+    {"kanji":"信頼","kana":"しんらい","pron":"신라이","ko":"신뢰","tts_text":"信頼"},
+    {"kanji":"疑い","kana":"うたがい","pron":"우타가이","ko":"의심","tts_text":"疑い"},
+    {"kanji":"尊敬","kana":"そんけい","pron":"손케이","ko":"존경","tts_text":"尊敬"},
+    {"kanji":"軽視","kana":"けいし","pron":"케이시","ko":"경시/가볍게 봄","tts_text":"軽視"},
 
-      {"kanji":"重視","kana":"じゅうし","pron":"쥬우시","ko":"중시","tts_text":"重視"},
-      {"kanji":"無関心","kana":"むかんしん","pron":"무칸신","ko":"무관심","tts_text":"無関心"},
-      {"kanji":"関心","kana":"かんしん","pron":"칸신","ko":"관심","tts_text":"関心"},
-      {"kanji":"関心事","kana":"かんしんごと","pron":"칸신고토","ko":"관심사","tts_text":"関心事"},
-      {"kanji":"意欲","kana":"いよく","pron":"이요쿠","ko":"의욕","tts_text":"意欲"},
-      {"kanji":"向上心","kana":"こうじょうしん","pron":"코오죠오신","ko":"향상심","tts_text":"向上心"},
-      {"kanji":"責任感","kana":"せきにんかん","pron":"세키닌칸","ko":"책임감","tts_text":"責任感"},
-      {"kanji":"使命感","kana":"しめいかん","pron":"시메이칸","ko":"사명감","tts_text":"使命感"},
-      {"kanji":"焦り","kana":"あせり","pron":"아세리","ko":"초조함","tts_text":"焦り"},
-      {"kanji":"余裕","kana":"よゆう","pron":"요유우","ko":"여유","tts_text":"余裕"}
-    ]
-  },
+    {"kanji":"重視","kana":"じゅうし","pron":"쥬우시","ko":"중시","tts_text":"重視"},
+    {"kanji":"無関心","kana":"むかんしん","pron":"무칸신","ko":"무관심","tts_text":"無関心"},
+    {"kanji":"関心","kana":"かんしん","pron":"칸신","ko":"관심","tts_text":"関心"},
+    {"kanji":"関心事","kana":"かんしんごと","pron":"칸신고토","ko":"관심사","tts_text":"関心事"},
+    {"kanji":"意欲","kana":"いよく","pron":"이요쿠","ko":"의욕","tts_text":"意欲"},
+    {"kanji":"向上心","kana":"こうじょうしん","pron":"코오죠오신","ko":"향상심","tts_text":"向上心"},
+    {"kanji":"責任感","kana":"せきにんかん","pron":"세키닌칸","ko":"책임감","tts_text":"責任感"},
+    {"kanji":"使命感","kana":"しめいかん","pron":"시메이칸","ko":"사명감","tts_text":"使命感"},
+    {"kanji":"焦り","kana":"あせり","pron":"아세리","ko":"초조함","tts_text":"焦り"},
+    {"kanji":"余裕","kana":"よゆう","pron":"요유우","ko":"여유","tts_text":"余裕"}
+  ]
+},
+"sec10": {
+  "title": "동사·형용사·부사",
+  "items": [
+    {"kanji":"達する","kana":"たっする","pron":"탓스루","ko":"도달하다","tts_text":"達する"},
+    {"kanji":"及ぶ","kana":"およぶ","pron":"오요부","ko":"미치다","tts_text":"及ぶ"},
+    {"kanji":"伴う","kana":"ともなう","pron":"토모나우","ko":"동반하다","tts_text":"伴う"},
+    {"kanji":"含む","kana":"ふくむ","pron":"후쿠무","ko":"포함하다","tts_text":"含む"},
+    {"kanji":"限る","kana":"かぎる","pron":"카기루","ko":"한정하다","tts_text":"限る"},
+    {"kanji":"除く","kana":"のぞく","pron":"노조쿠","ko":"제외하다","tts_text":"除く"},
+    {"kanji":"防ぐ","kana":"ふせぐ","pron":"후세구","ko":"막다/방지하다","tts_text":"防ぐ"},
+    {"kanji":"避ける","kana":"さける","pron":"사케루","ko":"피하다","tts_text":"避ける"},
+    {"kanji":"保つ","kana":"たもつ","pron":"타모츠","ko":"유지하다","tts_text":"保つ"},
+    {"kanji":"支える","kana":"ささえる","pron":"사사에루","ko":"지탱하다/떠받치다","tts_text":"支える"},
 
-  "sec10": {
-    "title": "동사·형용사·부사",
-    "items": [
-      {"kanji":"達する","kana":"たっする","pron":"탓스루","ko":"도달하다","tts_text":"達する"},
-      {"kanji":"及ぶ","kana":"およぶ","pron":"오요부","ko":"미치다","tts_text":"及ぶ"},
-      {"kanji":"伴う","kana":"ともなう","pron":"토모나우","ko":"동반하다","tts_text":"伴う"},
-      {"kanji":"含む","kana":"ふくむ","pron":"후쿠무","ko":"포함하다","tts_text":"含む"},
-      {"kanji":"限る","kana":"かぎる","pron":"카기루","ko":"한정하다","tts_text":"限る"},
-      {"kanji":"除く","kana":"のぞく","pron":"노조쿠","ko":"제외하다","tts_text":"除く"},
-      {"kanji":"防ぐ","kana":"ふせぐ","pron":"후세구","ko":"막다","tts_text":"防ぐ"},
-      {"kanji":"避ける","kana":"さける","pron":"사케루","ko":"피하다","tts_text":"避ける"},
-      {"kanji":"保つ","kana":"たもつ","pron":"타모츠","ko":"유지하다","tts_text":"保つ"},
-      {"kanji":"支える","kana":"ささえる","pron":"사사에루","ko":"지탱하다","tts_text":"支える"},
+    {"kanji":"進める","kana":"すすめる","pron":"스스메루","ko":"진행시키다","tts_text":"進める"},
+    {"kanji":"進む","kana":"すすむ","pron":"스스무","ko":"진행되다/나아가다","tts_text":"進む"},
+    {"kanji":"広げる","kana":"ひろげる","pron":"히로게루","ko":"넓히다","tts_text":"広げる"},
+    {"kanji":"広がる","kana":"ひろがる","pron":"히로가루","ko":"퍼지다/넓어지다","tts_text":"広がる"},
+    {"kanji":"高める","kana":"たかめる","pron":"타카메루","ko":"높이다","tts_text":"高める"},
+    {"kanji":"低下","kana":"ていか","pron":"테이카","ko":"저하","tts_text":"低下"},
+    {"kanji":"上回る","kana":"うわまわる","pron":"우와마와루","ko":"상회하다/웃돌다","tts_text":"上回る"},
+    {"kanji":"下回る","kana":"したまわる","pron":"시타마와루","ko":"하회하다/밑돌다","tts_text":"下回る"},
+    {"kanji":"左右する","kana":"さゆうする","pron":"사유우 스루","ko":"좌우하다","tts_text":"左右する"},
+    {"kanji":"依存する","kana":"いぞんする","pron":"이존 스루","ko":"의존하다","tts_text":"依存する"},
 
-      {"kanji":"進める","kana":"すすめる","pron":"스스메루","ko":"진행시키다","tts_text":"進める"},
-      {"kanji":"進む","kana":"すすむ","pron":"스스무","ko":"진행되다","tts_text":"進む"},
-      {"kanji":"広げる","kana":"ひろげる","pron":"히로게루","ko":"넓히다","tts_text":"広げる"},
-      {"kanji":"広がる","kana":"ひろがる","pron":"히로가루","ko":"퍼지다","tts_text":"広がる"},
-      {"kanji":"高める","kana":"たかめる","pron":"타카메루","ko":"높이다","tts_text":"高める"},
-      {"kanji":"低下","kana":"ていか","pron":"테이카","ko":"저하","tts_text":"低下"},
-      {"kanji":"上回る","kana":"うわまわる","pron":"우와마와루","ko":"상회하다","tts_text":"上回る"},
-      {"kanji":"下回る","kana":"したまわる","pron":"시타마와루","ko":"하회하다","tts_text":"下回る"},
-      {"kanji":"左右する","kana":"さゆうする","pron":"사유우 스루","ko":"좌우하다","tts_text":"左右する"},
-      {"kanji":"依存する","kana":"いぞんする","pron":"이존 스루","ko":"의존하다","tts_text":"依存する"},
+    {"kanji":"有効","kana":"ゆうこう","pron":"유우코오","ko":"유효","tts_text":"有効"},
+    {"kanji":"無効","kana":"むこう","pron":"무코오","ko":"무효","tts_text":"無効"},
+    {"kanji":"困難","kana":"こんなん","pron":"콘난","ko":"곤란/어려움","tts_text":"困難"},
+    {"kanji":"可能","kana":"かのう","pron":"카노오","ko":"가능","tts_text":"可能"},
+    {"kanji":"不可能","kana":"ふかのう","pron":"후카노오","ko":"불가능","tts_text":"不可能"},
+    {"kanji":"明確","kana":"めいかく","pron":"메이카쿠","ko":"명확","tts_text":"明確"},
+    {"kanji":"曖昧","kana":"あいまい","pron":"아이마이","ko":"애매/모호","tts_text":"曖昧"},
+    {"kanji":"妥当","kana":"だとう","pron":"다토오","ko":"타당","tts_text":"妥当"},
+    {"kanji":"適当","kana":"てきとう","pron":"테키토오","ko":"적당","tts_text":"適当"},
+    {"kanji":"不適切","kana":"ふてきせつ","pron":"후테키세츠","ko":"부적절","tts_text":"不適切"},
 
-      {"kanji":"有効","kana":"ゆうこう","pron":"유우코오","ko":"유효","tts_text":"有効"},
-      {"kanji":"無効","kana":"むこう","pron":"무코오","ko":"무효","tts_text":"無効"},
-      {"kanji":"困難","kana":"こんなん","pron":"콘난","ko":"곤란","tts_text":"困難"},
-      {"kanji":"可能","kana":"かのう","pron":"카노오","ko":"가능","tts_text":"可能"},
-      {"kanji":"不可能","kana":"ふかのう","pron":"후카노오","ko":"불가능","tts_text":"不可能"},
-      {"kanji":"明確","kana":"めいかく","pron":"메이카쿠","ko":"명확","tts_text":"明確"},
-      {"kanji":"曖昧","kana":"あいまい","pron":"아이마이","ko":"애매","tts_text":"曖昧"},
-      {"kanji":"妥当","kana":"だとう","pron":"다토오","ko":"타당","tts_text":"妥当"},
-      {"kanji":"適当","kana":"てきとう","pron":"테키토오","ko":"적당","tts_text":"適当"},
-      {"kanji":"不適切","kana":"ふてきせつ","pron":"후테키세츠","ko":"부적절","tts_text":"不適切"},
-
-      {"kanji":"主に","kana":"おもに","pron":"오모니","ko":"주로","tts_text":"主に"},
-      {"kanji":"既に","kana":"すでに","pron":"스데니","ko":"이미","tts_text":"既に"},
-      {"kanji":"徐々に","kana":"じょじょに","pron":"죠죠니","ko":"서서히","tts_text":"徐々に"},
-      {"kanji":"急速に","kana":"きゅうそくに","pron":"큐우소쿠니","ko":"급속히","tts_text":"急速に"},
-      {"kanji":"著しく","kana":"いちじるしく","pron":"이치지루시쿠","ko":"현저히","tts_text":"著しく"},
-      {"kanji":"概ね","kana":"おおむね","pron":"오오무네","ko":"대체로","tts_text":"概ね"},
-      {"kanji":"必ずしも","kana":"かならずしも","pron":"카나라즈시모","ko":"반드시 ~인 것은 아님","tts_text":"必ずしも"},
-      {"kanji":"少なくとも","kana":"すくなくとも","pron":"스쿠나쿠토모","ko":"적어도","tts_text":"少なくとも"},
-      {"kanji":"一層","kana":"いっそう","pron":"잇소오","ko":"더욱","tts_text":"一層"},
-      {"kanji":"相対的に","kana":"そうたいてきに","pron":"소오타이테키니","ko":"상대적으로","tts_text":"相対的に"}
-    ]
-  },
+    {"kanji":"主に","kana":"おもに","pron":"오모니","ko":"주로","tts_text":"主に"},
+    {"kanji":"既に","kana":"すでに","pron":"스데니","ko":"이미","tts_text":"既に"},
+    {"kanji":"徐々に","kana":"じょじょに","pron":"죠죠니","ko":"서서히","tts_text":"徐々に"},
+    {"kanji":"急速に","kana":"きゅうそくに","pron":"큐우소쿠니","ko":"급속히","tts_text":"急速に"},
+    {"kanji":"著しく","kana":"いちじるしく","pron":"이치지루시쿠","ko":"현저히","tts_text":"著しく"},
+    {"kanji":"概ね","kana":"おおむね","pron":"오오무네","ko":"대체로","tts_text":"概ね"},
+    {"kanji":"必ずしも","kana":"かならずしも","pron":"카나라즈시모","ko":"반드시 ~인 것은 아님","tts_text":"必ずしも"},
+    {"kanji":"少なくとも","kana":"すくなくとも","pron":"스쿠나쿠토모","ko":"적어도","tts_text":"少なくとも"},
+    {"kanji":"一層","kana":"いっそう","pron":"잇소오","ko":"더욱","tts_text":"一層"},
+    {"kanji":"相対的に","kana":"そうたいてきに","pron":"소오타이테키니","ko":"상대적으로","tts_text":"相対的に"}
+  ]
+},
 
 }
 
 N1_WORDS = {
     "sec01": {
-    "title": "분석·전망·정책",
-    "items": [
-        {"kanji":"見解","kana":"けんかい","pron":"켄카이","ko":"견해","tts_text":"見解"},
-        {"kanji":"認識","kana":"にんしき","pron":"닌시키","ko":"인식","tts_text":"認識"},
-        {"kanji":"把握","kana":"はあく","pron":"하아쿠","ko":"파악","tts_text":"把握"},
-        {"kanji":"見通し","kana":"みとおし","pron":"미토오시","ko":"전망","tts_text":"見通し"},
-        {"kanji":"見込み","kana":"みこみ","pron":"미코미","ko":"가망, 전망","tts_text":"見込み"},
-        {"kanji":"推移","kana":"すいい","pron":"스이이","ko":"추이","tts_text":"推移"},
-        {"kanji":"動向","kana":"どうこう","pron":"도오코오","ko":"동향","tts_text":"動向"},
-        {"kanji":"趨勢","kana":"すうせい","pron":"스우세이","ko":"추세","tts_text":"趨勢"},
-        {"kanji":"概況","kana":"がいきょう","pron":"가이쿄오","ko":"개황(대략적 상황)","tts_text":"概況"},
-        {"kanji":"状況","kana":"じょうきょう","pron":"죠오쿄오","ko":"상황","tts_text":"状況"},
+  "title": "분석·전망·정책",
+  "items": [
+    {"kanji":"見解","kana":"けんかい","pron":"켄카이","ko":"견해","tts_text":"見解"},
+    {"kanji":"認識","kana":"にんしき","pron":"닌시키","ko":"인식","tts_text":"認識"},
+    {"kanji":"把握","kana":"はあく","pron":"하아쿠","ko":"파악","tts_text":"把握"},
+    {"kanji":"見通し","kana":"みとおし","pron":"미토오시","ko":"전망","tts_text":"見通し"},
+    {"kanji":"見込み","kana":"みこみ","pron":"미코미","ko":"가망/전망","tts_text":"見込み"},
+    {"kanji":"推移","kana":"すいい","pron":"스이이","ko":"추이","tts_text":"推移"},
+    {"kanji":"動向","kana":"どうこう","pron":"도오코오","ko":"동향","tts_text":"動向"},
+    {"kanji":"趨勢","kana":"すうせい","pron":"스우세이","ko":"추세","tts_text":"趨勢"},
+    {"kanji":"概況","kana":"がいきょう","pron":"가이쿄오","ko":"개황(대략적 상황)","tts_text":"概況"},
+    {"kanji":"状況","kana":"じょうきょう","pron":"죠오쿄오","ko":"상황","tts_text":"状況"},
 
-        {"kanji":"背景","kana":"はいけい","pron":"하이케이","ko":"배경","tts_text":"背景"},
-        {"kanji":"要因","kana":"よういん","pron":"요오인","ko":"요인","tts_text":"要因"},
-        {"kanji":"原因","kana":"げんいん","pron":"겐인","ko":"원인","tts_text":"原因"},
-        {"kanji":"経緯","kana":"けいい","pron":"케이이","ko":"경위","tts_text":"経緯"},
-        {"kanji":"事情","kana":"じじょう","pron":"지죠오","ko":"사정","tts_text":"事情"},
-        {"kanji":"影響","kana":"えいきょう","pron":"에이쿄오","ko":"영향","tts_text":"影響"},
-        {"kanji":"波及","kana":"はきゅう","pron":"하큐","ko":"파급","tts_text":"波及"},
-        {"kanji":"効果","kana":"こうか","pron":"코오카","ko":"효과","tts_text":"効果"},
-        {"kanji":"成果","kana":"せいか","pron":"세이카","ko":"성과","tts_text":"成果"},
-        {"kanji":"帰結","kana":"きけつ","pron":"키케츠","ko":"귀결","tts_text":"帰結"},
+    {"kanji":"背景","kana":"はいけい","pron":"하이케이","ko":"배경/배후 사정","tts_text":"背景"},
+    {"kanji":"要因","kana":"よういん","pron":"요오인","ko":"요인","tts_text":"要因"},
+    {"kanji":"原因","kana":"げんいん","pron":"겐인","ko":"원인","tts_text":"原因"},
+    {"kanji":"経緯","kana":"けいい","pron":"케이이","ko":"경위/과정","tts_text":"経緯"},
+    {"kanji":"事情","kana":"じじょう","pron":"지죠오","ko":"사정","tts_text":"事情"},
+    {"kanji":"影響","kana":"えいきょう","pron":"에이쿄오","ko":"영향","tts_text":"影響"},
+    {"kanji":"波及","kana":"はきゅう","pron":"하큐","ko":"파급/파급 효과","tts_text":"波及"},
+    {"kanji":"効果","kana":"こうか","pron":"코오카","ko":"효과","tts_text":"効果"},
+    {"kanji":"成果","kana":"せいか","pron":"세이카","ko":"성과","tts_text":"成果"},
+    {"kanji":"帰結","kana":"きけつ","pron":"키케츠","ko":"귀결/결과","tts_text":"帰結"},
 
-        {"kanji":"指針","kana":"ししん","pron":"시신","ko":"지침","tts_text":"指針"},
-        {"kanji":"方針","kana":"ほうしん","pron":"호오신","ko":"방침","tts_text":"方針"},
-        {"kanji":"施策","kana":"しさく","pron":"시사쿠","ko":"시책","tts_text":"施策"},
-        {"kanji":"対策","kana":"たいさく","pron":"타이사쿠","ko":"대책","tts_text":"対策"},
-        {"kanji":"戦略","kana":"せんりゃく","pron":"센랴쿠","ko":"전략","tts_text":"戦略"},
-        {"kanji":"方策","kana":"ほうさく","pron":"호오사쿠","ko":"방책","tts_text":"方策"},
-        {"kanji":"構想","kana":"こうそう","pron":"코오소오","ko":"구상","tts_text":"構想"},
-        {"kanji":"計画","kana":"けいかく","pron":"케이카쿠","ko":"계획","tts_text":"計画"},
-        {"kanji":"見直し","kana":"みなおし","pron":"미나오시","ko":"재검토","tts_text":"見直し"},
-        {"kanji":"改善","kana":"かいぜん","pron":"카이젠","ko":"개선","tts_text":"改善"},
+    {"kanji":"指針","kana":"ししん","pron":"시신","ko":"지침","tts_text":"指針"},
+    {"kanji":"方針","kana":"ほうしん","pron":"호오신","ko":"방침","tts_text":"方針"},
+    {"kanji":"施策","kana":"しさく","pron":"시사쿠","ko":"시책","tts_text":"施策"},
+    {"kanji":"対策","kana":"たいさく","pron":"타이사쿠","ko":"대책","tts_text":"対策"},
+    {"kanji":"戦略","kana":"せんりゃく","pron":"센랴쿠","ko":"전략","tts_text":"戦略"},
+    {"kanji":"方策","kana":"ほうさく","pron":"호오사쿠","ko":"방책","tts_text":"方策"},
+    {"kanji":"構想","kana":"こうそう","pron":"코오소오","ko":"구상","tts_text":"構想"},
+    {"kanji":"計画","kana":"けいかく","pron":"케이카쿠","ko":"계획","tts_text":"計画"},
+    {"kanji":"見直し","kana":"みなおし","pron":"미나오시","ko":"재검토/다시 검토","tts_text":"見直し"},
+    {"kanji":"改善","kana":"かいぜん","pron":"카이젠","ko":"개선","tts_text":"改善"},
 
-        {"kanji":"改革","kana":"かいかく","pron":"카이카쿠","ko":"개혁","tts_text":"改革"},
-        {"kanji":"是正","kana":"ぜせい","pron":"제세이","ko":"시정(바로잡음)","tts_text":"是正"},
-        {"kanji":"刷新","kana":"さっしん","pron":"사신","ko":"쇄신","tts_text":"刷新"},
-        {"kanji":"再編","kana":"さいへん","pron":"사이헨","ko":"재편","tts_text":"再編"},
-        {"kanji":"統合","kana":"とうごう","pron":"토오고오","ko":"통합","tts_text":"統合"},
-        {"kanji":"整備","kana":"せいび","pron":"세이비","ko":"정비","tts_text":"整備"},
-        {"kanji":"拡充","kana":"かくじゅう","pron":"카쿠쥬우","ko":"확충","tts_text":"拡充"},
-        {"kanji":"充実","kana":"じゅうじつ","pron":"쥬우지츠","ko":"충실","tts_text":"充実"},
-        {"kanji":"維持","kana":"いじ","pron":"이지","ko":"유지","tts_text":"維持"},
-        {"kanji":"継続","kana":"けいぞく","pron":"케이조쿠","ko":"지속","tts_text":"継続"},
+    {"kanji":"改革","kana":"かいかく","pron":"카이카쿠","ko":"개혁","tts_text":"改革"},
+    {"kanji":"是正","kana":"ぜせい","pron":"제세이","ko":"시정/바로잡음","tts_text":"是正"},
+    {"kanji":"刷新","kana":"さっしん","pron":"사신","ko":"쇄신","tts_text":"刷新"},
+    {"kanji":"再編","kana":"さいへん","pron":"사이헨","ko":"재편","tts_text":"再編"},
+    {"kanji":"統合","kana":"とうごう","pron":"토오고오","ko":"통합","tts_text":"統合"},
+    {"kanji":"整備","kana":"せいび","pron":"세이비","ko":"정비","tts_text":"整備"},
+    {"kanji":"拡充","kana":"かくじゅう","pron":"카쿠쥬우","ko":"확충","tts_text":"拡充"},
+    {"kanji":"充実","kana":"じゅうじつ","pron":"쥬우지츠","ko":"충실","tts_text":"充実"},
+    {"kanji":"維持","kana":"いじ","pron":"이지","ko":"유지","tts_text":"維持"},
+    {"kanji":"継続","kana":"けいぞく","pron":"케이조쿠","ko":"지속","tts_text":"継続"},
 
-        {"kanji":"推進","kana":"すいしん","pron":"스이신","ko":"추진","tts_text":"推進"},
-        {"kanji":"促進","kana":"そくしん","pron":"소쿠신","ko":"촉진","tts_text":"促進"},
-        {"kanji":"抑制","kana":"よくせい","pron":"요쿠세이","ko":"억제","tts_text":"抑制"},
-        {"kanji":"低迷","kana":"ていめい","pron":"테이메이","ko":"침체","tts_text":"低迷"},
-        {"kanji":"停滞","kana":"ていたい","pron":"테이타이","ko":"정체","tts_text":"停滞"},
-        {"kanji":"進展","kana":"しんてん","pron":"신텐","ko":"진전","tts_text":"進展"},
-        {"kanji":"発展","kana":"はってん","pron":"핫텐","ko":"발전","tts_text":"発展"},
-        {"kanji":"発生","kana":"はっせい","pron":"핫세이","ko":"발생","tts_text":"発生"},
-        {"kanji":"顕著","kana":"けんちょ","pron":"켄쵸","ko":"현저","tts_text":"顕著"},
-        {"kanji":"著しい","kana":"いちじるしい","pron":"이치지루시이","ko":"현저하다","tts_text":"著しい"}
-    ]
-    },
-    "sec02": {
-    "title": "논증·판단·연결표현",
-    "items": [
-        {"kanji":"徹底","kana":"てってい","pron":"텟테이","ko":"철저","tts_text":"徹底"},
-        {"kanji":"厳格","kana":"げんかく","pron":"겐카쿠","ko":"엄격","tts_text":"厳格"},
-        {"kanji":"適切","kana":"てきせつ","pron":"테키세츠","ko":"적절","tts_text":"適切"},
-        {"kanji":"妥当","kana":"だとう","pron":"다토오","ko":"타당","tts_text":"妥当"},
-        {"kanji":"有効","kana":"ゆうこう","pron":"유우코오","ko":"유효","tts_text":"有効"},
-        {"kanji":"無効","kana":"むこう","pron":"무코오","ko":"무효","tts_text":"無効"},
-        {"kanji":"合理的","kana":"ごうりてき","pron":"고오리테키","ko":"합리적","tts_text":"合理的"},
-        {"kanji":"具体的","kana":"ぐたいてき","pron":"구타이테키","ko":"구체적","tts_text":"具体的"},
-        {"kanji":"抽象的","kana":"ちゅうしょうてき","pron":"추우쇼오테키","ko":"추상적","tts_text":"抽象的"},
-        {"kanji":"根拠","kana":"こんきょ","pron":"콘쿄","ko":"근거","tts_text":"根拠"},
+    {"kanji":"推進","kana":"すいしん","pron":"스이신","ko":"추진","tts_text":"推進"},
+    {"kanji":"促進","kana":"そくしん","pron":"소쿠신","ko":"촉진","tts_text":"促進"},
+    {"kanji":"抑制","kana":"よくせい","pron":"요쿠세이","ko":"억제","tts_text":"抑制"},
+    {"kanji":"低迷","kana":"ていめい","pron":"테이메이","ko":"침체","tts_text":"低迷"},
+    {"kanji":"停滞","kana":"ていたい","pron":"테이타이","ko":"정체","tts_text":"停滞"},
+    {"kanji":"進展","kana":"しんてん","pron":"신텐","ko":"진전","tts_text":"進展"},
+    {"kanji":"発展","kana":"はってん","pron":"핫텐","ko":"발전","tts_text":"発展"},
+    {"kanji":"発生","kana":"はっせい","pron":"핫세이","ko":"발생","tts_text":"発生"},
+    {"kanji":"顕著","kana":"けんちょ","pron":"켄쵸","ko":"현저","tts_text":"顕著"},
+    {"kanji":"著しい","kana":"いちじるしい","pron":"이치지루시이","ko":"현저하다","tts_text":"著しい"}
+  ]
+},
+"sec02": {
+  "title": "논증·판단·연결표현",
+  "items": [
+    {"kanji":"徹底","kana":"てってい","pron":"텟테이","ko":"철저","tts_text":"徹底"},
+    {"kanji":"厳格","kana":"げんかく","pron":"겐카쿠","ko":"엄격","tts_text":"厳格"},
+    {"kanji":"適切","kana":"てきせつ","pron":"테키세츠","ko":"적절","tts_text":"適切"},
+    {"kanji":"妥当","kana":"だとう","pron":"다토오","ko":"타당","tts_text":"妥当"},
+    {"kanji":"有効","kana":"ゆうこう","pron":"유우코오","ko":"유효","tts_text":"有効"},
+    {"kanji":"無効","kana":"むこう","pron":"무코오","ko":"무효","tts_text":"無効"},
+    {"kanji":"合理的","kana":"ごうりてき","pron":"고오리테키","ko":"합리적","tts_text":"合理的"},
+    {"kanji":"具体的","kana":"ぐたいてき","pron":"구타이테키","ko":"구체적","tts_text":"具体的"},
+    {"kanji":"抽象的","kana":"ちゅうしょうてき","pron":"추우쇼오테키","ko":"추상적","tts_text":"抽象的"},
+    {"kanji":"根拠","kana":"こんきょ","pron":"콘쿄","ko":"근거","tts_text":"根拠"},
 
-        {"kanji":"論拠","kana":"ろんきょ","pron":"론쿄","ko":"논거","tts_text":"論拠"},
-        {"kanji":"論理","kana":"ろんり","pron":"론리","ko":"논리","tts_text":"論理"},
-        {"kanji":"整合性","kana":"せいごうせい","pron":"세이고오세이","ko":"정합성","tts_text":"整合性"},
-        {"kanji":"妥協","kana":"だきょう","pron":"다쿄오","ko":"타협","tts_text":"妥協"},
-        {"kanji":"譲歩","kana":"じょうほ","pron":"죠오호","ko":"양보","tts_text":"譲歩"},
-        {"kanji":"合意","kana":"ごうい","pron":"고오이","ko":"합의","tts_text":"合意"},
-        {"kanji":"合致","kana":"がっち","pron":"갓치","ko":"합치","tts_text":"合致"},
-        {"kanji":"相違","kana":"そうい","pron":"소오이","ko":"차이","tts_text":"相違"},
-        {"kanji":"相反","kana":"そうはん","pron":"소오한","ko":"상반","tts_text":"相反"},
-        {"kanji":"矛盾","kana":"むじゅん","pron":"무쥰","ko":"모순","tts_text":"矛盾"},
+    {"kanji":"論拠","kana":"ろんきょ","pron":"론쿄","ko":"논거","tts_text":"論拠"},
+    {"kanji":"論理","kana":"ろんり","pron":"론리","ko":"논리","tts_text":"論理"},
+    {"kanji":"整合性","kana":"せいごうせい","pron":"세이고오세이","ko":"정합성","tts_text":"整合性"},
+    {"kanji":"妥協","kana":"だきょう","pron":"다쿄오","ko":"타협","tts_text":"妥協"},
+    {"kanji":"譲歩","kana":"じょうほ","pron":"죠오호","ko":"양보","tts_text":"譲歩"},
+    {"kanji":"合意","kana":"ごうい","pron":"고오이","ko":"합의","tts_text":"合意"},
+    {"kanji":"合致","kana":"がっち","pron":"갓치","ko":"합치","tts_text":"合致"},
+    {"kanji":"相違","kana":"そうい","pron":"소오이","ko":"차이/상이","tts_text":"相違"},
+    {"kanji":"相反","kana":"そうはん","pron":"소오한","ko":"상반","tts_text":"相反"},
+    {"kanji":"矛盾","kana":"むじゅん","pron":"무쥰","ko":"모순","tts_text":"矛盾"},
 
-        {"kanji":"一貫","kana":"いっかん","pron":"잇칸","ko":"일관","tts_text":"一貫"},
-        {"kanji":"一律","kana":"いちりつ","pron":"이치리츠","ko":"일률","tts_text":"一律"},
-        {"kanji":"例外","kana":"れいがい","pron":"레이가이","ko":"예외","tts_text":"例外"},
-        {"kanji":"例","kana":"れい","pron":"레이","ko":"예","tts_text":"例"},
-        {"kanji":"例示","kana":"れいじ","pron":"레이지","ko":"예시","tts_text":"例示"},
-        {"kanji":"概念","kana":"がいねん","pron":"가이넨","ko":"개념","tts_text":"概念"},
-        {"kanji":"枠組み","kana":"わくぐみ","pron":"와쿠구미","ko":"틀, 프레임","tts_text":"枠組み"},
-        {"kanji":"枠","kana":"わく","pron":"와쿠","ko":"틀","tts_text":"枠"},
-        {"kanji":"枠内","kana":"わくない","pron":"와쿠나이","ko":"범위 내","tts_text":"枠内"},
-        {"kanji":"当面","kana":"とうめん","pron":"토오멘","ko":"당면","tts_text":"当面"},
+    {"kanji":"一貫","kana":"いっかん","pron":"잇칸","ko":"일관","tts_text":"一貫"},
+    {"kanji":"一律","kana":"いちりつ","pron":"이치리츠","ko":"일률","tts_text":"一律"},
+    {"kanji":"例外","kana":"れいがい","pron":"레이가이","ko":"예외","tts_text":"例外"},
+    {"kanji":"例","kana":"れい","pron":"레이","ko":"예","tts_text":"例"},
+    {"kanji":"例示","kana":"れいじ","pron":"레이지","ko":"예시","tts_text":"例示"},
+    {"kanji":"概念","kana":"がいねん","pron":"가이넨","ko":"개념","tts_text":"概念"},
+    {"kanji":"枠組み","kana":"わくぐみ","pron":"와쿠구미","ko":"틀/프레임","tts_text":"枠組み"},
+    {"kanji":"枠","kana":"わく","pron":"와쿠","ko":"틀","tts_text":"枠"},
+    {"kanji":"枠内","kana":"わくない","pron":"와쿠나이","ko":"범위 내","tts_text":"枠内"},
+    {"kanji":"当面","kana":"とうめん","pron":"토오멘","ko":"당면/당장","tts_text":"当面"},
 
-        {"kanji":"ひいては","kana":"ひいては","pron":"히이테와","ko":"나아가서는","tts_text":"ひいては"},
-        {"kanji":"ひとまず","kana":"ひとまず","pron":"히토마즈","ko":"일단","tts_text":"ひとまず"},
-        {"kanji":"もっぱら","kana":"もっぱら","pron":"못파라","ko":"오로지","tts_text":"もっぱら"},
-        {"kanji":"あながち","kana":"あながち","pron":"아나가치","ko":"반드시~만은 아니다","tts_text":"あながち"},
-        {"kanji":"いかなる","kana":"いかなる","pron":"이카나루","ko":"어떤","tts_text":"いかなる"},
-        {"kanji":"いずれにせよ","kana":"いずれにせよ","pron":"이즈레니세요","ko":"어쨌든","tts_text":"いずれにせよ"},
-        {"kanji":"とはいえ","kana":"とはいえ","pron":"토와이에","ko":"그렇다 해도","tts_text":"とはいえ"},
-        {"kanji":"まして","kana":"まして","pron":"마시테","ko":"하물며","tts_text":"まして"},
-        {"kanji":"かえって","kana":"かえって","pron":"카엣테","ko":"오히려","tts_text":"かえって"},
-        {"kanji":"あくまで","kana":"あくまで","pron":"아쿠마데","ko":"어디까지나","tts_text":"あくまで"},
+    {"kanji":"ひいては","kana":"ひいては","pron":"히이테와","ko":"나아가서는","tts_text":"ひいては"},
+    {"kanji":"ひとまず","kana":"ひとまず","pron":"히토마즈","ko":"일단","tts_text":"ひとまず"},
+    {"kanji":"もっぱら","kana":"もっぱら","pron":"못파라","ko":"오로지","tts_text":"もっぱら"},
+    {"kanji":"あながち","kana":"あながち","pron":"아나가치","ko":"반드시 ~만은 아니다","tts_text":"あながち"},
+    {"kanji":"いかなる","kana":"いかなる","pron":"이카나루","ko":"어떤","tts_text":"いかなる"},
+    {"kanji":"いずれにせよ","kana":"いずれにせよ","pron":"이즈레니세요","ko":"어쨌든","tts_text":"いずれにせよ"},
+    {"kanji":"とはいえ","kana":"とはいえ","pron":"토와이에","ko":"그렇다 해도","tts_text":"とはいえ"},
+    {"kanji":"まして","kana":"まして","pron":"마시테","ko":"하물며","tts_text":"まして"},
+    {"kanji":"かえって","kana":"かえって","pron":"카엣테","ko":"오히려","tts_text":"かえって"},
+    {"kanji":"あくまで","kana":"あくまで","pron":"아쿠마데","ko":"어디까지나","tts_text":"あくまで"},
 
-        {"kanji":"示唆","kana":"しさ","pron":"시사","ko":"시사","tts_text":"示唆"},
-        {"kanji":"示唆する","kana":"しさする","pron":"시사 스루","ko":"시사하다","tts_text":"示唆する"},
-        {"kanji":"前提","kana":"ぜんてい","pron":"젠테이","ko":"전제","tts_text":"前提"},
-        {"kanji":"帰納","kana":"きのう","pron":"키노오","ko":"귀납","tts_text":"帰納"},
-        {"kanji":"演繹","kana":"えんえき","pron":"엔에키","ko":"연역","tts_text":"演繹"},
-        {"kanji":"検証","kana":"けんしょう","pron":"켄쇼오","ko":"검증","tts_text":"検証"},
-        {"kanji":"仮説","kana":"かせつ","pron":"카세츠","ko":"가설","tts_text":"仮説"},
-        {"kanji":"推論","kana":"すいろん","pron":"스이론","ko":"추론","tts_text":"推論"},
-        {"kanji":"妥結","kana":"だけつ","pron":"다케츠","ko":"타결","tts_text":"妥結"},
-        {"kanji":"総括","kana":"そうかつ","pron":"소오카츠","ko":"총괄/총정리","tts_text":"総括"}
-    ]
-    },
+    {"kanji":"示唆","kana":"しさ","pron":"시사","ko":"시사","tts_text":"示唆"},
+    {"kanji":"示唆する","kana":"しさする","pron":"시사 스루","ko":"시사하다","tts_text":"示唆する"},
+    {"kanji":"前提","kana":"ぜんてい","pron":"젠테이","ko":"전제","tts_text":"前提"},
+    {"kanji":"帰納","kana":"きのう","pron":"키노오","ko":"귀납","tts_text":"帰納"},
+    {"kanji":"演繹","kana":"えんえき","pron":"엔에키","ko":"연역","tts_text":"演繹"},
+    {"kanji":"検証","kana":"けんしょう","pron":"켄쇼오","ko":"검증","tts_text":"検証"},
+    {"kanji":"仮説","kana":"かせつ","pron":"카세츠","ko":"가설","tts_text":"仮説"},
+    {"kanji":"推論","kana":"すいろん","pron":"스이론","ko":"추론","tts_text":"推論"},
+    {"kanji":"妥結","kana":"だけつ","pron":"다케츠","ko":"타결","tts_text":"妥結"},
+    {"kanji":"総括","kana":"そうかつ","pron":"소오카츠","ko":"총괄/총정리","tts_text":"総括"}
+  ]
+},
+
 
     "sec03": {
-    "title": "사회·정치·제도·법",
-    "items": [
-        {"kanji":"行政","kana":"ぎょうせい","pron":"교오세이","ko":"행정","tts_text":"行政"},
-        {"kanji":"施行","kana":"しこう","pron":"시코오","ko":"시행","tts_text":"施行"},
-        {"kanji":"改正","kana":"かいせい","pron":"카이세이","ko":"개정","tts_text":"改正"},
-        {"kanji":"法令","kana":"ほうれい","pron":"호오레이","ko":"법령","tts_text":"法令"},
-        {"kanji":"条項","kana":"じょうこう","pron":"죠오코오","ko":"조항","tts_text":"条項"},
-        {"kanji":"規定","kana":"きてい","pron":"키테이","ko":"규정","tts_text":"規定"},
-        {"kanji":"規範","kana":"きはん","pron":"키한","ko":"규범","tts_text":"規範"},
-        {"kanji":"是非","kana":"ぜひ","pron":"제히","ko":"가부/옳고 그름","tts_text":"是非"},
-        {"kanji":"正当","kana":"せいとう","pron":"세이토오","ko":"정당","tts_text":"正当"},
-        {"kanji":"不当","kana":"ふとう","pron":"후토오","ko":"부당","tts_text":"不当"},
+  "title": "사회·정치·제도·법",
+  "items": [
+    {"kanji":"行政","kana":"ぎょうせい","pron":"교오세이","ko":"행정","tts_text":"行政"},
+    {"kanji":"施行","kana":"しこう","pron":"시코오","ko":"시행","tts_text":"施行"},
+    {"kanji":"改正","kana":"かいせい","pron":"카이세이","ko":"개정","tts_text":"改正"},
+    {"kanji":"法令","kana":"ほうれい","pron":"호오레이","ko":"법령","tts_text":"法令"},
+    {"kanji":"条項","kana":"じょうこう","pron":"죠오코오","ko":"조항","tts_text":"条項"},
+    {"kanji":"規定","kana":"きてい","pron":"키테이","ko":"규정","tts_text":"規定"},
+    {"kanji":"規範","kana":"きはん","pron":"키한","ko":"규범","tts_text":"規範"},
+    {"kanji":"是非","kana":"ぜひ","pron":"제히","ko":"가부/옳고 그름","tts_text":"是非"},
+    {"kanji":"正当","kana":"せいとう","pron":"세이토오","ko":"정당/정당함","tts_text":"正当"},
+    {"kanji":"不当","kana":"ふとう","pron":"후토오","ko":"부당","tts_text":"不当"},
 
-        {"kanji":"不正","kana":"ふせい","pron":"후세이","ko":"부정","tts_text":"不正"},
-        {"kanji":"違法","kana":"いほう","pron":"이호오","ko":"위법","tts_text":"違法"},
-        {"kanji":"摘発","kana":"てきはつ","pron":"테키하츠","ko":"적발","tts_text":"摘発"},
-        {"kanji":"捜査","kana":"そうさ","pron":"소오사","ko":"수사","tts_text":"捜査"},
-        {"kanji":"立証","kana":"りっしょう","pron":"릿쇼오","ko":"입증","tts_text":"立証"},
-        {"kanji":"審理","kana":"しんり","pron":"신리","ko":"심리(재판)","tts_text":"審理"},
-        {"kanji":"判決","kana":"はんけつ","pron":"한케츠","ko":"판결","tts_text":"判決"},
-        {"kanji":"賠償","kana":"ばいしょう","pron":"바이쇼오","ko":"배상","tts_text":"賠償"},
-        {"kanji":"補償","kana":"ほしょう","pron":"호쇼오","ko":"보상","tts_text":"補償"},
-        {"kanji":"損害賠償","kana":"そんがいばいしょう","pron":"손가이 바이쇼오","ko":"손해배상","tts_text":"損害賠償"},
+    {"kanji":"不正","kana":"ふせい","pron":"후세이","ko":"부정/부정행위","tts_text":"不正"},
+    {"kanji":"違法","kana":"いほう","pron":"이호오","ko":"위법/불법","tts_text":"違法"},
+    {"kanji":"摘発","kana":"てきはつ","pron":"테키하츠","ko":"적발","tts_text":"摘発"},
+    {"kanji":"捜査","kana":"そうさ","pron":"소오사","ko":"수사","tts_text":"捜査"},
+    {"kanji":"立証","kana":"りっしょう","pron":"릿쇼오","ko":"입증","tts_text":"立証"},
+    {"kanji":"審理","kana":"しんり","pron":"신리","ko":"심리(재판)","tts_text":"審理"},
+    {"kanji":"判決","kana":"はんけつ","pron":"한케츠","ko":"판결","tts_text":"判決"},
+    {"kanji":"賠償","kana":"ばいしょう","pron":"바이쇼오","ko":"배상","tts_text":"賠償"},
+    {"kanji":"補償","kana":"ほしょう","pron":"호쇼오","ko":"보상","tts_text":"補償"},
+    {"kanji":"損害賠償","kana":"そんがいばいしょう","pron":"손가이 바이쇼오","ko":"손해배상","tts_text":"損害賠償"},
 
-        {"kanji":"世論","kana":"せろん","pron":"세론","ko":"여론","tts_text":"世論"},
-        {"kanji":"世論調査","kana":"せろんちょうさ","pron":"세론 쵸오사","ko":"여론조사","tts_text":"世論調査"},
-        {"kanji":"支持","kana":"しじ","pron":"시지","ko":"지지","tts_text":"支持"},
-        {"kanji":"反発","kana":"はんぱつ","pron":"한파츠","ko":"반발","tts_text":"反発"},
-        {"kanji":"抗議","kana":"こうぎ","pron":"코오기","ko":"항의","tts_text":"抗議"},
-        {"kanji":"紛争","kana":"ふんそう","pron":"훈소오","ko":"분쟁","tts_text":"紛争"},
-        {"kanji":"対立","kana":"たいりつ","pron":"타이리츠","ko":"대립","tts_text":"対立"},
-        {"kanji":"協調","kana":"きょうちょう","pron":"쿄오쵸오","ko":"협조/조화","tts_text":"協調"},
-        {"kanji":"調停","kana":"ちょうてい","pron":"쵸오테이","ko":"조정/중재","tts_text":"調停"},
-        {"kanji":"合意形成","kana":"ごういけいせい","pron":"고오이 케이세이","ko":"합의 형성","tts_text":"合意形成"},
+    {"kanji":"世論","kana":"せろん","pron":"세론","ko":"여론","tts_text":"世論"},
+    {"kanji":"世論調査","kana":"せろんちょうさ","pron":"세론 쵸오사","ko":"여론조사","tts_text":"世論調査"},
+    {"kanji":"支持","kana":"しじ","pron":"시지","ko":"지지","tts_text":"支持"},
+    {"kanji":"反発","kana":"はんぱつ","pron":"한파츠","ko":"반발","tts_text":"反発"},
+    {"kanji":"抗議","kana":"こうぎ","pron":"코오기","ko":"항의","tts_text":"抗議"},
+    {"kanji":"紛争","kana":"ふんそう","pron":"훈소오","ko":"분쟁","tts_text":"紛争"},
+    {"kanji":"対立","kana":"たいりつ","pron":"타이리츠","ko":"대립","tts_text":"対立"},
+    {"kanji":"協調","kana":"きょうちょう","pron":"쿄오쵸오","ko":"협조/조화","tts_text":"協調"},
+    {"kanji":"調停","kana":"ちょうてい","pron":"쵸오테이","ko":"조정/중재","tts_text":"調停"},
+    {"kanji":"合意形成","kana":"ごういけいせい","pron":"고오이 케이세이","ko":"합의 형성","tts_text":"合意形成"},
 
-        {"kanji":"格差","kana":"かくさ","pron":"카쿠사","ko":"격차","tts_text":"格差"},
-        {"kanji":"貧困","kana":"ひんこん","pron":"힌콘","ko":"빈곤","tts_text":"貧困"},
-        {"kanji":"雇用","kana":"こよう","pron":"코요오","ko":"고용","tts_text":"雇用"},
-        {"kanji":"失業","kana":"しつぎょう","pron":"시츠교오","ko":"실업","tts_text":"失業"},
-        {"kanji":"労働力","kana":"ろうどうりょく","pron":"로오도오료쿠","ko":"노동력","tts_text":"労働力"},
-        {"kanji":"過重労働","kana":"かじゅうろうどう","pron":"카쥬우 로오도오","ko":"과중 노동","tts_text":"過重労働"},
-        {"kanji":"少子化","kana":"しょうしか","pron":"쇼오시카","ko":"저출산","tts_text":"少子化"},
-        {"kanji":"高齢化","kana":"こうれいか","pron":"코오레이카","ko":"고령화","tts_text":"高齢化"},
-        {"kanji":"社会保障","kana":"しゃかいほしょう","pron":"샤카이 호쇼오","ko":"사회보장","tts_text":"社会保障"},
-        {"kanji":"福祉","kana":"ふくし","pron":"후쿠시","ko":"복지","tts_text":"福祉"},
+    {"kanji":"格差","kana":"かくさ","pron":"카쿠사","ko":"격차","tts_text":"格差"},
+    {"kanji":"貧困","kana":"ひんこん","pron":"힌콘","ko":"빈곤","tts_text":"貧困"},
+    {"kanji":"雇用","kana":"こよう","pron":"코요오","ko":"고용","tts_text":"雇用"},
+    {"kanji":"失業","kana":"しつぎょう","pron":"시츠교오","ko":"실업","tts_text":"失業"},
+    {"kanji":"労働力","kana":"ろうどうりょく","pron":"로오도오료쿠","ko":"노동력","tts_text":"労働力"},
+    {"kanji":"過重労働","kana":"かじゅうろうどう","pron":"카쥬우 로오도오","ko":"과중 노동","tts_text":"過重労働"},
+    {"kanji":"少子化","kana":"しょうしか","pron":"쇼오시카","ko":"저출산","tts_text":"少子化"},
+    {"kanji":"高齢化","kana":"こうれいか","pron":"코오레이카","ko":"고령화","tts_text":"高齢化"},
+    {"kanji":"社会保障","kana":"しゃかいほしょう","pron":"샤카이 호쇼오","ko":"사회보장","tts_text":"社会保障"},
+    {"kanji":"福祉","kana":"ふくし","pron":"후쿠시","ko":"복지","tts_text":"福祉"},
 
-        {"kanji":"医療制度","kana":"いりょうせいど","pron":"이료오 세이도","ko":"의료 제도","tts_text":"医療制度"},
-        {"kanji":"教育格差","kana":"きょういくかくさ","pron":"쿄오이쿠 카쿠사","ko":"교육 격차","tts_text":"教育格差"},
-        {"kanji":"治安","kana":"ちあん","pron":"치안","ko":"치안","tts_text":"治安"},
-        {"kanji":"倫理","kana":"りんり","pron":"린리","ko":"윤리","tts_text":"倫理"},
-        {"kanji":"人権","kana":"じんけん","pron":"진켄","ko":"인권","tts_text":"人権"},
-        {"kanji":"差別","kana":"さべつ","pron":"사베츠","ko":"차별","tts_text":"差別"},
-        {"kanji":"偏見","kana":"へんけん","pron":"헨켄","ko":"편견","tts_text":"偏見"},
-        {"kanji":"多様性","kana":"たようせい","pron":"타요오세이","ko":"다양성","tts_text":"多様性"},
-        {"kanji":"共生","kana":"きょうせい","pron":"쿄오세이","ko":"공생","tts_text":"共生"},
-        {"kanji":"公共","kana":"こうきょう","pron":"코오쿄오","ko":"공공","tts_text":"公共"}
-    ]
-    },
+    {"kanji":"医療制度","kana":"いりょうせいど","pron":"이료오 세이도","ko":"의료 제도","tts_text":"医療制度"},
+    {"kanji":"教育格差","kana":"きょういくかくさ","pron":"쿄오이쿠 카쿠사","ko":"교육 격차","tts_text":"教育格差"},
+    {"kanji":"治安","kana":"ちあん","pron":"치안","ko":"치안","tts_text":"治安"},
+    {"kanji":"倫理","kana":"りんり","pron":"린리","ko":"윤리","tts_text":"倫理"},
+    {"kanji":"人権","kana":"じんけん","pron":"진켄","ko":"인권","tts_text":"人権"},
+    {"kanji":"差別","kana":"さべつ","pron":"사베츠","ko":"차별","tts_text":"差別"},
+    {"kanji":"偏見","kana":"へんけん","pron":"헨켄","ko":"편견","tts_text":"偏見"},
+    {"kanji":"多様性","kana":"たようせい","pron":"타요오세이","ko":"다양성","tts_text":"多様性"},
+    {"kanji":"共生","kana":"きょうせい","pron":"쿄오세이","ko":"공생","tts_text":"共生"},
+    {"kanji":"公共","kana":"こうきょう","pron":"코오쿄오","ko":"공공","tts_text":"公共"}
+  ]
+},
+"sec04": {
+  "title": "경제·산업·경영",
+  "items": [
+    {"kanji":"景気","kana":"けいき","pron":"케이키","ko":"경기(경제)/경제 상황","tts_text":"景気"},
+    {"kanji":"経済","kana":"けいざい","pron":"케이자이","ko":"경제","tts_text":"経済"},
+    {"kanji":"市場","kana":"しじょう","pron":"시죠오","ko":"시장","tts_text":"市場"},
+    {"kanji":"需給","kana":"じゅきゅう","pron":"쥬큐우","ko":"수급","tts_text":"需給"},
+    {"kanji":"需要","kana":"じゅよう","pron":"쥬요오","ko":"수요","tts_text":"需要"},
+    {"kanji":"供給","kana":"きょうきゅう","pron":"쿄오큐우","ko":"공급","tts_text":"供給"},
+    {"kanji":"物価","kana":"ぶっか","pron":"붓카","ko":"물가","tts_text":"物価"},
+    {"kanji":"インフレ","kana":"インフレ","pron":"인후레","ko":"인플레이션","tts_text":"インフレ"},
+    {"kanji":"デフレ","kana":"デフレ","pron":"데후레","ko":"디플레이션","tts_text":"デフレ"},
+    {"kanji":"為替","kana":"かわせ","pron":"카와세","ko":"환율","tts_text":"為替"},
 
-    "sec04": {
-    "title": "경제·산업·경영",
-    "items": [
-        {"kanji":"景気","kana":"けいき","pron":"케이키","ko":"경기(경제)","tts_text":"景気"},
-        {"kanji":"経済","kana":"けいざい","pron":"케이자이","ko":"경제","tts_text":"経済"},
-        {"kanji":"市場","kana":"しじょう","pron":"시죠오","ko":"시장","tts_text":"市場"},
-        {"kanji":"需給","kana":"じゅきゅう","pron":"쥬큐우","ko":"수급","tts_text":"需給"},
-        {"kanji":"需要","kana":"じゅよう","pron":"쥬요오","ko":"수요","tts_text":"需要"},
-        {"kanji":"供給","kana":"きょうきゅう","pron":"쿄오큐우","ko":"공급","tts_text":"供給"},
-        {"kanji":"物価","kana":"ぶっか","pron":"붓카","ko":"물가","tts_text":"物価"},
-        {"kanji":"インフレ","kana":"インフレ","pron":"인후레","ko":"인플레이션","tts_text":"インフレ"},
-        {"kanji":"デフレ","kana":"デフレ","pron":"데후레","ko":"디플레이션","tts_text":"デフレ"},
-        {"kanji":"為替","kana":"かわせ","pron":"카와세","ko":"환율","tts_text":"為替"},
+    {"kanji":"金融","kana":"きんゆう","pron":"킨유우","ko":"금융","tts_text":"金融"},
+    {"kanji":"金利","kana":"きんり","pron":"킨리","ko":"금리","tts_text":"金利"},
+    {"kanji":"資金","kana":"しきん","pron":"시키ン","ko":"자금","tts_text":"資金"},
+    {"kanji":"資本","kana":"しほん","pron":"시혼","ko":"자본","tts_text":"資本"},
+    {"kanji":"投資","kana":"とうし","pron":"토오시","ko":"투자","tts_text":"投資"},
+    {"kanji":"融資","kana":"ゆうし","pron":"유우시","ko":"융자/대출","tts_text":"融資"},
+    {"kanji":"株式","kana":"かぶしき","pron":"카부시키","ko":"주식","tts_text":"株式"},
+    {"kanji":"債券","kana":"さいけん","pron":"사이켄","ko":"채권","tts_text":"債券"},
+    {"kanji":"配当","kana":"はいとう","pron":"하이토오","ko":"배당","tts_text":"配当"},
+    {"kanji":"損益","kana":"そんえき","pron":"손에키","ko":"손익","tts_text":"損益"},
 
-        {"kanji":"金融","kana":"きんゆう","pron":"킨유우","ko":"금융","tts_text":"金融"},
-        {"kanji":"金利","kana":"きんり","pron":"킨리","ko":"금리","tts_text":"金利"},
-        {"kanji":"資金","kana":"しきん","pron":"시키ン","ko":"자금","tts_text":"資金"},
-        {"kanji":"資本","kana":"しほん","pron":"시혼","ko":"자본","tts_text":"資本"},
-        {"kanji":"投資","kana":"とうし","pron":"토오시","ko":"투자","tts_text":"投資"},
-        {"kanji":"融資","kana":"ゆうし","pron":"유우시","ko":"융자","tts_text":"融資"},
-        {"kanji":"株式","kana":"かぶしき","pron":"카부시키","ko":"주식","tts_text":"株式"},
-        {"kanji":"債券","kana":"さいけん","pron":"사이켄","ko":"채권","tts_text":"債券"},
-        {"kanji":"配当","kana":"はいとう","pron":"하이토오","ko":"배당","tts_text":"配当"},
-        {"kanji":"損益","kana":"そんえき","pron":"손에키","ko":"손익","tts_text":"損益"},
+    {"kanji":"利益","kana":"りえき","pron":"리에키","ko":"이익","tts_text":"利益"},
+    {"kanji":"損失","kana":"そんしつ","pron":"손시츠","ko":"손실","tts_text":"損失"},
+    {"kanji":"赤字","kana":"あかじ","pron":"아카지","ko":"적자","tts_text":"赤字"},
+    {"kanji":"黒字","kana":"くろじ","pron":"쿠로지","ko":"흑자","tts_text":"黒字"},
+    {"kanji":"売上","kana":"うりあげ","pron":"우리아게","ko":"매출","tts_text":"売上"},
+    {"kanji":"収益","kana":"しゅうえき","pron":"슈우에키","ko":"수익","tts_text":"収益"},
+    {"kanji":"コスト","kana":"コスト","pron":"코스토","ko":"비용(코스트)","tts_text":"コスト"},
+    {"kanji":"採算","kana":"さいさん","pron":"사이산","ko":"채산","tts_text":"採算"},
+    {"kanji":"採算性","kana":"さいさんせい","pron":"사이산세이","ko":"채산성","tts_text":"採算性"},
+    {"kanji":"効率","kana":"こうりつ","pron":"코오리츠","ko":"효율","tts_text":"効率"},
 
-        {"kanji":"利益","kana":"りえき","pron":"리에키","ko":"이익","tts_text":"利益"},
-        {"kanji":"損失","kana":"そんしつ","pron":"손시츠","ko":"손실","tts_text":"損失"},
-        {"kanji":"赤字","kana":"あかじ","pron":"아카지","ko":"적자","tts_text":"赤字"},
-        {"kanji":"黒字","kana":"くろじ","pron":"쿠로지","ko":"흑자","tts_text":"黒字"},
-        {"kanji":"売上","kana":"うりあげ","pron":"우리아게","ko":"매출","tts_text":"売上"},
-        {"kanji":"収益","kana":"しゅうえき","pron":"슈우에키","ko":"수익","tts_text":"収益"},
-        {"kanji":"コスト","kana":"コスト","pron":"코스토","ko":"비용(코스트)","tts_text":"コスト"},
-        {"kanji":"採算","kana":"さいさん","pron":"사이산","ko":"채산","tts_text":"採算"},
-        {"kanji":"採算性","kana":"さいさんせい","pron":"사이산세이","ko":"채산성","tts_text":"採算性"},
-        {"kanji":"効率","kana":"こうりつ","pron":"코오리츠","ko":"효율","tts_text":"効率"},
+    {"kanji":"生産性","kana":"せいさんせい","pron":"세이산세이","ko":"생산성","tts_text":"生産性"},
+    {"kanji":"競争力","kana":"きょうそうりょく","pron":"쿄오소오료쿠","ko":"경쟁력","tts_text":"競争力"},
+    {"kanji":"供給網","kana":"きょうきゅうもう","pron":"쿄오큐우모오","ko":"공급망","tts_text":"供給網"},
+    {"kanji":"調達","kana":"ちょうたつ","pron":"쵸오타츠","ko":"조달","tts_text":"調達"},
+    {"kanji":"在庫","kana":"ざいこ","pron":"자이코","ko":"재고","tts_text":"在庫"},
+    {"kanji":"不足","kana":"ふそく","pron":"후소쿠","ko":"부족","tts_text":"不足"},
+    {"kanji":"過剰","kana":"かじょう","pron":"카죠오","ko":"과잉","tts_text":"過剰"},
+    {"kanji":"需要減","kana":"じゅようげん","pron":"쥬요오겐","ko":"수요 감소","tts_text":"需要減"},
+    {"kanji":"拡大","kana":"かくだい","pron":"카쿠다이","ko":"확대","tts_text":"拡大"},
+    {"kanji":"縮小","kana":"しゅくしょう","pron":"슈쿠쇼오","ko":"축소","tts_text":"縮小"},
 
-        {"kanji":"生産性","kana":"せいさんせい","pron":"세이산세이","ko":"생산성","tts_text":"生産性"},
-        {"kanji":"競争力","kana":"きょうそうりょく","pron":"쿄오소오료쿠","ko":"경쟁력","tts_text":"競争力"},
-        {"kanji":"供給網","kana":"きょうきゅうもう","pron":"쿄오큐우모오","ko":"공급망","tts_text":"供給網"},
-        {"kanji":"調達","kana":"ちょうたつ","pron":"쵸오타츠","ko":"조달","tts_text":"調達"},
-        {"kanji":"在庫","kana":"ざいこ","pron":"자이코","ko":"재고","tts_text":"在庫"},
-        {"kanji":"不足","kana":"ふそく","pron":"후소쿠","ko":"부족","tts_text":"不足"},
-        {"kanji":"過剰","kana":"かじょう","pron":"카죠오","ko":"과잉","tts_text":"過剰"},
-        {"kanji":"需要減","kana":"じゅようげん","pron":"쥬요오겐","ko":"수요 감소","tts_text":"需要減"},
-        {"kanji":"拡大","kana":"かくだい","pron":"카쿠다이","ko":"확대","tts_text":"拡大"},
-        {"kanji":"縮小","kana":"しゅくしょう","pron":"슈쿠쇼오","ko":"축소","tts_text":"縮小"},
+    {"kanji":"企業","kana":"きぎょう","pron":"키교오","ko":"기업","tts_text":"企業"},
+    {"kanji":"経営","kana":"けいえい","pron":"케이에이","ko":"경영","tts_text":"経営"},
+    {"kanji":"経営陣","kana":"けいえいじん","pron":"케이에이진","ko":"경영진","tts_text":"経営陣"},
+    {"kanji":"組織","kana":"そしき","pron":"소시키","ko":"조직","tts_text":"組織"},
+    {"kanji":"再編","kana":"さいへん","pron":"사이헨","ko":"재편","tts_text":"再編"},
+    {"kanji":"提携","kana":"ていけい","pron":"테이케이","ko":"제휴","tts_text":"提携"},
+    {"kanji":"合併","kana":"がっぺい","pron":"갓페이","ko":"합병","tts_text":"合併"},
+    {"kanji":"買収","kana":"ばいしゅう","pron":"바이슈우","ko":"인수","tts_text":"買収"},
+    {"kanji":"倒産","kana":"とうさん","pron":"토오산","ko":"도산","tts_text":"倒産"},
+    {"kanji":"撤退","kana":"てったい","pron":"텟타이","ko":"철수","tts_text":"撤退"}
+  ]
+},
 
-        {"kanji":"企業","kana":"きぎょう","pron":"키교오","ko":"기업","tts_text":"企業"},
-        {"kanji":"経営","kana":"けいえい","pron":"케이에이","ko":"경영","tts_text":"経営"},
-        {"kanji":"経営陣","kana":"けいえいじん","pron":"케이에이진","ko":"경영진","tts_text":"経営陣"},
-        {"kanji":"組織","kana":"そしき","pron":"소시키","ko":"조직","tts_text":"組織"},
-        {"kanji":"再編","kana":"さいへん","pron":"사이헨","ko":"재편","tts_text":"再編"},
-        {"kanji":"提携","kana":"ていけい","pron":"테이케이","ko":"제휴","tts_text":"提携"},
-        {"kanji":"合併","kana":"がっぺい","pron":"갓페이","ko":"합병","tts_text":"合併"},
-        {"kanji":"買収","kana":"ばいしゅう","pron":"바이슈우","ko":"인수","tts_text":"買収"},
-        {"kanji":"倒産","kana":"とうさん","pron":"토오산","ko":"도산","tts_text":"倒産"},
-        {"kanji":"撤退","kana":"てったい","pron":"텟타이","ko":"철수","tts_text":"撤退"}
-    ]
-    },
     "sec05": {
-    "title": "학술·연구·논설",
-    "items": [
-        {"kanji":"研究","kana":"けんきゅう","pron":"켄큐우","ko":"연구","tts_text":"研究"},
-        {"kanji":"調査","kana":"ちょうさ","pron":"쵸오사","ko":"조사","tts_text":"調査"},
-        {"kanji":"分析","kana":"ぶんせき","pron":"분세키","ko":"분석","tts_text":"分析"},
-        {"kanji":"考察","kana":"こうさつ","pron":"코오사츠","ko":"고찰","tts_text":"考察"},
-        {"kanji":"検討","kana":"けんとう","pron":"켄토오","ko":"검토","tts_text":"検討"},
-        {"kanji":"検証","kana":"けんしょう","pron":"켄쇼오","ko":"검증","tts_text":"検証"},
-        {"kanji":"評価","kana":"ひょうか","pron":"효오카","ko":"평가","tts_text":"評価"},
-        {"kanji":"推測","kana":"すいそく","pron":"스이소쿠","ko":"추측","tts_text":"推測"},
-        {"kanji":"推定","kana":"すいてい","pron":"스이테이","ko":"추정","tts_text":"推定"},
-        {"kanji":"仮説","kana":"かせつ","pron":"카세츠","ko":"가설","tts_text":"仮説"},
+  "title": "학술·연구·논설",
+  "items": [
+    {"kanji":"研究","kana":"けんきゅう","pron":"켄큐우","ko":"연구","tts_text":"研究"},
+    {"kanji":"調査","kana":"ちょうさ","pron":"쵸오사","ko":"조사","tts_text":"調査"},
+    {"kanji":"分析","kana":"ぶんせき","pron":"분세키","ko":"분석","tts_text":"分析"},
+    {"kanji":"考察","kana":"こうさつ","pron":"코오사츠","ko":"고찰","tts_text":"考察"},
+    {"kanji":"検討","kana":"けんとう","pron":"켄토오","ko":"검토","tts_text":"検討"},
+    {"kanji":"検証","kana":"けんしょう","pron":"켄쇼오","ko":"검증","tts_text":"検証"},
+    {"kanji":"評価","kana":"ひょうか","pron":"효오카","ko":"평가","tts_text":"評価"},
+    {"kanji":"推測","kana":"すいそく","pron":"스이소쿠","ko":"추측","tts_text":"推測"},
+    {"kanji":"推定","kana":"すいてい","pron":"스이테이","ko":"추정","tts_text":"推定"},
+    {"kanji":"仮説","kana":"かせつ","pron":"카세츠","ko":"가설","tts_text":"仮説"},
 
-        {"kanji":"実証","kana":"じっしょう","pron":"짓쇼오","ko":"실증","tts_text":"実証"},
-        {"kanji":"裏付け","kana":"うらづけ","pron":"우라즈케","ko":"뒷받침","tts_text":"裏付け"},
-        {"kanji":"根拠付ける","kana":"こんきょづける","pron":"콘쿄즈케루","ko":"근거를 대다","tts_text":"根拠付ける"},
-        {"kanji":"立証","kana":"りっしょう","pron":"릿쇼오","ko":"입증","tts_text":"立証"},
-        {"kanji":"証拠","kana":"しょうこ","pron":"쇼오코","ko":"증거","tts_text":"証拠"},
-        {"kanji":"妥当性","kana":"だとうせい","pron":"다토오세이","ko":"타당성","tts_text":"妥当性"},
-        {"kanji":"信憑性","kana":"しんぴょうせい","pron":"신표오세이","ko":"신빙성","tts_text":"信憑性"},
-        {"kanji":"客観的","kana":"きゃっかんてき","pron":"캿칸테키","ko":"객관적","tts_text":"客観的"},
-        {"kanji":"主観的","kana":"しゅかんてき","pron":"슈칸테키","ko":"주관적","tts_text":"主観的"},
-        {"kanji":"統計","kana":"とうけい","pron":"토오케이","ko":"통계","tts_text":"統計"},
+    {"kanji":"実証","kana":"じっしょう","pron":"짓쇼오","ko":"실증","tts_text":"実証"},
+    {"kanji":"裏付け","kana":"うらづけ","pron":"우라즈케","ko":"뒷받침","tts_text":"裏付け"},
+    {"kanji":"根拠付ける","kana":"こんきょづける","pron":"콘쿄즈케루","ko":"근거를 대다/근거를 부여하다","tts_text":"根拠付ける"},
+    {"kanji":"立証","kana":"りっしょう","pron":"릿쇼오","ko":"입증","tts_text":"立証"},
+    {"kanji":"証拠","kana":"しょうこ","pron":"쇼오코","ko":"증거","tts_text":"証拠"},
+    {"kanji":"妥当性","kana":"だとうせい","pron":"다토오세이","ko":"타당성","tts_text":"妥当性"},
+    {"kanji":"信憑性","kana":"しんぴょうせい","pron":"신표오세이","ko":"신빙성","tts_text":"信憑性"},
+    {"kanji":"客観的","kana":"きゃっかんてき","pron":"캿칸테키","ko":"객관적","tts_text":"客観的"},
+    {"kanji":"主観的","kana":"しゅかんてき","pron":"슈칸테키","ko":"주관적","tts_text":"主観的"},
+    {"kanji":"統計","kana":"とうけい","pron":"토오케이","ko":"통계","tts_text":"統計"},
 
-        {"kanji":"統計的","kana":"とうけいてき","pron":"토오케이테키","ko":"통계적","tts_text":"統計的"},
-        {"kanji":"傾向","kana":"けいこう","pron":"케이코오","ko":"경향","tts_text":"傾向"},
-        {"kanji":"相関","kana":"そうかん","pron":"소오칸","ko":"상관","tts_text":"相関"},
-        {"kanji":"因果関係","kana":"いんがかんけい","pron":"인가 칸케이","ko":"인과관계","tts_text":"因果関係"},
-        {"kanji":"要約","kana":"ようやく","pron":"요오야쿠","ko":"요약","tts_text":"要約"},
-        {"kanji":"概略","kana":"がいりゃく","pron":"가이랴쿠","ko":"개략","tts_text":"概略"},
-        {"kanji":"概要","kana":"がいよう","pron":"가이요오","ko":"개요","tts_text":"概要"},
-        {"kanji":"詳細","kana":"しょうさい","pron":"쇼오사이","ko":"상세","tts_text":"詳細"},
-        {"kanji":"論点","kana":"ろんてん","pron":"론텐","ko":"논점","tts_text":"論点"},
-        {"kanji":"争点","kana":"そうてん","pron":"소오텐","ko":"쟁점","tts_text":"争点"},
+    {"kanji":"統計的","kana":"とうけいてき","pron":"토오케이테키","ko":"통계적","tts_text":"統計的"},
+    {"kanji":"傾向","kana":"けいこう","pron":"케이코오","ko":"경향","tts_text":"傾向"},
+    {"kanji":"相関","kana":"そうかん","pron":"소오칸","ko":"상관","tts_text":"相関"},
+    {"kanji":"因果関係","kana":"いんがかんけい","pron":"인가 칸케이","ko":"인과관계","tts_text":"因果関係"},
+    {"kanji":"要約","kana":"ようやく","pron":"요오야쿠","ko":"요약","tts_text":"要約"},
+    {"kanji":"概略","kana":"がいりゃく","pron":"가이랴쿠","ko":"개략","tts_text":"概略"},
+    {"kanji":"概要","kana":"がいよう","pron":"가이요오","ko":"개요","tts_text":"概要"},
+    {"kanji":"詳細","kana":"しょうさい","pron":"쇼오사이","ko":"상세","tts_text":"詳細"},
+    {"kanji":"論点","kana":"ろんてん","pron":"론텐","ko":"논점","tts_text":"論点"},
+    {"kanji":"争点","kana":"そうてん","pron":"소오텐","ko":"쟁점","tts_text":"争点"},
 
-        {"kanji":"主張","kana":"しゅちょう","pron":"슈쵸오","ko":"주장","tts_text":"主張"},
-        {"kanji":"反論","kana":"はんろん","pron":"한론","ko":"반론","tts_text":"反論"},
-        {"kanji":"弁解","kana":"べんかい","pron":"벤카이","ko":"변명","tts_text":"弁解"},
-        {"kanji":"見落とす","kana":"みおとす","pron":"미오토스","ko":"놓치다","tts_text":"見落とす"},
-        {"kanji":"見落とし","kana":"みおとし","pron":"미오토시","ko":"간과/놓침","tts_text":"見落とし"},
-        {"kanji":"見誤る","kana":"みあやまる","pron":"미아야마루","ko":"오판하다","tts_text":"見誤る"},
-        {"kanji":"見極める","kana":"みきわめる","pron":"미키와메루","ko":"판별하다","tts_text":"見極める"},
-        {"kanji":"言及","kana":"げんきゅう","pron":"겐큐우","ko":"언급","tts_text":"言及"},
-        {"kanji":"示す","kana":"しめす","pron":"시메스","ko":"보이다/나타내다","tts_text":"示す"},
-        {"kanji":"裏付ける","kana":"うらづける","pron":"우라즈케루","ko":"뒷받침하다","tts_text":"裏付ける"},
+    {"kanji":"主張","kana":"しゅちょう","pron":"슈쵸오","ko":"주장","tts_text":"主張"},
+    {"kanji":"反論","kana":"はんろん","pron":"한론","ko":"반론","tts_text":"反論"},
+    {"kanji":"弁解","kana":"べんかい","pron":"벤카이","ko":"변명/해명","tts_text":"弁解"},
+    {"kanji":"見落とす","kana":"みおとす","pron":"미오토스","ko":"놓치다","tts_text":"見落とす"},
+    {"kanji":"見落とし","kana":"みおとし","pron":"미오토시","ko":"간과/놓침","tts_text":"見落とし"},
+    {"kanji":"見誤る","kana":"みあやまる","pron":"미아야마루","ko":"오판하다/잘못 보다","tts_text":"見誤る"},
+    {"kanji":"見極める","kana":"みきわめる","pron":"미키와메루","ko":"판별하다/끝까지 가려내다","tts_text":"見極める"},
+    {"kanji":"言及","kana":"げんきゅう","pron":"겐큐우","ko":"언급","tts_text":"言及"},
+    {"kanji":"示す","kana":"しめす","pron":"시메스","ko":"보이다/나타내다","tts_text":"示す"},
+    {"kanji":"裏付ける","kana":"うらづける","pron":"우라즈케루","ko":"뒷받침하다","tts_text":"裏付ける"},
 
-        {"kanji":"仮に","kana":"かりに","pron":"카리니","ko":"가령/만약","tts_text":"仮に"},
-        {"kanji":"一概に","kana":"いちがいに","pron":"이치가이니","ko":"일괄적으로","tts_text":"一概に"},
-        {"kanji":"一概には言えない","kana":"いちがいにはいえない","pron":"이치가이니와 이에나이","ko":"일概적으로 말할 수 없다","tts_text":"一概には言えない"},
-        {"kanji":"もとより","kana":"もとより","pron":"모토요리","ko":"애초에","tts_text":"もとより"},
-        {"kanji":"ひとえに","kana":"ひとえに","pron":"히토에니","ko":"오로지","tts_text":"ひとえに"},
-        {"kanji":"概して","kana":"がいして","pron":"가이시테","ko":"대체로","tts_text":"概して"},
-        {"kanji":"ひたすら","kana":"ひたすら","pron":"히타스라","ko":"오로지/한결같이","tts_text":"ひたすら"},
-        {"kanji":"総じて","kana":"そうじて","pron":"소오지테","ko":"총괄적으로","tts_text":"総じて"},
-        {"kanji":"ひいては","kana":"ひいては","pron":"히이테와","ko":"나아가서는","tts_text":"ひいては"},
-        {"kanji":"かねて","kana":"かねて","pron":"카네테","ko":"이전부터","tts_text":"かねて"}
-    ]
-    },
+    {"kanji":"仮に","kana":"かりに","pron":"카리니","ko":"가령/만약","tts_text":"仮に"},
+    {"kanji":"一概に","kana":"いちがいに","pron":"이치가이니","ko":"일괄적으로/한마디로","tts_text":"一概に"},
+    {"kanji":"一概には言えない","kana":"いちがいにはいえない","pron":"이치가이니와 이에나이","ko":"일概적으로 말할 수 없다","tts_text":"一概には言えない"},
+    {"kanji":"もとより","kana":"もとより","pron":"모토요리","ko":"애초에/물론","tts_text":"もとより"},
+    {"kanji":"ひとえに","kana":"ひとえに","pron":"히토에니","ko":"오로지","tts_text":"ひとえに"},
+    {"kanji":"概して","kana":"がいして","pron":"가이시테","ko":"대체로","tts_text":"概して"},
+    {"kanji":"ひたすら","kana":"ひたすら","pron":"히타스라","ko":"오로지/한결같이","tts_text":"ひたすら"},
+    {"kanji":"総じて","kana":"そうじて","pron":"소오지테","ko":"총괄적으로/전반적으로","tts_text":"総じて"},
+    {"kanji":"ひいては","kana":"ひいては","pron":"히이테와","ko":"나아가서는","tts_text":"ひいては"},
+    {"kanji":"かねて","kana":"かねて","pron":"카네테","ko":"이전부터","tts_text":"かねて"}
+  ]
+},
+"sec06": {
+  "title": "심리·관계·태도",
+  "items": [
+    {"kanji":"本質","kana":"ほんしつ","pron":"혼시츠","ko":"본질","tts_text":"本質"},
+    {"kanji":"本音","kana":"ほんね","pron":"혼네","ko":"속마음","tts_text":"本音"},
+    {"kanji":"建前","kana":"たてまえ","pron":"타테마에","ko":"겉치레/명분","tts_text":"建前"},
+    {"kanji":"価値観","kana":"かちかん","pron":"카치칸","ko":"가치관","tts_text":"価値観"},
+    {"kanji":"先入観","kana":"せんにゅうかん","pron":"센뉴우칸","ko":"선입견","tts_text":"先入観"},
+    {"kanji":"偏見","kana":"へんけん","pron":"헨켄","ko":"편견","tts_text":"偏見"},
+    {"kanji":"固定観念","kana":"こていかんねん","pron":"코테이 칸넨","ko":"고정관념","tts_text":"固定観念"},
+    {"kanji":"主観","kana":"しゅかん","pron":"슈칸","ko":"주관","tts_text":"主観"},
+    {"kanji":"客観","kana":"きゃっかん","pron":"캿칸","ko":"객관","tts_text":"客観"},
+    {"kanji":"視点","kana":"してん","pron":"시텐","ko":"시점/관점","tts_text":"視点"},
 
-    "sec06": {
-    "title": "심리·관계·태도",
-    "items": [
-        {"kanji":"本質","kana":"ほんしつ","pron":"혼시츠","ko":"본질","tts_text":"本質"},
-        {"kanji":"本音","kana":"ほんね","pron":"혼네","ko":"속마음","tts_text":"本音"},
-        {"kanji":"建前","kana":"たてまえ","pron":"타테마에","ko":"겉치레/명분","tts_text":"建前"},
-        {"kanji":"価値観","kana":"かちかん","pron":"카치칸","ko":"가치관","tts_text":"価値観"},
-        {"kanji":"先入観","kana":"せんにゅうかん","pron":"센뉴우칸","ko":"선입견","tts_text":"先入観"},
-        {"kanji":"偏見","kana":"へんけん","pron":"헨켄","ko":"편견","tts_text":"偏見"},
-        {"kanji":"固定観念","kana":"こていかんねん","pron":"코테이 칸넨","ko":"고정관념","tts_text":"固定観念"},
-        {"kanji":"主観","kana":"しゅかん","pron":"슈칸","ko":"주관","tts_text":"主観"},
-        {"kanji":"客観","kana":"きゃっかん","pron":"캿칸","ko":"객관","tts_text":"客観"},
-        {"kanji":"視点","kana":"してん","pron":"시텐","ko":"시점/관점","tts_text":"視点"},
+    {"kanji":"観点","kana":"かんてん","pron":"칸텐","ko":"관점","tts_text":"観点"},
+    {"kanji":"見方","kana":"みかた","pron":"미카타","ko":"관점/시각","tts_text":"見方"},
+    {"kanji":"姿勢","kana":"しせい","pron":"시세이","ko":"태도","tts_text":"姿勢"},
+    {"kanji":"態度","kana":"たいど","pron":"타이도","ko":"태도","tts_text":"態度"},
+    {"kanji":"反応","kana":"はんのう","pron":"한노오","ko":"반응","tts_text":"反応"},
+    {"kanji":"受け止める","kana":"うけとめる","pron":"우케토메루","ko":"받아들이다","tts_text":"受け止める"},
+    {"kanji":"納得","kana":"なっとく","pron":"낫토쿠","ko":"납득","tts_text":"納得"},
+    {"kanji":"納得する","kana":"なっとくする","pron":"낫토쿠 스루","ko":"납득하다","tts_text":"納得する"},
+    {"kanji":"同調","kana":"どうちょう","pron":"도오쵸오","ko":"동조","tts_text":"同調"},
+    {"kanji":"共感","kana":"きょうかん","pron":"쿄오칸","ko":"공감","tts_text":"共感"},
 
-        {"kanji":"観点","kana":"かんてん","pron":"칸텐","ko":"관점","tts_text":"観点"},
-        {"kanji":"見方","kana":"みかた","pron":"미카타","ko":"관점/시각","tts_text":"見方"},
-        {"kanji":"姿勢","kana":"しせい","pron":"시세이","ko":"태도","tts_text":"姿勢"},
-        {"kanji":"態度","kana":"たいど","pron":"타이도","ko":"태도","tts_text":"態度"},
-        {"kanji":"反応","kana":"はんのう","pron":"한노오","ko":"반응","tts_text":"反応"},
-        {"kanji":"受け止める","kana":"うけとめる","pron":"우케토메루","ko":"받아들이다","tts_text":"受け止める"},
-        {"kanji":"納得","kana":"なっとく","pron":"낫토쿠","ko":"납득","tts_text":"納得"},
-        {"kanji":"納得する","kana":"なっとくする","pron":"낫토쿠 스루","ko":"납득하다","tts_text":"納得する"},
-        {"kanji":"同調","kana":"どうちょう","pron":"도오쵸오","ko":"동조","tts_text":"同調"},
-        {"kanji":"共感","kana":"きょうかん","pron":"쿄오칸","ko":"공감","tts_text":"共感"},
+    {"kanji":"反感","kana":"はんかん","pron":"한칸","ko":"반감","tts_text":"反感"},
+    {"kanji":"嫌悪","kana":"けんお","pron":"켄오","ko":"혐오","tts_text":"嫌悪"},
+    {"kanji":"嫉妬","kana":"しっと","pron":"싯토","ko":"질투","tts_text":"嫉妬"},
+    {"kanji":"劣等感","kana":"れっとうかん","pron":"렛토오칸","ko":"열등감","tts_text":"劣等感"},
+    {"kanji":"優越感","kana":"ゆうえつかん","pron":"유우에츠칸","ko":"우월감","tts_text":"優越感"},
+    {"kanji":"孤独","kana":"こどく","pron":"코도쿠","ko":"고독","tts_text":"孤独"},
+    {"kanji":"孤立","kana":"こりつ","pron":"코리츠","ko":"고립","tts_text":"孤立"},
+    {"kanji":"疎外感","kana":"そがいかん","pron":"소가이칸","ko":"소외감","tts_text":"疎外感"},
+    {"kanji":"不信","kana":"ふしん","pron":"후신","ko":"불신","tts_text":"不信"},
+    {"kanji":"信用","kana":"しんよう","pron":"신요오","ko":"신용","tts_text":"信用"},
 
-        {"kanji":"反感","kana":"はんかん","pron":"한칸","ko":"반감","tts_text":"反感"},
-        {"kanji":"嫌悪","kana":"けんお","pron":"켄오","ko":"혐오","tts_text":"嫌悪"},
-        {"kanji":"嫉妬","kana":"しっと","pron":"싯토","ko":"질투","tts_text":"嫉妬"},
-        {"kanji":"劣等感","kana":"れっとうかん","pron":"렛토오칸","ko":"열등감","tts_text":"劣等感"},
-        {"kanji":"優越感","kana":"ゆうえつかん","pron":"유우에츠칸","ko":"우월감","tts_text":"優越感"},
-        {"kanji":"孤独","kana":"こどく","pron":"코도쿠","ko":"고독","tts_text":"孤独"},
-        {"kanji":"孤立","kana":"こりつ","pron":"코리츠","ko":"고립","tts_text":"孤立"},
-        {"kanji":"疎外感","kana":"そがいかん","pron":"소가이칸","ko":"소외감","tts_text":"疎外感"},
-        {"kanji":"不信","kana":"ふしん","pron":"후신","ko":"불신","tts_text":"不信"},
-        {"kanji":"信用","kana":"しんよう","pron":"신요오","ko":"신용","tts_text":"信用"},
+    {"kanji":"信頼","kana":"しんらい","pron":"신라이","ko":"신뢰","tts_text":"信頼"},
+    {"kanji":"疑念","kana":"ぎねん","pron":"기넨","ko":"의혹/의심","tts_text":"疑念"},
+    {"kanji":"疑う","kana":"うたがう","pron":"우타가우","ko":"의심하다","tts_text":"疑う"},
+    {"kanji":"誤解","kana":"ごかい","pron":"고카이","ko":"오해","tts_text":"誤解"},
+    {"kanji":"偏る","kana":"かたよる","pron":"카타요루","ko":"치우치다","tts_text":"偏る"},
+    {"kanji":"執着","kana":"しゅうちゃく","pron":"슈우차쿠","ko":"집착","tts_text":"執着"},
+    {"kanji":"執念","kana":"しゅうねん","pron":"슈우넨","ko":"집념","tts_text":"執念"},
+    {"kanji":"忍耐","kana":"にんたい","pron":"닌타이","ko":"인내","tts_text":"忍耐"},
+    {"kanji":"自制","kana":"じせい","pron":"지세이","ko":"자제","tts_text":"自制"},
+    {"kanji":"抑える","kana":"おさえる","pron":"오사에루","ko":"억누르다/누르다","tts_text":"抑える"},
 
-        {"kanji":"信頼","kana":"しんらい","pron":"신라이","ko":"신뢰","tts_text":"信頼"},
-        {"kanji":"疑念","kana":"ぎねん","pron":"기넨","ko":"의혹","tts_text":"疑念"},
-        {"kanji":"疑う","kana":"うたがう","pron":"우타가우","ko":"의심하다","tts_text":"疑う"},
-        {"kanji":"誤解","kana":"ごかい","pron":"고카이","ko":"오해","tts_text":"誤解"},
-        {"kanji":"偏る","kana":"かたよる","pron":"카타요루","ko":"치우치다","tts_text":"偏る"},
-        {"kanji":"執着","kana":"しゅうちゃく","pron":"슈우차쿠","ko":"집착","tts_text":"執着"},
-        {"kanji":"執念","kana":"しゅうねん","pron":"슈우넨","ko":"집념","tts_text":"執念"},
-        {"kanji":"忍耐","kana":"にんたい","pron":"닌타이","ko":"인내","tts_text":"忍耐"},
-        {"kanji":"自制","kana":"じせい","pron":"지세이","ko":"자제","tts_text":"自制"},
-        {"kanji":"抑える","kana":"おさえる","pron":"오사에루","ko":"억누르다/누르다","tts_text":"抑える"},
+    {"kanji":"慎む","kana":"つつしむ","pron":"츠츠시무","ko":"삼가다","tts_text":"慎む"},
+    {"kanji":"遠慮","kana":"えんりょ","pron":"엔료","ko":"사양/원거리낌","tts_text":"遠慮"},
+    {"kanji":"配慮","kana":"はいりょ","pron":"하이료","ko":"배려","tts_text":"配慮"},
+    {"kanji":"気遣い","kana":"きづかい","pron":"키즈카이","ko":"배려/신경씀","tts_text":"気遣い"},
+    {"kanji":"思いやり","kana":"おもいやり","pron":"오모이야리","ko":"배려/상냥함","tts_text":"思いやり"},
+    {"kanji":"誠意","kana":"せいい","pron":"세이이","ko":"성의","tts_text":"誠意"},
+    {"kanji":"謙虚","kana":"けんきょ","pron":"켄쿄","ko":"겸손","tts_text":"謙虚"},
+    {"kanji":"傲慢","kana":"ごうまん","pron":"고오만","ko":"오만","tts_text":"傲慢"},
+    {"kanji":"冷淡","kana":"れいたん","pron":"레이탄","ko":"냉담","tts_text":"冷淡"},
+    {"kanji":"誹謗","kana":"ひぼう","pron":"히보오","ko":"비방","tts_text":"誹謗"},
 
-        {"kanji":"慎む","kana":"つつしむ","pron":"츠츠시무","ko":"삼가다","tts_text":"慎む"},
-        {"kanji":"遠慮","kana":"えんりょ","pron":"엔료","ko":"사양/원거리낌","tts_text":"遠慮"},
-        {"kanji":"配慮","kana":"はいりょ","pron":"하이료","ko":"배려","tts_text":"配慮"},
-        {"kanji":"気遣い","kana":"きづかい","pron":"키즈카이","ko":"배려/신경씀","tts_text":"気遣い"},
-        {"kanji":"思いやり","kana":"おもいやり","pron":"오모이야리","ko":"배려/상냥함","tts_text":"思いやり"},
-        {"kanji":"誠意","kana":"せいい","pron":"세이이","ko":"성의","tts_text":"誠意"},
-        {"kanji":"謙虚","kana":"けんきょ","pron":"켄쿄","ko":"겸손","tts_text":"謙虚"},
-        {"kanji":"傲慢","kana":"ごうまん","pron":"고오만","ko":"오만","tts_text":"傲慢"},
-        {"kanji":"冷淡","kana":"れいたん","pron":"레이탄","ko":"냉담","tts_text":"冷淡"},
-        {"kanji":"誹謗","kana":"ひぼう","pron":"히보오","ko":"비방","tts_text":"誹謗"},
-
-        {"kanji":"中傷","kana":"ちゅうしょう","pron":"츄우쇼오","ko":"중상","tts_text":"中傷"},
-        {"kanji":"侮辱","kana":"ぶじょく","pron":"부죠쿠","ko":"모욕","tts_text":"侮辱"},
-        {"kanji":"礼儀","kana":"れいぎ","pron":"레이기","ko":"예의","tts_text":"礼儀"},
-        {"kanji":"無礼","kana":"ぶれい","pron":"부레이","ko":"무례","tts_text":"無礼"},
-        {"kanji":"体裁","kana":"ていさい","pron":"테이사이","ko":"겉모양/체면","tts_text":"体裁"},
-        {"kanji":"面目","kana":"めんぼく","pron":"멘보쿠","ko":"체면","tts_text":"面目"},
-        {"kanji":"面目を保つ","kana":"めんぼくをたもつ","pron":"멘보쿠오 타모츠","ko":"체면을 지키다","tts_text":"面目を保つ"},
-        {"kanji":"本心","kana":"ほんしん","pron":"혼신","ko":"본심","tts_text":"本心"},
-        {"kanji":"心情","kana":"しんじょう","pron":"신죠오","ko":"심정","tts_text":"心情"},
-        {"kanji":"心境","kana":"しんきょう","pron":"신쿄오","ko":"심경","tts_text":"心境"}
-    ]
-    },
+    {"kanji":"中傷","kana":"ちゅうしょう","pron":"츄우쇼오","ko":"중상","tts_text":"中傷"},
+    {"kanji":"侮辱","kana":"ぶじょく","pron":"부죠쿠","ko":"모욕","tts_text":"侮辱"},
+    {"kanji":"礼儀","kana":"れいぎ","pron":"레이기","ko":"예의","tts_text":"礼儀"},
+    {"kanji":"無礼","kana":"ぶれい","pron":"부레이","ko":"무례","tts_text":"無礼"},
+    {"kanji":"体裁","kana":"ていさい","pron":"테이사이","ko":"겉모양/체면","tts_text":"体裁"},
+    {"kanji":"面目","kana":"めんぼく","pron":"멘보쿠","ko":"체면","tts_text":"面目"},
+    {"kanji":"面目を保つ","kana":"めんぼくをたもつ","pron":"멘보쿠오 타모츠","ko":"체면을 지키다","tts_text":"面目を保つ"},
+    {"kanji":"本心","kana":"ほんしん","pron":"혼신","ko":"본심","tts_text":"本心"},
+    {"kanji":"心情","kana":"しんじょう","pron":"신죠오","ko":"심정","tts_text":"心情"},
+    {"kanji":"心境","kana":"しんきょう","pron":"신쿄오","ko":"심경","tts_text":"心境"}
+  ]
+},
     "sec07": {
-    "title": "환경·에너지·과학",
-    "items": [
-        {"kanji":"環境","kana":"かんきょう","pron":"칸쿄오","ko":"환경","tts_text":"環境"},
-        {"kanji":"環境問題","kana":"かんきょうもんだい","pron":"칸쿄오 몬다이","ko":"환경 문제","tts_text":"環境問題"},
-        {"kanji":"保全","kana":"ほぜん","pron":"호젠","ko":"보전","tts_text":"保全"},
-        {"kanji":"保護","kana":"ほご","pron":"호고","ko":"보호","tts_text":"保護"},
-        {"kanji":"保護区","kana":"ほごく","pron":"호고쿠","ko":"보호구","tts_text":"保護区"},
-        {"kanji":"自然保護","kana":"しぜんほご","pron":"시젠 호고","ko":"자연 보호","tts_text":"自然保護"},
-        {"kanji":"生態系","kana":"せいたいけい","pron":"세이타이케이","ko":"생태계","tts_text":"生態系"},
-        {"kanji":"多様性","kana":"たようせい","pron":"타요오세이","ko":"다양성","tts_text":"多様性"},
-        {"kanji":"絶滅","kana":"ぜつめつ","pron":"제츠메츠","ko":"멸종","tts_text":"絶滅"},
-        {"kanji":"絶滅危惧種","kana":"ぜつめつきぐしゅ","pron":"제츠메츠 키구슈","ko":"멸종위기종","tts_text":"絶滅危惧種"},
+  "title": "환경·에너지·과학",
+  "items": [
+    {"kanji":"環境","kana":"かんきょう","pron":"칸쿄오","ko":"환경","tts_text":"環境"},
+    {"kanji":"環境問題","kana":"かんきょうもんだい","pron":"칸쿄오 몬다이","ko":"환경 문제","tts_text":"環境問題"},
+    {"kanji":"保全","kana":"ほぜん","pron":"호젠","ko":"보전/보호 유지","tts_text":"保全"},
+    {"kanji":"保護","kana":"ほご","pron":"호고","ko":"보호","tts_text":"保護"},
+    {"kanji":"保護区","kana":"ほごく","pron":"호고쿠","ko":"보호구역","tts_text":"保護区"},
+    {"kanji":"自然保護","kana":"しぜんほご","pron":"시젠 호고","ko":"자연 보호","tts_text":"自然保護"},
+    {"kanji":"生態系","kana":"せいたいけい","pron":"세이타이케이","ko":"생태계","tts_text":"生態系"},
+    {"kanji":"多様性","kana":"たようせい","pron":"타요오세이","ko":"다양성","tts_text":"多様性"},
+    {"kanji":"絶滅","kana":"ぜつめつ","pron":"제츠메츠","ko":"멸종","tts_text":"絶滅"},
+    {"kanji":"絶滅危惧種","kana":"ぜつめつきぐしゅ","pron":"제츠메츠 키구슈","ko":"멸종위기종","tts_text":"絶滅危惧種"},
 
-        {"kanji":"汚染","kana":"おせん","pron":"오센","ko":"오염","tts_text":"汚染"},
-        {"kanji":"大気汚染","kana":"たいきおせん","pron":"타이키 오센","ko":"대기 오염","tts_text":"大気汚染"},
-        {"kanji":"水質汚濁","kana":"すいしつおだく","pron":"스이시츠 오다쿠","ko":"수질 오염","tts_text":"水質汚濁"},
-        {"kanji":"排出","kana":"はいしゅつ","pron":"하이슈츠","ko":"배출","tts_text":"排出"},
-        {"kanji":"排出量","kana":"はいしゅつりょう","pron":"하이슈츠료오","ko":"배출량","tts_text":"排出量"},
-        {"kanji":"二酸化炭素","kana":"にさんかたんそ","pron":"니산카 탄소","ko":"이산화탄소","tts_text":"二酸化炭素"},
-        {"kanji":"温室効果ガス","kana":"おんしつこうかがす","pron":"온시츠 코오카 가스","ko":"온실가스","tts_text":"温室効果ガス"},
-        {"kanji":"温暖化","kana":"おんだんか","pron":"온단카","ko":"온난화","tts_text":"温暖化"},
-        {"kanji":"気候変動","kana":"きこうへんどう","pron":"키코오 헨도오","ko":"기후변화","tts_text":"気候変動"},
-        {"kanji":"異常気象","kana":"いじょうきしょう","pron":"이죠오 키쇼오","ko":"이상기후","tts_text":"異常気象"},
+    {"kanji":"汚染","kana":"おせん","pron":"오센","ko":"오염","tts_text":"汚染"},
+    {"kanji":"大気汚染","kana":"たいきおせん","pron":"타이키 오센","ko":"대기 오염","tts_text":"大気汚染"},
+    {"kanji":"水質汚濁","kana":"すいしつおだく","pron":"스이시츠 오다쿠","ko":"수질 오염","tts_text":"水質汚濁"},
+    {"kanji":"排出","kana":"はいしゅつ","pron":"하이슈츠","ko":"배출","tts_text":"排出"},
+    {"kanji":"排出量","kana":"はいしゅつりょう","pron":"하이슈츠료오","ko":"배출량","tts_text":"排出量"},
+    {"kanji":"二酸化炭素","kana":"にさんかたんそ","pron":"니산카 탄소","ko":"이산화탄소","tts_text":"二酸化炭素"},
+    {"kanji":"温室効果ガス","kana":"おんしつこうかがす","pron":"온시츠 코오카 가스","ko":"온실가스","tts_text":"温室効果ガス"},
+    {"kanji":"温暖化","kana":"おんだんか","pron":"온단카","ko":"온난화","tts_text":"温暖化"},
+    {"kanji":"気候変動","kana":"きこうへんどう","pron":"키코오 헨도오","ko":"기후변화","tts_text":"気候変動"},
+    {"kanji":"異常気象","kana":"いじょうきしょう","pron":"이죠오 키쇼오","ko":"이상기후","tts_text":"異常気象"},
 
-        {"kanji":"資源","kana":"しげん","pron":"시겐","ko":"자원","tts_text":"資源"},
-        {"kanji":"資源枯渇","kana":"しげんこかつ","pron":"시겐 코카츠","ko":"자원 고갈","tts_text":"資源枯渇"},
-        {"kanji":"再生可能","kana":"さいせいかのう","pron":"사이세이 카노오","ko":"재생 가능","tts_text":"再生可能"},
-        {"kanji":"再生可能エネルギー","kana":"さいせいかのうえねるぎー","pron":"사이세이 카노오 에네루기이","ko":"재생에너지","tts_text":"再生可能エネルギー"},
-        {"kanji":"太陽光","kana":"たいようこう","pron":"타이요오코오","ko":"태양광","tts_text":"太陽光"},
-        {"kanji":"風力","kana":"ふうりょく","pron":"후우료쿠","ko":"풍력","tts_text":"風力"},
-        {"kanji":"発電","kana":"はつでん","pron":"하츠덴","ko":"발전(전기)","tts_text":"発電"},
-        {"kanji":"原子力","kana":"げんしりょく","pron":"겐시료쿠","ko":"원자력","tts_text":"原子力"},
-        {"kanji":"節電","kana":"せつでん","pron":"세츠덴","ko":"절전","tts_text":"節電"},
-        {"kanji":"省エネ","kana":"しょうえね","pron":"쇼오에네","ko":"에너지 절약","tts_text":"省エネ"},
+    {"kanji":"資源","kana":"しげん","pron":"시겐","ko":"자원","tts_text":"資源"},
+    {"kanji":"資源枯渇","kana":"しげんこかつ","pron":"시겐 코카츠","ko":"자원 고갈","tts_text":"資源枯渇"},
+    {"kanji":"再生可能","kana":"さいせいかのう","pron":"사이세이 카노오","ko":"재생 가능","tts_text":"再生可能"},
+    {"kanji":"再生可能エネルギー","kana":"さいせいかのうえねるぎー","pron":"사이세이 카노오 에네루기이","ko":"재생에너지","tts_text":"再生可能エネルギー"},
+    {"kanji":"太陽光","kana":"たいようこう","pron":"타이요오코오","ko":"태양광","tts_text":"太陽光"},
+    {"kanji":"風力","kana":"ふうりょく","pron":"후우료쿠","ko":"풍력","tts_text":"風力"},
+    {"kanji":"発電","kana":"はつでん","pron":"하츠덴","ko":"발전(전기)","tts_text":"発電"},
+    {"kanji":"原子力","kana":"げんしりょく","pron":"겐시료쿠","ko":"원자력","tts_text":"原子力"},
+    {"kanji":"節電","kana":"せつでん","pron":"세츠덴","ko":"절전","tts_text":"節電"},
+    {"kanji":"省エネ","kana":"しょうえね","pron":"쇼오에네","ko":"에너지 절약","tts_text":"省エネ"},
 
-        {"kanji":"効率化","kana":"こうりつか","pron":"코오리츠카","ko":"효율화","tts_text":"効率化"},
-        {"kanji":"最適化","kana":"さいてきか","pron":"사이테키카","ko":"최적화","tts_text":"最適化"},
-        {"kanji":"技術革新","kana":"ぎじゅつかくしん","pron":"기쥬츠 카쿠신","ko":"기술혁신","tts_text":"技術革新"},
-        {"kanji":"先端","kana":"せんたん","pron":"센탄","ko":"최첨단","tts_text":"先端"},
-        {"kanji":"革新","kana":"かくしん","pron":"카쿠신","ko":"혁신","tts_text":"革新"},
-        {"kanji":"開発","kana":"かいはつ","pron":"카이하츠","ko":"개발","tts_text":"開発"},
-        {"kanji":"研究開発","kana":"けんきゅうかいはつ","pron":"켄큐우 카이하츠","ko":"연구개발","tts_text":"研究開発"},
-        {"kanji":"実験","kana":"じっけん","pron":"짓켄","ko":"실험","tts_text":"実験"},
-        {"kanji":"観測","kana":"かんそく","pron":"칸소쿠","ko":"관측","tts_text":"観測"},
-        {"kanji":"測定","kana":"そくてい","pron":"소쿠테이","ko":"측정","tts_text":"測定"},
+    {"kanji":"効率化","kana":"こうりつか","pron":"코오리츠카","ko":"효율화","tts_text":"効率化"},
+    {"kanji":"最適化","kana":"さいてきか","pron":"사이테키카","ko":"최적화","tts_text":"最適化"},
+    {"kanji":"技術革新","kana":"ぎじゅつかくしん","pron":"기쥬츠 카쿠신","ko":"기술혁신","tts_text":"技術革新"},
+    {"kanji":"先端","kana":"せんたん","pron":"센탄","ko":"최첨단","tts_text":"先端"},
+    {"kanji":"革新","kana":"かくしん","pron":"카쿠신","ko":"혁신","tts_text":"革新"},
+    {"kanji":"開発","kana":"かいはつ","pron":"카이하츠","ko":"개발","tts_text":"開発"},
+    {"kanji":"研究開発","kana":"けんきゅうかいはつ","pron":"켄큐우 카이하츠","ko":"연구개발","tts_text":"研究開発"},
+    {"kanji":"実験","kana":"じっけん","pron":"짓켄","ko":"실험","tts_text":"実験"},
+    {"kanji":"観測","kana":"かんそく","pron":"칸소쿠","ko":"관측","tts_text":"観測"},
+    {"kanji":"測定","kana":"そくてい","pron":"소쿠테이","ko":"측정","tts_text":"測定"},
 
-        {"kanji":"データ","kana":"データ","pron":"데에타","ko":"데이터","tts_text":"データ"},
-        {"kanji":"処理","kana":"しょり","pron":"쇼리","ko":"처리","tts_text":"処理"},
-        {"kanji":"解析","kana":"かいせき","pron":"카이세키","ko":"해석/분석(해석)","tts_text":"解析"},
-        {"kanji":"精度","kana":"せいど","pron":"세이도","ko":"정밀도","tts_text":"精度"},
-        {"kanji":"誤差","kana":"ごさ","pron":"고사","ko":"오차","tts_text":"誤差"},
-        {"kanji":"再現性","kana":"さいげんせい","pron":"사이겐세이","ko":"재현성","tts_text":"再現性"},
-        {"kanji":"有害","kana":"ゆうがい","pron":"유우가이","ko":"유해","tts_text":"有害"},
-        {"kanji":"有毒","kana":"ゆうどく","pron":"유우도쿠","ko":"유독","tts_text":"有毒"},
-        {"kanji":"無害","kana":"むがい","pron":"무가이","ko":"무해","tts_text":"無害"},
-        {"kanji":"安全性","kana":"あんぜんせい","pron":"안젠세이","ko":"안전성","tts_text":"安全性"}
-    ]
-    },
+    {"kanji":"データ","kana":"データ","pron":"데에타","ko":"데이터","tts_text":"データ"},
+    {"kanji":"処理","kana":"しょり","pron":"쇼리","ko":"처리","tts_text":"処理"},
+    {"kanji":"解析","kana":"かいせき","pron":"카이세키","ko":"해석/분석","tts_text":"解析"},
+    {"kanji":"精度","kana":"せいど","pron":"세이도","ko":"정밀도","tts_text":"精度"},
+    {"kanji":"誤差","kana":"ごさ","pron":"고사","ko":"오차","tts_text":"誤差"},
+    {"kanji":"再現性","kana":"さいげんせい","pron":"사이겐세이","ko":"재현성","tts_text":"再現性"},
+    {"kanji":"有害","kana":"ゆうがい","pron":"유우가이","ko":"유해","tts_text":"有害"},
+    {"kanji":"有毒","kana":"ゆうどく","pron":"유우도쿠","ko":"유독","tts_text":"有毒"},
+    {"kanji":"無害","kana":"むがい","pron":"무가이","ko":"무해","tts_text":"無害"},
+    {"kanji":"安全性","kana":"あんぜんせい","pron":"안젠세이","ko":"안전성","tts_text":"安全性"}
+  ]
+},
+"sec08": {
+  "title": "법·계약·문서",
+  "items": [
+    {"kanji":"契約","kana":"けいやく","pron":"케이야쿠","ko":"계약","tts_text":"契約"},
+    {"kanji":"契約書","kana":"けいやくしょ","pron":"케이야쿠쇼","ko":"계약서","tts_text":"契約書"},
+    {"kanji":"条項","kana":"じょうこう","pron":"죠오코오","ko":"조항","tts_text":"条項"},
+    {"kanji":"規約","kana":"きやく","pron":"키야쿠","ko":"규약","tts_text":"規約"},
+    {"kanji":"規定","kana":"きてい","pron":"키테이","ko":"규정","tts_text":"規定"},
+    {"kanji":"規制","kana":"きせい","pron":"키세이","ko":"규제","tts_text":"規制"},
+    {"kanji":"法的","kana":"ほうてき","pron":"호오테키","ko":"법적","tts_text":"法的"},
+    {"kanji":"合法","kana":"ごうほう","pron":"고오호오","ko":"합법","tts_text":"合法"},
+    {"kanji":"違法","kana":"いほう","pron":"이호오","ko":"위법","tts_text":"違法"},
+    {"kanji":"違反","kana":"いはん","pron":"이한","ko":"위반","tts_text":"違反"},
 
-  "sec08": {
-    "title": "법·계약·문서",
-    "items": [
-      {"kanji":"契約","kana":"けいやく","pron":"케이야쿠","ko":"계약","tts_text":"契約"},
-      {"kanji":"契約書","kana":"けいやくしょ","pron":"케이야쿠쇼","ko":"계약서","tts_text":"契約書"},
-      {"kanji":"条項","kana":"じょうこう","pron":"죠오코오","ko":"조항","tts_text":"条項"},
-      {"kanji":"規約","kana":"きやく","pron":"키야쿠","ko":"규약","tts_text":"規約"},
-      {"kanji":"規定","kana":"きてい","pron":"키테이","ko":"규정","tts_text":"規定"},
-      {"kanji":"規制","kana":"きせい","pron":"키세이","ko":"규제","tts_text":"規制"},
-      {"kanji":"法的","kana":"ほうてき","pron":"호오테키","ko":"법적","tts_text":"法的"},
-      {"kanji":"合法","kana":"ごうほう","pron":"고오호오","ko":"합법","tts_text":"合法"},
-      {"kanji":"違法","kana":"いほう","pron":"이호오","ko":"위법","tts_text":"違法"},
-      {"kanji":"違反","kana":"いはん","pron":"이한","ko":"위반","tts_text":"違反"},
+    {"kanji":"遵守","kana":"じゅんしゅ","pron":"쥰슈","ko":"준수","tts_text":"遵守"},
+    {"kanji":"履行","kana":"りこう","pron":"리코오","ko":"이행","tts_text":"履行"},
+    {"kanji":"不履行","kana":"ふりこう","pron":"후리코오","ko":"불이행","tts_text":"不履行"},
+    {"kanji":"解除","kana":"かいじょ","pron":"카이죠","ko":"해제","tts_text":"解除"},
+    {"kanji":"無効","kana":"むこう","pron":"무코오","ko":"무효","tts_text":"無効"},
+    {"kanji":"有効","kana":"ゆうこう","pron":"유우코오","ko":"유효","tts_text":"有効"},
+    {"kanji":"効力","kana":"こうりょく","pron":"코오료쿠","ko":"효력","tts_text":"効力"},
+    {"kanji":"権利","kana":"けんり","pron":"켄리","ko":"권리","tts_text":"権利"},
+    {"kanji":"義務","kana":"ぎむ","pron":"기무","ko":"의무","tts_text":"義務"},
+    {"kanji":"責務","kana":"せきむ","pron":"세키무","ko":"책무","tts_text":"責務"},
 
-      {"kanji":"遵守","kana":"じゅんしゅ","pron":"쥰슈","ko":"준수","tts_text":"遵守"},
-      {"kanji":"履行","kana":"りこう","pron":"리코오","ko":"이행","tts_text":"履行"},
-      {"kanji":"不履行","kana":"ふりこう","pron":"후리코오","ko":"불이행","tts_text":"不履行"},
-      {"kanji":"解除","kana":"かいじょ","pron":"카이죠","ko":"해제","tts_text":"解除"},
-      {"kanji":"無効","kana":"むこう","pron":"무코오","ko":"무효","tts_text":"無効"},
-      {"kanji":"有効","kana":"ゆうこう","pron":"유우코오","ko":"유효","tts_text":"有効"},
-      {"kanji":"効力","kana":"こうりょく","pron":"코오료쿠","ko":"효력","tts_text":"効力"},
-      {"kanji":"権利","kana":"けんり","pron":"켄리","ko":"권리","tts_text":"権利"},
-      {"kanji":"義務","kana":"ぎむ","pron":"기무","ko":"의무","tts_text":"義務"},
-      {"kanji":"責務","kana":"せきむ","pron":"세키무","ko":"책무","tts_text":"責務"},
+    {"kanji":"責任","kana":"せきにん","pron":"세키닌","ko":"책임","tts_text":"責任"},
+    {"kanji":"免責","kana":"めんせき","pron":"멘세키","ko":"면책","tts_text":"免責"},
+    {"kanji":"賠償","kana":"ばいしょう","pron":"바이쇼오","ko":"배상","tts_text":"賠償"},
+    {"kanji":"補償","kana":"ほしょう","pron":"호쇼오","ko":"보상","tts_text":"補償"},
+    {"kanji":"違約金","kana":"いやくきん","pron":"이야쿠킨","ko":"위약금","tts_text":"違約金"},
+    {"kanji":"損害","kana":"そんがい","pron":"손가이","ko":"손해","tts_text":"損害"},
+    {"kanji":"損害賠償","kana":"そんがいばいしょう","pron":"손가이 바이쇼오","ko":"손해배상","tts_text":"損害賠償"},
+    {"kanji":"請求","kana":"せいきゅう","pron":"세이큐우","ko":"청구","tts_text":"請求"},
+    {"kanji":"請求書","kana":"せいきゅうしょ","pron":"세이큐우쇼","ko":"청구서","tts_text":"請求書"},
+    {"kanji":"支払い","kana":"しはらい","pron":"시하라이","ko":"지불/결제","tts_text":"支払い"},
 
-      {"kanji":"責任","kana":"せきにん","pron":"세키닌","ko":"책임","tts_text":"責任"},
-      {"kanji":"免責","kana":"めんせき","pron":"멘세키","ko":"면책","tts_text":"免責"},
-      {"kanji":"賠償","kana":"ばいしょう","pron":"바이쇼오","ko":"배상","tts_text":"賠償"},
-      {"kanji":"補償","kana":"ほしょう","pron":"호쇼오","ko":"보상","tts_text":"補償"},
-      {"kanji":"違約金","kana":"いやくきん","pron":"이야쿠킨","ko":"위약금","tts_text":"違約金"},
-      {"kanji":"損害","kana":"そんがい","pron":"손가이","ko":"손해","tts_text":"損害"},
-      {"kanji":"損害賠償","kana":"そんがいばいしょう","pron":"손가이 바이쇼오","ko":"손해배상","tts_text":"損害賠償"},
-      {"kanji":"請求","kana":"せいきゅう","pron":"세이큐우","ko":"청구","tts_text":"請求"},
-      {"kanji":"請求書","kana":"せいきゅうしょ","pron":"세이큐우쇼","ko":"청구서","tts_text":"請求書"},
-      {"kanji":"支払い","kana":"しはらい","pron":"시하라이","ko":"지불","tts_text":"支払い"},
+    {"kanji":"期限","kana":"きげん","pron":"키겐","ko":"기한","tts_text":"期限"},
+    {"kanji":"猶予","kana":"ゆうよ","pron":"유우요","ko":"유예","tts_text":"猶予"},
+    {"kanji":"延期","kana":"えんき","pron":"엔키","ko":"연기","tts_text":"延期"},
+    {"kanji":"更新","kana":"こうしん","pron":"코오신","ko":"갱신","tts_text":"更新"},
+    {"kanji":"締結","kana":"ていけつ","pron":"테이케츠","ko":"체결","tts_text":"締結"},
+    {"kanji":"合意","kana":"ごうい","pron":"고오이","ko":"합의","tts_text":"合意"},
+    {"kanji":"合意書","kana":"ごういしょ","pron":"고오이쇼","ko":"합의서","tts_text":"合意書"},
+    {"kanji":"同意","kana":"どうい","pron":"도오이","ko":"동의","tts_text":"同意"},
+    {"kanji":"承諾","kana":"しょうだく","pron":"쇼오다쿠","ko":"승낙","tts_text":"承諾"},
+    {"kanji":"拒否","kana":"きょひ","pron":"쿄히","ko":"거부","tts_text":"拒否"},
 
-      {"kanji":"期限","kana":"きげん","pron":"키겐","ko":"기한","tts_text":"期限"},
-      {"kanji":"猶予","kana":"ゆうよ","pron":"유우요","ko":"유예","tts_text":"猶予"},
-      {"kanji":"延期","kana":"えんき","pron":"엔키","ko":"연기","tts_text":"延期"},
-      {"kanji":"更新","kana":"こうしん","pron":"코오신","ko":"갱신","tts_text":"更新"},
-      {"kanji":"締結","kana":"ていけつ","pron":"테이케츠","ko":"체결","tts_text":"締結"},
-      {"kanji":"合意","kana":"ごうい","pron":"고오이","ko":"합의","tts_text":"合意"},
-      {"kanji":"合意書","kana":"ごういしょ","pron":"고오이쇼","ko":"합의서","tts_text":"合意書"},
-      {"kanji":"同意","kana":"どうい","pron":"도오이","ko":"동의","tts_text":"同意"},
-      {"kanji":"承諾","kana":"しょうだく","pron":"쇼오다쿠","ko":"승낙","tts_text":"承諾"},
-      {"kanji":"拒否","kana":"きょひ","pron":"쿄히","ko":"거부","tts_text":"拒否"},
+    {"kanji":"申請","kana":"しんせい","pron":"신세이","ko":"신청","tts_text":"申請"},
+    {"kanji":"届出","kana":"とどけで","pron":"토도케데","ko":"신고/제출","tts_text":"届出"},
+    {"kanji":"提出","kana":"ていしゅつ","pron":"테이슈츠","ko":"제출","tts_text":"提出"},
+    {"kanji":"添付","kana":"てんぷ","pron":"텐푸","ko":"첨부","tts_text":"添付"},
+    {"kanji":"記載","kana":"きさい","pron":"키사이","ko":"기재","tts_text":"記載"},
+    {"kanji":"明記","kana":"めいき","pron":"메이키","ko":"명기","tts_text":"明記"},
+    {"kanji":"署名","kana":"しょめい","pron":"쇼메이","ko":"서명","tts_text":"署名"},
+    {"kanji":"押印","kana":"おういん","pron":"오오인","ko":"날인","tts_text":"押印"},
+    {"kanji":"閲覧","kana":"えつらん","pron":"에츠란","ko":"열람","tts_text":"閲覧"},
+    {"kanji":"参照","kana":"さんしょう","pron":"산쇼오","ko":"참조","tts_text":"参照"}
+  ]
+},
 
-      {"kanji":"申請","kana":"しんせい","pron":"신세이","ko":"신청","tts_text":"申請"},
-      {"kanji":"届出","kana":"とどけで","pron":"토도케데","ko":"신고/제출","tts_text":"届出"},
-      {"kanji":"提出","kana":"ていしゅつ","pron":"테이슈츠","ko":"제출","tts_text":"提出"},
-      {"kanji":"添付","kana":"てんぷ","pron":"텐푸","ko":"첨부","tts_text":"添付"},
-      {"kanji":"記載","kana":"きさい","pron":"키사이","ko":"기재","tts_text":"記載"},
-      {"kanji":"明記","kana":"めいき","pron":"메이키","ko":"명기","tts_text":"明記"},
-      {"kanji":"署名","kana":"しょめい","pron":"쇼메이","ko":"서명","tts_text":"署名"},
-      {"kanji":"押印","kana":"おういん","pron":"오오인","ko":"날인","tts_text":"押印"},
-      {"kanji":"閲覧","kana":"えつらん","pron":"에츠란","ko":"열람","tts_text":"閲覧"},
-      {"kanji":"参照","kana":"さんしょう","pron":"산쇼오","ko":"참조","tts_text":"参照"}
-    ]
-  },
   "sec09": {
-    "title": "비즈니스·조직·운영",
-    "items": [
-      {"kanji":"組織","kana":"そしき","pron":"소시키","ko":"조직","tts_text":"組織"},
-      {"kanji":"体制","kana":"たいせい","pron":"타이세이","ko":"체제","tts_text":"体制"},
-      {"kanji":"構造","kana":"こうぞう","pron":"코오조오","ko":"구조","tts_text":"構造"},
-      {"kanji":"枠組み","kana":"わくぐみ","pron":"와쿠구미","ko":"틀, 프레임","tts_text":"枠組み"},
-      {"kanji":"編成","kana":"へんせい","pron":"헨세이","ko":"편성","tts_text":"編成"},
-      {"kanji":"統制","kana":"とうせい","pron":"토오세이","ko":"통제","tts_text":"統制"},
-      {"kanji":"管理","kana":"かんり","pron":"칸리","ko":"관리","tts_text":"管理"},
-      {"kanji":"監督","kana":"かんとく","pron":"칸토쿠","ko":"감독","tts_text":"監督"},
-      {"kanji":"運営","kana":"うんえい","pron":"운에이","ko":"운영","tts_text":"運営"},
-      {"kanji":"運用","kana":"うんよう","pron":"운요오","ko":"운용","tts_text":"運用"},
+  "title": "비즈니스·조직·운영",
+  "items": [
+    {"kanji":"組織","kana":"そしき","pron":"소시키","ko":"조직","tts_text":"組織"},
+    {"kanji":"体制","kana":"たいせい","pron":"타이세이","ko":"체제/시스템","tts_text":"体制"},
+    {"kanji":"構造","kana":"こうぞう","pron":"코오조오","ko":"구조","tts_text":"構造"},
+    {"kanji":"枠組み","kana":"わくぐみ","pron":"와쿠구미","ko":"틀/프레임","tts_text":"枠組み"},
+    {"kanji":"編成","kana":"へんせい","pron":"헨세이","ko":"편성","tts_text":"編成"},
+    {"kanji":"統制","kana":"とうせい","pron":"토오세이","ko":"통제","tts_text":"統制"},
+    {"kanji":"管理","kana":"かんり","pron":"칸리","ko":"관리","tts_text":"管理"},
+    {"kanji":"監督","kana":"かんとく","pron":"칸토쿠","ko":"감독","tts_text":"監督"},
+    {"kanji":"運営","kana":"うんえい","pron":"운에이","ko":"운영","tts_text":"運営"},
+    {"kanji":"運用","kana":"うんよう","pron":"운요오","ko":"운용/활용","tts_text":"運用"},
 
-      {"kanji":"指揮","kana":"しき","pron":"시키","ko":"지휘","tts_text":"指揮"},
-      {"kanji":"裁量","kana":"さいりょう","pron":"사이료오","ko":"재량","tts_text":"裁量"},
-      {"kanji":"権限","kana":"けんげん","pron":"켄겐","ko":"권한","tts_text":"権限"},
-      {"kanji":"権威","kana":"けんい","pron":"켄이","ko":"권위","tts_text":"権威"},
-      {"kanji":"責任","kana":"せきにん","pron":"세키닌","ko":"책임","tts_text":"責任"},
-      {"kanji":"任務","kana":"にんむ","pron":"닌무","ko":"임무","tts_text":"任務"},
-      {"kanji":"役割","kana":"やくわり","pron":"야쿠와리","ko":"역할","tts_text":"役割"},
-      {"kanji":"担当","kana":"たんとう","pron":"탄토오","ko":"담당","tts_text":"担当"},
-      {"kanji":"分担","kana":"ぶんたん","pron":"분탄","ko":"분담","tts_text":"分担"},
-      {"kanji":"配置","kana":"はいち","pron":"하이치","ko":"배치","tts_text":"配置"},
+    {"kanji":"指揮","kana":"しき","pron":"시키","ko":"지휘","tts_text":"指揮"},
+    {"kanji":"裁量","kana":"さいりょう","pron":"사이료오","ko":"재량","tts_text":"裁量"},
+    {"kanji":"権限","kana":"けんげん","pron":"켄겐","ko":"권한","tts_text":"権限"},
+    {"kanji":"権威","kana":"けんい","pron":"켄이","ko":"권위","tts_text":"権威"},
+    {"kanji":"責任","kana":"せきにん","pron":"세키닌","ko":"책임","tts_text":"責任"},
+    {"kanji":"任務","kana":"にんむ","pron":"닌무","ko":"임무","tts_text":"任務"},
+    {"kanji":"役割","kana":"やくわり","pron":"야쿠와리","ko":"역할","tts_text":"役割"},
+    {"kanji":"担当","kana":"たんとう","pron":"탄토오","ko":"담당","tts_text":"担当"},
+    {"kanji":"分担","kana":"ぶんたん","pron":"분탄","ko":"분담","tts_text":"分担"},
+    {"kanji":"配置","kana":"はいち","pron":"하이치","ko":"배치","tts_text":"配置"},
 
-      {"kanji":"調整","kana":"ちょうせい","pron":"쵸오세이","ko":"조정","tts_text":"調整"},
-      {"kanji":"折衝","kana":"せっしょう","pron":"셋쇼오","ko":"절충·교섭","tts_text":"折衝"},
-      {"kanji":"交渉","kana":"こうしょう","pron":"코오쇼오","ko":"교섭","tts_text":"交渉"},
-      {"kanji":"妥結","kana":"だけつ","pron":"다케츠","ko":"타결","tts_text":"妥結"},
-      {"kanji":"合意形成","kana":"ごういけいせい","pron":"고오이 케이세이","ko":"합의 형성","tts_text":"合意形成"},
-      {"kanji":"意思決定","kana":"いしけってい","pron":"이시 켓테이","ko":"의사결정","tts_text":"意思決定"},
-      {"kanji":"迅速","kana":"じんそく","pron":"진소쿠","ko":"신속","tts_text":"迅速"},
-      {"kanji":"円滑","kana":"えんかつ","pron":"엔카츠","ko":"원활","tts_text":"円滑"},
-      {"kanji":"停滞","kana":"ていたい","pron":"테이타이","ko":"정체","tts_text":"停滞"},
-      {"kanji":"混乱","kana":"こんらん","pron":"콘란","ko":"혼란","tts_text":"混乱"},
+    {"kanji":"調整","kana":"ちょうせい","pron":"쵸오세이","ko":"조정","tts_text":"調整"},
+    {"kanji":"折衝","kana":"せっしょう","pron":"셋쇼오","ko":"절충/교섭","tts_text":"折衝"},
+    {"kanji":"交渉","kana":"こうしょう","pron":"코오쇼오","ko":"교섭","tts_text":"交渉"},
+    {"kanji":"妥結","kana":"だけつ","pron":"다케츠","ko":"타결","tts_text":"妥結"},
+    {"kanji":"合意形成","kana":"ごういけいせい","pron":"고오이 케이세이","ko":"합의 형성","tts_text":"合意形成"},
+    {"kanji":"意思決定","kana":"いしけってい","pron":"이시 켓테이","ko":"의사결정","tts_text":"意思決定"},
+    {"kanji":"迅速","kana":"じんそく","pron":"진소쿠","ko":"신속","tts_text":"迅速"},
+    {"kanji":"円滑","kana":"えんかつ","pron":"엔카츠","ko":"원활","tts_text":"円滑"},
+    {"kanji":"停滞","kana":"ていたい","pron":"테이타이","ko":"정체","tts_text":"停滞"},
+    {"kanji":"混乱","kana":"こんらん","pron":"콘란","ko":"혼란","tts_text":"混乱"},
 
-      {"kanji":"是正","kana":"ぜせい","pron":"제세이","ko":"시정","tts_text":"是正"},
-      {"kanji":"改善","kana":"かいぜん","pron":"카이젠","ko":"개선","tts_text":"改善"},
-      {"kanji":"刷新","kana":"さっしん","pron":"삿신","ko":"쇄신","tts_text":"刷新"},
-      {"kanji":"再構築","kana":"さいこうちく","pron":"사이코오치쿠","ko":"재구축","tts_text":"再構築"},
-      {"kanji":"再編","kana":"さいへん","pron":"사이헨","ko":"재편","tts_text":"再編"},
-      {"kanji":"合理化","kana":"ごうりか","pron":"고오리카","ko":"합리화","tts_text":"合理化"},
-      {"kanji":"効率化","kana":"こうりつか","pron":"코오리츠카","ko":"효율화","tts_text":"効率化"},
-      {"kanji":"簡素化","kana":"かんそか","pron":"칸소카","ko":"간소화","tts_text":"簡素化"},
-      {"kanji":"最適化","kana":"さいてきか","pron":"사이테키카","ko":"최적화","tts_text":"最適化"},
-      {"kanji":"高度化","kana":"こうどか","pron":"코오도카","ko":"고도화","tts_text":"高度化"}
-    ]
-  },
+    {"kanji":"是正","kana":"ぜせい","pron":"제세이","ko":"시정/바로잡음","tts_text":"是正"},
+    {"kanji":"改善","kana":"かいぜん","pron":"카이젠","ko":"개선","tts_text":"改善"},
+    {"kanji":"刷新","kana":"さっしん","pron":"삿신","ko":"쇄신","tts_text":"刷新"},
+    {"kanji":"再構築","kana":"さいこうちく","pron":"사이코오치쿠","ko":"재구축","tts_text":"再構築"},
+    {"kanji":"再編","kana":"さいへん","pron":"사이헨","ko":"재편","tts_text":"再編"},
+    {"kanji":"合理化","kana":"ごうりか","pron":"고오리카","ko":"합리화","tts_text":"合理化"},
+    {"kanji":"効率化","kana":"こうりつか","pron":"코오리츠카","ko":"효율화","tts_text":"効率化"},
+    {"kanji":"簡素化","kana":"かんそか","pron":"칸소카","ko":"간소화","tts_text":"簡素化"},
+    {"kanji":"最適化","kana":"さいてきか","pron":"사이테키카","ko":"최적화","tts_text":"最適化"},
+    {"kanji":"高度化","kana":"こうどか","pron":"코오도카","ko":"고도화","tts_text":"高度化"}
+  ]
+},
+"sec10": {
+  "title": "고급 동사·형용사·부사(논설 핵심)",
+  "items": [
+    {"kanji":"想定","kana":"そうてい","pron":"소오테이","ko":"상정/가정","tts_text":"想定"},
+    {"kanji":"見込む","kana":"みこむ","pron":"미코무","ko":"예상하다/내다보다","tts_text":"見込む"},
+    {"kanji":"見据える","kana":"みすえる","pron":"미스에루","ko":"내다보다/앞을 내다보다","tts_text":"見据える"},
+    {"kanji":"捉える","kana":"とらえる","pron":"토라에루","ko":"파악하다/포착하다","tts_text":"捉える"},
+    {"kanji":"踏まえる","kana":"ふまえる","pron":"후마에루","ko":"~을 바탕으로 하다","tts_text":"踏まえる"},
+    {"kanji":"勘案","kana":"かんあん","pron":"칸안","ko":"감안","tts_text":"勘案"},
+    {"kanji":"鑑みる","kana":"かんがみる","pron":"칸가미루","ko":"비추어 보다/고려하다","tts_text":"鑑みる"},
+    {"kanji":"考慮","kana":"こうりょ","pron":"코오료","ko":"고려","tts_text":"考慮"},
+    {"kanji":"配慮","kana":"はいりょ","pron":"하이료","ko":"배려","tts_text":"配慮"},
+    {"kanji":"懸念","kana":"けねん","pron":"케넨","ko":"우려","tts_text":"懸念"},
 
-  "sec10": {
-    "title": "고급 동사·형용사·부사(논설 핵심)",
-    "items": [
-      {"kanji":"想定","kana":"そうてい","pron":"소오테이","ko":"상정","tts_text":"想定"},
-      {"kanji":"見込む","kana":"みこむ","pron":"미코무","ko":"내다보다","tts_text":"見込む"},
-      {"kanji":"見据える","kana":"みすえる","pron":"미스에루","ko":"내다보다","tts_text":"見据える"},
-      {"kanji":"捉える","kana":"とらえる","pron":"토라에루","ko":"파악하다","tts_text":"捉える"},
-      {"kanji":"踏まえる","kana":"ふまえる","pron":"후마에루","ko":"~을 바탕으로 하다","tts_text":"踏まえる"},
-      {"kanji":"勘案","kana":"かんあん","pron":"칸안","ko":"감안","tts_text":"勘案"},
-      {"kanji":"鑑みる","kana":"かんがみる","pron":"칸가미루","ko":"비추어 보다","tts_text":"鑑みる"},
-      {"kanji":"考慮","kana":"こうりょ","pron":"코오료","ko":"고려","tts_text":"考慮"},
-      {"kanji":"配慮","kana":"はいりょ","pron":"하이료","ko":"배려","tts_text":"配慮"},
-      {"kanji":"懸念","kana":"けねん","pron":"케넨","ko":"우려","tts_text":"懸念"},
+    {"kanji":"危惧","kana":"きぐ","pron":"키구","ko":"우려","tts_text":"危惧"},
+    {"kanji":"懸命","kana":"けんめい","pron":"켄메이","ko":"필사적","tts_text":"懸命"},
+    {"kanji":"著しい","kana":"いちじるしい","pron":"이치지루시이","ko":"현저하다","tts_text":"著しい"},
+    {"kanji":"顕著","kana":"けんちょ","pron":"켄쵸","ko":"현저","tts_text":"顕著"},
+    {"kanji":"妥当","kana":"だとう","pron":"다토오","ko":"타당","tts_text":"妥当"},
+    {"kanji":"妥協","kana":"だきょう","pron":"다쿄오","ko":"타협","tts_text":"妥協"},
+    {"kanji":"徹底","kana":"てってい","pron":"텟테이","ko":"철저","tts_text":"徹底"},
+    {"kanji":"厳格","kana":"げんかく","pron":"겐카쿠","ko":"엄격","tts_text":"厳格"},
+    {"kanji":"柔軟","kana":"じゅうなん","pron":"쥬우난","ko":"유연","tts_text":"柔軟"},
+    {"kanji":"慎重","kana":"しんちょう","pron":"신쵸오","ko":"신중","tts_text":"慎重"},
 
-      {"kanji":"危惧","kana":"きぐ","pron":"키구","ko":"우려","tts_text":"危惧"},
-      {"kanji":"懸命","kana":"けんめい","pron":"켄메이","ko":"필사적","tts_text":"懸命"},
-      {"kanji":"著しい","kana":"いちじるしい","pron":"이치지루시이","ko":"현저하다","tts_text":"著しい"},
-      {"kanji":"顕著","kana":"けんちょ","pron":"켄쵸","ko":"현저","tts_text":"顕著"},
-      {"kanji":"妥当","kana":"だとう","pron":"다토오","ko":"타당","tts_text":"妥当"},
-      {"kanji":"妥協","kana":"だきょう","pron":"다쿄오","ko":"타협","tts_text":"妥協"},
-      {"kanji":"徹底","kana":"てってい","pron":"텟테이","ko":"철저","tts_text":"徹底"},
-      {"kanji":"厳格","kana":"げんかく","pron":"겐카쿠","ko":"엄격","tts_text":"厳格"},
-      {"kanji":"柔軟","kana":"じゅうなん","pron":"쥬우난","ko":"유연","tts_text":"柔軟"},
-      {"kanji":"慎重","kana":"しんちょう","pron":"신쵸오","ko":"신중","tts_text":"慎重"},
-
-      {"kanji":"一貫","kana":"いっかん","pron":"잇칸","ko":"일관","tts_text":"一貫"},
-      {"kanji":"一律","kana":"いちりつ","pron":"이치리츠","ko":"일률","tts_text":"一律"},
-      {"kanji":"概ね","kana":"おおむね","pron":"오오무네","ko":"대체로","tts_text":"概ね"},
-      {"kanji":"総じて","kana":"そうじて","pron":"소오지테","ko":"대체로","tts_text":"総じて"},
-      {"kanji":"概して","kana":"がいして","pron":"가이시테","ko":"대체로","tts_text":"概して"},
-      {"kanji":"ひいては","kana":"ひいては","pron":"히이테와","ko":"나아가서는","tts_text":"ひいては"},
-      {"kanji":"もっぱら","kana":"もっぱら","pron":"못파라","ko":"오로지","tts_text":"もっぱら"},
-      {"kanji":"あながち","kana":"あながち","pron":"아나가치","ko":"반드시~만은 아니다","tts_text":"あながち"},
-      {"kanji":"とはいえ","kana":"とはいえ","pron":"토와이에","ko":"그렇다 해도","tts_text":"とはいえ"},
-      {"kanji":"いずれにせよ","kana":"いずれにせよ","pron":"이즈레니세요","ko":"어쨌든","tts_text":"いずれにせよ"}
-    ]
-  }  
+    {"kanji":"一貫","kana":"いっかん","pron":"잇칸","ko":"일관","tts_text":"一貫"},
+    {"kanji":"一律","kana":"いちりつ","pron":"이치리츠","ko":"일률","tts_text":"一律"},
+    {"kanji":"概ね","kana":"おおむね","pron":"오오무네","ko":"대체로","tts_text":"概ね"},
+    {"kanji":"総じて","kana":"そうじて","pron":"소오지테","ko":"전반적으로/대체로","tts_text":"総じて"},
+    {"kanji":"概して","kana":"がいして","pron":"가이시테","ko":"대체로","tts_text":"概して"},
+    {"kanji":"ひいては","kana":"ひいては","pron":"히이테와","ko":"나아가서는","tts_text":"ひいては"},
+    {"kanji":"もっぱら","kana":"もっぱら","pron":"못파라","ko":"오로지","tts_text":"もっぱら"},
+    {"kanji":"あながち","kana":"あながち","pron":"아나가치","ko":"반드시 ~만은 아니다","tts_text":"あながち"},
+    {"kanji":"とはいえ","kana":"とはいえ","pron":"토와이에","ko":"그렇다 해도","tts_text":"とはいえ"},
+    {"kanji":"いずれにせよ","kana":"いずれにせよ","pron":"이즈레니세요","ko":"어쨌든","tts_text":"いずれにせよ"}
+  ]
+},
 }
 
 def get_daily_phrase() -> Dict[str, str]:
@@ -27281,6 +27243,361 @@ def quiz_kanji_play():
         game_data=game_data
     )
 
+import re
+import sqlite3
+from datetime import datetime
+from flask import render_template, request, jsonify
+
+
+# =========================
+# 일본어 카드 챌린지 설정
+# =========================
+
+JLPT_GAME_SETTINGS = {
+    "easy": {
+        "label": "초급",
+        "hp": 20,
+        "time_per_question": 30,
+    },
+    "normal": {
+        "label": "중급",
+        "hp": 10,
+        "time_per_question": 25,
+    },
+    "hard": {
+        "label": "고급",
+        "hp": 5,
+        "time_per_question": 20,
+    },
+    "master": {
+        "label": "마스터",
+        "hp": 5,
+        "time_per_question": 20,
+    },
+}
+
+
+def merge_jlpt_dicts(*dicts):
+    merged = {}
+    index = 1
+
+    for d in dicts:
+        for _, section in d.items():
+            merged[f"sec{index:02d}"] = section
+            index += 1
+
+    return merged
+
+
+JLPT_GAME_POOLS = {
+    "easy": N5_WORDS,
+    "normal": N4_WORDS,
+    "hard": N3_WORDS,
+    "master": merge_jlpt_dicts(N2_WORDS, N1_WORDS),
+}
+
+
+def clean_game_meaning(raw):
+    text = str(raw or "").strip()
+    if not text:
+        return ""
+
+    # 예문/설명 제거
+    text = re.split(r"\||예문\s*:|예\s*:|설명\s*:|→", text, maxsplit=1)[0].strip()
+
+    # 괄호 설명 제거
+    text = re.sub(r"\([^)]*\)", "", text).strip()
+    text = re.sub(r"\[[^\]]*\]", "", text).strip()
+
+    # 여러 뜻이면 첫 번째만 사용
+    for sep in ["/", ",", "·"]:
+        if sep in text:
+            text = text.split(sep)[0].strip()
+
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def build_jlpt_game_rounds(level_dict):
+    rounds = []
+
+    for section_key, section_data in level_dict.items():
+        title = str(section_data.get("title", section_key)).strip()
+        items = []
+        seen = set()
+
+        for item in section_data.get("items", []):
+            kanji = str(item.get("kanji", "")).strip()
+            kana = str(item.get("kana", "")).strip()
+            pron = str(item.get("pron", "")).strip()
+            ko = clean_game_meaning(item.get("ko", ""))
+
+            jp = kanji if kanji else kana
+            reading = pron if pron else kana
+
+            if not jp or not ko:
+                continue
+
+            dedupe_key = f"{jp}|||{reading}|||{ko}"
+            if dedupe_key in seen:
+                continue
+            seen.add(dedupe_key)
+
+            items.append({
+                "jp": jp,
+                "reading": reading,
+                "meaning": ko,
+                "section_title": title,
+                "key": dedupe_key
+            })
+
+        # 보기 15개를 만들어야 하므로 최소 15개 이상인 분류만 사용
+        if len(items) >= 15:
+            rounds.append({
+                "section_key": section_key,
+                "title": title,
+                "items": items
+            })
+
+    return rounds
+
+
+def bomb_round_label(max_round):
+    try:
+        value = int(max_round)
+    except Exception:
+        return "0-0"
+
+    if value <= 0:
+        return "0-0"
+
+    major = value // 100
+    sub = value % 100
+    return f"{major}-{sub}"
+
+
+def is_better_bomb_hunt_record(new_round, new_found, old_row):
+    if old_row is None:
+        return True
+
+    old_round = int(old_row["max_round"])
+    old_found = int(old_row["total_found"])
+
+    # 우선순위: 최종 라운드 DESC -> 맞춘 개수 DESC
+    if int(new_round) > old_round:
+        return True
+    if int(new_round) < old_round:
+        return False
+
+    if int(new_found) > old_found:
+        return True
+
+    return False
+
+
+# =========================
+# 일본어 카드 챌린지 라우트
+# =========================
+
+@app.route("/quiz/bomb_hunt")
+def bomb_hunt_start():
+    user = current_user()
+    return render_template("bomb_hunt_start.html", user=user)
+
+
+@app.route("/quiz/bomb_hunt/play")
+def bomb_hunt_play():
+    user = current_user()
+    difficulty = request.args.get("difficulty", "easy")
+
+    if difficulty not in JLPT_GAME_SETTINGS:
+        difficulty = "easy"
+
+    level_source = JLPT_GAME_POOLS[difficulty]
+    game_rounds = build_jlpt_game_rounds(level_source)
+    game_settings = JLPT_GAME_SETTINGS[difficulty]
+
+    return render_template(
+        "bomb_hunt_play.html",
+        user=user,
+        difficulty=difficulty,
+        game_settings=game_settings,
+        game_rounds=game_rounds
+    )
+
+
+@app.route("/quiz/bomb_hunt/ranking")
+def bomb_hunt_ranking():
+    user = current_user()
+    selected_mode = request.args.get("mode", "easy")
+
+    if selected_mode not in ["easy", "normal", "hard", "master"]:
+        selected_mode = "easy"
+
+    conn = db()
+    cur = conn.cursor()
+
+    cur.execute("""
+        SELECT user_id, nickname, difficulty, total_found, max_round, elapsed_seconds, created_at
+        FROM bomb_hunt_rankings
+        WHERE difficulty = ?
+        ORDER BY max_round DESC, total_found DESC, created_at ASC
+        LIMIT 20
+    """, (selected_mode,))
+    ranking_rows_raw = cur.fetchall()
+
+    ranking_rows = []
+    for row in ranking_rows_raw:
+        row_dict = dict(row)
+        row_dict["max_round_label"] = bomb_round_label(row_dict["max_round"])
+        ranking_rows.append(row_dict)
+
+    my_rank = None
+    my_record = None
+
+    if user:
+        if isinstance(user, sqlite3.Row):
+            my_user_id = user["id"]
+        elif isinstance(user, dict):
+            my_user_id = user.get("id")
+        else:
+            my_user_id = None
+
+        if my_user_id:
+            cur.execute("""
+                SELECT user_id, nickname, difficulty, total_found, max_round, elapsed_seconds, created_at
+                FROM bomb_hunt_rankings
+                WHERE difficulty = ?
+                ORDER BY max_round DESC, total_found DESC, created_at ASC
+            """, (selected_mode,))
+            all_rows = cur.fetchall()
+
+            for idx, row in enumerate(all_rows, start=1):
+                if row["user_id"] == my_user_id:
+                    my_rank = idx
+                    my_record = dict(row)
+                    my_record["max_round_label"] = bomb_round_label(my_record["max_round"])
+                    break
+
+    conn.close()
+
+    return render_template(
+        "bomb_hunt_ranking.html",
+        user=user,
+        selected_mode=selected_mode,
+        ranking_rows=ranking_rows,
+        my_rank=my_rank,
+        my_record=my_record
+    )
+
+
+@app.route("/quiz/bomb_hunt/save_result", methods=["POST"])
+def save_bomb_hunt_result():
+    data = request.get_json(silent=True) or {}
+
+    if not data:
+        return jsonify({"success": False, "message": "데이터가 없습니다."}), 400
+
+    difficulty = str(data.get("mode", "easy")).strip()
+    total_found = data.get("totalFound", 0)
+    max_round = data.get("maxRound", 0)
+
+    if difficulty not in ["easy", "normal", "hard", "master"]:
+        return jsonify({"success": False, "message": "난이도 값이 올바르지 않습니다."}), 400
+
+    user = current_user()
+    if not user:
+        return jsonify({
+            "success": True,
+            "login_required": True,
+            "message": "비회원은 랭킹에 등록되지 않습니다."
+        })
+
+    if isinstance(user, sqlite3.Row):
+        user_id = user["id"]
+        username = user["username"]
+        nickname = user["nickname"]
+    elif isinstance(user, dict):
+        user_id = user.get("id")
+        username = user.get("username")
+        nickname = user.get("nickname")
+    else:
+        try:
+            user_id = user["id"]
+            username = user["username"]
+            nickname = user["nickname"]
+        except Exception:
+            return jsonify({"success": False, "message": "사용자 정보를 읽지 못했습니다."}), 400
+
+    try:
+        total_found = int(total_found)
+    except Exception:
+        total_found = 0
+
+    try:
+        max_round = int(max_round)
+    except Exception:
+        max_round = 0
+
+    elapsed_seconds = 0.0
+    now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    conn = db()
+    ensure_bomb_hunt_rankings_table(conn)
+    cur = conn.cursor()
+
+    cur.execute("""
+        SELECT id, max_round, total_found, elapsed_seconds
+        FROM bomb_hunt_rankings
+        WHERE user_id = ? AND difficulty = ?
+    """, (user_id, difficulty))
+    old = cur.fetchone()
+
+    updated = False
+
+    if is_better_bomb_hunt_record(max_round, total_found, old):
+        if old is None:
+            cur.execute("""
+                INSERT INTO bomb_hunt_rankings
+                (user_id, username, nickname, difficulty, total_found, max_round, elapsed_seconds, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                user_id,
+                username,
+                nickname,
+                difficulty,
+                total_found,
+                max_round,
+                elapsed_seconds,
+                now_str,
+                now_str
+            ))
+        else:
+            cur.execute("""
+                UPDATE bomb_hunt_rankings
+                SET username = ?, nickname = ?, total_found = ?, max_round = ?, elapsed_seconds = ?, updated_at = ?
+                WHERE user_id = ? AND difficulty = ?
+            """, (
+                username,
+                nickname,
+                total_found,
+                max_round,
+                elapsed_seconds,
+                now_str,
+                user_id,
+                difficulty
+            ))
+        updated = True
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({
+        "success": True,
+        "login_required": False,
+        "updated": updated,
+        "nickname": nickname
+    })
 
 @app.context_processor
 def inject_helpers():
