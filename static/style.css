@@ -2306,3 +2306,189 @@ img, video, canvas{
   color: #475569;
   line-height: 1.6;
 }
+/* =========================
+   Tone Up - Bright Premium
+   밝은 느낌 유지 + 고급 세련 톤 업
+========================= */
+
+:root{
+  --bg: #f5f7ff;
+  --card: rgba(255,255,255,0.96);
+  --stroke: rgba(128, 144, 174, 0.22);
+  --stroke-strong: rgba(128, 144, 174, 0.34);
+
+  --text: #1b2434;
+  --muted: rgba(27, 36, 52, 0.62);
+
+  --primary: #4c7df3;
+  --primary-soft: rgba(76, 125, 243, 0.10);
+
+  --shadow-soft: 0 8px 24px rgba(31, 41, 55, 0.05);
+  --shadow-card: 0 14px 34px rgba(31, 41, 55, 0.07);
+  --shadow-hover: 0 18px 38px rgba(31, 41, 55, 0.10);
+}
+
+/* 전체 배경은 지금 느낌 유지, 더 맑게 */
+html, body{
+  background:
+    radial-gradient(1100px 520px at 20% 0%, rgba(130,150,255,0.10), transparent 60%),
+    radial-gradient(900px 480px at 82% 8%, rgba(170,190,255,0.08), transparent 55%),
+    linear-gradient(180deg, #f6f8ff 0%, #f2f5ff 52%, #f7f9ff 100%);
+  color: var(--text);
+}
+
+/* 상단바: 밝고 고급스럽게 */
+.topbar{
+  background: rgba(255,255,255,0.82);
+  border-bottom: 1px solid rgba(140, 154, 180, 0.20);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+  backdrop-filter: blur(14px);
+}
+
+/* 로고 텍스트 살짝 정제 */
+.brand-title{
+  color: #3f6fe6;
+}
+.brand-subtitle{
+  color: #1f2937;
+}
+
+/* 메뉴 */
+.nav a{
+  color: rgba(27,36,52,0.68);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  transition: all .18s ease;
+}
+
+.nav a:hover{
+  color: #22314d;
+  background: rgba(255,255,255,0.72);
+  border-color: rgba(140,154,180,0.18);
+  box-shadow: 0 8px 18px rgba(15,23,42,0.05);
+}
+
+.nav a.active{
+  color: #1f2f4e;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(245,248,255,0.96));
+  border: 1px solid rgba(140,154,180,0.24);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 8px 18px rgba(15,23,42,0.06);
+}
+
+/* 공통 카드 */
+.hero-card,
+.today-card,
+.daily-card,
+.quick,
+.menu-card,
+.board-wrap,
+.intro-box,
+.wcard{
+  background: rgba(255,255,255,0.96) !important;
+  border: 1px solid rgba(140,154,180,0.18) !important;
+  box-shadow: var(--shadow-card);
+}
+
+/* 카드 hover */
+.quick:hover,
+.menu-card:hover,
+.witem:hover{
+  border-color: rgba(76,125,243,0.18) !important;
+  box-shadow: var(--shadow-hover);
+}
+
+/* 홈 큰 타이틀 */
+.hero-title,
+.today-title{
+  color: #182132;
+  letter-spacing: -0.8px;
+}
+
+.hero-sub,
+.today-sub,
+.q-sub,
+.menu-desc,
+.page-guide,
+.page-head p{
+  color: rgba(27,36,52,0.60) !important;
+}
+
+/* 내부 구분선 */
+.line,
+.today-box .row,
+.board-row{
+  border-color: rgba(140,154,180,0.14) !important;
+}
+
+/* 버튼 공통: 흰색 고급 버튼 */
+.btn,
+.tts-btn,
+.speak-btn,
+.back-btn{
+  background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+  border: 1px solid rgba(140,154,180,0.22);
+  color: #24324a;
+  box-shadow: 0 6px 16px rgba(15,23,42,0.05);
+  transition: all .18s ease;
+}
+
+.btn:hover,
+.tts-btn:hover,
+.speak-btn:hover,
+.back-btn:hover{
+  border-color: rgba(76,125,243,0.24);
+  box-shadow: 0 10px 20px rgba(15,23,42,0.08);
+  transform: translateY(-1px);
+}
+
+/* 메인 파란 버튼: 너무 쨍하지 않게 고급 톤 */
+.btn-primary,
+a.btn-primary,
+.write-btn,
+.submit-btn,
+button[type="submit"]{
+  background: linear-gradient(135deg, #5f8ef7 0%, #4c7df3 100%) !important;
+  border: 1px solid rgba(76,125,243,0.18) !important;
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(76,125,243,0.22);
+}
+
+.btn-primary:hover,
+a.btn-primary:hover,
+.write-btn:hover,
+.submit-btn:hover,
+button[type="submit"]:hover{
+  background: linear-gradient(135deg, #5686f2 0%, #406fe8 100%) !important;
+  box-shadow: 0 14px 28px rgba(76,125,243,0.26);
+}
+
+/* 로그인 버튼은 더 고급스럽게 절제 */
+.auth .btn-ghost{
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(140,154,180,0.20);
+  color: #2c3b55;
+}
+
+/* 게시판 헤더 */
+.board-head{
+  background: linear-gradient(180deg, rgba(250,251,255,0.98), rgba(244,247,255,0.98));
+  border-bottom: 1px solid rgba(140,154,180,0.16);
+  color: rgba(27,36,52,0.62);
+}
+
+/* 뱃지/칩 */
+.grade,
+.wpill,
+.menu-badge,
+.admin-chip.admin,
+.admin-chip.users{
+  border-color: rgba(76,125,243,0.16) !important;
+  background: rgba(76,125,243,0.07) !important;
+  color: #355fcb !important;
+}
+
+/* 푸터도 너무 흐리지 않게 */
+.footer{
+  background: rgba(255,255,255,0.76);
+  border-top: 1px solid rgba(140,154,180,0.18);
+}
