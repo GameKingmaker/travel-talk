@@ -297,14 +297,14 @@ def admin_users():
     params = []
 
     if q:
-        where.append("(nickname LIKE ? OR email LIKE ?)")
-        params += [f"%{q}%", f"%{q}%"]
+        where.append("(nickname LIKE ? OR email LIKE ? OR username LIKE ?)")
+        params += [f"%{q}%", f"%{q}%", f"%{q}%"]
 
     where_sql = ("WHERE " + " AND ".join(where)) if where else ""
 
     rows = conn.execute(
         f"""
-        SELECT id, nickname, email, created_at, COALESCE(points,0) AS points
+        SELECT id, username, nickname, email, created_at, COALESCE(points,0) AS points
         FROM users
         {where_sql}
         ORDER BY id DESC
@@ -317,11 +317,23 @@ def admin_users():
     users = []
     for r in rows:
         u = dict(r)
-        u["grade_label"] = score_to_grade(u["points"])  # ✅ 네 기존 함수 그대로 사용
+
+        detail = get_user_score_detail(u)
+        u["score"] = detail["final_score"]              # 최종 경험치
+        u["base_score"] = detail["base_score"]          # 출석+글 경험치
+        u["bonus_points"] = detail["bonus_points"]      # 관리자 조정 경험치
+        u["attendance_days"] = detail["attendance_days"]
+        u["post_count"] = detail["post_count"]
+        u["grade_label"] = score_to_grade(u["score"])
+
         users.append(u)
 
-    return render_template("admin_users.html", user=current_user(), users=users, q=q)
-
+    return render_template(
+        "admin_users.html",
+        user=current_user(),
+        users=users,
+        q=q,
+    )
 @app.post("/admin/users/<int:user_id>/points")
 @admin_required
 def admin_user_change_points(user_id: int):
@@ -333,25 +345,29 @@ def admin_user_change_points(user_id: int):
         flash("점수는 숫자로 입력해 주세요. 예) 50, -30", "error")
         return redirect(request.referrer or url_for("admin_users"))
 
-    # 관리자 본인/고정 관리자 보호(원하면 정책 변경)
-    if user_id == 1:
-        flash("관리자 계정 점수는 변경할 수 없습니다.", "error")
-        return redirect(request.referrer or url_for("admin_users"))
-
     conn = db()
     try:
-        # 현재 점수 조회
-        row = conn.execute("SELECT COALESCE(points,0) AS p FROM users WHERE id=?", (user_id,)).fetchone()
+        row = conn.execute(
+            "SELECT id, username, COALESCE(points,0) AS p FROM users WHERE id=?",
+            (user_id,)
+        ).fetchone()
+
         if not row:
             flash("유저를 찾을 수 없습니다.", "error")
             return redirect(url_for("admin_users"))
 
+        target_username = (row["username"] or "").strip().lower()
+        if target_username == ADMIN_USERNAME.lower():
+            flash("관리자 계정 점수는 변경할 수 없습니다.", "error")
+            return redirect(request.referrer or url_for("admin_users"))
+
         new_points = int(row["p"]) + delta
         if new_points < 0:
-            new_points = 0  # 음수 방지(원하면 허용 가능)
+            new_points = 0
 
         conn.execute("UPDATE users SET points=? WHERE id=?", (new_points, user_id))
         conn.commit()
+
     finally:
         conn.close()
 
@@ -362,23 +378,30 @@ def admin_user_change_points(user_id: int):
 @app.post("/admin/users/<int:user_id>/delete")
 @admin_required
 def admin_user_delete(user_id: int):
-    if user_id == 1:
-        flash("관리자 계정은 삭제할 수 없습니다.", "error")
-        return redirect(url_for("admin_users"))
-
     conn = db()
     try:
-        # 사용자가 쓴 글/댓글을 어떻게 할지 정책 선택:
-        # 1) 완전 삭제(깔끔)  2) 작성자만 익명처리(데이터 유지)
-        # 여기선 “완전 삭제”로 구성
+        row = conn.execute(
+            "SELECT id, username FROM users WHERE id=?",
+            (user_id,)
+        ).fetchone()
+
+        if not row:
+            flash("유저를 찾을 수 없습니다.", "error")
+            return redirect(url_for("admin_users"))
+
+        target_username = (row["username"] or "").strip().lower()
+        if target_username == ADMIN_USERNAME.lower():
+            flash("관리자 계정은 삭제할 수 없습니다.", "error")
+            return redirect(url_for("admin_users"))
 
         conn.execute("DELETE FROM board_comments WHERE user_id=?", (user_id,))
         conn.execute("DELETE FROM board_posts WHERE user_id=?", (user_id,))
         conn.execute("DELETE FROM board_upvotes WHERE user_id=?", (user_id,))
         conn.execute("DELETE FROM notifications WHERE user_id=?", (user_id,))
-        conn.execute("DELETE FROM favorites WHERE user_id=?", (user_id,))  # 있으면
+        conn.execute("DELETE FROM favorites WHERE user_id=?", (user_id,))
         conn.execute("DELETE FROM users WHERE id=?", (user_id,))
         conn.commit()
+
     finally:
         conn.close()
 
@@ -10562,13 +10585,32 @@ ADMIN_USERNAME = "cjswoaostk"
 def is_admin(user):
     if not user:
         return False
-    return (user.get("username") or "").lower() == "cjswoaostk"
 
+    if not isinstance(user, dict):
+        user = dict(user)
 
+    return (user.get("username") or "").strip().lower() == ADMIN_USERNAME.lower()
+
+def admin_required(view_func):
+    from functools import wraps
+
+    @wraps(view_func)
+    def wrapper(*args, **kwargs):
+        user = current_user()
+        if not user:
+            return redirect(url_for("login", next=request.path))
+
+        if not is_admin(user):
+            abort(403)
+
+        return view_func(*args, **kwargs)
+
+    return wrapper
 
 def get_user_score(user: dict) -> int:
     """
-    경험치 = (출석일수 * 3) + (글 10개당 3점)
+    최종 경험치 =
+    (출석일수 * 3) + (글 10개당 3점) + 관리자 조정점수(users.points)
     """
     if not user or not user.get("id"):
         return 0
@@ -10590,14 +10632,101 @@ def get_user_score(user: dict) -> int:
         ).fetchone()
         post_cnt = int(row["cnt"] or 0) if row else 0
 
+        # 관리자 조정 점수
+        row = conn.execute(
+            "SELECT COALESCE(points, 0) AS points FROM users WHERE id=?",
+            (uid,),
+        ).fetchone()
+        bonus_points = int(row["points"] or 0) if row else 0
+
     finally:
         conn.close()
 
-    score = attendance_days * 3 + (post_cnt // 10) * 3
-    return int(score)
+    base_score = (attendance_days * 3) + ((post_cnt // 10) * 3)
+    final_score = base_score + bonus_points
+
+    # 음수 방지
+    if final_score < 0:
+        final_score = 0
+
+    return int(final_score)
+
+
+def get_user_score_detail(user: dict) -> dict:
+    """
+    관리자 페이지나 프로필에서 상세 내역을 보여주고 싶을 때 사용
+    반환 예시:
+    {
+        "attendance_days": 12,
+        "attendance_score": 36,
+        "post_count": 27,
+        "post_score": 6,
+        "bonus_points": 20,
+        "base_score": 42,
+        "final_score": 62
+    }
+    """
+    if not user or not user.get("id"):
+        return {
+            "attendance_days": 0,
+            "attendance_score": 0,
+            "post_count": 0,
+            "post_score": 0,
+            "bonus_points": 0,
+            "base_score": 0,
+            "final_score": 0,
+        }
+
+    uid = user["id"]
+    conn = db()
+    try:
+        # 출석일수
+        row = conn.execute(
+            "SELECT COUNT(*) AS cnt FROM user_attendance WHERE user_id=?",
+            (uid,),
+        ).fetchone()
+        attendance_days = int(row["cnt"] or 0) if row else 0
+
+        # 작성 글 수
+        row = conn.execute(
+            "SELECT COUNT(*) AS cnt FROM board_posts WHERE user_id=?",
+            (uid,),
+        ).fetchone()
+        post_cnt = int(row["cnt"] or 0) if row else 0
+
+        # 관리자 조정 점수
+        row = conn.execute(
+            "SELECT COALESCE(points, 0) AS points FROM users WHERE id=?",
+            (uid,),
+        ).fetchone()
+        bonus_points = int(row["points"] or 0) if row else 0
+
+    finally:
+        conn.close()
+
+    attendance_score = attendance_days * 3
+    post_score = (post_cnt // 10) * 3
+    base_score = attendance_score + post_score
+    final_score = base_score + bonus_points
+
+    if final_score < 0:
+        final_score = 0
+
+    return {
+        "attendance_days": attendance_days,
+        "attendance_score": attendance_score,
+        "post_count": post_cnt,
+        "post_score": post_score,
+        "bonus_points": bonus_points,
+        "base_score": base_score,
+        "final_score": final_score,
+    }
+
 
 def score_to_grade(score: int) -> str:
-    # ✅ 계급 구간 (요청한 이모지)
+    # 최종 경험치 기준 계급
+    score = int(score or 0)
+
     if score >= 1001:
         return "마스터 🎖️"
     elif score >= 501:
@@ -10611,13 +10740,16 @@ def score_to_grade(score: int) -> str:
     else:
         return "입문 🌱"
 
+
 def score_progress_info(score: int) -> dict:
     """
-    현재 점수(score)를 기준으로
-    - 현재 계급 / 다음 계급 / 다음 계급까지 남은 점수 / 진행률(0~100)
-    을 계산해서 dict로 반환
+    현재 최종 경험치(score)를 기준으로
+    - 현재 계급
+    - 다음 계급
+    - 다음 계급까지 남은 점수
+    - 진행률(0~100)
+    반환
     """
-    # (구간, 라벨) : "해당 점수 이상이면 이 계급"
     tiers = [
         (0, "입문 🌱"),
         (11, "브론즈 🥉"),
@@ -10629,7 +10761,6 @@ def score_progress_info(score: int) -> dict:
 
     score = int(score or 0)
 
-    # 현재 구간 찾기
     cur_idx = 0
     for i in range(len(tiers) - 1, -1, -1):
         if score >= tiers[i][0]:
@@ -10638,7 +10769,7 @@ def score_progress_info(score: int) -> dict:
 
     cur_floor, cur_label = tiers[cur_idx]
 
-    # 이미 최종 계급이면
+    # 최종 계급 도달
     if cur_idx == len(tiers) - 1:
         return {
             "cur_grade": cur_label,
@@ -10655,7 +10786,6 @@ def score_progress_info(score: int) -> dict:
     span = max(1, next_threshold - cur_floor)
     progressed = min(span, max(0, score - cur_floor))
     pct = int(round((progressed / span) * 100))
-
     remain = max(0, next_threshold - score)
 
     return {
@@ -10668,10 +10798,11 @@ def score_progress_info(score: int) -> dict:
         "score": score,
     }
 
+
 def get_user_grade_label(user: dict) -> str:
     """
-    - 관리자: users.custom_grade 있으면 그걸, 없으면 '총관리자 👑'
-    - 일반: 출석/글 기반 score로 계급 산정
+    - 관리자: custom_grade 있으면 그걸, 없으면 '총관리자 👑'
+    - 일반 회원: 최종 경험치 기준 계급
     """
     if not user or not user.get("id"):
         return "입문 🌱"
