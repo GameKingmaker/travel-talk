@@ -815,6 +815,68 @@
     font-size: clamp(11px, 3.3vw, 14px);
   }
 }
+/* =========================
+   ✅ 플레이 화면 상단 HUD 항상 고정
+   - 기존 구조/기능 건드리지 않음
+   - .mobile-sticky-top 만 덮어쓰기
+========================= */
+
+/* PC / 태블릿 / 모바일 공통으로 상단 정보 고정 */
+.mobile-sticky-top{
+  position: sticky !important;
+  top: 12px !important;
+  z-index: 60 !important;
+  background: linear-gradient(180deg, rgba(244,248,255,0.98) 0%, rgba(244,248,255,0.94) 100%) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 0 0 8px;
+  margin-bottom: 12px;
+}
+
+/* 스크롤 중 아래 카드와 겹쳐 보이지 않게 자연스러운 그림자 */
+.mobile-sticky-top::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 8px;
+  background: linear-gradient(180deg, rgba(244,248,255,0.55), rgba(244,248,255,0));
+  pointer-events: none;
+}
+
+/* sticky 내부 박스가 서로 붙어서 더 깔끔하게 보이게 */
+.mobile-sticky-top .game-top-stats{
+  margin-bottom: 8px;
+}
+
+.mobile-sticky-top .prompt-box{
+  margin-bottom: 0;
+}
+
+/* 보드가 sticky HUD 뒤에 가려지지 않도록 */
+.game-panel{
+  position: relative;
+}
+
+/* 태블릿 이하 */
+@media (max-width: 768px){
+  .mobile-sticky-top{
+    top: 8px !important;
+    border-radius: 16px;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+}
+
+/* 아주 작은 모바일 */
+@media (max-width: 420px){
+  .mobile-sticky-top{
+    top: 6px !important;
+    border-radius: 14px;
+  }
+}
 </style>
 
 <div class="challenge-play-wrap">
