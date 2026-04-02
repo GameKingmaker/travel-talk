@@ -877,6 +877,30 @@
     border-radius: 14px;
   }
 }
+/* =========================
+   플레이 화면 상단 2박스
+   (상태박스 + 주제박스) 고정 보정
+========================= */
+@media (max-width: 768px){
+  .mobile-sticky-top{
+    position: sticky !important;
+    top: 150px !important;   /* 상단 로고/메뉴 높이만큼 내려줌 */
+    z-index: 70 !important;
+    background: linear-gradient(180deg, rgba(244,248,255,0.98) 0%, rgba(244,248,255,0.95) 100%) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 10px 22px rgba(54,92,173,0.12);
+  }
+}
+
+@media (max-width: 420px){
+  .mobile-sticky-top{
+    top: 142px !important;
+  }
+}
 </style>
 
 <div class="challenge-play-wrap">
