@@ -8,7 +8,10 @@
    ========================= #}
 
 <style>
-/* 상단 헤더 카드 */
+
+/* =========================
+   헤더 영역
+   ========================= */
 .w-top{
   margin: 10px 0 16px;
   padding: 24px 24px;
@@ -18,187 +21,238 @@
     radial-gradient(circle at top right, rgba(37,99,235,.12), transparent 60%),
     linear-gradient(180deg, #f8fbff, #ffffff);
   box-shadow: 0 16px 40px rgba(15,23,42,.08);
-  position: relative;
 }
 
-/* 제목 */
 .w-title{
   margin: 0;
   font-size: 32px;
   font-weight: 1000;
-  letter-spacing: -0.03em;
   color: #0b1f4b;
   line-height: 1.2;
-  word-break: keep-all;
 }
 
-/* 설명 */
 .w-sub{
   margin: 14px 0 0;
   color: #475569;
   font-size: 15px;
   font-weight: 700;
   line-height: 1.8;
-  white-space: pre-line;
 }
 
-/* 설명 문단 간격 개선 */
-.w-sub p{
-  margin: 6px 0;
-}
-
-/* 가이드 박스 */
 .w-guide{
-  margin: 16px 0 0;
+  margin-top: 14px;
   padding: 12px 14px;
   border-radius: 12px;
   background: rgba(37,99,235,.06);
   border: 1px solid rgba(37,99,235,.12);
-  color: #334155;
   font-size: 13px;
   font-weight: 800;
-  line-height: 1.6;
 }
 
-/* 링크 강조 */
-.w-guide a{
-  color:#2563eb;
-  font-weight:900;
-  text-decoration:none;
-}
-
-.w-guide a:hover{
-  text-decoration:underline;
-}
-
-/* 상단 액션 */
+/* =========================
+   버튼 / 액션
+   ========================= */
 .w-actions{
-  margin-top: 18px;
+  margin-top: 16px;
   display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
   justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
 }
 
-/* 버튼 */
 .w-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
   height: 40px;
   padding: 0 16px;
   border-radius: 14px;
   border: 1px solid rgba(15,23,42,.10);
-  background:#ffffff;
+  background:#fff;
   font-weight: 900;
-  color: #0b1f4b;
-  text-decoration:none;
-  transition: all .18s ease;
-}
-
-.w-btn:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(37,99,235,.18);
-  border-color: rgba(37,99,235,.30);
-}
-
-/* 단어 개수 */
-.w-count{
-  color:#64748b;
-  font-weight:900;
-  font-size:13px;
   display:flex;
-  gap:6px;
   align-items:center;
+  justify-content:center;
+  text-decoration:none;
 }
 
-.w-count b{
-  color:#2563eb;
+.w-count{
+  font-size:13px;
+  font-weight:900;
+}
+
+/* =========================
+   검색
+   ========================= */
+.search-row{
+  display:flex;
+  gap:10px;
+  margin: 12px 0;
+}
+
+.search-row input{
+  flex:1;
+  height:44px;
+  border-radius:14px;
+  border:1px solid rgba(15, 23, 42, 0.10);
+  padding:0 14px;
+}
+
+.search-row button{
+  height:44px;
+  padding:0 16px;
+  border-radius:14px;
+  border:none;
+  background:#2563eb;
+  color:#fff;
+  font-weight:900;
+}
+
+/* =========================
+   테이블
+   ========================= */
+.card{
+  margin-top: 8px;
+  background:#fff;
+  border:1px solid rgba(15, 23, 42, 0.08);
+  border-radius:16px;
+  padding:14px;
+}
+
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  table-layout: fixed;
+}
+
+th, td{
+  padding:12px;
   font-size:14px;
+  border-bottom:1px solid rgba(15,23,42,.06);
+  vertical-align: middle;
 }
 
-  /* 검색 */
-  .search-row{
-    display:flex;
-    gap:10px;
-    margin: 12px 0 12px;
-  }
-  .search-row input{
-    flex:1;
-    height:44px;
-    border-radius:14px;
-    border:1px solid rgba(15, 23, 42, 0.10);
-    padding:0 14px;
-    outline:none;
-  }
-  .search-row button{
-    height:44px;
-    padding:0 16px;
-    border-radius:14px;
-    border:none;
-    background:#2563eb;
-    color:#fff;
-    font-weight:900;
-    cursor:pointer;
+th{
+  background:#f8fafc;
+  font-weight:950;
+}
+
+/* =========================
+   ⭐ 즐겨찾기 버튼
+   ========================= */
+td:first-child{
+  text-align:center;
+}
+
+.fav-btn{
+  width:42px;
+  height:42px;
+  min-width:42px;
+  border-radius:12px;
+  border:1px solid rgba(37,99,235,.16);
+  background:#fff;
+  color:#94a3b8;
+  font-size:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.fav-btn.on{
+  color:#f59e0b;
+  background:#fffaf0;
+}
+
+/* =========================
+   텍스트 영역
+   ========================= */
+td:nth-child(2){
+  word-break: break-word;
+}
+
+.jp-text{
+  font-size:18px;
+  font-weight:900;
+}
+
+.tts-btn{
+  margin-left:6px;
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  border:1px solid rgba(37,99,235,.16);
+  background:#f8fbff;
+  color:#2563eb;
+}
+
+.p-kana{
+  font-size:15px;
+  font-weight:800;
+}
+
+.p-pron{
+  font-size:15px;
+  font-weight:800;
+  color:#1d4ed8;
+}
+
+.p-ko{
+  font-size:15px;
+  font-weight:800;
+}
+
+/* =========================
+   모바일 최적화
+   ========================= */
+@media (max-width: 640px){
+
+  .w-title{
+    font-size:24px;
   }
 
-  .q-hint{
-    margin: 0 0 14px;
-    color:#6b7280;
-    font-size:13px;
-    font-weight:800;
-  }
-  .q-hint a{
-    color:#2563eb;
-    text-decoration:underline;
-    text-underline-offset:3px;
-  }
-
-  /* 테이블 카드 */
-  .card{
-    margin-top: 8px;
-    background:#ffffff;
-    border:1px solid rgba(15, 23, 42, 0.08);
-    border-radius:16px;
-    padding:14px;
-    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-  }
-
-  table{
-    width:100%;
-    border-collapse:separate;
-    border-spacing:0;
-    overflow:hidden;
-    border-radius:14px;
-  }
   th, td{
-    text-align:left;
-    padding:10px 12px;
-    border-bottom:1px solid rgba(15, 23, 42, 0.06);
-    font-size:14px;
-    vertical-align: middle;
-  }
-  th{
-    background:#f8fafc;
-    font-weight:950;
-    color:#0f172a;
-  }
-  tr:last-child td{ border-bottom:none; }
-
-  /* 텍스트 톤 */
-  .muted{
-    color:#6b7280;
-    font-size:12px;
-    font-weight:800;
-    margin-top:10px;
+    padding:10px 8px;
+    font-size:13px;
   }
 
-  /* (선택) 모바일에서 컬럼 정리 */
-  @media (max-width: 640px){
-    .w-title{ font-size: 24px; }
-    th:nth-child(3), td:nth-child(3){ display:none; } /* 가나 숨김 */
+  /* 별 버튼 */
+  .fav-btn{
+    width:38px;
+    height:38px;
+    min-width:38px;
+    font-size:20px;
   }
+
+  /* 텍스트 */
+  .jp-text{
+    font-size:16px;
+  }
+
+  .p-kana,
+  .p-pron,
+  .p-ko{
+    font-size:13px;
+  }
+
+  /* 🔊 버튼 */
+  .tts-btn{
+    width:30px;
+    height:30px;
+    font-size:13px;
+  }
+
+  /* 가나 컬럼 숨김 */
+  th:nth-child(3),
+  td:nth-child(3){
+    display:none;
+  }
+
+  /* 즐겨찾기 폭 고정 */
+  th:first-child,
+  td:first-child{
+    width:64px;
+  }
+}
+
 </style>
 
 <div class="wrap">
