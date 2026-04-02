@@ -22,6 +22,8 @@
     --radius-md: 18px;
   }
 
+  * { box-sizing: border-box; }
+
   .challenge-start-wrap {
     min-height: 100vh;
     padding: 24px 16px;
@@ -54,6 +56,7 @@
     border: 1px solid var(--line);
     border-radius: 26px;
     padding: 24px;
+    min-width: 0;
   }
 
   .start-title {
@@ -64,6 +67,7 @@
     line-height: 0.96;
     color: var(--blue-dark);
     text-align: center;
+    word-break: keep-all;
   }
 
   .start-sub {
@@ -73,6 +77,7 @@
     line-height: 1.75;
     text-align: center;
     word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   .title-badge {
@@ -101,7 +106,8 @@
   .feature-box,
   .guide-box,
   .difficulty-box,
-  .info-box {
+  .info-box,
+  .action-box {
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 20px;
@@ -110,7 +116,6 @@
   }
 
   .feature-box {
-    margin-bottom: 18px;
     background: linear-gradient(180deg, #f4f8ff 0%, #edf4ff 100%);
     border-color: #cfe0ff;
   }
@@ -118,12 +123,14 @@
   .feature-title,
   .guide-box h3,
   .difficulty-box h3,
-  .info-box h3 {
+  .info-box h3,
+  .action-box h3 {
     margin: 0 0 12px;
     font-size: 19px;
     font-weight: 950;
     color: var(--blue-dark);
     letter-spacing: -0.02em;
+    word-break: keep-all;
   }
 
   .feature-list {
@@ -132,11 +139,151 @@
     color: var(--text);
     line-height: 1.85;
     font-size: 14px;
+    word-break: keep-all;
   }
 
-  .left-button-group {
-    display: flex;
-    flex-direction: column;
+  .right-title {
+    margin: 0 0 18px;
+    font-size: 32px;
+    font-weight: 1000;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    word-break: keep-all;
+  }
+
+  .guide-box,
+  .difficulty-box,
+  .action-box {
+    margin-bottom: 18px;
+  }
+
+  .guide-box p,
+  .info-box p,
+  .action-box p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .mini-highlight {
+    margin-top: 12px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%);
+    border: 1px solid #d7e4ff;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.75;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .mini-highlight strong {
+    color: var(--blue-dark);
+  }
+
+  .difficulty-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .difficulty-option {
+    border: 2px solid #d7e3fb;
+    border-radius: 18px;
+    background: #f8fbff;
+    padding: 16px 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+
+  .difficulty-option:hover {
+    transform: translateY(-1px);
+    border-color: #9bbcff;
+    background: #f1f7ff;
+  }
+
+  .difficulty-option input {
+    display: none;
+  }
+
+  .difficulty-option .label {
+    display: block;
+    font-size: 20px;
+    font-weight: 950;
+    margin-bottom: 8px;
+    color: var(--text);
+    word-break: keep-all;
+  }
+
+  .difficulty-option .desc {
+    display: block;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--sub);
+    word-break: keep-all;
+  }
+
+  .difficulty-option.active {
+    border-color: var(--blue);
+    background: linear-gradient(180deg, #eef5ff 0%, #e8f1ff 100%);
+    box-shadow:
+      inset 0 0 0 1px var(--blue),
+      0 10px 20px rgba(79, 134, 255, 0.10);
+  }
+
+  .selected-info {
+    background: linear-gradient(180deg, #edf4ff 0%, #f4f8ff 100%);
+    border: 1px solid #cfe0ff;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text);
+    min-height: 120px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .selected-info strong {
+    color: var(--blue-dark);
+  }
+
+  .rank-note {
+    margin-top: 10px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: #f8fbff;
+    border: 1px dashed #bed2ff;
+    color: var(--sub);
+    font-size: 14px;
+    line-height: 1.7;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .action-box {
+    background: linear-gradient(180deg, #f6faff 0%, #eef5ff 100%);
+    border-color: #cfe0ff;
+  }
+
+  .action-summary {
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: var(--sub);
+    line-height: 1.7;
+  }
+
+  .action-button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
 
@@ -181,124 +328,6 @@
     background: #f7fbff;
   }
 
-  .right-title {
-    margin: 0 0 18px;
-    font-size: 32px;
-    font-weight: 1000;
-    letter-spacing: -0.03em;
-    color: var(--text);
-  }
-
-  .guide-box,
-  .difficulty-box {
-    margin-bottom: 18px;
-  }
-
-  .guide-box p,
-  .info-box p {
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.85;
-    color: var(--text);
-    word-break: keep-all;
-  }
-
-  .mini-highlight {
-    margin-top: 12px;
-    padding: 14px 16px;
-    border-radius: 16px;
-    background: linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%);
-    border: 1px solid #d7e4ff;
-    color: var(--text);
-    font-size: 14px;
-    line-height: 1.75;
-  }
-
-  .mini-highlight strong {
-    color: var(--blue-dark);
-  }
-
-  .difficulty-options {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-
-  .difficulty-option {
-    border: 2px solid #d7e3fb;
-    border-radius: 18px;
-    background: #f8fbff;
-    padding: 16px 14px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    user-select: none;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
-  }
-
-  .difficulty-option:hover {
-    transform: translateY(-1px);
-    border-color: #9bbcff;
-    background: #f1f7ff;
-  }
-
-  .difficulty-option input {
-    display: none;
-  }
-
-  .difficulty-option .label {
-    display: block;
-    font-size: 20px;
-    font-weight: 950;
-    margin-bottom: 8px;
-    color: var(--text);
-  }
-
-  .difficulty-option .desc {
-    display: block;
-    font-size: 13px;
-    line-height: 1.55;
-    color: var(--sub);
-    word-break: keep-all;
-  }
-
-  .difficulty-option.active {
-    border-color: var(--blue);
-    background: linear-gradient(180deg, #eef5ff 0%, #e8f1ff 100%);
-    box-shadow:
-      inset 0 0 0 1px var(--blue),
-      0 10px 20px rgba(79, 134, 255, 0.10);
-  }
-
-  .selected-info {
-    background: linear-gradient(180deg, #edf4ff 0%, #f4f8ff 100%);
-    border: 1px solid #cfe0ff;
-    border-radius: 16px;
-    padding: 14px 16px;
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--text);
-    min-height: 120px;
-    word-break: keep-all;
-  }
-
-  .selected-info strong {
-    color: var(--blue-dark);
-  }
-
-  .rank-note {
-    margin-top: 10px;
-    padding: 12px 14px;
-    border-radius: 14px;
-    background: #f8fbff;
-    border: 1px dashed #bed2ff;
-    color: var(--sub);
-    font-size: 14px;
-    line-height: 1.7;
-    word-break: keep-all;
-  }
-
   @media (max-width: 1080px) {
     .challenge-start-grid {
       grid-template-columns: 1fr;
@@ -312,6 +341,7 @@
   @media (max-width: 960px) {
     .challenge-start-wrap {
       padding: 16px 12px;
+      align-items: flex-start;
     }
 
     .challenge-start-shell {
@@ -345,45 +375,61 @@
       border-radius: 20px;
     }
 
-    .start-left,
+    .challenge-start-grid {
+      gap: 12px;
+    }
+
+    /* 모바일에서는 설정 영역을 먼저 보여주기 */
     .start-right {
+      order: 1;
+      padding: 14px;
+      border-radius: 18px;
+    }
+
+    .start-left {
+      order: 2;
       padding: 14px;
       border-radius: 18px;
     }
 
     .start-title {
-      font-size: 34px;
+      font-size: 30px;
       margin-bottom: 8px;
+      line-height: 1.02;
     }
 
     .start-sub {
       font-size: 13px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      line-height: 1.6;
     }
 
     .title-badge {
-      width: 124px;
-      height: 124px;
-      border-radius: 24px;
-      margin-bottom: 16px;
+      width: 108px;
+      height: 108px;
+      border-radius: 22px;
+      margin-bottom: 14px;
     }
 
     .title-badge::before {
-      font-size: 52px;
+      font-size: 44px;
     }
 
     .feature-box,
     .guide-box,
     .difficulty-box,
-    .info-box {
+    .info-box,
+    .action-box {
       padding: 14px;
       border-radius: 16px;
+      margin-bottom: 12px;
     }
 
     .feature-title,
     .guide-box h3,
     .difficulty-box h3,
-    .info-box h3 {
+    .info-box h3,
+    .action-box h3 {
       font-size: 16px;
       margin-bottom: 10px;
     }
@@ -393,44 +439,102 @@
     .info-box p,
     .rank-note,
     .selected-info,
-    .mini-highlight {
+    .mini-highlight,
+    .action-summary {
       font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.68;
     }
 
+    .right-title {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    /* 모바일에서 난이도 카드를 더 한눈에 보이게 2열 유지 */
     .difficulty-options {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
     }
 
     .difficulty-option {
-      padding: 14px 12px;
+      padding: 14px 10px;
       border-radius: 14px;
     }
 
     .difficulty-option .label {
-      font-size: 18px;
+      font-size: 17px;
       margin-bottom: 6px;
     }
 
     .difficulty-option .desc {
       font-size: 12px;
+      line-height: 1.45;
     }
 
     .selected-info {
       min-height: auto;
     }
 
+    /* 시작 버튼을 난이도 아래에서 바로 누를 수 있게 강조 */
+    .action-box {
+      position: sticky;
+      bottom: 10px;
+      z-index: 30;
+      box-shadow: 0 12px 24px rgba(54, 92, 173, 0.16);
+    }
+
+    .action-button-group {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
     .primary-btn,
     .secondary-btn {
-      height: 50px;
+      height: 52px;
       font-size: 15px;
       border-radius: 14px;
     }
 
+    /* 긴 설명은 모바일에서 부담되니 아래쪽 정보는 조금 더 간결하게 보이도록 */
+    .info-box p br + br,
+    .guide-box p br + br {
+      display: none;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .challenge-start-wrap {
+      padding: 8px;
+    }
+
+    .challenge-start-shell {
+      padding: 10px;
+      border-radius: 18px;
+    }
+
+    .start-title {
+      font-size: 27px;
+    }
+
     .right-title {
       font-size: 22px;
-      margin-bottom: 14px;
+    }
+
+    .difficulty-options {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .difficulty-option {
+      padding: 12px 8px;
+    }
+
+    .difficulty-option .label {
+      font-size: 16px;
+    }
+
+    .difficulty-option .desc {
+      font-size: 11.5px;
     }
   }
 </style>
@@ -438,8 +542,9 @@
 <div class="challenge-start-wrap">
   <div class="challenge-start-shell">
     <div class="challenge-start-grid">
+
       <section class="start-left">
-        <h1 class="start-title">JLPT 단어<br> 카드 챌린지</h1>
+        <h1 class="start-title">JLPT 단어<br>카드 챌린지</h1>
         <p class="start-sub">
           JLPT 단어를 주제별 카드 라운드로 풀어보는
           일본어 학습형 서바이벌 게임
@@ -455,11 +560,6 @@
             <li>정답 카드를 맞히면 해당 카드는 사라지고 다음 문제로 이어집니다.</li>
             <li>시간 초과 또는 오답 시 HP가 1 감소하며, HP가 0이 되면 종료됩니다.</li>
           </ul>
-        </div>
-
-        <div class="left-button-group">
-          <button id="startGameBtn" class="primary-btn" disabled>게임 시작</button>
-          <button id="rankingBtn" class="secondary-btn" type="button">랭킹 보기</button>
         </div>
       </section>
 
@@ -513,6 +613,17 @@
           <div id="selectedInfo" class="selected-info">
             난이도를 선택하면 이 아래에 해당 규칙이 표시되고,
             <strong>게임 시작</strong> 버튼이 활성화됩니다.
+          </div>
+        </div>
+
+        <div class="action-box">
+          <h3>바로 시작</h3>
+          <p class="action-summary">
+            난이도를 고르면 바로 아래 버튼으로 시작할 수 있어요.
+          </p>
+          <div class="action-button-group">
+            <button id="startGameBtn" class="primary-btn" disabled>게임 시작</button>
+            <button id="rankingBtn" class="secondary-btn" type="button">랭킹 보기</button>
           </div>
         </div>
 
@@ -603,6 +714,13 @@
       selectedInfo.innerHTML = difficultyData[value].text;
       startBtn.disabled = false;
       startBtn.dataset.difficulty = value;
+
+      if (window.innerWidth <= 640) {
+        document.querySelector('.action-box')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      }
     });
   });
 
@@ -616,6 +734,7 @@
     window.location.href = `/quiz/bomb_hunt/ranking`;
   });
 </script>
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
      crossorigin="anonymous"></script>
 <!-- content-ad-2 -->
