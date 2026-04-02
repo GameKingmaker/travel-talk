@@ -304,6 +304,166 @@
     gap: 8px;
   }
 }
+/* =========================
+   ⭐ 카드 규격 통일 (문장 + 단어 공통)
+========================= */
+.phrase-card{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(15,23,42,.10);
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(15,23,42,.05);
+}
+
+/* =========================
+   ⭐ 즐겨찾기 버튼 (완전 통일)
+========================= */
+.fav-btn{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(37,99,235,.18);
+  background: #ffffff;
+  color: #94a3b8;
+  font-size: 20px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .16s ease;
+  padding: 0;
+  z-index: 2;
+}
+
+.fav-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(37,99,235,.30);
+  box-shadow: 0 8px 18px rgba(37,99,235,.12);
+}
+
+.fav-btn.on{
+  color: #f59e0b;
+  background: #fffaf0;
+  border-color: rgba(245,158,11,.30);
+}
+
+/* =========================
+   텍스트 영역 정렬
+========================= */
+.phrase-body{
+  padding-right: 48px; /* ⭐ 버튼 겹침 방지 핵심 */
+}
+
+.p-line{
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  line-height: 1.6;
+}
+
+.p-label{
+  min-width: 70px;
+  font-size: 13px;
+  font-weight: 900;
+  color: #64748b;
+}
+
+/* 일본어 */
+.p-jp{
+  font-size: 18px;
+  font-weight: 900;
+  color: #0b1f4b;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+/* 발음 */
+.p-pron{
+  font-size: 15px;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+/* 뜻 */
+.p-ko{
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* =========================
+   🔊 발음 버튼
+========================= */
+.speak-btn{
+  width: 100%;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(37,99,235,.18);
+  background: #f8fbff;
+  color: #2563eb;
+  font-weight: 900;
+  font-size: 14px;
+  cursor: pointer;
+  transition: .15s ease;
+}
+
+.speak-btn:hover{
+  background: #eef5ff;
+}
+
+/* =========================
+   모바일 최적화
+========================= */
+@media (max-width: 640px){
+
+  .phrase-card{
+    padding: 12px 12px 14px;
+    border-radius: 16px;
+  }
+
+  .fav-btn{
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 18px;
+    border-radius: 10px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .phrase-body{
+    padding-right: 40px;
+  }
+
+  .p-label{
+    font-size: 12px;
+    min-width: 60px;
+  }
+
+  .p-jp{
+    font-size: 16px;
+  }
+
+  .p-pron,
+  .p-ko{
+    font-size: 13px;
+  }
+
+  .speak-btn{
+    height: 38px;
+    font-size: 13px;
+  }
+}
 </style>
 
 <div class="note-wrap">
