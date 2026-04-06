@@ -464,6 +464,38 @@
     font-size: 13px;
   }
 }
+/* =========================
+   데스크톱: 왼쪽 정렬 유지
+========================= */
+@media (min-width: 769px) {
+  .phrase-card,
+  .word-card {
+    align-items: stretch !important;
+    text-align: left;
+  }
+
+  .phrase-body {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .p-line {
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .p-label,
+  .p-jp,
+  .p-pron,
+  .p-ko {
+    text-align: left;
+  }
+
+  .speak-btn {
+    width: 100%;
+  }
+}
 </style>
 
 <div class="note-wrap">
@@ -568,7 +600,7 @@
       {% if word_fav_items and word_fav_items|length > 0 %}
         <section class="phrase-list" id="wordList">
           {% for w in word_fav_items %}
-            <div class="phrase-card" style="align-items:center;"
+            <div class="phrase-card word-card"
                  data-cat="{{ w.cat_key }}"
                  data-kanji="{{ (w.kanji or w.jp or '')|e }}"
                  data-kana="{{ (w.kana or '')|e }}"
