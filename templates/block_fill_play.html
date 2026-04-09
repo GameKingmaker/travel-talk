@@ -1,0 +1,1414 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  :root {
+    --card: #ffffff;
+    --line: #d9e3f7;
+    --blue: #4f86ff;
+    --blue-dark: #2f5fd6;
+    --text: #1d2b49;
+    --sub: #66738f;
+    --shadow: 0 10px 24px rgba(54, 92, 173, 0.10);
+    --cell-size: 42px;
+    --mini-cell: 22px;
+  }
+
+  * { box-sizing: border-box; }
+
+  .block-play-wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 8px 8px 14px;
+    min-height: calc(100vh - 78px);
+  }
+
+  .block-shell {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(247,250,255,0.98) 100%);
+    border: 2px solid #9dbaff;
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 10px;
+  }
+
+  .play-title {
+    margin: 0 0 8px;
+    font-size: clamp(24px, 3.8vw, 40px);
+    font-weight: 1000;
+    color: var(--blue-dark);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .stats-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .stat-box {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 8px 10px;
+    min-height: 62px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--sub);
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .stat-value {
+    font-size: clamp(18px, 2.3vw, 30px);
+    color: var(--text);
+    font-weight: 950;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .home-btn-top {
+    width: 100%;
+    border: none;
+    background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+    border: 1px solid #d9e8ff;
+    border-radius: 12px;
+    min-height: 40px;
+    color: var(--blue-dark);
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .play-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+  }
+
+  .board-card,
+  .tray-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 10px;
+    min-height: 520px;
+  }
+
+  .board-top,
+  .tray-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .box-title {
+    font-size: 15px;
+    font-weight: 950;
+    color: var(--text);
+  }
+
+  .box-sub {
+    font-size: 11px;
+    color: var(--sub);
+    font-weight: 800;
+  }
+
+  .board-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+    min-height: 410px;
+    padding-top: 6px;
+  }
+
+  .board-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(var(--cols), var(--cell-size));
+    grid-template-rows: repeat(var(--rows), var(--cell-size));
+    gap: 2px;
+    background: #a8c0ef;
+    padding: 2px;
+    border-radius: 14px;
+    user-select: none;
+    touch-action: none;
+  }
+
+  .board-grid.invalid-flash {
+    animation: boardFlash 0.22s ease 0s 2;
+  }
+
+  @keyframes boardFlash {
+    0% { box-shadow: 0 0 0 0 rgba(225, 75, 75, 0.00); }
+    50% { box-shadow: 0 0 0 4px rgba(225, 75, 75, 0.28); }
+    100% { box-shadow: 0 0 0 0 rgba(225, 75, 75, 0.00); }
+  }
+
+  .cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border-radius: 10px;
+    background: #eef4ff;
+    position: relative;
+  }
+
+  .cell.blocked {
+    background: #9db5e5;
+  }
+
+  .cell.fillable {
+    background: #ffffff;
+    box-shadow: inset 0 0 0 1px #d8e6ff;
+  }
+
+  .cell.occupied {
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.30);
+    cursor: pointer;
+  }
+
+  .ghost-piece {
+    position: absolute;
+    z-index: 20;
+    display: none;
+    gap: 2px;
+    pointer-events: none;
+    opacity: 0.72;
+  }
+
+  .ghost-piece.show {
+    display: grid;
+  }
+
+  .ghost-piece.valid .ghost-cell.on {
+    box-shadow:
+      inset 0 0 0 2px rgba(79, 134, 255, 0.90),
+      0 0 0 1px rgba(79, 134, 255, 0.08);
+  }
+
+  .ghost-piece.invalid .ghost-cell.on {
+    box-shadow:
+      inset 0 0 0 2px rgba(225, 75, 75, 0.95),
+      0 0 0 1px rgba(225, 75, 75, 0.08);
+    opacity: 0.82;
+  }
+
+  .ghost-cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border-radius: 10px;
+    background: transparent;
+  }
+
+  .ghost-cell.on {
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.20);
+  }
+
+  .board-actions {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .tool-btn {
+    border: none;
+    border-radius: 12px;
+    min-height: 44px;
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .tool-btn.primary {
+    background: linear-gradient(135deg, #4f86ff 0%, #74a2ff 55%, #8b7dff 100%);
+    color: #fff;
+    box-shadow: 0 12px 22px rgba(79,134,255,0.22);
+  }
+
+  .tool-btn.sub {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    color: var(--blue-dark);
+    border: 1px solid #d8e5ff;
+  }
+
+  .piece-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .piece-card {
+    border: 1px solid #d8e6ff;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border-radius: 16px;
+    padding: 10px;
+    cursor: pointer;
+    transition: box-shadow .12s ease, transform .12s ease, border-color .12s ease, opacity .12s ease;
+    touch-action: manipulation;
+    position: relative;
+    min-height: 112px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .piece-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(79,134,255,0.08);
+  }
+
+  .piece-card.selected {
+    border-color: #4f86ff;
+    box-shadow: 0 0 0 3px rgba(79, 134, 255, 0.14), 0 12px 24px rgba(79,134,255,0.12);
+  }
+
+  .piece-card.used {
+    background: linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%);
+  }
+
+  .piece-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .piece-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 24px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 900;
+    border: 1px solid #d9e7ff;
+    color: var(--sub);
+    background: #fff;
+  }
+
+  .piece-badge.used {
+    color: #2f5fd6;
+    border-color: #bcd2ff;
+    background: #f4f8ff;
+  }
+
+  .piece-badge.selected {
+    color: #fff;
+    border-color: #4f86ff;
+    background: #4f86ff;
+  }
+
+  .piece-preview {
+    display: inline-grid;
+    gap: 3px;
+    padding: 6px;
+    border-radius: 12px;
+    background: #eef5ff;
+    margin: 0 auto;
+  }
+
+  .piece-preview-cell {
+    width: var(--mini-cell);
+    height: var(--mini-cell);
+    border-radius: 6px;
+    background: transparent;
+  }
+
+  .piece-preview-cell.on {
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.22);
+  }
+
+  .result-box {
+    display: none;
+    margin-top: 12px;
+    background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+    border: 1px solid #dce8ff;
+    border-radius: 18px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .result-box.show {
+    display: block;
+  }
+
+  .result-title {
+    margin: 0 0 6px;
+    color: var(--blue-dark);
+    font-size: 24px;
+    font-weight: 1000;
+  }
+
+  .result-desc {
+    margin: 0;
+    color: var(--sub);
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  .result-actions {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .action-btn {
+    border: none;
+    border-radius: 12px;
+    min-height: 46px;
+    font-size: 14px;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .action-btn.primary {
+    background: linear-gradient(135deg, #4f86ff 0%, #74a2ff 55%, #8b7dff 100%);
+    color: #fff;
+    box-shadow: 0 12px 22px rgba(79,134,255,0.22);
+  }
+
+  .action-btn.sub {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    color: var(--blue-dark);
+    border: 1px solid #d8e5ff;
+  }
+
+  @media (min-width: 1180px) {
+    .piece-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+  .block-play-wrap {
+    padding: 4px 4px 10px;
+  }
+
+  .block-shell {
+    padding: 6px;
+    border-radius: 16px;
+  }
+
+  .play-title {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .stat-box {
+    min-height: 48px;
+    padding: 6px 6px;
+    border-radius: 10px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    margin-bottom: 2px;
+  }
+
+  .stat-value {
+    font-size: 13px;
+  }
+
+  .home-btn-top {
+    min-height: 28px;
+    font-size: 11px;
+    border-radius: 9px;
+  }
+
+  .play-stage {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 6px;
+    align-items: start;
+  }
+
+  .board-card,
+  .tray-card {
+    min-height: auto;
+    padding: 6px;
+    border-radius: 12px;
+  }
+
+  .board-top,
+  .tray-top {
+    margin-bottom: 5px;
+    gap: 4px;
+  }
+
+  .box-title {
+    font-size: 12px;
+  }
+
+  .box-sub {
+    font-size: 9px;
+  }
+
+  .board-wrap {
+    min-height: 0;
+    padding-top: 0;
+  }
+
+  .board-actions {
+    margin-top: 6px;
+    gap: 4px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .tool-btn {
+    min-height: 30px;
+    font-size: 11px;
+    border-radius: 9px;
+    padding: 0 4px;
+  }
+
+  .piece-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .piece-card {
+    min-height: 78px;
+    padding: 6px 4px;
+    border-radius: 10px;
+  }
+
+  .piece-top {
+    margin-bottom: 4px;
+  }
+
+  .piece-badge {
+    min-height: 18px;
+    padding: 0 6px;
+    font-size: 9px;
+  }
+
+  .piece-preview {
+    gap: 2px;
+    padding: 4px;
+    border-radius: 8px;
+  }
+
+  .result-box {
+    margin-top: 8px;
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .result-title {
+    font-size: 18px;
+  }
+
+  .result-desc {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .result-actions {
+    margin-top: 8px;
+    gap: 6px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .action-btn {
+    min-height: 34px;
+    font-size: 12px;
+    border-radius: 9px;
+  }
+}
+
+@media (max-width: 560px) {
+  .block-play-wrap {
+    padding: 2px 2px 8px;
+  }
+
+  .block-shell {
+    padding: 5px;
+    border-radius: 14px;
+  }
+
+  .play-title {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  .stats-grid {
+    gap: 3px;
+  }
+
+  .stat-box {
+    min-height: 42px;
+    padding: 4px 4px;
+    border-radius: 8px;
+  }
+
+  .stat-label {
+    font-size: 8px;
+  }
+
+  .stat-value {
+    font-size: 11px;
+  }
+
+  .home-btn-top {
+    min-height: 24px;
+    font-size: 10px;
+  }
+
+  .play-stage {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: 4px;
+  }
+
+  .board-card,
+  .tray-card {
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .box-title {
+    font-size: 11px;
+  }
+
+  .box-sub {
+    font-size: 8px;
+  }
+
+  .board-actions {
+    margin-top: 5px;
+    gap: 3px;
+  }
+
+  .tool-btn {
+    min-height: 26px;
+    font-size: 10px;
+    border-radius: 8px;
+  }
+
+  .piece-list {
+    gap: 4px;
+  }
+
+  .piece-card {
+    min-height: 68px;
+    padding: 4px 3px;
+    border-radius: 8px;
+  }
+
+  .piece-badge {
+    min-height: 16px;
+    padding: 0 5px;
+    font-size: 8px;
+  }
+
+  .piece-preview {
+    padding: 3px;
+    gap: 2px;
+    border-radius: 7px;
+  }
+
+  .result-actions {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<div class="block-play-wrap">
+  <div class="block-shell">
+    <h1 class="play-title">도형 퍼즐 게임</h1>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-label">난이도</div>
+        <div class="stat-value">{{ difficulty_label }}</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">문제</div>
+        <div class="stat-value">{{ puzzle_no }} / {{ puzzle_total }}</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">플레이 시간</div>
+        <div class="stat-value" id="timerLabel">0분00초</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">홈</div>
+        <button id="homeBtnTop" class="home-btn-top" type="button">블록 채우기 홈</button>
+      </div>
+    </div>
+
+    <div class="play-stage" id="playStage">
+      <div class="board-card">
+        <div class="board-top">
+          <div class="box-title">채워 넣는 판</div>
+          <div class="box-sub" id="boardGuide">오른쪽 도형을 클릭해 선택 후 판 클릭 배치</div>
+        </div>
+
+        <div class="board-wrap">
+          <div
+            id="boardGrid"
+            class="board-grid"
+            style="--rows: {{ rows }}; --cols: {{ cols }};"
+          >
+            <div id="ghostPiece" class="ghost-piece"></div>
+          </div>
+        </div>
+
+        <div class="board-actions">
+          <button id="answerBtn" class="tool-btn primary" type="button">정답 보기</button>
+          <button id="removeSelectedBtn" class="tool-btn sub" type="button">제거하기</button>
+          <button id="clearAllBtn" class="tool-btn sub" type="button">모두 제거하기</button>
+        </div>
+      </div>
+
+      <div class="tray-card">
+        <div class="tray-top">
+          <div class="box-title">필요한 도형</div>
+          <div class="box-sub">사용중 표시 / 선택 후 판 클릭 배치</div>
+        </div>
+
+        <div id="pieceList" class="piece-list"></div>
+      </div>
+    </div>
+
+    <div id="resultBox" class="result-box">
+      <h2 class="result-title" id="resultTitle">클리어!</h2>
+      <p class="result-desc" id="resultDesc"></p>
+
+      <div class="result-actions">
+        <button id="otherPuzzleBtn" class="action-btn primary" type="button">다른 문제 풀기</button>
+        <button id="retryBtn" class="action-btn sub" type="button">다시 문제 풀기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const difficulty = {{ difficulty|tojson }};
+  const difficultyLabel = {{ difficulty_label|tojson }};
+  const puzzleIndex = {{ puzzle_index|tojson }};
+  const boardMask = {{ board|tojson }};
+  const rows = {{ rows|tojson }};
+  const cols = {{ cols|tojson }};
+  const initialPieces = {{ pieces|tojson }};
+
+  const boardGrid = document.getElementById('boardGrid');
+  const pieceList = document.getElementById('pieceList');
+  const timerLabel = document.getElementById('timerLabel');
+  const resultBox = document.getElementById('resultBox');
+  const resultTitle = document.getElementById('resultTitle');
+  const resultDesc = document.getElementById('resultDesc');
+  const boardGuide = document.getElementById('boardGuide');
+  const ghostPiece = document.getElementById('ghostPiece');
+
+  const answerBtn = document.getElementById('answerBtn');
+  const removeSelectedBtn = document.getElementById('removeSelectedBtn');
+  const clearAllBtn = document.getElementById('clearAllBtn');
+  const otherPuzzleBtn = document.getElementById('otherPuzzleBtn');
+  const retryBtn = document.getElementById('retryBtn');
+
+  let pieces = initialPieces.map(piece => ({
+    ...piece,
+    placed: false,
+    anchor: null,
+  }));
+
+  let occupancy = makeEmptyOccupancy();
+  let finished = false;
+  let answerShown = false;
+  let clearedPosted = false;
+  let selectedPieceId = null;
+  let hoverAnchor = null;
+  let hoverValid = false;
+  let cellPx = 42;
+  let rafId = null;
+  let pendingMouse = null;
+  const startedAt = Date.now();
+
+  function makeEmptyOccupancy() {
+    return Array.from({ length: rows }, (_, r) =>
+      Array.from({ length: cols }, (_, c) => boardMask[r][c] === '1' ? null : '__blocked__')
+    );
+  }
+
+  function formatTime(totalSec) {
+    const hours = Math.floor(totalSec / 3600);
+    const minutes = Math.floor((totalSec % 3600) / 60);
+    const seconds = totalSec % 60;
+    if (hours > 0) {
+      return `${hours}시간${String(minutes).padStart(2, '0')}분${String(seconds).padStart(2, '0')}초`;
+    }
+    return `${minutes}분${String(seconds).padStart(2, '0')}초`;
+  }
+
+  function updateTimer() {
+    if (finished) return;
+    const sec = Math.floor((Date.now() - startedAt) / 1000);
+    timerLabel.textContent = formatTime(sec);
+  }
+
+  setInterval(updateTimer, 1000);
+  updateTimer();
+
+  function getPieceById(pieceId) {
+    return pieces.find(piece => piece.id === pieceId);
+  }
+
+  function pieceBounds(cells) {
+    const maxR = Math.max(...cells.map(v => v[0]));
+    const maxC = Math.max(...cells.map(v => v[1]));
+    return { rows: maxR + 1, cols: maxC + 1 };
+  }
+
+  function getAbsoluteCells(piece, anchorRow, anchorCol) {
+    return piece.cells.map(([r, c]) => [anchorRow + r, anchorCol + c]);
+  }
+
+  function clearPieceFromBoard(pieceId) {
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (occupancy[r][c] === pieceId) {
+          occupancy[r][c] = null;
+        }
+      }
+    }
+
+    const piece = getPieceById(pieceId);
+    if (piece) {
+      piece.placed = false;
+      piece.anchor = null;
+    }
+  }
+
+  function clearAllPlacedPieces() {
+    occupancy = makeEmptyOccupancy();
+    pieces.forEach(piece => {
+      piece.placed = false;
+      piece.anchor = null;
+    });
+    selectedPieceId = null;
+    hoverAnchor = null;
+    hoverValid = false;
+    hideGhost();
+    renderBoard();
+    renderPieces();
+    updateGuideText();
+    updateActionButtons();
+  }
+
+  function canPlacePiece(piece, anchorRow, anchorCol, ignorePieceId = null) {
+    const absCells = getAbsoluteCells(piece, anchorRow, anchorCol);
+
+    for (const [r, c] of absCells) {
+      if (r < 0 || c < 0 || r >= rows || c >= cols) return false;
+      if (boardMask[r][c] !== '1') return false;
+
+      const occ = occupancy[r][c];
+      if (occ !== null && occ !== ignorePieceId) return false;
+    }
+    return true;
+  }
+
+  function placePiece(pieceId, anchorRow, anchorCol) {
+    const piece = getPieceById(pieceId);
+    if (!piece) return false;
+    if (!canPlacePiece(piece, anchorRow, anchorCol, piece.id)) return false;
+
+    clearPieceFromBoard(pieceId);
+
+    const absCells = getAbsoluteCells(piece, anchorRow, anchorCol);
+    absCells.forEach(([r, c]) => {
+      occupancy[r][c] = pieceId;
+    });
+
+    piece.placed = true;
+    piece.anchor = [anchorRow, anchorCol];
+    return true;
+  }
+
+  function flashInvalid() {
+    boardGrid.classList.remove('invalid-flash');
+    void boardGrid.offsetWidth;
+    boardGrid.classList.add('invalid-flash');
+  }
+
+  function allCellsFilled() {
+    for (const piece of pieces) {
+      if (!piece.placed) return false;
+    }
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (boardMask[r][c] === '1' && occupancy[r][c] === null) return false;
+      }
+    }
+    return true;
+  }
+
+  async function markClearOnce() {
+    if (clearedPosted) return;
+    clearedPosted = true;
+
+    try {
+      const body = new URLSearchParams();
+      body.set('difficulty', difficulty);
+      body.set('puzzle_index', String(puzzleIndex));
+
+      await fetch('{{ url_for("block_fill_mark_clear") }}', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString()
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function finishGameByClear() {
+    finished = true;
+    selectedPieceId = null;
+    hoverAnchor = null;
+    hoverValid = false;
+    hideGhost();
+
+    const sec = Math.floor((Date.now() - startedAt) / 1000);
+    resultTitle.textContent = '클리어!';
+    resultDesc.textContent = `${difficultyLabel} 난이도 퍼즐을 ${formatTime(sec)} 만에 완성했어요.`;
+    resultBox.classList.add('show');
+
+    await markClearOnce();
+
+    renderBoard();
+    renderPieces();
+    updateGuideText();
+    updateActionButtons();
+  }
+
+  function finishGameByAnswer() {
+    finished = true;
+    answerShown = true;
+    selectedPieceId = null;
+    hoverAnchor = null;
+    hoverValid = false;
+    hideGhost();
+
+    resultTitle.textContent = '정답 보기';
+    resultDesc.textContent = `플레이 시간을 멈추고 정답 배치를 보여주고 있어요.`;
+    resultBox.classList.add('show');
+
+    renderBoard();
+    renderPieces();
+    updateGuideText();
+    updateActionButtons();
+  }
+
+  function applyAnswerLayout() {
+    occupancy = makeEmptyOccupancy();
+
+    pieces.forEach(piece => {
+      const anchor = piece.solution_anchor || [0, 0];
+      piece.anchor = [anchor[0], anchor[1]];
+      piece.placed = true;
+
+      const absCells = getAbsoluteCells(piece, anchor[0], anchor[1]);
+      absCells.forEach(([r, c]) => {
+        occupancy[r][c] = piece.id;
+      });
+    });
+  }
+
+  function computeSizes() {
+  const stage = document.getElementById('playStage');
+  const totalWidth = stage.clientWidth || window.innerWidth;
+  const mobileSmall = window.innerWidth <= 560;
+  const mobile = window.innerWidth <= 900;
+
+  let boardWidth;
+
+  if (mobileSmall) {
+    boardWidth = totalWidth * 0.54;
+  } else if (mobile) {
+    boardWidth = totalWidth * 0.56;
+  } else {
+    boardWidth = totalWidth * 0.47;
+  }
+
+  let cell = Math.floor(boardWidth / cols);
+
+  let maxCell;
+  let minCell;
+
+  if (mobileSmall) {
+    maxCell = difficulty === 'easy' ? 32 : difficulty === 'normal' ? 26 : 22;
+    minCell = difficulty === 'easy' ? 20 : difficulty === 'normal' ? 16 : 14;
+  } else if (mobile) {
+    maxCell = difficulty === 'easy' ? 40 : difficulty === 'normal' ? 34 : 28;
+    minCell = difficulty === 'easy' ? 24 : difficulty === 'normal' ? 20 : 16;
+  } else {
+    maxCell = difficulty === 'easy' ? 70 : difficulty === 'normal' ? 58 : 48;
+    minCell = difficulty === 'easy' ? 28 : difficulty === 'normal' ? 24 : 18;
+  }
+
+  cell = Math.min(cell, maxCell);
+  cell = Math.max(cell, minCell);
+  cellPx = cell;
+
+  boardGrid.style.setProperty('--cell-size', `${cell}px`);
+
+  let mini;
+  if (mobileSmall) {
+    mini = Math.max(8, Math.floor(cell * 0.45));
+    mini = Math.min(mini, 14);
+  } else if (mobile) {
+    mini = Math.max(10, Math.floor(cell * 0.48));
+    mini = Math.min(mini, 18);
+  } else {
+    mini = Math.max(14, Math.floor(cell * 0.52));
+    mini = Math.min(mini, 24);
+  }
+
+  document.documentElement.style.setProperty('--mini-cell', `${mini}px`);
+}
+
+  function createPreviewGrid(piece) {
+    const wrap = document.createElement('div');
+    wrap.className = 'piece-preview';
+
+    const bounds = pieceBounds(piece.cells);
+    wrap.style.gridTemplateColumns = `repeat(${bounds.cols}, var(--mini-cell))`;
+
+    const map = {};
+    piece.cells.forEach(([r, c]) => {
+      map[`${r}:${c}`] = true;
+    });
+
+    for (let r = 0; r < bounds.rows; r++) {
+      for (let c = 0; c < bounds.cols; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'piece-preview-cell';
+        if (map[`${r}:${c}`]) {
+          cell.classList.add('on');
+          cell.style.background = piece.color;
+        }
+        wrap.appendChild(cell);
+      }
+    }
+
+    return wrap;
+  }
+
+  function buildGhost(piece) {
+    ghostPiece.innerHTML = '';
+    const bounds = pieceBounds(piece.cells);
+    ghostPiece.style.gridTemplateColumns = `repeat(${bounds.cols}, ${cellPx}px)`;
+
+    const map = {};
+    piece.cells.forEach(([r, c]) => {
+      map[`${r}:${c}`] = true;
+    });
+
+    for (let r = 0; r < bounds.rows; r++) {
+      for (let c = 0; c < bounds.cols; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'ghost-cell';
+        if (map[`${r}:${c}`]) {
+          cell.classList.add('on');
+          cell.style.background = piece.color;
+        }
+        ghostPiece.appendChild(cell);
+      }
+    }
+  }
+
+  function showGhost(piece) {
+    buildGhost(piece);
+    ghostPiece.classList.add('show');
+  }
+
+  function hideGhost() {
+    ghostPiece.classList.remove('show', 'valid', 'invalid');
+    ghostPiece.innerHTML = '';
+  }
+
+  function setGhostState(valid) {
+    ghostPiece.classList.remove('valid', 'invalid');
+    ghostPiece.classList.add(valid ? 'valid' : 'invalid');
+  }
+
+  function moveGhostToAnchor(anchorRow, anchorCol) {
+    const left = anchorCol * (cellPx + 2) + 2;
+    const top = anchorRow * (cellPx + 2) + 2;
+    ghostPiece.style.left = `${left}px`;
+    ghostPiece.style.top = `${top}px`;
+  }
+
+  function renderBoard() {
+    const keepGhost = ghostPiece;
+    boardGrid.innerHTML = '';
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        cell.dataset.row = r;
+        cell.dataset.col = c;
+
+        if (boardMask[r][c] !== '1') {
+          cell.classList.add('blocked');
+        } else {
+          cell.classList.add('fillable');
+          const occ = occupancy[r][c];
+
+          if (occ && occ !== '__blocked__') {
+            cell.classList.add('occupied');
+            const piece = getPieceById(occ);
+            if (piece) cell.style.background = piece.color;
+            cell.dataset.pieceId = occ;
+          }
+        }
+
+        boardGrid.appendChild(cell);
+      }
+    }
+
+    boardGrid.appendChild(keepGhost);
+  }
+
+  function renderPieces() {
+    pieceList.innerHTML = '';
+
+    pieces.forEach(piece => {
+      const card = document.createElement('div');
+      card.className = 'piece-card';
+      if (piece.placed) card.classList.add('used');
+      if (selectedPieceId === piece.id) card.classList.add('selected');
+      card.dataset.pieceId = piece.id;
+
+      const top = document.createElement('div');
+      top.className = 'piece-top';
+
+      const badge = document.createElement('div');
+      badge.className = 'piece-badge';
+      if (selectedPieceId === piece.id) {
+        badge.classList.add('selected');
+        badge.textContent = '선택';
+      } else if (piece.placed) {
+        badge.classList.add('used');
+        badge.textContent = '사용중';
+      } else {
+        badge.textContent = '대기';
+      }
+
+      top.appendChild(badge);
+
+      card.appendChild(top);
+      card.appendChild(createPreviewGrid(piece));
+
+      pieceList.appendChild(card);
+    });
+  }
+
+  function updateGuideText() {
+    if (answerShown) {
+      boardGuide.textContent = '정답 배치를 표시 중';
+      return;
+    }
+
+    if (finished) {
+      boardGuide.textContent = '퍼즐 완료';
+      return;
+    }
+
+    if (!selectedPieceId) {
+      boardGuide.textContent = '오른쪽 도형을 클릭해 선택 후 판 클릭 배치';
+      return;
+    }
+
+    const piece = getPieceById(selectedPieceId);
+    if (piece && piece.placed) {
+      boardGuide.textContent = '사용중 도형을 새 위치에 놓거나 제거하기 버튼을 눌러주세요';
+      return;
+    }
+
+    boardGuide.textContent = '선택한 도형을 판에서 클릭해 배치';
+  }
+
+  function updateActionButtons() {
+    const selectedPiece = selectedPieceId ? getPieceById(selectedPieceId) : null;
+    const anyPlaced = pieces.some(piece => piece.placed);
+
+    answerBtn.disabled = answerShown || finished;
+    removeSelectedBtn.disabled = !selectedPieceId || answerShown || finished;
+    clearAllBtn.disabled = !anyPlaced || answerShown || finished;
+  }
+
+  function selectPiece(pieceId) {
+    if (finished || answerShown) return;
+
+    const piece = getPieceById(pieceId);
+    if (!piece) return;
+
+    if (selectedPieceId === pieceId) {
+      selectedPieceId = null;
+      hoverAnchor = null;
+      hoverValid = false;
+      hideGhost();
+      renderPieces();
+      updateGuideText();
+      updateActionButtons();
+      return;
+    }
+
+    selectedPieceId = pieceId;
+    hoverAnchor = piece.anchor ? { row: piece.anchor[0], col: piece.anchor[1] } : null;
+    hoverValid = false;
+    showGhost(piece);
+
+    if (piece.anchor) {
+      moveGhostToAnchor(piece.anchor[0], piece.anchor[1]);
+      hoverValid = canPlacePiece(piece, piece.anchor[0], piece.anchor[1], piece.id);
+      setGhostState(hoverValid);
+      ghostPiece.classList.add('show');
+    }
+
+    renderPieces();
+    updateGuideText();
+    updateActionButtons();
+  }
+
+  function boardCellFromPoint(clientX, clientY) {
+    const rect = boardGrid.getBoundingClientRect();
+    const localX = clientX - rect.left - 2;
+    const localY = clientY - rect.top - 2;
+    const step = cellPx + 2;
+
+    const col = Math.floor(localX / step);
+    const row = Math.floor(localY / step);
+
+    if (row < 0 || col < 0 || row >= rows || col >= cols) return null;
+    return { row, col };
+  }
+
+  function updateGhostFromMouse(clientX, clientY) {
+    if (!selectedPieceId || finished || answerShown) return;
+
+    const pos = boardCellFromPoint(clientX, clientY);
+    if (!pos) {
+      ghostPiece.classList.remove('show');
+      hoverAnchor = null;
+      hoverValid = false;
+      return;
+    }
+
+    const piece = getPieceById(selectedPieceId);
+    if (!piece) return;
+
+    hoverAnchor = pos;
+    hoverValid = canPlacePiece(piece, pos.row, pos.col, piece.id);
+
+    moveGhostToAnchor(pos.row, pos.col);
+    setGhostState(hoverValid);
+    ghostPiece.classList.add('show');
+  }
+
+  function queueMouseMove(clientX, clientY) {
+    pendingMouse = { clientX, clientY };
+    if (rafId) return;
+
+    rafId = requestAnimationFrame(() => {
+      rafId = null;
+      if (!pendingMouse) return;
+      updateGhostFromMouse(pendingMouse.clientX, pendingMouse.clientY);
+    });
+  }
+
+  async function tryPlaceSelectedAt(row, col) {
+    if (!selectedPieceId || finished || answerShown) return;
+
+    const piece = getPieceById(selectedPieceId);
+    if (!piece) return;
+
+    const oldAnchor = piece.anchor ? [piece.anchor[0], piece.anchor[1]] : null;
+    const oldPlaced = piece.placed;
+
+    if (oldPlaced) {
+      clearPieceFromBoard(piece.id);
+    }
+
+    const ok = canPlacePiece(piece, row, col, piece.id);
+    if (!ok) {
+      if (oldPlaced && oldAnchor) {
+        placePiece(piece.id, oldAnchor[0], oldAnchor[1]);
+      }
+      moveGhostToAnchor(row, col);
+      setGhostState(false);
+      ghostPiece.classList.add('show');
+      flashInvalid();
+      renderBoard();
+      renderPieces();
+      updateActionButtons();
+      return;
+    }
+
+    placePiece(piece.id, row, col);
+    selectedPieceId = null;
+    hoverAnchor = null;
+    hoverValid = false;
+    hideGhost();
+
+    renderBoard();
+    renderPieces();
+    updateGuideText();
+    updateActionButtons();
+
+    if (allCellsFilled()) {
+      await finishGameByClear();
+    }
+  }
+
+  function removeSelectedPiece() {
+    if (!selectedPieceId || finished || answerShown) return;
+
+    const piece = getPieceById(selectedPieceId);
+    if (!piece) return;
+
+    if (piece.placed) {
+      clearPieceFromBoard(piece.id);
+      renderBoard();
+    }
+
+    selectedPieceId = null;
+    hoverAnchor = null;
+    hoverValid = false;
+    hideGhost();
+    renderPieces();
+    updateGuideText();
+    updateActionButtons();
+  }
+
+  function showAnswer() {
+    if (finished || answerShown) return;
+    applyAnswerLayout();
+    finishGameByAnswer();
+  }
+
+  function renderAll() {
+    computeSizes();
+    renderBoard();
+    renderPieces();
+    updateGuideText();
+    updateActionButtons();
+
+    if (selectedPieceId) {
+      const piece = getPieceById(selectedPieceId);
+      if (piece) showGhost(piece);
+    }
+  }
+
+  boardGrid.addEventListener('pointermove', (e) => {
+    if (finished || answerShown || !selectedPieceId) return;
+    queueMouseMove(e.clientX, e.clientY);
+  });
+
+  boardGrid.addEventListener('pointerleave', () => {
+    if (!selectedPieceId) return;
+    ghostPiece.classList.remove('show');
+    hoverAnchor = null;
+    hoverValid = false;
+  });
+
+  boardGrid.addEventListener('pointerdown', async (e) => {
+    if (finished || answerShown) return;
+
+    const target = e.target.closest('.cell');
+    if (!target) return;
+
+    e.preventDefault();
+
+    const row = Number(target.dataset.row);
+    const col = Number(target.dataset.col);
+
+    if (selectedPieceId) {
+      await tryPlaceSelectedAt(row, col);
+      return;
+    }
+
+    const pieceId = target.dataset.pieceId;
+    if (!pieceId) return;
+
+    selectPiece(pieceId);
+    updateGhostFromMouse(e.clientX, e.clientY);
+  });
+
+  pieceList.addEventListener('pointerdown', (e) => {
+    if (finished || answerShown) return;
+
+    const card = e.target.closest('.piece-card');
+    if (!card) return;
+
+    e.preventDefault();
+
+    const pieceId = card.dataset.pieceId;
+    if (!pieceId) return;
+
+    selectPiece(pieceId);
+  });
+
+  answerBtn.addEventListener('click', showAnswer);
+  removeSelectedBtn.addEventListener('click', removeSelectedPiece);
+  clearAllBtn.addEventListener('click', clearAllPlacedPieces);
+
+  otherPuzzleBtn.addEventListener('click', () => {
+    window.location.href = `{{ url_for('block_fill_select') }}?difficulty=${difficulty}`;
+  });
+
+  retryBtn.addEventListener('click', () => {
+    window.location.href = `{{ url_for('block_fill_play') }}?difficulty=${difficulty}&puzzle=${puzzleIndex}&t=${Date.now()}`;
+  });
+
+  document.getElementById('homeBtnTop').addEventListener('click', () => {
+    window.location.href = '{{ url_for("block_fill_start") }}';
+  });
+
+  window.addEventListener('resize', () => {
+    hideGhost();
+    renderAll();
+  });
+
+  renderAll();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9733127689125901"
+     data-ad-slot="5907060346"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+{% endblock %}
