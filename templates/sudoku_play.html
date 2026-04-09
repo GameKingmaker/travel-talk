@@ -1,0 +1,656 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  :root {
+    --card: #ffffff;
+    --line: #d9e3f7;
+    --blue: #4f86ff;
+    --blue-dark: #2f5fd6;
+    --input-blue: #2f6df6;
+    --hint-red: #e14b4b;
+    --text: #1d2b49;
+    --sub: #66738f;
+    --shadow: 0 10px 24px rgba(54, 92, 173, 0.10);
+  }
+
+  * { box-sizing: border-box; }
+
+  .sudoku-play-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 8px 8px 14px;
+    min-height: calc(100vh - 78px);
+  }
+
+  .sudoku-shell {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(247,250,255,0.98) 100%);
+    border: 2px solid #9dbaff;
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 10px;
+  }
+
+  .play-title {
+    margin: 0 0 8px;
+    font-size: clamp(24px, 3.8vw, 40px);
+    font-weight: 1000;
+    color: var(--blue-dark);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .board-area {
+    width: min(100%, 640px);
+    margin: 0 auto;
+  }
+
+  .stats-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .stat-box {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 8px 10px;
+    min-height: 62px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--sub);
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .stat-value {
+    font-size: clamp(20px, 2.3vw, 32px);
+    color: var(--text);
+    font-weight: 950;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .sudoku-board {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    background: #000;
+    border: 3px solid #000;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(54, 92, 173, 0.10);
+  }
+
+  .cell {
+    border: 1px solid #d6dbe6;
+    background: #ffffff;
+    color: #111111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(18px, 2.2vw, 30px);
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .cell.box-right {
+    border-right: 3px solid #000;
+  }
+
+  .cell.box-bottom {
+    border-bottom: 3px solid #000;
+  }
+
+  .cell.given {
+    color: #111111;
+    font-weight: 950;
+    background: #ffffff;
+  }
+
+  .cell.user-filled {
+    color: var(--input-blue);
+    font-weight: 800;
+    background: #ffffff;
+  }
+
+  .cell.hint-filled {
+    color: var(--hint-red);
+    font-weight: 900;
+    background: #ffffff;
+  }
+
+  .cell.selected {
+    background: #eef4ff;
+    outline: 2px solid #7fa8ff;
+    outline-offset: -2px;
+  }
+
+  .board-hint {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--sub);
+    line-height: 1.6;
+  }
+
+  .single-action {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .bottom-actions {
+    margin-top: 12px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .action-btn {
+    min-height: 46px;
+    border-radius: 12px;
+    border: 1px solid #cfe0ff;
+    background: #fff;
+    color: var(--blue-dark);
+    font-size: 14px;
+    font-weight: 900;
+    cursor: pointer;
+    padding: 0 10px;
+  }
+
+  .action-btn.primary {
+    border: none;
+    background: linear-gradient(135deg, #5b8cff 0%, #76a3ff 100%);
+    color: #fff;
+  }
+
+  .action-btn.warn {
+    border: none;
+    background: linear-gradient(135deg, #ff9b5f 0%, #ffb36d 100%);
+    color: #fff;
+  }
+
+  .action-btn:disabled {
+    background: #d7dce7;
+    color: #ffffff;
+    border: none;
+    cursor: not-allowed;
+    opacity: 1;
+  }
+
+  .result-box {
+    display: none;
+    margin-top: 12px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px;
+  }
+
+  .result-box.show {
+    display: block;
+  }
+
+  .result-title {
+    margin: 0 0 8px;
+    font-size: 22px;
+    font-weight: 1000;
+    color: var(--blue-dark);
+  }
+
+  .result-desc {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  .result-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .sudoku-play-wrap {
+      padding: 6px 5px 10px;
+      min-height: calc(100vh - 64px);
+    }
+
+    .sudoku-shell {
+      padding: 8px;
+      border-radius: 16px;
+    }
+
+    .play-title {
+      margin-bottom: 6px;
+      font-size: 22px;
+    }
+
+    .board-area {
+      width: min(100%, 560px);
+    }
+
+    .stats-grid {
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .stat-box {
+      min-height: 54px;
+      padding: 7px 8px;
+      border-radius: 10px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      margin-bottom: 2px;
+    }
+
+    .stat-value {
+      font-size: 16px;
+    }
+
+    .sudoku-board {
+      border-width: 2px;
+      border-radius: 10px;
+    }
+
+    .cell {
+      font-size: clamp(14px, 4.2vw, 20px);
+    }
+
+    .cell.box-right {
+      border-right-width: 2px;
+    }
+
+    .cell.box-bottom {
+      border-bottom-width: 2px;
+    }
+
+    .board-hint {
+      margin-top: 6px;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .single-action {
+      margin-top: 8px;
+    }
+
+    .bottom-actions {
+      margin-top: 10px;
+      gap: 8px;
+    }
+
+    .action-btn {
+      min-height: 40px;
+      font-size: 12px;
+      border-radius: 10px;
+      padding: 0 6px;
+    }
+
+    .result-box {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 12px;
+    }
+
+    .result-title {
+      font-size: 18px;
+    }
+
+    .result-desc {
+      font-size: 13px;
+    }
+  }
+</style>
+
+<div class="sudoku-play-wrap">
+  <div class="sudoku-shell">
+    <div class="board-area">
+      <h1 class="play-title">스도쿠</h1>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">난이도</div>
+          <div class="stat-value" id="difficultyLabel">{{ difficulty_label }}</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">경과 시간</div>
+          <div class="stat-value" id="timerLabel">00:00</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">힌트 사용</div>
+          <div class="stat-value" id="hintsLabel">0/3</div>
+        </div>
+      </div>
+
+      <div id="sudokuBoard" class="sudoku-board"></div>
+
+      <div class="board-hint">
+        칸을 클릭한 뒤 키보드 숫자 1~9로 입력하세요. 지우기 버튼으로 선택 칸을 비울 수 있습니다.
+      </div>
+
+      <div class="single-action">
+        <button id="hintBtn" class="action-btn warn" type="button" style="width:100%;">힌트 사용 (3개 남음)</button>
+      </div>
+
+      <div class="bottom-actions">
+        <button id="clearBtn" class="action-btn" type="button">지우기</button>
+        <button id="restartBtn" class="action-btn primary" type="button">다시 시작</button>
+        <button id="homeBtn" class="action-btn" type="button">스도쿠 홈</button>
+      </div>
+
+      <div id="resultBox" class="result-box">
+        <h2 class="result-title" id="resultTitle">클리어!</h2>
+        <p class="result-desc" id="resultDesc"></p>
+
+        <div class="result-actions">
+          <button id="playAgainBtn" class="action-btn primary" type="button">새 게임 시작</button>
+          <button id="allRankingBtn" class="action-btn" type="button">전체 랭킹 보기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const difficulty = {{ difficulty|tojson }};
+  const difficultyLabelText = {{ difficulty_label|tojson }};
+  const puzzle = {{ puzzle|tojson }};
+  const solution = {{ solution|tojson }};
+
+  const boardEl = document.getElementById('sudokuBoard');
+  const timerLabel = document.getElementById('timerLabel');
+  const hintsLabel = document.getElementById('hintsLabel');
+  const hintBtn = document.getElementById('hintBtn');
+  const resultBox = document.getElementById('resultBox');
+  const resultTitle = document.getElementById('resultTitle');
+  const resultDesc = document.getElementById('resultDesc');
+
+  const initialPuzzle = puzzle.map(row => [...row]);
+  let current = puzzle.map(row => [...row]);
+  let hintFixed = Array.from({ length: 9 }, () => Array(9).fill(false));
+  let selected = null;
+  let hintsUsed = 0;
+  const maxHints = 3;
+  let finished = false;
+  const startedAt = Date.now();
+
+  function formatTime(totalSec) {
+  const hours = Math.floor(totalSec / 3600);
+  const minutes = Math.floor((totalSec % 3600) / 60);
+  const seconds = totalSec % 60;
+
+  if (hours > 0) {
+    return `${hours}시간${String(minutes).padStart(2, '0')}분${String(seconds).padStart(2, '0')}초`;
+  }
+  return `${minutes}분${String(seconds).padStart(2, '0')}초`;
+}
+
+  function formatRank(rank) {
+    if (!rank) return '-';
+    return `${rank}등`;
+  }
+
+  function updateTimer() {
+    if (finished) return;
+    const sec = Math.floor((Date.now() - startedAt) / 1000);
+    timerLabel.textContent = formatTime(sec);
+  }
+
+  setInterval(updateTimer, 1000);
+  updateTimer();
+
+  function updateHintUI() {
+    hintsLabel.textContent = `${hintsUsed}/3`;
+    const left = maxHints - hintsUsed;
+
+    if (left > 0) {
+      hintBtn.textContent = `힌트 사용 (${left}개 남음)`;
+      hintBtn.disabled = false;
+    } else {
+      hintBtn.textContent = '힌트 없음';
+      hintBtn.disabled = true;
+    }
+  }
+
+  function renderBoard() {
+    boardEl.innerHTML = '';
+
+    for (let r = 0; r < 9; r++) {
+      for (let c = 0; c < 9; c++) {
+        const cell = document.createElement('button');
+        cell.type = 'button';
+        cell.className = 'cell';
+
+        if ((c + 1) % 3 === 0 && c !== 8) cell.classList.add('box-right');
+        if ((r + 1) % 3 === 0 && r !== 8) cell.classList.add('box-bottom');
+
+        const value = current[r][c];
+        const isGiven = initialPuzzle[r][c] !== 0;
+        const isHintFixed = hintFixed[r][c] === true;
+
+        if (isGiven) {
+          cell.classList.add('given');
+        } else if (isHintFixed) {
+          cell.classList.add('hint-filled');
+        } else if (value !== 0) {
+          cell.classList.add('user-filled');
+        }
+
+        if (selected && selected.r === r && selected.c === c && !isGiven && !isHintFixed) {
+          cell.classList.add('selected');
+        }
+
+        cell.textContent = value === 0 ? '' : value;
+
+        cell.addEventListener('click', () => {
+          if (finished) return;
+          if (isGiven) return;
+          if (isHintFixed) return;
+          selected = { r, c };
+          renderBoard();
+        });
+
+        boardEl.appendChild(cell);
+      }
+    }
+  }
+
+  function checkClear() {
+    for (let r = 0; r < 9; r++) {
+      for (let c = 0; c < 9; c++) {
+        if (current[r][c] !== solution[r][c]) return false;
+      }
+    }
+    return true;
+  }
+
+  async function saveResult(clearTimeSec) {
+  try {
+    const res = await fetch('/quiz/sudoku/save_result', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        difficulty: difficulty,
+        clearTimeSec: clearTimeSec,
+        hintsUsed: hintsUsed,
+        cleared: true
+      })
+    });
+    return await res.json();
+  } catch (e) {
+    return {
+      success: false,
+      message: '기록 저장 중 오류가 발생했습니다.'
+    };
+  }
+}
+
+  async function finishGame() {
+  finished = true;
+  hintBtn.disabled = true;
+
+  const clearTimeSec = Math.floor((Date.now() - startedAt) / 1000);
+  const result = await saveResult(clearTimeSec);
+
+  resultBox.classList.add('show');
+  resultTitle.textContent = '클리어!';
+
+  let extraHtml = '';
+
+  if (result.success && result.login_required) {
+    extraHtml = '<br><br>비회원 기록은 랭킹에 등록되지 않습니다.';
+  } else if (result.success) {
+    extraHtml += `<br>현재 랭킹: <strong>${result.rank ? result.rank + '등' : '-'}</strong>`;
+
+    if (result.updated) {
+      extraHtml += `<br><br><strong>랭킹 저장 완료</strong>`;
+    } else {
+      extraHtml += `<br><br>기존 최고 기록보다 더 빠르지 않거나, 같은 시간에 힌트 사용이 더 적지 않아 랭킹은 갱신되지 않았습니다.`;
+    }
+  } else {
+    extraHtml = `<br><br>${result.message || '기록 저장 중 오류가 발생했습니다.'}`;
+  }
+
+  resultDesc.innerHTML =
+    `난이도: <strong>${difficultyLabelText}</strong><br>` +
+    `클리어 시간: <strong>${formatTime(clearTimeSec)}</strong><br>` +
+    `힌트 사용: <strong>${hintsUsed}회</strong>` +
+    extraHtml;
+}
+
+  function clearSelectedCell() {
+    if (finished || !selected) return;
+
+    const { r, c } = selected;
+    if (initialPuzzle[r][c] !== 0) return;
+    if (hintFixed[r][c]) return;
+
+    current[r][c] = 0;
+    renderBoard();
+  }
+
+  function inputNumber(num) {
+    if (finished || !selected) return;
+
+    const { r, c } = selected;
+    if (initialPuzzle[r][c] !== 0) return;
+    if (hintFixed[r][c]) return;
+    if (num < 1 || num > 9) return;
+
+    current[r][c] = num;
+    renderBoard();
+
+    if (checkClear()) {
+      finishGame();
+    }
+  }
+
+  function useHint() {
+    if (finished) return;
+    if (hintsUsed >= maxHints) return;
+
+    const empties = [];
+    for (let r = 0; r < 9; r++) {
+      for (let c = 0; c < 9; c++) {
+        if (current[r][c] === 0) {
+          empties.push({ r, c });
+        }
+      }
+    }
+
+    if (empties.length === 0) return;
+
+    const pick = empties[Math.floor(Math.random() * empties.length)];
+    current[pick.r][pick.c] = solution[pick.r][pick.c];
+    hintFixed[pick.r][pick.c] = true;
+    selected = null;
+    hintsUsed += 1;
+
+    updateHintUI();
+    renderBoard();
+
+    if (checkClear()) {
+      finishGame();
+    }
+  }
+
+  function restartCurrentBoard() {
+    current = initialPuzzle.map(row => [...row]);
+    hintFixed = Array.from({ length: 9 }, () => Array(9).fill(false));
+    selected = null;
+    hintsUsed = 0;
+    finished = false;
+    resultBox.classList.remove('show');
+    updateHintUI();
+    renderBoard();
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (finished) return;
+    if (!selected) return;
+
+    const key = e.key;
+
+    if (/^[1-9]$/.test(key)) {
+      e.preventDefault();
+      inputNumber(Number(key));
+      return;
+    }
+
+    if (key === 'Backspace' || key === 'Delete' || key === '0') {
+      e.preventDefault();
+      clearSelectedCell();
+    }
+  });
+
+  document.getElementById('hintBtn').addEventListener('click', useHint);
+  document.getElementById('clearBtn').addEventListener('click', clearSelectedCell);
+  document.getElementById('restartBtn').addEventListener('click', restartCurrentBoard);
+
+  document.getElementById('homeBtn').addEventListener('click', () => {
+    window.location.href = `/quiz/sudoku`;
+  });
+
+  document.getElementById('playAgainBtn').addEventListener('click', () => {
+    window.location.href = `/quiz/sudoku/play?difficulty=${difficulty}`;
+  });
+
+  document.getElementById('allRankingBtn').addEventListener('click', () => {
+    window.location.href = `/quiz/sudoku/ranking?mode=${difficulty}`;
+  });
+
+  updateHintUI();
+  renderBoard();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9733127689125901"
+     data-ad-slot="5907060346"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+{% endblock %}
