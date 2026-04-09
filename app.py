@@ -191,6 +191,12 @@ def is_admin_user(user: dict) -> bool:
 
     return False
 
+@app.context_processor
+def inject_common_template_vars():
+    return {
+        "is_admin": is_admin_user
+    }
+
 # ✅ 관리자 전용 데코레이터
 def admin_required(view_func):
     from functools import wraps
@@ -1057,8 +1063,12 @@ def init_db() -> None:
         ensure_word_favorites_table(conn)
         migrate_password_resets_table(conn)
 
-        # 13) bomb_hunt_rankings
+                # 13) bomb_hunt_rankings
         ensure_bomb_hunt_rankings_table(conn)
+
+        # 14) sudoku_rankings
+        ensure_sudoku_rankings_table(conn)
+
 
         conn.commit()
     finally:
@@ -27730,9 +27740,1060 @@ def save_bomb_hunt_result():
         "nickname": nickname
     })
 
-@app.context_processor
-def inject_helpers():
-    return {"is_admin": is_admin}
+# =========================
+# 스도쿠 난이도 설정
+# =========================
+
+SUDOKU_DIFFICULTIES = {
+    "easy": {
+        "label": "초급",
+        "remove_count": 36,
+    },
+    "normal": {
+        "label": "중급",
+        "remove_count": 44,
+    },
+    "hard": {
+        "label": "고급",
+        "remove_count": 52,
+    },
+}
+
+
+# =========================
+# 스도쿠 생성 헬퍼
+# =========================
+
+def sudoku_pattern(r, c):
+    return (3 * (r % 3) + r // 3 + c) % 9
+
+
+def sudoku_shuffle(seq):
+    return random.sample(seq, len(seq))
+
+
+def generate_full_sudoku_board():
+    rows_base = [0, 1, 2]
+    cols_base = [0, 1, 2]
+
+    rows = [g * 3 + r for g in sudoku_shuffle(rows_base) for r in sudoku_shuffle(rows_base)]
+    cols = [g * 3 + c for g in sudoku_shuffle(cols_base) for c in sudoku_shuffle(cols_base)]
+    nums = sudoku_shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+    board = [[nums[sudoku_pattern(r, c)] for c in cols] for r in rows]
+    return board
+
+
+def sudoku_copy_board(board):
+    return [row[:] for row in board]
+
+
+def sudoku_is_valid(board, row, col, num):
+    for x in range(9):
+        if board[row][x] == num:
+            return False
+
+    for y in range(9):
+        if board[y][col] == num:
+            return False
+
+    start_row = (row // 3) * 3
+    start_col = (col // 3) * 3
+
+    for r in range(start_row, start_row + 3):
+        for c in range(start_col, start_col + 3):
+            if board[r][c] == num:
+                return False
+
+    return True
+
+
+def sudoku_count_solutions(board, limit=2):
+    empty = None
+
+    for r in range(9):
+        for c in range(9):
+            if board[r][c] == 0:
+                empty = (r, c)
+                break
+        if empty:
+            break
+
+    if not empty:
+        return 1
+
+    r, c = empty
+    total = 0
+
+    for n in range(1, 10):
+        if sudoku_is_valid(board, r, c, n):
+            board[r][c] = n
+            total += sudoku_count_solutions(board, limit)
+            if total >= limit:
+                board[r][c] = 0
+                return total
+            board[r][c] = 0
+
+    return total
+
+
+def make_sudoku_puzzle(solution, remove_count):
+    puzzle = sudoku_copy_board(solution)
+    positions = [(r, c) for r in range(9) for c in range(9)]
+    random.shuffle(positions)
+
+    removed = 0
+
+    for r, c in positions:
+        backup = puzzle[r][c]
+        puzzle[r][c] = 0
+
+        test_board = sudoku_copy_board(puzzle)
+        solutions = sudoku_count_solutions(test_board, limit=2)
+
+        if solutions != 1:
+            puzzle[r][c] = backup
+        else:
+            removed += 1
+
+        if removed >= remove_count:
+            break
+
+    return puzzle
+
+
+def sudoku_is_complete_valid_board(board):
+    target = set(range(1, 10))
+
+    for row in board:
+        if set(row) != target:
+            return False
+
+    for c in range(9):
+        col_vals = [board[r][c] for r in range(9)]
+        if set(col_vals) != target:
+            return False
+
+    for sr in range(0, 9, 3):
+        for sc in range(0, 9, 3):
+            box_vals = []
+            for r in range(sr, sr + 3):
+                for c in range(sc, sc + 3):
+                    box_vals.append(board[r][c])
+            if set(box_vals) != target:
+                return False
+
+    return True
+
+
+def sudoku_verify_generated_game(puzzle, solution):
+    if not sudoku_is_complete_valid_board(solution):
+        return False
+
+    for r in range(9):
+        for c in range(9):
+            if puzzle[r][c] != 0 and puzzle[r][c] != solution[r][c]:
+                return False
+
+    test_board = sudoku_copy_board(puzzle)
+    solutions = sudoku_count_solutions(test_board, limit=2)
+    return solutions == 1
+
+
+def build_sudoku_game(difficulty):
+    if difficulty not in SUDOKU_DIFFICULTIES:
+        difficulty = "easy"
+
+    remove_count = SUDOKU_DIFFICULTIES[difficulty]["remove_count"]
+
+    for _ in range(30):
+        solution = generate_full_sudoku_board()
+        puzzle = make_sudoku_puzzle(solution, remove_count)
+
+        if sudoku_verify_generated_game(puzzle, solution):
+            return {
+                "difficulty": difficulty,
+                "difficulty_label": SUDOKU_DIFFICULTIES[difficulty]["label"],
+                "puzzle": puzzle,
+                "solution": solution
+            }
+
+    solution = generate_full_sudoku_board()
+    puzzle = make_sudoku_puzzle(solution, remove_count)
+
+    return {
+        "difficulty": difficulty,
+        "difficulty_label": SUDOKU_DIFFICULTIES[difficulty]["label"],
+        "puzzle": puzzle,
+        "solution": solution
+    }
+
+
+# =========================
+# 스도쿠 랭킹 테이블
+# =========================
+
+def ensure_sudoku_rankings_table(conn):
+    cur = conn.cursor()
+
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS sudoku_rankings (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      username TEXT,
+      nickname TEXT NOT NULL,
+      difficulty TEXT NOT NULL,
+      clear_time_sec INTEGER NOT NULL DEFAULT 0,
+      hints_used INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      UNIQUE(user_id, difficulty)
+    )
+    """)
+
+    cols = table_columns(conn, "sudoku_rankings")
+
+    if "username" not in cols:
+        cur.execute("ALTER TABLE sudoku_rankings ADD COLUMN username TEXT")
+
+    cols = table_columns(conn, "sudoku_rankings")
+    if "clear_time_sec" not in cols:
+        cur.execute("ALTER TABLE sudoku_rankings ADD COLUMN clear_time_sec INTEGER NOT NULL DEFAULT 0")
+
+    cols = table_columns(conn, "sudoku_rankings")
+    if "hints_used" not in cols:
+        cur.execute("ALTER TABLE sudoku_rankings ADD COLUMN hints_used INTEGER NOT NULL DEFAULT 0")
+
+    cols = table_columns(conn, "sudoku_rankings")
+    if "updated_at" not in cols:
+        cur.execute("ALTER TABLE sudoku_rankings ADD COLUMN updated_at TEXT")
+
+    conn.commit()
+
+
+def is_better_sudoku_record(new_time, new_hints, old):
+    if old is None:
+        return True
+
+    old_time = int(old["clear_time_sec"])
+    old_hints = int(old["hints_used"])
+
+    if new_time < old_time:
+        return True
+    if new_time > old_time:
+        return False
+
+    if new_hints < old_hints:
+        return True
+    if new_hints > old_hints:
+        return False
+
+    return False
+
+
+# =========================
+# 스도쿠 라우트
+# =========================
+
+@app.route("/quiz/sudoku")
+def sudoku_start():
+    user = current_user()
+    return render_template("sudoku_start.html", user=user)
+
+
+@app.route("/quiz/sudoku/play")
+def sudoku_play():
+    user = current_user()
+    difficulty = request.args.get("difficulty", "easy")
+
+    if difficulty not in SUDOKU_DIFFICULTIES:
+        difficulty = "easy"
+
+    game = build_sudoku_game(difficulty)
+
+    return render_template(
+        "sudoku_play.html",
+        user=user,
+        difficulty=game["difficulty"],
+        difficulty_label=game["difficulty_label"],
+        puzzle=game["puzzle"],
+        solution=game["solution"]
+    )
+
+
+@app.route("/quiz/sudoku/ranking")
+def sudoku_ranking():
+    user = current_user()
+    selected_mode = request.args.get("mode", "easy")
+
+    if selected_mode not in ["easy", "normal", "hard"]:
+        selected_mode = "easy"
+
+    conn = db()
+    ensure_sudoku_rankings_table(conn)
+    cur = conn.cursor()
+
+    cur.execute("""
+        SELECT user_id, nickname, difficulty, clear_time_sec, hints_used, created_at
+        FROM sudoku_rankings
+        WHERE difficulty = ?
+        ORDER BY clear_time_sec ASC, hints_used ASC, created_at ASC
+        LIMIT 20
+    """, (selected_mode,))
+    ranking_rows_raw = cur.fetchall()
+
+    ranking_rows = []
+    for row in ranking_rows_raw:
+        row_dict = dict(row)
+        row_dict["clear_time_text"] = format_seconds_korean(row_dict["clear_time_sec"])
+        ranking_rows.append(row_dict)
+
+    my_rank = None
+    my_record = None
+
+    if user:
+        if isinstance(user, sqlite3.Row):
+            my_user_id = user["id"]
+        elif isinstance(user, dict):
+            my_user_id = user.get("id")
+        else:
+            my_user_id = None
+
+        if my_user_id:
+            cur.execute("""
+                SELECT user_id, nickname, difficulty, clear_time_sec, hints_used, created_at
+                FROM sudoku_rankings
+                WHERE difficulty = ?
+                ORDER BY clear_time_sec ASC, hints_used ASC, created_at ASC
+            """, (selected_mode,))
+            all_rows = cur.fetchall()
+
+            for idx, row in enumerate(all_rows, start=1):
+                if row["user_id"] == my_user_id:
+                    my_rank = idx
+                    my_record = dict(row)
+                    my_record["clear_time_text"] = format_seconds_korean(my_record["clear_time_sec"])
+                    break
+
+    conn.close()
+
+    return render_template(
+        "sudoku_ranking.html",
+        user=user,
+        selected_mode=selected_mode,
+        ranking_rows=ranking_rows,
+        my_rank=my_rank,
+        my_record=my_record
+    )
+
+
+@app.route("/quiz/sudoku/save_result", methods=["POST"])
+def save_sudoku_result():
+    data = request.get_json(silent=True) or {}
+
+    if not data:
+        return jsonify({"success": False, "message": "데이터가 없습니다."}), 400
+
+    difficulty = str(data.get("difficulty", "easy")).strip()
+    clear_time_sec = data.get("clearTimeSec", 0)
+    hints_used = data.get("hintsUsed", 0)
+    cleared = bool(data.get("cleared", False))
+
+    if difficulty not in ["easy", "normal", "hard"]:
+        return jsonify({"success": False, "message": "난이도 값이 올바르지 않습니다."}), 400
+
+    if not cleared:
+        return jsonify({"success": False, "message": "클리어 기록만 저장됩니다."}), 400
+
+    user = current_user()
+    if not user:
+        return jsonify({
+            "success": True,
+            "login_required": True,
+            "message": "비회원은 랭킹에 등록되지 않습니다."
+        })
+
+    if isinstance(user, sqlite3.Row):
+        user_id = user["id"]
+        username = user["username"]
+        nickname = user["nickname"]
+    elif isinstance(user, dict):
+        user_id = user.get("id")
+        username = user.get("username")
+        nickname = user.get("nickname")
+    else:
+        try:
+            user_id = user["id"]
+            username = user["username"]
+            nickname = user["nickname"]
+        except Exception:
+            return jsonify({"success": False, "message": "사용자 정보를 읽지 못했습니다."}), 400
+
+    try:
+        clear_time_sec = int(clear_time_sec)
+    except Exception:
+        clear_time_sec = 0
+
+    try:
+        hints_used = int(hints_used)
+    except Exception:
+        hints_used = 0
+
+    now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    conn = db()
+    ensure_sudoku_rankings_table(conn)
+    cur = conn.cursor()
+
+    cur.execute("""
+        SELECT id, clear_time_sec, hints_used
+        FROM sudoku_rankings
+        WHERE user_id = ? AND difficulty = ?
+    """, (user_id, difficulty))
+    old = cur.fetchone()
+
+    updated = False
+
+    if is_better_sudoku_record(clear_time_sec, hints_used, old):
+        if old is None:
+            cur.execute("""
+                INSERT INTO sudoku_rankings
+                (user_id, username, nickname, difficulty, clear_time_sec, hints_used, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                user_id,
+                username,
+                nickname,
+                difficulty,
+                clear_time_sec,
+                hints_used,
+                now_str,
+                now_str
+            ))
+        else:
+            cur.execute("""
+                UPDATE sudoku_rankings
+                SET username = ?, nickname = ?, clear_time_sec = ?, hints_used = ?, updated_at = ?
+                WHERE user_id = ? AND difficulty = ?
+            """, (
+                username,
+                nickname,
+                clear_time_sec,
+                hints_used,
+                now_str,
+                user_id,
+                difficulty
+            ))
+        updated = True
+
+    conn.commit()
+
+    cur.execute("""
+        SELECT user_id, clear_time_sec, hints_used, created_at
+        FROM sudoku_rankings
+        WHERE difficulty = ?
+        ORDER BY clear_time_sec ASC, hints_used ASC, created_at ASC
+    """, (difficulty,))
+    all_rows = cur.fetchall()
+
+    my_rank = None
+    for idx, row in enumerate(all_rows, start=1):
+        if row["user_id"] == user_id:
+            my_rank = idx
+            break
+
+    conn.close()
+
+    return jsonify({
+        "success": True,
+        "login_required": False,
+        "updated": updated,
+        "nickname": nickname,
+        "rank": my_rank,
+        "clear_time_text": format_seconds_korean(clear_time_sec),
+        "message": "랭킹 처리 완료"
+    })
+
+
+def format_seconds_korean(total_seconds):
+    try:
+        total_seconds = int(total_seconds)
+    except Exception:
+        total_seconds = 0
+
+    hours = total_seconds // 3600
+    minutes = (total_seconds % 3600) // 60
+    seconds = total_seconds % 60
+
+    if hours > 0:
+        return f"{hours}시간{minutes:02d}분{seconds:02d}초"
+    return f"{minutes}분{seconds:02d}초"
+  
+
+# =========================
+# 블록 채우기 게임
+# =========================
+
+BLOCK_FILL_DIFFICULTIES = {
+    "easy":   {"label": "초급", "rows": 5, "cols": 5},
+    "normal": {"label": "중급", "rows": 6, "cols": 6},
+    "hard":   {"label": "고급", "rows": 7, "cols": 7},
+}
+
+BLOCK_FILL_SHAPES = {
+    "mono":   {"cells": [(0, 0)]},
+    "domino": {"cells": [(0, 0), (0, 1)]},
+    "i3":     {"cells": [(0, 0), (0, 1), (0, 2)]},
+    "i4":     {"cells": [(0, 0), (0, 1), (0, 2), (0, 3)]},
+    "o4":     {"cells": [(0, 0), (0, 1), (1, 0), (1, 1)]},
+    "l4":     {"cells": [(0, 0), (1, 0), (2, 0), (2, 1)]},
+    "j4":     {"cells": [(0, 1), (1, 1), (2, 1), (2, 0)]},
+    "t4":     {"cells": [(0, 0), (0, 1), (0, 2), (1, 1)]},
+    "s4":     {"cells": [(0, 1), (0, 2), (1, 0), (1, 1)]},
+    "z4":     {"cells": [(0, 0), (0, 1), (1, 1), (1, 2)]},
+    "trap5":  {"cells": [(0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]},
+    "tri3":   {"cells": [(0, 0), (0, 1), (1, 0)]},
+    "l3":     {"cells": [(0, 0), (1, 0), (1, 1)]},
+    "plus5":  {"cells": [(0, 1), (1, 0), (1, 1), (1, 2), (2, 1)]},
+    "u5":     {"cells": [(0, 0), (0, 2), (1, 0), (1, 1), (1, 2)]},
+    "p5":     {"cells": [(0, 0), (0, 1), (1, 0), (1, 1), (2, 0)]},
+    "v5":     {"cells": [(0, 0), (1, 0), (2, 0), (2, 1), (2, 2)]},
+    "w5":     {"cells": [(0, 0), (1, 0), (1, 1), (2, 1), (2, 2)]},
+    "n5":     {"cells": [(0, 1), (1, 1), (1, 2), (2, 0), (2, 1)]},
+    "c5":     {"cells": [(0, 0), (0, 1), (1, 0), (2, 0), (2, 1)]},
+    "r5":     {"cells": [(0, 0), (0, 1), (0, 2), (1, 1), (2, 1)]},
+    "b5":     {"cells": [(0, 0), (1, 0), (1, 1), (1, 2), (2, 2)]},
+}
+
+BLOCK_FILL_COLORS = [
+    "#4f86ff",
+    "#8b7dff",
+    "#5fc9b5",
+    "#ff8a5b",
+    "#ffcf5c",
+    "#ff6fae",
+    "#55c0ff",
+    "#7bdc72",
+    "#8f7bff",
+    "#ff9d5c",
+    "#4dd0b3",
+    "#ffb84d",
+]
+
+# 난이도별 고정 문제집 (각 10개)
+BLOCK_FILL_FIXED_PUZZLES = {
+    "easy": [
+        {
+            "board": ["11111", "11011", "10110", "11011", "11111"],
+            "pieces": ["o4", "l4", "t4", "z4", "i4", "mono"],
+            "anchors": [(0, 3), (1, 0), (0, 0), (2, 2), (4, 1), (4, 0)],
+        },
+        {
+            "board": ["11100", "11111", "11111", "11110", "01111"],
+            "pieces": ["o4", "l4", "t4", "z4", "i4", "mono"],
+            "anchors": [(1, 3), (1, 0), (0, 0), (2, 1), (4, 1), (1, 2)],
+        },
+        {
+            "board": ["11111", "11110", "11111", "10110", "11110"],
+            "pieces": ["o4", "l4", "t4", "z4", "i4", "mono"],
+            "anchors": [(3, 2), (2, 0), (0, 2), (0, 0), (2, 1), (1, 0)],
+        },
+        {
+            "board": ["01111", "11111", "11111", "11110", "11100"],
+            "pieces": ["o4", "l4", "t4", "z4", "i4", "mono"],
+            "anchors": [(1, 3), (2, 0), (3, 1), (1, 0), (0, 1), (1, 2)],
+        },
+        {
+            "board": ["11110", "11011", "11111", "11110", "11110"],
+            "pieces": ["o4", "l4", "t4", "z4", "i4", "mono"],
+            "anchors": [(1, 3), (2, 0), (3, 1), (1, 0), (0, 0), (4, 3)],
+        },
+        {
+            "board": ["11111", "11011", "11111", "11110", "00111"],
+            "pieces": ["o4", "l4", "t4", "z4", "i4", "mono"],
+            "anchors": [(0, 3), (1, 0), (0, 0), (3, 2), (2, 1), (4, 2)],
+        },
+        {
+            "board": ["11111", "11011", "11011", "11111", "01110"],
+            "pieces": ["o4", "l4", "t4", "z4", "i4", "mono"],
+            "anchors": [(1, 3), (0, 0), (3, 2), (3, 0), (0, 1), (1, 1)],
+        },
+        {
+            "board": ["11011", "11111", "11111", "11110", "11100"],
+            "pieces": ["o4", "l4", "t4", "z4", "i4", "mono"],
+            "anchors": [(0, 3), (2, 0), (3, 1), (0, 0), (2, 1), (1, 0)],
+        },
+        {
+            "board": ["01111", "11111", "11110", "10111", "11011"],
+            "pieces": ["o4", "l4", "t4", "z4", "i4", "mono"],
+            "anchors": [(3, 3), (2, 0), (1, 2), (1, 0), (0, 1), (3, 2)],
+        },
+        {
+            "board": ["11111", "11110", "11111", "11011", "00111"],
+            "pieces": ["o4", "l4", "t4", "z4", "i4", "mono"],
+            "anchors": [(3, 3), (1, 0), (0, 2), (0, 0), (2, 1), (4, 2)],
+        },
+                 {
+            "board": ["01011", "11110", "01111", "11010", "11110"],
+            "pieces": ["plus5", "r5", "tri3", "tri3", "domino"],
+            "anchors": [(0, 0), (2, 2), (0, 3), (3, 0), (4, 1)],
+        },
+        {
+            "board": ["11110", "11110", "11111", "11111", "01110"],
+            "pieces": ["i3", "o4", "domino", "s4", "t4", "l3", "mono"],
+            "anchors": [(0, 1), (1, 2), (2, 0), (3, 2), (3, 0), (0, 0), (2, 4)],
+        },
+        {
+            "board": ["01111", "10111", "10111", "11111", "11000"],
+            "pieces": ["t4", "l4", "u5", "i4", "domino"],
+            "anchors": [(1, 2), (1, 0), (2, 2), (0, 1), (4, 0)],
+        },
+        {
+            "board": ["10110", "11111", "01111", "11011", "01111"],
+            "pieces": ["j4", "i4", "j4", "domino", "mono", "u5"],
+            "anchors": [(0, 2), (4, 1), (1, 3), (3, 0), (2, 1), (0, 0)],
+        },
+        {
+            "board": ["11111", "01011", "01110", "01110", "11111"],
+            "pieces": ["t4", "p5", "c5", "domino", "domino", "mono"],
+            "anchors": [(3, 1), (0, 3), (0, 1), (4, 3), (4, 0), (0, 0)],
+        },
+        {
+            "board": ["11111", "11111", "11111", "01111", "00110"],
+            "pieces": ["tri3", "p5", "u5", "n5", "mono", "mono", "mono"],
+            "anchors": [(2, 1), (0, 0), (0, 2), (2, 2), (3, 2), (2, 4), (0, 3)],
+        },
+        {
+            "board": ["11110", "01111", "11110", "11111", "01100"],
+            "pieces": ["s4", "tri3", "i3", "domino", "s4", "l3"],
+            "anchors": [(1, 2), (2, 0), (3, 2), (0, 0), (0, 1), (3, 1)],
+        },
+        {
+            "board": ["11101", "11111", "11110", "11111", "00111"],
+            "pieces": ["n5", "z4", "u5", "l3", "mono", "domino", "mono"],
+            "anchors": [(2, 2), (1, 0), (0, 2), (2, 0), (4, 4), (0, 0), (3, 2)],
+        },
+        {
+            "board": ["10111", "11111", "10111", "11101", "11111"],
+            "pieces": ["r5", "b5", "b5", "j4", "domino", "mono"],
+            "anchors": [(0, 2), (2, 0), (0, 0), (2, 3), (4, 0), (1, 4)],
+        },
+        {
+            "board": ["11100", "11110", "11011", "01110", "11111"],
+            "pieces": ["i3", "b5", "w5", "o4", "mono", "mono"],
+            "anchors": [(4, 0), (2, 1), (0, 2), (0, 0), (4, 4), (2, 0)],
+        },
+        {
+            "board": ["01111", "11110", "11111", "11111", "11110"],
+            "pieces": ["mono", "t4", "l4", "l3", "o4", "l3", "tri3"],
+            "anchors": [(3, 4), (0, 2), (2, 2), (1, 0), (3, 0), (0, 1), (2, 3)],
+        },
+        {
+            "board": ["01110", "11110", "11111", "11111", "11111"],
+            "pieces": ["i3", "n5", "z4", "o4", "tri3", "domino", "mono"],
+            "anchors": [(0, 1), (2, 1), (1, 2), (1, 0), (3, 0), (4, 3), (3, 4)],
+        },
+        {
+            "board": ["11111", "11000", "01010", "11111", "11011"],
+            "pieces": ["i3", "u5", "o4", "l3", "domino", "mono"],
+            "anchors": [(0, 2), (2, 1), (0, 0), (3, 0), (4, 3), (3, 4)],
+        },
+        {
+            "board": ["11111", "01111", "11110", "11110", "11011"],
+            "pieces": ["domino", "s4", "c5", "i4", "l3", "i3"],
+            "anchors": [(0, 0), (2, 1), (2, 0), (1, 1), (3, 3), (0, 2)],
+        },
+        {
+            "board": ["11110", "10110", "11110", "11011", "11110"],
+            "pieces": ["s4", "n5", "i4", "l4", "domino"],
+            "anchors": [(1, 1), (2, 2), (0, 0), (1, 0), (4, 0)],
+        },
+        {
+            "board": ["11111", "01111", "11111", "11010", "01110"],
+            "pieces": ["u5", "t4", "j4", "i4", "tri3"],
+            "anchors": [(3, 1), (1, 1), (0, 3), (0, 0), (2, 0)],
+        },
+        {
+            "board": ["11011", "11110", "11100", "11101", "00111"],
+            "pieces": ["u5", "s4", "n5", "tri3", "mono"],
+            "anchors": [(3, 2), (0, 2), (1, 0), (0, 0), (2, 0)],
+        },
+        {
+            "board": ["11111", "11010", "11110", "11110", "11011"],
+            "pieces": ["j4", "plus5", "domino", "l3", "tri3", "domino", "mono"],
+            "anchors": [(1, 2), (1, 0), (4, 3), (3, 0), (0, 0), (0, 2), (0, 4)],
+        },
+        {
+            "board": ["11100", "01110", "11111", "11111", "01111"],
+            "pieces": ["plus5", "c5", "tri3", "l3", "mono", "mono", "domino"],
+            "anchors": [(0, 1), (2, 3), (2, 0), (3, 1), (3, 4), (3, 2), (0, 0)],
+        },
+        {
+            "board": ["11110", "10111", "11101", "10110", "11111"],
+            "pieces": ["w5", "mono", "v5", "b5", "domino", "mono", "mono"],
+            "anchors": [(2, 2), (1, 0), (2, 0), (0, 2), (0, 0), (0, 3), (2, 1)],
+        },
+    ],
+
+    "normal": [
+        {
+            "board": ["011110", "111111", "111111", "011111", "011111", "111110"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(1, 3), (4, 2), (1, 0), (1, 2), (3, 0), (0, 2), (3, 4), (0, 1), (5, 2)],
+        },
+        {
+            "board": ["011111", "111111", "111101", "110101", "111111", "111110"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(0, 3), (2, 0), (3, 0), (3, 3), (2, 4), (0, 1), (1, 0), (4, 2), (5, 0)],
+        },
+        {
+            "board": ["111111", "111111", "111110", "011110", "111110", "011111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(2, 1), (5, 2), (0, 4), (0, 0), (2, 3), (4, 0), (1, 1), (1, 3), (0, 1)],
+        },
+        {
+            "board": ["111111", "101111", "111111", "011111", "111111", "000111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(2, 1), (4, 0), (3, 4), (0, 0), (0, 4), (0, 1), (1, 3), (0, 4), (5, 3)],
+        },
+        {
+            "board": ["011111", "111110", "111111", "101111", "111111", "111100"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(0, 0), (2, 1), (4, 2), (2, 0), (2, 4), (0, 3), (5, 0), (1, 3), (3, 2)],
+        },
+        {
+            "board": ["111011", "111111", "011111", "111101", "111001", "111111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(0, 3), (2, 2), (4, 0), (3, 2), (3, 4), (1, 0), (3, 0), (3, 3), (0, 0)],
+        },
+        {
+            "board": ["111101", "011111", "111111", "111101", "111101", "111011"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(2, 1), (0, 0), (1, 4), (3, 0), (3, 4), (4, 1), (2, 0), (0, 5), (1, 1)],
+        },
+        {
+            "board": ["110000", "111110", "111111", "111111", "111111", "111111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(2, 3), (5, 2), (0, 0), (3, 0), (2, 1), (1, 2), (2, 0), (3, 1), (4, 3)],
+        },
+        {
+            "board": ["111111", "101111", "111111", "011111", "111011", "001111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 0), (0, 1), (4, 4), (0, 0), (0, 4), (1, 2), (5, 2), (2, 2), (3, 3)],
+        },
+        {
+            "board": ["011111", "011111", "111111", "111111", "111111", "010110"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(0, 3), (2, 2), (3, 4), (3, 3), (0, 0), (4, 0), (0, 2), (1, 2), (3, 0)],
+        },
+                {
+            "board": ["111111", "111111", "111111", "111111", "001110", "011110"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (5, 1), (0, 3), (1, 0), (0, 4), (2, 1), (1, 1), (3, 5), (0, 0)],
+        },
+        {
+            "board": ["011110", "111010", "111111", "111111", "111111", "111011"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (3, 0), (0, 4), (3, 4), (0, 1), (1, 0), (3, 2), (5, 0)],
+        },
+        {
+            "board": ["110111", "110111", "111110", "100111", "111111", "111111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (0, 0), (3, 0), (3, 4), (1, 3), (5, 2), (4, 1), (0, 3)],
+        },
+        {
+            "board": ["111011", "011110", "111111", "110111", "111111", "011111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (3, 0), (0, 4), (3, 4), (0, 0), (1, 2), (0, 5), (5, 1)],
+        },
+        {
+            "board": ["111111", "010111", "111111", "111110", "111110", "110111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (0, 3), (3, 0), (0, 4), (0, 0), (3, 1), (4, 1), (5, 3)],
+        },
+        {
+            "board": ["111111", "111111", "101101", "110111", "111111", "110011"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (1, 2), (4, 0), (1, 0), (3, 4), (0, 0), (2, 2), (2, 5), (0, 3)],
+        },
+        {
+            "board": ["111000", "111111", "111100", "111111", "111111", "111111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (1, 2), (4, 0), (1, 0), (3, 4), (0, 0), (5, 2), (3, 2), (2, 1)],
+        },
+        {
+            "board": ["000111", "101111", "111111", "111111", "111111", "110111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (1, 2), (4, 0), (1, 0), (3, 4), (2, 1), (2, 4), (5, 3), (0, 3)],
+        },
+        {
+            "board": ["111111", "011111", "011110", "111111", "101111", "111011"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (1, 2), (2, 1), (3, 0), (3, 4), (0, 0), (2, 3), (5, 2), (0, 3)],
+        },
+        {
+            "board": ["111111", "100111", "111111", "111110", "111111", "011110"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (5, 1), (0, 3), (1, 0), (0, 4), (2, 1), (4, 0), (4, 5), (0, 0)],
+        },
+        {
+            "board": ["111111", "111111", "110011", "111110", "111110", "111110"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (5, 1), (0, 3), (2, 0), (0, 4), (1, 0), (3, 1), (5, 0), (0, 0)],
+        },
+        {
+            "board": ["111111", "111111", "111111", "100110", "111110", "011111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (5, 1), (0, 3), (2, 0), (0, 4), (1, 0), (2, 2), (5, 5), (0, 0)],
+        },
+        {
+            "board": ["111111", "111111", "111111", "010111", "011111", "011011"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (1, 4), (3, 1), (3, 4), (0, 2), (0, 0), (0, 5), (1, 0)],
+        },
+        {
+            "board": ["111110", "111111", "111111", "101111", "101111", "110011"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (1, 4), (3, 0), (3, 4), (0, 2), (0, 0), (3, 2), (1, 0)],
+        },
+        {
+            "board": ["001110", "111111", "111111", "100111", "111111", "111111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (1, 4), (3, 0), (3, 4), (0, 2), (5, 2), (4, 1), (1, 0)],
+        },
+        {
+            "board": ["111111", "011011", "111111", "100111", "101111", "111111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (1, 4), (3, 0), (3, 4), (0, 0), (5, 2), (1, 2), (0, 3)],
+        },
+        {
+            "board": ["111111", "001110", "111111", "111111", "011111", "111011"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (0, 2), (0, 4), (3, 4), (3, 0), (0, 0), (0, 5), (5, 0)],
+        },
+        {
+            "board": ["001111", "111110", "111111", "111111", "011111", "011111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (0, 2), (0, 4), (3, 4), (3, 0), (1, 0), (0, 5), (5, 1)],
+        },
+        {
+            "board": ["111010", "010011", "111111", "111111", "111111", "111111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (4, 0), (0, 4), (3, 4), (0, 0), (5, 2), (1, 5), (3, 0)],
+        },
+        {
+            "board": ["110010", "111110", "111111", "111111", "011111", "111111"],
+            "pieces": ["trap5", "i4", "o4", "l4", "j4", "t4", "domino", "mono", "i3"],
+            "anchors": [(3, 2), (2, 0), (0, 0), (0, 4), (3, 4), (3, 0), (1, 2), (5, 3), (5, 0)],
+        },
+    ],
+
+    "hard": [
+        {
+            "board": ["1111100", "0111000", "0111111", "1111111", "1111111", "0111111", "1111110"],
+            "pieces": ["trap5", "i4", "i4", "o4", "l4", "j4", "t4", "z4", "s4", "domino", "mono"],
+            "anchors": [(2, 0), (3, 3), (2, 3), (4, 5), (4, 4), (4, 2), (0, 0), (4, 0), (0, 2), (6, 0), (4, 2)],
+        },
+        {
+            "board": ["1101111", "1111111", "1011110", "0111111", "1110101", "0110111", "0111111"],
+            "pieces": ["trap5", "i4", "i4", "o4", "l4", "j4", "t4", "z4", "s4", "domino", "mono"],
+            "anchors": [(0, 4), (6, 1), (2, 2), (0, 0), (3, 4), (4, 5), (3, 1), (4, 0), (0, 2), (3, 5), (2, 0)],
+        },
+        {
+            "board": ["1111110", "1111111", "1010010", "1111111", "1111111", "0111110", "1110110"],
+            "pieces": ["trap5", "i4", "i4", "o4", "l4", "j4", "t4", "z4", "s4", "domino", "mono"],
+            "anchors": [(5, 0), (0, 2), (1, 3), (0, 0), (2, 0), (1, 1), (4, 4), (5, 3), (3, 2), (3, 5), (2, 5)],
+        },
+        {
+            "board": ["0110001", "1101101", "1110111", "1111111", "1111111", "1111111", "0111110"],
+            "pieces": ["trap5", "i4", "i4", "o4", "l4", "j4", "t4", "z4", "s4", "domino", "mono"],
+            "anchors": [(3, 2), (6, 2), (5, 3), (2, 1), (2, 0), (1, 5), (5, 0), (1, 3), (0, 0), (4, 5), (0, 6)],
+        },
+        {
+            "board": ["1111111", "1111110", "1111100", "1001111", "1111011", "0111111", "1100111"],
+            "pieces": ["trap5", "i4", "i4", "o4", "l4", "j4", "t4", "z4", "s4", "domino", "mono"],
+            "anchors": [(5, 4), (3, 3), (0, 3), (0, 0), (2, 0), (0, 1), (1, 3), (4, 2), (5, 0), (4, 5), (2, 3)],
+        },
+        {
+            "board": ["1111011", "0111111", "0110110", "1111011", "1111100", "1111111", "0111111"],
+            "pieces": ["trap5", "i4", "i4", "o4", "l4", "j4", "t4", "z4", "s4", "domino", "mono"],
+            "anchors": [(5, 4), (0, 0), (4, 1), (0, 5), (1, 2), (1, 0), (5, 0), (1, 3), (5, 2), (3, 5), (4, 0)],
+        },
+        {
+            "board": ["1111111", "1100111", "1111111", "1011100", "1111011", "0110111", "1111111"],
+            "pieces": ["trap5", "i4", "i4", "o4", "l4", "j4", "t4", "z4", "s4", "domino", "mono"],
+            "anchors": [(4, 4), (6, 3), (0, 0), (5, 1), (2, 0), (0, 5), (3, 2), (1, 0), (1, 3), (0, 4), (4, 2)],
+        },
+        {
+            "board": ["0110110", "1111111", "1110110", "1111011", "1111111", "0001111", "1111111"],
+            "pieces": ["trap5", "i4", "i4", "o4", "l4", "j4", "t4", "z4", "s4", "domino", "mono"],
+            "anchors": [(0, 3), (4, 0), (6, 0), (0, 1), (1, 0), (4, 5), (5, 3), (2, 1), (3, 4), (2, 4), (1, 6)],
+        },
+        {
+            "board": ["1111111", "0111110", "1111110", "0001011", "1111110", "1111111", "0111111"],
+            "pieces": ["trap5", "i4", "i4", "o4", "l4", "j4", "t4", "z4", "s4", "domino", "mono"],
+            "anchors": [(5, 4), (2, 0), (0, 0), (4, 0), (3, 3), (4, 1), (0, 4), (1, 3), (3, 4), (1, 1), (6, 3)],
+        },
+        {
+            "board": ["1111011", "1111111", "1101100", "1110110", "0111111", "0110111", "1111111"],
+            "pieces": ["trap5", "i4", "i4", "o4", "l4", "j4", "t4", "z4", "s4", "domino", "mono"],
+            "anchors": [(5, 0), (4, 2), (1, 1), (0, 5), (0, 0), (4, 5), (3, 0), (2, 3), (5, 3), (0, 1), (0, 3)],
+        },
+            
+    ],
+}
+
+
+def make_block_fill_piece_bundle(raw):
+    pieces = []
+    for idx, key in enumerate(raw["pieces"]):
+        shape = BLOCK_FILL_SHAPES[key]
+        pieces.append({
+            "id": f"piece_{idx+1}",
+            "key": key,
+            "cells": shape["cells"],
+            "color": BLOCK_FILL_COLORS[idx % len(BLOCK_FILL_COLORS)],
+            "solution_anchor": list(raw["anchors"][idx]),
+        })
+
+    return {
+        "board": raw["board"],
+        "pieces": pieces,
+        "rows": len(raw["board"]),
+        "cols": len(raw["board"][0]),
+    }
+
+
+def build_block_fill_game(difficulty, puzzle_index=None):
+    if difficulty not in BLOCK_FILL_DIFFICULTIES:
+        difficulty = "easy"
+
+    pool = BLOCK_FILL_FIXED_PUZZLES.get(difficulty, [])
+    if not pool:
+        pool = BLOCK_FILL_FIXED_PUZZLES["easy"]
+        difficulty = "easy"
+
+    if puzzle_index is None:
+        puzzle_index = 0
+
+    try:
+        puzzle_index = int(puzzle_index)
+    except:
+        puzzle_index = 0
+
+    if puzzle_index < 0 or puzzle_index >= len(pool):
+        puzzle_index = 0
+
+    raw = pool[puzzle_index]
+    built = make_block_fill_piece_bundle(raw)
+
+    return {
+        "difficulty": difficulty,
+        "difficulty_label": BLOCK_FILL_DIFFICULTIES[difficulty]["label"],
+        "board": built["board"],
+        "pieces": built["pieces"],
+        "rows": built["rows"],
+        "cols": built["cols"],
+        "puzzle_no": puzzle_index + 1,
+        "puzzle_index": puzzle_index,
+        "puzzle_total": len(pool),
+    }
+
+
+def get_block_fill_clear_map():
+    clear_map = session.get("block_fill_clear_map")
+    if not isinstance(clear_map, dict):
+        clear_map = {}
+    return clear_map
+
+
+def set_block_fill_cleared(difficulty, puzzle_index):
+    clear_map = get_block_fill_clear_map()
+    key = f"{difficulty}:{puzzle_index}"
+    clear_map[key] = True
+    session["block_fill_clear_map"] = clear_map
+    session.modified = True
+
+
+def is_block_fill_cleared(difficulty, puzzle_index):
+    clear_map = get_block_fill_clear_map()
+    key = f"{difficulty}:{puzzle_index}"
+    return bool(clear_map.get(key))
+
+
+@app.get("/quiz/block-fill", endpoint="block_fill_start")
+def block_fill_start():
+    user = current_user()
+    return render_template("block_fill_start.html", user=user)
+
+
+@app.get("/quiz/block-fill/select", endpoint="block_fill_select")
+def block_fill_select():
+    user = current_user()
+    difficulty = (request.args.get("difficulty") or "easy").strip().lower()
+
+    if difficulty not in BLOCK_FILL_DIFFICULTIES:
+        difficulty = "easy"
+
+    pool = BLOCK_FILL_FIXED_PUZZLES.get(difficulty, [])
+    puzzles = []
+
+    for idx, raw in enumerate(pool):
+        puzzles.append({
+            "index": idx,
+            "no": idx + 1,
+            "board": raw["board"],
+            "cleared": is_block_fill_cleared(difficulty, idx),
+        })
+
+    return render_template(
+        "block_fill_select.html",
+        user=user,
+        difficulty=difficulty,
+        difficulty_label=BLOCK_FILL_DIFFICULTIES[difficulty]["label"],
+        puzzles=puzzles,
+        puzzle_total=len(pool),
+    )
+
+
+@app.post("/quiz/block-fill/clear", endpoint="block_fill_mark_clear")
+def block_fill_mark_clear():
+    difficulty = (request.form.get("difficulty") or "easy").strip().lower()
+    puzzle_index = request.form.get("puzzle_index")
+
+    if difficulty not in BLOCK_FILL_DIFFICULTIES:
+        difficulty = "easy"
+
+    try:
+        puzzle_index = int(puzzle_index)
+    except:
+        return jsonify({"ok": False})
+
+    set_block_fill_cleared(difficulty, puzzle_index)
+    return jsonify({"ok": True})
+
+
+@app.get("/quiz/block-fill/play", endpoint="block_fill_play")
+def block_fill_play():
+    user = current_user()
+    difficulty = (request.args.get("difficulty") or "easy").strip().lower()
+    puzzle_index = request.args.get("puzzle")
+
+    game = build_block_fill_game(difficulty, puzzle_index)
+
+    return render_template(
+        "block_fill_play.html",
+        user=user,
+        difficulty=game["difficulty"],
+        difficulty_label=game["difficulty_label"],
+        board=game["board"],
+        pieces=game["pieces"],
+        rows=game["rows"],
+        cols=game["cols"],
+        puzzle_no=game["puzzle_no"],
+        puzzle_index=game["puzzle_index"],
+        puzzle_total=game["puzzle_total"],
+    )
 
 if __name__ == "__main__":
     init_db()
