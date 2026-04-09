@@ -341,7 +341,12 @@
       </div>
 
       <div id="sudokuBoard" class="sudoku-board"></div>
-
+      <!-- 🔥 추가 (여기에 넣어) -->
+      <input id="mobileInput"
+        type="number"
+        inputmode="numeric"
+        pattern="[1-9]*"
+        style="position:absolute; opacity:0; pointer-events:none;">
       <div class="board-hint">
         칸을 클릭한 뒤 키보드 숫자 1~9로 입력하세요. 지우기 버튼으로 선택 칸을 비울 수 있습니다.
       </div>
@@ -382,6 +387,7 @@
   const resultBox = document.getElementById('resultBox');
   const resultTitle = document.getElementById('resultTitle');
   const resultDesc = document.getElementById('resultDesc');
+  const mobileInput = document.getElementById('mobileInput');
 
   const initialPuzzle = puzzle.map(row => [...row]);
   let current = puzzle.map(row => [...row]);
@@ -393,15 +399,15 @@
   const startedAt = Date.now();
 
   function formatTime(totalSec) {
-  const hours = Math.floor(totalSec / 3600);
-  const minutes = Math.floor((totalSec % 3600) / 60);
-  const seconds = totalSec % 60;
+    const hours = Math.floor(totalSec / 3600);
+    const minutes = Math.floor((totalSec % 3600) / 60);
+    const seconds = totalSec % 60;
 
-  if (hours > 0) {
-    return `${hours}시간${String(minutes).padStart(2, '0')}분${String(seconds).padStart(2, '0')}초`;
+    if (hours > 0) {
+      return `${hours}시간${String(minutes).padStart(2, '0')}분${String(seconds).padStart(2, '0')}초`;
+    }
+    return `${minutes}분${String(seconds).padStart(2, '0')}초`;
   }
-  return `${minutes}분${String(seconds).padStart(2, '0')}초`;
-}
 
   function formatRank(rank) {
     if (!rank) return '-';
@@ -464,8 +470,21 @@
           if (finished) return;
           if (isGiven) return;
           if (isHintFixed) return;
+
           selected = { r, c };
           renderBoard();
+
+          if (mobileInput) {
+            mobileInput.value = '';
+            mobileInput.focus();
+
+            setTimeout(() => {
+              mobileInput.focus();
+              if (typeof mobileInput.click === 'function') {
+                mobileInput.click();
+              }
+            }, 0);
+          }
         });
 
         boardEl.appendChild(cell);
@@ -483,58 +502,58 @@
   }
 
   async function saveResult(clearTimeSec) {
-  try {
-    const res = await fetch('/quiz/sudoku/save_result', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        difficulty: difficulty,
-        clearTimeSec: clearTimeSec,
-        hintsUsed: hintsUsed,
-        cleared: true
-      })
-    });
-    return await res.json();
-  } catch (e) {
-    return {
-      success: false,
-      message: '기록 저장 중 오류가 발생했습니다.'
-    };
+    try {
+      const res = await fetch('/quiz/sudoku/save_result', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          difficulty: difficulty,
+          clearTimeSec: clearTimeSec,
+          hintsUsed: hintsUsed,
+          cleared: true
+        })
+      });
+      return await res.json();
+    } catch (e) {
+      return {
+        success: false,
+        message: '기록 저장 중 오류가 발생했습니다.'
+      };
+    }
   }
-}
 
   async function finishGame() {
-  finished = true;
-  hintBtn.disabled = true;
+    finished = true;
+    hintBtn.disabled = true;
 
-  const clearTimeSec = Math.floor((Date.now() - startedAt) / 1000);
-  const result = await saveResult(clearTimeSec);
+    const clearTimeSec = Math.floor((Date.now() - startedAt) / 1000);
+    const result = await saveResult(clearTimeSec);
 
-  resultBox.classList.add('show');
-  resultTitle.textContent = '클리어!';
+    resultBox.classList.add('show');
+    resultTitle.textContent = '클리어!';
 
-  let extraHtml = '';
+    let extraHtml = '';
 
-  if (result.success && result.login_required) {
-    extraHtml = '<br><br>비회원 기록은 랭킹에 등록되지 않습니다.';
-  } else if (result.success) {
-    extraHtml += `<br>현재 랭킹: <strong>${result.rank ? result.rank + '등' : '-'}</strong>`;
+    if (result.success && result.login_required) {
+      extraHtml = '<br><br>비회원 기록은 랭킹에 등록되지 않습니다.';
+    } else if (result.success) {
+      extraHtml += `<br>현재 랭킹: <strong>${result.rank ? result.rank + '등' : '-'}</strong>`;
 
-    if (result.updated) {
-      extraHtml += `<br><br><strong>랭킹 저장 완료</strong>`;
+      if (result.updated) {
+        extraHtml += `<br><br><strong>랭킹 저장 완료</strong>`;
+      } else {
+        extraHtml += `<br><br>기존 최고 기록보다 더 빠르지 않거나, 같은 시간에 힌트 사용이 더 적지 않아 랭킹은 갱신되지 않았습니다.`;
+      }
     } else {
-      extraHtml += `<br><br>기존 최고 기록보다 더 빠르지 않거나, 같은 시간에 힌트 사용이 더 적지 않아 랭킹은 갱신되지 않았습니다.`;
+      extraHtml = `<br><br>${result.message || '기록 저장 중 오류가 발생했습니다.'}`;
     }
-  } else {
-    extraHtml = `<br><br>${result.message || '기록 저장 중 오류가 발생했습니다.'}`;
-  }
 
-  resultDesc.innerHTML =
-    `난이도: <strong>${difficultyLabelText}</strong><br>` +
-    `클리어 시간: <strong>${formatTime(clearTimeSec)}</strong><br>` +
-    `힌트 사용: <strong>${hintsUsed}회</strong>` +
-    extraHtml;
-}
+    resultDesc.innerHTML =
+      `난이도: <strong>${difficultyLabelText}</strong><br>` +
+      `클리어 시간: <strong>${formatTime(clearTimeSec)}</strong><br>` +
+      `힌트 사용: <strong>${hintsUsed}회</strong>` +
+      extraHtml;
+  }
 
   function clearSelectedCell() {
     if (finished || !selected) return;
@@ -601,6 +620,29 @@
     resultBox.classList.remove('show');
     updateHintUI();
     renderBoard();
+
+    if (mobileInput) {
+      mobileInput.value = '';
+      mobileInput.blur();
+    }
+  }
+
+  if (mobileInput) {
+    mobileInput.addEventListener('input', (e) => {
+      if (finished) return;
+      if (!selected) return;
+
+      const raw = String(e.target.value || '');
+      const lastChar = raw.slice(-1);
+
+      if (/^[1-9]$/.test(lastChar)) {
+        inputNumber(Number(lastChar));
+      } else if (lastChar === '0') {
+        clearSelectedCell();
+      }
+
+      e.target.value = '';
+    });
   }
 
   document.addEventListener('keydown', (e) => {
