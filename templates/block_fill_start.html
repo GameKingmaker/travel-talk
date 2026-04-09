@@ -1,0 +1,322 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  :root {
+    --bg-a: #eef4ff;
+    --bg-b: #f8fbff;
+    --card: rgba(255,255,255,0.94);
+    --line: #d9e6ff;
+    --blue: #4f86ff;
+    --blue-dark: #2f5fd6;
+    --text: #1b2a4a;
+    --sub: #6d7b98;
+    --shadow: 0 20px 48px rgba(64, 97, 180, 0.12);
+    --shadow-soft: 0 10px 24px rgba(64, 97, 180, 0.08);
+  }
+
+  * { box-sizing: border-box; }
+
+  .shape-start-wrap {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 12px;
+    background:
+      radial-gradient(circle at top left, rgba(139,125,255,0.08), transparent 24%),
+      radial-gradient(circle at top right, rgba(95,201,181,0.10), transparent 22%),
+      linear-gradient(180deg, var(--bg-a) 0%, var(--bg-b) 100%);
+  }
+
+  .shape-start-shell {
+    width: 100%;
+    max-width: 620px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(247,250,255,0.96) 100%);
+    border: 1px solid rgba(143, 178, 255, 0.55);
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    padding: 28px 22px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .start-title {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(40px, 7vw, 58px);
+    font-weight: 1000;
+    letter-spacing: -0.055em;
+    line-height: 1.05;
+    color: var(--blue-dark);
+  }
+
+  .start-sub {
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 15px;
+    color: var(--sub);
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+
+  .start-image {
+    margin-top: 16px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .start-image img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgba(54, 92, 173, 0.10);
+    display: block;
+  }
+
+  .section {
+    margin-top: 20px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 18px 16px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .section-title {
+    margin: 0 0 12px;
+    font-size: 19px;
+    font-weight: 950;
+    color: var(--blue-dark);
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .difficulty-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .difficulty-option {
+    border: 1.5px solid #dce7ff;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    min-height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.16s ease;
+    padding: 8px 6px;
+  }
+
+  .difficulty-option input { display: none; }
+
+  .difficulty-option .label {
+    display: block;
+    font-size: 18px;
+    font-weight: 950;
+    color: var(--text);
+  }
+
+  .difficulty-option.active {
+    border-color: transparent;
+    background: linear-gradient(135deg, #6fa4ff 0%, #4f86ff 50%, #7f72ff 100%);
+    box-shadow: 0 12px 24px rgba(79,134,255,0.20);
+  }
+
+  .difficulty-option.active .label {
+    color: #fff;
+  }
+
+  .selected-info {
+    margin-top: 12px;
+    min-height: 48px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+    border: 1px solid #dce8ff;
+    color: var(--sub);
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  .main-btn {
+    margin-top: 16px;
+    width: 100%;
+    min-height: 54px;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.16s ease;
+    background: linear-gradient(135deg, #4f86ff 0%, #74a2ff 55%, #8b7dff 100%);
+    color: #fff;
+    box-shadow: 0 12px 22px rgba(79,134,255,0.22);
+  }
+
+  .guide-text {
+    margin: 0;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.9;
+    text-align: left;
+    word-break: keep-all;
+  }
+
+  .guide-text strong {
+    color: var(--blue-dark);
+  }
+
+  @media (max-width: 640px) {
+    .shape-start-wrap {
+      padding: 10px 6px;
+      min-height: calc(100vh - 64px);
+    }
+
+    .shape-start-shell {
+      border-radius: 20px;
+      padding: 20px 14px 16px;
+    }
+
+    .start-title { font-size: 32px; }
+    .start-sub { font-size: 13px; margin-top: 8px; }
+
+    .start-image img {
+      max-width: 250px;
+      border-radius: 16px;
+    }
+
+    .section {
+      margin-top: 14px;
+      padding: 14px 12px;
+      border-radius: 16px;
+    }
+
+    .difficulty-option {
+      min-height: 50px;
+      border-radius: 10px;
+    }
+
+    .difficulty-option .label {
+      font-size: 15px;
+    }
+
+    .selected-info {
+      min-height: 44px;
+      font-size: 12px;
+      padding: 10px 12px;
+    }
+
+    .main-btn {
+      min-height: 48px;
+      font-size: 15px;
+      border-radius: 12px;
+    }
+
+    .guide-text {
+      font-size: 13px;
+      line-height: 1.8;
+    }
+  }
+</style>
+
+<div class="shape-start-wrap">
+  <div class="shape-start-shell">
+    <h1 class="start-title">도형 퍼즐 게임</h1>
+    <p class="start-sub">
+      오른쪽에 있는 다양한 도형을 이용해 빈칸 없이 채워 넣는 퍼즐 게임입니다.
+    </p>
+
+    <div class="start-image">
+      <img src="/static/img/block_fill.png" alt="도형 퍼즐 게임 이미지">
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">난이도 선택</h2>
+
+      <div class="difficulty-options">
+        <label class="difficulty-option active" data-level="easy">
+          <input type="radio" name="difficulty" value="easy" checked>
+          <span class="label">초급</span>
+        </label>
+
+        <label class="difficulty-option" data-level="normal">
+          <input type="radio" name="difficulty" value="normal">
+          <span class="label">중급</span>
+        </label>
+
+        <label class="difficulty-option" data-level="hard">
+          <input type="radio" name="difficulty" value="hard">
+          <span class="label">고급</span>
+        </label>
+      </div>
+
+      <div id="selectedInfo" class="selected-info">
+        <strong style="color:#2f5fd6;">초급</strong> 난이도로 시작합니다.
+      </div>
+
+      <button id="startGameBtn" class="main-btn">게임 시작</button>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">게임 설명 / 방법</h2>
+      <p class="guide-text">
+        <strong>도형 퍼즐 게임</strong>은 오른쪽에 있는 여러 도형을 알맞게 배치해
+        왼쪽 판의 빈칸을 모두 채우는 퍼즐 게임입니다.<br><br>
+
+        어떤 도형을 어디에 넣어야 할지 생각하면서 플레이하게 되어
+        <strong>공간 감각, 배치 판단력, 문제 해결력</strong>을 기르는 데 도움이 될 수 있습니다.<br><br>
+
+        난이도를 선택한 뒤 문제 목록에서 원하는 문제를 골라 시작해보세요.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const difficultyCards = document.querySelectorAll('.difficulty-option');
+  const startBtn = document.getElementById('startGameBtn');
+  const selectedInfo = document.getElementById('selectedInfo');
+
+  difficultyCards.forEach(card => {
+    card.addEventListener('click', () => {
+      difficultyCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+
+      const radio = card.querySelector('input');
+      radio.checked = true;
+
+      const value = radio.value;
+      const label = card.innerText.trim();
+      selectedInfo.innerHTML = `<strong style="color:#2f5fd6;">${label}</strong> 난이도로 시작합니다.`;
+      startBtn.dataset.difficulty = value;
+    });
+  });
+
+  startBtn.dataset.difficulty = 'easy';
+
+  startBtn.addEventListener('click', () => {
+    const difficulty = startBtn.dataset.difficulty || 'easy';
+    window.location.href = `/quiz/block-fill/select?difficulty=${difficulty}`;
+  });
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9733127689125901"
+     data-ad-slot="5907060346"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+{% endblock %}
