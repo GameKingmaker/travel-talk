@@ -64,6 +64,7 @@
     color: var(--sub);
     font-weight: 800;
     margin-bottom: 4px;
+    line-height: 1.25;
   }
 
   .stat-value {
@@ -115,12 +116,15 @@
     font-size: 15px;
     font-weight: 950;
     color: var(--text);
+    line-height: 1.3;
   }
 
   .box-sub {
     font-size: 11px;
     color: var(--sub);
     font-weight: 800;
+    line-height: 1.35;
+    text-align: right;
   }
 
   .board-wrap {
@@ -241,6 +245,78 @@
     background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
     color: var(--blue-dark);
     border: 1px solid #d8e5ff;
+  }
+
+  .mobile-move-panel {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #d9e7ff;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+  }
+
+  .mobile-move-title {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--blue-dark);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .mobile-move-wrap {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .mobile-pad {
+    width: 152px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 44px);
+    grid-template-rows: repeat(3, 44px);
+    gap: 6px;
+    justify-content: center;
+  }
+
+  .move-btn,
+  .place-btn-mobile {
+    border: none;
+    border-radius: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .move-btn {
+    background: linear-gradient(180deg, #ffffff 0%, #f2f7ff 100%);
+    border: 1px solid #d6e4ff;
+    color: var(--blue-dark);
+    font-size: 18px;
+  }
+
+  .move-btn:disabled,
+  .place-btn-mobile:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .move-btn.up { grid-column: 2; grid-row: 1; }
+  .move-btn.left { grid-column: 1; grid-row: 2; }
+  .move-btn.right { grid-column: 3; grid-row: 2; }
+  .move-btn.down { grid-column: 2; grid-row: 3; }
+
+  .place-btn-mobile {
+    min-height: 46px;
+    min-width: 88px;
+    padding: 0 14px;
+    background: linear-gradient(135deg, #4f86ff 0%, #74a2ff 55%, #8b7dff 100%);
+    color: #fff;
+    box-shadow: 0 12px 22px rgba(79,134,255,0.18);
+    font-size: 13px;
   }
 
   .piece-list {
@@ -395,241 +471,287 @@
   }
 
   @media (max-width: 900px) {
-  .block-play-wrap {
-    padding: 4px 4px 10px;
+    .block-play-wrap {
+      padding: 6px 6px 12px;
+    }
+
+    .block-shell {
+      padding: 8px;
+      border-radius: 18px;
+    }
+
+    .play-title {
+      font-size: 24px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .stat-box {
+      min-height: 54px;
+      padding: 7px 8px;
+      border-radius: 11px;
+    }
+
+    .stat-label {
+      font-size: 9px;
+      margin-bottom: 3px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .home-btn-top {
+      min-height: 32px;
+      font-size: 11px;
+      border-radius: 10px;
+    }
+
+    .play-stage {
+      grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+      gap: 8px;
+      align-items: start;
+    }
+
+    .board-card,
+    .tray-card {
+      min-height: auto;
+      padding: 8px;
+      border-radius: 14px;
+    }
+
+    .board-top,
+    .tray-top {
+      align-items: flex-start;
+      margin-bottom: 6px;
+      gap: 6px;
+    }
+
+    .box-title {
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .box-sub {
+      font-size: 10px;
+      line-height: 1.4;
+      text-align: right;
+    }
+
+    .board-wrap {
+      min-height: 0;
+      padding-top: 2px;
+    }
+
+    .board-actions {
+      margin-top: 8px;
+      gap: 5px;
+    }
+
+    .tool-btn {
+      min-height: 34px;
+      font-size: 11px;
+      border-radius: 10px;
+      padding: 0 6px;
+    }
+
+    .mobile-move-panel {
+      display: block;
+    }
+
+    .piece-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .piece-card {
+      min-height: 86px;
+      padding: 7px 5px;
+      border-radius: 11px;
+    }
+
+    .piece-top {
+      margin-bottom: 5px;
+    }
+
+    .piece-badge {
+      min-height: 19px;
+      padding: 0 7px;
+      font-size: 9px;
+    }
+
+    .piece-preview {
+      gap: 2px;
+      padding: 5px;
+      border-radius: 9px;
+    }
+
+    .result-box {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 14px;
+    }
+
+    .result-title {
+      font-size: 19px;
+    }
+
+    .result-desc {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .result-actions {
+      margin-top: 9px;
+      gap: 6px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .action-btn {
+      min-height: 38px;
+      font-size: 12px;
+      border-radius: 10px;
+    }
   }
 
-  .block-shell {
-    padding: 6px;
-    border-radius: 16px;
-  }
+  @media (max-width: 560px) {
+    .block-play-wrap {
+      padding: 4px 4px 10px;
+    }
 
-  .play-title {
-    font-size: 22px;
-    margin-bottom: 6px;
-  }
+    .block-shell {
+      padding: 7px;
+      border-radius: 16px;
+    }
 
-  .stats-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 4px;
-    margin-bottom: 6px;
-  }
+    .play-title {
+      font-size: 21px;
+      margin-bottom: 7px;
+    }
 
-  .stat-box {
-    min-height: 48px;
-    padding: 6px 6px;
-    border-radius: 10px;
-  }
+    .stats-grid {
+      gap: 4px;
+    }
 
-  .stat-label {
-    font-size: 9px;
-    margin-bottom: 2px;
-  }
+    .stat-box {
+      min-height: 50px;
+      padding: 6px 5px;
+      border-radius: 10px;
+    }
 
-  .stat-value {
-    font-size: 13px;
-  }
+    .stat-label {
+      font-size: 8px;
+    }
 
-  .home-btn-top {
-    min-height: 28px;
-    font-size: 11px;
-    border-radius: 9px;
-  }
+    .stat-value {
+      font-size: 12px;
+      line-height: 1.15;
+    }
 
-  .play-stage {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    gap: 6px;
-    align-items: start;
-  }
+    .home-btn-top {
+      min-height: 30px;
+      font-size: 10px;
+    }
 
-  .board-card,
-  .tray-card {
-    min-height: auto;
-    padding: 6px;
-    border-radius: 12px;
-  }
+    .play-stage {
+      grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+      gap: 6px;
+    }
 
-  .board-top,
-  .tray-top {
-    margin-bottom: 5px;
-    gap: 4px;
-  }
+    .board-card,
+    .tray-card {
+      padding: 7px;
+      border-radius: 12px;
+    }
 
-  .box-title {
-    font-size: 12px;
-  }
+    .box-title {
+      font-size: 12px;
+    }
 
-  .box-sub {
-    font-size: 9px;
-  }
+    .box-sub {
+      font-size: 9px;
+    }
 
-  .board-wrap {
-    min-height: 0;
-    padding-top: 0;
-  }
+    .board-actions {
+      margin-top: 7px;
+      gap: 4px;
+    }
 
-  .board-actions {
-    margin-top: 6px;
-    gap: 4px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+    .tool-btn {
+      min-height: 30px;
+      font-size: 10px;
+      border-radius: 9px;
+    }
 
-  .tool-btn {
-    min-height: 30px;
-    font-size: 11px;
-    border-radius: 9px;
-    padding: 0 4px;
-  }
+    .mobile-move-panel {
+      margin-top: 8px;
+      padding: 8px;
+      border-radius: 12px;
+    }
 
-  .piece-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6px;
-  }
+    .mobile-move-title {
+      font-size: 11px;
+      margin-bottom: 7px;
+    }
 
-  .piece-card {
-    min-height: 78px;
-    padding: 6px 4px;
-    border-radius: 10px;
-  }
+    .mobile-move-wrap {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
 
-  .piece-top {
-    margin-bottom: 4px;
-  }
+    .mobile-pad {
+      width: 138px;
+      grid-template-columns: repeat(3, 40px);
+      grid-template-rows: repeat(3, 40px);
+      gap: 5px;
+    }
 
-  .piece-badge {
-    min-height: 18px;
-    padding: 0 6px;
-    font-size: 9px;
-  }
+    .move-btn {
+      font-size: 16px;
+      border-radius: 10px;
+    }
 
-  .piece-preview {
-    gap: 2px;
-    padding: 4px;
-    border-radius: 8px;
-  }
+    .place-btn-mobile {
+      min-height: 42px;
+      width: 100%;
+      font-size: 12px;
+      border-radius: 10px;
+    }
 
-  .result-box {
-    margin-top: 8px;
-    padding: 10px;
-    border-radius: 12px;
-  }
+    .piece-list {
+      gap: 5px;
+    }
 
-  .result-title {
-    font-size: 18px;
-  }
+    .piece-card {
+      min-height: 74px;
+      padding: 5px 4px;
+      border-radius: 9px;
+    }
 
-  .result-desc {
-    font-size: 12px;
-    line-height: 1.6;
-  }
+    .piece-badge {
+      min-height: 17px;
+      padding: 0 6px;
+      font-size: 8px;
+    }
 
-  .result-actions {
-    margin-top: 8px;
-    gap: 6px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+    .piece-preview {
+      padding: 4px;
+      gap: 2px;
+      border-radius: 8px;
+    }
 
-  .action-btn {
-    min-height: 34px;
-    font-size: 12px;
-    border-radius: 9px;
+    .result-actions {
+      grid-template-columns: 1fr;
+    }
   }
-}
-
-@media (max-width: 560px) {
-  .block-play-wrap {
-    padding: 2px 2px 8px;
-  }
-
-  .block-shell {
-    padding: 5px;
-    border-radius: 14px;
-  }
-
-  .play-title {
-    font-size: 18px;
-    margin-bottom: 4px;
-  }
-
-  .stats-grid {
-    gap: 3px;
-  }
-
-  .stat-box {
-    min-height: 42px;
-    padding: 4px 4px;
-    border-radius: 8px;
-  }
-
-  .stat-label {
-    font-size: 8px;
-  }
-
-  .stat-value {
-    font-size: 11px;
-  }
-
-  .home-btn-top {
-    min-height: 24px;
-    font-size: 10px;
-  }
-
-  .play-stage {
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-    gap: 4px;
-  }
-
-  .board-card,
-  .tray-card {
-    padding: 5px;
-    border-radius: 10px;
-  }
-
-  .box-title {
-    font-size: 11px;
-  }
-
-  .box-sub {
-    font-size: 8px;
-  }
-
-  .board-actions {
-    margin-top: 5px;
-    gap: 3px;
-  }
-
-  .tool-btn {
-    min-height: 26px;
-    font-size: 10px;
-    border-radius: 8px;
-  }
-
-  .piece-list {
-    gap: 4px;
-  }
-
-  .piece-card {
-    min-height: 68px;
-    padding: 4px 3px;
-    border-radius: 8px;
-  }
-
-  .piece-badge {
-    min-height: 16px;
-    padding: 0 5px;
-    font-size: 8px;
-  }
-
-  .piece-preview {
-    padding: 3px;
-    gap: 2px;
-    border-radius: 7px;
-  }
-
-  .result-actions {
-    grid-template-columns: 1fr;
-  }
-}
 </style>
 
 <div class="block-play-wrap">
@@ -680,6 +802,21 @@
           <button id="removeSelectedBtn" class="tool-btn sub" type="button">제거하기</button>
           <button id="clearAllBtn" class="tool-btn sub" type="button">모두 제거하기</button>
         </div>
+
+        <div id="mobileMovePanel" class="mobile-move-panel">
+          <p class="mobile-move-title">모바일에서는 방향 버튼으로 실루엣을 이동한 뒤 배치하세요</p>
+
+          <div class="mobile-move-wrap">
+            <div class="mobile-pad">
+              <button id="moveUpBtn" class="move-btn up" type="button">▲</button>
+              <button id="moveLeftBtn" class="move-btn left" type="button">◀</button>
+              <button id="moveRightBtn" class="move-btn right" type="button">▶</button>
+              <button id="moveDownBtn" class="move-btn down" type="button">▼</button>
+            </div>
+
+            <button id="placePieceBtn" class="place-btn-mobile" type="button">배치하기</button>
+          </div>
+        </div>
       </div>
 
       <div class="tray-card">
@@ -728,6 +865,12 @@
   const otherPuzzleBtn = document.getElementById('otherPuzzleBtn');
   const retryBtn = document.getElementById('retryBtn');
 
+  const moveUpBtn = document.getElementById('moveUpBtn');
+  const moveDownBtn = document.getElementById('moveDownBtn');
+  const moveLeftBtn = document.getElementById('moveLeftBtn');
+  const moveRightBtn = document.getElementById('moveRightBtn');
+  const placePieceBtn = document.getElementById('placePieceBtn');
+
   let pieces = initialPieces.map(piece => ({
     ...piece,
     placed: false,
@@ -745,6 +888,10 @@
   let rafId = null;
   let pendingMouse = null;
   const startedAt = Date.now();
+
+  function isMobileUI() {
+    return window.innerWidth <= 900;
+  }
 
   function makeEmptyOccupancy() {
     return Array.from({ length: rows }, (_, r) =>
@@ -815,6 +962,7 @@
     renderPieces();
     updateGuideText();
     updateActionButtons();
+    updateMobileButtons();
   }
 
   function canPlacePiece(piece, anchorRow, anchorCol, ignorePieceId = null) {
@@ -903,6 +1051,7 @@
     renderPieces();
     updateGuideText();
     updateActionButtons();
+    updateMobileButtons();
   }
 
   function finishGameByAnswer() {
@@ -921,6 +1070,7 @@
     renderPieces();
     updateGuideText();
     updateActionButtons();
+    updateMobileButtons();
   }
 
   function applyAnswerLayout() {
@@ -939,57 +1089,57 @@
   }
 
   function computeSizes() {
-  const stage = document.getElementById('playStage');
-  const totalWidth = stage.clientWidth || window.innerWidth;
-  const mobileSmall = window.innerWidth <= 560;
-  const mobile = window.innerWidth <= 900;
+    const stage = document.getElementById('playStage');
+    const totalWidth = stage.clientWidth || window.innerWidth;
+    const mobileSmall = window.innerWidth <= 560;
+    const mobile = window.innerWidth <= 900;
 
-  let boardWidth;
+    let boardWidth;
 
-  if (mobileSmall) {
-    boardWidth = totalWidth * 0.54;
-  } else if (mobile) {
-    boardWidth = totalWidth * 0.56;
-  } else {
-    boardWidth = totalWidth * 0.47;
+    if (mobileSmall) {
+      boardWidth = totalWidth * 0.54;
+    } else if (mobile) {
+      boardWidth = totalWidth * 0.56;
+    } else {
+      boardWidth = totalWidth * 0.47;
+    }
+
+    let cell = Math.floor(boardWidth / cols);
+
+    let maxCell;
+    let minCell;
+
+    if (mobileSmall) {
+      maxCell = difficulty === 'easy' ? 32 : difficulty === 'normal' ? 26 : 22;
+      minCell = difficulty === 'easy' ? 20 : difficulty === 'normal' ? 16 : 14;
+    } else if (mobile) {
+      maxCell = difficulty === 'easy' ? 40 : difficulty === 'normal' ? 34 : 28;
+      minCell = difficulty === 'easy' ? 24 : difficulty === 'normal' ? 20 : 16;
+    } else {
+      maxCell = difficulty === 'easy' ? 70 : difficulty === 'normal' ? 58 : 48;
+      minCell = difficulty === 'easy' ? 28 : difficulty === 'normal' ? 24 : 18;
+    }
+
+    cell = Math.min(cell, maxCell);
+    cell = Math.max(cell, minCell);
+    cellPx = cell;
+
+    boardGrid.style.setProperty('--cell-size', `${cell}px`);
+
+    let mini;
+    if (mobileSmall) {
+      mini = Math.max(8, Math.floor(cell * 0.45));
+      mini = Math.min(mini, 14);
+    } else if (mobile) {
+      mini = Math.max(10, Math.floor(cell * 0.48));
+      mini = Math.min(mini, 18);
+    } else {
+      mini = Math.max(14, Math.floor(cell * 0.52));
+      mini = Math.min(mini, 24);
+    }
+
+    document.documentElement.style.setProperty('--mini-cell', `${mini}px`);
   }
-
-  let cell = Math.floor(boardWidth / cols);
-
-  let maxCell;
-  let minCell;
-
-  if (mobileSmall) {
-    maxCell = difficulty === 'easy' ? 32 : difficulty === 'normal' ? 26 : 22;
-    minCell = difficulty === 'easy' ? 20 : difficulty === 'normal' ? 16 : 14;
-  } else if (mobile) {
-    maxCell = difficulty === 'easy' ? 40 : difficulty === 'normal' ? 34 : 28;
-    minCell = difficulty === 'easy' ? 24 : difficulty === 'normal' ? 20 : 16;
-  } else {
-    maxCell = difficulty === 'easy' ? 70 : difficulty === 'normal' ? 58 : 48;
-    minCell = difficulty === 'easy' ? 28 : difficulty === 'normal' ? 24 : 18;
-  }
-
-  cell = Math.min(cell, maxCell);
-  cell = Math.max(cell, minCell);
-  cellPx = cell;
-
-  boardGrid.style.setProperty('--cell-size', `${cell}px`);
-
-  let mini;
-  if (mobileSmall) {
-    mini = Math.max(8, Math.floor(cell * 0.45));
-    mini = Math.min(mini, 14);
-  } else if (mobile) {
-    mini = Math.max(10, Math.floor(cell * 0.48));
-    mini = Math.min(mini, 18);
-  } else {
-    mini = Math.max(14, Math.floor(cell * 0.52));
-    mini = Math.min(mini, 24);
-  }
-
-  document.documentElement.style.setProperty('--mini-cell', `${mini}px`);
-}
 
   function createPreviewGrid(piece) {
     const wrap = document.createElement('div');
@@ -1061,6 +1211,72 @@
     const top = anchorRow * (cellPx + 2) + 2;
     ghostPiece.style.left = `${left}px`;
     ghostPiece.style.top = `${top}px`;
+  }
+
+  function syncGhostAtCurrentAnchor() {
+    if (!selectedPieceId || !hoverAnchor) {
+      hideGhost();
+      updateMobileButtons();
+      return;
+    }
+
+    const piece = getPieceById(selectedPieceId);
+    if (!piece) {
+      hideGhost();
+      updateMobileButtons();
+      return;
+    }
+
+    showGhost(piece);
+    moveGhostToAnchor(hoverAnchor.row, hoverAnchor.col);
+    hoverValid = canPlacePiece(piece, hoverAnchor.row, hoverAnchor.col, piece.id);
+    setGhostState(hoverValid);
+    ghostPiece.classList.add('show');
+    updateMobileButtons();
+  }
+
+  function findFirstUsableAnchor(piece) {
+    if (!piece) return null;
+
+    if (piece.anchor) {
+      return { row: piece.anchor[0], col: piece.anchor[1] };
+    }
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (canPlacePiece(piece, r, c, piece.id)) {
+          return { row: r, col: c };
+        }
+      }
+    }
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (boardMask[r][c] === '1') {
+          return { row: r, col: c };
+        }
+      }
+    }
+
+    return { row: 0, col: 0 };
+  }
+
+  function moveSelectedGhostBy(deltaRow, deltaCol) {
+    if (!selectedPieceId || finished || answerShown) return;
+
+    const piece = getPieceById(selectedPieceId);
+    if (!piece) return;
+
+    if (!hoverAnchor) {
+      hoverAnchor = findFirstUsableAnchor(piece);
+    }
+
+    hoverAnchor = {
+      row: hoverAnchor.row + deltaRow,
+      col: hoverAnchor.col + deltaCol
+    };
+
+    syncGhostAtCurrentAnchor();
   }
 
   function renderBoard() {
@@ -1141,26 +1357,41 @@
     }
 
     if (!selectedPieceId) {
-      boardGuide.textContent = '오른쪽 도형을 클릭해 선택 후 판 클릭 배치';
+      boardGuide.textContent = isMobileUI()
+        ? '오른쪽 도형 선택 후 아래 방향 버튼으로 이동하고 배치'
+        : '오른쪽 도형을 클릭해 선택 후 판 클릭 배치';
       return;
     }
 
     const piece = getPieceById(selectedPieceId);
     if (piece && piece.placed) {
-      boardGuide.textContent = '사용중 도형을 새 위치에 놓거나 제거하기 버튼을 눌러주세요';
+      boardGuide.textContent = isMobileUI()
+        ? '사용중 도형을 방향 버튼으로 옮기거나 제거하기를 눌러주세요'
+        : '사용중 도형을 새 위치에 놓거나 제거하기 버튼을 눌러주세요';
       return;
     }
 
-    boardGuide.textContent = '선택한 도형을 판에서 클릭해 배치';
+    boardGuide.textContent = isMobileUI()
+      ? '선택한 도형을 방향 버튼으로 이동 후 배치하기'
+      : '선택한 도형을 판에서 클릭해 배치';
   }
 
   function updateActionButtons() {
-    const selectedPiece = selectedPieceId ? getPieceById(selectedPieceId) : null;
     const anyPlaced = pieces.some(piece => piece.placed);
 
     answerBtn.disabled = answerShown || finished;
     removeSelectedBtn.disabled = !selectedPieceId || answerShown || finished;
     clearAllBtn.disabled = !anyPlaced || answerShown || finished;
+  }
+
+  function updateMobileButtons() {
+    const disabled = !selectedPieceId || finished || answerShown;
+
+    moveUpBtn.disabled = disabled;
+    moveDownBtn.disabled = disabled;
+    moveLeftBtn.disabled = disabled;
+    moveRightBtn.disabled = disabled;
+    placePieceBtn.disabled = disabled || !hoverAnchor;
   }
 
   function selectPiece(pieceId) {
@@ -1177,24 +1408,23 @@
       renderPieces();
       updateGuideText();
       updateActionButtons();
+      updateMobileButtons();
       return;
     }
 
     selectedPieceId = pieceId;
-    hoverAnchor = piece.anchor ? { row: piece.anchor[0], col: piece.anchor[1] } : null;
+    hoverAnchor = findFirstUsableAnchor(piece);
     hoverValid = false;
     showGhost(piece);
 
-    if (piece.anchor) {
-      moveGhostToAnchor(piece.anchor[0], piece.anchor[1]);
-      hoverValid = canPlacePiece(piece, piece.anchor[0], piece.anchor[1], piece.id);
-      setGhostState(hoverValid);
-      ghostPiece.classList.add('show');
+    if (hoverAnchor) {
+      syncGhostAtCurrentAnchor();
     }
 
     renderPieces();
     updateGuideText();
     updateActionButtons();
+    updateMobileButtons();
   }
 
   function boardCellFromPoint(clientX, clientY) {
@@ -1218,6 +1448,7 @@
       ghostPiece.classList.remove('show');
       hoverAnchor = null;
       hoverValid = false;
+      updateMobileButtons();
       return;
     }
 
@@ -1230,6 +1461,7 @@
     moveGhostToAnchor(pos.row, pos.col);
     setGhostState(hoverValid);
     ghostPiece.classList.add('show');
+    updateMobileButtons();
   }
 
   function queueMouseMove(clientX, clientY) {
@@ -1261,6 +1493,7 @@
       if (oldPlaced && oldAnchor) {
         placePiece(piece.id, oldAnchor[0], oldAnchor[1]);
       }
+      hoverAnchor = { row, col };
       moveGhostToAnchor(row, col);
       setGhostState(false);
       ghostPiece.classList.add('show');
@@ -1268,6 +1501,7 @@
       renderBoard();
       renderPieces();
       updateActionButtons();
+      updateMobileButtons();
       return;
     }
 
@@ -1281,6 +1515,7 @@
     renderPieces();
     updateGuideText();
     updateActionButtons();
+    updateMobileButtons();
 
     if (allCellsFilled()) {
       await finishGameByClear();
@@ -1305,6 +1540,7 @@
     renderPieces();
     updateGuideText();
     updateActionButtons();
+    updateMobileButtons();
   }
 
   function showAnswer() {
@@ -1322,20 +1558,33 @@
 
     if (selectedPieceId) {
       const piece = getPieceById(selectedPieceId);
-      if (piece) showGhost(piece);
+      if (piece) {
+        showGhost(piece);
+        if (!hoverAnchor) {
+          hoverAnchor = findFirstUsableAnchor(piece);
+        }
+        if (hoverAnchor) {
+          syncGhostAtCurrentAnchor();
+        }
+      }
     }
+
+    updateMobileButtons();
   }
 
   boardGrid.addEventListener('pointermove', (e) => {
     if (finished || answerShown || !selectedPieceId) return;
+    if (isMobileUI()) return;
     queueMouseMove(e.clientX, e.clientY);
   });
 
   boardGrid.addEventListener('pointerleave', () => {
     if (!selectedPieceId) return;
+    if (isMobileUI()) return;
     ghostPiece.classList.remove('show');
     hoverAnchor = null;
     hoverValid = false;
+    updateMobileButtons();
   });
 
   boardGrid.addEventListener('pointerdown', async (e) => {
@@ -1350,7 +1599,12 @@
     const col = Number(target.dataset.col);
 
     if (selectedPieceId) {
-      await tryPlaceSelectedAt(row, col);
+      if (isMobileUI()) {
+        hoverAnchor = { row, col };
+        syncGhostAtCurrentAnchor();
+      } else {
+        await tryPlaceSelectedAt(row, col);
+      }
       return;
     }
 
@@ -1358,7 +1612,9 @@
     if (!pieceId) return;
 
     selectPiece(pieceId);
-    updateGhostFromMouse(e.clientX, e.clientY);
+    if (!isMobileUI()) {
+      updateGhostFromMouse(e.clientX, e.clientY);
+    }
   });
 
   pieceList.addEventListener('pointerdown', (e) => {
@@ -1373,6 +1629,16 @@
     if (!pieceId) return;
 
     selectPiece(pieceId);
+  });
+
+  moveUpBtn.addEventListener('click', () => moveSelectedGhostBy(-1, 0));
+  moveDownBtn.addEventListener('click', () => moveSelectedGhostBy(1, 0));
+  moveLeftBtn.addEventListener('click', () => moveSelectedGhostBy(0, -1));
+  moveRightBtn.addEventListener('click', () => moveSelectedGhostBy(0, 1));
+
+  placePieceBtn.addEventListener('click', async () => {
+    if (!selectedPieceId || !hoverAnchor || finished || answerShown) return;
+    await tryPlaceSelectedAt(hoverAnchor.row, hoverAnchor.col);
   });
 
   answerBtn.addEventListener('click', showAnswer);
