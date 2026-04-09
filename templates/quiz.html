@@ -1,29 +1,30 @@
 <!-- quiz.html -->
 {% extends "base.html" %}
 
-{# ✅ SEO (퀴즈 허브는 노출 OK) #}
 {% set page_title = "퀴즈 · 게임 | 일본 여행 회화 공부방" %}
-{% set page_desc = "단어 게임과 상황 대화 퀴즈 등 다양한 일본어 학습 게임을 바로 시작해보세요." %}
+{% set page_desc = "단어 게임과 상황 대화 퀴즈, 스도쿠 등 다양한 게임을 바로 시작해보세요." %}
 {% set page_robots = "index,follow" %}
 
 {% block content %}
 
 <style>
-  .quiz-wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 48px; }
-
-  /* ✅ 상단(헤더) UI 업그레이드 */
-  .quiz-hero{
-    position: relative;
-    border-radius: 20px;
-    padding: 22px 22px;
-    border: 1px solid rgba(15,23,42,0.08);
-    background:
-      radial-gradient(1200px 240px at 0% 0%, rgba(37,99,235,.14), transparent 60%),
-      radial-gradient(900px 240px at 100% 0%, rgba(96,165,250,.14), transparent 55%),
-      linear-gradient(180deg, #ffffff, #fbfdff);
-    box-shadow: 0 14px 34px rgba(15,23,42,.06);
-    overflow: hidden;
+  .quiz-wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 22px 18px 48px;
   }
+
+.quiz-hero{
+  position: relative;
+  border-radius: 22px;
+  padding: 26px 24px;
+
+  background: linear-gradient(135deg, #e8fbf7 0%, #e3f0ff 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
   .quiz-hero::after{
     content:"";
     position:absolute;
@@ -35,28 +36,40 @@
     background: radial-gradient(circle at 30% 30%, rgba(37,99,235,.16), rgba(37,99,235,0) 70%);
     pointer-events:none;
   }
+
   .quiz-hero-row{
     display:flex;
     align-items:flex-end;
     justify-content:space-between;
     gap:16px;
   }
+
   .quiz-title{
-    font-size:34px;
-    font-weight:900;
-    letter-spacing:-0.5px;
-    margin:0;
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1b2a4a;
+}
+
   .quiz-sub{
-    margin:8px 0 0;
-    color:#475569;
-    font-size:14px;
-    line-height:1.65;
-    max-width: 760px;
-  }
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #2f3e5c;
+  max-width: 760px;
+  word-break: keep-all;
+}
+
+/* 강조 (색 X, 크기만) */
+.quiz-sub b{
+  font-size: 16.5px;
+  font-weight: 900;
+  color: #2f3e5c;
+}
 
   .hero-actions{
     display:flex;
@@ -65,367 +78,431 @@
     align-items:center;
     justify-content:flex-end;
   }
-  .hero-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    height:42px;
-    padding:0 14px;
-    border-radius:14px;
-    border:1px solid rgba(15,23,42,.10);
-    background:#fff;
-    color:#0f172a;
-    text-decoration:none;
-    font-weight:900;
-    transition:.16s ease;
-    box-shadow:0 8px 18px rgba(15,23,42,.05);
-    white-space:nowrap;
-  }
+
+  /* 오른쪽 버튼 */
+.hero-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:42px;
+  padding:0 16px;
+  border-radius:14px;
+
+  background:#3b82f6;
+  color:#fff;
+  font-weight:900;
+  text-decoration:none;
+
+  border:none;
+  box-shadow:0 10px 25px rgba(59,130,246,0.35);
+  transition: all .15s ease;
+}
+
   .hero-btn:hover{
-    transform: translateY(-1px);
-    border-color: rgba(37,99,235,.22);
-    box-shadow:0 14px 28px rgba(37,99,235,.12);
-  }
+  transform: translateY(-2px);
+  box-shadow:0 14px 30px rgba(59,130,246,0.5);
+}
+
+/* 보조 버튼 (조금 덜 튀게) */
+.hero-btn:not(.primary){
+  background:#60a5fa;
+}
+
   .hero-btn.primary{
     background:#2563eb;
     border-color:#2563eb;
     color:#fff;
     box-shadow:0 14px 28px rgba(37,99,235,.22);
   }
+
   .hero-btn.primary:hover{
     box-shadow:0 18px 34px rgba(37,99,235,.28);
   }
 
-  /* 로그인 안내 박스도 더 예쁘게 */
-  .hint{
-    margin-top:14px;
-    padding:12px 14px;
-    border:1px solid rgba(37,99,235,.18);
-    border-radius:14px;
-    background: linear-gradient(180deg, #f6f8ff, #fbfdff);
-    color:#475467;
-    font-size:13px;
-    display:flex;
-    align-items:flex-start;
-    gap:10px;
-  }
-  .hint strong{ color:#0b1f4b; }
-  .hint a{ color:#2563eb; text-decoration:underline; text-underline-offset:3px; }
-
-  /* ✅ 퀵가이드(3칸) – 헤더 아래로 배치 */
-  .quiz-mini{
-    margin-top:14px;
-    display:grid;
-    grid-template-columns: repeat(3, minmax(0,1fr));
-    gap:10px;
-  }
-  .mini-box{
+  .section-box{
+    margin-top:24px;
+    padding:18px 16px 16px;
     border:1px solid rgba(15,23,42,0.08);
-    background:#ffffff;
-    border-radius:16px;
-    padding:12px 12px;
-  }
-  .mini-title{
-    font-weight:950;
-    font-size:13px;
-    color:#0f172a;
-    margin-bottom:6px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-  }
-  .mini-dot{
-    width:10px; height:10px; border-radius:50%;
-    background: rgba(37,99,235,.85);
-    box-shadow:0 0 0 4px rgba(37,99,235,.12);
-    flex:0 0 auto;
-  }
-  .mini-txt{
-    font-size:13px;
-    color:#475569;
-    line-height:1.55;
+    border-radius:20px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,255,0.98));
+    box-shadow:0 10px 28px rgba(15,23,42,0.05);
   }
 
-  @media (max-width: 860px){
-    .quiz-hero-row{ flex-direction:column; align-items:flex-start; }
-    .hero-actions{ justify-content:flex-start; }
-    .quiz-mini{ grid-template-columns:1fr; }
+  .section-box.brain{
+    background:
+      radial-gradient(900px 180px at 0% 0%, rgba(124,58,237,.08), transparent 55%),
+      linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,255,0.98));
+  }
+
+  .category-block{
+    margin-top:0;
+  }
+
+  .category-title{
+    margin:0 0 6px;
+    font-size:22px;
+    font-weight:950;
+    color:#0f172a;
+    letter-spacing:-0.3px;
+  }
+
+  .category-desc{
+    margin:0 0 14px;
+    color:#64748b;
+    font-size:14px;
+    line-height:1.7;
   }
 
   .game-grid{
     display:grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap:16px;
-    margin-top:16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap:14px;
   }
 
-  @media (max-width: 860px){
-    .game-grid{
-      grid-template-columns: 1fr;
-    }
-  }
   .game-card{
     background:#fff;
     border:1px solid rgba(15,23,42,0.08);
     border-radius:16px;
-    padding:16px 16px 14px;
+    padding:12px 12px 11px;
     box-shadow:0 6px 18px rgba(15,23,42,0.06);
     text-decoration:none;
     color:#0f172a;
     transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
     display:block;
   }
-  .game-card:hover{ transform: translateY(-1px); border-color: rgba(37,99,235,0.22); box-shadow:0 8px 18px rgba(37,99,235,0.10); }
-  .game-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:10px; }
-  .game-name{ font-size:18px; font-weight:900; margin:0; letter-spacing:-0.3px; }
-  .pill{
-    display:inline-flex; align-items:center; justify-content:center;
-    padding:4px 10px; border-radius:999px;
-    background:#f1f5ff; border:1px solid rgba(37,99,235,0.18);
-    color:#1d4ed8; font-weight:800; font-size:12px; white-space:nowrap;
-  }
-  .game-desc{ margin:0; color:#475569; font-size:13px; line-height:1.5; }
-  .game-foot{ margin-top:12px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
-  .go{ font-weight:900; color:#1d4ed8; }
 
-  /* (기존) 인트로 섹션 유지 */
-  .quiz-intro{
-    margin: 14px 0 18px;
-    padding: 18px 18px;
-    background:#fff;
-    border:1px solid rgba(15,23,42,0.08);
-    border-radius:16px;
-    box-shadow: 0 8px 28px rgba(15,23,42,0.06);
-  }
-  .quiz-intro h2{
-    margin:0 0 10px;
-    font-size:18px;
-    font-weight:900;
-    letter-spacing:-.2px;
-  }
-  .quiz-intro p{
-    margin:6px 0 12px;
-    font-size:14px;
-    color:#475569;
-    line-height:1.65;
-  }
-  .quiz-intro-grid{
-    display:grid;
-    grid-template-columns:repeat(3, minmax(0, 1fr));
-    gap:10px;
-  }
-  .qibox{
-    border:1px solid rgba(15,23,42,0.08);
-    background:#fbfdff;
-    border-radius:14px;
-    padding:12px 12px;
-  }
-  .qititle{
-    font-weight:900;
-    font-size:13px;
-    color:#0f172a;
-    margin-bottom:6px;
-  }
-  .qitxt{
-    font-size:13px;
-    color:#475569;
-    line-height:1.55;
-  }
-  @media (max-width: 860px){
-    .quiz-intro-grid{ grid-template-columns:1fr; }
+  .game-card:hover{
+    transform: translateY(-1px);
+    border-color: rgba(37,99,235,0.22);
+    box-shadow:0 8px 18px rgba(37,99,235,0.10);
   }
 
   .game-thumb{
     width:100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio:16 / 9;
     background:#f1f5f9;
     overflow:hidden;
     border-radius:14px;
-    margin-bottom:14px;
+    margin-bottom:12px;
   }
+
   .game-thumb img{
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
   }
+
+  .game-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:8px;
+    margin-bottom:8px;
+  }
+
+  .game-name{
+    font-size:16px;
+    font-weight:900;
+    margin:0;
+    letter-spacing:-0.3px;
+    color:#0f172a;
+  }
+
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:4px 9px;
+    border-radius:999px;
+    background:#f1f5ff;
+    border:1px solid rgba(37,99,235,0.18);
+    color:#1d4ed8;
+    font-weight:800;
+    font-size:11px;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+
+  .game-desc{
+    margin:0;
+    color:#475569;
+    font-size:12px;
+    line-height:1.55;
+    min-height:58px;
+  }
+
+  .game-foot{
+    margin-top:10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+  }
+
+  .go{
+    font-weight:900;
+    color:#1d4ed8;
+    font-size:13px;
+  }
+
+  @media (max-width: 860px){
+    .quiz-hero-row{
+      flex-direction:column;
+      align-items:flex-start;
+    }
+
+    .hero-actions{
+      justify-content:flex-start;
+    }
+
+    .game-grid{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px){
+    .quiz-wrap{
+      padding: 16px 12px 40px;
+    }
+
+    .quiz-hero{
+      padding:18px 16px;
+      border-radius:16px;
+    }
+
+    .quiz-title{
+      font-size:28px;
+    }
+
+    .quiz-sub{
+      font-size:13px;
+      line-height:1.65;
+    }
+
+    .section-box{
+      margin-top:18px;
+      padding:16px 13px 14px;
+      border-radius:16px;
+    }
+
+    .category-title{
+      font-size:19px;
+    }
+
+    .category-desc{
+      font-size:13px;
+      margin-bottom:12px;
+    }
+
+    .game-grid{
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+
+    .game-card{
+      border-radius:14px;
+      padding:11px 11px 10px;
+    }
+
+    .game-name{
+      font-size:15px;
+    }
+
+    .game-desc{
+      font-size:12px;
+      min-height:auto;
+    }
+
+    .go{
+      font-size:12px;
+    }
+  }
 </style>
 
 <div class="quiz-wrap">
 
-  <!-- ✅ 상단 헤더(예쁘게) -->
   <section class="quiz-hero">
     <div class="quiz-hero-row">
       <div>
         <h1 class="quiz-title">🎮 퀴즈 · 게임</h1>
 
         <p class="quiz-sub">
-          이 페이지는 일본어 학습자가 단어·문장 구조를 스스로 점검하고 <b>복습</b>할 수 있도록 만든 <br>학습용 퀴즈 허브예요.
-          단순 게임이 아니라 <b>학습 → 확인 → 기억 강화</b> 흐름을 목표로 합니다.
-        </p>
+  이곳은 <b>일본어를 활용해 재미있게 공부할 수 있는 게임</b>과<br>
+  <b>사고력 · 집중력 향상에 도움이 되는 두뇌 게임</b>을 함께 모아둔 공간입니다.<br><br>
 
-        {% if not user %}
-          <div class="hint">
-            <span aria-hidden="true">🔐</span>
-            <div>
-              <strong>기록 저장/랭킹 참여</strong>는
-              <a href="{{ url_for('login', next=url_for('quiz') ) }}">로그인</a> 후 이용할 수 있어요.
-            </div>
-          </div>
-        {% endif %}
+  일본어 공부 게임은 단어 · 문장 · 회화를 <b>게임처럼 자연스럽게 익힐 수 있도록</b> 구성했고,<br>
+  두뇌 게임은 퍼즐과 문제 해결 중심으로 <b>생각하는 힘을 키울 수 있도록</b> 만들었습니다.
+</p>
       </div>
 
-      <!-- (선택) 빠른 이동 버튼 2개 -->
       <div class="hero-actions">
         <a class="hero-btn" href="{{ url_for('words_categories') }}">📘 단어 모음</a>
         <a class="hero-btn primary" href="{{ url_for('jlpt_kanji_home') }}">📘 한자 모음</a>
       </div>
     </div>
-
-    <!-- ✅ 상단 3칸 요약(가독성/완성도) -->
-    <div class="quiz-mini">
-      <div class="mini-box">
-        <div class="mini-title"><span class="mini-dot"></span>추천 루틴 (3분)</div>
-        <div class="mini-txt">1) 오늘의 회화 1개 → 2) 퀴즈 1개 → 3) 틀린 표현만 다시 보기</div>
-      </div>
-      <div class="mini-box">
-        <div class="mini-title"><span class="mini-dot"></span>초보자 팁</div>
-        <div class="mini-txt">정답보다 “왜 틀렸는지”를 1번만 확인해도 실력이 빨리 늘어요.</div>
-      </div>
-      <div class="mini-box">
-        <div class="mini-title"><span class="mini-dot"></span>여행 직전 추천</div>
-        <div class="mini-txt">공항/호텔/식당부터 먼저 풀면 체감 효과가 가장 큽니다.</div>
-      </div>
-    </div>
   </section>
 
-  <!-- (기존) 인트로 카드 유지: 필요 없으면 이 섹션은 삭제해도 됨 -->
-  <section class="quiz-intro">
-    <h2>퀴즈로 일본어를 더 빨리 익혀보세요</h2>
-    <p>
-      단순 암기보다 <b>문제 풀이 → 반복 복습</b>이 기억에 오래 남습니다.
-      여행에서 많이 쓰는 표현/단어를 퀴즈로 풀면서 자연스럽게 익혀보세요.
-    </p>
+  <section class="section-box">
+    <section class="category-block">
+      <h2 class="category-title">📘 일본어 공부 게임</h2>
+      <p class="category-desc">
+        일본어를 이용한 다양한 게임이 있는 공간입니다.
+        단어, 한자, 회화, 상황 표현 등을 게임처럼 풀면서 자연스럽게 복습하고 익힐 수 있어요.
+      </p>
 
-    <div class="quiz-intro-grid">
-      <div class="qibox">
-        <div class="qititle">추천 루틴 (3분)</div>
-        <div class="qitxt">1) 오늘의 회화 1개 → 2) 퀴즈 1개 → 3) 틀린 표현만 다시 보기</div>
+      <div class="game-grid">
+
+        <a class="game-card" href="{{ url_for('word_game') }}" aria-label="단어 게임 시작">
+          <div class="game-thumb">
+            <img src="/static/img/game_word_play.png" alt="단어 게임 플레이 화면">
+          </div>
+          <div class="game-top">
+            <h3 class="game-name">단어 게임</h3>
+            <span class="pill">연습 · 랭킹</span>
+          </div>
+          <p class="game-desc">
+            일본어 <b>발음</b>을 보고 <b>한국어 뜻</b>을 입력하세요.
+            연습 모드와 랭킹 모드를 선택할 수 있어요.
+          </p>
+          <div class="game-foot">
+            <span class="go">시작하러 가기 →</span>
+          </div>
+        </a>
+
+        <a class="game-card" href="{{ url_for('quiz_kanji_home') }}" aria-label="한자 게임 시작">
+          <div class="game-thumb">
+            <img src="/static/img/game_kanji_play.png" alt="한자 게임 화면">
+          </div>
+          <div class="game-top">
+            <h3 class="game-name">한자 게임</h3>
+            <span class="pill">짝맞추기</span>
+          </div>
+          <p class="game-desc">
+            한자와 한국어 뜻을 서로 맞는 짝으로 연결하며
+            자연스럽게 익혀보는 학습형 게임이에요.
+          </p>
+          <div class="game-foot">
+            <span class="go">시작하러 가기 →</span>
+          </div>
+        </a>
+
+        <a class="game-card" href="{{ url_for('bomb_hunt_start') }}" aria-label="JLPT 단어 챌린지 게임 시작">
+          <div class="game-thumb">
+            <img src="/static/img/game_bomb_hunt.png" alt="JLPT 단어 챌린지 게임 화면">
+          </div>
+          <div class="game-top">
+            <h3 class="game-name">JLPT 단어 챌린지</h3>
+            <span class="pill">카드 찾기</span>
+          </div>
+          <p class="game-desc">
+            제시된 한국어 뜻에 맞는 일본어 카드를 찾아가며
+            JLPT 단어를 게임처럼 익혀보는 챌린지형 학습이에요.
+          </p>
+          <div class="game-foot">
+            <span class="go">시작하러 가기 →</span>
+          </div>
+        </a>
+
+        <a class="game-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황 대화 퀴즈 시작">
+          <div class="game-thumb">
+            <img src="/static/img/game_dialog_play.png" alt="상황 대화 퀴즈 화면">
+          </div>
+          <div class="game-top">
+            <h3 class="game-name">상황 대화 퀴즈</h3>
+            <span class="pill">상황 퀴즈</span>
+          </div>
+          <p class="game-desc">
+            그림과 대화를 보고 지금 상황에 알맞은 문장을 골라
+            실전 회화를 자연스럽게 익혀보세요.
+          </p>
+          <div class="game-foot">
+            <span class="go">시작하러 가기 →</span>
+          </div>
+        </a>
+
+        <a class="game-card" href="{{ url_for('travel_start') }}" aria-label="일본 여행 시뮬레이션 시작">
+          <div class="game-thumb">
+            <img src="/static/img/game_travel_play.png" alt="일본 여행 시뮬레이션 화면">
+          </div>
+          <div class="game-top">
+            <h3 class="game-name">일본 여행 시뮬레이션</h3>
+            <span class="pill">시뮬레이션</span>
+          </div>
+          <p class="game-desc">
+            입국심사부터 시작해서 장소를 이동하며
+            상황별 회화와 단어를 게임처럼 익혀요.
+          </p>
+          <div class="game-foot">
+            <span class="go">시작하러 가기 →</span>
+          </div>
+        </a>
+
       </div>
-      <div class="qibox">
-        <div class="qititle">초보자 팁</div>
-        <div class="qitxt">정답보다 “왜 틀렸는지”를 1번만 확인해도 실력이 빨리 늘어요.</div>
-      </div>
-      <div class="qibox">
-        <div class="qititle">여행 직전 추천</div>
-        <div class="qitxt">공항/호텔/식당부터 먼저 풀면 체감 효과가 가장 큽니다.</div>
-      </div>
-    </div>
+    </section>
   </section>
 
-  <div class="game-grid">
+  <section class="section-box brain">
+    <section class="category-block">
+      <h2 class="category-title">🧠 두뇌 게임</h2>
+      <p class="category-desc">
+        일본어 공부 게임이 아닌, 두뇌에 도움되는 게임을 모아둔 공간입니다.
+        집중력, 사고력, 문제 해결력을 기를 수 있는 퍼즐형 게임을 즐길 수 있어요.
+      </p>
 
-  <!-- 단어 게임 -->
-  <a class="game-card" href="{{ url_for('word_game') }}" aria-label="단어 게임 시작">
-    <div class="game-thumb">
-      <img src="/static/img/game_word_play.png" alt="단어 게임 플레이 화면">
-    </div>
-    <div class="game-top">
-      <h2 class="game-name">단어 게임</h2>
-      <span class="pill">연습 · 랭킹</span>
-    </div>
-    <p class="game-desc">
-      일본어 <b>발음</b>을 보고 <b>한국어 뜻</b>을 입력하세요.<br>
-      게임 시작 시 <b>연습 / 랭킹</b> 모드를 선택할 수 있어요.
-    </p>
-    <div class="game-foot">
-      <span class="go">시작하러 가기 →</span>
-    </div>
-  </a>
+      <div class="game-grid">
 
-  <!-- 한자 게임 -->
-  <a class="game-card" href="{{ url_for('quiz_kanji_home') }}" aria-label="한자 게임 시작">
-    <div class="game-thumb">
-      <img src="/static/img/game_kanji_play.png" alt="한자 게임 화면">
-    </div>
-    <div class="game-top">
-      <h2 class="game-name">한자 게임</h2>
-      <span class="pill">짝맞추기</span>
-    </div>
-    <p class="game-desc">
-      한자와 한국어 뜻을 서로 맞는 짝으로 연결하며<br>
-      자연스럽게 익혀보는 학습형 게임이에요.
-    </p>
-    <div class="game-foot">
-      <span class="go">시작하러 가기 →</span>
-    </div>
-  </a>
+        <a class="game-card" href="{{ url_for('sudoku_start') }}" aria-label="스도쿠 시작">
+          <div class="game-thumb">
+            <img src="/static/img/sudoku.png" alt="스도쿠 게임 이미지">
+          </div>
+          <div class="game-top">
+            <h3 class="game-name">스도쿠</h3>
+            <span class="pill">두뇌 퍼즐</span>
+          </div>
+          <p class="game-desc">
+            초급부터 마스터까지 난이도를 선택해 즐기는 대표적인 숫자 두뇌 퍼즐 게임입니다.
+          </p>
+          <div class="game-foot">
+            <span class="go">시작하러 가기 →</span>
+          </div>
+        </a>
 
-  <!-- JLPT 단어 챌린지 게임 -->
-<a class="game-card" href="{{ url_for('bomb_hunt_start') }}" aria-label="JLPT 단어 챌린지 게임 시작">
-  <div class="game-thumb">
-    <img src="/static/img/game_bomb_hunt.png" alt="JLPT 단어 챌린지 게임 화면">
-  </div>
-  <div class="game-top">
-    <h2 class="game-name">JLPT 단어 챌린지</h2>
-    <span class="pill">카드 찾기</span>
-  </div>
-  <p class="game-desc">
-    제시된 한국어 뜻에 맞는 일본어 카드를 찾아가며<br>
-    JLPT 단어를 게임처럼 익혀보는 챌린지형 학습이에요.
-  </p>
-  <div class="game-foot">
-    <span class="go">시작하러 가기 →</span>
-  </div>
-</a>
+        <a class="game-card" href="/quiz/block-fill" aria-label="블록 채우기 시작">
+          <div class="game-thumb">
+            <img src="/static/img/block_fill.png" alt="블록 채우기 게임 이미지">
+          </div>
+          <div class="game-top">
+            <h3 class="game-name">도형 퍼즐 게임</h3>
+            <span class="pill">도형 퍼즐</span>
+          </div>
+          <p class="game-desc">
+            다양한 도형들을 이용해 빈칸 없이 맞추는 고급 두뇌 퍼즐 게임입니다.
+          </p>
+          <div class="game-foot">
+            <span class="go">시작하러 가기 →</span>
+          </div>
+        </a>
 
-  <!-- 상황 대화 퀴즈 -->
-  <a class="game-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황 대화 퀴즈 시작">
-    <div class="game-thumb">
-      <img src="/static/img/game_dialog_play.png" alt="상황 대화 퀴즈 화면">
-    </div>
-    <div class="game-top">
-      <h2 class="game-name">상황 대화 퀴즈</h2>
-      <span class="pill">상황 퀴즈</span>
-    </div>
-    <p class="game-desc">
-      그림과 대화를 보고 <b>지금 상황</b>에 알맞은 문장을 골라 맞혀보세요.
-    </p>
-    <div class="game-foot">
-      <span class="go">시작하러 가기 →</span>
-    </div>
-  </a>
-
-  <!-- 일본 여행 시뮬레이션 -->
-  <a class="game-card" href="{{ url_for('travel_start') }}" aria-label="일본여행시뮬레이션 시작">
-    <div class="game-thumb">
-      <img src="/static/img/game_travel_play.png" alt="일본 여행 시뮬레이션 화면">
-    </div>
-    <div class="game-top">
-      <h2 class="game-name">일본 여행 시뮬레이션</h2>
-      <span class="pill">시뮬레이션게임</span>
-    </div>
-    <p class="game-desc">
-      입국심사부터 시작해서 장소를 이동하며<br>
-      상황별 회화/단어를 게임처럼 익혀요.
-    </p>
-    <div class="game-foot">
-      <span class="go">시작하러 가기 →</span>
-    </div>
-  </a>
+      </div>
+    </section>
+  </section>
 
 </div>
-</div>
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
      crossorigin="anonymous"></script>
-<!-- content-ad-2 -->
+
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-9733127689125901"
      data-ad-slot="5907060346"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
+
 <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
+  (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
 {% endblock %}
