@@ -710,6 +710,55 @@
     opacity: 1;
     transform: translateX(-50%) translateY(-6px);
   }
+  /* 문장 즐겨찾기만 1열 */
+.sentence-list{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:16px;
+}
+
+/* 문장 카드는 긴 문장도 자연스럽게 보이게 */
+.sentence-card{
+  min-height: auto;
+  align-items: flex-start;
+}
+
+.sentence-card .phrase-body{
+  justify-content: flex-start;
+}
+
+.sentence-card .p-line{
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.sentence-card .p-label{
+  min-width: 86px;
+  flex: 0 0 86px;
+}
+
+.sentence-card .p-jp,
+.sentence-card .p-pron,
+.sentence-card .p-ko{
+  flex: 1;
+  min-width: 0;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* 긴 일본어 문장은 조금 더 줄간격 */
+.sentence-card .p-jp{
+  line-height: 1.7;
+}
+
+/* 모바일에서도 문장카드는 1열 유지 */
+@media (max-width: 768px){
+  .sentence-card .p-label{
+    min-width: 70px;
+    flex: 0 0 70px;
+  }
+}
 </style>
 
 <div class="note-page">
@@ -764,42 +813,62 @@
       </div>
     </div>
 
-    <!-- 문장 -->
-    <div class="note-section">
-      <div class="note-sec-head">
-        <h2 class="note-sec-title">문장 즐겨찾기 <span class="count">{{ fav_items|length if fav_items else 0 }}</span></h2>
-      </div>
+    <!-- 문장 즐겨찾기 -->
+<div class="note-section">
+  <div class="note-sec-head">
+    <h2 class="note-sec-title">
+      문장 즐겨찾기
+      <span class="count">{{ fav_items|length if fav_items else 0 }}</span>
+    </h2>
+  </div>
 
-      {% if fav_items and fav_items|length > 0 %}
-        <section class="phrase-list" id="noteList">
-          {% for item in fav_items %}
-            <div class="phrase-card"
-                 data-type="sentence"
-                 data-key="{{ item.phrase_key }}"
-                 data-jp="{{ item.jp }}"
-                 data-pron="{{ item.pron }}"
-                 data-ko="{{ item.ko }}">
-              <div class="phrase-body">
-                <div class="p-line"><span class="p-label">일본어:</span><span class="p-jp">{{ item.jp }}</span></div>
-                <div class="p-line"><span class="p-label">발음:</span><span class="p-pron js-pron-text">{{ item.pron }}</span></div>
-                <div class="p-line"><span class="p-label">뜻:</span><span class="p-ko js-ko-text">{{ item.ko }}</span></div>
-              </div>
+  {% if fav_items and fav_items|length > 0 %}
+    <section class="sentence-list" id="noteList">
+      {% for item in fav_items %}
+        <div class="phrase-card sentence-card"
+             data-type="sentence"
+             data-key="{{ item.phrase_key }}"
+             data-jp="{{ item.jp }}"
+             data-pron="{{ item.pron }}"
+             data-ko="{{ item.ko }}">
 
-              <div class="card-actions">
-                <button class="fav-btn on js-remove-fav">★</button>
-                <button class="speak-btn" data-tts="{{ item.jp }}">🔊 듣기</button>
-                <div class="mini-checks">
-                  <label class="mini-check"><input type="checkbox" class="js-toggle-pron"><span>발음</span></label>
-                  <label class="mini-check"><input type="checkbox" class="js-toggle-ko"><span>뜻</span></label>
-                </div>
-              </div>
+          <div class="phrase-body">
+            <div class="p-line">
+              <span class="p-label">일본어:</span>
+              <span class="p-jp">{{ item.jp }}</span>
             </div>
-          {% endfor %}
-        </section>
-      {% else %}
-        <div class="empty">아직 즐겨찾기한 문장이 없습니다.</div>
-      {% endif %}
-    </div>
+            <div class="p-line">
+              <span class="p-label">발음:</span>
+              <span class="p-pron js-pron-text">{{ item.pron }}</span>
+            </div>
+            <div class="p-line">
+              <span class="p-label">뜻:</span>
+              <span class="p-ko js-ko-text">{{ item.ko }}</span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <button class="fav-btn on js-remove-fav">★</button>
+            <button class="speak-btn" data-tts="{{ item.jp }}">🔊 듣기</button>
+
+            <div class="mini-checks">
+              <label class="mini-check">
+                <input type="checkbox" class="js-toggle-pron">
+                <span>발음</span>
+              </label>
+              <label class="mini-check">
+                <input type="checkbox" class="js-toggle-ko">
+                <span>뜻</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+  {% else %}
+    <div class="empty">아직 즐겨찾기한 문장이 없습니다.</div>
+  {% endif %}
+</div>
 
     <hr class="note-divider" />
 
@@ -812,7 +881,7 @@
       {% if word_fav_items and word_fav_items|length > 0 %}
         <section class="phrase-list" id="wordList">
           {% for w in word_fav_items %}
-            <div class="phrase-card"
+            <div class="phrase-card sentence-card"
                  data-type="word"
                  data-cat="{{ w.cat_key }}"
                  data-jp="{{ (w.kanji or w.jp or '')|e }}"
@@ -947,7 +1016,7 @@
     countEl.textContent = remain;
 
     if (remain === 0){
-      const list = section.querySelector('.phrase-list, .kanji-fav-grid');
+      const list = section.querySelector('.sentence-list, .phrase-list, .kanji-fav-grid');
       if (list) list.remove();
 
       if (!section.querySelector('.empty')){
