@@ -12940,50 +12940,127 @@ def note():
             "created_at": r["created_at"],
         })
 
-    # -------------------------
+        # -------------------------
     # 2) 단어 즐겨찾기
+    #    - 회화공부방 WORDS
+    #    - JLPT N5~N1 단어
     # -------------------------
     conn = db()
     try:
         ensure_word_favorites_table(conn)
-        wrows = conn.execute("""
+        wrows = conn.execute(
+            """
             SELECT cat_key, jp, created_at
             FROM word_favorites
             WHERE user_id=?
-            ORDER BY created_at DESC
-        """, (user["id"],)).fetchall()
+            ORDER BY rowid DESC
+            """,
+            (user["id"],),
+        ).fetchall()
     finally:
         conn.close()
+
+    def _norm_text(v):
+        return (v or "").strip()
+
+    def iter_jlpt_items(src):
+        """
+        N5_WORDS, N4_WORDS ... 구조:
+        {
+          "sec01": {"title": "...", "items": [...]},
+          "sec02": {"title": "...", "items": [...]},
+          ...
+        }
+        """
+        if not isinstance(src, dict):
+            return
+
+        for sec_key in sorted(src.keys()):
+            sec = src.get(sec_key) or {}
+            items = sec.get("items") or []
+            for it in items:
+                if isinstance(it, dict):
+                    yield it
+
+    def match_jlpt_word(it, key):
+        """
+        JLPT 단어 페이지 즐겨찾기 저장키:
+        data-jp="{{ (w.kanji or w.kana or '') }}"
+        즉 kanji가 있으면 kanji, 없으면 kana가 저장됨.
+        """
+        key = _norm_text(key)
+
+        cand_kanji = _norm_text(it.get("kanji"))
+        cand_kana = _norm_text(it.get("kana"))
+        cand_jp = _norm_text(it.get("jp"))
+
+        return key in {cand_kanji, cand_kana, cand_jp}
 
     word_fav_items = []
 
     for wr in wrows:
-        ck = wr["cat_key"]
-        key = wr["jp"]
+        ck = _norm_text(wr["cat_key"])
+        key = _norm_text(wr["jp"])
 
-        cat = (WORDS or {}).get(ck) or {}
-        cat_title = cat.get("title", ck)
-        kanji = ""
-        kana = ""
         pron = ""
         ko = ""
+        kanji = ""
+        kana = ""
         tts_text = ""
 
-        for row in (cat.get("items") or []):
-            if len(row) < 3:
-                continue
+        # -------------------------
+        # JLPT N5~N1 단어
+        # -------------------------
+        if ck == "jlpt:N5:words":
+            cat_title = "JLPT N5 단어"
+            src = N5_WORDS
+        elif ck == "jlpt:N4:words":
+            cat_title = "JLPT N4 단어"
+            src = N4_WORDS
+        elif ck == "jlpt:N3:words":
+            cat_title = "JLPT N3 단어"
+            src = N3_WORDS
+        elif ck == "jlpt:N2:words":
+            cat_title = "JLPT N2 단어"
+            src = N2_WORDS
+        elif ck == "jlpt:N1:words":
+            cat_title = "JLPT N1 단어"
+            src = N1_WORDS
+        else:
+            # -------------------------
+            # 회화공부방 일반 단어
+            # -------------------------
+            cat = (WORDS or {}).get(ck) or {}
+            cat_title = cat.get("title", ck)
+            src = None
 
-            jp = str(row[0])
-            row_pron = str(row[1])
-            row_ko = str(row[2])
+        if src is not None:
+            # JLPT: sec01~sec10 펼쳐서 검색
+            for it in iter_jlpt_items(src):
+                if match_jlpt_word(it, key):
+                    kanji = _norm_text(it.get("kanji") or it.get("jp"))
+                    kana = _norm_text(it.get("kana"))
+                    pron = _norm_text(it.get("pron"))
+                    ko = _norm_text(it.get("ko"))
+                    tts_text = _norm_text(it.get("tts_text")) or kanji or kana or key
+                    break
+        else:
+            # 기존 회화공부방 WORDS: (jp, pron, ko)
+            for row in (cat.get("items") or []):
+                if len(row) < 3:
+                    continue
 
-            if jp == key:
-                kanji = jp
-                pron = row_pron
-                ko = row_ko
-                kana = ""
-                tts_text = jp
-                break
+                w_jp = _norm_text(row[0])
+                w_pron = _norm_text(row[1])
+                w_ko = _norm_text(row[2])
+
+                if w_jp == key:
+                    kanji = w_jp
+                    kana = ""
+                    pron = w_pron
+                    ko = w_ko
+                    tts_text = w_jp
+                    break
 
         word_fav_items.append({
             "cat_key": ck,
