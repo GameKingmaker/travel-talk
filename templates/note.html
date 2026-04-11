@@ -2,93 +2,258 @@
 {% block content %}
 
 <style>
-  /* note page only */
-  .note-wrap{ max-width:1100px; margin:0 auto; }
+  :root{
+    --note-page-bg: #eef2f8;
+    --note-card: #ffffff;
+    --note-line: rgba(15,23,42,.10);
+    --note-text: #0f172a;
+    --note-sub: #475569;
+    --note-soft: #64748b;
+    --note-blue: #2563eb;
+    --note-blue-2: #4f7df3;
+    --floating-width: 190px;
+  }
+
+  body{
+    background: var(--note-page-bg);
+  }
+
+  .note-page{
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 18px 20px 40px;
+  }
+
+  .note-wrap{
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  .side-link-nav{
+    position: fixed;
+    top: 160px;
+    left: calc(50% + 570px + 28px);
+    width: var(--floating-width);
+    z-index: 50;
+  }
+
+  .side-link-box{
+    border-radius: 18px;
+    padding: 12px;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(37,99,235,.10);
+    box-shadow: 0 14px 30px rgba(15,23,42,.10);
+    backdrop-filter: blur(8px);
+  }
+
+  .side-link-title{
+    font-size: 13px;
+    font-weight: 900;
+    color: #1d4ed8;
+    margin: 2px 2px 10px;
+  }
+
+  .side-link-desc{
+    font-size: 11px;
+    line-height: 1.45;
+    color: #64748b;
+    margin: 0 2px 10px;
+  }
+
+  .side-link-list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .side-link-item{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    width:100%;
+    min-height:42px;
+    padding:11px 12px;
+    border-radius:13px;
+    text-decoration:none;
+    color:#334155;
+    background:#f8fafc;
+    border:1px solid rgba(15,23,42,.06);
+    font-size:13px;
+    font-weight:800;
+    line-height:1.35;
+    transition:.15s ease;
+    box-sizing:border-box;
+  }
+
+  .side-link-item:hover{
+    transform: translateY(-1px);
+    border-color: rgba(37,99,235,.24);
+    background:#ffffff;
+    box-shadow: 0 8px 18px rgba(37,99,235,.10);
+    color:#1e3a8a;
+  }
+
+  .side-link-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#5b82f4;
+    box-shadow:0 0 0 4px rgba(91,130,244,.12);
+    flex:0 0 auto;
+  }
+
+  .side-link-text{
+    flex:1;
+    min-width:0;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+
+  .side-link-arrow{
+    flex:0 0 auto;
+    color:#94a3b8;
+    font-size:12px;
+    font-weight:900;
+  }
+
+  @media (max-width: 1460px){
+    .side-link-nav{ display:none; }
+  }
+
+  @media (max-width: 1024px){
+    .side-link-nav{ display:none !important; }
+  }
+
   .note-head{
-    display:flex; justify-content:space-between; align-items:flex-end; gap:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:18px;
     margin-bottom:14px;
   }
-  .note-head h1{ margin:0; font-size:34px; font-weight:900; letter-spacing:-.02em; }
-  .note-head .sub{ margin:8px 0 0; color:#667085; }
+
+  .note-head h1{
+    margin:0;
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:-.02em;
+    color:#0f172a;
+  }
+
+  .note-head .sub{
+    margin:8px 0 0;
+    color:#667085;
+    line-height:1.65;
+  }
 
   .note-hero{
-    display:flex; justify-content:space-between; align-items:stretch; gap:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:stretch;
+    gap:14px;
     background:#fff;
-    border:1px solid rgba(37,99,235,.22);
+    border:1px solid rgba(37,99,235,.14);
     border-radius:18px;
     padding:16px 16px;
     box-shadow:0 12px 30px rgba(15,23,42,.06);
     margin:10px 0 18px;
   }
-  .nh-left{ display:flex; gap:12px; min-width:0; }
+
+  .nh-left{
+    display:flex;
+    gap:12px;
+    min-width:0;
+  }
+
   .nh-icon{
-    width:44px; height:44px; border-radius:14px;
-    display:flex; align-items:center; justify-content:center;
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     background:rgba(37,99,235,.10);
     border:1px solid rgba(37,99,235,.18);
     font-size:20px;
     flex:0 0 auto;
   }
+
   .nh-title{
-    font-weight:900; font-size:16px; line-height:1.2; margin-top:2px;
+    font-weight:900;
+    font-size:16px;
+    line-height:1.2;
+    margin-top:2px;
+    color:#0f172a;
   }
+
   .nh-pill{
-    display:inline-flex; align-items:center; gap:6px;
-    padding:5px 10px; border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:5px 10px;
+    border-radius:999px;
     background:rgba(37,99,235,.10);
     border:1px solid rgba(37,99,235,.18);
     color:#1d4ed8;
-    font-weight:800; font-size:12px;
+    font-weight:800;
+    font-size:12px;
     margin-left:8px;
   }
-  .nh-desc{ margin:8px 0 0; color:#475569; font-size:13px; line-height:1.55; }
-  .nh-desc b{ color:#0f172a; }
-  .nh-tip{ margin:6px 0 0; color:#64748b; font-size:12.5px; }
 
-  .nh-actions{
-    display:flex; flex-direction:column; gap:10px;
-    align-items:flex-end; justify-content:center;
-    flex:0 0 auto;
+  .nh-desc{
+    margin:8px 0 0;
+    color:#475569;
+    font-size:13px;
+    line-height:1.6;
   }
-  .nh-actions .btnrow{ display:flex; gap:10px; }
-  .nh-actions a{
-    text-decoration:none;
+
+  .nh-desc b{
+    color:#0f172a;
   }
-  .note-panel{ margin-top:0; }
+
+  .nh-tip{
+    margin:8px 0 0;
+    color:#64748b;
+    font-size:12.5px;
+    line-height:1.6;
+  }
 
   .note-section{
     margin-top:18px;
   }
+
   .note-sec-head{
-    display:flex; justify-content:space-between; align-items:center; gap:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:14px;
     margin:6px 0 12px;
   }
+
   .note-sec-title{
-    margin:0; font-size:18px; font-weight:900;
-    display:flex; align-items:center; gap:8px;
-  }
-  .note-sec-title .count{
-    display:inline-flex; align-items:center; justify-content:center;
-    min-width:28px; height:22px; padding:0 8px;
-    border-radius:999px;
-    background:rgba(15,23,42,.06);
-    color:#334155; font-weight:900; font-size:12px;
+    margin:0;
+    font-size:18px;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#0f172a;
   }
 
-  /* toggle chips */
-  .note-toggles{
-    display:flex; gap:10px; align-items:center;
-    padding:8px 10px;
-    background:#fff;
-    border:1px solid rgba(15,23,42,.10);
-    border-radius:14px;
+  .note-sec-title .count{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:28px;
+    height:22px;
+    padding:0 8px;
+    border-radius:999px;
+    background:rgba(15,23,42,.06);
+    color:#334155;
+    font-weight:900;
+    font-size:12px;
   }
-  .checkline{
-    display:flex; align-items:center; gap:8px;
-    font-size:13px; color:#334155; font-weight:800;
-    cursor:pointer; user-select:none;
-  }
-  .checkline input{ transform: translateY(0.5px); }
 
   .note-divider{
     margin:22px 0;
@@ -96,41 +261,313 @@
     border-top:1px solid rgba(15,23,42,.08);
   }
 
-  /* empty card */
   .empty{
     background:#fff;
     border:1px dashed rgba(15,23,42,.20);
     border-radius:16px;
     padding:14px 16px;
     color:#64748b;
-  }
-  .empty b{ color:#0f172a; }
-  /* 기존 CSS 아래에 추가 */
-
-  /* 긴 일본어/한글 줄바꿈 안정화 */
-  .note-wrap,
-  .note-wrap * {
-    box-sizing: border-box;
+    line-height:1.6;
   }
 
-  .p-jp,
-  .p-pron,
-  .p-ko,
-  .nh-title,
-  .nh-desc,
-  .nh-tip,
-  .note-head h1,
-  .note-head .sub {
-    word-break: keep-all;
-    overflow-wrap: break-word;
-    white-space: normal;
-    writing-mode: horizontal-tb;
+  .phrase-list{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap:16px;
   }
 
-  @media (max-width: 768px) {
-    .note-wrap{
-      max-width: 100%;
-      padding: 0 12px;
+  .phrase-card{
+    position: relative;
+    display:flex;
+    gap:16px;
+    align-items:stretch;
+    padding:16px;
+    border-radius:18px;
+    border:1px solid rgba(15,23,42,.10);
+    background:#ffffff;
+    box-shadow:0 8px 20px rgba(15,23,42,.05);
+    min-height: 190px;
+  }
+
+  .phrase-body{
+    flex:1;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  .p-line{
+    display:flex;
+    gap:6px;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    line-height:1.65;
+  }
+
+  .p-line + .p-line{
+    margin-top:8px;
+  }
+
+  .p-label{
+    min-width:74px;
+    font-size:13px;
+    font-weight:900;
+    color:#64748b;
+  }
+
+  .p-jp{
+    font-size:18px;
+    font-weight:900;
+    color:#0b1f4b;
+    line-height:1.5;
+    word-break:break-word;
+  }
+
+  .p-pron{
+    font-size:15px;
+    font-weight:800;
+    color:#2563eb;
+  }
+
+  .p-ko{
+    font-size:15px;
+    font-weight:800;
+    color:#0f172a;
+  }
+
+  .masked-text{
+    color: transparent !important;
+    background: linear-gradient(90deg, #dbeafe, #c7d2fe);
+    border-radius: 8px;
+    user-select:none;
+    min-width:72px;
+    display:inline-block;
+  }
+
+  .card-actions{
+    width:88px;
+    flex:0 0 88px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    align-items:stretch;
+    justify-content:center;
+  }
+
+  .fav-btn{
+    width:100%;
+    height:42px;
+    min-width:42px;
+    border-radius:12px;
+    border:1px solid rgba(37,99,235,.18);
+    background:#ffffff;
+    color:#94a3b8;
+    font-size:20px;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:all .16s ease;
+    padding:0;
+  }
+
+  .fav-btn:hover{
+    transform: translateY(-1px);
+    border-color: rgba(37,99,235,.30);
+    box-shadow: 0 8px 18px rgba(37,99,235,.12);
+  }
+
+  .fav-btn.on{
+    color:#f59e0b;
+    background:#fffaf0;
+    border-color: rgba(245,158,11,.30);
+  }
+
+  .speak-btn{
+    width:100%;
+    height:34px;
+    border-radius:10px;
+    border:1px solid rgba(37,99,235,.18);
+    background:#f8fbff;
+    color:#2563eb;
+    font-weight:900;
+    font-size:12px;
+    cursor:pointer;
+    transition:.15s ease;
+    padding:0 8px;
+  }
+
+  .speak-btn:hover{
+    background:#eef5ff;
+  }
+
+  .mini-checks{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    margin-top:2px;
+  }
+
+  .mini-check{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:11.5px;
+    font-weight:800;
+    color:#475569;
+    background:#fff;
+    border:1px solid rgba(15,23,42,.08);
+    border-radius:10px;
+    padding:6px 7px;
+    line-height:1.2;
+    user-select:none;
+  }
+
+  .mini-check input{
+    width:14px;
+    height:14px;
+    accent-color:#2563eb;
+    margin:0;
+    flex:0 0 auto;
+  }
+
+  /* 한자 즐겨찾기 카드: 한자 페이지 스타일 */
+  .kanji-fav-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:16px;
+}
+
+.kanji-fav-card{
+  position: relative;
+  border: 1px solid rgba(15,23,42,.08);
+  border-radius: 16px;
+  background: #fff;
+  padding: 16px 16px 14px;
+  box-shadow:0 8px 20px rgba(15,23,42,.05);
+  transition: .15s ease;
+}
+
+.kanji-fav-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(37,99,235,.08);
+  border-color: rgba(37,99,235,.20);
+}
+
+.kanji-fav-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding-right:72px;
+}
+
+.kanji-fav-char{
+  font-size:64px;
+  font-weight:900;
+  color:#0f172a;
+  line-height:1;
+}
+
+.kanji-fav-level{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:52px;
+  height:30px;
+  padding:0 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:950;
+  border:1px solid transparent;
+  white-space:nowrap;
+}
+
+.kanji-level-N5{ background:#ecfdf5; color:#047857; border-color:#a7f3d0; }
+.kanji-level-N4{ background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe; }
+.kanji-level-N3{ background:#f5f3ff; color:#6d28d9; border-color:#ddd6fe; }
+.kanji-level-N2{ background:#fffbeb; color:#b45309; border-color:#fde68a; }
+.kanji-level-N1{ background:#fef2f2; color:#b91c1c; border-color:#fecaca; }
+.kanji-level-OTHER{ background:#f8fafc; color:#475569; border-color:#e2e8f0; }
+
+.kanji-fav-row{
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  margin-top:7px;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.kanji-fav-label{
+  width:58px;
+  flex:0 0 auto;
+  font-weight:900;
+  color:#64748b;
+}
+
+.kanji-fav-value{
+  color:#0f172a;
+  font-weight:700;
+  overflow-wrap:anywhere;
+}
+
+.kanji-fav-detail-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:16px;
+  width:100%;
+  height:46px;
+  border-radius:14px;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:900;
+  color:#fff;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  box-shadow: 0 10px 22px rgba(37,99,235,.18);
+  transition:.15s ease;
+}
+
+.kanji-fav-detail-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 14px 26px rgba(37,99,235,.24);
+}
+
+.kanji-fav-actions{
+  position:absolute;
+  top:16px;
+  right:16px;
+  width:58px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  align-items:stretch;
+}
+
+.kanji-fav-actions .fav-btn{
+  width:58px;
+  height:42px;
+}
+
+.kanji-fav-actions .mini-check{
+  justify-content:center;
+  padding:6px 4px;
+}
+
+  @media (max-width: 1024px){
+    .phrase-list,
+    .kanji-fav-grid{
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px){
+    .note-page{
+      padding: 10px 12px 28px;
     }
 
     .note-head{
@@ -145,512 +582,475 @@
       line-height: 1.3;
     }
 
-    .note-head .sub{
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
     .note-hero{
       flex-direction: column;
-      align-items: stretch;
       gap: 14px;
       padding: 14px;
       border-radius: 16px;
     }
 
-    .nh-left{
-      width: 100%;
-      align-items: flex-start;
-    }
-
-    .nh-icon{
-      width: 40px;
-      height: 40px;
-      font-size: 18px;
-      border-radius: 12px;
-    }
-
-    .nh-title{
-      font-size: 15px;
-      line-height: 1.45;
-    }
-
-    .nh-pill{
-      margin-left: 0;
-      margin-top: 6px;
-    }
-
-    .nh-desc{
-      font-size: 13px;
-      line-height: 1.65;
-    }
-
-    .nh-tip{
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    /* 현재 nh-actions가 3개로 나뉘어 있으니 모바일에서는 전부 가로폭 100% */
-    .nh-actions{
-      width: 100%;
-      align-items: stretch;
-      gap: 8px;
-    }
-
-    .nh-actions .btnrow{
-      width: 100%;
-    }
-
-    .nh-actions .btnrow .btn{
-      display: block;
-      width: 100%;
-      text-align: center;
-    }
-
-    .note-sec-head{
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .note-sec-title{
-      font-size: 17px;
-      line-height: 1.4;
-      flex-wrap: wrap;
-    }
-
-    .note-toggles{
-      width: 100%;
-      flex-wrap: wrap;
-      gap: 8px 12px;
-      padding: 10px 12px;
-    }
-
-    .checkline{
-      font-size: 13px;
-    }
-
-    .empty{
-      font-size: 14px;
-      line-height: 1.6;
-      padding: 14px;
-    }
-
-    /* 카드 내부 텍스트가 세로처럼 깨져 보이는 것 방지 */
     .phrase-card{
-      width: 100%;
-      min-width: 0;
+      padding:14px;
+      border-radius:16px;
+      gap:12px;
+      min-height:auto;
     }
 
-    .phrase-body{
-      min-width: 0;
-      width: 100%;
+    .card-actions{
+      width:78px;
+      flex:0 0 78px;
     }
 
-    .p-line{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      line-height: 1.6;
+    .fav-btn{
+      height:38px;
+      font-size:18px;
+      border-radius:10px;
+    }
+
+    .speak-btn{
+      height:32px;
+      font-size:11px;
     }
 
     .p-label{
-      flex: 0 0 auto;
+      font-size:12px;
+      min-width:62px;
     }
 
-    .p-jp,
+    .p-jp{
+      font-size:16px;
+    }
+
     .p-pron,
     .p-ko{
-      min-width: 0;
-      flex: 1 1 auto;
-      font-size: 14px;
-      line-height: 1.7;
+      font-size:13px;
     }
 
-    .speak-btn,
+    .kanji-fav-char{
+      font-size:52px;
+    }
+  }
+
+  @media (max-width: 480px){
+    .phrase-card{
+      flex-direction:column;
+    }
+
+    .card-actions{
+      width:100%;
+      flex:0 0 auto;
+      flex-direction:row;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
     .fav-btn{
-      flex-shrink: 0;
+      width:42px;
+      min-width:42px;
+    }
+
+    .speak-btn{
+      width:auto;
+      min-width:88px;
+      flex:1;
+    }
+
+    .mini-checks{
+      width:100%;
+      flex-direction:row;
+      gap:8px;
+    }
+
+    .mini-check{
+      flex:1;
+      justify-content:center;
+    }
+
+    .kanji-fav-actions{
+      position:static;
+      width:100%;
+      flex-direction:row;
+      justify-content:flex-start;
+      margin-top:12px;
+    }
+
+    .kanji-fav-actions .fav-btn{
+      width:42px;
+      min-width:42px;
+    }
+
+    .kanji-fav-actions .mini-check{
+      flex:1;
+    }
+
+    .kanji-fav-top{
+      padding-right:0;
     }
   }
 
-  @media (max-width: 480px) {
-    .note-wrap{
-      padding: 0 10px;
-    }
-
-    .note-head h1{
-      font-size: 23px;
-    }
-
-    .note-hero{
-      padding: 12px;
-    }
-
-    .note-sec-title{
-      font-size: 16px;
-    }
-
-    .p-jp,
-    .p-pron,
-    .p-ko{
-      font-size: 13.5px;
-    }
-  }
-@media (max-width: 768px) {
-  .nh-actions .btnrow{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
-  }
-}
-/* =========================
-   ⭐ 카드 규격 통일 (문장 + 단어 공통)
-========================= */
-.phrase-card{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 14px 14px 16px;
-  border-radius: 18px;
-  border: 1px solid rgba(15,23,42,.10);
-  background: #ffffff;
-  box-shadow: 0 8px 20px rgba(15,23,42,.05);
-}
-
-/* =========================
-   ⭐ 즐겨찾기 버튼 (완전 통일)
-========================= */
-.fav-btn{
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
-  border-radius: 12px;
-  border: 1px solid rgba(37,99,235,.18);
-  background: #ffffff;
-  color: #94a3b8;
-  font-size: 20px;
-  font-weight: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all .16s ease;
-  padding: 0;
-  z-index: 2;
-}
-
-.fav-btn:hover{
-  transform: translateY(-1px);
-  border-color: rgba(37,99,235,.30);
-  box-shadow: 0 8px 18px rgba(37,99,235,.12);
-}
-
-.fav-btn.on{
-  color: #f59e0b;
-  background: #fffaf0;
-  border-color: rgba(245,158,11,.30);
-}
-
-/* =========================
-   텍스트 영역 정렬
-========================= */
-.phrase-body{
-  padding-right: 48px; /* ⭐ 버튼 겹침 방지 핵심 */
-}
-
-.p-line{
-  display: flex;
-  gap: 6px;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  line-height: 1.6;
-}
-
-.p-label{
-  min-width: 70px;
-  font-size: 13px;
-  font-weight: 900;
-  color: #64748b;
-}
-
-/* 일본어 */
-.p-jp{
-  font-size: 18px;
-  font-weight: 900;
-  color: #0b1f4b;
-  line-height: 1.5;
-  word-break: break-word;
-}
-
-/* 발음 */
-.p-pron{
-  font-size: 15px;
-  font-weight: 800;
-  color: #2563eb;
-}
-
-/* 뜻 */
-.p-ko{
-  font-size: 15px;
-  font-weight: 800;
-  color: #0f172a;
-}
-
-/* =========================
-   🔊 발음 버튼
-========================= */
-.speak-btn{
-  width: 100%;
-  height: 42px;
-  border-radius: 12px;
-  border: 1px solid rgba(37,99,235,.18);
-  background: #f8fbff;
-  color: #2563eb;
-  font-weight: 900;
-  font-size: 14px;
-  cursor: pointer;
-  transition: .15s ease;
-}
-
-.speak-btn:hover{
-  background: #eef5ff;
-}
-
-/* =========================
-   모바일 최적화
-========================= */
-@media (max-width: 640px){
-
-  .phrase-card{
-    padding: 12px 12px 14px;
-    border-radius: 16px;
+  .note-toast{
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 900;
+    box-shadow: 0 12px 24px rgba(15,23,42,.20);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
   }
 
-  .fav-btn{
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    font-size: 18px;
-    border-radius: 10px;
-    top: 10px;
-    right: 10px;
+  .note-toast.show{
+    opacity: 1;
+    transform: translateX(-50%) translateY(-6px);
   }
-
-  .phrase-body{
-    padding-right: 40px;
-  }
-
-  .p-label{
-    font-size: 12px;
-    min-width: 60px;
-  }
-
-  .p-jp{
-    font-size: 16px;
-  }
-
-  .p-pron,
-  .p-ko{
-    font-size: 13px;
-  }
-
-  .speak-btn{
-    height: 38px;
-    font-size: 13px;
-  }
-}
-/* =========================
-   데스크톱: 왼쪽 정렬 유지
-========================= */
-@media (min-width: 769px) {
-  .phrase-card,
-  .word-card {
-    align-items: stretch !important;
-    text-align: left;
-  }
-
-  .phrase-body {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .p-line {
-    justify-content: flex-start;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .p-label,
-  .p-jp,
-  .p-pron,
-  .p-ko {
-    text-align: left;
-  }
-
-  .speak-btn {
-    width: 100%;
-  }
-}
 </style>
 
-<div class="note-wrap">
+<div class="note-page">
 
-  <!-- ✅ 페이지 헤더 -->
-  <div class="note-head">
-    <div>
-      <h1>📝 나만의 학습노트</h1>
-      <p class="sub">즐겨찾기 문장·단어를 한 곳에서 모아보고, 가리기(복습)로 빠르게 점검해요.</p>
+  <aside class="side-link-nav" aria-label="관련 페이지 바로가기">
+    <div class="side-link-box">
+      <div class="side-link-title">공부 이어가기</div>
+      <div class="side-link-desc">필요한 페이지로 바로 이동할 수 있어요.</div>
+
+      <div class="side-link-list">
+        <a href="https://japanesestudyroom.com/situations" class="side-link-item">
+          <span class="side-link-dot"></span><span class="side-link-text">상황별회화</span><span class="side-link-arrow">›</span>
+        </a>
+        <a href="https://japanesestudyroom.com/words" class="side-link-item">
+          <span class="side-link-dot"></span><span class="side-link-text">단어모음</span><span class="side-link-arrow">›</span>
+        </a>
+        <a href="https://japanesestudyroom.com/jlpt/kanji" class="side-link-item">
+          <span class="side-link-dot"></span><span class="side-link-text">한자모음</span><span class="side-link-arrow">›</span>
+        </a>
+        <a href="https://japanesestudyroom.com/quiz" class="side-link-item">
+          <span class="side-link-dot"></span><span class="side-link-text">퀴즈게임</span><span class="side-link-arrow">›</span>
+        </a>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <!-- ✅ 인트로 박스 -->
-  <div class="note-hero">
-    <div class="nh-left">
-      <div class="nh-icon" aria-hidden="true">📒</div>
-      <div style="min-width:0;">
-        <div class="nh-title">
-          내가 저장한 표현을 모아 복습해요
-          <span class="nh-pill">즐겨찾기 · 복습</span>
-        </div>
-        <div class="nh-desc">
-  <b>상황별 회화</b> , <b>N5~N1문장</b>에서 저장한 문장과 <b>단어 모음</b> , <b>N5~N1단어</b>에서 저장한 단어를 여기서 한 번에 관리할 수 있어요.
-  <br>
-  복습할 때는 <b>발음/뜻 가리기</b>로 빠르게 테스트해보세요.
-</div>
-<br>
-        <div class="nh-tip">
-          Tip: 문장과 단어를 익혔다면 <b>퀴즈 게임</b>에서 퀴즈 또는 게임으로 바로 실력 체크해보는 것도 좋아요.
+  <div class="note-wrap">
+    <div class="note-head">
+      <div>
+        <h1>📝 나만의 학습노트</h1>
+        <p class="sub">즐겨찾기 문장·단어·한자를 한 곳에서 모아보고, 카드별 가리기 기능으로 빠르게 복습해요.</p>
+      </div>
+    </div>
+
+    <div class="note-hero">
+      <div class="nh-left">
+        <div class="nh-icon">📒</div>
+        <div>
+          <div class="nh-title">
+            내가 저장한 표현을 모아 복습해요
+            <span class="nh-pill">즐겨찾기 · 복습</span>
+          </div>
+          <div class="nh-desc">
+            <b>상황별 회화</b>, <b>N5~N1 문장</b>에서 저장한 문장과
+            <b>단어 모음</b>, <b>N5~N1 단어</b>, <b>한자 모음</b>에서 저장한 항목을
+            여기서 한 번에 관리할 수 있어요.
+          </div>
+          <div class="nh-tip">
+            Tip: 카드마다 발음 가리기, 뜻 가리기를 따로 체크해서 원하는 항목만 골라 복습할 수 있어요.
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="nh-actions">
-  <div class="btnrow">
-    <a class="btn" href="{{ url_for('quiz') }}">🎮퀴즈 게임</a>
-    <a class="btn" href="{{ url_for('words_categories') }}">📘단어 공부</a>
-    <a class="btn" href="{{ url_for('situations') }}">📍회화 공부</a>
-  </div>
-</div>
-  </div>
-
-  <div class="note-panel">
-
-    <!-- ✅ 문장 즐겨찾기 -->
+    <!-- 문장 -->
     <div class="note-section">
       <div class="note-sec-head">
-        <h2 class="note-sec-title">
-          문장 즐겨찾기
-          <span class="count">{{ fav_items|length if fav_items else 0 }}</span>
-        </h2>
-
-        <!-- ✅ 토글: 문장 즐겨찾기에서만 의미가 있으니 여기로 이동 -->
-        <div class="note-toggles">
-          <label class="checkline">
-            <input type="checkbox" id="toggle-pron" />
-            <span>발음 가리기</span>
-          </label>
-          <label class="checkline">
-            <input type="checkbox" id="toggle-ko" />
-            <span>뜻 가리기</span>
-          </label>
-        </div>
+        <h2 class="note-sec-title">문장 즐겨찾기 <span class="count">{{ fav_items|length if fav_items else 0 }}</span></h2>
       </div>
 
       {% if fav_items and fav_items|length > 0 %}
-        <section class="phrase-list note-phrase-list" id="noteList">
+        <section class="phrase-list" id="noteList">
           {% for item in fav_items %}
             <div class="phrase-card"
+                 data-type="sentence"
                  data-key="{{ item.phrase_key }}"
                  data-jp="{{ item.jp }}"
                  data-pron="{{ item.pron }}"
                  data-ko="{{ item.ko }}">
-              <button class="fav-btn on" title="즐겨찾기 해제">★</button>
-
               <div class="phrase-body">
-                <div class="p-line"><span class="p-label">일본어:</span> <span class="p-jp">{{ item.jp }}</span></div>
-                <div class="p-line"><span class="p-label">발음:</span> <span class="p-pron">{{ item.pron }}</span></div>
-                <div class="p-line"><span class="p-label">뜻:</span> <span class="p-ko">{{ item.ko }}</span></div>
+                <div class="p-line"><span class="p-label">일본어:</span><span class="p-jp">{{ item.jp }}</span></div>
+                <div class="p-line"><span class="p-label">발음:</span><span class="p-pron js-pron-text">{{ item.pron }}</span></div>
+                <div class="p-line"><span class="p-label">뜻:</span><span class="p-ko js-ko-text">{{ item.ko }}</span></div>
               </div>
 
-              <button class="speak-btn" data-tts="{{ item.jp }}">발음 듣기</button>
+              <div class="card-actions">
+                <button class="fav-btn on js-remove-fav">★</button>
+                <button class="speak-btn" data-tts="{{ item.jp }}">🔊 듣기</button>
+                <div class="mini-checks">
+                  <label class="mini-check"><input type="checkbox" class="js-toggle-pron"><span>발음</span></label>
+                  <label class="mini-check"><input type="checkbox" class="js-toggle-ko"><span>뜻</span></label>
+                </div>
+              </div>
             </div>
           {% endfor %}
         </section>
       {% else %}
-        <div class="empty">아직 즐겨찾기한 문장이 없습니다. <b>상황별 회화</b> 또는 <b>N문장</b>에서 ⭐ 버튼으로 저장해보세요.</div>
+        <div class="empty">아직 즐겨찾기한 문장이 없습니다.</div>
       {% endif %}
     </div>
 
     <hr class="note-divider" />
 
-        <!-- ✅ 단어 즐겨찾기 -->
+    <!-- 단어 -->
     <div class="note-section">
       <div class="note-sec-head">
-        <h2 class="note-sec-title">
-          단어 즐겨찾기
-          <span class="count">{{ word_fav_items|length if word_fav_items else 0 }}</span>
-        </h2>
+        <h2 class="note-sec-title">단어 즐겨찾기 <span class="count">{{ word_fav_items|length if word_fav_items else 0 }}</span></h2>
       </div>
 
       {% if word_fav_items and word_fav_items|length > 0 %}
         <section class="phrase-list" id="wordList">
           {% for w in word_fav_items %}
-            <div class="phrase-card word-card"
+            <div class="phrase-card"
+                 data-type="word"
                  data-cat="{{ w.cat_key }}"
-                 data-kanji="{{ (w.kanji or w.jp or '')|e }}"
+                 data-jp="{{ (w.kanji or w.jp or '')|e }}"
                  data-kana="{{ (w.kana or '')|e }}"
                  data-pron="{{ (w.pron or '')|e }}"
                  data-ko="{{ (w.ko or '')|e }}">
-
-              <button class="fav-btn on"
-                      data-cat="{{ w.cat_key }}"
-                      data-jp="{{ (w.kanji or w.jp or '')|e }}"
-                      title="즐겨찾기 해제">★</button>
-
               <div class="phrase-body">
-                <div class="p-line">
-                  <span class="p-label">한자/표기:</span>
-                  <span class="p-jp">{{ w.kanji or w.jp }}</span>
-                </div>
-
-                <div class="p-line">
-                  <span class="p-label">가나:</span>
-                  <span class="p-pron">{{ w.kana or "-" }}</span>
-                </div>
-
-                <div class="p-line">
-                  <span class="p-label">발음:</span>
-                  <span class="p-pron">{{ w.pron or "-" }}</span>
-                </div>
-
-                <div class="p-line">
-                  <span class="p-label">뜻:</span>
-                  <span class="p-ko">{{ w.ko or "-" }}</span>
-                </div>
+                <div class="p-line"><span class="p-label">한자/표기:</span><span class="p-jp">{{ w.kanji or w.jp }}</span></div>
+                <div class="p-line"><span class="p-label">가나:</span><span class="p-pron">{{ w.kana or "-" }}</span></div>
+                <div class="p-line"><span class="p-label">발음:</span><span class="p-pron js-pron-text">{{ w.pron or "-" }}</span></div>
+                <div class="p-line"><span class="p-label">뜻:</span><span class="p-ko js-ko-text">{{ w.ko or "-" }}</span></div>
               </div>
 
-              <button class="speak-btn"
-                      data-tts="{{ (w.tts_text or w.kanji or w.kana or w.jp or '')|e }}">
-                발음 듣기
-              </button>
+              <div class="card-actions">
+                <button class="fav-btn on js-remove-fav">★</button>
+                <button class="speak-btn" data-tts="{{ (w.tts_text or w.kanji or w.kana or w.jp or '')|e }}">🔊 듣기</button>
+                <div class="mini-checks">
+                  <label class="mini-check"><input type="checkbox" class="js-toggle-pron"><span>발음</span></label>
+                  <label class="mini-check"><input type="checkbox" class="js-toggle-ko"><span>뜻</span></label>
+                </div>
+              </div>
             </div>
           {% endfor %}
         </section>
       {% else %}
-        <div class="empty">아직 즐겨찾기한 단어가 없습니다. <b>단어 모음</b> 또는 <b>N단어</b>에서 ★로 저장해보세요.</div>
+        <div class="empty">아직 즐겨찾기한 단어가 없습니다.</div>
       {% endif %}
     </div>
 
+    <hr class="note-divider" />
+
+    <!-- 한자 즐겨찾기 -->
+<div class="note-section">
+  <div class="note-sec-head">
+    <h2 class="note-sec-title">
+      한자 즐겨찾기
+      <span class="count">{{ kanji_fav_items|length if kanji_fav_items else 0 }}</span>
+    </h2>
+  </div>
+
+  {% if kanji_fav_items and kanji_fav_items|length > 0 %}
+    <section class="kanji-fav-grid" id="kanjiList">
+      {% for k in kanji_fav_items %}
+        {% set level_text = k.level if k.level else 'OTHER' %}
+
+        <article class="kanji-fav-card"
+                 data-type="kanji"
+                 data-kanji="{{ (k.kanji or '')|e }}"
+                 data-onyomi="{{ (k.onyomi or '')|e }}"
+                 data-kunyomi="{{ (k.kunyomi or '')|e }}"
+                 data-meaning="{{ (k.meaning or '')|e }}"
+                 data-level="{{ (k.level or '')|e }}"
+                 data-desc="{{ (k.desc or '')|e }}"
+                 data-slug="{{ (k.slug or '')|e }}">
+
+          <div class="kanji-fav-actions">
+            <button class="fav-btn on js-remove-fav">★</button>
+
+            <label class="mini-check">
+              <input type="checkbox" class="js-toggle-ko">
+              <span>뜻</span>
+            </label>
+          </div>
+
+          <div class="kanji-fav-top">
+            <div class="kanji-fav-char">{{ k.kanji or '-' }}</div>
+            <div class="kanji-fav-level kanji-level-{{ level_text }}">{{ k.level or '기타' }}</div>
+          </div>
+
+          <div class="kanji-fav-row">
+            <div class="kanji-fav-label">뜻</div>
+            <div class="kanji-fav-value meaning js-ko-text">{{ k.meaning_text or '-' }}</div>
+          </div>
+
+          <div class="kanji-fav-row">
+            <div class="kanji-fav-label">한자음</div>
+            <div class="kanji-fav-value">{{ k.sound or '-' }}</div>
+          </div>
+
+          <div class="kanji-fav-row">
+            <div class="kanji-fav-label">레벨</div>
+            <div class="kanji-fav-value">{{ k.level or '-' }}</div>
+          </div>
+
+          <div class="kanji-fav-row">
+            <div class="kanji-fav-label">설명</div>
+            <div class="kanji-fav-value">{{ k.desc or '-' }}</div>
+          </div>
+
+          {% if k.slug %}
+            <a class="kanji-fav-detail-btn" href="{{ url_for('jlpt_kanji_detail', slug=k.slug) }}">
+              자세히 알아보기
+            </a>
+          {% else %}
+            <div class="kanji-fav-detail-btn" style="opacity:.55; pointer-events:none;">
+              자세히 알아보기
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </section>
+  {% else %}
+    <div class="empty">아직 즐겨찾기한 한자가 없습니다.</div>
+  {% endif %}
+</div>
   </div>
 </div>
+
+<div id="noteToast" class="note-toast"></div>
+
+<script>
+(function(){
+  function showToast(message){
+    const toast = document.getElementById('noteToast');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(window.__noteToastTimer);
+    window.__noteToastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 1600);
+  }
+
+  function updateSectionCount(card){
+    const section = card.closest('.note-section');
+    if (!section) return;
+
+    const countEl = section.querySelector('.count');
+    if (!countEl) return;
+
+    const remain = section.querySelectorAll('.phrase-card, .kanji-fav-card').length;
+    countEl.textContent = remain;
+
+    if (remain === 0){
+      const list = section.querySelector('.phrase-list, .kanji-fav-grid');
+      if (list) list.remove();
+
+      if (!section.querySelector('.empty')){
+        const empty = document.createElement('div');
+        empty.className = 'empty';
+        empty.textContent = '저장된 항목이 없습니다.';
+        section.appendChild(empty);
+      }
+    }
+  }
+
+  async function removeFavorite(card){
+    const type = card.dataset.type;
+    let url = '';
+    let payload = {};
+
+    if (type === 'sentence'){
+      url = '/api/favorites';
+      payload = {
+        action: 'remove',
+        phrase_key: card.dataset.key || '',
+        jp: card.dataset.jp || '',
+        pron: card.dataset.pron || '',
+        ko: card.dataset.ko || ''
+      };
+    } else if (type === 'word'){
+      url = '/api/word_fav';
+      payload = {
+        action: 'remove',
+        cat_key: card.dataset.cat || '',
+        jp: card.dataset.jp || ''
+      };
+    } else if (type === 'kanji'){
+      url = '/api/kanji_fav';
+      payload = {
+        action: 'remove',
+        kanji: card.dataset.kanji || ''
+      };
+    } else {
+      showToast('저장 해제에 실패했어요.');
+      return;
+    }
+
+    try{
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.status === 401){
+        showToast('로그인이 필요합니다.');
+        return;
+      }
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok){
+        showToast('저장 해제에 실패했어요.');
+        return;
+      }
+
+      card.remove();
+      updateSectionCount(card);
+      showToast('학습노트에서 제거되었습니다.');
+    }catch(e){
+      showToast('저장 해제에 실패했어요.');
+    }
+  }
+
+  document.querySelectorAll('.phrase-card, .kanji-fav-card').forEach(function(card){
+    const pronToggle = card.querySelector('.js-toggle-pron');
+    const koToggle = card.querySelector('.js-toggle-ko');
+    const pronTexts = card.querySelectorAll('.js-pron-text');
+    const koTexts = card.querySelectorAll('.js-ko-text');
+    const removeBtn = card.querySelector('.js-remove-fav');
+
+    if (pronToggle){
+      pronToggle.addEventListener('change', function(){
+        pronTexts.forEach(function(el){
+          el.classList.toggle('masked-text', pronToggle.checked);
+        });
+      });
+    }
+
+    if (koToggle){
+      koToggle.addEventListener('change', function(){
+        koTexts.forEach(function(el){
+          el.classList.toggle('masked-text', koToggle.checked);
+        });
+      });
+    }
+
+    if (removeBtn){
+      removeBtn.addEventListener('click', function(){
+        removeFavorite(card);
+      });
+    }
+  });
+})();
+</script>
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
      crossorigin="anonymous"></script>
-<!-- content-ad-2 -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-9733127689125901"
