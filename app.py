@@ -463,6 +463,30 @@ def ensure_word_favorites_table(conn):
       PRIMARY KEY(user_id, cat_key, jp)
     )
     """)
+
+def ensure_kanji_favorites_table(conn):
+    conn.execute("""
+    CREATE TABLE IF NOT EXISTS kanji_favorites (
+      user_id INTEGER NOT NULL,
+      kanji TEXT NOT NULL,
+      onyomi TEXT,
+      kunyomi TEXT,
+      meaning TEXT,
+      level TEXT,
+      desc TEXT,
+      slug TEXT,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY(user_id, kanji)
+    )
+    """)
+
+    cols = [r["name"] for r in conn.execute("PRAGMA table_info(kanji_favorites)").fetchall()]
+
+    if "desc" not in cols:
+        conn.execute("ALTER TABLE kanji_favorites ADD COLUMN desc TEXT")
+    if "slug" not in cols:
+        conn.execute("ALTER TABLE kanji_favorites ADD COLUMN slug TEXT")
+
 def ensure_jlpt_word_favorites_table(conn):
     conn.execute("""
     CREATE TABLE IF NOT EXISTS jlpt_word_favorites (
@@ -1069,6 +1093,8 @@ def init_db() -> None:
         # 14) sudoku_rankings
         ensure_sudoku_rankings_table(conn)
 
+        #15 kanji_favorites
+        ensure_kanji_favorites_table(conn)
 
         conn.commit()
     finally:
@@ -12887,107 +12913,77 @@ def _norm_text(v) -> str:
 @login_required
 def note():
     user = current_user()
+    if not user:
+        return redirect(url_for("login", next=request.path))
 
     # -------------------------
-    # 1) 문장 즐겨찾기 (favorites)
+    # 1) 문장 즐겨찾기
     # -------------------------
     conn = db()
     try:
-        rows = conn.execute(
-            """
+        rows = conn.execute("""
             SELECT phrase_key, jp, pron, ko, created_at
             FROM favorites
             WHERE user_id=?
-            ORDER BY rowid DESC
-            """,
-            (user["id"],),
-        ).fetchall()
+            ORDER BY created_at DESC
+        """, (user["id"],)).fetchall()
     finally:
         conn.close()
 
-    fav_items = [
-        {
+    fav_items = []
+    for r in rows:
+        fav_items.append({
             "phrase_key": r["phrase_key"],
             "jp": r["jp"],
             "pron": r["pron"],
             "ko": r["ko"],
             "created_at": r["created_at"],
-        }
-        for r in rows
-    ]
+        })
 
     # -------------------------
-    # 2) 단어 즐겨찾기 (word_favorites)
-    #    - JLPT도 word_favorites에 저장됨
-    #    - kanji/kana/pron/ko/tts_text까지 찾아서 채움
+    # 2) 단어 즐겨찾기
     # -------------------------
-    word_fav_items = []
-
     conn = db()
     try:
         ensure_word_favorites_table(conn)
-        wrows = conn.execute(
-            """
+        wrows = conn.execute("""
             SELECT cat_key, jp, created_at
             FROM word_favorites
             WHERE user_id=?
-            ORDER BY rowid DESC
-            """,
-            (user["id"],),
-        ).fetchall()
+            ORDER BY created_at DESC
+        """, (user["id"],)).fetchall()
     finally:
         conn.close()
 
-    for wr in wrows:
-        ck = _norm_text(wr["cat_key"])
-        key = _norm_text(wr["jp"])   # ✅ 즐겨찾기 저장키(kanji 또는 kana 등)
+    word_fav_items = []
 
-        pron = ""
-        ko = ""
+    for wr in wrows:
+        ck = wr["cat_key"]
+        key = wr["jp"]
+
+        cat = (WORDS or {}).get(ck) or {}
+        cat_title = cat.get("title", ck)
         kanji = ""
         kana = ""
+        pron = ""
+        ko = ""
         tts_text = ""
 
-        if ck == "jlpt:N5:words":
-            cat_title = "JLPT N5 단어"
-            src = N5_WORDS
-        elif ck == "jlpt:N4:words":
-            cat_title = "JLPT N4 단어"
-            src = N4_WORDS
-        elif ck == "jlpt:N3:words":
-            cat_title = "JLPT N3 단어"
-            src = N3_WORDS
-        elif ck == "jlpt:N2:words":
-            cat_title = "JLPT N2 단어"
-            src = N2_WORDS
-        elif ck == "jlpt:N1:words":
-            cat_title = "JLPT N1 단어"
-            src = N1_WORDS
-        else:
-            cat = (WORDS or {}).get(ck) or {}
-            cat_title = cat.get("title", ck)
-            src = None
+        for row in (cat.get("items") or []):
+            if len(row) < 3:
+                continue
 
-        if src is not None:
-            # ✅ JLPT: sec01~sec10 펼쳐서 검색
-            for it in iter_jlpt_items(src):
-                if match_jlpt_word(it, key):
-                    kanji = _norm_text(it.get("kanji") or it.get("jp"))
-                    kana  = _norm_text(it.get("kana"))
-                    pron  = _norm_text(it.get("pron"))
-                    ko    = _norm_text(it.get("ko"))
-                    tts_text = _norm_text(it.get("tts_text")) or kanji or kana or key
-                    break
-        else:
-            # ✅ 기존 WORDS 튜플: (jp, pron, ko)
-            for (w_jp, w_pron, w_ko) in (cat.get("items") or []):
-                if _norm_text(w_jp) == key:
-                    kanji = _norm_text(w_jp)
-                    kana = ""
-                    pron = _norm_text(w_pron)
-                    ko = _norm_text(w_ko)          # ✅ 핵심: 여기!
-                    tts_text = kanji
-                    break
+            jp = str(row[0])
+            row_pron = str(row[1])
+            row_ko = str(row[2])
+
+            if jp == key:
+                kanji = jp
+                pron = row_pron
+                ko = row_ko
+                kana = ""
+                tts_text = jp
+                break
 
         word_fav_items.append({
             "cat_key": ck,
@@ -13001,15 +12997,88 @@ def note():
             "created_at": wr["created_at"],
         })
 
+    # -------------------------
+    # 3) 한자 즐겨찾기
+    # -------------------------
+    conn = db()
+    try:
+        ensure_kanji_favorites_table(conn)
+        krows = conn.execute("""
+            SELECT kanji, onyomi, kunyomi, meaning, level, desc, slug, created_at
+            FROM kanji_favorites
+            WHERE user_id=?
+            ORDER BY created_at DESC
+        """, (user["id"],)).fetchall()
+    finally:
+        conn.close()
+
+    # KANJI_DATA 원본 맵
+    kanji_by_slug = {}
+    kanji_by_char = {}
+
+    for item in KANJI_DATA:
+        item_slug = (item.get("slug") or "").strip()
+        item_kanji = (item.get("kanji") or "").strip()
+
+        if item_slug:
+            kanji_by_slug[item_slug] = item
+        if item_kanji:
+            kanji_by_char[item_kanji] = item
+
+    kanji_fav_items = []
+
+    for kr in krows:
+        raw_slug = (kr["slug"] or "").strip()
+        raw_kanji = (kr["kanji"] or "").strip()
+
+        src = None
+        if raw_slug and raw_slug in kanji_by_slug:
+            src = kanji_by_slug[raw_slug]
+        elif raw_kanji and raw_kanji in kanji_by_char:
+            src = kanji_by_char[raw_kanji]
+
+        # 원본 KANJI_DATA 값 우선 사용
+        kanji = (src.get("kanji") if src else kr["kanji"]) or ""
+        meaning = (src.get("meaning") if src else kr["meaning"]) or ""
+        onyomi = (src.get("onyomi") if src else kr["onyomi"]) or ""
+        kunyomi = (src.get("kunyomi") if src else kr["kunyomi"]) or ""
+        level = (src.get("level") if src else kr["level"]) or ""
+        desc = (src.get("desc") if src else kr["desc"]) or ""
+        slug = (src.get("slug") if src else kr["slug"]) or ""
+
+        # 한자 목록 페이지와 같은 기준으로 뜻 / 한자음 분리
+        # 예: "노래 가" -> 뜻: 노래 / 한자음: 가
+        if meaning and " " in meaning:
+            parts = meaning.rsplit(" ", 1)
+            meaning_text = parts[0].strip()
+            sound = parts[1].strip()
+        else:
+            meaning_text = meaning.strip()
+            sound = ""
+
+        kanji_fav_items.append({
+            "kanji": kanji,
+            "meaning": meaning,
+            "meaning_text": meaning_text,
+            "sound": sound,
+            "onyomi": onyomi,
+            "kunyomi": kunyomi,
+            "level": level,
+            "desc": desc,
+            "slug": slug,
+            "created_at": kr["created_at"],
+        })
+
     return render_template(
         "note.html",
         user=user,
         fav_items=fav_items,
         word_fav_items=word_fav_items,
+        kanji_fav_items=kanji_fav_items,
         **seo(
-            title="나만의 일본어 학습노트 | 즐겨찾기 회화·단어 암기 공부",
-            desc="자주 쓰는 일본어 회화와 단어를 저장하고 가리기 기능으로 암기하세요. 나만의 일본어 공부 노트 공간입니다.",
-            keywords="일본어 학습노트, 일본어 암기, 일본어 단어장, 일본어 회화 저장",
+            title="나만의 일본어 학습노트 | 즐겨찾기 회화·단어·한자 암기 공부",
+            desc="자주 쓰는 일본어 회화, 단어, 한자를 저장하고 가리기 기능으로 암기하세요. 나만의 일본어 공부 노트 공간입니다.",
+            keywords="일본어 학습노트, 일본어 암기, 일본어 단어장, 일본어 회화 저장, 일본어 한자 저장",
         ),
     )
     
@@ -13053,7 +13122,81 @@ def api_favorites_post():
     conn.close()
     return jsonify({"ok": False, "error": "BAD_REQUEST"}), 400
 
-from flask import request, jsonify
+@app.get("/api/kanji_fav")
+@login_required
+def api_kanji_fav_list():
+    user = current_user()
+
+    conn = db()
+    try:
+        ensure_kanji_favorites_table(conn)
+        rows = conn.execute("""
+            SELECT kanji
+            FROM kanji_favorites
+            WHERE user_id=?
+        """, (user["id"],)).fetchall()
+    finally:
+        conn.close()
+
+    return jsonify({
+        "ok": True,
+        "items": [r["kanji"] for r in rows]
+    })
+
+
+@app.post("/api/kanji_fav")
+@login_required
+def api_kanji_fav_toggle():
+    user = current_user()
+    data = request.get_json(silent=True) or {}
+
+    action = (data.get("action") or "").strip()
+    kanji = (data.get("kanji") or "").strip()
+    onyomi = (data.get("onyomi") or "").strip()
+    kunyomi = (data.get("kunyomi") or "").strip()
+    meaning = (data.get("meaning") or "").strip()
+    level = (data.get("level") or "").strip()
+    desc = (data.get("desc") or "").strip()
+    slug = (data.get("slug") or "").strip()
+
+    if not kanji:
+        return jsonify({"ok": False, "error": "BAD_REQUEST"}), 400
+
+    conn = db()
+    try:
+        ensure_kanji_favorites_table(conn)
+
+        if action == "add":
+            conn.execute("""
+                INSERT OR REPLACE INTO kanji_favorites
+                (user_id, kanji, onyomi, kunyomi, meaning, level, desc, slug, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                user["id"],
+                kanji,
+                onyomi,
+                kunyomi,
+                meaning,
+                level,
+                desc,
+                slug,
+                kst_now_iso(),
+            ))
+            conn.commit()
+            return jsonify({"ok": True})
+
+        if action == "remove":
+            conn.execute("""
+                DELETE FROM kanji_favorites
+                WHERE user_id=? AND kanji=?
+            """, (user["id"], kanji))
+            conn.commit()
+            return jsonify({"ok": True})
+
+        return jsonify({"ok": False, "error": "BAD_REQUEST"}), 400
+
+    finally:
+        conn.close()
 
 @app.get("/api/word_fav")
 def api_word_fav_list():
@@ -27177,14 +27320,31 @@ def jlpt_kanji_home():
             or q_lower in str(item.get('level', '')).lower()
         ]
 
-    return render_template(
+        fav_kanji_set = set()
+
+    if user:
+        conn = db()
+        try:
+            ensure_kanji_favorites_table(conn)
+            fav_rows = conn.execute("""
+                SELECT kanji
+                FROM kanji_favorites
+                WHERE user_id=?
+            """, (user["id"],)).fetchall()
+            fav_kanji_set = {r["kanji"] for r in fav_rows}
+        finally:
+            conn.close()
+
+    
+            return render_template(
         'jlpt_kanji_home.html',
         user=user,
         kanji_list=filtered_kanji,
         q=q,
         initials=initials,
         selected_initial=selected_initial,
-        selected_level=selected_level
+        selected_level=selected_level,
+        fav_kanji_set=fav_kanji_set
     )
 
 @app.route('/jlpt/kanji/detail/<slug>')
@@ -27221,13 +27381,29 @@ def jlpt_kanji_detail(slug):
     prev_item = KANJI_DATA[current_index - 1] if current_index > 0 else None
     next_item = KANJI_DATA[current_index + 1] if current_index < len(KANJI_DATA) - 1 else None
 
-    return render_template(
+    is_kanji_fav = False
+    if user:
+        conn = db()
+        try:
+            ensure_kanji_favorites_table(conn)
+            row = conn.execute("""
+                SELECT 1
+                FROM kanji_favorites
+                WHERE user_id=? AND kanji=?
+                LIMIT 1
+            """, (user["id"], kanji_item.get("kanji", ""))).fetchone()
+            is_kanji_fav = row is not None
+        finally:
+            conn.close()
+
+        return render_template(
         'jlpt_kanji_detail.html',
         user=user,
         item=kanji_item,
         related_items=related_items,
         prev_item=prev_item,
-        next_item=next_item
+        next_item=next_item,
+        is_kanji_fav=is_kanji_fav
     )
 
 
