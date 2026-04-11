@@ -27371,6 +27371,7 @@ def jlpt_kanji_home():
         selected_level = 'ALL'
 
     filtered_kanji = KANJI_DATA
+    fav_kanji_set = set()
 
     # 1) 초성 필터
     if selected_initial != 'ALL':
@@ -27397,8 +27398,7 @@ def jlpt_kanji_home():
             or q_lower in str(item.get('level', '')).lower()
         ]
 
-        fav_kanji_set = set()
-
+    # 로그인한 경우만 즐겨찾기 상태 읽기
     if user:
         conn = db()
         try:
@@ -27412,8 +27412,7 @@ def jlpt_kanji_home():
         finally:
             conn.close()
 
-    
-            return render_template(
+    return render_template(
         'jlpt_kanji_home.html',
         user=user,
         kanji_list=filtered_kanji,
@@ -27423,6 +27422,7 @@ def jlpt_kanji_home():
         selected_level=selected_level,
         fav_kanji_set=fav_kanji_set
     )
+
 
 @app.route('/jlpt/kanji/detail/<slug>')
 def jlpt_kanji_detail(slug):
@@ -27473,7 +27473,7 @@ def jlpt_kanji_detail(slug):
         finally:
             conn.close()
 
-        return render_template(
+    return render_template(
         'jlpt_kanji_detail.html',
         user=user,
         item=kanji_item,
