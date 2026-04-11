@@ -249,6 +249,7 @@
   }
 
   .kanji-card{
+    position: relative;
     border: 1px solid rgba(15,23,42,.08);
     border-radius: 16px;
     background: #fff;
@@ -262,12 +263,45 @@
     border-color: rgba(37,99,235,.20);
   }
 
+  .kanji-fav-btn{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    border:1px solid rgba(37,99,235,.16);
+    background:#fff;
+    color:#94a3b8;
+    font-size:20px;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.15s ease;
+    z-index:2;
+  }
+
+  .kanji-fav-btn:hover{
+    transform:translateY(-1px);
+    border-color:rgba(37,99,235,.30);
+    box-shadow:0 8px 18px rgba(37,99,235,.10);
+  }
+
+  .kanji-fav-btn.on{
+    color:#f59e0b;
+    background:#fffaf0;
+    border-color:rgba(245,158,11,.30);
+  }
+
   .kanji-top{
     display:flex;
     align-items:flex-start;
     justify-content:space-between;
     gap: 12px;
     margin-bottom: 10px;
+    padding-right:52px;
   }
 
   .kanji-char{
@@ -401,7 +435,15 @@
     .kanji-title{
       font-size: 28px;
     }
+
+    .kanji-fav-btn{
+      width:38px;
+      height:38px;
+      font-size:18px;
+      border-radius:10px;
+    }
   }
+
   .filter-wrap-level{
     display:flex;
     align-items:center;
@@ -438,6 +480,28 @@
     box-shadow:0 10px 20px rgba(47,92,240,0.28);
   }
 
+  .kanji-toast{
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 900;
+    box-shadow: 0 12px 24px rgba(15,23,42,.20);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+
+  .kanji-toast.show{
+    opacity: 1;
+    transform: translateX(-50%) translateY(-6px);
+  }
 </style>
 
 <div class="kanji-wrap">
@@ -453,9 +517,7 @@
 
       <div class="search-box">
         <h2>원하는 한자를 바로 찾아보세요</h2>
-        <p>
-          예) 暇 / 틈 / 가 / N3
-        </p>
+        <p>예) 暇 / 틈 / 가 / N3</p>
 
         <form class="kanji-search" method="GET" action="{{ url_for('jlpt_kanji_home') }}">
           <input
@@ -481,34 +543,34 @@
         </div>
 
         <div class="filter-group">
-  <div class="filter-group-title">JLPT 레벨</div>
+          <div class="filter-group-title">JLPT 레벨</div>
 
-  <div class="filter-wrap filter-wrap-level">
-    <div class="filter-level-tags">
-      <a class="filter-tag {% if selected_level == 'ALL' %}active{% endif %}"
-         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial) }}">전체</a>
+          <div class="filter-wrap filter-wrap-level">
+            <div class="filter-level-tags">
+              <a class="filter-tag {% if selected_level == 'ALL' %}active{% endif %}"
+                 href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial) }}">전체</a>
 
-      <a class="filter-tag level-n5 {% if selected_level == 'N5' %}active{% endif %}"
-         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N5') }}">N5</a>
+              <a class="filter-tag level-n5 {% if selected_level == 'N5' %}active{% endif %}"
+                 href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N5') }}">N5</a>
 
-      <a class="filter-tag level-n4 {% if selected_level == 'N4' %}active{% endif %}"
-         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N4') }}">N4</a>
+              <a class="filter-tag level-n4 {% if selected_level == 'N4' %}active{% endif %}"
+                 href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N4') }}">N4</a>
 
-      <a class="filter-tag level-n3 {% if selected_level == 'N3' %}active{% endif %}"
-         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N3') }}">N3</a>
+              <a class="filter-tag level-n3 {% if selected_level == 'N3' %}active{% endif %}"
+                 href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N3') }}">N3</a>
 
-      <a class="filter-tag level-n2 {% if selected_level == 'N2' %}active{% endif %}"
-         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N2') }}">N2</a>
+              <a class="filter-tag level-n2 {% if selected_level == 'N2' %}active{% endif %}"
+                 href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N2') }}">N2</a>
 
-      <a class="filter-tag level-n1 {% if selected_level == 'N1' %}active{% endif %}"
-         href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N1') }}">N1</a>
-    </div>
+              <a class="filter-tag level-n1 {% if selected_level == 'N1' %}active{% endif %}"
+                 href="{{ url_for('jlpt_kanji_home', q=q, initial=selected_initial, level='N1') }}">N1</a>
+            </div>
 
-    <a class="kanji-game-link-btn" href="{{ url_for('quiz_kanji_home') }}">
-      🎮 한자게임 하러가기
-    </a>
-  </div>
-</div>
+            <a class="kanji-game-link-btn" href="{{ url_for('quiz_kanji_home') }}">
+              🎮 한자게임 하러가기
+            </a>
+          </div>
+        </div>
 
         <div class="search-summary">
           <span class="search-summary-badge">
@@ -528,18 +590,20 @@
       </div>
     </div>
   </section>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
-     crossorigin="anonymous"></script>
-<!-- content-ad-1 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9733127689125901"
-     data-ad-slot="8931844788"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
+       crossorigin="anonymous"></script>
+  <!-- content-ad-1 -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9733127689125901"
+       data-ad-slot="8931844788"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
   <div class="kanji-body">
     <section class="kanji-box">
       <div class="kanji-box-head">
@@ -565,8 +629,22 @@
             {% set sound = item.meaning.split()[-1] if item.meaning else '-' %}
             {% set meaning_text = item.meaning.rsplit(' ', 1)[0] if item.meaning and ' ' in item.meaning else (item.meaning or '-') %}
             {% set level_text = item.level if item.level else 'OTHER' %}
+            {% set is_fav = fav_kanji_set and (item.kanji in fav_kanji_set) %}
 
             <article class="kanji-card">
+              <button type="button"
+        class="kanji-fav-btn {% if is_fav %}on{% endif %}"
+        data-kanji="{{ item.kanji|e }}"
+        data-onyomi="{{ (item.onyomi or '')|e }}"
+        data-kunyomi="{{ (item.kunyomi or '')|e }}"
+        data-meaning="{{ (item.meaning or '')|e }}"
+        data-level="{{ (item.level or '')|e }}"
+        data-desc="{{ (item.desc or '')|e }}"
+        data-slug="{{ (item.slug or '')|e }}"
+        aria-label="한자 즐겨찾기">
+  {% if is_fav %}★{% else %}☆{% endif %}
+</button>
+
               <div class="kanji-top">
                 <div class="kanji-char">{{ item.kanji }}</div>
                 <div class="kanji-level-badge kanji-level-{{ level_text }}">
@@ -608,4 +686,70 @@
     </section>
   </div>
 </div>
+
+<div id="kanjiToast" class="kanji-toast"></div>
+
+<script>
+(function(){
+  function showToast(message){
+    const toast = document.getElementById('kanjiToast');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(window.__kanjiToastTimer);
+    window.__kanjiToastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 1600);
+  }
+
+  async function toggleKanjiFavorite(btn){
+    const isOn = btn.classList.contains("on");
+    const payload = {
+  action: isOn ? "remove" : "add",
+  kanji: btn.dataset.kanji || "",
+  onyomi: btn.dataset.onyomi || "",
+  kunyomi: btn.dataset.kunyomi || "",
+  meaning: btn.dataset.meaning || "",
+  level: btn.dataset.level || "",
+  desc: btn.dataset.desc || "",
+  slug: btn.dataset.slug || ""
+};
+    try{
+      const res = await fetch("/api/kanji_fav", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if(res.status === 401){
+        showToast("로그인이 필요합니다.");
+        setTimeout(() => {
+          location.href = "{{ url_for('login') }}?next={{ request.path|urlencode }}";
+        }, 500);
+        return;
+      }
+
+      const data = await res.json().catch(() => ({}));
+      if(!res.ok || !data.ok){
+        showToast(isOn ? "저장 해제에 실패했어요." : "저장에 실패했어요.");
+        return;
+      }
+
+      btn.classList.toggle("on", !isOn);
+      btn.textContent = !isOn ? "★" : "☆";
+      showToast(!isOn ? "나만의 학습노트에 저장되었습니다." : "학습노트에서 제거되었습니다.");
+    }catch(e){
+      showToast(isOn ? "저장 해제에 실패했어요." : "저장에 실패했어요.");
+    }
+  }
+
+  document.querySelectorAll(".kanji-fav-btn").forEach(btn => {
+    btn.addEventListener("click", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      toggleKanjiFavorite(btn);
+    });
+  });
+})();
+</script>
 {% endblock %}
