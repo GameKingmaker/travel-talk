@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 
-{# ✅ SEO: 상황별 회화 허브 #}
 {% set page_title = "상황별 회화 | 일본 여행 회화 공부방" %}
 {% set page_desc = "공항·호텔·교통·식당 등 상황을 선택하면 소분류별 핵심 문장을 바로 볼 수 있어요." %}
 {% set page_robots = "index,follow" %}
@@ -8,150 +7,432 @@
 {% block content %}
 
 <style>
-  .sit-wrap{
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 22px 18px 48px;
+  :root{
+    --sit-page-bg: #eef2f8;
+    --sit-card: #ffffff;
+    --sit-line: rgba(15,23,42,0.08);
+    --sit-text: #0f172a;
+    --sit-sub: #475569;
+    --sit-soft: #64748b;
+
+    --sit-blue: #2563eb;
+    --sit-blue-2: #4f7df3;
+
+    /* 상단 박스: 튀지 않는 블루그레이 톤 */
+    --hero-bg-1: #f8fbff;
+    --hero-bg-2: #f5f8fd;
+    --hero-bg-3: #eef4fb;
+    --hero-chip: #ffffff;
+    --hero-title: #0f172a;
+    --hero-sub: #475569;
+    --hero-line: rgba(37,99,235,0.08);
+
+    --floating-width: 176px;
   }
 
-  /* ✅ 상단(헤더) 더 예쁘게 */
+  html{
+    scroll-behavior: smooth;
+  }
+
+  body{
+    background: var(--sit-page-bg);
+  }
+
+  .sit-page{
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  .sit-main{
+    width: min(100%, 1080px);
+    margin: 0 auto;
+  }
+
+  /* =========================
+     우측 고정 링크 탭 (PC 전용)
+  ========================= */
+  .side-link-nav{
+    position: fixed;
+    top: 180px;
+    left: calc(50% + 560px + 28px);
+    width: var(--floating-width);
+    z-index: 50;
+  }
+
+  .side-link-box{
+    border-radius: 18px;
+    padding: 12px;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(37,99,235,.10);
+    box-shadow: 0 14px 30px rgba(15,23,42,.10);
+    backdrop-filter: blur(8px);
+  }
+
+  .side-link-title{
+    font-size: 13px;
+    font-weight: 900;
+    color: #1d4ed8;
+    margin: 2px 2px 10px;
+    letter-spacing: -0.2px;
+  }
+
+  .side-link-desc{
+    font-size: 11px;
+    line-height: 1.45;
+    color: #64748b;
+    margin: 0 2px 10px;
+  }
+
+  .side-link-list{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .side-link-item{
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    min-height: 42px;
+    padding: 11px 12px;
+    border-radius: 13px;
+    text-decoration: none;
+    color: #334155;
+    background: #f8fafc;
+    border: 1px solid rgba(15,23,42,.06);
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.35;
+    transition: .15s ease;
+    box-sizing: border-box;
+  }
+
+  .side-link-item:hover{
+    transform: translateY(-1px);
+    border-color: rgba(37,99,235,.24);
+    background: #ffffff;
+    box-shadow: 0 8px 18px rgba(37,99,235,.10);
+    color: #1e3a8a;
+  }
+
+  .side-link-dot{
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #5b82f4;
+    box-shadow: 0 0 0 4px rgba(91,130,244,.12);
+    flex: 0 0 auto;
+  }
+
+  .side-link-text{
+    flex: 1;
+    min-width: 0;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .side-link-arrow{
+    flex: 0 0 auto;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  @media (max-width: 1460px){
+    .side-link-nav{
+      display: none;
+    }
+  }
+
+  @media (max-width: 1024px){
+    .side-link-nav{
+      display: none !important;
+    }
+  }
+
+  /* =========================
+     상단 히어로
+  ========================= */
   .sit-hero{
     position: relative;
-    border-radius: 20px;
-    padding: 22px 22px;
-    border: 1px solid rgba(15,23,42,0.08);
+    border-radius: 24px;
+    padding: 28px 24px 20px;
+    border: 1px solid var(--hero-line);
     background:
-      radial-gradient(1200px 240px at 0% 0%, rgba(37,99,235,.14), transparent 60%),
-      radial-gradient(900px 240px at 100% 0%, rgba(96,165,250,.14), transparent 55%),
-      linear-gradient(180deg, #ffffff, #fbfdff);
-    box-shadow: 0 14px 34px rgba(15,23,42,.06);
+      radial-gradient(1000px 260px at 0% 0%, rgba(59,130,246,.06), transparent 60%),
+      radial-gradient(700px 240px at 100% 0%, rgba(96,165,250,.08), transparent 58%),
+      linear-gradient(180deg, var(--hero-bg-1) 0%, var(--hero-bg-2) 55%, var(--hero-bg-3) 100%);
+    box-shadow: 0 14px 34px rgba(15,23,42,.05);
     overflow: hidden;
   }
-  .sit-hero::after{
+
+  .sit-hero::before{
     content:"";
     position:absolute;
-    right:-120px;
-    top:-120px;
-    width:320px;
-    height:320px;
-    border-radius:999px;
-    background: radial-gradient(circle at 30% 30%, rgba(37,99,235,.16), rgba(37,99,235,0) 70%);
+    right:-90px;
+    top:-80px;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(59,130,246,.08) 0%, rgba(59,130,246,0) 70%);
     pointer-events:none;
   }
 
   .sit-head{
     display:flex;
-    align-items:flex-end;
+    align-items:center;
     justify-content:space-between;
-    gap:16px;
+    gap:18px;
   }
+
+  .sit-head-left{
+    min-width: 0;
+    flex: 1;
+  }
+
+  .sit-label{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 12px;
+    border-radius:999px;
+    background: var(--hero-chip);
+    border:1px solid rgba(37,99,235,.10);
+    color: #1d4ed8;
+    font-weight:800;
+    font-size:13px;
+    margin-bottom:14px;
+    box-shadow: 0 6px 14px rgba(37,99,235,.05);
+  }
+
+  .sit-label-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+  }
+
   .sit-title{
-    font-size:34px;
-    font-weight:900;
-    letter-spacing:-0.5px;
-    margin:0;
+    font-size: 36px;
+    line-height: 1.18;
+    font-weight: 900;
+    letter-spacing: -0.7px;
+    color: var(--hero-title);
+    margin: 0;
   }
+
   .sit-sub{
-    margin:8px 0 0;
-    color:#475569;
-    font-size:14px;
-    line-height:1.65;
+    margin: 12px 0 0;
+    color: var(--hero-sub);
+    font-size: 15px;
+    line-height: 1.78;
     max-width: 760px;
   }
 
-  /* ✅ 검색폼을 카드형으로 */
   .sit-search{
     display:flex;
     gap:10px;
     align-items:center;
-    padding:12px 12px;
-    border-radius:16px;
-    border:1px solid rgba(15,23,42,.10);
-    background:#fff;
-    box-shadow:0 10px 22px rgba(15,23,42,.05);
-    min-width: 380px;
+    padding:12px;
+    border-radius:18px;
+    border:1px solid rgba(37,99,235,.08);
+    background: rgba(255,255,255,.88);
+    box-shadow: 0 10px 22px rgba(15,23,42,.05);
+    min-width: 370px;
+    flex-shrink: 0;
   }
+
   .sit-search input{
     flex:1;
-    height:44px;
+    height:46px;
     border-radius:14px;
     border:1px solid rgba(15,23,42,.10);
     padding:0 14px;
     outline:none;
-  }
-  .sit-search input:focus{
-    border-color: rgba(37,99,235,.55);
-    box-shadow: 0 0 0 3px rgba(37,99,235,.18);
-  }
-  .sit-search button{
-    height:44px;
-    padding:0 16px;
-    border-radius:14px;
-    border:none;
-    background:#2563eb;
-    color:#fff;
-    font-weight:900;
-    cursor:pointer;
-    transition:.16s ease;
-    white-space:nowrap;
-  }
-  .sit-search button:hover{
-    filter: brightness(0.98);
-    transform: translateY(-1px);
+    font-size:14px;
+    color:#0f172a;
+    background:#ffffff;
   }
 
-  /* ✅ 헤더 아래 “미니 가이드” 3칸 */
+  .sit-search input::placeholder{
+    color:#94a3b8;
+  }
+
+  .sit-search input:focus{
+    border-color: rgba(37,99,235,.40);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.14);
+  }
+
+  .sit-search button{
+    height:46px;
+    padding:0 18px;
+    border-radius:14px;
+    border:none;
+    background: linear-gradient(180deg, #6d8bf6 0%, #4f6fe9 100%);
+    color:#fff;
+    font-weight:900;
+    font-size:14px;
+    cursor:pointer;
+    white-space:nowrap;
+    box-shadow: 0 8px 18px rgba(79,111,233,.20);
+    transition:.16s ease;
+  }
+
+  .sit-search button:hover{
+    transform: translateY(-1px);
+    filter: brightness(.99);
+  }
+
   .sit-mini{
-    margin-top:14px;
+    margin-top:16px;
     display:grid;
     grid-template-columns: repeat(3, minmax(0,1fr));
-    gap:10px;
+    gap:12px;
   }
+
   .mini-box{
-    border:1px solid rgba(15,23,42,0.08);
-    background:#ffffff;
-    border-radius:16px;
-    padding:12px 12px;
+    border:1px solid rgba(37,99,235,.08);
+    background: rgba(255,255,255,.86);
+    border-radius:18px;
+    padding:14px 14px;
+    box-shadow: 0 8px 20px rgba(15,23,42,.03);
   }
+
   .mini-title{
-    font-weight:950;
-    font-size:13px;
+    font-weight:900;
+    font-size:14px;
     color:#0f172a;
-    margin-bottom:6px;
+    margin-bottom:8px;
     display:flex;
     align-items:center;
     gap:8px;
   }
+
   .mini-dot{
-    width:10px; height:10px; border-radius:50%;
-    background: rgba(37,99,235,.85);
-    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: #4f7df3;
+    box-shadow:0 0 0 4px rgba(79,125,243,.12);
     flex:0 0 auto;
   }
+
   .mini-txt{
     font-size:13px;
     color:#475569;
-    line-height:1.55;
+    line-height:1.65;
   }
 
-  /* ✅ 그리드/카드(기존 유지 + 살짝 다듬기) */
+  /* 인트로 */
+  .sit-intro{
+    margin: 16px 0 20px;
+    padding: 22px 20px;
+    background: #fff;
+    border: 1px solid var(--sit-line);
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(15,23,42,.05);
+  }
+
+  .sit-intro-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+  }
+
+  .sit-intro-icon{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:#eef4ff;
+    color:#1d4ed8;
+    font-size:15px;
+    font-weight:900;
+    flex:0 0 auto;
+  }
+
+  .sit-intro h2{
+    margin:0;
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:-0.3px;
+    color:var(--sit-text);
+  }
+
+  .sit-intro p{
+    margin:8px 0;
+    font-size:14px;
+    color:var(--sit-sub);
+    line-height:1.75;
+  }
+
+  .sit-guide{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:10px;
+    margin-top:14px;
+  }
+
+  .guide-item{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:12px 13px;
+    border-radius:14px;
+    background:#f8fbff;
+    border:1px solid rgba(37,99,235,.10);
+  }
+
+  .guide-num{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:#e8f0ff;
+    color:#1d4ed8;
+    font-size:12px;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+    margin-top:1px;
+  }
+
+  .guide-text{
+    font-size:13px;
+    line-height:1.65;
+    color:#334155;
+  }
+
+  .sit-tip{
+    margin-top:12px;
+    font-size:13px;
+    color:#64748b;
+  }
+
+  /* 카테고리 카드 */
   .sit-grid{
     display:grid;
     grid-template-columns: repeat(2, minmax(0,1fr));
     gap:16px;
     margin-top:16px;
   }
-  @media (max-width: 860px){
-    .sit-grid{ grid-template-columns: 1fr; }
-  }
 
   .cat-card{
-    background:#ffffff;
-    border:1px solid rgba(15, 23, 42, 0.08);
-    border-radius:16px;
+    background:#fff;
+    border:1px solid var(--sit-line);
+    border-radius:18px;
     padding:16px 16px 14px;
-    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 10px 24px rgba(15,23,42,.05);
   }
+
   .cat-top{
     display:flex;
     align-items:flex-start;
@@ -159,20 +440,24 @@
     gap:10px;
     margin-bottom:12px;
   }
+
   .cat-name{
     font-size:18px;
     font-weight:900;
     margin:0;
     letter-spacing:-0.3px;
+    color:var(--sit-text);
   }
+
   .cat-meta{
     display:flex;
     align-items:center;
     gap:8px;
-    color:#6b7280;
+    color:#64748b;
     font-size:12px;
     white-space:nowrap;
   }
+
   .pill{
     display:inline-flex;
     align-items:center;
@@ -180,7 +465,7 @@
     padding:4px 10px;
     border-radius:999px;
     background:#f1f5ff;
-    border:1px solid rgba(37, 99, 235, 0.18);
+    border:1px solid rgba(37,99,235,.16);
     color:#1d4ed8;
     font-weight:800;
     font-size:12px;
@@ -191,34 +476,36 @@
     flex-wrap:wrap;
     gap:10px;
   }
+
   .chip{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:10px;
-
     width:100%;
-    padding:12px 14px;
+    padding:13px 14px;
     border-radius:14px;
     background:#f8fafc;
-    border:1px solid rgba(15, 23, 42, 0.08);
-
+    border:1px solid rgba(15,23,42,0.08);
     text-decoration:none;
     color:#0f172a;
     transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
   }
+
   .chip:hover{
     transform: translateY(-1px);
     background:#ffffff;
-    border-color: rgba(37, 99, 235, 0.22);
-    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.10);
+    border-color: rgba(37,99,235,0.22);
+    box-shadow: 0 10px 22px rgba(37,99,235,0.10);
   }
+
   .chip-left{
     display:flex;
     align-items:center;
     gap:10px;
     min-width:0;
   }
+
   .dot{
     width:10px;
     height:10px;
@@ -227,6 +514,7 @@
     box-shadow: 0 0 0 4px rgba(37,99,235,.12);
     flex: 0 0 auto;
   }
+
   .chip-title{
     font-weight:900;
     letter-spacing:-0.2px;
@@ -234,20 +522,21 @@
     text-overflow:ellipsis;
     white-space:nowrap;
   }
+
   .badge{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    min-width:34px;
-    height:26px;
+    min-width:36px;
+    height:27px;
     padding:0 10px;
     border-radius:999px;
     background:#eef2ff;
-    border:1px solid rgba(99,102,241,.25);
+    border:1px solid rgba(99,102,241,.20);
     color:#4338ca;
     font-weight:900;
     font-size:12px;
-    flex: 0 0 auto;
+    flex:0 0 auto;
   }
 
   .hint{
@@ -256,69 +545,82 @@
     font-size:12px;
   }
 
-  /* ✅ 인트로 박스(기존 유지 + 톤만 살짝) */
-  .sit-intro{
-    margin: 14px 0 18px;
-    padding: 18px 18px;
-    background:#fff;
-    border:1px solid rgba(15,23,42,0.08);
+  .empty-state{
+    margin-top:16px;
+    padding:16px 18px;
+    border:1px dashed #d9e2f5;
     border-radius:16px;
-    box-shadow: 0 8px 28px rgba(15,23,42,0.06);
-  }
-  .sit-intro h2{
-    margin:0 0 10px;
-    font-size:18px;
-    font-weight:900;
-    letter-spacing:-.2px;
-  }
-  .sit-intro p{
-    margin:6px 0;
-    font-size:14px;
-    color:#475569;
-    line-height:1.65;
-  }
-  .sit-intro ul{
-    margin:10px 0 6px;
-    padding-left:18px;
-    color:#334155;
-    font-size:14px;
-    line-height:1.65;
-  }
-  .sit-intro .mini{
-    margin-top:10px;
-    font-size:13px;
     color:#64748b;
+    background:#fbfdff;
   }
 
-  /* ✅ Mobile fix (PC 유지) */
-  @media (max-width: 600px){
-    .sit-wrap{ padding: 18px 14px 36px; }
+  @media (max-width: 1024px){
+    .sit-grid{
+      grid-template-columns: 1fr;
+    }
 
     .sit-head{
-      flex-direction: column;
-      align-items: stretch;
-      gap: 12px;
+      flex-direction:column;
+      align-items:stretch;
     }
-    .sit-title, .sit-sub, .sit-intro h2, .sit-intro p, .sit-intro li{
+
+    .sit-search{
+      min-width:0;
+      width:100%;
+    }
+
+    .sit-mini{
+      grid-template-columns:1fr;
+    }
+
+    .sit-guide{
+      grid-template-columns:1fr;
+    }
+  }
+
+  @media (max-width: 600px){
+    .sit-page{
+      padding: 18px 14px 36px;
+    }
+
+    .sit-hero{
+      padding:20px 16px 16px;
+      border-radius:20px;
+    }
+
+    .sit-title,
+    .sit-sub,
+    .sit-intro h2,
+    .sit-intro p,
+    .sit-intro li,
+    .cat-name{
       word-break: keep-all;
       overflow-wrap: anywhere;
     }
-    .sit-title{ font-size: 28px; line-height: 1.15; }
-    .sit-sub{ font-size: 14px; line-height: 1.6; }
+
+    .sit-title{
+      font-size:29px;
+      line-height:1.2;
+    }
+
+    .sit-sub{
+      font-size:14px;
+      line-height:1.68;
+    }
 
     .sit-search{
-      width:100%;
-      min-width: 0;
-      padding:10px 10px;
+      padding:10px;
+      border-radius:16px;
     }
-    .sit-search input{ width:100%; min-width:0; }
-    .sit-search button{ white-space:nowrap; }
 
-    .sit-mini{ grid-template-columns: 1fr; }
+    .sit-search input{
+      width:100%;
+      min-width:0;
+    }
 
-    .sit-intro{ padding: 16px 14px; }
-
-    .cat-name{ word-break: keep-all; overflow-wrap: anywhere; }
+    .sit-intro{
+      padding:16px 14px;
+    }
 
     .chip-title{
       white-space: normal;
@@ -331,107 +633,188 @@
   }
 </style>
 
-<div class="sit-wrap">
+<div class="sit-page">
 
-  <!-- ✅ 상단 헤더(꾸밈) -->
-  <section class="sit-hero">
-    <div class="sit-head">
-      <div>
-        <h1 class="sit-title">📍 일본어 상황별 회화</h1>
-        <p class="sit-sub">
-          이 페이지는 <b>일상·여행 상황</b>에서 자주 쓰는 일본어 표현을 상황별로 정리한 자료예요.
-          표현이 사용되는 <b>맥락</b>을 같이 익혀서, 단순 암기가 아닌 실전 중심으로 학습할 수 있어요.
-        </p>
+  <!-- PC 전용 우측 고정 링크탭 -->
+  <aside class="side-link-nav" aria-label="관련 페이지 바로가기">
+    <div class="side-link-box">
+      <div class="side-link-title">공부 이어가기</div>
+      <div class="side-link-desc">
+        회화를 본 뒤 필요한 페이지로 바로 이동할 수 있어요.
       </div>
 
-      <form class="sit-search" method="GET" action="{{ url_for('situations_search') }}">
-        <input type="text" name="q" value="{{ q or '' }}"
-               placeholder="일본어 / 발음 / 한국어로 검색 (예: 今, 이마, 지금)">
-        <button type="submit">검색</button>
-      </form>
-    </div>
+      <div class="side-link-list">
+        <a href="https://japanesestudyroom.com/note" class="side-link-item">
+          <span class="side-link-dot"></span>
+          <span class="side-link-text">나만의학습노트</span>
+          <span class="side-link-arrow">›</span>
+        </a>
 
-    <!-- ✅ 미니 가이드 -->
-    <div class="sit-mini">
-      <div class="mini-box">
-        <div class="mini-title"><span class="mini-dot"></span>빠른 학습</div>
-        <div class="mini-txt">오늘 필요한 상황 1개만 골라서 <b>문장 10개</b>부터 시작해보세요.</div>
-      </div>
-      <div class="mini-box">
-        <div class="mini-title"><span class="mini-dot"></span>발음까지</div>
-        <div class="mini-txt">발음(읽는 법)까지 같이 보고 <b>소리 내어</b> 따라 읽으면 기억이 오래가요.</div>
-      </div>
-      <div class="mini-box">
-        <div class="mini-title"><span class="mini-dot"></span>반복 검색</div>
-        <div class="mini-txt">“지금/오늘/얼마” 같은 표현을 검색창으로 반복하면 암기가 빨라져요.</div>
+        <a href="https://japanesestudyroom.com/words" class="side-link-item">
+          <span class="side-link-dot"></span>
+          <span class="side-link-text">단어모음</span>
+          <span class="side-link-arrow">›</span>
+        </a>
+
+        <a href="https://japanesestudyroom.com/quiz" class="side-link-item">
+          <span class="side-link-dot"></span>
+          <span class="side-link-text">퀴즈게임</span>
+          <span class="side-link-arrow">›</span>
+        </a>
       </div>
     </div>
-  </section>
+  </aside>
 
-  <!-- (기존) 인트로 카드 유지 -->
-  <section class="sit-intro">
-    <h2>상황별 일본어 회화는 이렇게 공부하세요</h2>
-    <p>
-      일본 여행에서 자주 마주치는 상황(공항·호텔·식당·쇼핑·교통 등)을 기준으로
-      필요한 표현을 <b>분류별로 정리</b>해두었습니다.
-      아래에서 상황을 선택하면 해당 상황에서 실제로 쓰는 문장, 발음, 뜻을 한 번에 확인할 수 있어요.
-    </p>
-    <ul>
-      <li><b>추천 학습법 1)</b> 오늘 필요한 상황 1개 선택 → 문장 10개만 먼저 익히기</li>
-      <li><b>추천 학습법 2)</b> 발음(읽는 법)까지 같이 보고 소리 내어 따라 읽기</li>
-      <li><b>추천 학습법 3)</b> 검색창으로 “지금/오늘/얼마” 같은 표현을 반복 검색해서 암기</li>
-    </ul>
-    <p class="mini">
-      Tip: 상황을 고른 뒤 문장을 저장해두면 <b>나만의 학습노트</b>에서 복습하기가 더 쉬워요.
-    </p>
-  </section>
+  <div class="sit-main">
 
-  {% if situations and (situations|length) > 0 %}
-    <div class="sit-grid">
-      {% for cat_key, cat in (situations|dictsort) %}
-        {% set subs = (cat.get("subs") or {}) %}
-        <section class="cat-card">
-          <div class="cat-top">
-            <h2 class="cat-name">{{ (cat["title"] or "") | e }}</h2>
-            <div class="cat-meta">
-              <span>소분류</span>
-              <span class="pill">{{ subs|length }}</span>
+    <section class="sit-hero">
+      <div class="sit-head">
+        <div class="sit-head-left">
+          <div class="sit-label">
+            <span class="sit-label-dot"></span>
+            실전에서 바로 쓰는 일본어
+          </div>
+
+          <h1 class="sit-title">일본어 상황별 회화</h1>
+
+          <p class="sit-sub">
+            공항, 식당, 카페, 교통처럼 여행이나 일상에서 자주 마주치는 상황을 기준으로
+            꼭 필요한 일본어 표현을 보기 쉽게 정리했어요.
+            단순히 뜻만 외우는 것이 아니라, 어떤 순간에 쓰는 표현인지까지 함께 익힐 수 있도록 구성했습니다.
+          </p>
+        </div>
+
+        <form class="sit-search" method="GET" action="{{ url_for('situations_search') }}">
+          <input
+            type="text"
+            name="q"
+            value="{{ q or '' }}"
+            placeholder="일본어 / 발음 / 한국어로 검색 (예: 今, 이마, 지금)"
+          >
+          <button type="submit">검색</button>
+        </form>
+      </div>
+
+      <div class="sit-mini">
+        <div class="mini-box">
+          <div class="mini-title"><span class="mini-dot"></span>빠르게 시작</div>
+          <div class="mini-txt">
+            오늘 필요한 상황 하나만 골라서 <b>문장 10개</b>부터 가볍게 익혀보세요.
+          </div>
+        </div>
+
+        <div class="mini-box">
+          <div class="mini-title"><span class="mini-dot"></span>발음까지 함께</div>
+          <div class="mini-txt">
+            발음(읽는 법)까지 같이 보고 <b>소리 내어</b> 따라 읽으면 기억이 더 오래갑니다.
+          </div>
+        </div>
+
+        <div class="mini-box">
+          <div class="mini-title"><span class="mini-dot"></span>반복으로 익히기</div>
+          <div class="mini-txt">
+            “지금 / 얼마 / 어디” 같은 표현을 검색으로 반복하면 자연스럽게 익숙해져요.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sit-intro">
+      <div class="sit-intro-head">
+        <span class="sit-intro-icon">✓</span>
+        <h2>상황별 일본어 회화는 이렇게 공부해보세요</h2>
+      </div>
+
+      <p>
+        일본 여행에서 자주 마주치는 상황을 기준으로 필요한 표현을 분류해두었어요.
+        아래에서 원하는 상황을 선택하면, 실제로 많이 쓰는 문장과 발음, 뜻을 한 번에 확인할 수 있습니다.
+      </p>
+
+      <div class="sit-guide">
+        <div class="guide-item">
+          <div class="guide-num">1</div>
+          <div class="guide-text">
+            오늘 사용할 상황 하나를 먼저 고른 뒤, 가장 자주 쓰는 문장부터 가볍게 살펴보세요.
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-num">2</div>
+          <div class="guide-text">
+            뜻만 보지 말고 발음까지 함께 확인하면서 소리 내어 따라 읽어보세요.
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-num">3</div>
+          <div class="guide-text">
+            자주 쓰는 표현은 검색창으로 반복해서 찾아보면 훨씬 빨리 익숙해집니다.
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-num">4</div>
+          <div class="guide-text">
+            필요한 문장을 저장해두면 나만의 학습노트에서 다시 꺼내 복습하기 편해져요.
+          </div>
+        </div>
+      </div>
+
+      <div class="sit-tip">
+        Tip: 한 번에 많이 보기보다, 상황 1개 + 문장 10개씩 나눠서 공부하면 더 부담 없이 이어가기 좋아요.
+      </div>
+    </section>
+
+    {% if situations and (situations|length) > 0 %}
+      <div class="sit-grid">
+        {% for cat_key, cat in (situations|dictsort) %}
+          {% set subs = (cat.get("subs") or {}) %}
+          <section class="cat-card">
+            <div class="cat-top">
+              <h2 class="cat-name">{{ (cat["title"] or "") | e }}</h2>
+              <div class="cat-meta">
+                <span>소분류</span>
+                <span class="pill">{{ subs|length }}</span>
+              </div>
             </div>
-          </div>
 
-          <div class="chip-row">
-            {% for sub_key, sub in (subs|dictsort) %}
-              {% set items = (sub.get("items") or []) %}
-              <a class="chip" href="{{ url_for('situation_detail', main_key=cat_key, sub_key=sub_key) }}">
-                <div class="chip-left">
-                  <span class="dot"></span>
-                  <span class="chip-title">{{ (sub["title"] or "") | e }}</span>
-                </div>
-                <span class="badge">{{ items|length }}</span>
-              </a>
-            {% endfor %}
-          </div>
+            <div class="chip-row">
+              {% for sub_key, sub in (subs|dictsort) %}
+                {% set items = (sub.get("items") or []) %}
+                <a class="chip" href="{{ url_for('situation_detail', main_key=cat_key, sub_key=sub_key) }}">
+                  <div class="chip-left">
+                    <span class="dot"></span>
+                    <span class="chip-title">{{ (sub["title"] or "") | e }}</span>
+                  </div>
+                  <span class="badge">{{ items|length }}</span>
+                </a>
+              {% endfor %}
+            </div>
 
-          <div class="hint">※ 버튼을 누르면 해당 소분류 문장이 열려요.</div>
-        </section>
-      {% endfor %}
-    </div>
-  {% else %}
-    <div style="margin-top:16px; padding:14px 16px; border:1px dashed #d9e2f5; border-radius:14px; color:#64748b; background:#fbfdff;">
-      아직 상황별 회화 분류를 준비 중입니다. 곧 업데이트할게요!
-    </div>
-  {% endif %}
+            <div class="hint">※ 버튼을 누르면 해당 소분류 문장이 열려요.</div>
+          </section>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        아직 상황별 회화 분류를 준비 중입니다. 곧 업데이트할게요!
+      </div>
+    {% endif %}
+  </div>
 </div>
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
      crossorigin="anonymous"></script>
-<!-- content-ad-1 -->
+
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-9733127689125901"
      data-ad-slot="8931844788"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
+
 <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
+  (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
 {% endblock %}
