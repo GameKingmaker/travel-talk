@@ -39,12 +39,45 @@
   }
 
   .detail-top{
+    position:relative;
     padding: 28px 24px 24px;
     background:
       radial-gradient(900px 320px at 20% 0%, rgba(37,99,235,.10), transparent 60%),
       radial-gradient(760px 260px at 90% 10%, rgba(99,102,241,.08), transparent 55%),
       #fff;
     border-top: 4px solid rgba(37,99,235,.65);
+  }
+
+  .kanji-detail-fav-btn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    border:1px solid rgba(37,99,235,.16);
+    background:#fff;
+    color:#94a3b8;
+    font-size:22px;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.15s ease;
+    z-index:2;
+  }
+
+  .kanji-detail-fav-btn:hover{
+    transform:translateY(-1px);
+    border-color:rgba(37,99,235,.30);
+    box-shadow:0 8px 18px rgba(37,99,235,.10);
+  }
+
+  .kanji-detail-fav-btn.on{
+    color:#f59e0b;
+    background:#fffaf0;
+    border-color:rgba(245,158,11,.30);
   }
 
   .detail-breadcrumb{
@@ -54,6 +87,7 @@
     line-height: 1.7;
     word-break: keep-all;
     overflow-wrap: anywhere;
+    padding-right:56px;
   }
 
   .detail-breadcrumb a{
@@ -460,9 +494,19 @@
       padding: 20px 16px 18px;
     }
 
+    .kanji-detail-fav-btn{
+      top:14px;
+      right:14px;
+      width:40px;
+      height:40px;
+      font-size:20px;
+      border-radius:12px;
+    }
+
     .detail-breadcrumb{
       font-size: 12px;
       margin-bottom: 12px;
+      padding-right:50px;
     }
 
     .detail-kanji{
@@ -630,6 +674,17 @@
 <div class="kanji-detail-wrap">
   <section class="detail-card">
     <div class="detail-top">
+      <button type="button"
+              class="kanji-detail-fav-btn {% if is_kanji_fav %}on{% endif %}"
+              data-kanji="{{ item.kanji|e }}"
+              data-onyomi="{{ (item.onyomi or '')|e }}"
+              data-kunyomi="{{ (item.kunyomi or '')|e }}"
+              data-meaning="{{ (item.meaning or '')|e }}"
+              data-level="{{ (item.level or '')|e }}"
+              aria-label="한자 즐겨찾기">
+        {% if is_kanji_fav %}★{% else %}☆{% endif %}
+      </button>
+
       <div class="detail-breadcrumb">
         <a href="/">홈</a> /
         <a href="{{ url_for('jlpt_kanji_home') }}">일본어 한자 2136개 모음</a> /
@@ -711,18 +766,18 @@
         </div>
       </section>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
-     crossorigin="anonymous"></script>
-<!-- content-ad-1 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9733127689125901"
-     data-ad-slot="8931844788"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
+           crossorigin="anonymous"></script>
+      <!-- content-ad-1 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-9733127689125901"
+           data-ad-slot="8931844788"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
 
       <section class="move-box">
         <div class="move-head">
@@ -796,4 +851,49 @@
     </div>
   </section>
 </div>
+
+<script>
+(function(){
+  const btn = document.querySelector(".kanji-detail-fav-btn");
+  if(!btn) return;
+
+  btn.addEventListener("click", async function(){
+    const isOn = btn.classList.contains("on");
+
+    const payload = {
+      action: isOn ? "remove" : "add",
+      kanji: btn.dataset.kanji || "",
+      onyomi: btn.dataset.onyomi || "",
+      kunyomi: btn.dataset.kunyomi || "",
+      meaning: btn.dataset.meaning || "",
+      level: btn.dataset.level || ""
+    };
+
+    try{
+      const res = await fetch("/api/kanji_fav", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if(res.status === 401){
+        alert("로그인이 필요합니다.");
+        location.href = "{{ url_for('login') }}?next={{ request.path|urlencode }}";
+        return;
+      }
+
+      const data = await res.json();
+      if(!data.ok){
+        alert("즐겨찾기 처리에 실패했습니다.");
+        return;
+      }
+
+      btn.classList.toggle("on", !isOn);
+      btn.textContent = !isOn ? "★" : "☆";
+    }catch(e){
+      alert("즐겨찾기 처리 중 오류가 발생했습니다.");
+    }
+  });
+})();
+</script>
 {% endblock %}
