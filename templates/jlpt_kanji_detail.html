@@ -669,6 +669,28 @@
       padding: 10px 12px;
     }
   }
+  .kanji-toast{
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 900;
+    box-shadow: 0 12px 24px rgba(15,23,42,.20);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+
+  .kanji-toast.show{
+    opacity: 1;
+    transform: translateX(-50%) translateY(-6px);
+  }
 </style>
 
 <div class="kanji-detail-wrap">
@@ -851,11 +873,22 @@
     </div>
   </section>
 </div>
-
+<div id="kanjiToast" class="kanji-toast"></div>
 <script>
 (function(){
   const btn = document.querySelector(".kanji-detail-fav-btn");
   if(!btn) return;
+
+  function showToast(message){
+    const toast = document.getElementById("kanjiToast");
+    if(!toast) return;
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(window.__kanjiToastTimer);
+    window.__kanjiToastTimer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 1600);
+  }
 
   btn.addEventListener("click", async function(){
     const isOn = btn.classList.contains("on");
@@ -866,7 +899,9 @@
       onyomi: btn.dataset.onyomi || "",
       kunyomi: btn.dataset.kunyomi || "",
       meaning: btn.dataset.meaning || "",
-      level: btn.dataset.level || ""
+      level: btn.dataset.level || "",
+      desc: "{{ (item.desc or '')|e }}",
+      slug: "{{ (item.slug or '')|e }}"
     };
 
     try{
@@ -877,21 +912,22 @@
       });
 
       if(res.status === 401){
-        alert("로그인이 필요합니다.");
-        location.href = "{{ url_for('login') }}?next={{ request.path|urlencode }}";
+        showToast("로그인이 필요합니다.");
         return;
       }
 
-      const data = await res.json();
-      if(!data.ok){
-        alert("즐겨찾기 처리에 실패했습니다.");
+      const data = await res.json().catch(() => ({}));
+
+      if(!res.ok || !data.ok){
+        showToast(isOn ? "로그인이 필요합니다." : "로그인이 필요합니다.");
         return;
       }
 
       btn.classList.toggle("on", !isOn);
       btn.textContent = !isOn ? "★" : "☆";
+      showToast(!isOn ? "나만의 학습노트에 저장되었습니다." : "학습노트에서 제거되었습니다.");
     }catch(e){
-      alert("즐겨찾기 처리 중 오류가 발생했습니다.");
+      showToast(isOn ? "로그인이 필요합니다." : "로그인이 필요합니다.");
     }
   });
 })();
