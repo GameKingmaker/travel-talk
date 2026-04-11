@@ -2,9 +2,139 @@
 {% block content %}
 
 <style>
-  .sit-wrap{ max-width:1080px; margin:0 auto; padding:22px 18px 48px; }
+  :root{
+    --word-page-bg: #eef2f8;
+    --word-card: #ffffff;
+    --word-line: rgba(15,23,42,.08);
+    --word-text: #0f172a;
+    --word-sub: #475569;
+    --word-soft: #64748b;
+    --word-blue: #2563eb;
+    --word-blue-2: #4f7df3;
+    --floating-width: 176px;
+  }
 
-  /* ====== TOP HEADER (NEW) ====== */
+  body{
+    background: var(--word-page-bg);
+  }
+
+  .word-page{
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 22px 20px 48px;
+  }
+
+  .sit-wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0;
+  }
+
+  /* =========================
+     우측 고정 링크 탭 (PC 전용)
+  ========================= */
+  .side-link-nav{
+    position: fixed;
+    top: 180px;
+    left: calc(50% + 560px + 28px);
+    width: var(--floating-width);
+    z-index: 50;
+  }
+
+  .side-link-box{
+    border-radius: 18px;
+    padding: 12px;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(37,99,235,.10);
+    box-shadow: 0 14px 30px rgba(15,23,42,.10);
+    backdrop-filter: blur(8px);
+  }
+
+  .side-link-title{
+    font-size: 13px;
+    font-weight: 900;
+    color: #1d4ed8;
+    margin: 2px 2px 10px;
+    letter-spacing: -0.2px;
+  }
+
+  .side-link-desc{
+    font-size: 11px;
+    line-height: 1.45;
+    color: #64748b;
+    margin: 0 2px 10px;
+  }
+
+  .side-link-list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .side-link-item{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    width:100%;
+    min-height:42px;
+    padding:11px 12px;
+    border-radius:13px;
+    text-decoration:none;
+    color:#334155;
+    background:#f8fafc;
+    border:1px solid rgba(15,23,42,.06);
+    font-size:13px;
+    font-weight:800;
+    line-height:1.35;
+    transition:.15s ease;
+    box-sizing:border-box;
+  }
+
+  .side-link-item:hover{
+    transform: translateY(-1px);
+    border-color: rgba(37,99,235,.24);
+    background:#ffffff;
+    box-shadow: 0 8px 18px rgba(37,99,235,.10);
+    color:#1e3a8a;
+  }
+
+  .side-link-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#5b82f4;
+    box-shadow:0 0 0 4px rgba(91,130,244,.12);
+    flex:0 0 auto;
+  }
+
+  .side-link-text{
+    flex:1;
+    min-width:0;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+
+  .side-link-arrow{
+    flex:0 0 auto;
+    color:#94a3b8;
+    font-size:12px;
+    font-weight:900;
+  }
+
+  @media (max-width: 1460px){
+    .side-link-nav{
+      display:none;
+    }
+  }
+
+  @media (max-width: 1024px){
+    .side-link-nav{
+      display:none !important;
+    }
+  }
+
+  /* ====== TOP HEADER ====== */
   .top-wrap{
     margin: 6px 0 18px;
     display:grid;
@@ -12,8 +142,11 @@
     gap:14px;
     align-items:stretch;
   }
+
   @media (max-width: 860px){
-    .top-wrap{ grid-template-columns: 1fr; }
+    .top-wrap{
+      grid-template-columns: 1fr;
+    }
   }
 
   .top-card{
@@ -74,6 +207,7 @@
     border:1px solid rgba(15,23,42,.08);
     background:linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.02));
   }
+
   .guide-title{
     margin:0 0 8px;
     font-size:16px;
@@ -82,6 +216,7 @@
     letter-spacing:-0.02em;
     word-break: keep-all;
   }
+
   .guide-text{
     margin:0;
     color:#334155;
@@ -91,7 +226,10 @@
     word-break: keep-all;
     overflow-wrap:anywhere;
   }
-  .guide-text + .guide-text{ margin-top:6px; }
+
+  .guide-text + .guide-text{
+    margin-top:6px;
+  }
 
   .guide-tip{
     margin-top:10px;
@@ -100,37 +238,9 @@
     font-weight:800;
   }
 
+  /* 기존 상단 액션 버튼 제거 */
   .top-actions{
-    margin-top:12px;
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-  }
-
-  .top-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    height:42px;
-    padding:0 14px;
-    border-radius:14px;
-    border:1px solid rgba(15,23,42,.12);
-    background:#fff;
-    font-weight:900;
-    color:#0b1f4b;
-    text-decoration:none;
-    transition:.16s ease;
-    white-space:nowrap;
-  }
-  .top-btn:hover{
-    transform:translateY(-1px);
-    box-shadow:0 10px 24px rgba(15,23,42,.08);
-    border-color: rgba(37,99,235,.22);
-  }
-  .top-btn.primary{
-    background:#2563eb;
-    border-color:#2563eb;
-    color:#fff;
+    display:none;
   }
 
   /* Search card */
@@ -141,6 +251,7 @@
     color:#0b1f4b;
     letter-spacing:-0.02em;
   }
+
   .search-desc{
     margin:0 0 12px;
     color:#64748b;
@@ -148,11 +259,13 @@
     font-weight:800;
     line-height:1.6;
   }
+
   .search-row{
     display:flex;
     gap:10px;
     align-items:center;
   }
+
   .search-row input{
     flex:1;
     height:44px;
@@ -162,6 +275,12 @@
     outline:none;
     min-width:0;
   }
+
+  .search-row input:focus{
+    border-color: rgba(37,99,235,.40);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.14);
+  }
+
   .search-row button{
     height:44px;
     padding:0 16px;
@@ -182,12 +301,20 @@
     line-height:1.6;
   }
 
-  /* ====== Existing category grid (keep) ====== */
-  .sit-grid{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:16px; margin-top:16px; }
-  @media (max-width: 860px){ .sit-grid{ grid-template-columns: 1fr; } }
+  /* ====== category grid ====== */
+  .sit-grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:16px;
+    margin-top:16px;
+  }
 
-  /* 너가 쓰는 wcard 스타일이 base나 다른 곳에 있을 수 있어서,
-     여기서는 wcard를 보강만 하고 충돌은 피함 */
+  @media (max-width: 860px){
+    .sit-grid{
+      grid-template-columns: 1fr;
+    }
+  }
+
   .wcard{
     background:#fff;
     border:1px solid rgba(15,23,42,.08);
@@ -195,125 +322,235 @@
     padding:16px 16px 14px;
     box-shadow:0 6px 18px rgba(15,23,42,.06);
   }
-  .wcard-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:10px; }
-  .wtitle{ font-size:18px; font-weight:900; letter-spacing:-0.2px; margin:0; color:#0f172a; }
-  .wmeta{ display:flex; align-items:center; gap:8px; color:#6b7280; font-size:12px; white-space:nowrap; font-weight:800; }
-  .wpill{
-    display:inline-flex; align-items:center; justify-content:center;
-    padding:4px 10px; border-radius:999px;
-    background:#f1f5ff; border:1px solid rgba(37,99,235,.18);
-    color:#1d4ed8; font-weight:900; font-size:12px;
+
+  .wcard-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:10px;
   }
-  .wpill.small{ height:26px; padding:0 10px; }
-  .wdesc{ margin:0 0 12px; color:#475569; font-size:13.5px; font-weight:750; line-height:1.65; }
-  .wlist{ display:flex; flex-direction:column; gap:10px; }
+
+  .wtitle{
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:-0.2px;
+    margin:0;
+    color:#0f172a;
+  }
+
+  .wmeta{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#6b7280;
+    font-size:12px;
+    white-space:nowrap;
+    font-weight:800;
+  }
+
+  .wpill{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:4px 10px;
+    border-radius:999px;
+    background:#f1f5ff;
+    border:1px solid rgba(37,99,235,.18);
+    color:#1d4ed8;
+    font-weight:900;
+    font-size:12px;
+  }
+
+  .wpill.small{
+    height:26px;
+    padding:0 10px;
+  }
+
+  .wdesc{
+    margin:0 0 12px;
+    color:#475569;
+    font-size:13.5px;
+    font-weight:750;
+    line-height:1.65;
+  }
+
+  .wlist{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
   .witem{
-    display:flex; align-items:center; justify-content:space-between; gap:10px;
-    width:100%; padding:12px 14px; border-radius:14px;
-    background:#f8fafc; border:1px solid rgba(15,23,42,.08);
-    text-decoration:none; color:#0f172a;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    width:100%;
+    padding:12px 14px;
+    border-radius:14px;
+    background:#f8fafc;
+    border:1px solid rgba(15,23,42,.08);
+    text-decoration:none;
+    color:#0f172a;
     transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
   }
+
   .witem:hover{
     transform: translateY(-1px);
     background:#fff;
     border-color: rgba(37,99,235,.22);
     box-shadow:0 8px 18px rgba(37,99,235,.10);
   }
-  .witem-text{ font-weight:900; letter-spacing:-0.2px; }
-  .wdot{ width:10px; height:10px; border-radius:50%; background: rgba(37,99,235,.85); box-shadow:0 0 0 4px rgba(37,99,235,.12); flex:0 0 auto; }
-  .whint{ margin-top:12px; color:#64748b; font-size:12px; font-weight:800; }
 
-  /* Mobile tighten */
+  .witem-text{
+    font-weight:900;
+    letter-spacing:-0.2px;
+  }
+
+  .wdot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: rgba(37,99,235,.85);
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+    flex:0 0 auto;
+  }
+
+  .whint{
+    margin-top:12px;
+    color:#64748b;
+    font-size:12px;
+    font-weight:800;
+  }
+
   @media (max-width: 600px){
-    .sit-wrap{ padding:18px 14px 36px; }
-    .top-title{ font-size:26px; line-height:1.15; }
-    .top-card{ padding:16px; }
-    .guide-title{ font-size:15px; }
+    .word-page{
+      padding:18px 14px 36px;
+    }
+
+    .top-title{
+      font-size:26px;
+      line-height:1.15;
+    }
+
+    .top-card{
+      padding:16px;
+    }
+
+    .guide-title{
+      font-size:15px;
+    }
   }
 </style>
 
-<div class="sit-wrap">
+<div class="word-page">
 
-  <!-- ✅ NEW: 상단 2칸 카드 -->
-  <div class="top-wrap">
-
-    <!-- 왼쪽: 소개 카드 -->
-    <section class="top-card">
-      <div class="top-title-row">
-        <h1 class="top-title">📘 일본어 단어 모음</h1>
-        <span class="top-badge">카테고리별 정리 · 즐겨찾기 지원</span>
+  <!-- PC 전용 우측 고정 링크탭 -->
+  <aside class="side-link-nav" aria-label="관련 페이지 바로가기">
+    <div class="side-link-box">
+      <div class="side-link-title">공부 이어가기</div>
+      <div class="side-link-desc">
+        필요한 페이지로 바로 이동할 수 있어요.
       </div>
 
-      <p class="top-sub">
-        이 단어 페이지는 일본어 학습에 자주 등장하는 기본 어휘를 정리하여 제공하는 학습 자료입니다.<br>
-        퀴즈 및 상황별 학습과 연계하여, 어휘력을 체계적으로 확장할 수 있도록 돕습니다.
-      </p>
+      <div class="side-link-list">
+        <a href="https://japanesestudyroom.com/note" class="side-link-item">
+          <span class="side-link-dot"></span>
+          <span class="side-link-text">나만의학습노트</span>
+          <span class="side-link-arrow">›</span>
+        </a>
 
-      <div class="guide-box">
-        <h2 class="guide-title">자주 쓰는 일본어 단어를 카테고리별로 빠르게 정리했어요</h2>
-        <p class="guide-text">여행·일상에서 바로 쓰는 단어를 분야별로 모았습니다.</p>
-        <p class="guide-text">단어를 눌러 뜻·발음을 확인하고, ★ 즐겨찾기로 반복 복습하세요.</p>
-        <div class="guide-tip">Tip: “상황별 회화”랑 같이 보면 실전에서 훨씬 빨리 떠올라요.</div>
+        <a href="https://japanesestudyroom.com/situations" class="side-link-item">
+          <span class="side-link-dot"></span>
+          <span class="side-link-text">상황별회화</span>
+          <span class="side-link-arrow">›</span>
+        </a>
+
+        <a href="https://japanesestudyroom.com/quiz" class="side-link-item">
+          <span class="side-link-dot"></span>
+          <span class="side-link-text">퀴즈게임</span>
+          <span class="side-link-arrow">›</span>
+        </a>
       </div>
+    </div>
+  </aside>
 
-      <div class="top-actions">
-        <a class="top-btn" href="{{ url_for('situations') }}">상황별 회화 보기</a>
-        <a class="top-btn primary" href="{{ url_for('word_game') }}">🎮단어 게임으로 실력 체크</a>
-      </div>
-    </section>
+  <div class="sit-wrap">
 
-    <!-- 오른쪽: 검색 카드 -->
-    <section class="top-card">
-      <div class="search-title">🔎 단어 빠른 검색</div>
-      <p class="search-desc">일본어/발음/한국어로 검색해서 원하는 단어를 바로 찾아보세요.</p>
+    <div class="top-wrap">
 
-      <form method="GET" action="{{ url_for('words_search') }}">
-        <div class="search-row">
-          <input type="text" name="q" value="{{ q or '' }}" placeholder="일본어 / 발음 / 한국어로 검색">
-          <button type="submit">검색</button>
-        </div>
-      </form>
-
-      <div class="search-hint">
-        예) 今 / いま / 이마 / 지금<br>
-        ※ 카테고리를 눌러 들어가서도 동일하게 검색할 수 있어요.
-      </div>
-    </section>
-
-  </div>
-
-  <!-- ✅ 기존 카테고리 그리드 (구조 그대로) -->
-  <div class="sit-grid">
-    {% for cat in (categories or []) %}
-      <section class="wcard">
-        <div class="wcard-head">
-          <div class="wtitle">{{ cat["title"] }}</div>
-          <div class="wmeta">
-            <span>단어</span>
-            <span class="wpill">{{ cat["count"] }}</span>
-          </div>
+      <!-- 왼쪽: 소개 카드 -->
+      <section class="top-card">
+        <div class="top-title-row">
+          <h1 class="top-title">📘 일본어 단어 모음</h1>
+          <span class="top-badge">카테고리별 정리 · 즐겨찾기 지원</span>
         </div>
 
-        <p class="wdesc">{{ cat["desc"] }}</p>
+        <p class="top-sub">
+          이 단어 페이지는 일본어 학습에 자주 등장하는 기본 어휘를 정리하여 제공하는 학습 자료입니다.<br>
+          퀴즈 및 상황별 학습과 연계하여, 어휘력을 체계적으로 확장할 수 있도록 돕습니다.
+        </p>
 
-        <div class="wlist">
-          <a class="witem" href="{{ url_for('words_detail', cat_key=cat['key']) }}">
-            <span class="wdot"></span>
-            <span class="witem-text">단어 목록 보기</span>
-            <span class="wpill small">{{ cat["count"] }}</span>
-          </a>
+        <div class="guide-box">
+          <h2 class="guide-title">자주 쓰는 일본어 단어를 카테고리별로 빠르게 정리했어요</h2>
+          <p class="guide-text">여행·일상에서 바로 쓰는 단어를 분야별로 모았습니다.</p>
+          <p class="guide-text">단어를 눌러 뜻·발음을 확인하고, ★ 즐겨찾기로 반복 복습하세요.</p>
+          <div class="guide-tip">Tip: “상황별 회화”랑 같이 보면 실전에서 훨씬 빨리 떠올라요.</div>
         </div>
-
-        <div class="whint">※ 버튼을 누르면 해당 분류 단어가 열려요.</div>
       </section>
-    {% endfor %}
-  </div>
 
+      <!-- 오른쪽: 검색 카드 -->
+      <section class="top-card">
+        <div class="search-title">🔎 단어 빠른 검색</div>
+        <p class="search-desc">일본어/발음/한국어로 검색해서 원하는 단어를 바로 찾아보세요.</p>
+
+        <form method="GET" action="{{ url_for('words_search') }}">
+          <div class="search-row">
+            <input type="text" name="q" value="{{ q or '' }}" placeholder="일본어 / 발음 / 한국어로 검색">
+            <button type="submit">검색</button>
+          </div>
+        </form>
+
+        <div class="search-hint">
+          예) 今 / いま / 이마 / 지금<br>
+          ※ 카테고리를 눌러 들어가서도 동일하게 검색할 수 있어요.
+        </div>
+      </section>
+
+    </div>
+
+    <div class="sit-grid">
+      {% for cat in (categories or []) %}
+        <section class="wcard">
+          <div class="wcard-head">
+            <div class="wtitle">{{ cat["title"] }}</div>
+            <div class="wmeta">
+              <span>단어</span>
+              <span class="wpill">{{ cat["count"] }}</span>
+            </div>
+          </div>
+
+          <p class="wdesc">{{ cat["desc"] }}</p>
+
+          <div class="wlist">
+            <a class="witem" href="{{ url_for('words_detail', cat_key=cat['key']) }}">
+              <span class="wdot"></span>
+              <span class="witem-text">단어 목록 보기</span>
+              <span class="wpill small">{{ cat["count"] }}</span>
+            </a>
+          </div>
+
+          <div class="whint">※ 버튼을 누르면 해당 분류 단어가 열려요.</div>
+        </section>
+      {% endfor %}
+    </div>
+
+  </div>
 </div>
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
      crossorigin="anonymous"></script>
-<!-- content-ad-1 -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-9733127689125901"
