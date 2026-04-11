@@ -423,6 +423,46 @@ table.addr-table td{
   word-break:break-word;
 }
 table.addr-table tbody tr:last-child td{ border-bottom:none; }
+
+.kanji-card{
+  position: relative;
+}
+
+.kanji-fav-btn{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  border:1px solid rgba(37,99,235,.16);
+  background:#fff;
+  color:#94a3b8;
+  font-size:20px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:.15s ease;
+  z-index:2;
+}
+
+.kanji-fav-btn:hover{
+  transform:translateY(-1px);
+  border-color:rgba(37,99,235,.30);
+  box-shadow:0 8px 18px rgba(37,99,235,.10);
+}
+
+.kanji-fav-btn.on{
+  color:#f59e0b;
+  background:#fffaf0;
+  border-color:rgba(245,158,11,.30);
+}
+
+.kanji-top{
+  padding-right:52px;
+}
   </style>
 {% endblock %}
 
