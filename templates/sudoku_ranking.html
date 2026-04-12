@@ -235,7 +235,6 @@
     <a class="mode-tab {% if selected_mode == 'easy' %}active{% endif %}" href="{{ url_for('sudoku_ranking', mode='easy') }}">초급</a>
     <a class="mode-tab {% if selected_mode == 'normal' %}active{% endif %}" href="{{ url_for('sudoku_ranking', mode='normal') }}">중급</a>
     <a class="mode-tab {% if selected_mode == 'hard' %}active{% endif %}" href="{{ url_for('sudoku_ranking', mode='hard') }}">고급</a>
-    <a class="mode-tab {% if selected_mode == 'master' %}active{% endif %}" href="{{ url_for('sudoku_ranking', mode='master') }}">마스터</a>
   </div>
 
   <div class="card">
@@ -245,7 +244,6 @@
         {% if selected_mode == 'easy' %}초급
         {% elif selected_mode == 'normal' %}중급
         {% elif selected_mode == 'hard' %}고급
-        {% else %}마스터
         {% endif %}
       </span>
     </div>
