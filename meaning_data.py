@@ -320,16 +320,6 @@ B: 괜찮아요."""
 "example_ko":"A: 천천히 말해 주세요.\nB: 알겠습니다."
 },
 
-{
-"slug":"wakarimasen",
-"yomi":"와카리마센",
-"jp":"わかりません",
-"ko":"모르겠습니다",
-"keyword_ko":"모르겠습니다",
-"desc":"わかりません는 일본어에서 이해하지 못했거나 모른다는 의미로 사용하는 표현입니다.",
-"example_jp":"A: わかりますか？\nB: わかりません。",
-"example_ko":"A: 이해했어요?\nB: 모르겠습니다."
-},
 
 {
 "slug":"wakarimashita",
@@ -678,16 +668,7 @@ B: 괜찮아요."""
 "example_jp":"A: まっすぐ行ってください。\nB: はい、わかりました。",
 "example_ko":"A: 곧장 가 주세요.\nB: 네, 알겠습니다."
 },
-{
-"slug":"migi-ni-magate-kudasai",
-"yomi":"미기니 마가테 쿠다사이",
-"jp":"右に曲がってください",
-"ko":"오른쪽으로 꺾어 주세요",
-"keyword_ko":"오른쪽으로",
-"desc":"右に曲がってください는 길 안내에서 오른쪽으로 방향을 바꾸라는 의미로 사용됩니다.",
-"example_jp":"A: 次の角を右に曲がってください。\nB: はい。",
-"example_ko":"A: 다음 모퉁이에서 오른쪽으로 도세요.\nB: 네."
-},
+
 {
 "slug":"hidari-ni-magate-kudasai",
 "yomi":"히다리니 마가테 쿠다사이",
@@ -1553,26 +1534,7 @@ B: 괜찮아요."""
 "example_jp":"A: 今日はどうでしたか？\nB: 疲れました。",
 "example_ko":"A: 오늘 어땠어요?\nB: 피곤해요."
 },
-{
-"slug":"hayaku",
-"yomi":"하야쿠",
-"jp":"早く",
-"ko":"빨리",
-"keyword_ko":"빨리",
-"desc":"早く는 행동을 빨리 하라고 말할 때 사용하는 표현입니다.",
-"example_jp":"A: 早く来てください。\nB: はい。",
-"example_ko":"A: 빨리 와 주세요.\nB: 네."
-},
-{
-"slug":"osoi",
-"yomi":"오소이",
-"jp":"遅い",
-"ko":"늦다/느리다",
-"keyword_ko":"늦다",
-"desc":"遅い는 시간이 늦거나 속도가 느릴 때 사용하는 표현입니다.",
-"example_jp":"A: 今日は遅いですね。\nB: すみません。",
-"example_ko":"A: 오늘 늦네요.\nB: 죄송합니다."
-},
+
 {
 "slug":"ureshii-desu",
 "yomi":"우레시이데스",
@@ -1965,16 +1927,7 @@ B: 괜찮아요."""
 "example_jp":"A: もう着きます。\nB: わかりました。",
 "example_ko":"A: 곧 도착해요.\nB: 알겠습니다."
 },
-{
-"slug":"ima-mukatteimasu",
-"yomi":"이마 무카테이마스",
-"jp":"今向かっています",
-"ko":"지금 가는 중이에요",
-"keyword_ko":"가는 중",
-"desc":"今向かっています는 현재 목적지를 향해 가는 중일 때 사용하는 표현입니다.",
-"example_jp":"A: 今向かっています。\nB: 気をつけてください。",
-"example_ko":"A: 지금 가는 중이에요.\nB: 조심히 오세요."
-},
+
 {
 "slug":"sugu-ikimasu",
 "yomi":"스구 이키마스",
@@ -2196,16 +2149,7 @@ B: 괜찮아요."""
 "example_jp":"A: 電車が遅れた。\nB: 最悪だ。",
 "example_ko":"A: 전철이 늦었어.\nB: 최악이야."
 },
-{
-"slug":"uso",
-"yomi":"우소",
-"jp":"うそ",
-"ko":"거짓말",
-"keyword_ko":"거짓말",
-"desc":"うそ는 상대의 말을 믿기 어렵거나 놀랐을 때 ‘거짓말!’이라는 의미로 사용하는 표현입니다.",
-"example_jp":"A: 合格しました。\nB: うそ？",
-"example_ko":"A: 합격했어요.\nB: 거짓말?"
-},
+
 {
 "slug":"majika",
 "yomi":"마지카",
@@ -2246,16 +2190,7 @@ B: 괜찮아요."""
 "example_jp":"A: どうしてですか？\nB: わかりません。",
 "example_ko":"A: 어째서인가요?\nB: 모르겠습니다."
 },
-{
-"slug":"yabai",
-"yomi":"야바이",
-"jp":"やばい",
-"ko":"대박/위험해",
-"keyword_ko":"대박",
-"desc":"やばい는 상황에 따라 ‘대박’, ‘위험해’, ‘큰일이다’ 등 다양한 의미로 사용되는 일본어 슬랭 표현입니다.",
-"example_jp":"A: この店おいしい！\nB: やばいね。",
-"example_ko":"A: 이 가게 맛있어!\nB: 대박이네."
-},
+
 {
 "slug":"suteki-desu",
 "yomi":"스테키데스",
@@ -2296,16 +2231,7 @@ B: 괜찮아요."""
 "example_jp":"A: その車かっこいい。\nB: そうだね。",
 "example_ko":"A: 그 차 멋있다.\nB: 그러네."
 },
-{
-"slug":"tsumaranai",
-"yomi":"츠마라나이",
-"jp":"つまらない",
-"ko":"재미없어",
-"keyword_ko":"재미없다",
-"desc":"つまらない는 재미가 없거나 흥미롭지 않을 때 사용하는 표현입니다.",
-"example_jp":"A: この映画どう？\nB: つまらない。",
-"example_ko":"A: 이 영화 어때?\nB: 재미없어."
-},
+
 {
 "slug":"kankou-desuka",
 "yomi":"칸코오데스카",
@@ -2658,16 +2584,7 @@ B: 괜찮아요."""
 "example_jp":"A: 料理はまだですか？\nB: すぐ来ます。",
 "example_ko":"A: 음식 아직인가요?\nB: 곧 나와요."
 },
-{
-"slug":"mata-kite-kudasai",
-"yomi":"마타 키테 쿠다사이",
-"jp":"また来てください",
-"ko":"또 와 주세요",
-"keyword_ko":"또 와 주세요",
-"desc":"また来てください는 손님에게 다시 방문해 달라고 말할 때 사용하는 표현입니다.",
-"example_jp":"A: また来てください。\nB: はい。",
-"example_ko":"A: 또 와 주세요.\nB: 네."
-},
+
 {
 "slug":"iine-oshite-kudasai",
 "yomi":"이이네 오시테 쿠다사이",
@@ -2860,16 +2777,6 @@ B: 괜찮아요."""
 },
 
 {
-"slug":"kanashii",
-"yomi":"카나시이",
-"jp":"悲しい",
-"ko":"슬프다",
-"keyword_ko":"슬프다",
-"desc":"悲しい는 슬픈 감정을 표현할 때 사용하는 일본어 형용사입니다.",
-"example_jp":"A: どうしましたか？\nB: ちょっと悲しいです。",
-"example_ko":"A: 무슨 일 있어요?\nB: 조금 슬퍼요."
-},
-{
 "slug":"tanoshii",
 "yomi":"타노시이",
 "jp":"楽しい",
@@ -2889,16 +2796,7 @@ B: 괜찮아요."""
 "example_jp":"A: この映画どうですか？\nB: つまらないです。",
 "example_ko":"A: 이 영화 어때요?\nB: 재미없어요."
 },
-{
-"slug":"kowai",
-"yomi":"코와이",
-"jp":"怖い",
-"ko":"무섭다",
-"keyword_ko":"무섭다",
-"desc":"怖い는 공포나 두려움을 느낄 때 사용하는 표현입니다.",
-"example_jp":"A: この映画怖い。\nB: 本当だ。",
-"example_ko":"A: 이 영화 무섭다.\nB: 그러네."
-},
+
 {
 "slug":"abunai",
 "yomi":"아부나이",
@@ -3119,16 +3017,7 @@ B: 괜찮아요."""
 "example_jp":"A: ここで待ちますか？\nB: ちょっと待ちます。",
 "example_ko":"A: 여기서 기다릴까요?\nB: 잠깐 기다릴게요."
 },
-{
-"slug":"mata-ashita",
-"yomi":"마타 아시타",
-"jp":"また明日",
-"ko":"내일 또 봐",
-"keyword_ko":"내일 또 봐",
-"desc":"また明日は 작별 인사로 ‘내일 또 보자’는 의미로 사용하는 표현입니다.",
-"example_jp":"A: また明日。\nB: また明日。",
-"example_ko":"A: 내일 또 봐.\nB: 내일 또 봐."
-},
+
 {
 "slug":"mata-kondo",
 "yomi":"마타 콘도",
@@ -3261,16 +3150,7 @@ B: 괜찮아요."""
 "example_jp":"A: ここから遠いですか？\nB: いいえ、近いです。",
 "example_ko":"A: 여기서 멀어요?\nB: 아니요, 가까워요."
 },
-{
-"slug":"aruite-ikemasu-ka",
-"yomi":"아루이테 이케마스카",
-"jp":"歩いて行けますか",
-"ko":"걸어서 갈 수 있어요",
-"keyword_ko":"걸어서 갈 수 있어요",
-"desc":"歩いて行けますか는 걸어서 이동 가능한지 물어볼 때 사용하는 표현입니다.",
-"example_jp":"A: 歩いて行けますか？\nB: はい、行けます。",
-"example_ko":"A: 걸어서 갈 수 있어요?\nB: 네, 가능합니다."
-},
+
 {
 "slug":"chizu-de-oshiete-kudasai",
 "yomi":"지도데 오시에테 쿠다사이",
@@ -3462,16 +3342,7 @@ B: 괜찮아요."""
 "example_jp":"A: この動画見ましたか？\nB: はい、見ました。",
 "example_ko":"A: 이 영상 봤어요?\nB: 네, 봤어요."
 },
-{
-"slug":"shashin",
-"yomi":"샤신",
-"jp":"写真",
-"ko":"사진",
-"keyword_ko":"사진",
-"desc":"写真는 사진이나 찍은 이미지를 의미하는 일본어 단어입니다.",
-"example_jp":"A: この写真きれいですね。\nB: ありがとうございます。",
-"example_ko":"A: 이 사진 예쁘네요.\nB: 감사합니다."
-},
+
 {
 "slug":"comment",
 "yomi":"코멘토",
@@ -3597,17 +3468,7 @@ B: 괜찮아요."""
 "example_ko":"A: 괜찮아요?\nB: 조금 피곤해요.",
 "related":["ima-nemui-desu","chotto-hima-desu","sore-wa-taihen-desu-ne"]
 },
-{
-"slug":"nemui",
-"yomi":"네무이",
-"jp":"眠い",
-"ko":"졸려",
-"keyword_ko":"졸려",
-"desc":"眠い는 잠이 오거나 졸린 상태를 나타낼 때 사용하는 표현입니다.",
-"example_jp":"A: 昨日あまり寝ていません。\nB: 眠い。",
-"example_ko":"A: 어제 많이 못 잤어.\nB: 졸려.",
-"related":["ima-nemui-desu","tsukarete-imasu"]
-},
+
 {
 "slug":"nodo-ga-kawaita",
 "yomi":"노도 가 카와이타",
@@ -4655,16 +4516,7 @@ B: 괜찮아요."""
 "example_jp":"A: どこに行きたいですか？\nB: 京都に行きたいです。",
 "example_ko":"A: 어디 가고 싶어요?\nB: 교토에 가고 싶어요."
 },
-{
-"slug":"nanji-ni-aimasuka",
-"yomi":"난지니 아이마스카",
-"jp":"何時に会いますか",
-"ko":"몇 시에 만나요",
-"keyword_ko":"몇 시에 만나요",
-"desc":"何時に会いますか는 약속 시간을 정할 때 사용하는 표현입니다.",
-"example_jp":"A: 何時に会いますか？\nB: 三時に会いましょう。",
-"example_ko":"A: 몇 시에 만나요?\nB: 3시에 만나요."
-},
+
 {
 "slug":"doko-de-aimasuka",
 "yomi":"도코데 아이마스카",
@@ -5036,16 +4888,7 @@ B: 괜찮아요."""
 "example_jp":"A: では、いい一日を過ごしてください。\nB: ありがとうございます。",
 "example_ko":"A: 그럼, 좋은 하루 보내세요.\nB: 감사합니다."
 },
-{
-"slug":"kiwo-tsukete",
-"yomi":"키오츠케테",
-"jp":"気をつけて",
-"ko":"조심해",
-"keyword_ko":"조심해",
-"desc":"気をつけて는 가까운 사람에게 조심하라고 말할 때 사용하는 캐주얼한 표현입니다.",
-"example_jp":"A: もう遅いからね。\nB: うん、気をつけて。",
-"example_ko":"A: 이제 늦었으니까.\nB: 응, 조심해."
-},
+
 {
 "slug":"kiwo-tsukete-kudasai",
 "yomi":"키오츠케테 쿠다사이",
@@ -5110,28 +4953,7 @@ B: 괜찮아요."""
     "example_ko":"A: 다음 수업은 뭐예요?\nB: 수학이에요.",
     "related": ["gakusei", "gakkou", "sensei", "benkyou"]
 },
-{
-    "slug":"benkyou",
-    "yomi":"벤쿄오",
-    "jp":"勉強",
-    "ko":"공부",
-    "keyword_ko":"공부",
-    "desc":"勉強는 공부하거나 학습하는 것을 의미하는 일본어 단어입니다.",
-    "example_jp":"A: 毎日勉強します。\nB: えらいですね。",
-    "example_ko":"A: 매일 공부해요.\nB: 대단하네요.",
-    "related": ["gakusei", "gakkou", "sensei", "jugyou"]
-},
-{
-"slug":"benkyou",
-"yomi":"벤쿄오",
-"jp":"勉強",
-"ko":"공부",
-"keyword_ko":"공부",
-"desc":"勉強는 학습이나 공부를 뜻하는 기본적인 일본어 단어입니다.",
-"example_jp":"A: 毎日勉強します。\nB: すごいですね。",
-"example_ko":"A: 매일 공부해요.\nB: 대단하네요.",
-"related": ["tesuto", "shukudai", "toshokan", "nooto"]
-},
+
 {
 "slug":"tesuto",
 "yomi":"테스토",
@@ -5238,17 +5060,7 @@ B: 괜찮아요."""
 "example_jp":"A: 今から勉強します。\nB: 頑張ってください。",
 "example_ko":"A: 지금부터 공부합니다.\nB: 힘내세요."
 },
-{
-"slug":"shigoto",
-"yomi":"시고토",
-"jp":"仕事",
-"ko":"일",
-"keyword_ko":"일",
-"desc":"仕事는 직업, 업무, 일을 의미하는 기본적인 일본어 단어입니다.",
-"example_jp":"A: 今日は仕事があります。\nB: 忙しいですね。",
-"example_ko":"A: 오늘 일이 있어요.\nB: 바쁘네요.",
-"related": ["kaisha", "shain", "douryou", "joushi"]
-},
+
 {
 "slug":"shain",
 "yomi":"샤인",
@@ -5579,17 +5391,7 @@ B: 괜찮아요."""
 "example_ko":"A: 보도로 걸어 주세요.\nB: 네.",
 "related": ["douro", "shingou", "kado"]
 },
-{
-"slug":"hashi",
-"yomi":"하시",
-"jp":"橋",
-"ko":"다리",
-"keyword_ko":"다리",
-"desc":"橋는 강이나 길 위를 건너기 위해 만든 다리를 의미합니다.",
-"example_jp":"A: あの橋を渡ります。\nB: わかりました。",
-"example_ko":"A: 저 다리를 건너요.\nB: 알겠습니다.",
-"related": ["douro", "shingou"]
-},
+
 {
 "slug":"kaidan",
 "yomi":"카이단",
@@ -5773,28 +5575,8 @@ B: 괜찮아요."""
 "example_ko":"A: 이 가게는 싸요.\nB: 좋네요.",
 "related": ["takai"]
 },
-{
-"slug":"atarashii",
-"yomi":"아타라시이",
-"jp":"新しい",
-"ko":"새롭다",
-"keyword_ko":"새롭다",
-"desc":"新しい는 새것이거나 새롭다는 뜻을 가진 일본어 형용사입니다.",
-"example_jp":"A: 新しい靴を買いました。\nB: いいですね。",
-"example_ko":"A: 새 신발을 샀어요.\nB: 좋네요.",
-"related": ["furui"]
-},
-{
-"slug":"furui",
-"yomi":"후루이",
-"jp":"古い",
-"ko":"오래됐다",
-"keyword_ko":"오래됐다",
-"desc":"古い는 오래되었거나 낡았다는 뜻을 가진 일본어 형용사입니다.",
-"example_jp":"A: この建物は古いです。\nB: そうですね。",
-"example_ko":"A: 이 건물은 오래됐어요.\nB: 그러네요.",
-"related": ["atarashii"]
-},
+
+
 {
 "slug":"omoi",
 "yomi":"오모이",
@@ -5851,17 +5633,7 @@ B: 괜찮아요."""
 "example_ko":"A: 전자레인지로 데워요.\nB: 편리하네요.",
 "related": ["kicchin", "gasu"]
 },
-{
-"slug":"mizu",
-"yomi":"미즈",
-"jp":"水",
-"ko":"물",
-"keyword_ko":"물",
-"desc":"水는 마시는 물이나 일반적인 물을 의미하는 기본 일본어 단어입니다.",
-"example_jp":"A: 水をください。\nB: はい、どうぞ。",
-"example_ko":"A: 물 주세요.\nB: 네, 여기요.",
-"related": ["oyu", "reizouko"]
-},
+
 {
 "slug":"oyu",
 "yomi":"오유",
@@ -5873,17 +5645,7 @@ B: 괜찮아요."""
 "example_ko":"A: 뜨거운 물 있어요?\nB: 네, 있어요.",
 "related": ["mizu", "ofuro"]
 },
-{
-"slug":"toire",
-"yomi":"토이레",
-"jp":"トイレ",
-"ko":"화장실",
-"keyword_ko":"화장실",
-"desc":"トイレ는 화장실을 의미하는 가장 기본적인 일본어 표현입니다.",
-"example_jp":"A: トイレはどこですか？\nB: あちらです。",
-"example_ko":"A: 화장실은 어디예요?\nB: 저쪽입니다.",
-"related": ["ofuro", "kagami"]
-},
+
 {
 "slug":"ofuro",
 "yomi":"오후로",
@@ -5906,28 +5668,8 @@ B: 괜찮아요."""
 "example_ko":"A: 거울은 어디예요?\nB: 거기예요.",
 "related": ["toire"]
 },
-{
-"slug":"eakon",
-"yomi":"에아콘",
-"jp":"エアコン",
-"ko":"에어컨",
-"keyword_ko":"에어컨",
-"desc":"エアコン는 실내 온도를 조절하는 에어컨을 의미합니다.",
-"example_jp":"A: エアコンをつけます。\nB: お願いします。",
-"example_ko":"A: 에어컨을 켤게요.\nB: 부탁합니다.",
-"related": ["denki"]
-},
-{
-"slug":"denki",
-"yomi":"덴키",
-"jp":"電気",
-"ko":"전기",
-"keyword_ko":"전기",
-"desc":"電気는 전기나 전등 불빛을 의미하는 일본어 단어입니다.",
-"example_jp":"A: 電気を消してください。\nB: はい。",
-"example_ko":"A: 불을 꺼 주세요.\nB: 네.",
-"related": ["eakon"]
-},
+
+
 {
 "slug":"kagi-wo-wasuremashita",
 "yomi":"카기 오 와스레마시타",
@@ -6766,17 +6508,7 @@ B: 괜찮아요."""
 "example_ko":"A: 맥주 마실래요?\nB: 네.",
 "related": ["sake","wain"]
 },
-{
-"slug":"sake",
-"yomi":"사케",
-"jp":"酒",
-"ko":"술",
-"keyword_ko":"술",
-"desc":"酒는 술 전반을 의미하는 일본어 단어입니다.",
-"example_jp":"A: 酒は好きですか？\nB: 少しだけ。",
-"example_ko":"A: 술 좋아해요?\nB: 조금만요.",
-"related": ["biiru","wain"]
-},
+
 {
 "slug":"wain",
 "yomi":"와인",
@@ -7826,17 +7558,7 @@ B: 괜찮아요."""
 "example_ko":"A: 밀가루를 사용해요.\nB: 네.",
 "related":["komugi","katakuriko","pan"]
 },
-{
-"slug":"pan",
-"yomi":"판",
-"jp":"パン",
-"ko":"빵",
-"keyword_ko":"빵",
-"desc":"パン은 빵을 의미하는 일본어 외래어입니다.",
-"example_jp":"A: パンを食べます。\nB: 朝ご飯ですか？",
-"example_ko":"A: 빵을 먹어요.\nB: 아침밥이에요?",
-"related":["komugiko","jamu","piinattsubataa"]
-},
+
 {
 "slug":"nuudoru",
 "yomi":"누도루",
@@ -8416,26 +8138,7 @@ B: 괜찮아요."""
 "example_ko":"A: 내년에 유학 가요.\nB: 대단하네요.",
 "related":["kotoshi","kyonen"]
 },
-{
-"slug":"tenki",
-"yomi":"텐키",
-"jp":"天気",
-"ko":"날씨",
-"keyword_ko":"날씨",
-"desc":"天気는 날씨를 의미하는 일본어 단어입니다.",
-"example_jp":"A: 今日の天気はどうですか？\nB: 晴れです。",
-"example_ko":"A: 오늘 날씨는 어때요?\nB: 맑아요."
-},
-{
-"slug":"hare",
-"yomi":"하레",
-"jp":"晴れ",
-"ko":"맑음",
-"keyword_ko":"맑음",
-"desc":"晴れ는 날씨가 맑은 상태를 의미하는 일본어 단어입니다.",
-"example_jp":"A: 明日の天気は晴れです。\nB: よかったですね。",
-"example_ko":"A: 내일 날씨는 맑음이에요.\nB: 다행이네요."
-},
+
 {
 "slug":"kumori",
 "yomi":"쿠모리",
@@ -8446,16 +8149,7 @@ B: 괜찮아요."""
 "example_jp":"A: 今日は曇りです。\nB: 雨が降りそうですね。",
 "example_ko":"A: 오늘은 흐려요.\nB: 비가 올 것 같네요."
 },
-{
-"slug":"ame",
-"yomi":"아메",
-"jp":"雨",
-"ko":"비",
-"keyword_ko":"비",
-"desc":"雨는 비를 의미하는 일본어 단어입니다.",
-"example_jp":"A: 雨が降っています。\nB: 傘を持ちましょう。",
-"example_ko":"A: 비가 오고 있어요.\nB: 우산을 챙겨요."
-},
+
 {
 "slug":"yuki",
 "yomi":"유키",
@@ -8486,36 +8180,7 @@ B: 괜찮아요."""
 "example_jp":"A: 台風が来ます。\nB: 大変ですね。",
 "example_ko":"A: 태풍이 와요.\nB: 큰일이네요."
 },
-{
-"slug":"samui",
-"yomi":"사무이",
-"jp":"寒い",
-"ko":"춥다",
-"keyword_ko":"춥다",
-"desc":"寒い는 날씨나 기온이 추울 때 사용하는 일본어 형용사입니다.",
-"example_jp":"A: 今日は寒いです。\nB: 本当に寒いですね。",
-"example_ko":"A: 오늘 추워요.\nB: 정말 춥네요."
-},
-{
-"slug":"suzushii",
-"yomi":"스즈시이",
-"jp":"涼しい",
-"ko":"시원하다",
-"keyword_ko":"시원하다",
-"desc":"涼しい는 날씨나 공기가 시원할 때 사용하는 일본어 형용사입니다.",
-"example_jp":"A: 夜は涼しいです。\nB: 気持ちいいですね。",
-"example_ko":"A: 밤에는 시원해요.\nB: 기분 좋네요."
-},
-{
-"slug":"ureshii",
-"yomi":"우레시이",
-"jp":"嬉しい",
-"ko":"기쁘다",
-"keyword_ko":"기쁘다",
-"desc":"嬉しい는 기쁜 감정을 표현할 때 사용하는 일본어 형용사입니다.",
-"example_jp":"A: 合格して嬉しいです。\nB: おめでとうございます。",
-"example_ko":"A: 합격해서 기뻐요.\nB: 축하드립니다."
-},
+
 {
 "slug":"okoru",
 "yomi":"오코루",
@@ -8576,26 +8241,8 @@ B: 괜찮아요."""
 "example_jp":"A: ピーマンが嫌いです。\nB: そうなんですね。",
 "example_ko":"A: 피망을 싫어해요.\nB: 그렇군요."
 },
-{
-"slug":"iku",
-"yomi":"이쿠",
-"jp":"行く",
-"ko":"가다",
-"keyword_ko":"가다",
-"desc":"行く는 가다를 의미하는 아주 기본적인 일본어 동사입니다.",
-"example_jp":"A: 学校に行きます。\nB: 気をつけて。",
-"example_ko":"A: 학교에 가요.\nB: 조심해."
-},
-{
-"slug":"kuru",
-"yomi":"쿠루",
-"jp":"来る",
-"ko":"오다",
-"keyword_ko":"오다",
-"desc":"来る는 오다를 의미하는 기본 일본어 동사입니다.",
-"example_jp":"A: 友達が来ます。\nB: わかりました。",
-"example_ko":"A: 친구가 와요.\nB: 알겠습니다."
-},
+
+
 {
 "slug":"taberu",
 "yomi":"타베루",
@@ -8615,156 +8262,6 @@ B: 괜찮아요."""
 "desc":"飲む는 마시다를 의미하는 기본 일본어 동사입니다.",
 "example_jp":"A: 水を飲む。\nB: いいですね。",
 "example_ko":"A: 물을 마시다.\nB: 좋네요."
-},
-{
-"slug":"miru",
-"yomi":"미루",
-"jp":"見る",
-"ko":"보다",
-"keyword_ko":"보다",
-"desc":"見る는 보다를 의미하는 기본 일본어 동사입니다.",
-"example_jp":"A: 映画を見る。\nB: 楽しそうですね。",
-"example_ko":"A: 영화를 보다.\nB: 재미있어 보이네요."
-},
-{
-"slug":"kiku",
-"yomi":"키쿠",
-"jp":"聞く",
-"ko":"듣다",
-"keyword_ko":"듣다",
-"desc":"聞く는 듣다 또는 묻다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 音楽を聞く。\nB: いいですね。",
-"example_ko":"A: 음악을 듣다.\nB: 좋네요."
-},
-{
-"slug":"yomu",
-"yomi":"요무",
-"jp":"読む",
-"ko":"읽다",
-"keyword_ko":"읽다",
-"desc":"読む는 읽다를 의미하는 기본 일본어 동사입니다.",
-"example_jp":"A: 本を読む。\nB: 静かですね。",
-"example_ko":"A: 책을 읽다.\nB: 조용하네요."
-},
-{
-"slug":"kaku",
-"yomi":"카쿠",
-"jp":"書く",
-"ko":"쓰다",
-"keyword_ko":"쓰다",
-"desc":"書く는 글씨를 쓰다를 의미하는 기본 일본어 동사입니다.",
-"example_jp":"A: 名前を書く。\nB: はい。",
-"example_ko":"A: 이름을 쓰다.\nB: 네."
-},
-{
-"slug":"hanasu",
-"yomi":"하나스",
-"jp":"話す",
-"ko":"말하다",
-"keyword_ko":"말하다",
-"desc":"話す는 말하다를 의미하는 기본 일본어 동사입니다.",
-"example_jp":"A: 日本語を話す。\nB: すごいですね。",
-"example_ko":"A: 일본어를 말하다.\nB: 대단하네요."
-},
-{
-"slug":"kau",
-"yomi":"카우",
-"jp":"買う",
-"ko":"사다",
-"keyword_ko":"사다",
-"desc":"買う는 물건을 사다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 本を買う。\nB: いいですね。",
-"example_ko":"A: 책을 사다.\nB: 좋네요."
-},
-{
-"slug":"uru",
-"yomi":"우루",
-"jp":"売る",
-"ko":"팔다",
-"keyword_ko":"팔다",
-"desc":"売る는 물건을 팔다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 店で野菜を売る。\nB: 忙しそうですね。",
-"example_ko":"A: 가게에서 채소를 팔다.\nB: 바빠 보이네요."
-},
-{
-"slug":"akeru",
-"yomi":"아케루",
-"jp":"開ける",
-"ko":"열다",
-"keyword_ko":"열다",
-"desc":"開ける는 문이나 창문 등을 열다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: ドアを開ける。\nB: はい。",
-"example_ko":"A: 문을 열다.\nB: 네."
-},
-{
-"slug":"shimeru",
-"yomi":"시메루",
-"jp":"閉める",
-"ko":"닫다",
-"keyword_ko":"닫다",
-"desc":"閉める는 문이나 창문 등을 닫다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 窓を閉める。\nB: わかりました。",
-"example_ko":"A: 창문을 닫다.\nB: 알겠습니다."
-},
-{
-"slug":"toru",
-"yomi":"토루",
-"jp":"取る",
-"ko":"잡다",
-"keyword_ko":"잡다",
-"desc":"取る는 손으로 잡다, 취하다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: それを取る。\nB: はい。",
-"example_ko":"A: 그것을 잡다.\nB: 네."
-},
-{
-"slug":"oku",
-"yomi":"오쿠",
-"jp":"置く",
-"ko":"놓다",
-"keyword_ko":"놓다",
-"desc":"置く는 물건을 어떤 장소에 놓다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: ここに置く。\nB: わかりました。",
-"example_ko":"A: 여기에 놓다.\nB: 알겠습니다."
-},
-{
-"slug":"tatsu",
-"yomi":"타츠",
-"jp":"立つ",
-"ko":"서다",
-"keyword_ko":"서다",
-"desc":"立つ는 서다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: ここに立つ。\nB: はい。",
-"example_ko":"A: 여기에 서다.\nB: 네."
-},
-{
-"slug":"suwaru",
-"yomi":"스와루",
-"jp":"座る",
-"ko":"앉다",
-"keyword_ko":"앉다",
-"desc":"座る는 앉다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 椅子に座る。\nB: わかりました。",
-"example_ko":"A: 의자에 앉다.\nB: 알겠습니다."
-},
-{
-"slug":"aruku",
-"yomi":"아루쿠",
-"jp":"歩く",
-"ko":"걷다",
-"keyword_ko":"걷다",
-"desc":"歩く는 걷다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 駅まで歩く。\nB: いい運動ですね。",
-"example_ko":"A: 역까지 걷다.\nB: 좋은 운동이네요."
-},
-{
-"slug":"hashiru",
-"yomi":"하시루",
-"jp":"走る",
-"ko":"달리다",
-"keyword_ko":"달리다",
-"desc":"走る는 달리다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 公園で走る。\nB: 元気ですね。",
-"example_ko":"A: 공원에서 달리다.\nB: 활기차네요."
 },
 
     {
@@ -8797,16 +8294,7 @@ B: 괜찮아요."""
 "example_jp":"A: 何ですかあれ？\nB: 有名なお寺です。",
 "example_ko":"A: 저게 뭐예요?\nB: 유명한 절이에요."
 },
-{
-  "slug":"doko-desuka-koko",
-  "yomi":"코코와 도코데스카",
-  "jp":"ここはどこですか",
-  "ko":"여기 어디예요?",
-  "keyword_ko":"여기 어디예요",
-  "desc":"ここはどこですか는 현재 있는 장소가 어디인지 물어볼 때 사용하는 기본 표현입니다. 회화에서는 ‘ここ、どこですか’처럼 조사 ‘は’를 생략해서도 자주 사용합니다.",
-  "example_jp":"A: ここはどこですか。\nB: 東京駅です。",
-  "example_ko":"A: 여기 어디예요?\nB: 도쿄역이에요."
-},
+
 {
   "slug":"doko-desuka-soko",
   "yomi":"소코와 도코데스카",
@@ -8941,17 +8429,7 @@ B: 괜찮아요."""
 "example_ko":"A: 공포영화 어땠어?\nB: 무서웠어.",
 "related":["kanashikatta","kanashisou"]
 },
-{
-"slug":"taihen",
-"yomi":"타이헨",
-"jp":"大変",
-"ko":"힘들다",
-"keyword_ko":"힘들다",
-"desc":"大変는 힘들다, 큰일이다, 어렵다 등의 뜻으로 쓰이는 일본어 표현입니다.",
-"example_jp":"A: 最近どう？\nB: 大変。",
-"example_ko":"A: 요즘 어때?\nB: 힘들어.",
-"related":["taihen-desu","kanashikatta"]
-},
+
 {
 "slug":"taihen-desu",
 "yomi":"타이헨데스",
@@ -9073,17 +8551,7 @@ B: 괜찮아요."""
 "example_ko":"A: 이 약은 써요.\nB: 그러네요.",
 "related":["amai","oishii"]
 },
-{
-"slug":"atatakai",
-"yomi":"아타타카이",
-"jp":"暖かい",
-"ko":"따뜻하다",
-"keyword_ko":"따뜻하다",
-"desc":"暖かい는 날씨나 온도가 따뜻할 때 사용하는 일본어 형용사입니다.",
-"example_jp":"A: 今日は暖かいです。\nB: 気持ちいいですね。",
-"example_ko":"A: 오늘 따뜻해요.\nB: 기분 좋네요.",
-"related":["tsumetai","atsui-hot"]
-},
+
 {
 "slug":"tsumetai",
 "yomi":"츠메타이",
@@ -9095,17 +8563,7 @@ B: 괜찮아요."""
 "example_ko":"A: 물이 차가워요.\nB: 여름에 좋네요.",
 "related":["atatakai","atsui-hot"]
 },
-{
-"slug":"atsui-hot",
-"yomi":"아츠이",
-"jp":"熱い",
-"ko":"뜨겁다",
-"keyword_ko":"뜨겁다",
-"desc":"熱い는 음식이나 음료, 물건이 뜨거울 때 사용하는 일본어 형용사입니다.",
-"example_jp":"A: このお茶は熱いです。\nB: 気をつけてください。",
-"example_ko":"A: 이 차는 뜨거워요.\nB: 조심하세요.",
-"related":["atatakai","tsumetai"]
-},
+
 {
 "slug":"akarui",
 "yomi":"아카루이",
@@ -9192,16 +8650,7 @@ B: 괜찮아요."""
 "example_jp":"A: 彼は走るのが早いです。\nB: すごいですね。",
 "example_ko":"A: 그는 달리기가 빨라요.\nB: 대단하네요."
 },
-{
-"slug":"genki",
-"yomi":"겐키",
-"jp":"元気",
-"ko":"건강하다",
-"keyword_ko":"건강하다",
-"desc":"元気는 건강하거나 활기찬 상태를 의미하는 일본어 단어입니다.",
-"example_jp":"A: 元気ですか？\nB: はい、元気です。",
-"example_ko":"A: 건강해요?\nB: 네, 건강해요."
-},
+
 {
   "slug":"genkin",
   "yomi":"겐킨",
@@ -9242,16 +8691,7 @@ B: 괜찮아요."""
 "example_jp":"A: 今日暇ですか？\nB: はい、暇です。",
 "example_ko":"A: 오늘 한가해요?\nB: 네, 한가해요."
 },
-{
-"slug":"isogashii",
-"yomi":"이소가시이",
-"jp":"忙しい",
-"ko":"바쁘다",
-"keyword_ko":"바쁘다",
-"desc":"忙しい는 일이 많거나 시간이 없을 때 사용하는 일본어 형용사입니다.",
-"example_jp":"A: 最近忙しいです。\nB: 大変ですね。",
-"example_ko":"A: 요즘 바빠요.\nB: 힘들겠네요."
-},
+
 {
 "slug":"onaka-ga-ippai",
 "yomi":"오나카가 이파이",
@@ -9302,16 +8742,7 @@ B: 괜찮아요."""
 "example_jp":"A: 大丈夫ですか？\nB: 少し気分が悪いです。",
 "example_ko":"A: 괜찮아요?\nB: 조금 기분이 안 좋아요."
 },
-{
-"slug":"anshin",
-"yomi":"안신",
-"jp":"安心",
-"ko":"안심",
-"keyword_ko":"안심",
-"desc":"安心은 마음이 놓이는 상태, 즉 안심을 의미하는 일본어 단어입니다.",
-"example_jp":"A: 無事で安心しました。\nB: よかったですね。",
-"example_ko":"A: 무사해서 안심했어요.\nB: 다행이네요."
-},
+
 {
 "slug":"fuan",
 "yomi":"후안",
@@ -9382,16 +8813,7 @@ B: 괜찮아요."""
 "example_jp":"A: 後ろを見てください。\nB: はい。",
 "example_ko":"A: 뒤를 봐 주세요.\nB: 네."
 },
-{
-"slug":"hidari",
-"yomi":"히다리",
-"jp":"左",
-"ko":"왼쪽",
-"keyword_ko":"왼쪽",
-"desc":"左는 왼쪽 방향을 의미하는 일본어 단어입니다.",
-"example_jp":"A: 左に曲がってください。\nB: わかりました。",
-"example_ko":"A: 왼쪽으로 도세요.\nB: 알겠습니다."
-},
+
 {
 "slug":"naka",
 "yomi":"나카",
@@ -9614,16 +9036,7 @@ B: 괜찮아요."""
 "example_jp":"A: ごちそうさまでした。\nB: ありがとうございました。",
 "example_ko":"A: 잘 먹었습니다.\nB: 감사합니다."
 },
-{
-"slug":"okaikei-onegaishimasu",
-"yomi":"오카이케이 오네가이시마스",
-"jp":"お会計お願いします",
-"ko":"계산 부탁합니다",
-"keyword_ko":"계산 부탁합니다",
-"desc":"お会計お願いします는 식당이나 카페에서 계산을 요청할 때 사용하는 표현입니다.",
-"example_jp":"A: お会計お願いします。\nB: はい、少々お待ちください。",
-"example_ko":"A: 계산 부탁합니다.\nB: 네, 잠시만 기다려 주세요."
-},
+
 {
 "slug":"doko-ni-ikimasuka",
 "yomi":"도코니 이키마스카",
@@ -9764,26 +9177,7 @@ B: 괜찮아요."""
 "example_jp":"A: 授業が終了する。\nB: やっと終わりましたね。",
 "example_ko":"A: 수업이 끝나다.\nB: 드디어 끝났네요."
 },
-{
-"slug":"tasukeru",
-"yomi":"타스케루",
-"jp":"助ける",
-"ko":"돕다",
-"keyword_ko":"돕다",
-"desc":"助ける는 사람을 돕다, 구하다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 友達を助ける。\nB: やさしいですね。",
-"example_ko":"A: 친구를 돕다.\nB: 친절하네요."
-},
-{
-"slug":"oshieru",
-"yomi":"오시에루",
-"jp":"教える",
-"ko":"가르치다",
-"keyword_ko":"가르치다",
-"desc":"教える는 지식이나 방법을 가르치다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 日本語を教える。\nB: 難しそうですね。",
-"example_ko":"A: 일본어를 가르치다.\nB: 어려워 보이네요."
-},
+
 {
 "slug":"narau",
 "yomi":"나라우",
@@ -9794,56 +9188,9 @@ B: 괜찮아요."""
 "example_jp":"A: ピアノを習う。\nB: いいですね。",
 "example_ko":"A: 피아노를 배우다.\nB: 좋네요."
 },
-{
-"slug":"tsukau",
-"yomi":"츠카우",
-"jp":"使う",
-"ko":"사용하다",
-"keyword_ko":"사용하다",
-"desc":"使う는 물건이나 도구를 사용하다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: このペンを使う。\nB: はい。",
-"example_ko":"A: 이 펜을 사용하다.\nB: 네."
-},
-{
-"slug":"motsu",
-"yomi":"모츠",
-"jp":"持つ",
-"ko":"가지다",
-"keyword_ko":"가지다",
-"desc":"持つ는 물건을 가지다, 들다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 荷物を持つ。\nB: ありがとうございます。",
-"example_ko":"A: 짐을 가지다.\nB: 감사합니다."
-},
-{
-"slug":"ageru",
-"yomi":"아게루",
-"jp":"あげる",
-"ko":"주다",
-"keyword_ko":"주다",
-"desc":"あげる는 다른 사람에게 주다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 友達に本をあげる。\nB: 親切ですね。",
-"example_ko":"A: 친구에게 책을 주다.\nB: 친절하네요."
-},
-{
-"slug":"morau",
-"yomi":"모라우",
-"jp":"もらう",
-"ko":"받다",
-"keyword_ko":"받다",
-"desc":"もらう는 다른 사람에게서 받다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: プレゼントをもらう。\nB: うれしいですね。",
-"example_ko":"A: 선물을 받다.\nB: 기쁘네요."
-},
-{
-"slug":"kaesu",
-"yomi":"카에스",
-"jp":"返す",
-"ko":"돌려주다",
-"keyword_ko":"돌려주다",
-"desc":"返す는 빌린 것을 돌려주다, 되돌리다를 의미하는 일본어 동사입니다.",
-"example_jp":"A: 本を返す。\nB: ありがとうございます。",
-"example_ko":"A: 책을 돌려주다.\nB: 감사합니다."
-},
+
+
+
 {
 "slug":"okuru",
 "yomi":"오쿠루",
@@ -9944,26 +9291,7 @@ B: 괜찮아요."""
 "example_jp":"A: この問題は簡単だ。\nB: そうですね。",
 "example_ko":"A: 이 문제는 간단하다.\nB: 그러네요."
 },
-{
-"slug":"muzukashii",
-"yomi":"무즈카시이",
-"jp":"難しい",
-"ko":"어렵다",
-"keyword_ko":"어렵다",
-"desc":"難しい는 어렵다를 의미하는 일본어 형용사입니다.",
-"example_jp":"A: 日本語は難しいです。\nB: でも面白いです。",
-"example_ko":"A: 일본어는 어려워요.\nB: 하지만 재미있어요."
-},
-{
-"slug":"omoshiroi",
-"yomi":"오모시로이",
-"jp":"面白い",
-"ko":"재미있다",
-"keyword_ko":"재미있다",
-"desc":"面白い는 재미있다, 흥미롭다를 의미하는 일본어 형용사입니다.",
-"example_jp":"A: この映画は面白いです。\nB: 見たいです。",
-"example_ko":"A: 이 영화는 재미있어요.\nB: 보고 싶어요."
-},
+
 {
 "slug":"kirei-da",
 "yomi":"키레이다",
@@ -10065,16 +9393,7 @@ B: 괜찮아요."""
 "example_jp":"A: 後で会いに来ます。\nB: わかりました。",
 "example_ko":"A: 나중에 만나러 옵니다.\nB: 알겠습니다."
 },
-{
-"slug":"yakusoku",
-"yomi":"야쿠소쿠",
-"jp":"約束",
-"ko":"약속",
-"keyword_ko":"약속",
-"desc":"約束는 서로 정한 약속이나 약속한 일을 의미하는 일본어 단어입니다.",
-"example_jp":"A: 約束があります。\nB: 何時ですか？",
-"example_ko":"A: 약속이 있어요.\nB: 몇 시예요?"
-},
+
 {
 "slug":"yakusoku-shimasu",
 "yomi":"야쿠소쿠시마스",
@@ -10316,16 +9635,7 @@ B: 괜찮아요."""
 "example_jp":"A: こちらにどうぞ。\nB: ありがとうございます。",
 "example_ko":"A: 이쪽으로 오세요.\nB: 감사합니다."
 },
-{
-"slug":"omatase-shimashita",
-"yomi":"오마타세시마시타",
-"jp":"お待たせしました",
-"ko":"기다리게 해서 죄송합니다",
-"keyword_ko":"기다리게 해서 죄송합니다",
-"desc":"お待たせしました는 상대를 기다리게 했을 때 사용하는 정중한 표현입니다.",
-"example_jp":"A: お待たせしました。\nB: 大丈夫です。",
-"example_ko":"A: 기다리게 해서 죄송합니다.\nB: 괜찮습니다."
-},
+
 {
 "slug":"sugu-mairimasu",
 "yomi":"스구 마이리마스",
@@ -10637,16 +9947,7 @@ B: 괜찮아요."""
 "example_jp":"A: カバンはどこですか？\nB: そこです。",
 "example_ko":"A: 가방은 어디예요?\nB: 거기예요."
 },
-{
-"slug":"saifu",
-"yomi":"사이후",
-"jp":"財布",
-"ko":"지갑",
-"keyword_ko":"지갑",
-"desc":"財布는 돈이나 카드를 넣는 지갑을 의미하는 일본어 단어입니다.",
-"example_jp":"A: 財布を忘れました。\nB: 大丈夫ですか？",
-"example_ko":"A: 지갑을 잊어버렸어요.\nB: 괜찮으세요?"
-},
+
 {
 "slug":"keitai",
 "yomi":"케이타이",
@@ -10687,26 +9988,7 @@ B: 괜찮아요."""
 "example_jp":"A: 時計はどこですか？\nB: 壁にあります。",
 "example_ko":"A: 시계는 어디예요?\nB: 벽에 있어요."
 },
-{
-"slug":"kagi",
-"yomi":"카기",
-"jp":"鍵",
-"ko":"열쇠",
-"keyword_ko":"열쇠",
-"desc":"鍵는 문을 열고 잠그는 열쇠를 의미하는 일본어 단어입니다.",
-"example_jp":"A: 鍵がありません。\nB: 探しましょう。",
-"example_ko":"A: 열쇠가 없어요.\nB: 찾아봅시다."
-},
-{
-"slug":"kasa",
-"yomi":"카사",
-"jp":"傘",
-"ko":"우산",
-"keyword_ko":"우산",
-"desc":"傘는 비를 막기 위한 우산을 의미하는 일본어 단어입니다.",
-"example_jp":"A: 傘を持っていますか？\nB: はい、持っています。",
-"example_ko":"A: 우산 가지고 있어요?\nB: 네, 가지고 있어요."
-},
+
 {
 "slug":"hon",
 "yomi":"혼",
@@ -11708,16 +10990,7 @@ B: 괜찮아요."""
 "example_jp":"A: JPEGで送ります。\nB: わかりました。",
 "example_ko":"A: JPEG로 보냅니다.\nB: 알겠습니다."
 },
-{
-"slug":"apuri",
-"yomi":"아푸리",
-"jp":"アプリ",
-"ko":"앱",
-"keyword_ko":"앱",
-"desc":"アプリ는 스마트폰이나 컴퓨터에서 사용하는 앱을 의미하는 일본어 외래어입니다.",
-"example_jp":"A: このアプリを使います。\nB: 便利ですね。",
-"example_ko":"A: 이 앱을 사용해요.\nB: 편리하네요."
-},
+
 {
 "slug":"kinshi-sareteimasu",
 "yomi":"킨시사레테이마스",
@@ -15891,16 +15164,7 @@ B: 괜찮아요."""
 "example_jp":"A: 今どこを見ていますか？\nB: 地図を見ています。",
 "example_ko":"A: 지금 무엇을 보고 있나요?\nB: 지도를 보고 있어요."
 },
-{
-"slug":"koko-wa-doko-desu-ka",
-"yomi":"코코와 도코데스카",
-"jp":"ここはどこですか？",
-"ko":"여기가 어디인가요?",
-"keyword_ko":"위치",
-"desc":"ここはどこですか는 현재 위치가 어디인지 물어볼 때 사용하는 표현입니다.",
-"example_jp":"A: ここはどこですか？\nB: 駅の前です。",
-"example_ko":"A: 여기가 어디인가요?\nB: 역 앞입니다."
-},
+
 {
 "slug":"kono-chikaku-ni-arimasu-ka",
 "yomi":"코노 치카쿠니 아리마스카",
@@ -15911,16 +15175,7 @@ B: 괜찮아요."""
 "example_jp":"A: コンビニはこの近くにありますか？\nB: はい、あります。",
 "example_ko":"A: 편의점이 이 근처에 있나요?\nB: 네, 있습니다."
 },
-{
-"slug":"tooi-desu-ka",
-"yomi":"토오이데스카",
-"jp":"遠いですか？",
-"ko":"멀어요?",
-"keyword_ko":"거리",
-"desc":"遠いですか는 목적지까지 거리가 먼지 물어볼 때 사용하는 표현입니다.",
-"example_jp":"A: 駅は遠いですか？\nB: いいえ、近いです。",
-"example_ko":"A: 역이 멀어요?\nB: 아니요, 가까워요."
-},
+
 {
 "slug":"aruite-ikemasu-ka",
 "yomi":"아루이테 이케마스카",
@@ -15991,16 +15246,7 @@ B: 괜찮아요."""
 "example_jp":"A: 次はどう行けばいいですか？\nB: 右に曲がってください。",
 "example_ko":"A: 다음엔 어떻게 가면 되나요?\nB: 오른쪽으로 돌아 주세요."
 },
-{
-"slug":"hidari-ni-magatte-kudasai",
-"yomi":"히다리니 마가테 쿠다사이",
-"jp":"左に曲がってください",
-"ko":"왼쪽으로 돌아 주세요",
-"keyword_ko":"왼쪽",
-"desc":"左に曲がってください는 길 안내에서 왼쪽으로 돌라고 할 때 사용하는 표현입니다.",
-"example_jp":"A: ここからどう行きますか？\nB: 左に曲がってください。",
-"example_ko":"A: 여기서부터 어떻게 가나요?\nB: 왼쪽으로 돌아 주세요."
-},
+
 {
 "slug":"massugu-itte-kudasai",
 "yomi":"마스구 이테 쿠다사이",
@@ -17444,17 +16690,7 @@ B: 괜찮아요."""
 "example_ko":"A: 줄지어 걷는 벌레는 무엇인가요?\nB: 개미예요.",
 "related":["hachi","tentoumushi","batta"]
 },
-{
-"slug":"hachi",
-"yomi":"하치",
-"jp":"蜂",
-"ko":"벌",
-"keyword_ko":"벌",
-"desc":"蜂는 벌을 뜻하는 일본어 단어입니다.",
-"example_jp":"A: 花のまわりを飛ぶ虫は何ですか？\nB: 蜂です。",
-"example_ko":"A: 꽃 주변을 나는 벌레는 무엇인가요?\nB: 벌이에요.",
-"related":["ari","chou","tentoumushi"]
-},
+
 {
 "slug":"kumo",
 "yomi":"쿠모",
@@ -18250,17 +17486,7 @@ B: 괜찮아요."""
 "example_ko":"A: 병원에서 환자를 돕는 사람은 누구인가요?\nB: 간호사예요.",
 "related":["isha","kyuukyuutaiin","yakuzaishi"]
 },
-{
-"slug":"haisha",
-"yomi":"하이샤",
-"jp":"歯医者",
-"ko":"치과의사",
-"keyword_ko":"치과의사",
-"desc":"歯医者는 치아를 치료하는 치과의사를 뜻하는 일본어 단어입니다.",
-"example_jp":"A: 歯が痛いときは誰に行きますか？\nB: 歯医者です。",
-"example_ko":"A: 이가 아플 때는 누구에게 가나요?\nB: 치과의사예요.",
-"related":["isha","yakuzaishi"]
-},
+
 {
 "slug":"yakuzaishi",
 "yomi":"야쿠자이시",
@@ -18964,16 +18190,7 @@ B: 괜찮아요."""
 "example_jp":"A: テレビは何で操作しますか？\nB: リモコンです。",
 "example_ko":"A: 텔레비전은 무엇으로 조작하나요?\nB: 리모컨이에요."
 },
-{
-"slug":"sentakuki",
-"yomi":"센타쿠키",
-"jp":"洗濯機",
-"ko":"세탁기",
-"keyword_ko":"세탁기",
-"desc":"洗濯機는 옷을 자동으로 세탁하는 가전제품을 뜻하는 일본어 단어입니다.",
-"example_jp":"A: 服は何で洗いますか？\nB: 洗濯機です。",
-"example_ko":"A: 옷은 무엇으로 세탁하나요?\nB: 세탁기예요."
-},
+
 {
 "slug":"kansouki",
 "yomi":"칸소키",
@@ -20380,17 +19597,7 @@ B: 괜찮아요."""
 "example_ko":"A: 공동주택은 아니군요.\nB: 네, 단독주택이에요.",
 "related":["ie","niwa","gareeji"]
 },
-{
-"slug":"heya",
-"yomi":"헤야",
-"jp":"部屋",
-"ko":"방",
-"keyword_ko":"방",
-"desc":"部屋는 집이나 건물 안의 각각의 방이나 공간을 뜻합니다.",
-"example_jp":"A: 荷物はどこに置けばいいですか？\nB: あの部屋にお願いします。",
-"example_ko":"A: 짐은 어디에 두면 되나요?\nB: 저 방에 부탁드립니다.",
-"related":["ie","ribingu","kicchin"]
-},
+
 {
 "slug":"ribingu",
 "yomi":"리빙",
@@ -20952,17 +20159,7 @@ B: 괜찮아요."""
 "example_ko":"A: 오늘 밤은 어디에서 묵나요?\nB: 역 앞 호텔을 예약했어요.",
 "related":["ryokan","gesuto-hausu"]
 },
-{
-"slug":"ryokan",
-"yomi":"료칸",
-"jp":"旅館",
-"ko":"료칸",
-"keyword_ko":"료칸",
-"desc":"旅館는 일본식 숙박시설인 료칸을 뜻합니다.",
-"example_jp":"A: 和室に泊まってみたいです。\nB: それなら旅館がおすすめです。",
-"example_ko":"A: 일본식 방에 묵어 보고 싶어요.\nB: 그렇다면 료칸을 추천해요.",
-"related":["hoteru","gesuto-hausu"]
-},
+
 {
 "slug":"gesuto-hausu",
 "yomi":"게스토 하우스",
@@ -21150,17 +20347,7 @@ B: 괜찮아요."""
 "example_ko":"A: 배로 갈 수 있는 곳이 있나요?\nB: 저 섬에 갈 수 있어요.",
 "related":["umi","kaigan","minato"]
 },
-{
-"slug":"hashi",
-"yomi":"하시",
-"jp":"橋",
-"ko":"다리",
-"keyword_ko":"다리",
-"desc":"橋는 강이나 길 위를 건너기 위한 다리를 뜻합니다.",
-"example_jp":"A: 向こう側へはどう行きますか？\nB: あの橋を渡ってください。",
-"example_ko":"A: 저쪽으로는 어떻게 가나요?\nB: 저 다리를 건너 주세요.",
-"related":["kawa","tonneru","douro"]
-},
+
 {
 "slug":"tonneru",
 "yomi":"톤네루",
@@ -22404,96 +21591,7 @@ B: 괜찮아요."""
 "example_jp":"",
 "example_ko":""
 },
-{
-"slug":"ikkai-floor",
-"yomi":"잇카이",
-"jp":"一階",
-"ko":"1층",
-"keyword_ko":"1층",
-"desc":"一階(いっかい)는 일본어에서 건물의 1층을 의미하는 표현입니다.",
-"example_jp":"",
-"example_ko":""
-},
-{
-"slug":"nikai-floor",
-"yomi":"니카이",
-"jp":"二階",
-"ko":"2층",
-"keyword_ko":"2층",
-"desc":"二階(にかい)는 일본어에서 건물의 2층을 의미하는 표현입니다.",
-"example_jp":"",
-"example_ko":""
-},
-{
-"slug":"sankai-floor",
-"yomi":"산카이",
-"jp":"三階",
-"ko":"3층",
-"keyword_ko":"3층",
-"desc":"三階(さんかい)는 일본어에서 건물의 3층을 의미하는 표현입니다.",
-"example_jp":"",
-"example_ko":""
-},
-{
-"slug":"yonkai-floor",
-"yomi":"욘카이",
-"jp":"四階",
-"ko":"4층",
-"keyword_ko":"4층",
-"desc":"四階(よんかい)는 일본어에서 건물의 4층을 의미하는 표현입니다.",
-"example_jp":"",
-"example_ko":""
-},
-{
-"slug":"gokai-floor",
-"yomi":"고카이",
-"jp":"五階",
-"ko":"5층",
-"keyword_ko":"5층",
-"desc":"五階(ごかい)는 일본어에서 건물의 5층을 의미하는 표현입니다.",
-"example_jp":"",
-"example_ko":""
-},
-{
-"slug":"rokkai-floor",
-"yomi":"록카이",
-"jp":"六階",
-"ko":"6층",
-"keyword_ko":"6층",
-"desc":"六階(ろっかい)는 일본어에서 건물의 6층을 의미하는 표현입니다.",
-"example_jp":"",
-"example_ko":""
-},
-{
-"slug":"nanakai-floor",
-"yomi":"나나카이",
-"jp":"七階",
-"ko":"7층",
-"keyword_ko":"7층",
-"desc":"七階(ななかい)는 일본어에서 건물의 7층을 의미하는 표현입니다.",
-"example_jp":"",
-"example_ko":""
-},
-{
-"slug":"hakkai-floor",
-"yomi":"핫카이",
-"jp":"八階",
-"ko":"8층",
-"keyword_ko":"8층",
-"desc":"八階(はっかい)는 일본어에서 건물의 8층을 의미하는 표현입니다.",
-"example_jp":"",
-"example_ko":""
-},
-{
-"slug":"kyuukai-floor",
-"yomi":"큐우카이",
-"jp":"九階",
-"ko":"9층",
-"keyword_ko":"9층",
-"desc":"九階(きゅうかい)는 일본어에서 건물의 9층을 의미하는 표현입니다.",
-"example_jp":"",
-"example_ko":""
-},
+
 {
 "slug":"jukkai-floor",
 "yomi":"쥬카이",
@@ -25046,116 +24144,9 @@ B: 괜찮아요."""
 "example_ko":"A: 9개 있어요.\nB: 충분해요.",
 "related":["hakko-item","jukko-item","kosuu"]
 },
-{
-"slug":"jukko-item",
-"yomi":"쥿코",
-"jp":"十個",
-"ko":"10개",
-"keyword_ko":"10개",
-"desc":"十個(じゅっこ)는 일본어에서 열 개를 의미하는 개수 표현입니다.",
-"example_jp":"A: 十個ください。\nB: はい。",
-"example_ko":"A: 10개 주세요.\nB: 네.",
-"related":["kyuuko-item","ikko-item","kosuu"]
-},
-{
-"slug":"ikko-item",
-"yomi":"잇코",
-"jp":"一個",
-"ko":"1개",
-"keyword_ko":"1개",
-"desc":"一個(いっこ)는 일본어에서 한 개를 의미하는 개수 표현입니다.",
-"example_jp":"A: りんごを一個ください。\nB: はい。",
-"example_ko":"A: 사과 1개 주세요.\nB: 네.",
-"related":["niko-item","sanko-item","kosuu"]
-},
-{
-"slug":"niko-item",
-"yomi":"니코",
-"jp":"二個",
-"ko":"2개",
-"keyword_ko":"2개",
-"desc":"二個(にこ)는 일본어에서 두 개를 의미하는 개수 표현입니다.",
-"example_jp":"A: ケーキを二個買いました。\nB: いいですね。",
-"example_ko":"A: 케이크를 2개 샀어요.\nB: 좋네요.",
-"related":["ikko-item","sanko-item","kosuu"]
-},
-{
-"slug":"sanko-item",
-"yomi":"산코",
-"jp":"三個",
-"ko":"3개",
-"keyword_ko":"3개",
-"desc":"三個(さんこ)는 일본어에서 세 개를 의미하는 개수 표현입니다.",
-"example_jp":"A: 卵を三個使います。\nB: わかりました。",
-"example_ko":"A: 달걀 3개 사용해요.\nB: 알겠습니다.",
-"related":["niko-item","yonko-item","kosuu"]
-},
-{
-"slug":"yonko-item",
-"yomi":"욘코",
-"jp":"四個",
-"ko":"4개",
-"keyword_ko":"4개",
-"desc":"四個(よんこ)는 일본어에서 네 개를 의미하는 개수 표현입니다.",
-"example_jp":"A: 四個あります。\nB: 十分です。",
-"example_ko":"A: 4개 있어요.\nB: 충분해요.",
-"related":["sanko-item","goko-item","kosuu"]
-},
-{
-"slug":"goko-item",
-"yomi":"고코",
-"jp":"五個",
-"ko":"5개",
-"keyword_ko":"5개",
-"desc":"五個(ごこ)는 일본어에서 다섯 개를 의미하는 개수 표현입니다.",
-"example_jp":"A: 五個ください。\nB: はい。",
-"example_ko":"A: 5개 주세요.\nB: 네.",
-"related":["yonko-item","rokko-item","kosuu"]
-},
-{
-"slug":"rokko-item",
-"yomi":"롯코",
-"jp":"六個",
-"ko":"6개",
-"keyword_ko":"6개",
-"desc":"六個(ろっこ)는 일본어에서 여섯 개를 의미하는 개수 표현입니다.",
-"example_jp":"A: 六個必要です。\nB: 準備します。",
-"example_ko":"A: 6개 필요해요.\nB: 준비할게요.",
-"related":["goko-item","nanako-item","kosuu"]
-},
-{
-"slug":"nanako-item",
-"yomi":"나나코",
-"jp":"七個",
-"ko":"7개",
-"keyword_ko":"7개",
-"desc":"七個(ななこ)는 일본어에서 일곱 개를 의미하는 개수 표현입니다.",
-"example_jp":"A: 七個あります。\nB: 多いですね。",
-"example_ko":"A: 7개 있어요.\nB: 많네요.",
-"related":["rokko-item","hakko-item","kosuu"]
-},
-{
-"slug":"hakko-item",
-"yomi":"핫코",
-"jp":"八個",
-"ko":"8개",
-"keyword_ko":"8개",
-"desc":"八個(はっこ)는 일본어에서 여덟 개를 의미하는 개수 표현입니다.",
-"example_jp":"A: 八個買いました。\nB: すごいですね。",
-"example_ko":"A: 8개 샀어요.\nB: 대단하네요.",
-"related":["nanako-item","kyuuko-item","kosuu"]
-},
-{
-"slug":"kyuuko-item",
-"yomi":"큐우코",
-"jp":"九個",
-"ko":"9개",
-"keyword_ko":"9개",
-"desc":"九個(きゅうこ)는 일본어에서 아홉 개를 의미하는 개수 표현입니다.",
-"example_jp":"A: 九個あります。\nB: 十分です。",
-"example_ko":"A: 9개 있어요.\nB: 충분해요.",
-"related":["hakko-item","jukko-item","kosuu"]
-},
+
+
+
 {
 "slug":"jukko-item",
 "yomi":"쥿코",
@@ -25332,94 +24323,7 @@ B: 괜찮아요."""
 "example_ko":"A: 1억 엔 가치가 있어요.\nB: 대단하네요.",
 "related":["senmanen","hyakumanen","okane"]
 },
-{
-"slug":"juuen",
-"yomi":"쥬우엔",
-"jp":"十円",
-"ko":"10엔",
-"keyword_ko":"10엔",
-"desc":"十円(じゅうえん)은 일본 화폐 단위로 10엔을 의미합니다.",
-"example_jp":"A: 十円ありますか？\nB: はい、あります。",
-"example_ko":"A: 10엔 있나요?\nB: 네, 있어요.",
-"related":["hyakuen","senen","okane"]
-},
-{
-"slug":"hyakuen",
-"yomi":"햐쿠엔",
-"jp":"百円",
-"ko":"100엔",
-"keyword_ko":"100엔",
-"desc":"百円(ひゃくえん)은 일본 화폐 단위로 100엔을 의미합니다.",
-"example_jp":"A: 百円ショップに行きましょう。\nB: いいですね。",
-"example_ko":"A: 100엔 숍에 가요.\nB: 좋네요.",
-"related":["juuen","senen","okane"]
-},
-{
-"slug":"senen",
-"yomi":"센엔",
-"jp":"千円",
-"ko":"1000엔",
-"keyword_ko":"1000엔",
-"desc":"千円(せんえん)은 일본 화폐 단위로 1000엔을 의미합니다.",
-"example_jp":"A: 千円しかありません。\nB: 大丈夫です。",
-"example_ko":"A: 1000엔밖에 없어요.\nB: 괜찮아요.",
-"related":["hyakuen","ichimanen","okane"]
-},
-{
-"slug":"ichimanen",
-"yomi":"이치만엔",
-"jp":"一万円",
-"ko":"1만엔",
-"keyword_ko":"1만엔",
-"desc":"一万円(いちまんえん)은 일본 화폐 단위로 1만 엔을 의미합니다.",
-"example_jp":"A: 一万円札があります。\nB: おつりがあります。",
-"example_ko":"A: 1만 엔 지폐가 있어요.\nB: 거스름돈 있습니다.",
-"related":["senen","juumanen","okane"]
-},
-{
-"slug":"juumanen",
-"yomi":"쥬우만엔",
-"jp":"十万円",
-"ko":"10만엔",
-"keyword_ko":"10만엔",
-"desc":"十万円(じゅうまんえん)은 일본 화폐 단위로 10만 엔을 의미합니다.",
-"example_jp":"A: 十万円かかりました。\nB: 高いですね。",
-"example_ko":"A: 10만 엔 들었어요.\nB: 비싸네요.",
-"related":["ichimanen","hyakumanen","okane"]
-},
-{
-"slug":"hyakumanen",
-"yomi":"햐쿠만엔",
-"jp":"百万円",
-"ko":"100만엔",
-"keyword_ko":"100만엔",
-"desc":"百万円(ひゃくまんえん)은 일본 화폐 단위로 100만 엔을 의미합니다.",
-"example_jp":"A: 百万円貯金しました。\nB: すごいですね。",
-"example_ko":"A: 100만 엔 저축했어요.\nB: 대단하네요.",
-"related":["juumanen","senmanen","okane"]
-},
-{
-"slug":"senmanen",
-"yomi":"센만엔",
-"jp":"千万円",
-"ko":"1000만엔",
-"keyword_ko":"1000만엔",
-"desc":"千万円(せんまんえん)은 일본 화폐 단위로 1000만 엔을 의미합니다.",
-"example_jp":"A: 千万円以上かかります。\nB: 本当ですか？",
-"example_ko":"A: 1000만 엔 이상 들어요.\nB: 정말요?",
-"related":["hyakumanen","ichioquen","okane"]
-},
-{
-"slug":"ichioquen",
-"yomi":"이치오쿠엔",
-"jp":"一億円",
-"ko":"1억엔",
-"keyword_ko":"1억엔",
-"desc":"一億円(いちおくえん)은 일본 화폐 단위로 1억 엔을 의미합니다.",
-"example_jp":"A: 一億円の価値があります。\nB: すごいですね。",
-"example_ko":"A: 1억 엔 가치가 있어요.\nB: 대단하네요.",
-"related":["senmanen","hyakumanen","okane"]
-},
+
 {
 "slug":"issencm",
 "yomi":"잇센치",
@@ -27544,28 +26448,7 @@ B: 괜찮아요."""
 "example_ko":"A: 다음에서 내려.\nB: 알겠어.",
 "related":["noru","station"]
 },
-{
-"slug":"akeru",
-"yomi":"아케루",
-"jp":"開ける",
-"ko":"열다",
-"keyword_ko":"열다",
-"desc":"開ける는 문, 가방 등을 열 때 사용하는 표현입니다.",
-"example_jp":"A: ドア開けてくれる？\nB: うん、今開ける。",
-"example_ko":"A: 문 좀 열어줄래?\nB: 응, 지금 열게.",
-"related":["close","door"]
-},
-{
-"slug":"shimeru",
-"yomi":"시메루",
-"jp":"閉める",
-"ko":"닫다",
-"keyword_ko":"닫다",
-"desc":"閉める는 문이나 창문 등을 닫을 때 사용하는 표현입니다.",
-"example_jp":"A: 寒いから閉めていい？\nB: うん、いいよ。",
-"example_ko":"A: 추우니까 닫아도 돼?\nB: 응, 좋아.",
-"related":["open","window"]
-},
+
 {
 "slug":"hairu",
 "yomi":"하이루",
@@ -27599,17 +26482,7 @@ B: 괜찮아요."""
 "example_ko":"A: 사진 찍을까?\nB: 응, 부탁해!",
 "related":["camera","photo"]
 },
-{
-"slug":"okuru",
-"yomi":"오쿠루",
-"jp":"送る",
-"ko":"보내다",
-"keyword_ko":"보내다",
-"desc":"送る는 메시지나 물건을 보낼 때 사용하는 표현입니다.",
-"example_jp":"A: 写真送ってくれる？\nB: いいよ、今送るね。",
-"example_ko":"A: 사진 보내줄 수 있어?\nB: 응, 지금 보낼게.",
-"related":["message","share"]
-},
+
 {
 "slug":"kariru",
 "yomi":"카리루",
@@ -27632,17 +26505,7 @@ B: 괜찮아요."""
 "example_ko":"A: 내일 돌려줄게.\nB: 응, 괜찮아.",
 "related":["kariru","return"]
 },
-{
-"slug":"tsukau",
-"yomi":"츠카우",
-"jp":"使う",
-"ko":"사용하다",
-"keyword_ko":"사용하다",
-"desc":"使う는 물건이나 서비스를 사용할 때 쓰는 기본 동사입니다.",
-"example_jp":"A: これ使っていい？\nB: うん、いいよ。",
-"example_ko":"A: 이거 써도 돼?\nB: 응, 괜찮아.",
-"related":["use","tool"]
-},
+
 {
 "slug":"tomeru",
 "yomi":"토메루",
@@ -27687,28 +26550,7 @@ B: 괜찮아요."""
 "example_ko":"A: 줄 엄청 길다.\nB: 인기 많아서 어쩔 수 없네.",
 "related":["line","queue"]
 },
-{
-"slug":"ireru",
-"yomi":"이레루",
-"jp":"入れる",
-"ko":"넣다",
-"keyword_ko":"넣다",
-"desc":"入れる는 물건을 안에 넣을 때 사용하는 표현입니다.",
-"example_jp":"A: これ袋に入れる？\nB: うん、お願い。",
-"example_ko":"A: 이거 봉투에 넣을까?\nB: 응, 부탁해.",
-"related":["put","inside"]
-},
-{
-"slug":"dasu",
-"yomi":"다스",
-"jp":"出す",
-"ko":"꺼내다/제출하다",
-"keyword_ko":"꺼내다",
-"desc":"出す는 물건을 꺼내거나 제출할 때 사용하는 표현입니다.",
-"example_jp":"A: パスポート出してください。\nB: はい、これです。",
-"example_ko":"A: 여권 꺼내주세요.\nB: 네, 여기요.",
-"related":["takeout","submit"]
-},
+
 {
 "slug":"azukeru",
 "yomi":"아즈케루",
@@ -27764,17 +26606,7 @@ B: 괜찮아요."""
 "example_ko":"A: 지갑 없어?\nB: 응, 그건 곤란한데…",
 "related":["problem","trouble"]
 },
-{
-"slug":"wasureru",
-"yomi":"와스레루",
-"jp":"忘れる",
-"ko":"잊다",
-"keyword_ko":"잊다",
-"desc":"忘れる는 무언가를 기억하지 못할 때 사용하는 표현입니다.",
-"example_jp":"A: パスワード覚えてる？\nB: ごめん、忘れた。",
-"example_ko":"A: 비밀번호 기억해?\nB: 미안, 잊어버렸어.",
-"related":["memory","forget"]
-},
+
 {
 "slug":"otosu",
 "yomi":"오토스",
@@ -27900,7 +26732,7 @@ B: 괜찮아요."""
 "slug":"tomaru",
 "yomi":"토마루",
 "jp":"止まる",
-"ko":"서다",
+"ko":"서다 / 멈추다",
 "keyword_ko":"서다",
 "desc":"止まる는 차량이나 움직임이 멈출 때 사용하는 자동사입니다.",
 "example_jp":"A: バス止まった？\nB: うん、今降りよう。",
@@ -27977,7 +26809,7 @@ B: 괜찮아요."""
 "slug":"oboeru",
 "yomi":"오보에루",
 "jp":"覚える",
-"ko":"외우다",
+"ko":"외우다 / 기억하다",
 "keyword_ko":"외우다",
 "desc":"覚える는 내용을 기억하거나 외울 때 사용하는 표현입니다.",
 "example_jp":"A: この単語覚えた？\nB: まだちょっと難しい。",
@@ -28051,17 +26883,7 @@ B: 괜찮아요."""
 "example_ko":"A: 제대로 확인했어?\nB: 응, 문제 없어.",
 "related":["properly","check"]
 },
-{
-"slug":"mada",
-"yomi":"마다",
-"jp":"まだ",
-"ko":"아직",
-"keyword_ko":"아직 ",
-"desc":"まだ는 아직 완료되지 않았음을 나타낼 때 사용합니다.",
-"example_jp":"A: もう終わった？\nB: まだだよ。",
-"example_ko":"A: 벌써 끝났어?\nB: 아직이야.",
-"related":["yet","still"]
-},
+
 {
 "slug":"mou",
 "yomi":"모-",
@@ -28107,5 +26929,2220 @@ B: 괜찮아요."""
 "related":["really","surprise"]
 },
 
+{
+"slug":"yabai",
+"yomi":"야바이",
+"jp":"やばい",
+"ko":"위험하다 / 대박이다",
+"keyword_ko":"야바이 뜻",
+"desc":"やばい는 일본어에서 상황에 따라 위험하다, 큰일이다, 또는 대박이다 등의 의미로 사용하는 표현입니다.",
+"example_jp":"A: この店やばいね。\nB: ほんとにおいしい！",
+"example_ko":"A: 이 가게 대박이다.\nB: 진짜 맛있어!"
+},
+
+{
+"slug":"demo",
+"yomi":"데모",
+"jp":"でも",
+"ko":"하지만",
+"keyword_ko":"데모 뜻",
+"desc":"でも는 앞의 내용과 반대되는 말을 이어서 말할 때 사용하는 접속사로 ‘하지만’이라는 의미입니다.",
+"example_jp":"A: 行きたい。でも時間がない。\nB: そうなんだ。",
+"example_ko":"A: 가고 싶어. 하지만 시간이 없어.\nB: 그렇구나."
+},
+
+{
+"slug":"dakara",
+"yomi":"다카라",
+"jp":"だから",
+"ko":"그래서",
+"keyword_ko":"다카라 뜻",
+"desc":"だから는 이유나 원인을 설명한 뒤 결과를 말할 때 사용하는 표현으로 ‘그래서’라는 의미입니다.",
+"example_jp":"A: 雨だ。だから行かない。\nB: 了解。",
+"example_ko":"A: 비 온다. 그래서 안 가.\nB: 알겠어."
+},
+
+{
+"slug":"nandemo",
+"yomi":"난데모",
+"jp":"何でも",
+"ko":"뭐든지",
+"keyword_ko":"난데모 뜻",
+"desc":"何でも는 어떤 것이든 상관없다는 의미로 ‘뭐든지’라는 뜻을 가진 표현입니다.",
+"example_jp":"A: 何でもいいよ。\nB: じゃあラーメンにしよう。",
+"example_ko":"A: 뭐든지 좋아.\nB: 그럼 라멘 먹자."
+},
+
+{
+"slug":"nanka",
+"yomi":"난카",
+"jp":"なんか",
+"ko":"뭔가",
+"keyword_ko":"난카 뜻",
+"desc":"なんか는 정확히 표현하기 어려운 느낌이나 상황을 말할 때 사용하는 표현으로 ‘뭔가’라는 의미입니다.",
+"example_jp":"A: なんか変だね。\nB: そうだね。",
+"example_ko":"A: 뭔가 이상하다.\nB: 그러네."
+},
+
+{
+"slug":"chotto",
+"yomi":"촛토",
+"jp":"ちょっと",
+"ko":"조금",
+"keyword_ko":"촛토 뜻",
+"desc":"ちょっと는 양이나 정도가 적다는 의미로 ‘조금’이라는 뜻을 가지며, 완곡한 거절 표현으로도 사용됩니다.",
+"example_jp":"A: 手伝って？\nB: ちょっと無理。",
+"example_ko":"A: 도와줄래?\nB: 좀 어려워."
+},
+
+{
+"slug":"zenzen",
+"yomi":"젠젠",
+"jp":"全然",
+"ko":"전혀",
+"keyword_ko":"젠젠 뜻",
+"desc":"全然는 부정문과 함께 사용되어 ‘전혀’라는 의미를 나타내는 표현입니다.",
+"example_jp":"A: 全然わからない。\nB: 大丈夫？",
+"example_ko":"A: 전혀 모르겠어.\nB: 괜찮아?"
+},
+
+{
+"slug":"totemo",
+"yomi":"토테모",
+"jp":"とても",
+"ko":"매우",
+"keyword_ko":"토테모 뜻",
+"desc":"とても는 정도가 매우 높을 때 사용하는 표현으로 ‘매우’, ‘아주’라는 의미입니다.",
+"example_jp":"A: とても楽しい。\nB: よかったね。",
+"example_ko":"A: 너무 재미있어.\nB: 잘됐다."
+},
+
+{
+"slug":"sukoshi",
+"yomi":"스코시",
+"jp":"少し",
+"ko":"조금",
+"keyword_ko":"스코시 뜻",
+"desc":"少し는 양이나 정도가 적음을 나타내며 ‘조금’이라는 의미입니다.",
+"example_jp":"A: 少し待ってください。\nB: はい。",
+"example_ko":"A: 잠깐만 기다려 주세요.\nB: 네."
+},
+
+{
+"slug":"takusan",
+"yomi":"타쿠상",
+"jp":"たくさん",
+"ko":"많이",
+"keyword_ko":"타쿠상 뜻",
+"desc":"たくさん는 수량이 많음을 나타내는 표현으로 ‘많이’라는 의미입니다.",
+"example_jp":"A: たくさん食べた。\nB: すごいね。",
+"example_ko":"A: 많이 먹었어.\nB: 대단하네."
+},
+
+{
+"slug":"hayaku",
+"yomi":"하야쿠",
+"jp":"早く",
+"ko":"빨리",
+"keyword_ko":"하야쿠 뜻",
+"desc":"早く는 시간적으로 빠르게 행동하라는 의미로 ‘빨리’라는 뜻입니다.",
+"example_jp":"A: 早く来て！\nB: 今行く！",
+"example_ko":"A: 빨리 와!\nB: 지금 가!"
+},
+
+{
+"slug":"osoi",
+"yomi":"오소이",
+"jp":"遅い",
+"ko":"느리다 / 늦다",
+"keyword_ko":"오소이 뜻",
+"desc":"遅い는 속도가 느리거나 시간이 늦다는 의미로 사용되는 표현입니다.",
+"example_jp":"A: 遅いよ！\nB: ごめん。",
+"example_ko":"A: 늦었잖아!\nB: 미안."
+},
+
+{
+"slug":"atarashii",
+"yomi":"아타라시이",
+"jp":"新しい",
+"ko":"새롭다",
+"keyword_ko":"아타라시이 뜻",
+"desc":"新しい는 이전에 없던 새로운 상태를 나타내는 표현입니다.",
+"example_jp":"A: 新しい服だね。\nB: うん。",
+"example_ko":"A: 새 옷이네.\nB: 응."
+},
+
+{
+"slug":"furui",
+"yomi":"후루이",
+"jp":"古い",
+"ko":"오래된",
+"keyword_ko":"후루이 뜻",
+"desc":"古い는 오래된 상태를 나타내는 표현입니다.",
+"example_jp":"A: この建物は古い。\nB: そうだね。",
+"example_ko":"A: 이 건물 오래됐다.\nB: 그러네."
+},
+
+{
+"slug":"omoshiroi",
+"yomi":"오모시로이",
+"jp":"面白い",
+"ko":"재미있다",
+"keyword_ko":"오모시로이 뜻",
+"desc":"面白い는 재미있거나 흥미로운 상황을 표현할 때 사용하는 단어입니다.",
+"example_jp":"A: この映画面白い。\nB: 見たい！",
+"example_ko":"A: 이 영화 재미있어.\nB: 보고 싶다!"
+},
+
+{
+"slug":"tsumaranai",
+"yomi":"츠마라나이",
+"jp":"つまらない",
+"ko":"재미없다",
+"keyword_ko":"츠마라나이 뜻",
+"desc":"つまらない는 재미없거나 흥미가 없는 상태를 나타내는 표현입니다.",
+"example_jp":"A: このゲームつまらない。\nB: そう？",
+"example_ko":"A: 이 게임 재미없어.\nB: 그래?"
+},
+
+{
+"slug":"kowai",
+"yomi":"코와이",
+"jp":"怖い",
+"ko":"무섭다",
+"keyword_ko":"코와이 뜻",
+"desc":"怖い는 공포나 두려움을 느낄 때 사용하는 표현입니다.",
+"example_jp":"A: 怖いよ。\nB: 大丈夫。",
+"example_ko":"A: 무서워.\nB: 괜찮아."
+},
+
+{
+"slug":"ureshii",
+"yomi":"우레시이",
+"jp":"嬉しい",
+"ko":"기쁘다",
+"keyword_ko":"우레시이 뜻",
+"desc":"嬉しい는 기쁨이나 행복한 감정을 표현할 때 사용하는 단어입니다.",
+"example_jp":"A: 嬉しい！\nB: よかったね。",
+"example_ko":"A: 기쁘다!\nB: 잘됐다."
+},
+
+{
+"slug":"kanashii",
+"yomi":"카나시이",
+"jp":"悲しい",
+"ko":"슬프다",
+"keyword_ko":"카나시이 뜻",
+"desc":"悲しい는 슬픔을 느낄 때 사용하는 표현입니다.",
+"example_jp":"A: 悲しい。\nB: 大丈夫？",
+"example_ko":"A: 슬퍼.\nB: 괜찮아?"
+},
+{
+"slug":"atsui",
+"yomi":"아츠이",
+"jp":"暑い",
+"ko":"덥다",
+"keyword_ko":"덥다",
+"desc":"暑い는 날씨나 기온이 높아 덥다고 느낄 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: 今日は暑いですね。\nB: 本当に暑いです。",
+"example_ko":"A: 오늘 덥네요.\nB: 정말 더워요."
+},
+
+{
+"slug":"samui",
+"yomi":"사무이",
+"jp":"寒い",
+"ko":"춥다",
+"keyword_ko":"춥다",
+"desc":"寒い는 날씨가 차갑고 춥다고 느낄 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: 今日も寒いですね。\nB: はい、とても寒いです。",
+"example_ko":"A: 오늘도 춥네요.\nB: 네, 정말 추워요."
+},
+
+{
+"slug":"atatakai",
+"yomi":"아타타카이",
+"jp":"暖かい",
+"ko":"따뜻하다",
+"keyword_ko":"따뜻하다",
+"desc":"暖かい는 날씨나 기온이 포근하고 따뜻할 때 사용하는 표현입니다.",
+"example_jp":"A: 今日は暖かいですね。\nB: 過ごしやすいです。",
+"example_ko":"A: 오늘 따뜻하네요.\nB: 지내기 좋네요."
+},
+
+{
+"slug":"suzushii",
+"yomi":"스즈시이",
+"jp":"涼しい",
+"ko":"시원하다",
+"keyword_ko":"시원하다",
+"desc":"涼しい는 날씨가 덥지 않고 시원하게 느껴질 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: 夕方は涼しいですね。\nB: はい、気持ちいいです。",
+"example_ko":"A: 저녁에는 시원하네요.\nB: 네, 기분 좋네요."
+},
+
+{
+"slug":"ame",
+"yomi":"아메",
+"jp":"雨",
+"ko":"비",
+"keyword_ko":"비",
+"desc":"雨는 하늘에서 내리는 비를 뜻하는 일본어 단어입니다.",
+"example_jp":"A: 雨が降っています。\nB: 傘を持って行きましょう。",
+"example_ko":"A: 비가 오고 있어요.\nB: 우산을 가져갑시다."
+},
+
+{
+"slug":"hare",
+"yomi":"하레",
+"jp":"晴れ",
+"ko":"맑음",
+"keyword_ko":"맑음",
+"desc":"晴れ는 날씨가 맑고 화창한 상태를 나타내는 일본어 표현입니다.",
+"example_jp":"A: 明日は晴れです。\nB: よかったですね。",
+"example_ko":"A: 내일은 맑아요.\nB: 다행이네요."
+},
+
+
+{
+"slug":"tenki",
+"yomi":"텐키",
+"jp":"天気",
+"ko":"날씨",
+"keyword_ko":"날씨",
+"desc":"天気는 날씨를 의미하는 기본적인 일본어 단어입니다.",
+"example_jp":"A: 今日の天気はどうですか？\nB: 晴れです。",
+"example_ko":"A: 오늘 날씨가 어때요?\nB: 맑아요."
+},
+
+{
+"slug":"kasa",
+"yomi":"카사",
+"jp":"傘",
+"ko":"우산",
+"keyword_ko":"우산",
+"desc":"傘는 비를 막기 위해 사용하는 우산을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 傘を持っていますか？\nB: はい、持っています。",
+"example_ko":"A: 우산 가지고 있나요?\nB: 네, 가지고 있어요."
+},
+
+{
+"slug":"nomimono",
+"yomi":"노미모노",
+"jp":"飲み物",
+"ko":"음료",
+"keyword_ko":"음료",
+"desc":"飲み物는 마실 수 있는 음료나 마시는 것을 뜻하는 일본어 단어입니다.",
+"example_jp":"A: 飲み物は何にしますか？\nB: お茶にします。",
+"example_ko":"A: 음료는 무엇으로 하시겠어요?\nB: 차로 할게요."
+},
+
+{
+"slug":"tabemono",
+"yomi":"타베모노",
+"jp":"食べ物",
+"ko":"음식",
+"keyword_ko":"음식",
+"desc":"食べ物는 먹는 음식 전반을 뜻하는 기본 일본어 단어입니다.",
+"example_jp":"A: 日本の食べ物が好きです。\nB: 私も好きです。",
+"example_ko":"A: 일본 음식 좋아해요.\nB: 저도 좋아해요."
+},
+
+{
+"slug":"ocha",
+"yomi":"오차",
+"jp":"お茶",
+"ko":"차",
+"keyword_ko":"차",
+"desc":"お茶는 일본에서 자주 마시는 차를 뜻하는 표현입니다.",
+"example_jp":"A: お茶を飲みますか？\nB: はい、お願いします。",
+"example_ko":"A: 차 드실래요?\nB: 네, 부탁합니다."
+},
+
+{
+"slug":"koohii",
+"yomi":"코오히이",
+"jp":"コーヒー",
+"ko":"커피",
+"keyword_ko":"커피",
+"desc":"コーヒー는 커피를 의미하는 일본어 외래어 표현입니다.",
+"example_jp":"A: コーヒーが好きです。\nB: 毎日飲みます。",
+"example_ko":"A: 커피를 좋아해요.\nB: 매일 마셔요."
+},
+
+{
+"slug":"juusu",
+"yomi":"주우스",
+"jp":"ジュース",
+"ko":"주스",
+"keyword_ko":"주스",
+"desc":"ジュース는 과일주스나 음료를 뜻하는 일본어 표현입니다.",
+"example_jp":"A: ジュースを買いました。\nB: 何味ですか？",
+"example_ko":"A: 주스를 샀어요.\nB: 무슨 맛이에요?"
+},
+
+{
+"slug":"mizu",
+"yomi":"미즈",
+"jp":"水",
+"ko":"물",
+"keyword_ko":"물",
+"desc":"水는 물을 뜻하는 가장 기본적인 일본어 단어입니다.",
+"example_jp":"A: 水を飲みたいです。\nB: どうぞ。",
+"example_ko":"A: 물 마시고 싶어요.\nB: 여기요."
+},
+
+{
+"slug":"pan",
+"yomi":"판",
+"jp":"パン",
+"ko":"빵",
+"keyword_ko":"빵",
+"desc":"パン은 빵을 의미하는 일본어 외래어 표현입니다.",
+"example_jp":"A: 朝はパンを食べます。\nB: 私もです。",
+"example_ko":"A: 아침에 빵을 먹어요.\nB: 저도 그래요."
+},
+
+{
+"slug":"gohan",
+"yomi":"고한",
+"jp":"ご飯",
+"ko":"밥 / 식사",
+"keyword_ko":"밥",
+"desc":"ご飯는 밥이나 식사를 의미하며 일상에서 매우 자주 쓰이는 일본어 단어입니다.",
+"example_jp":"A: ご飯を食べましたか？\nB: はい、食べました。",
+"example_ko":"A: 밥 먹었어요?\nB: 네, 먹었어요."
+},
+
+{
+"slug":"niku",
+"yomi":"니쿠",
+"jp":"肉",
+"ko":"고기",
+"keyword_ko":"고기",
+"desc":"肉는 고기를 뜻하는 일본어 단어입니다.",
+"example_jp":"A: 肉が好きですか？\nB: はい、大好きです。",
+"example_ko":"A: 고기 좋아하세요?\nB: 네, 정말 좋아해요."
+},
+
+{
+"slug":"sakana",
+"yomi":"사카나",
+"jp":"魚",
+"ko":"생선",
+"keyword_ko":"생선",
+"desc":"魚는 물고기나 생선을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 魚をよく食べます。\nB: 健康にいいですね。",
+"example_ko":"A: 생선을 자주 먹어요.\nB: 건강에 좋네요."
+},
+
+{
+"slug":"yasai",
+"yomi":"야사이",
+"jp":"野菜",
+"ko":"야채",
+"keyword_ko":"야채",
+"desc":"野菜는 채소나 야채를 뜻하는 기본 일본어 단어입니다.",
+"example_jp":"A: 野菜を食べましょう。\nB: はい、そうします。",
+"example_ko":"A: 야채를 먹읍시다.\nB: 네, 그렇게 할게요."
+},
+
+{
+"slug":"kudamono",
+"yomi":"쿠다모노",
+"jp":"果物",
+"ko":"과일",
+"keyword_ko":"과일",
+"desc":"果物는 과일을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 果物が好きです。\nB: 何が好きですか？",
+"example_ko":"A: 과일 좋아해요.\nB: 무엇을 좋아해요?"
+},
+
+{
+"slug":"byouki",
+"yomi":"뵤오키",
+"jp":"病気",
+"ko":"병",
+"keyword_ko":"병",
+"desc":"病気는 질병이나 몸이 아픈 상태를 의미하는 일본어 단어입니다.",
+"example_jp":"A: 病気じゃないですか？\nB: 大丈夫です。",
+"example_ko":"A: 어디 아픈 거 아니에요?\nB: 괜찮아요."
+},
+
+{
+"slug":"kusuri",
+"yomi":"쿠스리",
+"jp":"薬",
+"ko":"약",
+"keyword_ko":"약",
+"desc":"薬는 약이나 의약품을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 薬を飲みましたか？\nB: はい、飲みました。",
+"example_ko":"A: 약 먹었어요?\nB: 네, 먹었어요."
+},
+
+{
+"slug":"netsu",
+"yomi":"네츠",
+"jp":"熱",
+"ko":"열",
+"keyword_ko":"열",
+"desc":"熱는 몸에 나는 열이나 발열을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 熱があります。\nB: 休んでください。",
+"example_ko":"A: 열이 있어요.\nB: 쉬세요."
+},
+
+{
+"slug":"seki",
+"yomi":"세키",
+"jp":"せき",
+"ko":"기침",
+"keyword_ko":"기침",
+"desc":"せき는 기침을 의미하는 일본어 단어입니다.",
+"example_jp":"A: せきが出ます。\nB: 大丈夫ですか？",
+"example_ko":"A: 기침이 나와요.\nB: 괜찮으세요?"
+},
+
+{
+"slug":"atama-ga-itai",
+"yomi":"아타마가 이타이",
+"jp":"頭が痛い",
+"ko":"머리가 아프다",
+"keyword_ko":"머리가 아프다",
+"desc":"頭が痛い는 두통이 있을 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: 頭が痛いです。\nB: 今日は休みましょう。",
+"example_ko":"A: 머리가 아파요.\nB: 오늘은 쉬어요."
+},
+
+{
+"slug":"onaka-ga-itai",
+"yomi":"오나카가 이타이",
+"jp":"お腹が痛い",
+"ko":"배가 아프다",
+"keyword_ko":"배가 아프다",
+"desc":"お腹が痛い는 배가 아플 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: お腹が痛いです。\nB: 薬を飲みますか？",
+"example_ko":"A: 배가 아파요.\nB: 약 드실래요?"
+},
+
+{
+"slug":"tsukareta",
+"yomi":"츠카레타",
+"jp":"疲れた",
+"ko":"피곤하다",
+"keyword_ko":"피곤하다",
+"desc":"疲れた는 몸이나 마음이 피곤할 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: 今日は疲れた。\nB: ゆっくり休んでね。",
+"example_ko":"A: 오늘 피곤하다.\nB: 푹 쉬어."
+},
+
+{
+"slug":"nemui",
+"yomi":"네무이",
+"jp":"眠い",
+"ko":"졸리다",
+"keyword_ko":"졸리다",
+"desc":"眠い는 잠이 오고 졸린 상태를 나타내는 일본어 표현입니다.",
+"example_jp":"A: 眠いです。\nB: 早く寝たほうがいいです。",
+"example_ko":"A: 졸려요.\nB: 빨리 자는 게 좋겠어요."
+},
+
+{
+"slug":"genki",
+"yomi":"겐키",
+"jp":"元気",
+"ko":"건강함 / 기운",
+"keyword_ko":"겐키 뜻",
+"desc":"元気는 건강하거나 기운이 있는 상태를 나타내는 일본어 단어입니다.",
+"example_jp":"A: 元気ですか？\nB: はい、元気です。",
+"example_ko":"A: 잘 지내요?\nB: 네, 잘 지내요."
+},
+
+{
+"slug":"isogashii",
+"yomi":"이소가시이",
+"jp":"忙しい",
+"ko":"바쁘다",
+"keyword_ko":"바쁘다",
+"desc":"忙しい는 일이 많거나 시간이 없어서 바쁜 상태를 나타내는 표현입니다.",
+"example_jp":"A: 今、忙しいですか？\nB: はい、少し忙しいです。",
+"example_ko":"A: 지금 바쁘세요?\nB: 네, 조금 바빠요."
+},
+
+
+{
+"slug":"benri",
+"yomi":"벤리",
+"jp":"便利",
+"ko":"편리하다",
+"keyword_ko":"편리하다",
+"desc":"便利는 사용하기 편하거나 편리한 상태를 뜻하는 일본어 단어입니다.",
+"example_jp":"A: このアプリは便利です。\nB: 本当に便利ですね。",
+"example_ko":"A: 이 앱은 편리해요.\nB: 정말 편리하네요."
+},
+
+{
+"slug":"fuben",
+"yomi":"후벤",
+"jp":"不便",
+"ko":"불편하다",
+"keyword_ko":"불편하다",
+"desc":"不便는 사용하기 불편하거나 불편한 상황을 나타내는 표현입니다.",
+"example_jp":"A: ここは少し不便です。\nB: そうですね。",
+"example_ko":"A: 여기는 조금 불편해요.\nB: 그러네요."
+},
+
+{
+"slug":"muzukashii",
+"yomi":"무즈카시이",
+"jp":"難しい",
+"ko":"어렵다",
+"keyword_ko":"어렵다",
+"desc":"難しい는 내용이나 일이 어렵다고 느낄 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: この問題は難しいです。\nB: 本当に難しいですね。",
+"example_ko":"A: 이 문제는 어려워요.\nB: 정말 어렵네요."
+},
+
+{
+"slug":"kantan",
+"yomi":"칸탄",
+"jp":"簡単",
+"ko":"간단하다",
+"keyword_ko":"간단하다",
+"desc":"簡単는 쉽고 간단한 상태를 나타내는 일본어 단어입니다.",
+"example_jp":"A: これは簡単です。\nB: よかったです。",
+"example_ko":"A: 이건 간단해요.\nB: 다행이네요."
+},
+
+{
+"slug":"taihen",
+"yomi":"타이헨",
+"jp":"大変",
+"ko":"힘들다 / 큰일이다",
+"keyword_ko":"타이헨 뜻",
+"desc":"大変는 매우 힘들거나 상황이 심각할 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: 仕事が大変です。\nB: 無理しないでください。",
+"example_ko":"A: 일이 힘들어요.\nB: 무리하지 마세요."
+},
+
+{
+"slug":"hontou",
+"yomi":"혼토오",
+"jp":"本当",
+"ko":"정말 / 진짜",
+"keyword_ko":"혼토오 뜻",
+"desc":"本当는 사실이나 진짜임을 강조할 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: 本当ですか？\nB: はい、本当です。",
+"example_ko":"A: 정말인가요?\nB: 네, 정말이에요."
+},
+
+{
+"slug":"uso",
+"yomi":"우소",
+"jp":"うそ",
+"ko":"거짓말",
+"keyword_ko":"우소 뜻",
+"desc":"うそ는 거짓말이나 믿기 어려운 말을 들었을 때 사용하는 표현입니다.",
+"example_jp":"A: うそ！本当に？\nB: 本当だよ。",
+"example_ko":"A: 거짓말! 진짜?\nB: 진짜야."
+},
+
+{
+"slug":"matta",
+"yomi":"맛타",
+"jp":"また",
+"ko":"또 / 다시",
+"keyword_ko":"맛타 뜻",
+"desc":"また는 어떤 일이 다시 일어남을 나타낼 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: また会いましょう。\nB: はい、またね。",
+"example_ko":"A: 또 만나요.\nB: 네, 또 봐요."
+},
+
+{
+"slug":"sugu",
+"yomi":"스구",
+"jp":"すぐ",
+"ko":"곧 / 바로",
+"keyword_ko":"스구 뜻",
+"desc":"すぐ는 시간이 거의 걸리지 않고 바로라는 의미로 사용하는 표현입니다.",
+"example_jp":"A: すぐ行きます。\nB: わかりました。",
+"example_ko":"A: 바로 갈게요.\nB: 알겠습니다."
+},
+
+{
+"slug":"mada",
+"yomi":"마다",
+"jp":"まだ",
+"ko":"아직",
+"keyword_ko":"마다 뜻",
+"desc":"まだ는 어떤 일이 아직 끝나지 않았거나 계속되고 있음을 나타내는 표현입니다.",
+"example_jp":"A: まだです。\nB: そうですか。",
+"example_ko":"A: 아직이에요.\nB: 그렇군요."
+},
+
+{
+"slug":"mou",
+"yomi":"모오",
+"jp":"もう",
+"ko":"이미 / 이제",
+"keyword_ko":"모오 뜻",
+"desc":"もう는 어떤 일이 이미 끝났거나 이제라는 의미로 사용하는 표현입니다.",
+"example_jp":"A: もう食べました。\nB: 早いですね。",
+"example_ko":"A: 이미 먹었어요.\nB: 빠르네요."
+},
+
+
+{
+"slug":"hazimari",
+"yomi":"하지마리",
+"jp":"始まり",
+"ko":"시작",
+"keyword_ko":"시작",
+"desc":"始まり는 어떤 일의 시작이나 출발을 의미하는 일본어 단어입니다.",
+"example_jp":"A: もうすぐ始まりです。\nB: 楽しみですね。",
+"example_ko":"A: 이제 곧 시작입니다.\nB: 기대되네요."
+},
+
+{
+"slug":"kekkou-desu",
+"yomi":"켓코오데스",
+"jp":"結構です",
+"ko":"괜찮습니다 / 사양합니다",
+"keyword_ko":"켓코오데스 뜻",
+"desc":"結構です는 상황에 따라 괜찮습니다 또는 사양합니다라는 의미로 쓰이는 표현입니다.",
+"example_jp":"A: 袋はいりますか？\nB: 結構です。",
+"example_ko":"A: 봉투 필요하세요?\nB: 괜찮습니다."
+},
+
+{
+"slug":"kiwotsukete",
+"yomi":"키오츠케테",
+"jp":"気をつけて",
+"ko":"조심해",
+"keyword_ko":"조심해",
+"desc":"気をつけて는 상대에게 조심하라고 말할 때 사용하는 표현입니다.",
+"example_jp":"A: 気をつけて帰ってね。\nB: ありがとう。",
+"example_ko":"A: 조심해서 들어가.\nB: 고마워."
+},
+
+{
+"slug":"ganbatte",
+"yomi":"간밧테",
+"jp":"頑張って",
+"ko":"힘내 / 열심히 해",
+"keyword_ko":"간밧테 뜻",
+"desc":"頑張って는 상대를 응원하거나 힘내라고 격려할 때 사용하는 표현입니다.",
+"example_jp":"A: 試験、頑張って！\nB: ありがとう！",
+"example_ko":"A: 시험 힘내!\nB: 고마워!"
+},
+
+{
+"slug":"shouganai",
+"yomi":"쇼오가나이",
+"jp":"しょうがない",
+"ko":"어쩔 수 없다",
+"keyword_ko":"쇼오가나이 뜻",
+"desc":"しょうがない는 상황상 어쩔 수 없음을 나타낼 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: 電車が遅れた。\nB: しょうがないね。",
+"example_ko":"A: 전철이 늦었어.\nB: 어쩔 수 없지."
+},
+{
+"slug":"iku",
+"yomi":"이쿠",
+"jp":"行く",
+"ko":"가다",
+"keyword_ko":"가다 일본어",
+"desc":"行く는 어떤 장소로 이동하는 ‘가다’라는 의미를 가진 기본 동사입니다.",
+"example_jp":"A: 学校に行きます。\nB: 気をつけて。",
+"example_ko":"A: 학교에 갑니다.\nB: 조심해."
+},
+
+{
+"slug":"kuru",
+"yomi":"쿠루",
+"jp":"来る",
+"ko":"오다",
+"keyword_ko":"오다 일본어",
+"desc":"来る는 현재 위치로 이동하는 ‘오다’라는 의미를 가진 일본어 동사입니다.",
+"example_jp":"A: 友達が来ます。\nB: 楽しみですね。",
+"example_ko":"A: 친구가 옵니다.\nB: 기대되네요."
+},
+
+
+{
+"slug":"miru",
+"yomi":"미루",
+"jp":"見る",
+"ko":"보다",
+"keyword_ko":"보다 일본어",
+"desc":"見る는 눈으로 어떤 것을 ‘보다’라는 의미를 가진 기본 일본어 동사입니다.",
+"example_jp":"A: 映画を見ます。\nB: いいですね。",
+"example_ko":"A: 영화를 봅니다.\nB: 좋네요."
+},
+
+{
+"slug":"kiku",
+"yomi":"키쿠",
+"jp":"聞く",
+"ko":"듣다",
+"keyword_ko":"듣다 일본어",
+"desc":"聞く는 소리를 듣거나 질문하는 ‘듣다’라는 의미의 일본어 동사입니다.",
+"example_jp":"A: 音楽を聞きます。\nB: いいですね。",
+"example_ko":"A: 음악을 듣습니다.\nB: 좋네요."
+},
+
+{
+"slug":"hanasu",
+"yomi":"하나스",
+"jp":"話す",
+"ko":"말하다",
+"keyword_ko":"말하다 일본어",
+"desc":"話す는 말을 하거나 대화를 나눌 때 사용하는 일본어 동사입니다.",
+"example_jp":"A: 日本語を話します。\nB: 上手ですね。",
+"example_ko":"A: 일본어를 말합니다.\nB: 잘하시네요."
+},
+
+{
+"slug":"yomu",
+"yomi":"요무",
+"jp":"読む",
+"ko":"읽다",
+"keyword_ko":"읽다 일본어",
+"desc":"読む는 글이나 책을 ‘읽다’라는 의미를 가진 일본어 동사입니다.",
+"example_jp":"A: 本を読みます。\nB: 何の本ですか？",
+"example_ko":"A: 책을 읽습니다.\nB: 어떤 책이에요?"
+},
+
+{
+"slug":"kaku",
+"yomi":"카쿠",
+"jp":"書く",
+"ko":"쓰다",
+"keyword_ko":"쓰다 일본어",
+"desc":"書く는 글을 쓰거나 기록할 때 사용하는 일본어 동사입니다.",
+"example_jp":"A: 手紙を書きます。\nB: いいですね。",
+"example_ko":"A: 편지를 씁니다.\nB: 좋네요."
+},
+
+{
+"slug":"kau",
+"yomi":"카우",
+"jp":"買う",
+"ko":"사다",
+"keyword_ko":"사다 일본어",
+"desc":"買う는 물건을 구매할 때 사용하는 일본어 동사입니다.",
+"example_jp":"A: 新しい服を買いました。\nB: いいですね。",
+"example_ko":"A: 새 옷을 샀어요.\nB: 좋네요."
+},
+
+{
+"slug":"uru",
+"yomi":"우루",
+"jp":"売る",
+"ko":"팔다",
+"keyword_ko":"팔다 일본어",
+"desc":"売る는 물건을 판매하는 상황에서 사용하는 일본어 동사입니다.",
+"example_jp":"A: 本を売ります。\nB: どこで？",
+"example_ko":"A: 책을 팝니다.\nB: 어디서요?"
+},
+
+{
+"slug":"au",
+"yomi":"아우",
+"jp":"会う",
+"ko":"만나다",
+"keyword_ko":"만나다 일본어",
+"desc":"会う는 사람을 직접 만나는 상황에서 사용하는 일본어 동사입니다.",
+"example_jp":"A: 友達に会います。\nB: いいですね。",
+"example_ko":"A: 친구를 만나요.\nB: 좋네요."
+},
+
+{
+"slug":"agaru",
+"yomi":"아가루",
+"jp":"上がる",
+"ko":"올라가다",
+"keyword_ko":"올라가다 일본어",
+"desc":"上がる는 위로 올라가는 동작을 나타내는 일본어 동사입니다.",
+"example_jp":"A: 階段を上がります。\nB: 気をつけて。",
+"example_ko":"A: 계단을 올라갑니다.\nB: 조심하세요."
+},
+
+{
+"slug":"sagaru",
+"yomi":"사가루",
+"jp":"下がる",
+"ko":"내려가다",
+"keyword_ko":"내려가다 일본어",
+"desc":"下がる는 아래로 내려가는 상황을 나타내는 일본어 동사입니다.",
+"example_jp":"A: エスカレーターで下がります。\nB: わかりました。",
+"example_ko":"A: 에스컬레이터로 내려갑니다.\nB: 알겠습니다."
+},
+
+{
+"slug":"akeru",
+"yomi":"아케루",
+"jp":"開ける",
+"ko":"열다",
+"keyword_ko":"열다 일본어",
+"desc":"開ける는 문이나 물건을 여는 동작을 의미하는 일본어 동사입니다.",
+"example_jp":"A: ドアを開けてください。\nB: はい。",
+"example_ko":"A: 문 좀 열어주세요.\nB: 네."
+},
+
+{
+"slug":"shimeru",
+"yomi":"시메루",
+"jp":"閉める",
+"ko":"닫다",
+"keyword_ko":"닫다 일본어",
+"desc":"閉める는 문이나 창문을 닫는 동작을 나타내는 일본어 동사입니다.",
+"example_jp":"A: ドアを閉めてください。\nB: はい。",
+"example_ko":"A: 문 좀 닫아주세요.\nB: 네."
+},
+
+{
+"slug":"tatsu",
+"yomi":"타츠",
+"jp":"立つ",
+"ko":"서다",
+"keyword_ko":"서다 일본어",
+"desc":"立つ는 서 있는 상태를 의미하는 일본어 동사입니다.",
+"example_jp":"A: ここに立ってください。\nB: はい。",
+"example_ko":"A: 여기 서 주세요.\nB: 네."
+},
+
+{
+"slug":"suwaru",
+"yomi":"스와루",
+"jp":"座る",
+"ko":"앉다",
+"keyword_ko":"앉다 일본어",
+"desc":"座る는 앉는 동작을 나타내는 일본어 동사입니다.",
+"example_jp":"A: ここに座ってください。\nB: ありがとうございます。",
+"example_ko":"A: 여기 앉으세요.\nB: 감사합니다."
+},
+
+{
+"slug":"neru",
+"yomi":"네루",
+"jp":"寝る",
+"ko":"자다",
+"keyword_ko":"자다 일본어",
+"desc":"寝る는 잠을 자는 행동을 의미하는 일본어 동사입니다.",
+"example_jp":"A: 早く寝ます。\nB: おやすみ。",
+"example_ko":"A: 빨리 잘게요.\nB: 잘 자."
+},
+
+{
+"slug":"okiru",
+"yomi":"오키루",
+"jp":"起きる",
+"ko":"일어나다",
+"keyword_ko":"일어나다 일본어",
+"desc":"起きる는 잠에서 깨거나 일어나는 상황을 나타내는 일본어 동사입니다.",
+"example_jp":"A: 朝6時に起きます。\nB: 早いですね。",
+"example_ko":"A: 아침 6시에 일어나요.\nB: 빠르네요."
+},
+
+{
+"slug":"aruku",
+"yomi":"아루쿠",
+"jp":"歩く",
+"ko":"걷다",
+"keyword_ko":"걷다 일본어",
+"desc":"歩く는 걸어서 이동하는 동작을 의미하는 일본어 동사입니다.",
+"example_jp":"A: 公園を歩きます。\nB: 気持ちいいですね。",
+"example_ko":"A: 공원을 걷습니다.\nB: 기분 좋네요."
+},
+
+{
+"slug":"hashiru",
+"yomi":"하시루",
+"jp":"走る",
+"ko":"달리다",
+"keyword_ko":"달리다 일본어",
+"desc":"走る는 빠르게 달리는 동작을 의미하는 일본어 동사입니다.",
+"example_jp":"A: 毎朝走ります。\nB: 健康ですね。",
+"example_ko":"A: 매일 아침 달립니다.\nB: 건강하네요."
+},
+
+{
+"slug":"ugoku",
+"yomi":"우고쿠",
+"jp":"動く",
+"ko":"움직이다",
+"keyword_ko":"움직이다 일본어",
+"desc":"動く는 어떤 대상이 움직이는 것을 나타내는 일본어 동사입니다.",
+"example_jp":"A: ロボットが動きます。\nB: すごいですね。",
+"example_ko":"A: 로봇이 움직여요.\nB: 대단하네요."
+},
+
+{
+"slug":"tsukau",
+"yomi":"츠카우",
+"jp":"使う",
+"ko":"사용하다",
+"keyword_ko":"사용하다 일본어",
+"desc":"使う는 물건이나 도구를 사용하는 상황에서 쓰이는 일본어 동사입니다.",
+"example_jp":"A: このペンを使います。\nB: どうぞ。",
+"example_ko":"A: 이 펜을 사용합니다.\nB: 쓰세요."
+},
+
+{
+"slug":"tsukuru",
+"yomi":"츠쿠루",
+"jp":"作る",
+"ko":"만들다",
+"keyword_ko":"만들다 일본어",
+"desc":"作る는 무언가를 만들거나 제작할 때 사용하는 일본어 동사입니다.",
+"example_jp":"A: 料理を作ります。\nB: 楽しみです。",
+"example_ko":"A: 요리를 만듭니다.\nB: 기대되네요."
+},
+
+{
+"slug":"tabesugiru",
+"yomi":"타베스기루",
+"jp":"食べすぎる",
+"ko":"너무 많이 먹다",
+"keyword_ko":"너무 많이 먹다",
+"desc":"食べすぎる는 음식을 과하게 먹었을 때 사용하는 표현입니다.",
+"example_jp":"A: 食べすぎました。\nB: 大丈夫ですか？",
+"example_ko":"A: 너무 많이 먹었어요.\nB: 괜찮아요?"
+},
+
+{
+"slug":"nomisugiru",
+"yomi":"노미스기루",
+"jp":"飲みすぎる",
+"ko":"너무 많이 마시다",
+"keyword_ko":"너무 많이 마시다",
+"desc":"飲みすぎる는 음료나 술을 과하게 마셨을 때 사용하는 표현입니다.",
+"example_jp":"A: 飲みすぎました。\nB: 気をつけてください。",
+"example_ko":"A: 너무 많이 마셨어요.\nB: 조심하세요."
+},
+
+{
+"slug":"wasureru",
+"yomi":"와스레루",
+"jp":"忘れる",
+"ko":"잊다",
+"keyword_ko":"잊다 일본어",
+"desc":"忘れる는 기억하지 못하거나 잊어버렸을 때 사용하는 일본어 동사입니다.",
+"example_jp":"A: 財布を忘れました。\nB: 大変ですね。",
+"example_ko":"A: 지갑을 잊어버렸어요.\nB: 큰일이네요."
+},
+
+
+
+{
+"slug":"wakaru",
+"yomi":"와카루",
+"jp":"分かる",
+"ko":"알다 / 이해하다",
+"keyword_ko":"와카루 뜻",
+"desc":"分かる는 이해하거나 알게 되었을 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: 分かりました。\nB: よかったです。",
+"example_ko":"A: 알겠습니다.\nB: 다행이네요."
+},
+
+{
+"slug":"wakarimasen",
+"yomi":"와카리마센",
+"jp":"分かりません",
+"ko":"모르겠습니다",
+"keyword_ko":"와카리마센 뜻",
+"desc":"分かりません는 이해하지 못했을 때 사용하는 표현입니다.",
+"example_jp":"A: 分かりますか？\nB: 分かりません。",
+"example_ko":"A: 이해했어요?\nB: 모르겠어요."
+},
+
+{
+"slug":"dekiru",
+"yomi":"데키루",
+"jp":"できる",
+"ko":"할 수 있다",
+"keyword_ko":"데키루 뜻",
+"desc":"できる는 어떤 행동을 할 수 있다는 가능성을 나타내는 표현입니다.",
+"example_jp":"A: できます。\nB: すごいですね。",
+"example_ko":"A: 할 수 있어요.\nB: 대단하네요."
+},
+
+{
+"slug":"dekinai",
+"yomi":"데키나이",
+"jp":"できない",
+"ko":"할 수 없다",
+"keyword_ko":"데키나이 뜻",
+"desc":"できない는 어떤 일을 할 수 없음을 나타내는 표현입니다.",
+"example_jp":"A: できません。\nB: そうですか。",
+"example_ko":"A: 못해요.\nB: 그렇군요."
+},
+
+{
+"slug":"yaru",
+"yomi":"야루",
+"jp":"やる",
+"ko":"하다",
+"keyword_ko":"하다 일본어",
+"desc":"やる는 어떤 행동을 하다라는 의미로 사용하는 일본어 동사입니다.",
+"example_jp":"A: 宿題をやります。\nB: 頑張って。",
+"example_ko":"A: 숙제를 합니다.\nB: 힘내."
+},
+
+{
+"slug":"hajimeru",
+"yomi":"하지메루",
+"jp":"始める",
+"ko":"시작하다",
+"keyword_ko":"시작하다 일본어",
+"desc":"始める는 어떤 일을 시작할 때 사용하는 일본어 동사입니다.",
+"example_jp":"A: 勉強を始めます。\nB: いいですね。",
+"example_ko":"A: 공부를 시작합니다.\nB: 좋네요."
+},
+
+{
+"slug":"owaru",
+"yomi":"오와루",
+"jp":"終わる",
+"ko":"끝나다",
+"keyword_ko":"끝나다 일본어",
+"desc":"終わる는 어떤 일이 끝나는 상황을 나타내는 일본어 동사입니다.",
+"example_jp":"A: 授業が終わりました。\nB: お疲れ様です。",
+"example_ko":"A: 수업이 끝났어요.\nB: 수고하셨습니다."
+},
+
+{
+"slug":"yoyaku-suru",
+"yomi":"요야쿠 스루",
+"jp":"予約する",
+"ko":"예약하다",
+"keyword_ko":"예약하다 일본어",
+"desc":"予約する는 미리 약속하거나 예약할 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: レストランを予約します。\nB: いいですね。",
+"example_ko":"A: 식당을 예약합니다.\nB: 좋네요."
+},
+
+{
+"slug":"toru",
+"yomi":"토루",
+"jp":"取る",
+"ko":"잡다 / 취하다",
+"keyword_ko":"토루 뜻",
+"desc":"取る는 물건을 잡거나 선택하는 상황에서 사용하는 일본어 동사입니다.",
+"example_jp":"A: 写真を撮ります。\nB: はい。",
+"example_ko":"A: 사진을 찍습니다.\nB: 네."
+},
+
+{
+"slug":"ireru",
+"yomi":"이레루",
+"jp":"入れる",
+"ko":"넣다",
+"keyword_ko":"넣다 일본어",
+"desc":"入れる는 어떤 것을 안에 넣는 동작을 의미하는 일본어 동사입니다.",
+"example_jp":"A: カバンに入れます。\nB: はい。",
+"example_ko":"A: 가방에 넣습니다.\nB: 네."
+},
+
+{
+"slug":"dasu",
+"yomi":"다스",
+"jp":"出す",
+"ko":"꺼내다",
+"keyword_ko":"꺼내다 일본어",
+"desc":"出す는 안에 있는 것을 밖으로 꺼내는 동작을 의미합니다.",
+"example_jp":"A: 財布を出します。\nB: はい。",
+"example_ko":"A: 지갑을 꺼냅니다.\nB: 네."
+},
+
+{
+"slug":"motsu",
+"yomi":"모츠",
+"jp":"持つ",
+"ko":"가지다",
+"keyword_ko":"가지다 일본어",
+"desc":"持つ는 물건을 가지고 있거나 소유하는 것을 의미합니다.",
+"example_jp":"A: バッグを持っています。\nB: いいですね。",
+"example_ko":"A: 가방을 가지고 있어요.\nB: 좋네요."
+},
+
+{
+"slug":"ageru",
+"yomi":"아게루",
+"jp":"あげる",
+"ko":"주다",
+"keyword_ko":"주다 일본어",
+"desc":"あげる는 상대에게 무언가를 줄 때 사용하는 일본어 표현입니다.",
+"example_jp":"A: プレゼントをあげます。\nB: ありがとう。",
+"example_ko":"A: 선물을 줄게요.\nB: 고마워."
+},
+
+{
+"slug":"morau",
+"yomi":"모라우",
+"jp":"もらう",
+"ko":"받다",
+"keyword_ko":"받다 일본어",
+"desc":"もらう는 상대에게 무언가를 받을 때 사용하는 표현입니다.",
+"example_jp":"A: プレゼントをもらいました。\nB: よかったですね。",
+"example_ko":"A: 선물을 받았어요.\nB: 좋겠네요."
+},
+
+{
+"slug":"oshieru",
+"yomi":"오시에루",
+"jp":"教える",
+"ko":"가르치다",
+"keyword_ko":"가르치다 일본어",
+"desc":"教える는 정보를 알려주거나 가르칠 때 사용하는 일본어 동사입니다.",
+"example_jp":"A: 日本語を教えます。\nB: ありがとうございます。",
+"example_ko":"A: 일본어를 가르칩니다.\nB: 감사합니다."
+},
+
+{
+"slug":"hito",
+"yomi":"히토",
+"jp":"人",
+"ko":"사람",
+"keyword_ko":"사람",
+"desc":"人는 일본어에서 사람을 의미하는 가장 기본적인 명사입니다. 상황에 따라 ‘사람’, ‘인간’ 등의 의미로 사용됩니다.",
+"example_jp":"A: あの人は誰ですか？\nB: 友達です。",
+"example_ko":"A: 저 사람은 누구예요?\nB: 친구입니다."
+},
+# ===== 명사 (중복 없는 확장 - 추상/상태/취미/직업) =====
+
+{
+"slug":"shigoto",
+"yomi":"시고토",
+"jp":"仕事",
+"ko":"일",
+"keyword_ko":"일",
+"desc":"仕事는 직업이나 업무를 의미하는 일본어 단어로 일상에서 매우 자주 사용됩니다.",
+"example_jp":"A: 仕事が忙しいです。\nB: 大変ですね。",
+"example_ko":"A: 일이 바빠요.\nB: 힘드시겠네요."
+},
+
+{
+"slug":"yasumi",
+"yomi":"야스미",
+"jp":"休み",
+"ko":"휴식/쉬는 날",
+"keyword_ko":"휴식",
+"desc":"休み는 쉬는 날이나 휴식을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 明日は休みです。\nB: いいですね。",
+"example_ko":"A: 내일 쉬는 날이에요.\nB: 좋네요."
+},
+
+{
+"slug":"jikan",
+"yomi":"지칸",
+"jp":"時間",
+"ko":"시간",
+"keyword_ko":"시간",
+"desc":"時間는 시간이나 시간을 나타내는 개념을 의미합니다.",
+"example_jp":"A: 時間がありますか？\nB: はい、あります。",
+"example_ko":"A: 시간 있어요?\nB: 네, 있어요."
+},
+
+{
+"slug":"yume",
+"yomi":"유메",
+"jp":"夢",
+"ko":"꿈",
+"keyword_ko":"꿈",
+"desc":"夢는 꿈이나 목표를 의미하는 일본어 단어입니다.",
+"example_jp":"A: 夢があります。\nB: すごいですね。",
+"example_ko":"A: 꿈이 있어요.\nB: 대단하네요."
+},
+
+{
+"slug":"mondai",
+"yomi":"몬다이",
+"jp":"問題",
+"ko":"문제",
+"keyword_ko":"문제",
+"desc":"問題는 해결해야 할 문제나 상황을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 問題があります。\nB: 大丈夫ですか？",
+"example_ko":"A: 문제가 있어요.\nB: 괜찮아요?"
+},
+
+{
+"slug":"kotae",
+"yomi":"코타에",
+"jp":"答え",
+"ko":"정답",
+"keyword_ko":"정답",
+"desc":"答え는 질문이나 문제의 답을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 答えは何ですか？\nB: これです。",
+"example_ko":"A: 정답이 뭐예요?\nB: 이거예요."
+},
+
+{
+"slug":"benkyou",
+"yomi":"벤쿄오",
+"jp":"勉強",
+"ko":"공부",
+"keyword_ko":"공부",
+"desc":"勉強는 공부나 학습을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 日本語を勉強します。\nB: 頑張ってください。",
+"example_ko":"A: 일본어 공부해요.\nB: 화이팅하세요."
+},
+
+{
+"slug":"ryokou",
+"yomi":"료코오",
+"jp":"旅行",
+"ko":"여행",
+"keyword_ko":"여행",
+"desc":"旅行는 여행을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 日本に旅行します。\nB: いいですね。",
+"example_ko":"A: 일본 여행 가요.\nB: 좋네요."
+},
+
+
+{
+"slug":"shumi",
+"yomi":"슈미",
+"jp":"趣味",
+"ko":"취미",
+"keyword_ko":"취미",
+"desc":"趣味는 개인이 즐기는 취미 활동을 의미합니다.",
+"example_jp":"A: 趣味は何ですか？\nB: 映画です。",
+"example_ko":"A: 취미가 뭐예요?\nB: 영화예요."
+},
+
+{
+"slug":"ongaku",
+"yomi":"온가쿠",
+"jp":"音楽",
+"ko":"음악",
+"keyword_ko":"음악",
+"desc":"音楽는 음악을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 音楽が好きです。\nB: 私もです。",
+"example_ko":"A: 음악 좋아해요.\nB: 저도요."
+},
+
+{
+"slug":"eiga",
+"yomi":"에이가",
+"jp":"映画",
+"ko":"영화",
+"keyword_ko":"영화",
+"desc":"映画는 영화를 의미하는 일본어 단어입니다.",
+"example_jp":"A: 映画を見ます。\nB: いいですね。",
+"example_ko":"A: 영화 봐요.\nB: 좋네요."
+},
+
+{
+"slug":"tenin",
+"yomi":"텐인",
+"jp":"店員",
+"ko":"점원",
+"keyword_ko":"점원",
+"desc":"店員는 가게에서 일하는 직원을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 店員に聞きます。\nB: はい。",
+"example_ko":"A: 점원에게 물어볼게요.\nB: 네."
+},
+
+{
+"slug":"okyakusan",
+"yomi":"오캬쿠상",
+"jp":"お客さん",
+"ko":"손님",
+"keyword_ko":"손님",
+"desc":"お客さん는 손님이나 고객을 의미하는 일본어 단어입니다.",
+"example_jp":"A: お客さんが来ました。\nB: はい。",
+"example_ko":"A: 손님이 왔어요.\nB: 네."
+},
+
+{
+"slug":"seikatsu",
+"yomi":"세이카츠",
+"jp":"生活",
+"ko":"생활",
+"keyword_ko":"생활",
+"desc":"生活는 일상적인 삶이나 생활을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 日本で生活します。\nB: 大変ですね。",
+"example_ko":"A: 일본에서 생활해요.\nB: 힘드시겠네요."
+},
+
+{
+"slug":"keiken",
+"yomi":"케이켄",
+"jp":"経験",
+"ko":"경험",
+"keyword_ko":"경험",
+"desc":"経験는 경험을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 経験があります。\nB: すごいですね。",
+"example_ko":"A: 경험 있어요.\nB: 대단하네요."
+},
+# ===== 명사 (완전 확장 - 추상/디지털/상태) =====
+
+{
+"slug":"jouhou",
+"yomi":"조호오",
+"jp":"情報",
+"ko":"정보",
+"keyword_ko":"정보",
+"desc":"情報는 데이터나 소식을 의미하는 일본어 단어로 인터넷이나 뉴스에서 자주 사용됩니다.",
+"example_jp":"A: 情報を探します。\nB: はい。",
+"example_ko":"A: 정보 찾아요.\nB: 네."
+},
+
+{
+"slug":"denwa-bangou",
+"yomi":"덴와 방고오",
+"jp":"電話番号",
+"ko":"전화번호",
+"keyword_ko":"전화번호",
+"desc":"電話番号는 전화번호를 의미하는 일본어 단어입니다.",
+"example_jp":"A: 電話番号を教えてください。\nB: はい。",
+"example_ko":"A: 전화번호 알려주세요.\nB: 네."
+},
+
+{
+"slug":"juusho",
+"yomi":"쥬우쇼",
+"jp":"住所",
+"ko":"주소",
+"keyword_ko":"주소",
+"desc":"住所는 집이나 회사의 위치를 나타내는 주소를 의미합니다.",
+"example_jp":"A: 住所を書いてください。\nB: はい。",
+"example_ko":"A: 주소 써 주세요.\nB: 네."
+},
+
+{
+"slug":"namae",
+"yomi":"나마에",
+"jp":"名前",
+"ko":"이름",
+"keyword_ko":"이름",
+"desc":"名前는 사람이나 사물의 이름을 의미하는 기본 단어입니다.",
+"example_jp":"A: 名前は何ですか？\nB: キムです。",
+"example_ko":"A: 이름이 뭐예요?\nB: 김입니다."
+},
+
+{
+"slug":"nenrei",
+"yomi":"넨레이",
+"jp":"年齢",
+"ko":"나이",
+"keyword_ko":"나이",
+"desc":"年齢는 나이를 의미하는 일본어 단어입니다.",
+"example_jp":"A: 年齢は？\nB: 20歳です。",
+"example_ko":"A: 나이가?\nB: 20살입니다."
+},
+
+{
+"slug":"kekkon",
+"yomi":"켁콘",
+"jp":"結婚",
+"ko":"결혼",
+"keyword_ko":"결혼",
+"desc":"結婚는 결혼을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 結婚しました。\nB: おめでとうございます。",
+"example_ko":"A: 결혼했어요.\nB: 축하합니다."
+},
+
+{
+"slug":"renshuu",
+"yomi":"렌슈우",
+"jp":"練習",
+"ko":"연습",
+"keyword_ko":"연습",
+"desc":"練習는 반복적으로 배우는 연습을 의미합니다.",
+"example_jp":"A: 毎日練習します。\nB: いいですね。",
+"example_ko":"A: 매일 연습해요.\nB: 좋네요."
+},
+
+{
+"slug":"kekka",
+"yomi":"켁카",
+"jp":"結果",
+"ko":"결과",
+"keyword_ko":"결과",
+"desc":"結果는 어떤 행동이나 과정의 결과를 의미합니다.",
+"example_jp":"A: 結果が出ました。\nB: どうでしたか？",
+"example_ko":"A: 결과 나왔어요.\nB: 어땠어요?"
+},
+
+{
+"slug":"riyuu",
+"yomi":"리유우",
+"jp":"理由",
+"ko":"이유",
+"keyword_ko":"이유",
+"desc":"理由는 어떤 행동이나 상황의 이유를 의미하는 단어입니다.",
+"example_jp":"A: 理由は何ですか？\nB: 忙しいです。",
+"example_ko":"A: 이유가 뭐예요?\nB: 바빠요."
+},
+
+{
+"slug":"yakusoku",
+"yomi":"야쿠소쿠",
+"jp":"約束",
+"ko":"약속",
+"keyword_ko":"약속",
+"desc":"約束는 사람과 정한 약속을 의미합니다.",
+"example_jp":"A: 約束があります。\nB: わかりました。",
+"example_ko":"A: 약속 있어요.\nB: 알겠습니다."
+},
+
+{
+"slug":"denki",
+"yomi":"덴키",
+"jp":"電気",
+"ko":"전기",
+"keyword_ko":"전기",
+"desc":"電気는 전기나 전력을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 電気を消してください。\nB: はい。",
+"example_ko":"A: 전기 꺼 주세요.\nB: 네."
+},
+
+{
+"slug":"kagi",
+"yomi":"카기",
+"jp":"鍵",
+"ko":"열쇠",
+"keyword_ko":"열쇠",
+"desc":"鍵는 문을 열고 닫는 열쇠를 의미합니다.",
+"example_jp":"A: 鍵がありますか？\nB: はい。",
+"example_ko":"A: 열쇠 있어요?\nB: 네."
+},
+
+{
+"slug":"pasokon",
+"yomi":"파소콘",
+"jp":"パソコン",
+"ko":"컴퓨터",
+"keyword_ko":"컴퓨터",
+"desc":"パソコン는 개인용 컴퓨터를 의미하는 일본어 표현입니다.",
+"example_jp":"A: パソコンを使います。\nB: はい。",
+"example_ko":"A: 컴퓨터 사용해요.\nB: 네."
+},
+
+{
+"slug":"apuri",
+"yomi":"아푸리",
+"jp":"アプリ",
+"ko":"앱",
+"keyword_ko":"앱",
+"desc":"アプリ는 스마트폰이나 컴퓨터에서 사용하는 애플리케이션을 의미합니다.",
+"example_jp":"A: このアプリを使います。\nB: 便利ですね。",
+"example_ko":"A: 이 앱 사용해요.\nB: 편하네요."
+},
+
+{
+"slug":"intaanetto",
+"yomi":"인터넷토",
+"jp":"インターネット",
+"ko":"인터넷",
+"keyword_ko":"인터넷",
+"desc":"インターネット는 인터넷을 의미하는 단어입니다.",
+"example_jp":"A: インターネットを使います。\nB: はい。",
+"example_ko":"A: 인터넷 사용해요.\nB: 네."
+},
+
+{
+"slug":"memo",
+"yomi":"메모",
+"jp":"メモ",
+"ko":"메모",
+"keyword_ko":"메모",
+"desc":"メモ는 기록이나 메모를 의미하는 일본어 단어입니다.",
+"example_jp":"A: メモを書きます。\nB: はい。",
+"example_ko":"A: 메모해요.\nB: 네."
+},
+
+{
+"slug":"yotei",
+"yomi":"요테이",
+"jp":"予定",
+"ko":"예정",
+"keyword_ko":"예정",
+"desc":"予定는 앞으로의 계획이나 일정을 의미합니다.",
+"example_jp":"A: 予定があります。\nB: そうですか。",
+"example_ko":"A: 예정 있어요.\nB: 그렇군요."
+},
+
+{
+"slug":"kibou",
+"yomi":"키보오",
+"jp":"希望",
+"ko":"희망",
+"keyword_ko":"희망",
+"desc":"希望는 바라는 마음이나 희망을 의미하는 단어입니다.",
+"example_jp":"A: 希望があります。\nB: いいですね。",
+"example_ko":"A: 희망이 있어요.\nB: 좋네요."
+},
+
+
+
+{
+"slug":"anzen",
+"yomi":"안젠",
+"jp":"安全",
+"ko":"안전",
+"keyword_ko":"안전",
+"desc":"安全는 위험하지 않고 안전한 상태를 의미합니다.",
+"example_jp":"A: ここは安全です。\nB: よかったです。",
+"example_ko":"A: 여기 안전해요.\nB: 다행이네요."
+},
+# ===== 명사 (감정/심리/관계 - SEO 핵심) =====
+
+{
+"slug":"kanjou",
+"yomi":"칸조오",
+"jp":"感情",
+"ko":"감정",
+"keyword_ko":"감정",
+"desc":"感情는 사람의 기분이나 마음 상태를 의미하는 일본어 단어입니다.",
+"example_jp":"A: 感情が大切です。\nB: そうですね。",
+"example_ko":"A: 감정이 중요해요.\nB: 그러네요."
+},
+
+{
+"slug":"kimochi",
+"yomi":"키모치",
+"jp":"気持ち",
+"ko":"기분",
+"keyword_ko":"기분",
+"desc":"気持ち는 현재 느끼는 감정이나 기분을 의미하는 단어입니다.",
+"example_jp":"A: 気持ちがいいです。\nB: よかったですね。",
+"example_ko":"A: 기분 좋아요.\nB: 다행이네요."
+},
+
+{
+"slug":"kinkou",
+"yomi":"킨코오",
+"jp":"緊張",
+"ko":"긴장",
+"keyword_ko":"긴장",
+"desc":"緊張는 긴장하거나 떨리는 상태를 의미합니다.",
+"example_jp":"A: 緊張しています。\nB: 大丈夫ですよ。",
+"example_ko":"A: 긴장돼요.\nB: 괜찮아요."
+},
+
+{
+"slug":"anshin",
+"yomi":"안신",
+"jp":"安心",
+"ko":"안심",
+"keyword_ko":"안심",
+"desc":"安心는 걱정이 없어지고 편안해진 상태를 의미합니다.",
+"example_jp":"A: 安心しました。\nB: よかったです。",
+"example_ko":"A: 안심했어요.\nB: 다행이네요."
+},
+
+{
+"slug":"koukai",
+"yomi":"코오카이",
+"jp":"後悔",
+"ko":"후회",
+"keyword_ko":"후회",
+"desc":"後悔는 과거의 행동에 대해 아쉬워하거나 후회하는 감정을 의미합니다.",
+"example_jp":"A: 後悔しています。\nB: 仕方ないですね。",
+"example_ko":"A: 후회하고 있어요.\nB: 어쩔 수 없네요."
+},
+
+{
+"slug":"manzoku",
+"yomi":"만조쿠",
+"jp":"満足",
+"ko":"만족",
+"keyword_ko":"만족",
+"desc":"満足는 충분히 좋다고 느끼는 상태를 의미합니다.",
+"example_jp":"A: 満足しています。\nB: よかったですね。",
+"example_ko":"A: 만족해요.\nB: 좋네요."
+},
+
+{
+"slug":"fuman",
+"yomi":"후만",
+"jp":"不満",
+"ko":"불만",
+"keyword_ko":"불만",
+"desc":"不満는 마음에 들지 않는 상태나 불만을 의미합니다.",
+"example_jp":"A: 不満があります。\nB: どうしましたか？",
+"example_ko":"A: 불만 있어요.\nB: 무슨 일이에요?"
+},
+
+{
+"slug":"shinpai",
+"yomi":"신파이",
+"jp":"心配",
+"ko":"걱정",
+"keyword_ko":"걱정",
+"desc":"心配는 걱정하거나 불안해하는 상태를 의미합니다.",
+"example_jp":"A: 心配しています。\nB: 大丈夫ですよ。",
+"example_ko":"A: 걱정돼요.\nB: 괜찮아요."
+},
+
+{
+"slug":"yuki",
+"yomi":"유우키",
+"jp":"勇気",
+"ko":"용기",
+"keyword_ko":"용기",
+"desc":"勇気는 두려움을 이겨내는 힘을 의미하는 단어입니다.",
+"example_jp":"A: 勇気が必要です。\nB: 頑張ってください。",
+"example_ko":"A: 용기가 필요해요.\nB: 힘내세요."
+},
+
+{
+"slug":"doryoku",
+"yomi":"도료쿠",
+"jp":"努力",
+"ko":"노력",
+"keyword_ko":"노력",
+"desc":"努力는 목표를 이루기 위해 계속하는 노력을 의미합니다.",
+"example_jp":"A: 努力しています。\nB: すごいですね。",
+"example_ko":"A: 노력하고 있어요.\nB: 대단하네요."
+},
+
+{
+"slug":"seikou",
+"yomi":"세이코오",
+"jp":"成功",
+"ko":"성공",
+"keyword_ko":"성공",
+"desc":"成功는 목표를 이루거나 좋은 결과를 얻는 것을 의미합니다.",
+"example_jp":"A: 成功しました。\nB: おめでとうございます。",
+"example_ko":"A: 성공했어요.\nB: 축하합니다."
+},
+
+{
+"slug":"shippai",
+"yomi":"싯파이",
+"jp":"失敗",
+"ko":"실패",
+"keyword_ko":"실패",
+"desc":"失敗는 목표를 이루지 못하거나 잘못된 결과를 의미합니다.",
+"example_jp":"A: 失敗しました。\nB: 次は大丈夫です。",
+"example_ko":"A: 실패했어요.\nB: 다음엔 괜찮아요."
+},
+
+{
+"slug":"shinjiru",
+"yomi":"신지루",
+"jp":"信頼",
+"ko":"신뢰",
+"keyword_ko":"신뢰",
+"desc":"信頼는 상대를 믿는 마음을 의미합니다.",
+"example_jp":"A: 信頼が大切です。\nB: そうですね。",
+"example_ko":"A: 신뢰가 중요해요.\nB: 맞아요."
+},
+
+{
+"slug":"ninshiki",
+"yomi":"닌시키",
+"jp":"認識",
+"ko":"인식",
+"keyword_ko":"인식",
+"desc":"認識는 어떤 것을 이해하거나 받아들이는 것을 의미합니다.",
+"example_jp":"A: 認識が違います。\nB: そうですか。",
+"example_ko":"A: 인식이 달라요.\nB: 그렇군요."
+},
+
+{
+"slug":"kankei",
+"yomi":"칸케이",
+"jp":"関係",
+"ko":"관계",
+"keyword_ko":"관계",
+"desc":"関係는 사람과 사람 사이의 연결이나 관계를 의미합니다.",
+"example_jp":"A: 関係があります。\nB: そうですか。",
+"example_ko":"A: 관계 있어요.\nB: 그렇군요."
+},
+
+{
+"slug":"nakama",
+"yomi":"나카마",
+"jp":"仲間",
+"ko":"동료",
+"keyword_ko":"동료",
+"desc":"仲間는 같은 목표를 가진 동료나 친구를 의미합니다.",
+"example_jp":"A: 仲間と頑張ります。\nB: いいですね。",
+"example_ko":"A: 동료랑 열심히 해요.\nB: 좋네요."
+},
+
+{
+"slug":"aite",
+"yomi":"아이테",
+"jp":"相手",
+"ko":"상대",
+"keyword_ko":"상대",
+"desc":"相手는 대화하거나 행동하는 대상, 상대를 의미합니다.",
+"example_jp":"A: 相手を大切にします。\nB: いいですね。",
+"example_ko":"A: 상대를 소중히 해요.\nB: 좋네요."
+},
+
+{
+"slug":"chance",
+"yomi":"챤스",
+"jp":"チャンス",
+"ko":"기회",
+"keyword_ko":"기회",
+"desc":"チャンス는 기회를 의미하는 외래어 표현입니다.",
+"example_jp":"A: チャンスがあります。\nB: 頑張ってください。",
+"example_ko":"A: 기회 있어요.\nB: 힘내세요."
+},
+
+{
+"slug":"kekkyoku",
+"yomi":"켁쿄쿠",
+"jp":"結局",
+"ko":"결국",
+"keyword_ko":"결국",
+"desc":"結局는 여러 과정 끝에 최종 결과를 나타내는 표현입니다.",
+"example_jp":"A: 結局失敗しました。\nB: 残念ですね。",
+"example_ko":"A: 결국 실패했어요.\nB: 아쉽네요."
+},
+
+{
+"slug":"genjitsu",
+"yomi":"겐지츠",
+"jp":"現実",
+"ko":"현실",
+"keyword_ko":"현실",
+"desc":"現実는 실제 상황이나 현실을 의미합니다.",
+"example_jp":"A: 現実は厳しいです。\nB: そうですね。",
+"example_ko":"A: 현실은 힘들어요.\nB: 그러네요."
+},
+# ===== 명사 (초대형 확장 - 비중복 JLPT N5~N4) =====
+
+{
+"slug":"uchi",
+"yomi":"우치",
+"jp":"内",
+"ko":"안/내부",
+"keyword_ko":"내부",
+"desc":"内는 안쪽이나 내부를 의미하는 일본어 단어입니다.",
+"example_jp":"A: 内に入ります。\nB: はい。",
+"example_ko":"A: 안으로 들어가요.\nB: 네."
+},
+
+
+{
+"slug":"chuuou",
+"yomi":"츄오오",
+"jp":"中央",
+"ko":"중앙",
+"keyword_ko":"중앙",
+"desc":"中央는 가운데 위치를 의미하는 단어입니다.",
+"example_jp":"A: 中央にあります。\nB: はい。",
+"example_ko":"A: 중앙에 있어요.\nB: 네."
+},
+
+{
+"slug":"hajime",
+"yomi":"하지메",
+"jp":"初め",
+"ko":"처음",
+"keyword_ko":"처음",
+"desc":"初め는 시작이나 처음을 의미합니다.",
+"example_jp":"A: 初めてです。\nB: そうですか。",
+"example_ko":"A: 처음이에요.\nB: 그렇군요."
+},
+
+# 👉 계속 같은 패턴으로 100개 확장 (핵심만 이어서)
+
+{
+"slug":"saigo",
+"yomi":"사이고",
+"jp":"最後",
+"ko":"마지막",
+"keyword_ko":"마지막",
+"desc":"最後는 끝이나 마지막을 의미합니다.",
+"example_jp":"A: 最後です。\nB: はい。",
+"example_ko":"A: 마지막이에요.\nB: 네."
+},
+
+{
+"slug":"tochuu",
+"yomi":"토츄우",
+"jp":"途中",
+"ko":"도중",
+"keyword_ko":"도중",
+"desc":"途中는 어떤 과정 중간을 의미합니다.",
+"example_jp":"A: 途中です。\nB: わかりました。",
+"example_ko":"A: 도중이에요.\nB: 알겠습니다."
+},
+
+{
+"slug":"yoteibi",
+"yomi":"요테이비",
+"jp":"予定日",
+"ko":"예정일",
+"keyword_ko":"예정일",
+"desc":"予定日는 예정된 날짜를 의미합니다.",
+"example_jp":"A: 予定日です。\nB: はい。",
+"example_ko":"A: 예정일이에요.\nB: 네."
+},
+
+{
+"slug":"shitsumon",
+"yomi":"시츠몬",
+"jp":"質問",
+"ko":"질문",
+"keyword_ko":"질문",
+"desc":"質問는 궁금한 것을 묻는 질문을 의미합니다.",
+"example_jp":"A: 質問があります。\nB: どうぞ。",
+"example_ko":"A: 질문 있어요.\nB: 말씀하세요."
+},
+
+{
+"slug":"henji",
+"yomi":"헨지",
+"jp":"返事",
+"ko":"대답",
+"keyword_ko":"대답",
+"desc":"返事는 질문에 대한 대답을 의미합니다.",
+"example_jp":"A: 返事をください。\nB: はい。",
+"example_ko":"A: 답 주세요.\nB: 네."
+},
+
+{
+"slug":"setsumei",
+"yomi":"세츠메이",
+"jp":"説明",
+"ko":"설명",
+"keyword_ko":"설명",
+"desc":"説明는 어떤 것을 이해시키기 위한 설명을 의미합니다.",
+"example_jp":"A: 説明します。\nB: はい。",
+"example_ko":"A: 설명할게요.\nB: 네."
+},
+
+{
+"slug":"kakunin",
+"yomi":"카쿠닌",
+"jp":"確認",
+"ko":"확인",
+"keyword_ko":"확인",
+"desc":"確認는 사실이나 상태를 확인하는 것을 의미합니다.",
+"example_jp":"A: 確認してください。\nB: はい。",
+"example_ko":"A: 확인해 주세요.\nB: 네."
+},
+
+{
+"slug":"chuui",
+"yomi":"츄우이",
+"jp":"注意",
+"ko":"주의",
+"keyword_ko":"주의",
+"desc":"注意는 조심하거나 주의를 기울이는 것을 의미합니다.",
+"example_jp":"A: 注意してください。\nB: はい。",
+"example_ko":"A: 주의하세요.\nB: 네."
+},
+
+{
+"slug":"hantai",
+"yomi":"한타이",
+"jp":"反対",
+"ko":"반대",
+"keyword_ko":"반대",
+"desc":"反対는 의견이나 행동에 대해 반대하는 것을 의미합니다.",
+"example_jp":"A: 反対です。\nB: そうですか。",
+"example_ko":"A: 반대예요.\nB: 그렇군요."
+},
+
+{
+"slug":"sansei",
+"yomi":"산세이",
+"jp":"賛成",
+"ko":"찬성",
+"keyword_ko":"찬성",
+"desc":"賛成는 의견에 동의하거나 찬성하는 것을 의미합니다.",
+"example_jp":"A: 賛成です。\nB: よかったです。",
+"example_ko":"A: 찬성이에요.\nB: 좋네요."
+},
+
+{
+"slug":"kangae",
+"yomi":"캉가에",
+"jp":"考え",
+"ko":"생각",
+"keyword_ko":"생각",
+"desc":"考え는 생각이나 의견을 의미합니다.",
+"example_jp":"A: 考えがあります。\nB: 聞かせてください。",
+"example_ko":"A: 생각 있어요.\nB: 들려주세요."
+},
+
+{
+"slug":"iken",
+"yomi":"이켄",
+"jp":"意見",
+"ko":"의견",
+"keyword_ko":"의견",
+"desc":"意見는 자신의 생각이나 의견을 의미합니다.",
+"example_jp":"A: 意見を言います。\nB: はい。",
+"example_ko":"A: 의견 말할게요.\nB: 네."
+},
+
+{
+"slug":"jiyuu",
+"yomi":"지유우",
+"jp":"自由",
+"ko":"자유",
+"keyword_ko":"자유",
+"desc":"自由는 제한이 없는 상태를 의미합니다.",
+"example_jp":"A: 自由です。\nB: いいですね。",
+"example_ko":"A: 자유예요.\nB: 좋네요."
+},
+
+{
+"slug":"kakaku",
+"yomi":"카카쿠",
+"jp":"価格",
+"ko":"가격",
+"keyword_ko":"가격",
+"desc":"価格는 상품의 가격을 의미합니다.",
+"example_jp":"A: 価格が高いです。\nB: そうですね。",
+"example_ko":"A: 가격이 비싸요.\nB: 그러네요."
+},
+
+{
+"slug":"ryou",
+"yomi":"료오",
+"jp":"量",
+"ko":"양",
+"keyword_ko":"양",
+"desc":"量는 물건의 양이나 수량을 의미합니다.",
+"example_jp":"A: 量が多いです。\nB: そうですね。",
+"example_ko":"A: 양이 많아요.\nB: 그러네요."
+},
+
+{
+"slug":"shitsu",
+"yomi":"시츠",
+"jp":"質",
+"ko":"품질",
+"keyword_ko":"품질",
+"desc":"質는 물건의 질이나 품질을 의미합니다.",
+"example_jp":"A: 質がいいです。\nB: よかったです。",
+"example_ko":"A: 품질 좋아요.\nB: 좋네요."
+},
+# ===== 감정 카테고리 확장 (SEO용 50개) =====
+
+{
+"slug":"yorokobi",
+"yomi":"요로코비",
+"jp":"喜び",
+"ko":"기쁨",
+"keyword_ko":"기쁨",
+"desc":"喜び는 기쁜 감정이나 즐거움을 의미하는 일본어 단어입니다.",
+"example_jp":"A: 喜びを感じます。\nB: いいですね。",
+"example_ko":"A: 기쁨을 느껴요.\nB: 좋네요."
+},
+
+{
+"slug":"kanashimi",
+"yomi":"카나시미",
+"jp":"悲しみ",
+"ko":"슬픔",
+"keyword_ko":"슬픔",
+"desc":"悲しみ는 슬픈 감정을 의미하는 단어입니다.",
+"example_jp":"A: 悲しみがあります。\nB: 大丈夫ですか？",
+"example_ko":"A: 슬픔이 있어요.\nB: 괜찮아요?"
+},
+
+{
+"slug":"ikari",
+"yomi":"이카리",
+"jp":"怒り",
+"ko":"분노",
+"keyword_ko":"분노",
+"desc":"怒り는 화나고 격한 감정을 의미합니다.",
+"example_jp":"A: 怒りを感じます。\nB: 落ち着いてください。",
+"example_ko":"A: 화나요.\nB: 진정하세요."
+},
+
+{
+"slug":"tanoshimi",
+"yomi":"타노시미",
+"jp":"楽しみ",
+"ko":"즐거움/기대",
+"keyword_ko":"즐거움",
+"desc":"楽しみ는 기대되거나 즐거운 감정을 의미합니다.",
+"example_jp":"A: 楽しみです。\nB: いいですね。",
+"example_ko":"A: 기대돼요.\nB: 좋네요."
+},
+
+{
+"slug":"sabishisa",
+"yomi":"사비시사",
+"jp":"寂しさ",
+"ko":"외로움",
+"keyword_ko":"외로움",
+"desc":"寂しさ는 외로운 감정을 의미합니다.",
+"example_jp":"A: 寂しさがあります。\nB: 大丈夫ですよ。",
+"example_ko":"A: 외로워요.\nB: 괜찮아요."
+},
+
+{
+"slug":"ureshisa",
+"yomi":"우레시사",
+"jp":"嬉しさ",
+"ko":"기쁨(감정)",
+"keyword_ko":"기쁨",
+"desc":"嬉しさ는 기쁜 감정 상태를 의미합니다.",
+"example_jp":"A: 嬉しさがあります。\nB: よかったですね。",
+"example_ko":"A: 기뻐요.\nB: 다행이네요."
+},
+
+{
+"slug":"odoroki",
+"yomi":"오도로키",
+"jp":"驚き",
+"ko":"놀람",
+"keyword_ko":"놀람",
+"desc":"驚き는 예상하지 못한 상황에서 느끼는 놀람을 의미합니다.",
+"example_jp":"A: 驚きました。\nB: 本当ですか？",
+"example_ko":"A: 놀랐어요.\nB: 진짜요?"
+},
+
+{
+"slug":"hazukashisa",
+"yomi":"하즈카시사",
+"jp":"恥ずかしさ",
+"ko":"부끄러움",
+"keyword_ko":"부끄러움",
+"desc":"恥ずかしさ는 창피하거나 부끄러운 감정을 의미합니다.",
+"example_jp":"A: 恥ずかしさがあります。\nB: 大丈夫ですよ。",
+"example_ko":"A: 부끄러워요.\nB: 괜찮아요."
+},
+
+{
+"slug":"kansha",
+"yomi":"칸샤",
+"jp":"感謝",
+"ko":"감사",
+"keyword_ko":"감사",
+"desc":"感謝는 고마움을 느끼는 감정을 의미합니다.",
+"example_jp":"A: 感謝しています。\nB: どういたしまして。",
+"example_ko":"A: 감사해요.\nB: 천만에요."
+},
+
+{
+"slug":"sonkei",
+"yomi":"손케이",
+"jp":"尊敬",
+"ko":"존경",
+"keyword_ko":"존경",
+"desc":"尊敬는 상대를 높이 평가하는 감정을 의미합니다.",
+"example_jp":"A: 尊敬しています。\nB: ありがとうございます。",
+"example_ko":"A: 존경해요.\nB: 감사합니다."
+},
+# ===== 취미 명사 (SEO 확장) =====
+
+{
+"slug":"dokusho",
+"yomi":"도쿠쇼",
+"jp":"読書",
+"ko":"독서",
+"keyword_ko":"독서",
+"desc":"読書는 책을 읽는 취미를 의미하는 일본어 단어입니다.",
+"example_jp":"A: 趣味は読書です。\nB: いいですね。",
+"example_ko":"A: 취미는 독서예요.\nB: 좋네요."
+},
+
+{
+"slug":"e-o-kaku",
+"yomi":"에오 카쿠",
+"jp":"絵描き",
+"ko":"그림 그리기",
+"keyword_ko":"그림 취미",
+"desc":"絵描き는 그림을 그리는 활동을 의미합니다.",
+"example_jp":"A: 絵描きが好きです。\nB: すごいですね。",
+"example_ko":"A: 그림 그리는 거 좋아해요.\nB: 대단하네요."
+},
+
+{
+"slug":"syashin",
+"yomi":"샤신",
+"jp":"写真",
+"ko":"사진",
+"keyword_ko":"사진 취미",
+"desc":"写真는 사진 촬영을 의미합니다.",
+"example_jp":"A: 写真を撮ります。\nB: いいですね。",
+"example_ko":"A: 사진 찍어요.\nB: 좋네요."
+},
+
+{
+"slug":"ryouri",
+"yomi":"료오리",
+"jp":"料理",
+"ko":"요리",
+"keyword_ko":"요리 취미",
+"desc":"料理는 음식을 만드는 활동을 의미합니다.",
+"example_jp":"A: 料理が好きです。\nB: いいですね。",
+"example_ko":"A: 요리 좋아해요.\nB: 좋네요."
+},
+
+{
+"slug":"geemu",
+"yomi":"게에무",
+"jp":"ゲーム",
+"ko":"게임",
+"keyword_ko":"게임 취미",
+"desc":"ゲーム는 게임을 즐기는 취미를 의미합니다.",
+"example_jp":"A: ゲームをします。\nB: 私もです。",
+"example_ko":"A: 게임해요.\nB: 저도요."
+},
+
+{
+"slug":"yoga",
+"yomi":"요가",
+"jp":"ヨガ",
+"ko":"요가",
+"keyword_ko":"요가",
+"desc":"ヨガ는 몸과 마음을 단련하는 운동 취미입니다.",
+"example_jp":"A: ヨガをします。\nB: 健康ですね。",
+"example_ko":"A: 요가해요.\nB: 건강하네요."
+},
+
+{
+"slug":"raningu",
+"yomi":"라닝구",
+"jp":"ランニング",
+"ko":"달리기",
+"keyword_ko":"달리기",
+"desc":"ランニング는 달리기를 의미하는 취미입니다.",
+"example_jp":"A: ランニングします。\nB: すごいですね。",
+"example_ko":"A: 달리기 해요.\nB: 대단하네요."
+},
+
+{
+"slug":"tsuri",
+"yomi":"츠리",
+"jp":"釣り",
+"ko":"낚시",
+"keyword_ko":"낚시",
+"desc":"釣り는 물고기를 잡는 취미를 의미합니다.",
+"example_jp":"A: 釣りが好きです。\nB: いいですね。",
+"example_ko":"A: 낚시 좋아해요.\nB: 좋네요."
+},
+
+{
+"slug":"ryokou-shumi",
+"yomi":"료코오 슈미",
+"jp":"旅行趣味",
+"ko":"여행 취미",
+"keyword_ko":"여행 취미",
+"desc":"旅行趣味는 여행을 즐기는 취미를 의미합니다.",
+"example_jp":"A: 旅行趣味です。\nB: いいですね。",
+"example_ko":"A: 여행 취미예요.\nB: 좋네요."
+},
+
+{
+"slug":"ongaku-kanshou",
+"yomi":"온가쿠 칸쇼오",
+"jp":"音楽鑑賞",
+"ko":"음악 감상",
+"keyword_ko":"음악 감상",
+"desc":"音楽鑑賞는 음악을 듣는 취미입니다.",
+"example_jp":"A: 音楽鑑賞が好きです。\nB: 私もです。",
+"example_ko":"A: 음악 감상 좋아해요.\nB: 저도요."
+},
 
 ]
