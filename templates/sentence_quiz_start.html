@@ -1,0 +1,374 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  .sentence-home-wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 34px 16px 60px;
+  }
+
+  .sentence-home-card{
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid #bcd2ff;
+    border-radius: 34px;
+    box-shadow: 0 22px 60px rgba(47, 109, 246, .12);
+    padding: 40px 36px;
+  }
+
+  .sentence-hero{
+    text-align:center;
+    margin-bottom: 26px;
+  }
+
+  .sentence-title{
+    margin: 0;
+    font-size: 56px;
+    line-height: 1.08;
+    font-weight: 1000;
+    letter-spacing: -0.05em;
+    color: #2f5fd7;
+  }
+
+  .sentence-subtitle{
+    margin-top: 14px;
+    color: #52627d;
+    font-size: 17px;
+    line-height: 1.7;
+    font-weight: 700;
+  }
+
+  .sentence-main-grid{
+    display:grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .info-panel,
+  .setting-panel,
+  .guide-panel{
+    background: #fff;
+    border: 1px solid #d7e5ff;
+    border-radius: 24px;
+    box-shadow: 0 10px 28px rgba(47,109,246,.06);
+  }
+
+  .info-panel{
+    padding: 24px;
+  }
+
+  .info-title{
+    font-size: 25px;
+    font-weight: 1000;
+    color:#1d4ed8;
+    margin-bottom: 12px;
+  }
+
+  .info-desc{
+    color:#24344f;
+    font-size: 15px;
+    line-height: 1.85;
+    word-break: keep-all;
+  }
+
+  .point-box{
+    margin-top: 18px;
+    padding: 18px;
+    background: #f3f7ff;
+    border: 1px solid #d7e5ff;
+    border-radius: 20px;
+  }
+
+  .point-box h3{
+    margin: 0 0 10px;
+    font-size: 20px;
+    color:#2457d6;
+    font-weight: 1000;
+  }
+
+  .point-box ul{
+    margin: 0;
+    padding-left: 20px;
+    color:#22324d;
+    line-height: 1.9;
+    font-size: 14px;
+  }
+
+  .setting-panel{
+    padding: 26px;
+  }
+
+  .setting-title{
+    margin: 0 0 18px;
+    font-size: 34px;
+    font-weight: 1000;
+    letter-spacing: -0.04em;
+    color:#111827;
+  }
+
+  .category-title{
+    color:#2457d6;
+    font-size: 22px;
+    font-weight: 1000;
+    margin-bottom: 14px;
+  }
+
+  .category-grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .category-btn{
+    min-height: 78px;
+    border: 2px solid #d7e5ff;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+    color:#13223b;
+    font-size: 18px;
+    font-weight: 1000;
+    cursor:pointer;
+    transition: .16s ease;
+  }
+
+  .category-btn:hover{
+    transform: translateY(-1px);
+    border-color:#9fbeff;
+    background:#f1f6ff;
+  }
+
+  .category-btn.active{
+    background: linear-gradient(135deg, #4c83ff 0%, #7567f5 100%);
+    color:#fff;
+    border-color:#4c83ff;
+    box-shadow: 0 14px 30px rgba(76,131,255,.22);
+  }
+
+  .summary-box{
+    margin-top: 16px;
+    min-height: 54px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 14px 16px;
+    border-radius: 18px;
+    background:#f3f7ff;
+    border:1px solid #d7e5ff;
+    color:#49617f;
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 800;
+  }
+
+  .start-row{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .start-btn,
+  .list-btn{
+    height: 58px;
+    border-radius: 18px;
+    font-size: 18px;
+    font-weight: 1000;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .start-btn{
+    border:none;
+    background: linear-gradient(135deg, #4c83ff 0%, #7567f5 100%);
+    color:#fff;
+    cursor:pointer;
+    box-shadow: 0 14px 30px rgba(76,131,255,.24);
+  }
+
+  .start-btn:disabled{
+    background:#c9d3e8;
+    box-shadow:none;
+    cursor:not-allowed;
+  }
+
+  .list-btn{
+    background:#fff;
+    color:#2457d6;
+    border:1px solid #d7e5ff;
+  }
+
+  .guide-panel{
+    margin-top: 20px;
+    padding: 24px;
+  }
+
+  .guide-title{
+    text-align:center;
+    margin:0 0 16px;
+    color:#2457d6;
+    font-size:24px;
+    font-weight:1000;
+  }
+
+  .guide-text{
+    color:#17233a;
+    font-size:15px;
+    line-height:1.9;
+    word-break:keep-all;
+  }
+
+  .guide-text b{
+    color:#2457d6;
+  }
+
+  @media (max-width: 860px){
+    .sentence-home-card{
+      padding: 26px 18px;
+      border-radius: 28px;
+    }
+
+    .sentence-title{
+      font-size: 40px;
+    }
+
+    .sentence-main-grid{
+      grid-template-columns: 1fr;
+    }
+
+    .setting-title{
+      font-size: 28px;
+      text-align:center;
+    }
+  }
+
+  @media (max-width: 520px){
+    .sentence-home-wrap{
+      padding: 18px 10px 42px;
+    }
+
+    .sentence-title{
+      font-size: 34px;
+    }
+
+    .sentence-subtitle{
+      font-size: 15px;
+    }
+
+    .category-grid{
+      grid-template-columns: 1fr;
+    }
+
+    .category-btn{
+      min-height: 64px;
+      font-size: 17px;
+    }
+
+    .start-row{
+      grid-template-columns: 1fr;
+    }
+
+    .info-panel,
+    .setting-panel,
+    .guide-panel{
+      border-radius: 22px;
+      padding: 20px 16px;
+    }
+  }
+</style>
+
+<div class="sentence-home-wrap">
+  <section class="sentence-home-card">
+
+    <div class="sentence-hero">
+      <h1 class="sentence-title">일본어 문장 퀴즈</h1>
+      <div class="sentence-subtitle">
+        일본어 문장과 발음을 보고 알맞은 한국어 뜻을 고르는 학습형 퀴즈게임
+      </div>
+    </div>
+
+    <div class="sentence-main-grid">
+
+      <aside class="info-panel">
+        <div class="info-title">게임 핵심 포인트</div>
+        <div class="info-desc">
+          선택한 문장 분류 안에서 문제가 랜덤으로 출제됩니다.
+          같은 문제는 한 판 안에서 중복으로 나오지 않으며,
+          보기 역시 같은 분류의 문장 뜻을 이용해 자연스럽게 구성됩니다.
+        </div>
+
+        <div class="point-box">
+          <h3>플레이 규칙</h3>
+          <ul>
+            <li>문제마다 제한 시간은 10초입니다.</li>
+            <li>정답 선택 시 바로 O 표시가 나옵니다.</li>
+            <li>오답 선택 시 X 표시와 함께 정답이 표시됩니다.</li>
+            <li>마지막 문제까지 풀면 결과창이 표시됩니다.</li>
+          </ul>
+        </div>
+      </aside>
+
+      <section class="setting-panel">
+        <h2 class="setting-title">게임 시작 설정</h2>
+
+        <div class="category-title">문장 분류 선택</div>
+
+        <div class="category-grid">
+          {% for option in category_options %}
+          <button type="button" class="category-btn" data-category="{{ option.key }}">
+            {{ option.title }}
+          </button>
+          {% endfor %}
+        </div>
+
+        <div id="summary" class="summary-box">
+          문장 분류를 선택하면 게임 시작 버튼이 활성화됩니다.
+        </div>
+
+        <div class="start-row">
+          <button id="startBtn" type="button" class="start-btn" disabled>게임 시작</button>
+          <a class="list-btn" href="{{ url_for('quiz') }}">퀴즈 목록</a>
+        </div>
+      </section>
+
+    </div>
+
+    <section class="guide-panel">
+      <h2 class="guide-title">게임 설명 / 방법</h2>
+      <div class="guide-text">
+        <b>일본어 문장</b>과 <b>발음</b>을 확인한 뒤, 아래 보기 3개 중 알맞은 한국어 뜻을 선택하세요.
+        제한 시간 안에 선택하지 못하면 오답 처리됩니다.
+        일본여행 필수문장, N5, N4, N3, N2, N1 문장을 분류별로 반복 학습할 수 있습니다.
+      </div>
+    </section>
+
+  </section>
+</div>
+
+<script>
+  let selectedCategory = null;
+
+  const categoryBtns = document.querySelectorAll(".category-btn");
+  const startBtn = document.getElementById("startBtn");
+  const summary = document.getElementById("summary");
+
+  categoryBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      categoryBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      selectedCategory = btn.dataset.category;
+      summary.innerHTML = `<strong>${btn.innerText}</strong> 분류로 시작합니다.`;
+      startBtn.disabled = false;
+    });
+  });
+
+  startBtn.addEventListener("click", () => {
+    if (!selectedCategory) return;
+    window.location.href = `/quiz/sentence/play?category=${encodeURIComponent(selectedCategory)}`;
+  });
+</script>
+{% endblock %}
