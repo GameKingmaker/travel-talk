@@ -1,0 +1,649 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  .sentence-play-wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 30px 16px 60px;
+  }
+
+  .play-shell{
+    display:grid;
+    grid-template-columns: 330px 1fr;
+    gap: 20px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid #bcd2ff;
+    border-radius: 34px;
+    box-shadow: 0 22px 60px rgba(47,109,246,.12);
+    padding: 20px;
+  }
+
+  .side-panel,
+  .game-panel{
+    background:#fff;
+    border:1px solid #d7e5ff;
+    border-radius:26px;
+    box-shadow:0 10px 28px rgba(47,109,246,.06);
+  }
+
+  .side-panel{
+    padding: 24px 20px;
+  }
+
+  .side-title{
+    margin:0;
+    font-size:36px;
+    line-height:1.15;
+    color:#2457d6;
+    font-weight:1000;
+    letter-spacing:-.04em;
+  }
+
+  .side-desc{
+    margin-top:14px;
+    color:#52627d;
+    font-size:15px;
+    line-height:1.8;
+    word-break:keep-all;
+  }
+
+  .side-card{
+    margin-top:18px;
+    padding:18px;
+    background:#f3f7ff;
+    border:1px solid #d7e5ff;
+    border-radius:20px;
+  }
+
+  .side-card-title{
+    color:#2457d6;
+    font-size:18px;
+    font-weight:1000;
+    margin-bottom:10px;
+  }
+
+  .side-card ul{
+    margin:0;
+    padding-left:20px;
+    color:#22324d;
+    font-size:14px;
+    line-height:1.85;
+  }
+
+  .side-actions{
+    display:grid;
+    gap:10px;
+    margin-top:20px;
+  }
+
+  .side-link{
+    min-height:50px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-weight:1000;
+    font-size:16px;
+    border:1px solid #d7e5ff;
+    color:#2457d6;
+    background:#fff;
+  }
+
+  .side-link.primary{
+    background:linear-gradient(135deg,#4c83ff 0%,#7567f5 100%);
+    color:#fff;
+    border:none;
+  }
+
+  .game-panel{
+    padding: 22px;
+  }
+
+  .status-grid{
+    display:grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap:12px;
+    margin-bottom:18px;
+  }
+
+  .status-card{
+    background:linear-gradient(180deg,#fff 0%,#f7faff 100%);
+    border:1px solid #d7e5ff;
+    border-radius:20px;
+    padding:14px;
+  }
+
+  .status-label{
+    color:#60708a;
+    font-size:13px;
+    font-weight:900;
+    margin-bottom:6px;
+  }
+
+  .status-value{
+    color:#13223b;
+    font-size:26px;
+    font-weight:1000;
+    line-height:1.1;
+  }
+
+  .status-value.blue{color:#2457d6;}
+  .status-value.green{color:#16a34a;}
+  .status-value.red{color:#ef4444;}
+
+  .timer-wrap{
+    display:flex;
+    justify-content:center;
+    margin: 6px 0 20px;
+  }
+
+  .timer-circle{
+    width:116px;
+    height:116px;
+    border-radius:999px;
+    background:#111827;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 18px 34px rgba(17,24,39,.22);
+    border:6px solid #273143;
+  }
+
+  .timer-label{
+    font-size:13px;
+    font-weight:900;
+    color:#d1d5db;
+    margin-bottom:4px;
+  }
+
+  .timer-number{
+    font-size:46px;
+    line-height:1;
+    font-weight:1000;
+    color:#fff;
+  }
+
+  .question-box{
+  background:linear-gradient(180deg,#f7fbff 0%,#eef5ff 100%);
+  border:1px solid #d7e5ff;
+  border-radius:26px;
+  padding:30px 22px;
+  text-align:center;
+  margin-bottom:18px;
+  max-width:100%;
+  overflow:hidden;
+}
+
+.question-jp{
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height:1.35;
+  color:#0f172a;
+  font-weight:1000;
+  letter-spacing:-.04em;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width:100%;
+}
+
+.question-pron{
+  margin-top:14px;
+  font-size: clamp(15px, 2vw, 22px);
+  line-height:1.55;
+  color:#4b5f7e;
+  font-weight:900;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width:100%;
+}
+
+  .choices{
+    display:grid;
+    gap:12px;
+  }
+
+  .choice-btn{
+    width:100%;
+    min-height:66px;
+    padding:16px 20px;
+    border-radius:20px;
+    border:2px solid #d7e5ff;
+    background:#fff;
+    color:#13223b;
+    font-size:19px;
+    font-weight:1000;
+    cursor:pointer;
+    text-align:left;
+    line-height:1.45;
+    box-shadow:0 8px 18px rgba(47,109,246,.06);
+    transition:.14s ease;
+    word-break:keep-all;
+  }
+
+  .choice-btn:hover:not(:disabled){
+    transform:translateY(-1px);
+    background:#f4f8ff;
+    border-color:#9fbeff;
+  }
+
+  .choice-btn.correct{
+    border-color:#22c55e;
+    background:#ecfdf5;
+    color:#166534;
+  }
+
+  .choice-btn.wrong{
+    border-color:#ef4444;
+    background:#fff1f2;
+    color:#991b1b;
+  }
+
+  .choice-btn:disabled{
+    cursor:default;
+  }
+
+  .bottom-actions{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:12px;
+    margin-top:18px;
+  }
+
+  .next-btn,
+  .home-btn{
+    min-height:56px;
+    border-radius:18px;
+    font-size:18px;
+    font-weight:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .next-btn{
+    display:none;
+    border:none;
+    background:linear-gradient(135deg,#4c83ff 0%,#7567f5 100%);
+    color:#fff;
+    cursor:pointer;
+    box-shadow:0 14px 30px rgba(76,131,255,.22);
+  }
+
+  .home-btn{
+    text-decoration:none;
+    background:#fff;
+    border:1px solid #d7e5ff;
+    color:#2457d6;
+  }
+
+  .modal-bg{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:rgba(15,23,42,.58);
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+  }
+
+  .result-modal{
+    width:400px;
+    max-width:100%;
+    background:#fff;
+    border:1px solid #d7e5ff;
+    border-radius:28px;
+    padding:28px 22px;
+    text-align:center;
+    box-shadow:0 24px 80px rgba(15,23,42,.26);
+  }
+
+  .result-modal h2{
+    margin:0 0 18px;
+    color:#2457d6;
+    font-size:32px;
+    font-weight:1000;
+  }
+
+  .result-score{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:18px;
+  }
+
+  .result-card{
+    border:1px solid #d7e5ff;
+    border-radius:20px;
+    padding:18px 10px;
+    background:#f7fbff;
+  }
+
+  .result-card div{
+    color:#60708a;
+    font-size:14px;
+    font-weight:900;
+    margin-bottom:8px;
+  }
+
+  .result-card b{
+    font-size:32px;
+    font-weight:1000;
+  }
+
+  .modal-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  @media (max-width: 900px){
+    .play-shell{
+      grid-template-columns:1fr;
+      border-radius:28px;
+      padding:14px;
+    }
+
+    .side-panel{
+      order:2;
+    }
+
+    .game-panel{
+      order:1;
+    }
+
+    .side-title{
+      font-size:30px;
+      text-align:center;
+    }
+
+    .side-desc{
+      text-align:center;
+    }
+  }
+
+  @media (max-width: 560px){
+  .sentence-play-wrap{
+    padding:10px 6px 28px;
+  }
+
+  .play-shell{
+    padding:8px;
+    border-radius:20px;
+  }
+
+  .game-panel,
+  .side-panel{
+    padding:12px 10px;
+    border-radius:18px;
+  }
+
+  .question-box{
+    padding:20px 10px;
+    border-radius:18px;
+  }
+
+  .question-jp{
+    font-size: clamp(22px, 7vw, 30px);
+    line-height:1.38;
+  }
+
+  .question-pron{
+    font-size: clamp(14px, 4vw, 18px);
+  }
+
+  .choice-btn{
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: keep-all;
+  }
+}
+</style>
+
+<div class="sentence-play-wrap">
+  <section class="play-shell">
+
+    <aside class="side-panel">
+      <h1 class="side-title">일본어<br>문장 퀴즈</h1>
+
+      <div class="side-desc">
+        현재 선택한 분류는 <b>{{ category_title }}</b>입니다.
+        문장과 발음을 보고 가장 자연스러운 한국어 뜻을 선택하세요.
+      </div>
+
+      <div class="side-card">
+        <div class="side-card-title">현재 규칙</div>
+        <ul>
+          <li>문제마다 제한 시간은 10초입니다.</li>
+          <li>시간 초과 시 오답 처리됩니다.</li>
+          <li>같은 문제는 한 판에서 중복 출제되지 않습니다.</li>
+          <li>마지막 문제 후 결과창이 표시됩니다.</li>
+        </ul>
+      </div>
+
+      <div class="side-actions">
+        <a class="side-link primary" href="{{ url_for('sentence_quiz_start') }}">다시 선택하기</a>
+        <a class="side-link" href="{{ url_for('quiz') }}">전체 게임 목록으로</a>
+      </div>
+    </aside>
+
+    <main class="game-panel">
+
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="status-label">진행 상황</div>
+          <div class="status-value blue" id="progress">1/{{ questions|length }}</div>
+        </div>
+
+        <div class="status-card">
+          <div class="status-label">맞춘 개수</div>
+          <div class="status-value green" id="correctCount">0</div>
+        </div>
+
+        <div class="status-card">
+          <div class="status-label">틀린 개수</div>
+          <div class="status-value red" id="wrongCount">0</div>
+        </div>
+
+        <div class="status-card">
+          <div class="status-label">전체 문제</div>
+          <div class="status-value">{{ questions|length }}</div>
+        </div>
+      </div>
+
+      <div class="timer-wrap">
+        <div class="timer-circle">
+          <div class="timer-label">남은 시간</div>
+          <div class="timer-number" id="timer">10</div>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <div class="question-jp" id="question"></div>
+        <div class="question-pron" id="pron"></div>
+      </div>
+
+      <div class="choices" id="choices"></div>
+
+      <div class="bottom-actions">
+        <button class="next-btn" id="nextBtn" type="button" onclick="nextQuestion()">다음 문제 풀기</button>
+        <a class="home-btn" href="{{ url_for('sentence_quiz_start') }}">홈화면 이동하기</a>
+      </div>
+
+    </main>
+
+  </section>
+</div>
+
+<div class="modal-bg" id="resultModal">
+  <div class="result-modal">
+    <h2>퀴즈 결과</h2>
+
+    <div class="result-score">
+      <div class="result-card">
+        <div>맞춘 개수</div>
+        <b style="color:#16a34a;" id="finalCorrect">0</b>
+      </div>
+
+      <div class="result-card">
+        <div>틀린 개수</div>
+        <b style="color:#ef4444;" id="finalWrong">0</b>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <a class="home-btn" href="{{ url_for('sentence_quiz_start') }}">처음으로</a>
+      <a class="home-btn" href="{{ url_for('quiz') }}">게임 목록</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const questions = {{ questions|tojson }};
+
+let current = 0;
+let correct = 0;
+let wrong = 0;
+let selected = false;
+let timer = 10;
+let timerInterval = null;
+
+const progressEl = document.getElementById("progress");
+const correctEl = document.getElementById("correctCount");
+const wrongEl = document.getElementById("wrongCount");
+const timerEl = document.getElementById("timer");
+const questionEl = document.getElementById("question");
+const pronEl = document.getElementById("pron");
+const choicesEl = document.getElementById("choices");
+const nextBtn = document.getElementById("nextBtn");
+const resultModal = document.getElementById("resultModal");
+
+function loadQuestion() {
+  selected = false;
+  timer = 10;
+
+  timerEl.innerText = timer;
+  nextBtn.style.display = "none";
+
+  const q = questions[current];
+
+  progressEl.innerText = `${current + 1}/${questions.length}`;
+  questionEl.innerText = q.jp;
+  pronEl.innerText = `(${q.pron})`;
+
+  choicesEl.innerHTML = "";
+
+  q.choices.forEach((choice, index) => {
+    const btn = document.createElement("button");
+    btn.className = "choice-btn";
+    btn.type = "button";
+    btn.dataset.rawChoice = choice;
+    btn.innerText = `${index + 1}번. ${choice}`;
+    btn.onclick = () => checkAnswer(btn, choice);
+    choicesEl.appendChild(btn);
+  });
+
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+
+  timerInterval = setInterval(() => {
+    timer--;
+    timerEl.innerText = timer;
+
+    if (timer <= 0) {
+      clearInterval(timerInterval);
+
+      if (!selected) {
+        selected = true;
+        wrong++;
+        updateScore();
+        showCorrectAnswer();
+        disableChoices();
+        nextBtn.style.display = "flex";
+      }
+    }
+  }, 1000);
+}
+
+function checkAnswer(button, choice) {
+  if (selected) return;
+
+  selected = true;
+  clearInterval(timerInterval);
+
+  const answer = questions[current].answer;
+
+  if (choice === answer) {
+    button.classList.add("correct");
+    button.innerText = "⭕ " + button.innerText;
+    correct++;
+  } else {
+    button.classList.add("wrong");
+    button.innerText = "❌ " + button.innerText;
+    wrong++;
+    showCorrectAnswer();
+  }
+
+  updateScore();
+  disableChoices();
+
+  nextBtn.style.display = "flex";
+}
+
+function showCorrectAnswer() {
+  const answer = questions[current].answer;
+
+  document.querySelectorAll(".choice-btn").forEach(btn => {
+    if (btn.dataset.rawChoice === answer) {
+      btn.classList.add("correct");
+
+      if (!btn.innerText.startsWith("⭕")) {
+        btn.innerText = "⭕ " + btn.innerText;
+      }
+    }
+  });
+}
+
+function disableChoices() {
+  document.querySelectorAll(".choice-btn").forEach(btn => {
+    btn.disabled = true;
+  });
+}
+
+function updateScore() {
+  correctEl.innerText = correct;
+  wrongEl.innerText = wrong;
+}
+
+function nextQuestion() {
+  current++;
+
+  if (current >= questions.length) {
+    showResult();
+  } else {
+    loadQuestion();
+  }
+}
+
+function showResult() {
+  clearInterval(timerInterval);
+  document.getElementById("finalCorrect").innerText = correct;
+  document.getElementById("finalWrong").innerText = wrong;
+  resultModal.style.display = "flex";
+}
+
+if (questions.length > 0) {
+  loadQuestion();
+}
+</script>
+{% endblock %}
