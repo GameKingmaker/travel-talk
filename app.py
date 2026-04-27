@@ -29048,6 +29048,152 @@ def block_fill_play():
         puzzle_total=game["puzzle_total"],
     )
 
+def collect_situation_sentence_items():
+    items = []
+
+    for situation_key, situation in SITUATIONS.items():
+
+        # ✅ 애니 명대사 제외
+        if situation_key == "anime_quotes":
+            continue
+
+        subs = situation.get("subs", {})
+
+        for sub_key, sub in subs.items():
+            for row in sub.get("items", []):
+                if len(row) >= 3:
+                    jp, pron, ko = row[0], row[1], row[2]
+
+                    items.append({
+                        "jp": jp,
+                        "pron": pron,
+                        "ko": ko,
+                        "category": "travel"
+                    })
+
+    return items
+
+
+def collect_jlpt_sentence_items(sections, level):
+    """N5~N1 SENTENCE_SECTIONS 구조를 퀴즈용으로 변환"""
+    items = []
+
+    for section in sections:
+        for row in section.get("items", []):
+            items.append({
+                "jp": row.get("jp", ""),
+                "pron": row.get("pron", ""),
+                "ko": row.get("ko", ""),
+                "category": level
+            })
+
+    return items
+
+
+def get_sentence_quiz_items(category):
+    """선택한 분류에 맞는 문장 데이터 반환"""
+    if category == "travel":
+        return collect_situation_sentence_items()
+
+    if category == "N5":
+        return collect_jlpt_sentence_items(N5_SENTENCE_SECTIONS, "N5")
+
+    if category == "N4":
+        return collect_jlpt_sentence_items(N4_SENTENCE_SECTIONS, "N4")
+
+    if category == "N3":
+        return collect_jlpt_sentence_items(N3_SENTENCE_SECTIONS, "N3")
+
+    if category == "N2":
+        return collect_jlpt_sentence_items(N2_SENTENCE_SECTIONS, "N2")
+
+    if category == "N1":
+        return collect_jlpt_sentence_items(N1_SENTENCE_SECTIONS, "N1")
+
+    return []
+
+
+@app.route("/quiz/sentence")
+def sentence_quiz_start():
+    user = current_user()
+
+    category_options = [
+        {"key": "travel", "title": "일본여행 필수문장"},
+        {"key": "N5", "title": "N5 문장"},
+        {"key": "N4", "title": "N4 문장"},
+        {"key": "N3", "title": "N3 문장"},
+        {"key": "N2", "title": "N2 문장"},
+        {"key": "N1", "title": "N1 문장"},
+    ]
+
+    return render_template(
+        "sentence_quiz_start.html",
+        user=user,
+        category_options=category_options
+    )
+
+
+@app.route("/quiz/sentence/play")
+def sentence_quiz_play():
+    user = current_user()
+
+    category = request.args.get("category", "travel")
+    quiz_items = get_sentence_quiz_items(category)
+
+    if not quiz_items:
+        flash("문장 데이터가 없습니다.", "error")
+        return redirect(url_for("sentence_quiz_start"))
+
+    # 원본 보호 + 문제 순서 랜덤 + 중복 없음
+    quiz_items = quiz_items[:]
+    random.shuffle(quiz_items)
+
+    all_answers = list(dict.fromkeys([
+        item["ko"] for item in quiz_items
+        if item.get("ko")
+    ]))
+
+    questions = []
+
+    for item in quiz_items:
+        correct_answer = item["ko"]
+
+        wrongs = [
+            answer for answer in all_answers
+            if answer != correct_answer
+        ]
+
+        if len(wrongs) >= 2:
+            choices = random.sample(wrongs, 2) + [correct_answer]
+        else:
+            choices = wrongs + [correct_answer]
+
+        random.shuffle(choices)
+
+        questions.append({
+            "jp": item["jp"],
+            "pron": item["pron"],
+            "answer": correct_answer,
+            "choices": choices
+        })
+
+    category_titles = {
+        "travel": "일본여행 필수문장",
+        "N5": "N5 문장",
+        "N4": "N4 문장",
+        "N3": "N3 문장",
+        "N2": "N2 문장",
+        "N1": "N1 문장",
+    }
+
+    return render_template(
+        "sentence_quiz_play.html",
+        user=user,
+        questions=questions,
+        category=category,
+        category_title=category_titles.get(category, "문장 퀴즈")
+    )
+
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)
