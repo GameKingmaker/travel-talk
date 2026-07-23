@@ -509,34 +509,127 @@
   .menu-wrap{
     width: 100%;
     max-width: 1000px;
-    margin: 8px auto 0;
+    margin: 12px auto 0;
     box-sizing: border-box;
   }
 
+  .menu-block{
+    position: relative;
+    padding: 28px;
+    border-radius: 30px;
+    border: 1px solid rgba(205, 213, 226, 0.82);
+    background:
+      radial-gradient(circle at 100% 0%, rgba(255,255,255,.92) 0%, rgba(255,255,255,0) 34%),
+      linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(248,250,255,.94) 100%);
+    box-shadow:
+      0 18px 42px rgba(15,23,42,.07),
+      inset 0 1px 0 rgba(255,255,255,.95);
+    overflow: hidden;
+  }
+
+  .menu-block::before{
+    content:"";
+    position:absolute;
+    inset:0 auto 0 0;
+    width:5px;
+    background: linear-gradient(180deg, #d8c8b2 0%, #b79b77 100%);
+  }
+
+  .menu-block.game-menu-block::before{
+    background: linear-gradient(180deg, #8fb1ff 0%, #4f7df3 100%);
+  }
+
   .menu-block + .menu-block{
-    margin-top: 34px;
+    margin-top: 28px;
+  }
+
+  .menu-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:18px;
+    margin-bottom:20px;
+  }
+
+  .menu-head-main{
+    min-width:0;
+  }
+
+  .menu-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    min-height:30px;
+    padding:0 11px;
+    margin-bottom:9px;
+    border-radius:999px;
+    background:#f5efe6;
+    border:1px solid #e6d9c8;
+    color:#8a6942;
+    font-size:12px;
+    font-weight:900;
+  }
+
+  .game-menu-block .menu-eyebrow{
+    background:#eef3ff;
+    border-color:#d4e0ff;
+    color:#315fca;
+  }
+
+  .menu-eyebrow-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#b4946c;
+    box-shadow:0 0 0 4px rgba(180,148,108,.12);
+  }
+
+  .game-menu-block .menu-eyebrow-dot{
+    background:#4f7df3;
+    box-shadow:0 0 0 4px rgba(79,125,243,.12);
   }
 
   .menu-title{
     margin: 0;
-    font-size: 28px;
-    line-height: 1.25;
-    font-weight: 900;
-    letter-spacing: -0.45px;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 950;
+    letter-spacing: -0.7px;
     color: #111827;
   }
 
   .menu-sub{
-    margin: 8px 0 20px;
-    font-size: 15px;
-    line-height: 1.7;
+    margin: 8px 0 0;
+    font-size: 14.5px;
+    line-height: 1.75;
     color: #64748b;
+  }
+
+  .menu-count{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+    min-height:38px;
+    padding:0 14px;
+    border-radius:999px;
+    border:1px solid #ded5c8;
+    background:rgba(255,255,255,.88);
+    color:#6f5b43;
+    font-size:12px;
+    font-weight:900;
+    box-shadow:0 8px 18px rgba(15,23,42,.05);
+  }
+
+  .game-menu-block .menu-count{
+    border-color:#d7e1fb;
+    color:#315fca;
   }
 
   .menu-grid{
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 18px;
+    gap: 14px;
   }
 
   .menu-card{
@@ -544,17 +637,23 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    text-decoration: none;
-    padding: 18px 16px 16px;
-    border-radius: 24px;
-    background: linear-gradient(180deg, #fffefd 0%, #f8f7f3 100%);
-    border: 1.5px solid #d6dcd6;
+    min-height: 190px;
+    padding: 18px 16px 15px;
+    border-radius: 22px;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(255,255,255,.95) 0%, rgba(255,255,255,0) 34%),
+      linear-gradient(180deg, #fffefc 0%, #f7f4ef 100%);
+    border: 1px solid #ddd6cb;
     box-shadow:
-      0 14px 28px rgba(15, 23, 42, 0.05),
-      inset 0 1px 0 rgba(255,255,255,0.88);
-    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+      0 10px 24px rgba(15,23,42,.05),
+      inset 0 1px 0 rgba(255,255,255,.95);
+    color:inherit;
+    text-decoration: none;
     overflow: hidden;
-    min-height: 176px;
+    transition:
+      transform .18s ease,
+      box-shadow .18s ease,
+      border-color .18s ease;
   }
 
   .menu-card::before{
@@ -564,28 +663,60 @@
     left:0;
     right:0;
     height:4px;
-    background: linear-gradient(90deg, #e2d6c6 0%, #cbb79a 50%, #b4946c 100%);
+    background: linear-gradient(90deg, #e1d4c3 0%, #c7b08f 52%, #a9875e 100%);
+  }
+
+  .menu-card::after{
+    content:"›";
+    position:absolute;
+    right:14px;
+    bottom:12px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:rgba(255,255,255,.82);
+    border:1px solid rgba(174,155,129,.28);
+    color:#8a6942;
+    font-size:20px;
+    font-weight:800;
+    line-height:1;
+    transition:transform .18s ease, background .18s ease;
   }
 
   .menu-card:hover{
-    transform: translateY(-3px);
-    border-color: #c6cdc6;
+    transform: translateY(-4px);
+    border-color: #cbbda9;
     box-shadow:
-      0 20px 34px rgba(15, 23, 42, 0.08),
-      inset 0 1px 0 rgba(255,255,255,0.92);
+      0 18px 34px rgba(15,23,42,.09),
+      inset 0 1px 0 rgba(255,255,255,.96);
   }
 
-  .menu-card.game-card::before{
-    background: linear-gradient(90deg, #d7def8 0%, #98b2f6 50%, #5f8ef7 100%);
+  .menu-card:hover::after{
+    transform:translateX(2px);
+    background:#fff;
   }
 
   .menu-card.game-card{
-    background: linear-gradient(180deg, #ffffff 0%, #f6f8ff 100%);
-    border-color: #d5def1;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(255,255,255,.96) 0%, rgba(255,255,255,0) 34%),
+      linear-gradient(180deg, #ffffff 0%, #f3f6ff 100%);
+    border-color: #d4def4;
+  }
+
+  .menu-card.game-card::before{
+    background: linear-gradient(90deg, #cbd9ff 0%, #8eafff 52%, #4f7df3 100%);
+  }
+
+  .menu-card.game-card::after{
+    border-color:rgba(79,125,243,.22);
+    color:#3564d3;
   }
 
   .menu-card.game-card:hover{
-    border-color: #bfd0f5;
+    border-color:#b9ccf6;
   }
 
   .menu-card-inner{
@@ -594,33 +725,67 @@
     height: 100%;
   }
 
+  .menu-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:44px;
+    height:44px;
+    margin-bottom:14px;
+    border-radius:14px;
+    background:linear-gradient(180deg,#fff 0%,#f3eee7 100%);
+    border:1px solid #e3d8c9;
+    box-shadow:0 8px 18px rgba(15,23,42,.05);
+    font-size:22px;
+  }
+
+  .game-card .menu-icon{
+    background:linear-gradient(180deg,#fff 0%,#eef3ff 100%);
+    border-color:#d8e2fb;
+  }
+
   .menu-name{
-    font-size: 17px;
-    line-height: 1.4;
-    font-weight: 900;
-    letter-spacing: -0.3px;
-    color: #0f172a;
-    margin: 0 0 10px;
     min-height: 48px;
-    display: flex;
-    align-items: flex-start;
+    margin: 0 0 8px;
+    padding-right:8px;
+    display:flex;
+    align-items:flex-start;
+    color: #0f172a;
+    font-size: 16.5px;
+    line-height: 1.42;
+    font-weight: 950;
+    letter-spacing: -0.32px;
     word-break: keep-all;
   }
 
   .menu-desc{
-    font-size: 13px;
-    line-height: 1.7;
-    color: #5f6b7b;
-    letter-spacing: -0.1px;
-    margin: 0;
     min-height: 48px;
-    display: flex;
-    align-items: flex-start;
+    margin: 0;
+    padding-right:8px;
+    display:flex;
+    align-items:flex-start;
+    color: #64748b;
+    font-size: 12.8px;
+    line-height: 1.68;
+    letter-spacing: -0.1px;
     word-break: keep-all;
   }
 
   .menu-card-spacer{
     flex: 1;
+  }
+
+  .menu-card-foot{
+    margin-top:14px;
+    padding-top:11px;
+    border-top:1px solid rgba(148,163,184,.18);
+    color:#8a6942;
+    font-size:11.5px;
+    font-weight:900;
+  }
+
+  .game-card .menu-card-foot{
+    color:#3564d3;
   }
 
   /* 빈 상태 메시지 */
@@ -713,12 +878,21 @@
       line-height: 1.75;
     }
 
+    .menu-block{
+      padding:22px 18px;
+      border-radius:24px;
+    }
+
+    .menu-head{
+      align-items:flex-start;
+    }
+
     .menu-grid{
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .menu-card{
-      min-height: 160px;
+      min-height: 178px;
     }
 
     .menu-name{
@@ -851,21 +1025,57 @@
       width: 100%;
     }
 
+    .menu-block{
+      padding:18px 14px;
+      border-radius:21px;
+    }
+
+    .menu-head{
+      flex-direction:column;
+      align-items:stretch;
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    .menu-title{
+      font-size:24px;
+    }
+
+    .menu-count{
+      align-self:flex-start;
+      min-height:34px;
+    }
+
     .menu-grid{
       grid-template-columns: 1fr;
+      gap:12px;
     }
 
     .menu-card{
-      min-height: 144px;
+      min-height: 0;
+      padding:15px 14px 14px;
+    }
+
+    .menu-icon{
+      width:40px;
+      height:40px;
+      margin-bottom:11px;
+      border-radius:12px;
+      font-size:20px;
     }
 
     .menu-name{
       min-height: auto;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .menu-desc{
       min-height: auto;
+      padding-right:30px;
+    }
+
+    .menu-card-foot{
+      margin-top:12px;
     }
   }
 </style>
@@ -990,88 +1200,117 @@
 
     <!-- 학습 메뉴 -->
     <div class="menu-block">
-      <h3 class="menu-title">학습 메뉴</h3>
-      <p class="menu-sub">원하는 학습을 선택해서 바로 시작해요.</p>
+      <div class="menu-head">
+        <div class="menu-head-main">
+          <div class="menu-eyebrow">
+            <span class="menu-eyebrow-dot"></span>
+            STUDY
+          </div>
+          <h3 class="menu-title">학습 메뉴</h3>
+          <p class="menu-sub">원하는 학습을 선택해서 바로 시작해요.</p>
+        </div>
+        <div class="menu-count">학습 콘텐츠 10개</div>
+      </div>
 
       <div class="menu-grid">
 
         <a class="menu-card" href="{{ url_for('jlpt_kanji_home') }}" aria-label="한자 모음으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">📖 한자 모음</div>
+            <div class="menu-icon">📖</div>
+            <div class="menu-name">한자 모음</div>
             <div class="menu-desc">상용한자 2136자를 단계별로 공부해요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">단계별 한자 학습</div>
           </div>
         </a>
 
         <a class="menu-card" href="{{ url_for('meaning') }}" aria-label="일본어 표현 미니사전으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">📚 일본어 표현 미니사전</div>
-            <div class="menu-desc">표현 뜻과 발음을 빠르게 찾아봐요.</div>
+            <div class="menu-icon">📚</div>
+            <div class="menu-name">일본어 표현 미니사전</div>
+            <div class="menu-desc">표현의 뜻과 발음을 빠르게 찾아봐요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">표현 빠른 검색</div>
           </div>
         </a>
 
         <a class="menu-card" href="{{ url_for('situations') }}" aria-label="상황별 회화로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">📍 상황별 회화</div>
+            <div class="menu-icon">📍</div>
+            <div class="menu-name">상황별 회화</div>
             <div class="menu-desc">상황별 핵심 회화를 모아 학습해요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">실전 회화 학습</div>
           </div>
         </a>
 
         <a class="menu-card" href="{{ url_for('words_categories') }}" aria-label="단어모음으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">🧠 단어 모음</div>
+            <div class="menu-icon">🧠</div>
+            <div class="menu-name">단어 모음</div>
             <div class="menu-desc">자주 쓰는 단어를 주제별로 익혀요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">주제별 단어 학습</div>
           </div>
         </a>
 
         <a class="menu-card" href="{{ url_for('jlpt_kana_home') }}" aria-label="기초 일본어로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">🌱 기초</div>
+            <div class="menu-icon">🌱</div>
+            <div class="menu-name">기초</div>
             <div class="menu-desc">히라가나·가타카나·발음 기초를 배워요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">입문자 추천</div>
           </div>
         </a>
 
         <a class="menu-card" href="{{ url_for('jlpt_n5_home') }}" aria-label="JLPT N5 홈으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">📝 JLPT N5</div>
-            <div class="menu-desc">N5 단어·문장·문법·테스트 공부</div>
+            <div class="menu-icon">📝</div>
+            <div class="menu-name">JLPT N5</div>
+            <div class="menu-desc">N5 단어·문장·문법·테스트를 공부해요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">초급 시험 대비</div>
           </div>
         </a>
 
         <a class="menu-card" href="{{ url_for('jlpt_n4_home') }}" aria-label="JLPT N4 홈으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">📝 JLPT N4</div>
-            <div class="menu-desc">N4 단어·문장·문법·테스트 공부</div>
+            <div class="menu-icon">📝</div>
+            <div class="menu-name">JLPT N4</div>
+            <div class="menu-desc">N4 단어·문장·문법·테스트를 공부해요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">초중급 시험 대비</div>
           </div>
         </a>
 
         <a class="menu-card" href="{{ url_for('jlpt_n3_home') }}" aria-label="JLPT N3 홈으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">📝 JLPT N3</div>
-            <div class="menu-desc">N3 단어·문장·문법·테스트 공부</div>
+            <div class="menu-icon">📝</div>
+            <div class="menu-name">JLPT N3</div>
+            <div class="menu-desc">N3 단어·문장·문법·테스트를 공부해요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">중급 시험 대비</div>
           </div>
         </a>
 
         <a class="menu-card" href="{{ url_for('jlpt_n2_home') }}" aria-label="JLPT N2 홈으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">📝 JLPT N2</div>
-            <div class="menu-desc">N2 단어·문장·문법·테스트 공부</div>
+            <div class="menu-icon">📝</div>
+            <div class="menu-name">JLPT N2</div>
+            <div class="menu-desc">N2 단어·문장·문법·테스트를 공부해요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">중고급 시험 대비</div>
           </div>
         </a>
 
         <a class="menu-card" href="{{ url_for('jlpt_n1_home') }}" aria-label="JLPT N1 홈으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">📝 JLPT N1</div>
-            <div class="menu-desc">N1 단어·문장·문법·테스트 공부</div>
+            <div class="menu-icon">📝</div>
+            <div class="menu-name">JLPT N1</div>
+            <div class="menu-desc">N1 단어·문장·문법·테스트를 공부해요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">고급 시험 대비</div>
           </div>
         </a>
 
@@ -1079,64 +1318,88 @@
     </div>
 
     <!-- 게임 메뉴 -->
-    <div class="menu-block">
-      <h3 class="menu-title">게임 메뉴</h3>
-      <p class="menu-sub">게임처럼 즐기면서 일본어를 반복 학습해요.</p>
+    <div class="menu-block game-menu-block">
+      <div class="menu-head">
+        <div class="menu-head-main">
+          <div class="menu-eyebrow">
+            <span class="menu-eyebrow-dot"></span>
+            GAME
+          </div>
+          <h3 class="menu-title">게임 메뉴</h3>
+          <p class="menu-sub">게임처럼 즐기면서 일본어를 반복 학습해요.</p>
+        </div>
+        <div class="menu-count">게임 콘텐츠 7개</div>
+      </div>
 
       <div class="menu-grid">
 
         <a class="menu-card game-card" href="{{ url_for('bomb_hunt_start') }}" aria-label="JLPT 단어 카드 챌린지로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">🃏 JLPT 단어 카드 챌린지</div>
-            <div class="menu-desc">뜻을 보고 일본어를 찾는 게임이에요.</div>
+            <div class="menu-icon">🃏</div>
+            <div class="menu-name">JLPT 단어 카드 챌린지</div>
+            <div class="menu-desc">뜻을 보고 알맞은 일본어를 찾는 게임이에요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">단어 선택 게임</div>
           </div>
         </a>
 
         <a class="menu-card game-card" href="{{ url_for('word_game') }}" aria-label="단어게임으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">🕹️ 단어 게임</div>
-            <div class="menu-desc">지나가는 단어의 뜻을 익혀요.</div>
+            <div class="menu-icon">🕹️</div>
+            <div class="menu-name">단어 게임</div>
+            <div class="menu-desc">지나가는 단어의 뜻을 빠르게 익혀요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">반복 단어 학습</div>
           </div>
         </a>
 
         <a class="menu-card game-card" href="{{ url_for('quiz_kanji_home') }}" aria-label="한자 게임으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">🎮 한자 게임</div>
-            <div class="menu-desc">한자와 뜻을 맞추며 외워봐요.</div>
+            <div class="menu-icon">🎮</div>
+            <div class="menu-name">한자 게임</div>
+            <div class="menu-desc">한자와 뜻을 맞추며 자연스럽게 외워봐요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">한자 맞히기</div>
           </div>
         </a>
 
         <a class="menu-card game-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황별 퀴즈로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">❓ 상황별 퀴즈</div>
-            <div class="menu-desc">상황에 맞는 표현을 골라봐요.</div>
+            <div class="menu-icon">❓</div>
+            <div class="menu-name">상황별 퀴즈</div>
+            <div class="menu-desc">상황에 맞는 일본어 표현을 골라봐요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">회화 선택 퀴즈</div>
           </div>
         </a>
 
         <a class="menu-card game-card" href="{{ url_for('travel_start') }}" aria-label="일본 여행 시뮬레이션으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">🧳 일본 여행 시뮬레이션</div>
+            <div class="menu-icon">🧳</div>
+            <div class="menu-name">일본 여행 시뮬레이션</div>
             <div class="menu-desc">여행 흐름을 따라 배우는 회화 게임이에요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">여행 회화 체험</div>
           </div>
         </a>
+
         <a class="menu-card game-card" href="{{ url_for('sudoku_start') }}" aria-label="스도쿠 게임으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">🎮 스도쿠</div>
-            <div class="menu-desc">숫자 두뇌 퍼즐 게임이에요.</div>
+            <div class="menu-icon">🔢</div>
+            <div class="menu-name">스도쿠</div>
+            <div class="menu-desc">숫자를 채우며 즐기는 두뇌 퍼즐 게임이에요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">두뇌 퍼즐</div>
           </div>
         </a>
 
         <a class="menu-card game-card" href="{{ url_for('block_fill_start') }}" aria-label="도형 퍼즐 게임으로 이동">
           <div class="menu-card-inner">
-            <div class="menu-name">🎮 도형 퍼즐 게임</div>
-            <div class="menu-desc">도형을 빈칸없이 채워넣는 퍼즐 게임이에요.</div>
+            <div class="menu-icon">🧩</div>
+            <div class="menu-name">도형 퍼즐 게임</div>
+            <div class="menu-desc">도형을 빈칸 없이 채워 넣는 퍼즐 게임이에요.</div>
             <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">공간 퍼즐</div>
           </div>
         </a>
 
