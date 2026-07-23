@@ -11225,6 +11225,24 @@ def words_detail(cat_key):
     # ✅ 카테고리 설명 (없으면 None)
     page_intro = WORDS_CAT_DESC.get(cat_key, None)
 
+        # =========================
+    # 다른 단어 카테고리 목록
+    # 현재 보고 있는 카테고리는 제외
+    # =========================
+    related_word_categories = []
+
+    for other_key, other_cat in (WORDS or {}).items():
+        if other_key == cat_key:
+            continue
+
+        other_items = other_cat.get("items", []) or []
+
+        related_word_categories.append({
+            "key": other_key,
+            "title": other_cat.get("title", other_key),
+            "count": len(other_items),
+        })
+
     # 검색 필터
     if q:
         qq = q.lower()
@@ -11275,6 +11293,7 @@ def words_detail(cat_key):
         fav_jp_set=fav_jp_set,
         q=q,
         page_intro=page_intro,
+        related_word_categories=related_word_categories,
         **ctx
     )
 
@@ -11451,6 +11470,54 @@ def situation_detail(main_key: str, sub_key: str):
     # ✅ 추가: tips_box 가져오기 (없으면 None)
     tips_box = sub.get("tips_box") or None
 
+        # =========================
+    # 같은 대분류의 다른 회화
+    # 현재 보고 있는 소분류는 제외
+    # =========================
+    related_same_category = []
+
+    for other_sub_key, other_sub in (cat.get("subs") or {}).items():
+        if other_sub_key == sub_key:
+            continue
+
+        other_items = other_sub.get("items", []) or []
+
+        related_same_category.append({
+            "main_key": main_key,
+            "sub_key": other_sub_key,
+            "title": other_sub.get("title", other_sub_key),
+            "count": len(other_items),
+        })
+
+    # =========================
+    # 다른 상황별 회화 대분류
+    # 현재 보고 있는 대분류는 제외
+    # 각 대분류의 첫 번째 소분류로 연결
+    # =========================
+    related_main_categories = []
+
+    for other_main_key, other_cat in (SITUATIONS or {}).items():
+        if other_main_key == main_key:
+            continue
+
+        other_subs = other_cat.get("subs") or {}
+        if not other_subs:
+            continue
+
+        first_sub_key = next(iter(other_subs))
+        total_phrases = sum(
+            len((other_sub.get("items") or []))
+            for other_sub in other_subs.values()
+        )
+
+        related_main_categories.append({
+            "main_key": other_main_key,
+            "sub_key": first_sub_key,
+            "title": other_cat.get("title", other_main_key),
+            "sub_count": len(other_subs),
+            "phrase_count": total_phrases,
+        })
+
     return render_template(
         "situation_detail.html",
         user=user,
@@ -11463,6 +11530,9 @@ def situation_detail(main_key: str, sub_key: str):
         example_box=example_box,   # 네가 이미 쓰는 거 유지
         tips_box=tips_box,         # ✅ 추가
         q=q,
+        total_count=len(sub.get("items", []) or []),
+        related_same_category=related_same_category,
+        related_main_categories=related_main_categories,
     )
 
 @app.get("/situations/search")
