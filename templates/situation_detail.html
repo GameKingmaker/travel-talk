@@ -137,52 +137,237 @@
     }
   }
 
-  /* =========================
-     상단 영역
+    /* =========================
+     상단 학습 소개 영역
   ========================= */
   .sit-top-wrap{
-    margin: 6px 0 14px;
+    margin:6px 0 16px;
+  }
+
+  .sit-hero-card{
+    position:relative;
+    padding:24px;
+    border-radius:22px;
+    border:1px solid rgba(37,99,235,.12);
+    background:
+      radial-gradient(circle at 100% 0%, rgba(59,130,246,.14), transparent 38%),
+      radial-gradient(circle at 0% 100%, rgba(99,102,241,.08), transparent 42%),
+      linear-gradient(135deg, #ffffff 0%, #f7faff 52%, #eef4ff 100%);
+    box-shadow:0 18px 42px rgba(15,23,42,.08);
+    overflow:hidden;
+  }
+
+  .sit-hero-card::before{
+    content:"";
+    position:absolute;
+    top:-95px;
+    right:-70px;
+    width:240px;
+    height:240px;
+    border-radius:50%;
+    border:38px solid rgba(255,255,255,.30);
+    pointer-events:none;
+  }
+
+  .sit-hero-head{
+    position:relative;
+    z-index:1;
     display:flex;
-    flex-direction:column;
-    gap:12px;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:17px;
   }
 
-  .sit-card{
-    background:#fff;
-    border:1px solid rgba(15,23,42,.10);
-    border-radius:18px;
-    box-shadow:0 12px 30px rgba(15,23,42,.06);
-    padding:18px 18px;
+  .sit-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    min-height:34px;
+    padding:0 12px;
+    border-radius:999px;
+    background:rgba(255,255,255,.84);
+    border:1px solid rgba(37,99,235,.14);
+    color:#1d4ed8;
+    font-size:13px;
+    font-weight:900;
+    box-shadow:0 6px 16px rgba(37,99,235,.06);
   }
 
-  .sit-card h1{
-    margin:0 0 10px;
-    font-size:28px;
-    font-weight:950;
-    letter-spacing:-0.02em;
+  .sit-eyebrow-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+  }
+
+  .sit-count-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:34px;
+    padding:0 13px;
+    border-radius:999px;
+    background:#0b1f4b;
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+    white-space:nowrap;
+    box-shadow:0 8px 18px rgba(15,23,42,.15);
+  }
+
+  .sit-title-area{
+    position:relative;
+    z-index:1;
+    margin-bottom:18px;
+  }
+
+  .sit-category-name{
+    margin:0 0 8px;
+    color:#64748b;
+    font-size:14px;
+    font-weight:850;
+    line-height:1.5;
+  }
+
+  .sit-detail-title{
+    margin:0;
     color:#0b1f4b;
+    font-size:34px;
+    font-weight:1000;
+    line-height:1.18;
+    letter-spacing:-0.035em;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+
+  .sit-detail-highlight{
+    display:inline-block;
+    margin-top:8px;
+    padding:6px 13px;
+    border-radius:11px;
+    background:linear-gradient(180deg, #dfeaff 0%, #edf4ff 100%);
+    border:1px solid rgba(37,99,235,.14);
+    color:#1d4ed8;
+    font-size:22px;
+    line-height:1.3;
+  }
+
+  .sit-info-grid{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:minmax(0,1.45fr) minmax(260px,.7fr);
+    gap:16px;
+    align-items:stretch;
+  }
+
+  .sit-intro-box{
+    padding:18px;
+    border-radius:17px;
+    background:rgba(255,255,255,.84);
+    border:1px solid rgba(15,23,42,.08);
+    box-shadow:0 10px 24px rgba(15,23,42,.04);
+  }
+
+  .sit-section-label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+    color:#0b1f4b;
+    font-size:15px;
+    font-weight:950;
+  }
+
+  .sit-section-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    height:28px;
+    border-radius:9px;
+    background:#e8f0ff;
+    color:#1d4ed8;
+    font-size:14px;
+    font-weight:900;
+    flex:0 0 auto;
   }
 
   .sit-intro{
     margin:0;
     color:#475569;
-    font-weight:750;
-    line-height:1.75;
-    white-space:pre-line;
+    font-size:14px;
+    font-weight:700;
+    line-height:1.82;
+    white-space:normal;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
   }
 
-  .sit-guide{
-    margin:10px 0 0;
-    color:#64748b;
+  .sit-study-guide{
+    margin:0;
+    padding:18px;
+    border-radius:17px;
+    background:linear-gradient(
+      180deg,
+      rgba(37,99,235,.09),
+      rgba(255,255,255,.72)
+    );
+    border:1px solid rgba(37,99,235,.13);
+    color:#334155;
+  }
+
+  .sit-study-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:11px;
+  }
+
+  .sit-study-item{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
     font-size:13px;
-    font-weight:900;
-    line-height:1.6;
+    font-weight:800;
+    line-height:1.55;
+  }
+
+  .sit-study-num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:23px;
+    height:23px;
+    border-radius:50%;
+    background:#fff;
+    border:1px solid rgba(37,99,235,.16);
+    color:#1d4ed8;
+    font-size:11px;
+    font-weight:950;
+    flex:0 0 auto;
+  }
+
+  .sit-top-footer{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin-top:17px;
+    padding-top:16px;
+    border-top:1px solid rgba(15,23,42,.08);
   }
 
   .sit-back-row{
-    margin-top:12px;
     display:flex;
-    gap:10px;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    width:100%;
     flex-wrap:wrap;
   }
 
@@ -190,20 +375,34 @@
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    height:42px;
-    padding:0 14px;
-    border-radius:14px;
-    border:1px solid rgba(15,23,42,.12);
-    background:#fff;
+    min-height:42px;
+    padding:0 16px;
+    border-radius:13px;
+    border:1px solid rgba(37,99,235,.15);
+    background:rgba(255,255,255,.90);
     font-weight:900;
     color:#0b1f4b;
     text-decoration:none;
     transition:.16s ease;
+    box-shadow:0 5px 14px rgba(15,23,42,.04);
   }
 
   .sit-back-btn:hover{
     transform:translateY(-1px);
-    box-shadow:0 10px 24px rgba(15,23,42,.08);
+    background:#fff;
+    color:#1d4ed8;
+    border-color:rgba(37,99,235,.28);
+    box-shadow:0 10px 24px rgba(37,99,235,.10);
+  }
+
+  .sit-display-count{
+    color:#475569;
+    font-size:13px;
+    font-weight:850;
+  }
+
+  .sit-display-count b{
+    color:#1d4ed8;
   }
 
   /* 검색 */
@@ -361,6 +560,155 @@
     color:#2563eb;
   }
 
+    /* =========================
+     다른 상황별 회화 보기
+  ========================= */
+  .related-situations{
+    margin-top:18px;
+    padding:20px;
+    background:#fff;
+    border:1px solid rgba(15,23,42,.08);
+    border-radius:18px;
+    box-shadow:0 10px 28px rgba(15,23,42,.06);
+  }
+
+  .related-situations + .related-situations{
+    margin-top:14px;
+  }
+
+  .related-sit-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:15px;
+  }
+
+  .related-sit-title{
+    margin:0;
+    color:#0b1f4b;
+    font-size:20px;
+    font-weight:950;
+    letter-spacing:-0.02em;
+  }
+
+  .related-sit-desc{
+    margin:6px 0 0;
+    color:#64748b;
+    font-size:13.5px;
+    font-weight:750;
+    line-height:1.65;
+  }
+
+  .related-sit-all{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+    min-height:40px;
+    padding:0 14px;
+    border-radius:13px;
+    background:#eef4ff;
+    border:1px solid rgba(37,99,235,.16);
+    color:#1d4ed8;
+    font-size:13px;
+    font-weight:900;
+    text-decoration:none;
+    transition:.15s ease;
+  }
+
+  .related-sit-all:hover{
+    transform:translateY(-1px);
+    background:#fff;
+    box-shadow:0 8px 18px rgba(37,99,235,.10);
+  }
+
+  .related-sit-grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0,1fr));
+    gap:10px;
+  }
+
+  .related-sit-item{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    min-width:0;
+    padding:13px 14px;
+    border-radius:14px;
+    background:#f8fafc;
+    border:1px solid rgba(15,23,42,.08);
+    color:#0f172a;
+    text-decoration:none;
+    transition:.15s ease;
+  }
+
+  .related-sit-item:hover{
+    transform:translateY(-1px);
+    background:#fff;
+    border-color:rgba(37,99,235,.24);
+    box-shadow:0 8px 20px rgba(37,99,235,.10);
+  }
+
+  .related-sit-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#4f7df3;
+    box-shadow:0 0 0 4px rgba(79,125,243,.12);
+    flex:0 0 auto;
+  }
+
+  .related-sit-text{
+    flex:1;
+    min-width:0;
+  }
+
+  .related-sit-name{
+    display:block;
+    color:#0f172a;
+    font-size:14px;
+    font-weight:900;
+    line-height:1.45;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+
+  .related-sit-meta{
+    display:block;
+    margin-top:3px;
+    color:#64748b;
+    font-size:11.5px;
+    font-weight:750;
+  }
+
+  .related-sit-count{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+    min-width:34px;
+    height:26px;
+    padding:0 8px;
+    border-radius:999px;
+    background:#eef2ff;
+    border:1px solid rgba(99,102,241,.18);
+    color:#4338ca;
+    font-size:12px;
+    font-weight:900;
+  }
+
+  @media (max-width:860px){
+    .sit-info-grid,
+    .related-sit-grid{
+      grid-template-columns:repeat(2, minmax(0,1fr));
+    }
+
+    .sit-info-grid{
+      grid-template-columns:1fr;
+    }
+  }
+
   @media (max-width: 1024px){
     .detail-search-form{
       flex-direction:column;
@@ -368,20 +716,79 @@
   }
 
   @media (max-width: 600px){
+    
+        .sit-hero-card{
+      padding:18px 15px;
+      border-radius:19px;
+    }
+
+    .sit-hero-head{
+      flex-direction:column;
+      align-items:flex-start;
+      margin-bottom:14px;
+    }
+
+    .sit-count-badge{
+      align-self:flex-start;
+    }
+
+    .sit-detail-title{
+      font-size:27px;
+    }
+
+    .sit-detail-highlight{
+      font-size:19px;
+    }
+
+    .sit-intro-box,
+    .sit-study-guide{
+      padding:15px;
+    }
+
+    .sit-back-row{
+      flex-direction:column;
+      align-items:stretch;
+    }
+
+    .sit-back-row > div:first-child{
+      width:100%;
+    }
+
+    .sit-back-btn{
+      width:100%;
+      box-sizing:border-box;
+    }
+
+    .sit-display-count{
+      text-align:right;
+    }
+
+    .related-situations{
+      padding:16px 14px;
+    }
+
+    .related-sit-head{
+      flex-direction:column;
+      align-items:stretch;
+    }
+
+    .related-sit-title{
+      font-size:18px;
+    }
+
+    .related-sit-all{
+      width:100%;
+      box-sizing:border-box;
+    }
+
+    .related-sit-grid{
+      grid-template-columns:1fr;
+    }
+
     .detail-page{
       padding: 6px 14px 28px;
     }
 
-    .sit-card{
-      padding:16px 14px;
-    }
-
-    .sit-card h1{
-      font-size:24px;
-      line-height:1.25;
-      word-break:keep-all;
-      overflow-wrap:anywhere;
-    }
 
     .sit-intro,
     .sit-guide,
@@ -429,31 +836,123 @@
 
   <div class="detail-main">
 
-    <div class="sit-top-wrap">
-      <section class="sit-card">
-        <h1>{{ (cat_title or "") | e }} · {{ (sub_title or "") | e }}</h1>
+        <div class="sit-top-wrap">
+      <section class="sit-hero-card">
 
-        {% if page_intro %}
-          이 페이지는 <b>{{ cat_title }} {{ sub_title }} 일본어 회화</b>를 정리한 학습 공간으로,
-해당 상황에서 자주 사용하는 <b>일본어 표현과 문장</b>을
-일본어, 발음, 한국어 뜻으로 쉽게 확인할 수 있습니다.
+        <div class="sit-hero-head">
+          <div class="sit-eyebrow">
+            <span class="sit-eyebrow-dot"></span>
+            실전 일본어 상황별 회화
+          </div>
 
-실제 여행이나 일상에서 바로 사용할 수 있는
-<b>실전 일본어 회화 문장</b>을 중심으로 구성되어 있으며,
-초보자도 빠르게 익힐 수 있도록 간단하고 핵심적인 표현 위주로 정리했습니다.
-
-또한 <b>일본어 회화 검색 기능</b>과 즐겨찾기를 통해
-필요한 표현을 반복 학습하며 자연스럽게 익힐 수 있습니다.
-        {% endif %}
-
-        <p class="sit-guide">
-          일본어 / 발음 / 한국어 뜻 3줄로 확인하세요.<br>
-          ※ ★ 버튼을 누르면 즐겨찾기에 저장됩니다.
-        </p>
-
-        <div class="sit-back-row">
-          <a class="sit-back-btn" href="{{ url_for('situations') }}">← 분류 목록</a>
+          <div class="sit-count-badge">
+            총 {{ total_count if total_count is defined else items|length }}문장
+          </div>
         </div>
+
+        <div class="sit-title-area">
+          <p class="sit-category-name">
+            {{ (cat_title or "") | e }}
+          </p>
+
+          <h1 class="sit-detail-title">
+            일본어 회화 표현 모음<br>
+            <span class="sit-detail-highlight">
+              {{ (sub_title or "") | e }}
+            </span>
+          </h1>
+        </div>
+
+        <div class="sit-info-grid">
+
+          <div class="sit-intro-box">
+            <div class="sit-section-label">
+              <span class="sit-section-icon">会</span>
+              이 페이지에서 공부할 내용
+            </div>
+
+            {% if page_intro %}
+              <p class="sit-intro">
+                이 페이지는
+                <b>{{ cat_title }} {{ sub_title }} 일본어 회화</b>를
+                정리한 학습 공간으로, 해당 상황에서 자주 사용하는
+                <b>일본어 표현과 문장</b>을 일본어, 발음,
+                한국어 뜻으로 쉽게 확인할 수 있습니다.<br><br>
+
+                실제 여행이나 일상에서 바로 사용할 수 있는
+                실전 회화 문장을 중심으로 구성했으며,
+                초보자도 부담 없이 익힐 수 있도록
+                간단하고 핵심적인 표현 위주로 정리했습니다.
+              </p>
+            {% else %}
+              <p class="sit-intro">
+                {{ cat_title }}의 {{ sub_title }} 상황에서
+                자주 사용하는 일본어 문장과 발음,
+                한국어 뜻을 한 번에 확인할 수 있습니다.
+              </p>
+            {% endif %}
+          </div>
+
+          <aside class="sit-study-guide">
+            <div class="sit-section-label">
+              <span class="sit-section-icon">✓</span>
+              이렇게 공부해보세요
+            </div>
+
+            <div class="sit-study-list">
+              <div class="sit-study-item">
+                <span class="sit-study-num">1</span>
+                <span>먼저 한국어 뜻을 보고 상황을 이해하세요.</span>
+              </div>
+
+              <div class="sit-study-item">
+                <span class="sit-study-num">2</span>
+                <span>일본어 문장과 발음을 함께 읽어보세요.</span>
+              </div>
+
+              <div class="sit-study-item">
+                <span class="sit-study-num">3</span>
+                <span>발음 듣기 버튼으로 소리를 따라 말해보세요.</span>
+              </div>
+
+              <div class="sit-study-item">
+                <span class="sit-study-num">4</span>
+                <span>필요한 문장은 ★ 즐겨찾기에 저장하세요.</span>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+
+        <div class="sit-top-footer">
+          <div class="sit-back-row">
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="sit-back-btn"
+                 href="{{ url_for('situations') }}">
+                ← 상황별 회화 목록
+              </a>
+
+              {% if q %}
+                <a class="sit-back-btn"
+                   href="{{ url_for(
+                     'situation_detail',
+                     main_key=main_key,
+                     sub_key=sub_key
+                   ) }}">
+                  검색 결과 초기화
+                </a>
+              {% endif %}
+            </div>
+
+            <div class="sit-display-count">
+              표시
+              <b>{{ items|length }}</b>
+              /
+              {{ total_count if total_count is defined else items|length }}
+            </div>
+          </div>
+        </div>
+
       </section>
     </div>
 
@@ -581,6 +1080,108 @@
 
   </div>
 </div>
+
+    {% if related_same_category and
+          (related_same_category|length) > 0 %}
+      <section class="related-situations"
+               aria-labelledby="sameCategoryTitle">
+
+        <div class="related-sit-head">
+          <div>
+            <h2 class="related-sit-title"
+                id="sameCategoryTitle">
+              같은 상황의 다른 일본어 회화
+            </h2>
+
+            <p class="related-sit-desc">
+              {{ cat_title }}에서 함께 알아두면 좋은
+              다른 회화 표현도 이어서 공부해보세요.
+            </p>
+          </div>
+
+          <a class="related-sit-all"
+             href="{{ url_for('situations') }}">
+            전체 회화 목록
+          </a>
+        </div>
+
+        <div class="related-sit-grid">
+          {% for other in related_same_category %}
+            <a class="related-sit-item"
+               href="{{ url_for(
+                 'situation_detail',
+                 main_key=other['main_key'],
+                 sub_key=other['sub_key']
+               ) }}">
+
+              <span class="related-sit-dot"></span>
+
+              <span class="related-sit-text">
+                <span class="related-sit-name">
+                  {{ other["title"] }}
+                </span>
+
+                <span class="related-sit-meta">
+                  {{ other["count"] }}개 문장
+                </span>
+              </span>
+
+              <span class="related-sit-count">
+                {{ other["count"] }}
+              </span>
+            </a>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if related_main_categories and
+          (related_main_categories|length) > 0 %}
+      <section class="related-situations"
+               aria-labelledby="otherCategoryTitle">
+
+        <div class="related-sit-head">
+          <div>
+            <h2 class="related-sit-title"
+                id="otherCategoryTitle">
+              다른 상황별 일본어 회화 보기
+            </h2>
+
+            <p class="related-sit-desc">
+              공항, 호텔, 식당, 교통 등
+              다른 상황에서 사용하는 표현도 확인해보세요.
+            </p>
+          </div>
+        </div>
+
+        <div class="related-sit-grid">
+          {% for other in related_main_categories %}
+            <a class="related-sit-item"
+               href="{{ url_for(
+                 'situation_detail',
+                 main_key=other['main_key'],
+                 sub_key=other['sub_key']
+               ) }}">
+
+              <span class="related-sit-dot"></span>
+
+              <span class="related-sit-text">
+                <span class="related-sit-name">
+                  {{ other["title"] }}
+                </span>
+
+                <span class="related-sit-meta">
+                  소분류 {{ other["sub_count"] }}개 ·
+                  문장 {{ other["phrase_count"] }}개
+                </span>
+              </span>
+
+              <span class="side-link-arrow">›</span>
+            </a>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
      crossorigin="anonymous"></script>
