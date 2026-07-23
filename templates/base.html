@@ -149,7 +149,60 @@ crossorigin="anonymous"></script>
     display: block;
   }
 }
-  </style>
+  
+
+/* =========================================
+   모바일 전용 상단 메뉴 접기 / 펼치기
+   PC 화면에는 버튼이 보이지 않고 기존 메뉴 그대로 유지
+========================================= */
+.mobile-menu-toggle{
+  display:none;
+}
+
+@media (max-width:900px){
+  .topbar-inner{
+    position:relative;
+  }
+
+  .mobile-menu-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    min-height:38px;
+    padding:0 12px;
+    margin-left:auto;
+    border:1px solid rgba(37,99,235,.18);
+    border-radius:12px;
+    background:#f8fbff;
+    color:#1d4ed8;
+    font-size:12px;
+    font-weight:900;
+    line-height:1;
+    cursor:pointer;
+    box-shadow:0 5px 14px rgba(15,23,42,.06);
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+
+  .mobile-menu-toggle:active{
+    transform:translateY(1px);
+  }
+
+  .mobile-menu-toggle-icon{
+    font-size:10px;
+  }
+
+  .topbar.mobile-menu-collapsed .nav,
+  .topbar.mobile-menu-collapsed .topbar-right{
+    display:none !important;
+  }
+
+  .topbar.mobile-menu-collapsed .topbar-inner{
+    min-height:58px;
+  }
+}
+</style>
 
   {% block extra_head %}{% endblock %}
 </head>
@@ -161,7 +214,18 @@ crossorigin="anonymous"></script>
         <img src="/static/logo.png" class="site-logo" alt="일본어 회화 공부방">
       </a>
 
-      <nav class="nav">
+      <button
+        type="button"
+        id="mobileMenuToggle"
+        class="mobile-menu-toggle"
+        aria-expanded="true"
+        aria-controls="mainMobileMenu"
+      >
+        <span class="mobile-menu-toggle-icon" aria-hidden="true">▲</span>
+        <span class="mobile-menu-toggle-text">메뉴 접기</span>
+      </button>
+
+      <nav class="nav" id="mainMobileMenu">
 
         <!-- ✅ 1) 회화공부방(클릭X, hover로만 드롭다운) -->
         <div class="nav-dd {% if request.path.startswith('/situations') or request.path.startswith('/words') %}active{% endif %}">
@@ -727,5 +791,94 @@ crossorigin="anonymous"></script>
   initMobileDropdown();
 })();
 </script>
+
+<script>
+(function(){
+  const mobileQuery = window.matchMedia("(max-width: 900px)");
+  const topbar = document.querySelector(".topbar");
+  const toggleBtn = document.getElementById("mobileMenuToggle");
+
+  if (!topbar || !toggleBtn) return;
+
+  const icon = toggleBtn.querySelector(".mobile-menu-toggle-icon");
+  const label = toggleBtn.querySelector(".mobile-menu-toggle-text");
+  const STORAGE_KEY = "jsr_mobile_menu_collapsed";
+
+  function closeDropdowns(){
+    document.querySelectorAll(".nav-dd.open").forEach(function(dd){
+      dd.classList.remove("open");
+      const btn = dd.querySelector(".nav-dd-btn");
+      if (btn) btn.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  function updateButton(){
+    const collapsed = topbar.classList.contains("mobile-menu-collapsed");
+    toggleBtn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    toggleBtn.setAttribute("aria-label", collapsed ? "상단 메뉴 펼치기" : "상단 메뉴 접기");
+    if (icon) icon.textContent = collapsed ? "▼" : "▲";
+    if (label) label.textContent = collapsed ? "메뉴 펼치기" : "메뉴 접기";
+  }
+
+  function setCollapsed(collapsed, save){
+    if (save === undefined) save = true;
+
+    if (!mobileQuery.matches){
+      topbar.classList.remove("mobile-menu-collapsed");
+      updateButton();
+      return;
+    }
+
+    topbar.classList.toggle("mobile-menu-collapsed", Boolean(collapsed));
+    if (collapsed) closeDropdowns();
+    updateButton();
+
+    if (save){
+      try{
+        localStorage.setItem(STORAGE_KEY, collapsed ? "1" : "0");
+      }catch(error){}
+    }
+  }
+
+  toggleBtn.addEventListener("click", function(){
+    setCollapsed(!topbar.classList.contains("mobile-menu-collapsed"));
+  });
+
+  document.addEventListener("focusin", function(event){
+    if (!mobileQuery.matches) return;
+    const el = event.target;
+    if (
+      el instanceof HTMLInputElement ||
+      el instanceof HTMLTextAreaElement ||
+      el instanceof HTMLSelectElement ||
+      el.isContentEditable
+    ){
+      setCollapsed(true);
+    }
+  });
+
+  function applyState(){
+    if (!mobileQuery.matches){
+      setCollapsed(false, false);
+      return;
+    }
+
+    let saved = false;
+    try{
+      saved = localStorage.getItem(STORAGE_KEY) === "1";
+    }catch(error){}
+    setCollapsed(saved, false);
+  }
+
+  if (mobileQuery.addEventListener){
+    mobileQuery.addEventListener("change", applyState);
+  }else{
+    mobileQuery.addListener(applyState);
+  }
+
+  applyState();
+})();
+</script>
+
 </body>
 </html>
