@@ -133,57 +133,233 @@
     }
   }
 
-  /* =========================
+    /* =========================
      헤더 영역
   ========================= */
   .w-top{
-    margin: 10px 0 16px;
-    padding: 24px 24px;
-    border-radius: 20px;
-    border: 1px solid rgba(15,23,42,.08);
+    position:relative;
+    margin:10px 0 18px;
+    padding:24px;
+    border-radius:22px;
+    border:1px solid rgba(37,99,235,.12);
     background:
-      radial-gradient(circle at top right, rgba(37,99,235,.12), transparent 60%),
-      linear-gradient(180deg, #f8fbff, #ffffff);
-    box-shadow: 0 16px 40px rgba(15,23,42,.08);
+      radial-gradient(circle at 100% 0%, rgba(59,130,246,.14), transparent 38%),
+      radial-gradient(circle at 0% 100%, rgba(99,102,241,.08), transparent 42%),
+      linear-gradient(135deg, #ffffff 0%, #f7faff 52%, #eef4ff 100%);
+    box-shadow:0 18px 42px rgba(15,23,42,.08);
+    overflow:hidden;
+  }
+
+  .w-top::before{
+    content:"";
+    position:absolute;
+    top:-90px;
+    right:-70px;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    border:36px solid rgba(255,255,255,.30);
+    pointer-events:none;
+  }
+
+  .w-top-head{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:17px;
+  }
+
+  .w-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    min-height:34px;
+    padding:0 12px;
+    border-radius:999px;
+    background:rgba(255,255,255,.82);
+    border:1px solid rgba(37,99,235,.14);
+    color:#1d4ed8;
+    font-size:13px;
+    font-weight:900;
+    box-shadow:0 6px 16px rgba(37,99,235,.06);
+  }
+
+  .w-eyebrow-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+  }
+
+  .w-total-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:34px;
+    padding:0 12px;
+    border-radius:999px;
+    background:#0b1f4b;
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+    white-space:nowrap;
+    box-shadow:0 8px 18px rgba(15,23,42,.15);
+  }
+
+  .w-title-area{
+    position:relative;
+    z-index:1;
+    margin-bottom:18px;
+  }
+
+  .w-title-prefix{
+    margin:0 0 8px;
+    color:#64748b;
+    font-size:14px;
+    font-weight:850;
+    letter-spacing:-0.01em;
   }
 
   .w-title{
-    margin: 0;
-    font-size: 32px;
-    font-weight: 1000;
-    color: #0b1f4b;
-    line-height: 1.2;
+    margin:0;
+    font-size:34px;
+    font-weight:1000;
+    color:#0b1f4b;
+    line-height:1.18;
+    letter-spacing:-0.035em;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+
+  .w-title-highlight{
+    display:inline-block;
+    margin-top:8px;
+    padding:6px 13px;
+    border-radius:11px;
+    background:linear-gradient(180deg, #dfeaff 0%, #edf4ff 100%);
+    border:1px solid rgba(37,99,235,.14);
+    color:#1d4ed8;
+    font-size:22px;
+    line-height:1.3;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
+  }
+
+  .w-content-grid{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:minmax(0,1.45fr) minmax(260px,.7fr);
+    gap:16px;
+    align-items:stretch;
+  }
+
+  .w-intro-box{
+    padding:18px;
+    border-radius:17px;
+    background:rgba(255,255,255,.82);
+    border:1px solid rgba(15,23,42,.08);
+    box-shadow:0 10px 24px rgba(15,23,42,.04);
+  }
+
+  .w-section-label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+    color:#0b1f4b;
+    font-size:15px;
+    font-weight:950;
+  }
+
+  .w-section-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    height:28px;
+    border-radius:9px;
+    background:#e8f0ff;
+    color:#1d4ed8;
+    font-size:14px;
+    flex:0 0 auto;
   }
 
   .w-sub{
-    margin: 14px 0 0;
-    color: #475569;
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 1.8;
+    margin:0;
+    color:#475569;
+    font-size:14px;
+    font-weight:700;
+    line-height:1.82;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
   }
 
   .w-guide{
-    margin-top: 14px;
-    padding: 12px 14px;
-    border-radius: 12px;
-    background: rgba(37,99,235,.06);
-    border: 1px solid rgba(37,99,235,.12);
-    font-size: 13px;
-    font-weight: 800;
+    margin:0;
+    padding:18px;
+    border-radius:17px;
+    background:linear-gradient(180deg, rgba(37,99,235,.09), rgba(255,255,255,.72));
+    border:1px solid rgba(37,99,235,.13);
     color:#334155;
-    line-height:1.7;
+  }
+
+  .w-guide-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:11px;
+  }
+
+  .w-guide-item{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    font-size:13px;
+    font-weight:800;
+    line-height:1.55;
+  }
+
+  .w-guide-num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:23px;
+    height:23px;
+    border-radius:50%;
+    background:#fff;
+    border:1px solid rgba(37,99,235,.16);
+    color:#1d4ed8;
+    font-size:11px;
+    font-weight:950;
+    flex:0 0 auto;
+  }
+
+  .w-top-footer{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin-top:17px;
+    padding-top:16px;
+    border-top:1px solid rgba(15,23,42,.08);
   }
 
   /* =========================
      버튼 / 액션
   ========================= */
-  .w-actions{
-    margin-top: 16px;
+    .w-actions{
     display:flex;
+    align-items:center;
     justify-content:space-between;
     flex-wrap:wrap;
     gap:10px;
+    width:100%;
   }
 
   .w-actions-left{
@@ -192,25 +368,28 @@
     flex-wrap:wrap;
   }
 
-  .w-btn{
-    height: 40px;
-    padding: 0 16px;
-    border-radius: 14px;
-    border: 1px solid rgba(15,23,42,.10);
-    background:#fff;
-    font-weight: 900;
+    .w-btn{
+    min-height:42px;
+    padding:0 16px;
+    border-radius:13px;
+    border:1px solid rgba(37,99,235,.15);
+    background:rgba(255,255,255,.88);
+    font-weight:900;
     display:flex;
     align-items:center;
     justify-content:center;
     text-decoration:none;
     color:#0b1f4b;
     transition:.15s ease;
+    box-shadow:0 5px 14px rgba(15,23,42,.04);
   }
 
   .w-btn:hover{
     transform:translateY(-1px);
-    box-shadow:0 10px 24px rgba(15,23,42,.08);
-    border-color: rgba(37,99,235,.22);
+    background:#fff;
+    color:#1d4ed8;
+    box-shadow:0 10px 24px rgba(37,99,235,.10);
+    border-color:rgba(37,99,235,.28);
   }
 
   .w-count{
@@ -364,21 +543,162 @@
     font-weight:800;
   }
 
+    /* =========================
+     다른 단어 모음 보기
+  ========================= */
+  .related-words{
+    margin-top:18px;
+    padding:20px;
+    background:#fff;
+    border:1px solid rgba(15,23,42,.08);
+    border-radius:18px;
+    box-shadow:0 10px 28px rgba(15,23,42,.06);
+  }
+
+  .related-words-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:15px;
+  }
+
+  .related-words-title{
+    margin:0;
+    font-size:20px;
+    font-weight:950;
+    color:#0b1f4b;
+    letter-spacing:-0.02em;
+  }
+
+  .related-words-desc{
+    margin:6px 0 0;
+    color:#64748b;
+    font-size:13.5px;
+    font-weight:750;
+    line-height:1.65;
+  }
+
+  .related-words-all{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+    min-height:40px;
+    padding:0 14px;
+    border-radius:13px;
+    background:#eef4ff;
+    border:1px solid rgba(37,99,235,.16);
+    color:#1d4ed8;
+    font-size:13px;
+    font-weight:900;
+    text-decoration:none;
+    transition:.15s ease;
+  }
+
+  .related-words-all:hover{
+    transform:translateY(-1px);
+    background:#fff;
+    box-shadow:0 8px 18px rgba(37,99,235,.10);
+  }
+
+  .related-words-grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0,1fr));
+    gap:10px;
+  }
+
+  .related-word-item{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    min-width:0;
+    padding:13px 14px;
+    border-radius:14px;
+    background:#f8fafc;
+    border:1px solid rgba(15,23,42,.08);
+    color:#0f172a;
+    text-decoration:none;
+    transition:.15s ease;
+  }
+
+  .related-word-item:hover{
+    transform:translateY(-1px);
+    background:#fff;
+    border-color:rgba(37,99,235,.24);
+    box-shadow:0 8px 20px rgba(37,99,235,.10);
+  }
+
+  .related-word-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#4f7df3;
+    box-shadow:0 0 0 4px rgba(79,125,243,.12);
+    flex:0 0 auto;
+  }
+
+  .related-word-name{
+    flex:1;
+    min-width:0;
+    font-size:14px;
+    font-weight:900;
+    line-height:1.45;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+
+  .related-word-count{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+    min-width:34px;
+    height:26px;
+    padding:0 8px;
+    border-radius:999px;
+    background:#eef2ff;
+    border:1px solid rgba(99,102,241,.18);
+    color:#4338ca;
+    font-size:12px;
+    font-weight:900;
+  }
+
+  @media (max-width: 860px){
+    .related-words-grid{
+      grid-template-columns:repeat(2, minmax(0,1fr));
+    }
+  }
+
+  @media (max-width: 600px){
+    .related-words{
+      padding:16px 14px;
+    }
+
+    .related-words-head{
+      flex-direction:column;
+      align-items:stretch;
+    }
+
+    .related-words-title{
+      font-size:18px;
+    }
+
+    .related-words-all{
+      width:100%;
+      box-sizing:border-box;
+    }
+
+    .related-words-grid{
+      grid-template-columns:1fr;
+    }
+  }
   /* =========================
      모바일 최적화
   ========================= */
   @media (max-width: 640px){
     .word-detail-page{
       padding: 8px 14px 28px;
-    }
-
-    .w-top{
-      padding:18px 16px;
-    }
-
-    .w-title{
-      font-size:24px;
-      line-height:1.25;
     }
 
     th, td{
@@ -418,6 +738,60 @@
     td:first-child{
       width:64px;
     }
+
+        .w-top{
+      padding:18px 15px;
+      border-radius:19px;
+    }
+
+    .w-top-head{
+      align-items:flex-start;
+      flex-direction:column;
+      margin-bottom:14px;
+    }
+
+    .w-total-badge{
+      align-self:flex-start;
+    }
+
+    .w-title{
+      font-size:27px;
+    }
+
+    .w-title-highlight{
+      font-size:19px;
+    }
+
+    .w-content-grid{
+      grid-template-columns:1fr;
+    }
+
+    .w-intro-box,
+    .w-guide{
+      padding:15px;
+    }
+
+    .w-top-footer{
+      align-items:stretch;
+    }
+
+    .w-actions{
+      flex-direction:column;
+      align-items:stretch;
+    }
+
+    .w-actions-left{
+      width:100%;
+    }
+
+    .w-btn{
+      width:100%;
+      box-sizing:border-box;
+    }
+
+    .w-count{
+      justify-content:flex-end;
+    }
   }
 </style>
 
@@ -455,46 +829,113 @@
 
   <div class="wrap">
 
-    <section class="w-top">
-      <h1 class="w-title">일본 여행 필수 일본어 단어 모음 · {{ title }}</h1>
+        <section class="w-top">
 
-      {% if page_intro %}
-        이 페이지는 <b>{{ title }} 일본어 단어 모음</b>으로,
-해당 카테고리에서 자주 사용하는 <b>일본어 단어와 표현</b>을
-한자, 가나, 발음, 뜻과 함께 정리한 학습 자료입니다.
+      <div class="w-top-head">
+        <div class="w-eyebrow">
+          <span class="w-eyebrow-dot"></span>
+          일본어 단어 학습
+        </div>
 
-일본 여행과 일상 회화에서 자주 쓰이는
-<b>실전 일본어 단어</b>를 중심으로 구성되어 있으며,
-초보자부터 JLPT 시험 준비까지
-<b>일본어 어휘를 효과적으로 학습</b>할 수 있습니다.
+        <div class="w-total-badge">
+          총 {{ total_count if total_count is defined else (rows or [])|length }}개
+        </div>
+      </div>
 
-또한 <b>일본어 단어 검색 기능</b>과 즐겨찾기를 통해
-필요한 단어를 반복 학습하며 자연스럽게 익힐 수 있습니다.
-      {% else %}
-        <p class="w-sub">일본 여행 중 자주 쓰는 {{ title }} 필수 단어를 모아두었습니다.</p>
-      {% endif %}
+      <div class="w-title-area">
+        <p class="w-title-prefix">일본 여행과 일상에서 자주 사용하는</p>
 
-      <p class="w-guide">
-        한자/표기 · 가나 · 발음 · 한국어 뜻 <b>4줄</b>로 빠르게 확인하세요.<br>
-        ※ <b>★</b> 버튼을 누르면 나만의 학습노트 즐겨찾기에 저장됩니다.<br>
-        🔊 버튼으로 발음도 바로 들을 수 있어요.
-      </p>
+        <h1 class="w-title">
+          일본어 필수 단어 모음<br>
+          <span class="w-title-highlight">{{ title }}</span>
+        </h1>
+      </div>
 
-      <div class="w-actions">
-        <div class="w-actions-left">
-          <a class="w-btn" href="{{ url_for('words_categories') }}">← 분류 목록</a>
-          {% if q %}
-            <a class="w-btn" href="{{ url_for('words_detail', cat_key=cat_key) }}">전체 보기</a>
+      <div class="w-content-grid">
+
+        <div class="w-intro-box">
+          <div class="w-section-label">
+            <span class="w-section-icon">文</span>
+            이 페이지에서 공부할 내용
+          </div>
+
+          {% if page_intro %}
+            <p class="w-sub">
+              이 페이지는 <b>{{ title }} 일본어 단어 모음</b>으로,
+              해당 카테고리에서 자주 사용하는 <b>일본어 단어와 표현</b>을
+              한자, 가나, 발음, 뜻과 함께 정리한 학습 자료입니다.<br><br>
+
+              일본 여행과 일상 회화에서 자주 쓰이는
+              <b>실전 일본어 단어</b>를 중심으로 구성되어 있으며,
+              초보자부터 JLPT 시험 준비까지
+              일본어 어휘를 체계적으로 학습할 수 있습니다.
+            </p>
+          {% else %}
+            <p class="w-sub">
+              일본 여행과 일상에서 자주 사용하는
+              {{ title }} 관련 필수 단어를 한자, 가나, 발음,
+              한국어 뜻과 함께 확인할 수 있습니다.
+            </p>
           {% endif %}
         </div>
 
-        <div class="w-count">
-          표시:
-          <b>{{ (rows or [])|length }}</b>
-          /
-          <span>{{ total_count if total_count is defined else (rows or [])|length }}</span>
+        <aside class="w-guide">
+          <div class="w-section-label">
+            <span class="w-section-icon">✓</span>
+            이렇게 공부해보세요
+          </div>
+
+          <div class="w-guide-list">
+            <div class="w-guide-item">
+              <span class="w-guide-num">1</span>
+              <span>한자와 가나 표기를 먼저 확인하세요.</span>
+            </div>
+
+            <div class="w-guide-item">
+              <span class="w-guide-num">2</span>
+              <span>발음을 보고 🔊 버튼으로 소리를 들어보세요.</span>
+            </div>
+
+            <div class="w-guide-item">
+              <span class="w-guide-num">3</span>
+              <span>외우고 싶은 단어는 ★ 즐겨찾기에 저장하세요.</span>
+            </div>
+
+            <div class="w-guide-item">
+              <span class="w-guide-num">4</span>
+              <span>검색을 이용해 필요한 단어를 반복해서 복습하세요.</span>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+
+      <div class="w-top-footer">
+        <div class="w-actions">
+          <div class="w-actions-left">
+            <a class="w-btn" href="{{ url_for('words_categories') }}">
+              ← 단어 분류 목록
+            </a>
+
+            {% if q %}
+              <a class="w-btn"
+                 href="{{ url_for('words_detail', cat_key=cat_key) }}">
+                검색 결과 초기화
+              </a>
+            {% endif %}
+          </div>
+
+          <div class="w-count">
+            표시&nbsp;
+            <b>{{ (rows or [])|length }}</b>
+            &nbsp;/&nbsp;
+            <span>
+              {{ total_count if total_count is defined else (rows or [])|length }}
+            </span>
+          </div>
         </div>
       </div>
+
     </section>
 
     <form method="GET" class="search-row">
@@ -568,13 +1009,52 @@
         </tbody>
       </table>
 
-      <div class="muted">
+            <div class="muted">
         총 {{ (rows or [])|length }}개
         {% if total_count is defined and total_count != (rows or [])|length %}
           (전체: {{ total_count }}개)
         {% endif %}
       </div>
     </div>
+
+    {% if related_word_categories and (related_word_categories|length) > 0 %}
+      <section class="related-words" aria-labelledby="relatedWordsTitle">
+        <div class="related-words-head">
+          <div>
+            <h2 class="related-words-title" id="relatedWordsTitle">
+              다른 일본어 단어 모음 보기
+            </h2>
+
+            <p class="related-words-desc">
+              지금 보고 있는 {{ title }} 단어 외에도 다른 카테고리의 일본어 단어를 이어서 공부해보세요.
+            </p>
+          </div>
+
+          <a class="related-words-all"
+             href="{{ url_for('words_categories') }}">
+            전체 단어 모음
+          </a>
+        </div>
+
+        <div class="related-words-grid">
+          {% for other in related_word_categories %}
+            <a class="related-word-item"
+               href="{{ url_for('words_detail', cat_key=other['key']) }}">
+
+              <span class="related-word-dot"></span>
+
+              <span class="related-word-name">
+                {{ other["title"] }}
+              </span>
+
+              <span class="related-word-count">
+                {{ other["count"] }}
+              </span>
+            </a>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
 
   </div>
 </div>
