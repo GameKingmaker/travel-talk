@@ -274,11 +274,6 @@ crossorigin="anonymous"></script>
           <span class="nav-txt"><span class="t1">퀴즈게임</span></span>
         </a>
 
-        <!-- ✅ 일반게시판(기존 기능 유지) -->
-        <a href="{{ url_for('board') }}" class="{% if request.path.startswith('/board') %}active{% endif %}">
-          <span class="nav-txt"><span class="t1">일반게시판</span></span>
-        </a>
-
         <!-- ✅ 나의정보(기존 기능 유지 / 로그인시에만 노출 유지) -->
         {% if user %}
           <a href="{{ url_for('mypage') }}" class="{% if request.path.startswith('/mypage') %}active{% endif %}">
