@@ -1,0 +1,2494 @@
+
+:root{
+  --bg:#f3f5ff;
+  --card: rgba(255,255,255,0.78);
+  --stroke: rgba(15,23,42,0.10);
+  --text:#0f172a;
+  --muted: rgba(15,23,42,0.65);
+  --primary:#3b82f6;
+  --radius: 18px;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", Arial;
+  color:var(--text);
+
+  /* ✅ 홈 포함 전체 배경: hero.png + 그라데이션 */
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(99,102,241,0.18), transparent 60%),
+    radial-gradient(900px 520px at 80% 10%, rgba(59,130,246,0.16), transparent 55%),
+    linear-gradient(180deg, rgba(243,245,255,1) 0%, rgba(236,240,255,1) 55%, rgba(243,245,255,1) 100%);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+
+/* layout */
+.page{
+  max-width:1100px;
+  margin:0 auto;
+  padding:18px;
+  background: transparent; /* ✅ body 배경을 그대로 보이게 */
+}
+
+.flash-wrap{ display:flex; flex-direction:column; gap:8px; margin:10px 0; }
+.flash{
+  padding:12px 14px; border-radius:14px;
+  background:rgba(255,255,255,0.85);
+  border:1px solid var(--stroke);
+}
+.flash.success{ border-color: rgba(34,197,94,0.25); }
+.flash.error{ border-color: rgba(239,68,68,0.25); }
+
+/* hero */
+.hero{
+  background: transparent;
+  border-radius: 26px;
+  padding: 18px;
+  box-shadow: 0 18px 60px rgba(15,23,42,0.10);
+}
+.hero-card{
+  background: rgba(255,255,255,0.72);
+  border:1px solid var(--stroke);
+  border-radius: 22px;
+  padding: 18px;
+}
+.hero-title{ margin:0 0 6px 0; font-size:32px; }
+.hero-sub{ margin:0 0 14px 0; color:var(--muted); font-weight:700; }
+
+/* daily */
+.daily-card{
+  background: rgba(255,255,255,0.80);
+  border:1px solid var(--stroke);
+  border-radius: 18px;
+  padding: 14px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+}
+.daily-lines{ width:100%; }
+.line{
+  display:flex; gap:12px;
+  padding:10px 0;
+  border-bottom: 1px dashed rgba(15,23,42,0.10);
+}
+.line:last-child{ border-bottom:none; }
+.label{ width:90px; font-weight:900; color:rgba(15,23,42,0.92); }
+.text{ color:var(--text); font-weight:700; }
+.jp{ font-size:18px; }
+
+/* buttons */
+.speak-btn{
+  height:44px;
+  padding:0 16px;
+  border-radius:999px;
+  border:1px solid var(--stroke);
+  background: rgba(255,255,255,0.88);
+  font-weight:900;
+  cursor:pointer;
+}
+.speak-btn:hover{ border-color: rgba(59,130,246,0.35); }
+
+/* quick cards */
+.quick-grid{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:12px;
+}
+.quick{
+  text-decoration:none;
+  background: rgba(255,255,255,0.80);
+  border:1px solid var(--stroke);
+  border-radius: 18px;
+  padding: 14px;
+  color:var(--text);
+}
+.q-title{ font-weight:900; font-size:16px; }
+.q-sub{ color:var(--muted); margin-top:6px; font-weight:700; }
+
+/* page head */
+.page-head{ margin: 6px 0 14px 0; }
+.page-head h1{ margin:0 0 6px 0; font-size:28px; }
+.page-head p{ margin:0; color:var(--muted); font-weight:700; }
+
+.empty{
+  background: rgba(255,255,255,0.75);
+  border:1px solid var(--stroke);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+/* situations list */
+.situation-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:14px;
+}
+.s-card{
+  background: rgba(255,255,255,0.78);
+  border:1px solid var(--stroke);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 14px 38px rgba(15,23,42,0.10);
+}
+.s-card-head{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:10px;
+}
+.s-title{ font-weight:1000; font-size:18px; }
+.s-count{ color:var(--muted); font-weight:800; font-size:13px; }
+
+.chip-wrap{ display:flex; flex-wrap:wrap; gap:10px; }
+.chip{
+  display:inline-flex; gap:10px; align-items:center;
+  text-decoration:none;
+  padding:10px 12px;
+  border-radius: 999px;
+  border:1px solid var(--stroke);
+  background: rgba(255,255,255,0.88);
+  color:var(--text);
+  font-weight:900;
+}
+.chip-badge{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:28px; height:22px;
+  border-radius:999px;
+  background: rgba(59,130,246,0.12);
+  font-weight:1000;
+}
+
+/* phrases */
+.phrase-list{ display:flex; flex-direction:column; gap:12px; }
+.phrase-card{
+  background: rgba(255,255,255,0.82);
+  border:1px solid var(--stroke);
+  border-radius: 18px;
+  padding: 14px;
+  display:grid;
+  grid-template-columns: 44px 1fr 120px;
+  gap:12px;
+  align-items:center;
+}
+.fav-btn{
+  width:40px; height:40px;
+  border-radius:12px;
+  border:1px solid var(--stroke);
+  background: rgba(255,255,255,0.90);
+  cursor:pointer;
+  font-size:16px;
+}
+.fav-btn.on{
+  background: rgba(255,215,0,0.18);
+  border-color: rgba(255,215,0,0.35);
+}
+.phrase-body{ display:flex; flex-direction:column; gap:6px; }
+.p-line{ display:flex; gap:10px; }
+.p-label{ width:90px; font-weight:1000; color:rgba(15,23,42,0.92); }
+.p-jp{ font-weight:1000; font-size:18px; }
+
+/* footer */
+.footer{
+  margin-top: 120px;          /* ✅ 더 아래로 내림 */
+  border-top:1px solid var(--stroke);
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(10px);
+}
+.footer-inner{
+  max-width:1100px; margin:0 auto;
+  padding:28px 18px;          /* ✅ 줄 자체를 아래로(위아래 여백 증가) */
+  color:var(--muted);
+  font-weight:800;
+}
+
+/* =========================
+   Auth UI Upgrade
+========================= */
+.form-wrap{ margin-top: 14px; }
+
+.form-table{
+  width: 100%;
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+.form-row{
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.form-row:first-child{ border-top: none; }
+
+.form-label{
+  padding: 16px 14px;
+  background: rgba(245,247,255,0.8);
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.label-text{ font-weight: 850; }
+.label-check{ opacity: 0.85; font-weight: 900; }
+
+.form-field{ padding: 14px; }
+
+.help{
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.55;
+  opacity: 0.85;
+}
+.help-warn{
+  margin-top: 6px;
+  color: #1b43d1;
+  font-weight: 800;
+}
+.help-note{
+  margin-top: 10px;
+  font-size: 12.5px;
+  opacity: 0.75;
+}
+.help-list{ margin: 8px 0 0 18px; padding: 0; }
+.help-link{ color: #1b43d1; font-weight: 900; }
+
+.checkline{
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.form-actions{
+  display:flex;
+  gap: 10px;
+  justify-content:flex-end;
+  padding: 14px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.65);
+}
+
+.form-card{
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  padding: 18px;
+  max-width: 520px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+.field{
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.input{
+  width:100%;
+  padding:12px 12px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.92);
+  outline: none;
+  font-weight: 800;
+}
+
+.input:focus{
+  border-color: rgba(59,130,246,0.35);
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.10);
+}
+
+.btn.ghost{
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.12);
+}
+
+@media (max-width: 860px){
+  .form-row{ grid-template-columns: 1fr; }
+  .form-label{ justify-content:flex-start; }
+}
+
+.wg-input.bad{
+  border-color: rgba(239,68,68,0.55) !important;
+  box-shadow: 0 0 0 4px rgba(239,68,68,0.12) !important;
+}
+
+/* =========================
+   Note UI
+========================= */
+.note-panel{
+  background: rgba(255,255,255,0.78);
+  border: 1px solid var(--stroke);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 14px 38px rgba(15,23,42,0.08);
+  margin-bottom: 14px;
+}
+
+.note-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.note-title{
+  font-weight: 1000;
+  font-size: 18px;
+}
+.note-sub{
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.note-controls{
+  background: rgba(255,255,255,0.70);
+  border: 1px solid rgba(15,23,42,0.08);
+  border-radius: 16px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.note-controls-row{
+  display:grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.note-control{
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note-label{
+  font-weight: 900;
+  font-size: 12.5px;
+  color: rgba(15,23,42,0.75);
+}
+
+.note-input{
+  border-radius: 14px;
+}
+
+.note-toggles{
+  grid-template-columns: auto auto 1fr;
+  align-items:center;
+  margin-bottom: 0;
+}
+
+.note-hint{
+  justify-self: end;
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 12.5px;
+}
+
+.note-badge{
+  display:inline-flex;
+  align-self:flex-start;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(59,130,246,0.18);
+  background: rgba(59,130,246,0.08);
+  color: rgba(15,23,42,0.85);
+  font-weight: 1000;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.phrase-list.hide-pron .p-pron,
+.phrase-list.hide-ko .p-ko{
+  color: transparent;
+  background: rgba(15,23,42,0.10);
+  border-radius: 8px;
+  user-select:none;
+}
+
+/* 반응형 */
+@media (max-width: 980px){
+  .nav{ display:none; }
+  .quick-grid{ grid-template-columns: repeat(2, 1fr); }
+  .situation-grid{ grid-template-columns: 1fr; }
+  .phrase-card{ grid-template-columns: 44px 1fr; }
+  .phrase-card .speak-btn{ grid-column: 2; justify-self:start; }
+
+  .note-controls-row{ grid-template-columns: 1fr; }
+  .note-toggles{ grid-template-columns: 1fr; gap: 8px; }
+  .note-hint{ justify-self:start; }
+}
+
+/* =========================
+   Field Message (small text)
+========================= */
+.field-msg{
+  margin-top: 8px;
+  font-size: 12.5px;
+  font-weight: 800;
+  opacity: 0.95;
+}
+.field-msg.ok{ color: rgba(16, 185, 129, 0.95); }
+.field-msg.bad{ color: rgba(239, 68, 68, 0.95); }
+
+/* 학습노트 전체 폭 사용 */
+.note-phrase-list{
+  width: 100%;
+  max-width: none;
+  position: relative;
+  padding-top: 48px;
+}
+/* =========================
+   Note 전용 카드 레이아웃 (phrase-card 덮어쓰기 방지)
+========================= */
+.note-phrase-list .phrase-card{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.note-phrase-list .phrase-body{
+  flex: 1;
+  min-width: 0;
+}
+
+.note-controls{
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  z-index: 10;
+}
+.note-toggles{
+  display: flex;
+  gap: 12px;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+/* =========================
+   Board UI
+========================= */
+.board-wrap{
+  background: rgba(255,255,255,0.72);
+  border: 1px solid var(--stroke);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.board-head, .board-row{
+  display: grid;
+  grid-template-columns: 90px 1fr 220px 110px 110px 140px;
+  gap: 0;
+  align-items: center;
+}
+
+.board-head{
+  background: rgba(245,247,255,0.9);
+  border-bottom: 1px solid rgba(15,23,42,0.08);
+  font-weight: 900;
+  color: rgba(15,23,42,0.75);
+}
+
+.board-row{
+  border-bottom: 1px solid rgba(15,23,42,0.08);
+  background: rgba(255,255,255,0.85);
+}
+.board-row:last-child{ border-bottom: none; }
+
+.board-head .col, .board-row .col{
+  padding: 12px 14px;
+  font-weight: 800;
+}
+
+.board-row .col.no,
+.board-row .col.up,
+.board-row .col.view,
+.board-row .col.date{
+  color: rgba(15,23,42,0.72);
+  font-weight: 900;
+}
+
+.title-cell{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.thumb{
+  width: 52px;
+  height: 38px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(15,23,42,0.06);
+}
+.thumb-empty{ display:block; }
+
+.title-text{ min-width: 0; }
+.title-text .t{
+  font-weight: 1000;
+  white-space: nowrap;
+}
+
+.grade{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(59,130,246,0.18);
+  background: rgba(59,130,246,0.08);
+  font-weight: 1000;
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.nick{ font-weight: 1000; }
+
+@media (max-width: 980px){
+  .board-head, .board-row{
+    grid-template-columns: 70px 1fr 150px 70px;
+  }
+  .board-head .col.view, .board-row .col.view{ display:none; }
+  .board-head .col.date, .board-row .col.date{ display:none; }
+}
+
+.toast-msg{
+  position: fixed;
+  left: 50%;
+  bottom: 34px;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.92);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  z-index: 9999;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.toast-msg.show{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.back-row{ margin: 12px 0 10px; }
+
+.back-btn{
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.page-guide{
+  margin: 6px 0 18px;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================
+   Quiz Page Layout Fix
+========================= */
+.quiz-wrap{
+  max-width:1080px;
+  margin:0 auto;
+  padding:22px 18px 56px;
+}
+
+.quiz-head{ margin-bottom:14px; }
+
+.quiz-title{
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:-0.5px;
+  margin:0;
+}
+.quiz-sub{
+  margin:6px 0 0;
+  color:#6b7280;
+  font-size:14px;
+  line-height:1.45;
+}
+
+.quiz-grid{
+  display:grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap:14px;
+  align-items:stretch;
+}
+@media (max-width: 900px){
+  .quiz-grid{ grid-template-columns: 1fr; }
+}
+
+.quiz-hero{
+  background: linear-gradient(180deg, #f8fbff, #f1f5ff);
+  border:1px solid rgba(15,23,42,0.10);
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(2,8,23,0.06);
+  min-height:140px;
+}
+
+.quiz-cards{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.game-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 14px;
+  background:#fff;
+  border:1px solid rgba(15,23,42,0.10);
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(2,8,23,0.06);
+  text-decoration:none;
+  color:#0f172a;
+}
+.game-card:hover{ transform: translateY(-1px); }
+
+.game-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+.game-icon{
+  width:38px;
+  height:38px;
+  border-radius:14px;
+  border:1px solid rgba(15,23,42,0.10);
+  background:#f8fafc;
+  flex:0 0 auto;
+}
+.game-meta{ min-width:0; }
+.game-name{
+  font-weight:900;
+  font-size:16px;
+  margin:0;
+}
+.game-desc{
+  margin:4px 0 0;
+  color:#64748b;
+  font-size:12px;
+  line-height:1.4;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:26px;
+  padding:0 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+  border:1px solid rgba(37,99,235,0.22);
+  background:#eff6ff;
+  color:#1d4ed8;
+  flex:0 0 auto;
+}
+.badge.gray{
+  border-color: rgba(15,23,42,0.12);
+  background:#f1f5f9;
+  color:#334155;
+}
+
+
+/* ===== 홈 퀵 카드 높이 통일 ===== */
+.quick-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.quick{
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.quick .q-title{
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+.quick .q-sub{
+  font-size: 13px;
+  color: #667085;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* ===== 홈 퀵 카드 애니메이션 ===== */
+.quick{
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 18px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.quick:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(16, 24, 40, 0.14);
+  border-color: #c7d7fe;
+}
+.quick:hover .q-title{ color: #3559e8; }
+.quick:active{
+  transform: translateY(-1px) scale(0.995);
+  box-shadow: 0 6px 16px rgba(16, 24, 40, 0.18);
+}
+
+.notice-pill{
+  margin-right:6px;
+  background:#fff7ed;
+  border:1px solid #fdba74;
+  color:#9a3412;
+  font-size:12px;
+}
+.post-link{ text-decoration:none; color:inherit; font-weight:600; }
+.post-link.notice-title{ font-weight:900; }
+
+/* 공지글 행 강조 */
+.notice-row td{ background:#fff7ed; }
+.notice-row td:first-child{
+  border-top-left-radius:14px;
+  border-bottom-left-radius:14px;
+}
+.notice-row td:last-child{
+  border-top-right-radius:14px;
+  border-bottom-right-radius:14px;
+}
+.notice-row{
+  outline:1px solid rgba(253,186,116,0.65);
+  outline-offset:-1px;
+}
+.pill-admin{
+  background:#fff7ed !important;
+  border:1px solid #fdba74 !important;
+  color:#9a3412 !important;
+  font-weight:900;
+}
+
+.quote-source{
+  margin-left:8px;
+  font-size:12px;
+  font-weight:800;
+  color:#64748b;
+}
+
+.quiz-list{
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.quiz-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: white;
+  text-decoration: none;
+  color: #111;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  transition: transform .15s ease;
+}
+.quiz-item:hover{ transform: translateY(-2px); }
+.quiz-number{ font-weight: 700; font-size: 18px; }
+.quiz-title{ font-size: 15px; color: #666; }
+
+.dialog-translation p{
+  background:#fff;
+  padding:8px 12px;
+  border-radius:12px;
+  margin:6px 0;
+  border:1px solid rgba(15,23,42,.08);
+}
+
+/* 공통 레이아웃 */
+.today-wrap, .menu-wrap{
+  max-width: 1050px;
+  margin: 28px auto;
+  padding: 0 18px;
+}
+
+/* 오늘의 회화 카드 */
+.today-card{
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+  padding: 22px 22px 18px;
+  backdrop-filter: blur(6px);
+}
+.today-title{
+  font-size: 30px;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+.today-sub{
+  margin: 0 0 16px;
+  color: #666;
+}
+.today-box{
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 14px;
+  padding: 14px;
+}
+.today-box .row{
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 6px;
+  border-bottom: 1px dashed rgba(0,0,0,0.08);
+}
+.today-box .row:last-child{ border-bottom: none; }
+
+.label{ font-weight: 700; color: #333; }
+.value{ color: #111; font-weight: 600; }
+
+.tts-btn{
+  border: 1px solid rgba(0,0,0,0.1);
+  background: white;
+  padding: 9px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.tts-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 8px 14px rgba(0,0,0,0.08);
+}
+
+/* 메뉴 섹션 */
+.menu-title{
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 800;
+}
+.menu-sub{
+  margin: 0 0 14px;
+  color: #666;
+}
+
+/* 메뉴 카드 그리드 */
+.menu-grid{
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* 메뉴 카드 */
+.menu-card{
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 16px;
+  padding: 16px 14px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+  transition: 0.15s ease;
+  min-height: 92px;
+}
+.menu-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 18px 30px rgba(0,0,0,0.10);
+  border-color: rgba(0,0,0,0.12);
+}
+.menu-name{ font-weight: 900; margin-bottom: 6px; }
+.menu-desc{
+  font-size: 13px;
+  color: #666;
+  line-height: 1.35;
+}
+
+/* 뱃지(추천) */
+.menu-badge{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.06);
+}
+
+/* 반응형 */
+@media (max-width: 1100px){
+  .menu-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 680px){
+  .menu-grid{ grid-template-columns: repeat(2, 1fr); }
+  .today-box .row{ grid-template-columns: 80px 1fr; }
+  .tts-btn{ grid-column: 1 / -1; justify-self: start; }
+}
+
+/* =========================
+   UI 선명도 업그레이드 (추가/덮어쓰기)
+   - style.css 맨 아래에 붙여넣기
+========================= */
+
+:root{
+  /* 전체 톤을 살짝 더 대비 있게 */
+  --bg: #eef2ff;                 /* 배경 살짝 더 색감 */
+  --card: rgba(255,255,255,0.92);/* 카드 더 불투명하게 */
+  --stroke: rgba(15,23,42,0.14); /* 선 더 진하게 */
+  --muted: rgba(15,23,42,0.68);
+
+  /* 그림자 강화 */
+  --shadow-sm: 0 8px 18px rgba(2,8,23,0.08);
+  --shadow-md: 0 18px 50px rgba(2,8,23,0.10);
+}
+
+/* 페이지 전체 배경(지금 그라데이션 유지하면서 “종이 느낌” 제거) */
+html, body{
+  background: var(--bg);
+}
+
+
+/* 본문 컨테이너(가운데 영역) 대비 상승 */
+.page{
+  padding-top: 22px;
+}
+
+/* 홈의 큰 카드(오늘의 회화 영역) 더 또렷하게 */
+.hero-card,
+.today-card{
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(15,23,42,0.12);
+  box-shadow: var(--shadow-md);
+}
+
+/* 오늘의 회화 내부 박스 라인 선명 + 구획감 */
+.daily-card,
+.today-box{
+  background: rgba(255,255,255,0.90);
+  border: 1px solid rgba(15,23,42,0.10);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 구분선(점선) 더 눈에 띄게 */
+.line,
+.today-box .row{
+  border-bottom-color: rgba(15,23,42,0.12) !important;
+}
+
+/* 홈 메뉴 카드(퀵/메뉴 카드) 더 “카드”처럼 */
+.quick,
+.menu-card{
+  background: rgba(255,255,255,0.96) !important;
+  border: 1px solid rgba(15,23,42,0.12) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+/* 호버 시 더 확실하게 반응 */
+.quick:hover,
+.menu-card:hover{
+  box-shadow: 0 20px 46px rgba(2,8,23,0.14);
+  border-color: rgba(59,130,246,0.28) !important;
+}
+
+/* 버튼/뱃지 톤 정리 */
+.btn,
+.tts-btn,
+.speak-btn{
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(15,23,42,0.14);
+  box-shadow: 0 6px 14px rgba(2,8,23,0.06);
+}
+
+.btn-primary{
+  box-shadow: 0 12px 24px rgba(59,130,246,0.20);
+}
+
+/* 텍스트 대비 살짝 강화 */
+.hero-title,
+.today-title{
+  letter-spacing: -0.6px;
+}
+
+.hero-sub,
+.today-sub,
+.q-sub,
+.menu-desc{
+  color: rgba(15,23,42,0.62) !important;
+}
+
+/* 푸터도 선명하게 */
+.footer{
+  background: rgba(255,255,255,0.82);
+  border-top: 1px solid rgba(15,23,42,0.12);
+}
+/* ===== 게시판 버튼 텍스트 복구 ===== */
+.board-wrap button,
+.board-wrap .btn,
+.board-wrap input[type="submit"]{
+  background:#2563eb !important;
+  color:#ffffff !important;
+  font-size:14px !important;
+  font-weight:800 !important;
+}
+
+/* 검색 버튼 */
+.board-search button{
+  color:#0f172a !important;
+}
+
+/* 글쓰기 버튼 */
+.write-btn{
+  color:#0f172a !important;
+}
+
+/* 글 등록 버튼 */
+.submit-btn,
+button[type="submit"]{
+  color:#ffffff !important;
+  background:#2563eb !important;
+}
+/* 글쓰기 버튼 텍스트 강제 표시 */
+.write-btn{
+  color:#ffffff !important;
+  background:#2563eb !important;
+  font-weight:800 !important;
+}
+.write-btn:hover{
+  background:#1d4ed8;
+}
+/* 등록 버튼을 검색 버튼 색과 통일 */
+.submit-btn,
+button[type="submit"]{
+  background:#2563eb !important;
+  color:#ffffff !important;
+}
+.submit-btn:hover,
+button[type="submit"]:hover{
+  background:#1d4ed8;
+}
+/* ✅ 단어쪽도 발음/뜻 가리기 적용 (클래스명은 네 실제 클래스에 맞춰 수정) */
+.phrase-list.hide-pron .w-pron,
+.phrase-list.hide-pron .word-pron,
+.phrase-list.hide-pron .pron {
+  color: transparent;
+  background: rgba(15,23,42,0.10);
+  border-radius: 8px;
+  user-select:none;
+}
+
+.phrase-list.hide-ko .w-ko,
+.phrase-list.hide-ko .word-ko,
+.phrase-list.hide-ko .meaning,
+.phrase-list.hide-ko .ko {
+  color: transparent;
+  background: rgba(15,23,42,0.10);
+  border-radius: 8px;
+  user-select:none;
+}
+a.btn-primary{
+  color:white !important;
+}
+
+/* =========================
+   Words Detail: 발음/뜻 가리기 (정확히 p-pron / p-ko 대응)
+========================= */
+.phrase-list.hide-pron .p-pron{
+  color: transparent;
+  background: rgba(15,23,42,0.10);
+  border-radius: 8px;
+  user-select:none;
+}
+.phrase-list.hide-ko .p-ko{
+  color: transparent;
+  background: rgba(15,23,42,0.10);
+  border-radius: 8px;
+  user-select:none;
+}
+
+/* ===========================
+   PRIMARY BUTTON SYSTEM
+   (검색 / 글쓰기 / 등록 통일)
+=========================== */
+
+.btn-primary{
+  background: linear-gradient(135deg,#60a5fa,#3b82f6) !important;
+  border: none !important;
+  color: #ffffff !important;
+
+  font-weight: 800;
+  border-radius: 14px;
+  padding: 10px 18px;
+
+  box-shadow: 0 12px 24px rgba(59,130,246,0.20);
+  transition: all .18s ease;
+  cursor: pointer;
+}
+
+/* hover */
+.btn-primary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(59,130,246,0.28);
+}
+
+/* 클릭 느낌 */
+.btn-primary:active{
+  transform: translateY(0);
+  box-shadow: 0 8px 16px rgba(59,130,246,0.20);
+}
+
+/* a 태그 버튼도 완벽 적용 */
+a.btn-primary{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.field-msg.good { color:#16a34a; font-weight:800; }
+.field-msg.bad  { color:#dc2626; font-weight:800; }
+ /* =========================
+   Words Detail 전용 즐겨찾기 버튼(테이블)
+   - 전역 fav-btn 덮어쓰기 방지
+========================= */
+.phrase-list table .fav-btn{
+  width:44px;
+  height:34px;
+  border-radius:10px;
+  border:1px solid rgba(15,23,42,.10);
+  background:#fff;
+  cursor:pointer;
+  font-weight:900;
+}
+.phrase-list table .fav-btn.on{
+  background:#fff7ed;
+  border-color: rgba(249,115,22,.35);
+}
+
+.mp-stats{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap:10px;
+}
+@media (max-width: 520px){
+  .mp-stats{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+.seo-intro{
+  margin: 10px 0 18px;
+  line-height: 1.6;
+  opacity: .9;
+  font-size: 0.98rem;
+}
+
+/* =========================
+   TOPBAR (정렬 고정 완성본)
+========================= */
+
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,.88);
+  border-bottom: 1px solid rgba(15,23,42,.12);
+}
+
+.topbar-inner{
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 12px 18px;
+
+  display: grid;
+   grid-template-columns: 70px 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+/* 가운데 메뉴 */
+.nav{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+}
+.nav a{
+  text-decoration:none;
+  color: rgba(15,23,42,0.65);
+  font-weight:900;
+  padding:10px 10px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  height:44px;
+}
+.nav a:hover{ background: rgba(59,130,246,0.06); }
+.nav a.active{ color:#0f172a; background: rgba(59,130,246,0.10); }
+
+/* 오른쪽 영역: 한 줄 고정 */
+.topbar-right{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:12px;
+  white-space:nowrap;
+  flex-wrap:nowrap;
+}
+
+/* 알림 드롭다운 위치 */
+.notif-wrap{ position:relative; }
+.notif-btn{
+  height:44px;
+  padding:0 12px;
+  border-radius:14px;
+}
+.pill{ margin-left:8px; }
+
+/* 드롭다운 박스는 기존 스타일 유지하되 클래스화 */
+.notif-box{
+  position:absolute;
+  right:0;
+  top:52px;
+  width:360px;
+  z-index:1000;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  padding:12px;
+  box-shadow:0 10px 30px rgba(16,24,40,.12);
+}
+.notif-head{ display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px; }
+.notif-list{ display:flex; flex-direction:column; gap:8px; }
+.notif-foot{ margin-top:10px; }
+
+/* auth 한 줄 */
+.auth{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:nowrap;
+}
+
+/* 닉네임 + 관리자칩도 한 줄 */
+.user-inline{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* 닉네임(44px 통일) */
+.hello{
+  height:44px;
+  padding:0 12px;
+  display:inline-flex;
+  align-items:center;
+  border-radius:14px;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  font-weight:900;
+}
+
+/* ✅ 관리자/회원관리: 작고 귀엽게 한 줄 */
+.admin-chips{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:nowrap;
+}
+.admin-chip{
+  height:22px;
+  padding:0 8px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.admin-chip.admin{
+  color:#2563eb;
+  background:#eef2ff;
+  border:1px solid rgba(37,99,235,.25);
+}
+.admin-chip.users{
+  color:#0f766e;
+  background:#ecfeff;
+  border:1px solid rgba(13,148,136,.25);
+}
+
+/* 모바일/태블릿: 메뉴 숨기지 말고 2번째 줄로 내리기 + 가로 스크롤 */
+@media (max-width:980px){
+  /* 2줄 레이아웃: (1줄) 로고+우측버튼, (2줄) 메뉴 */
+  .topbar-inner{
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  /* 로고(왼쪽) */
+  .brand{
+    grid-column: 1 / 2;
+    grid-row: 1;
+  }
+
+  /* 로그인/회원가입/알림(오른쪽) */
+  .topbar-right{
+    grid-column: 2 / 3;
+    grid-row: 1;
+  }
+
+  /* ✅ 메뉴를 다시 보이게 */
+  .nav{
+    grid-column: 1 / -1;   /* 두 칸 다 먹게 */
+    grid-row: 2;
+    display: flex !important;
+    justify-content: flex-start;
+    gap: 8px;
+
+    overflow-x: auto;              /* 가로 스크롤 */
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    padding-bottom: 6px;
+  }
+
+  .nav a{
+    flex: 0 0 auto;
+    height: 40px;
+    padding: 8px 10px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  /* (선택) 스크롤바 보기 싫으면 */
+  .nav::-webkit-scrollbar{ height: 6px; }
+}
+
+
+/* =========================
+   LOGO SIZE & POSITION FIX
+========================= */
+
+/* 로고 링크(클릭 영역) */
+.brand{
+  display:flex;
+  align-items:center;          /* ✅ 세로 중앙 */
+  justify-content:flex-start;  /* ✅ 왼쪽 정렬 */
+  gap:10px;
+  height: 56px;                /* ✅ topbar 높이 안에서 안정 */
+  padding-left: 0;             /* ✅ 왼쪽 여백 필요하면 4~6px로 */
+  line-height: 1;              /* ✅ 위로 뜨는 현상 방지 */
+  text-decoration:none;
+}
+
+/* 로고 이미지 */
+.site-logo{
+  width: 110px;                 /* ✅ 로고 적당히 크게(원하면 48도 가능) */
+  height: 110px;
+  display:block;
+  object-fit:contain;
+  border-radius: 12px;
+}
+
+
+/* =========================
+   LOGO ALIGN FIX (강제 정렬)
+========================= */
+
+/* topbar 자체 높이/정렬 기준을 안정화 */
+.topbar-inner{
+  min-height: 72px;          /* ✅ 로고 56px + 패딩에도 흔들림 없게 */
+  align-items: center;
+}
+
+/* 로고를 감싸는 링크/영역이 inline이면 삐뚤어질 수 있어서 강제 */
+.brand,
+.brand:link,
+.brand:visited{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+
+  /* ✅ baseline/line-height 때문에 위로 뜨는 현상 방지 */
+  line-height: 1;
+}
+
+/* 로고 이미지 기본 inline 특성 제거 + 중앙 정렬 */
+.site-logo{
+  display: block;
+  flex: 0 0 auto;
+}
+
+/* 혹시 사이트명 텍스트가 있다면(brand-text) 높이 맞추기 */
+.brand .brand-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.1;
+}
+/* =========================
+   BRAND (로고 + 텍스트 2줄)
+========================= */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:inherit;
+  line-height:1;         /* ✅ baseline 떠보임 방지 */
+  min-width:0;
+}
+
+.brand-text{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:2px;
+  line-height:1.05;
+  min-width:0;
+}
+
+.brand-title{
+  font-weight:1000;
+  font-size:14px;
+  color:#2563eb;
+  letter-spacing:-0.2px;
+}
+
+.brand-subtitle{
+  font-weight:1000;
+  font-size:14px;
+  color:rgba(15,23,42,.92);
+  letter-spacing:-0.2px;
+}
+
+/* =========================
+   TOP NAV: 전부 한 줄 + 노트만 2줄(단어 단위로)
+========================= */
+
+/* ✅ 메뉴 글자가 세로로 쪼개지는 원인 차단 */
+.nav a,
+.nav .nav-txt,
+.nav .nav-txt .t1,
+.nav .nav-txt .t2{
+  word-break: keep-all;     /* ✅ 한글 글자 쪼개서 줄바꿈 금지 */
+  overflow-wrap: normal;    /* ✅ break-word 같은 동작 방지 */
+}
+
+/* ✅ 기본: 모든 메뉴는 한 줄 고정 */
+.nav a{
+  white-space: nowrap;      /* ✅ 줄바꿈 금지 */
+}
+
+/* ✅ 기본: nav-txt는 가로(한 줄) */
+.nav .nav-txt{
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
+  white-space: nowrap;      /* ✅ 줄바꿈 금지 */
+}
+
+/* ✅ 기본: 대부분 메뉴는 t1만 쓰니까 t2는 숨김 */
+.nav .nav-txt .t2{
+  display: none;
+}
+
+/* =========================
+   ✅ 예외: "나만의 학습노트"만 2줄
+========================= */
+
+/* note 링크만 2줄 레이아웃 */
+.nav a[href*="/note"] .nav-txt{
+  display: flex;
+  flex-direction: column;   /* ✅ 위/아래 2줄 */
+  align-items: center;
+  gap: 2px;
+
+  white-space: normal;      /* ✅ 2줄 허용(단, keep-all 때문에 글자쪼개기 X) */
+  min-width: 74px;          /* ✅ 폭을 줘서 '나만의'가 1글자씩 세로로 안 떨어지게 */
+}
+
+/* note는 t2도 보여줌 */
+.nav a[href*="/note"] .nav-txt .t2{
+  display: block;
+}
+
+/* note의 각 줄은 '단어 통째로' 한 줄 고정 */
+.nav a[href*="/note"] .nav-txt .t1,
+.nav a[href*="/note"] .nav-txt .t2{
+  white-space: nowrap;      /* ✅ '나만의' / '학습노트' 각각 한 줄 */
+  font-size: 14px;
+  line-height: 1.05;
+}
+
+/* =========================
+   USER BLOCK (오른쪽 정렬 정돈)
+========================= */
+
+.user-block{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;   /* 오른쪽 정렬 */
+  gap:6px;
+}
+
+/* 닉네임 + 로그아웃 가로줄 */
+.user-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* 관리자 버튼 줄 */
+.admin-chips.under{
+  display:flex;
+  gap:6px;
+}
+
+/* 버튼들이 줄 폭 튀지 않게 */
+.admin-chip{
+  white-space: nowrap;
+}
+/* =========================
+   RIGHT AUTH: 일반회원 줄은 "메뉴와 같은 높이"로 정렬
+   관리자 칩은 작게 + 아래에 살짝 붙이기
+========================= */
+
+/* 전체 묶음: 오른쪽 정렬 */
+.user-block{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap:4px; /* ✅ 아래칩과 간격 최소화 */
+}
+
+/* ✅ 일반회원이 보는 줄(닉네임 + 로그아웃) = 메뉴 높이(44px)로 맞춤 */
+.user-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  height:44px;            /* ✅ 메뉴 링크 높이와 동일 */
+}
+
+/* 닉네임 박스(hello)가 너무 커 보이면 살짝 "메뉴 느낌"으로 */
+.hello{
+  height:44px;
+  padding:0 10px;
+  border-radius:14px;
+  background: transparent;   /* ✅ 카드처럼 붕 뜨는 느낌 제거 */
+  border:1px solid rgba(15,23,42,0.10);
+}
+
+/* 로그아웃 버튼도 메뉴 높이 맞춤 */
+.user-top .btn{
+  height:44px;
+  display:inline-flex;
+  align-items:center;
+  padding:0 10px;
+  border-radius:14px;
+}
+
+/* =========================
+   ✅ 관리자/회원관리: 더 작게 + 갭 줄이기
+========================= */
+.admin-chips.under{
+  display:flex;
+  align-items:center;
+  gap:6px;                 /* ✅ 간격 축소 */
+  margin-top:-6px;         /* ✅ 위 줄에 더 붙여서 폭/높이 튀는 느낌 감소 */
+}
+
+/* 관리자 칩 크기 줄이기 */
+.admin-chips.under .admin-chip{
+  height:20px;             /* ✅ 작게 */
+  padding:0 8px;
+  font-size:11px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+.hello{
+  background: transparent;
+  border: none;
+}
+/* =========================
+   MYPAGE: Admin Panel (ADDED)
+========================= */
+.admin-panel{
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(15,23,42,0.12);
+  border-radius: 18px;
+  padding: 14px 14px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+}
+
+.admin-panel-title{
+  font-weight: 1000;
+  font-size: 14px;
+  color: rgba(15,23,42,0.78);
+  margin-bottom: 10px;
+}
+
+.admin-panel-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
+.admin-panel-actions .btn{
+  height: 40px;
+  border-radius: 12px;
+  padding: 0 14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* 로그인/회원가입 정렬 통일 */
+
+.auth .btn-ghost{
+  border:1px solid #d0d5dd;
+  padding:8px 14px;
+  border-radius:12px;
+  font-weight:600;
+  background:#fff;
+}
+
+.auth .btn-ghost:hover{
+  background:#f4f6fb;
+}
+
+/* 회원가입 강조 유지 */
+.auth .btn-primary{
+  padding:8px 16px;
+  border-radius:12px;
+  font-weight:700;
+}
+.auth .btn-ghost{
+  border:none;
+  background:transparent;
+  font-weight:600;
+}
+/* =========================
+   LOGIN PAGE - 버튼 꾸미기
+   (로그인 폼 안 버튼/링크 통일)
+   ========================= */
+
+/* 로그인 카드(폼) 안에서 버튼 줄 찾기: 보통 form 내부 마지막 줄 */
+form .btn,
+form a.btn,
+form button,
+form a {
+  border-radius: 12px;
+}
+
+/* 로그인 폼 안 "버튼들만" 예쁘게 정렬되게
+   - 로그인/회원가입/비번찾기 줄이 보통 form 안에 붙어있어서 form 기준으로 적용 */
+form .btn,
+form a.btn,
+form button.btn,
+form a.btn-ghost,
+form a.btn-primary {
+  height: 38px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1;
+  gap: 6px;
+}
+
+/* ✅ 메인(로그인) 버튼 - 파란색 */
+form .btn-primary,
+form button.btn-primary {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+}
+form .btn-primary:hover,
+form button.btn-primary:hover {
+  filter: brightness(0.97);
+}
+
+/* ✅ 보조(회원가입/비밀번호찾기) 버튼 - 아웃라인 */
+form .btn-ghost,
+form a.btn-ghost {
+  background: #fff;
+  color: #111827;
+  border-color: #d0d5dd;
+}
+form .btn-ghost:hover,
+form a.btn-ghost:hover {
+  background: #f4f6fb;
+}
+
+/* ✅ 링크가 "그냥 a태그"로 되어있는 경우를 대비
+   로그인 폼 안에서, 버튼 줄에 있는 a태그를 버튼처럼 보이게 */
+form .actions a,
+form .btn-row a,
+form .form-actions a,
+form a[href*="register"],
+form a[href*="forgot"],
+form a[href*="reset"] {
+  height: 38px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 12px;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+  color: #111827;
+  text-decoration: none;
+  margin-left: 8px;
+}
+form .actions a:hover,
+form .btn-row a:hover,
+form .form-actions a:hover,
+form a[href*="register"]:hover,
+form a[href*="forgot"]:hover,
+form a[href*="reset"]:hover {
+  background: #f4f6fb;
+}
+
+/* 버튼들 간격/줄맞춤(혹시 붙어보이면) */
+form .actions,
+form .btn-row,
+form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+/* =========================
+   Unified button system
+   ========================= */
+
+.btn {
+  height: 42px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid #d7deee;
+  background: #fff;
+  color: #344054;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.btn:hover {
+  background: #f4f7ff;
+}
+
+.btn-primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #1e4fd8;
+}
+
+.btn-danger {
+  background: #f04438;
+  border-color: #f04438;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #d92d20;
+}
+
+/* 작은 버튼도 동일 비율 */
+.btn-sm {
+  height: 34px;
+  font-size: 13px;
+  padding: 0 12px;
+  border-radius: 10px;
+}
+/* PC 기준 화면 폭 (네 사이트 구조상 1100이 딱 맞아 보임) */
+:root {
+  --pcw: 1100px;
+}
+
+/* ===== 모바일 반응형 ===== */
+@media (max-width: 768px) {
+
+  body {
+    padding: 0;
+  }
+
+  .container, 
+  .content, 
+  .main-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px;
+  }
+
+  /* 카드들 세로 정렬 */
+  .card-grid,
+  .menu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* 이미지 자동 줄이기 */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 문제 화면 폭 조정 */
+  .quiz-box,
+  .dialog-box {
+    width: 100% !important;
+  }
+
+  /* 버튼 크기 터치용 확대 */
+  button {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+
+  /* 상단 메뉴 줄바꿈 */
+  .nav {
+    flex-wrap: wrap;
+  }
+
+  .nav a {
+    margin: 6px;
+  }
+
+}
+/* =========================
+   MOBILE FIX (PC 유지 + 모바일 자연 반응형)
+   - #app-scale 강제 스케일링 제거 후 사용
+========================= */
+
+/* 공통: 컨테이너는 화면을 넘지 않게 */
+.page,
+.quiz-wrap,
+.today-wrap, .menu-wrap{
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* 이미지/카드가 뚫고 나가는 문제 방지 */
+img, video, canvas{
+  max-width: 100%;
+  height: auto;
+}
+
+/* 퀴즈 페이지: 모바일에서 패딩/폰트/카드 정리 */
+@media (max-width: 768px){
+
+  .page{ padding: 14px; }
+
+  .quiz-wrap{
+    padding: 16px 14px 40px;
+  }
+
+  .quiz-title{
+    font-size: 22px;
+    line-height: 1.2;
+  }
+  .quiz-sub{
+    font-size: 13px;
+  }
+
+  /* 네가 이미 900px에서 1열로 바꾸고 있는데,
+     모바일에선 gap/여백을 더 줄여서 꽉 차게 */
+  .quiz-grid{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* 문제 카드/본문이 화면 꽉 차게 */
+  .today-card,
+  .hero-card,
+  .s-card,
+  .phrase-card,
+  .board-wrap{
+    border-radius: 16px;
+  }
+
+  /* 퀴즈 이미지가 너무 크거나 좌우 여백 생기면 이걸로 정리 */
+  .quiz-hero,
+  .game-card,
+  .dialog-translation{
+    width: 100%;
+  }
+
+  /* 오늘의 회화 표(행) */
+  .today-box .row{
+    grid-template-columns: 80px 1fr;
+  }
+  .tts-btn{
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  /* 메뉴 그리드: 이미 680에서 2열인데,
+     모바일에선 카드 패딩을 살짝 줄여서 보기 좋게 */
+  .menu-card{
+    padding: 14px 12px;
+    min-height: 84px;
+  }
+}
+/* #app-scale을 썼다면: 모바일에서 스케일/고정폭 무력화 */
+@media (max-width: 768px){
+  #app-scale{
+    transform: none !important;
+    zoom: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+/* ✅ 로고 영역만 조금 넓히기 (가운데 메뉴/오른쪽 영역은 그대로) */
+.topbar-inner{
+  grid-template-columns: 110px 1fr auto; /* 70 -> 110 */
+}
+
+/* 모바일에서는 너무 커지지 않게 */
+@media (max-width: 768px){
+  .topbar-inner{
+    grid-template-columns: 78px 1fr auto;
+  }
+}
+/* =========================
+   게시판 모바일 최적화
+   ========================= */
+@media (max-width: 768px){
+
+  /* 테이블 폭 문제 방지 */
+  .board-wrap table{
+    width:100%;
+    table-layout: fixed;
+  }
+
+  /* 제목 컬럼 넓히기 */
+  .board-wrap td.title,
+  .board-wrap th.title{
+    width: 100%;
+  }
+
+  /* 모바일에서 중요도 낮은 컬럼 숨기기 */
+  .board-wrap th.num,
+  .board-wrap td.num,
+  .board-wrap th.recommend,
+  .board-wrap td.recommend,
+  .board-wrap th.view,
+  .board-wrap td.view{
+    display:none;
+  }
+
+  /* 작성자는 작게 유지 */
+  .board-wrap th.author,
+  .board-wrap td.author{
+    width: 80px;
+    font-size: 12px;
+    color:#666;
+  }
+
+  /* 제목 줄바꿈 자연스럽게 */
+  .board-wrap td.title{
+    white-space: normal;
+    word-break: break-word;
+    font-size: 15px;
+    line-height: 1.3;
+  }
+}
+/* ===== Board (일반게시판) : Mobile Fix ===== */
+@media (max-width: 768px){
+
+  /* 테이블은 그대로 두되, 모바일에서 불필요 컬럼 숨겨서 제목 칸 확보 */
+  .board-table col:nth-child(4),
+  .board-table col:nth-child(5),
+  .board-table col:nth-child(6){
+    display:none;
+  }
+
+  /* th/td도 같이 숨김: 추천/조회/등록일 */
+  .board-table th:nth-child(4),
+  .board-table td:nth-child(4),
+  .board-table th:nth-child(5),
+  .board-table td:nth-child(5),
+  .board-table th:nth-child(6),
+  .board-table td:nth-child(6){
+    display:none;
+  }
+
+  /* 번호/작성자 폭 줄여서 제목 공간 더 확보 */
+  .board-table col:nth-child(1){ width:56px !important; }
+  .board-table col:nth-child(3){ width:120px !important; }
+
+  /* 셀 패딩도 조금 줄이기 */
+  .board-table th,
+  .board-table td{
+    padding:10px 10px;
+  }
+
+  /* 제목을 1줄 말고 2줄까지 보이게 */
+  .title-link{
+    white-space:normal !important;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+
+  /* 작성자 영역 뭉침 방지 */
+  .author-box{
+    gap:6px;
+  }
+  .pill{
+    flex:0 0 auto;
+  }
+}
+/* 홈: 오늘의 회화 ↔ 학습메뉴 사이 간격 */
+.today-card{
+  margin-bottom: 26px;  /* 원하는 만큼 조절 */
+}
+.result-link{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  background:#eef2ff;
+  border:1px solid rgba(99,102,241,.25);
+  color:#4338ca;
+  font-weight:800;
+  font-size:13px;
+  text-decoration:none;
+  transition:.15s ease;
+}
+
+.result-link:hover{
+  background:#e0e7ff;
+  box-shadow:0 4px 12px rgba(99,102,241,.25);
+  transform:translateY(-1px);
+}
+
+.flash-wrap {
+    margin: 14px 0;
+}
+
+.flash {
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 500;
+    animation: flashFade 0.4s ease;
+}
+
+/* 성공 메시지 */
+.flash.success {
+    background: #ecfdf3;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.12);
+}
+
+/* 에러 메시지 */
+.flash.error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.12);
+}
+
+@keyframes flashFade {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ✅ 스샷 느낌 카드 */
+.wcard{
+  background:#fff;
+  border:1px solid rgba(15,23,42,.08);
+  border-radius:18px;
+  padding:16px;
+  box-shadow:0 6px 18px rgba(15,23,42,.06);
+}
+
+.wcard-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.wtitle{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:-0.3px;
+  margin:0;
+}
+
+.wmeta{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#6b7280;
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.wpill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:34px;
+  height:26px;
+  padding:0 10px;
+  border-radius:999px;
+  background:#f1f5ff;
+  border:1px solid rgba(37,99,235,.18);
+  color:#1d4ed8;
+  font-weight:900;
+  font-size:12px;
+}
+.wpill.small{
+  height:24px;
+  min-width:32px;
+  padding:0 10px;
+  font-size:12px;
+}
+
+/* 리스트(스샷처럼 버튼 2~3개 들어갈 자리) */
+.wlist{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.witem{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius:14px;
+  background:#f8fafc;
+  border:1px solid rgba(15,23,42,.08);
+  text-decoration:none;
+  color:#0f172a;
+  font-weight:900;
+  transition: background .12s ease, border-color .12s ease, transform .08s ease, box-shadow .12s ease;
+}
+.witem:hover{
+  background:#fff;
+  border-color: rgba(37,99,235,.20);
+  box-shadow:0 8px 18px rgba(37,99,235,.10);
+  transform: translateY(-1px);
+}
+
+.wdot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background: rgba(37,99,235,.90);
+  box-shadow:0 0 0 4px rgba(37,99,235,.12);
+  flex:0 0 auto;
+}
+
+.witem-text{
+  flex:1;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.whint{
+  margin-top:12px;
+  color:#94a3b8;
+  font-size:12px;
+  font-weight:800;
+}
+.wdesc{
+  margin: 6px 0 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #475569;
+  font-weight: 700;
+}
+.footer-sub{
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(51,65,85,.55);
+}
+
+/* 모바일에서는 더 작게 */
+@media (max-width: 768px){
+  .footer-sub{
+    font-size: 11px;
+    color: rgba(51,65,85,.5);
+  }
+}
+.intro-box {
+  margin: 20px auto;
+  padding: 20px 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(15,23,42,0.08);
+  box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+}
+
+
+.intro-box h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.intro-box p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+}
+/* =========================
+   Tone Up - Bright Premium
+   밝은 느낌 유지 + 고급 세련 톤 업
+========================= */
+
+:root{
+  --bg: #f5f7ff;
+  --card: rgba(255,255,255,0.96);
+  --stroke: rgba(128, 144, 174, 0.22);
+  --stroke-strong: rgba(128, 144, 174, 0.34);
+
+  --text: #1b2434;
+  --muted: rgba(27, 36, 52, 0.62);
+
+  --primary: #4c7df3;
+  --primary-soft: rgba(76, 125, 243, 0.10);
+
+  --shadow-soft: 0 8px 24px rgba(31, 41, 55, 0.05);
+  --shadow-card: 0 14px 34px rgba(31, 41, 55, 0.07);
+  --shadow-hover: 0 18px 38px rgba(31, 41, 55, 0.10);
+}
+
+/* 전체 배경은 지금 느낌 유지, 더 맑게 */
+html, body{
+  background:
+    radial-gradient(1100px 520px at 20% 0%, rgba(130,150,255,0.10), transparent 60%),
+    radial-gradient(900px 480px at 82% 8%, rgba(170,190,255,0.08), transparent 55%),
+    linear-gradient(180deg, #f6f8ff 0%, #f2f5ff 52%, #f7f9ff 100%);
+  color: var(--text);
+}
+
+/* 상단바: 밝고 고급스럽게 */
+.topbar{
+  background: rgba(255,255,255,0.82);
+  border-bottom: 1px solid rgba(140, 154, 180, 0.20);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+  backdrop-filter: blur(14px);
+}
+
+/* 로고 텍스트 살짝 정제 */
+.brand-title{
+  color: #3f6fe6;
+}
+.brand-subtitle{
+  color: #1f2937;
+}
+
+/* 메뉴 */
+.nav a{
+  color: rgba(27,36,52,0.68);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  transition: all .18s ease;
+}
+
+.nav a:hover{
+  color: #22314d;
+  background: rgba(255,255,255,0.72);
+  border-color: rgba(140,154,180,0.18);
+  box-shadow: 0 8px 18px rgba(15,23,42,0.05);
+}
+
+.nav a.active{
+  color: #1f2f4e;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(245,248,255,0.96));
+  border: 1px solid rgba(140,154,180,0.24);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 8px 18px rgba(15,23,42,0.06);
+}
+
+/* 공통 카드 */
+.hero-card,
+.today-card,
+.daily-card,
+.quick,
+.menu-card,
+.board-wrap,
+.intro-box,
+.wcard{
+  background: rgba(255,255,255,0.96) !important;
+  border: 1px solid rgba(140,154,180,0.18) !important;
+  box-shadow: var(--shadow-card);
+}
+
+/* 카드 hover */
+.quick:hover,
+.menu-card:hover,
+.witem:hover{
+  border-color: rgba(76,125,243,0.18) !important;
+  box-shadow: var(--shadow-hover);
+}
+
+/* 홈 큰 타이틀 */
+.hero-title,
+.today-title{
+  color: #182132;
+  letter-spacing: -0.8px;
+}
+
+.hero-sub,
+.today-sub,
+.q-sub,
+.menu-desc,
+.page-guide,
+.page-head p{
+  color: rgba(27,36,52,0.60) !important;
+}
+
+/* 내부 구분선 */
+.line,
+.today-box .row,
+.board-row{
+  border-color: rgba(140,154,180,0.14) !important;
+}
+
+/* 버튼 공통: 흰색 고급 버튼 */
+.btn,
+.tts-btn,
+.speak-btn,
+.back-btn{
+  background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+  border: 1px solid rgba(140,154,180,0.22);
+  color: #24324a;
+  box-shadow: 0 6px 16px rgba(15,23,42,0.05);
+  transition: all .18s ease;
+}
+
+.btn:hover,
+.tts-btn:hover,
+.speak-btn:hover,
+.back-btn:hover{
+  border-color: rgba(76,125,243,0.24);
+  box-shadow: 0 10px 20px rgba(15,23,42,0.08);
+  transform: translateY(-1px);
+}
+
+/* 메인 파란 버튼: 너무 쨍하지 않게 고급 톤 */
+.btn-primary,
+a.btn-primary,
+.write-btn,
+.submit-btn,
+button[type="submit"]{
+  background: linear-gradient(135deg, #5f8ef7 0%, #4c7df3 100%) !important;
+  border: 1px solid rgba(76,125,243,0.18) !important;
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(76,125,243,0.22);
+}
+
+.btn-primary:hover,
+a.btn-primary:hover,
+.write-btn:hover,
+.submit-btn:hover,
+button[type="submit"]:hover{
+  background: linear-gradient(135deg, #5686f2 0%, #406fe8 100%) !important;
+  box-shadow: 0 14px 28px rgba(76,125,243,0.26);
+}
+
+/* 로그인 버튼은 더 고급스럽게 절제 */
+.auth .btn-ghost{
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(140,154,180,0.20);
+  color: #2c3b55;
+}
+
+/* 게시판 헤더 */
+.board-head{
+  background: linear-gradient(180deg, rgba(250,251,255,0.98), rgba(244,247,255,0.98));
+  border-bottom: 1px solid rgba(140,154,180,0.16);
+  color: rgba(27,36,52,0.62);
+}
+
+/* 뱃지/칩 */
+.grade,
+.wpill,
+.menu-badge,
+.admin-chip.admin,
+.admin-chip.users{
+  border-color: rgba(76,125,243,0.16) !important;
+  background: rgba(76,125,243,0.07) !important;
+  color: #355fcb !important;
+}
+
+/* 푸터도 너무 흐리지 않게 */
+.footer{
+  background: rgba(255,255,255,0.76);
+  border-top: 1px solid rgba(140,154,180,0.18);
+}
