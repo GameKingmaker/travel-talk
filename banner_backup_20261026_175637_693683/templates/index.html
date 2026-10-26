@@ -1,0 +1,1449 @@
+{% extends "base.html" %}
+
+{# ✅ SEO (홈) #}
+{% set page_title = "일본 여행 회화 공부방 | 상황별 회화 · 단어 · 퀴즈로 배우기" %}
+{% set page_desc = "일본 여행을 위한 필수 회화와 단어를 상황별로 쉽고 재미있게 학습하세요. 퀴즈 게임과 학습노트로 빠르게 일본어를 익힐 수 있는 무료 공부방입니다." %}
+{% set page_robots = "index,follow" %}
+
+{% block content %}
+
+{# ✅ daily가 없을 때도 깨지지 않게 안전 기본값 #}
+{% set d = daily if daily is defined and daily else {"jp":"", "pron":"", "ko":""} %}
+
+<title>{{ seo_title }}</title>
+<meta name="description" content="일본어 회화와 JLPT N5~N1 시험 공부를 무료로 할 수 있는 일본어 학습 사이트입니다. 상황별 일본어 회화, 단어, 문법, 퀴즈, 여행 일본어 표현을 제공합니다.">
+<meta name="keywords" content="{{ seo_keywords }}">
+
+<style>
+  :root{
+    --line-soft:#dfe5ef;
+    --line-mid:#cfd7e4;
+    --line-deep:#bcc7d8;
+    --text-main:#111827;
+    --text-sub:#5f6b7b;
+    --card-top-1:#fffefd;
+    --card-top-2:#f8f7f3;
+    --gold-1:#e2d6c6;
+    --gold-2:#cbb79a;
+    --gold-3:#b4946c;
+    --blue-1:#5f8ef7;
+    --blue-2:#4c7df3;
+  }
+
+  /* ===== 상단 메뉴/버튼 톤 업 ===== */
+  .topbar{
+    background: rgba(255,255,255,0.84) !important;
+    border-bottom: 1px solid rgba(189, 198, 214, 0.55) !important;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .topbar-inner{
+    position: relative;
+  }
+
+  .topbar-inner::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-1px;
+    height:1px;
+    background: linear-gradient(90deg, rgba(0,0,0,0), rgba(191, 198, 210, 0.55), rgba(0,0,0,0));
+    pointer-events:none;
+  }
+
+  .nav a{
+    position: relative;
+    color: #4b5563 !important;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    padding: 10px 12px !important;
+    transition: all .18s ease;
+  }
+
+  .nav a:hover{
+    color: #1f2937 !important;
+    background: rgba(255,255,255,0.78);
+    border-color: rgba(193, 201, 213, 0.55);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+  }
+
+  .nav a.active{
+    color: #1f2937 !important;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(246,248,252,0.96));
+    border-color: rgba(193, 201, 213, 0.62);
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.06);
+  }
+
+  .auth .btn,
+  .auth a.btn,
+  .auth button{
+    border-radius: 16px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.2px;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+    transition: all .18s ease;
+  }
+
+  .auth .btn:not(.btn-primary),
+  .auth a:not(.btn-primary){
+    background: linear-gradient(180deg, #ffffff 0%, #f4f7fb 100%) !important;
+    border: 1px solid rgba(196, 203, 214, 0.72) !important;
+    color: #24324a !important;
+  }
+
+  .auth .btn:not(.btn-primary):hover,
+  .auth a:not(.btn-primary):hover{
+    border-color: rgba(164, 178, 200, 0.8) !important;
+    box-shadow: 0 12px 22px rgba(15, 23, 42, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .auth .btn-primary,
+  .auth a.btn-primary{
+    background: linear-gradient(135deg, var(--blue-1) 0%, var(--blue-2) 100%) !important;
+    border: 1px solid rgba(76,125,243,0.18) !important;
+    color: #fff !important;
+    box-shadow: 0 12px 26px rgba(76,125,243,0.22) !important;
+  }
+
+  .auth .btn-primary:hover,
+  .auth a.btn-primary:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px rgba(76,125,243,0.26) !important;
+  }
+
+  body{
+    background:
+      radial-gradient(circle at 10% 0%, rgba(226, 232, 255, 0.35) 0%, rgba(226,232,255,0) 32%),
+      radial-gradient(circle at 90% 10%, rgba(245, 239, 228, 0.35) 0%, rgba(245,239,228,0) 30%),
+      linear-gradient(180deg, #f7f9ff 0%, #f1f4fb 100%);
+  }
+
+  .home-wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 22px 18px 56px;
+  }
+
+  .home-card{
+    background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+    border: 1px solid #e5eaf3;
+    border-radius: 24px;
+    box-shadow: 0 16px 38px rgba(15, 23, 42, 0.06);
+  }
+
+  /* ===== 상단 소개 박스 ===== */
+  .hero-info{
+    position: relative;
+    padding: 0;
+    margin-bottom: 22px;
+    border-radius: 34px;
+    overflow: hidden;
+    border: 1px solid rgba(210, 217, 228, 0.8);
+    box-shadow:
+      0 26px 60px rgba(15, 23, 42, 0.10),
+      0 10px 24px rgba(249, 115, 22, 0.06);
+    background: transparent;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-top{
+    position: relative;
+    padding: 54px 34px 48px;
+    text-align: center;
+    background:
+      radial-gradient(circle at 15% 15%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 40%),
+      radial-gradient(circle at 85% 10%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 35%),
+      linear-gradient(180deg,#f7f3ea 0%,#f1eadc 100%);
+    color:#1f2937;
+  }
+
+  .hero-top::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(255,255,255,0));
+    pointer-events:none;
+  }
+
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:36px;
+    padding:0 14px;
+    border-radius:999px;
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    color:#374151;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:18px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.05);
+  }
+
+  .hero-title{
+    margin: 0;
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: -1.15px;
+    font-weight: 900;
+    color:#111111;
+  }
+
+  .hero-title::after{
+    content:"";
+    display:block;
+    width:80px;
+    height:3px;
+    margin:18px auto 0;
+    background:#d6cfc2;
+    border-radius:2px;
+  }
+
+  .hero-lead{
+    max-width: 760px;
+    margin: 18px auto 0;
+    font-size: 17px;
+    line-height: 1.9;
+    color:#374151;
+  }
+
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 900px;
+    margin: 30px auto 0;
+  }
+
+  .hero-panel{
+    padding:22px 20px 20px;
+    border-radius:22px;
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    box-shadow:0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  .hero-panel h3{
+    color:#111827;
+  }
+
+  .hero-panel p,
+  .hero-highlight .v,
+  .hero-list li{
+    word-break: keep-all;
+  }
+
+  .hero-list{
+    color:#374151;
+  }
+
+  .hero-list li{
+    margin: 2px 0;
+  }
+
+  /* ===== 아래 하이라이트 영역 ===== */
+  .hero-highlight-wrap{
+    position: relative;
+    padding: 46px 30px 34px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 34%),
+      linear-gradient(180deg, #232428 0%, #17181c 100%);
+  }
+
+  .hero-highlight-wrap::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .hero-highlight-head{
+    text-align:center;
+    margin-bottom: 24px;
+  }
+
+  .hero-highlight-eyebrow{
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.64);
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+
+  .hero-highlight-title{
+    margin: 0;
+    font-size: 34px;
+    line-height: 1.25;
+    font-weight: 900;
+    letter-spacing: -0.9px;
+    color: #fff;
+  }
+
+  .hero-highlight{
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap:18px;
+    align-items:stretch;
+  }
+
+  .hero-highlight .item{
+    position:relative;
+    min-height: 220px;
+    padding: 24px 22px 22px;
+    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow:
+      0 14px 30px rgba(0,0,0,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+    backdrop-filter: blur(8px);
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+
+  .hero-highlight .item:hover{
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.14);
+    box-shadow:
+      0 22px 42px rgba(0,0,0,0.24),
+      0 0 0 1px rgba(255,255,255,0.03) inset;
+  }
+
+  .hero-highlight .item::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:22px;
+    right:22px;
+    height:1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,210,120,0.55), rgba(255,255,255,0));
+  }
+
+  .hero-highlight .k{
+    display:inline-flex;
+    align-items:center;
+    min-height: 32px;
+    padding: 0 11px;
+    border-radius: 999px;
+    background: rgba(255, 196, 87, 0.10);
+    border: 1px solid rgba(255, 196, 87, 0.22);
+    font-size: 12px;
+    color: #ffd978;
+    font-weight: 900;
+    letter-spacing: -0.1px;
+    margin-bottom: 16px;
+  }
+
+  .hero-highlight .v{
+    font-size: 18px;
+    line-height: 1.8;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.28px;
+    word-break: keep-all;
+  }
+
+  .content-section{
+    margin-bottom: 24px;
+  }
+
+  .today-wrap{
+    margin-bottom: 28px;
+  }
+
+  .content-section,
+  .today-wrap{
+    width: 100%;
+  }
+
+  .hero-info,
+  .today-card,
+  .menu-wrap{
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  /* ===== 오늘의 회화 카드 ===== */
+  .today-card{
+    position: relative;
+    background: linear-gradient(180deg, #fffefd 0%, #f8f6f1 100%);
+    border: 1.5px solid #d7dcd6;
+    border-radius: 30px;
+    box-shadow:
+      0 18px 40px rgba(15, 23, 42, 0.06),
+      inset 0 1px 0 rgba(255,255,255,0.92);
+    padding: 24px 24px 26px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .today-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:4px;
+    background: linear-gradient(90deg, #dfd4c3 0%, #cdb79c 50%, #b99870 100%);
+  }
+
+  .today-title{
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.3;
+    font-weight: 900;
+    letter-spacing: -0.45px;
+    color: #111827;
+  }
+
+  .today-sub{
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.7;
+  }
+
+  .today-box{
+    margin-top: 18px;
+    border-radius: 22px;
+    border: 1.5px solid #d4dae3;
+    background: linear-gradient(180deg, #fcfcfb 0%, #f4f5f6 100%);
+    overflow: hidden;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.82),
+      0 4px 12px rgba(15, 23, 42, 0.03);
+  }
+
+  .today-box .row{
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 17px 18px;
+    border-bottom: 1.5px solid #d7dde5;
+  }
+
+  .today-box .row:last-child{
+    border-bottom: none;
+  }
+
+  .today-box .label{
+    font-size: 15px;
+    font-weight: 900;
+    color: #3f4855;
+  }
+
+  .today-box .value{
+    font-size: 17px;
+    line-height: 1.8;
+    color: #111827;
+    font-weight: 700;
+    word-break: keep-all;
+  }
+
+  .tts-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 108px;
+    height: 42px;
+    padding: 0 15px;
+    border-radius: 999px;
+    border: 1.5px solid #cfd6df;
+    background: linear-gradient(180deg, #ffffff 0%, #eef1f4 100%);
+    color: #111827;
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow:
+      0 8px 18px rgba(15, 23, 42, 0.06),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+
+  .tts-btn:hover{
+    transform: translateY(-1px);
+    border-color: #bfc8d3;
+    box-shadow:
+      0 12px 22px rgba(15, 23, 42, 0.08),
+      inset 0 1px 0 rgba(255,255,255,0.95);
+  }
+
+  .intro-box{
+    margin-top: 16px;
+    padding: 18px 18px 16px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #f7f8fa 0%, #f1f3f6 100%);
+    border: 1.5px solid #d5dbe4;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.84);
+  }
+
+  .intro-box p{
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.85;
+    color: #556070;
+  }
+
+  .intro-box p + p{
+    margin-top: 8px;
+  }
+
+  /* ===== 메뉴 섹션 ===== */
+  .menu-wrap{
+    width: 100%;
+    max-width: 1000px;
+    margin: 12px auto 0;
+    box-sizing: border-box;
+  }
+
+  .menu-block{
+    position: relative;
+    padding: 28px;
+    border-radius: 30px;
+    border: 1px solid rgba(205, 213, 226, 0.82);
+    background:
+      radial-gradient(circle at 100% 0%, rgba(255,255,255,.92) 0%, rgba(255,255,255,0) 34%),
+      linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(248,250,255,.94) 100%);
+    box-shadow:
+      0 18px 42px rgba(15,23,42,.07),
+      inset 0 1px 0 rgba(255,255,255,.95);
+    overflow: hidden;
+  }
+
+  .menu-block::before{
+    content:"";
+    position:absolute;
+    inset:0 auto 0 0;
+    width:5px;
+    background: linear-gradient(180deg, #d8c8b2 0%, #b79b77 100%);
+  }
+
+  .menu-block.game-menu-block::before{
+    background: linear-gradient(180deg, #8fb1ff 0%, #4f7df3 100%);
+  }
+
+  .menu-block + .menu-block{
+    margin-top: 28px;
+  }
+
+  .menu-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:18px;
+    margin-bottom:20px;
+  }
+
+  .menu-head-main{
+    min-width:0;
+  }
+
+  .menu-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    min-height:30px;
+    padding:0 11px;
+    margin-bottom:9px;
+    border-radius:999px;
+    background:#f5efe6;
+    border:1px solid #e6d9c8;
+    color:#8a6942;
+    font-size:12px;
+    font-weight:900;
+  }
+
+  .game-menu-block .menu-eyebrow{
+    background:#eef3ff;
+    border-color:#d4e0ff;
+    color:#315fca;
+  }
+
+  .menu-eyebrow-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#b4946c;
+    box-shadow:0 0 0 4px rgba(180,148,108,.12);
+  }
+
+  .game-menu-block .menu-eyebrow-dot{
+    background:#4f7df3;
+    box-shadow:0 0 0 4px rgba(79,125,243,.12);
+  }
+
+  .menu-title{
+    margin: 0;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 950;
+    letter-spacing: -0.7px;
+    color: #111827;
+  }
+
+  .menu-sub{
+    margin: 8px 0 0;
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #64748b;
+  }
+
+  .menu-count{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+    min-height:38px;
+    padding:0 14px;
+    border-radius:999px;
+    border:1px solid #ded5c8;
+    background:rgba(255,255,255,.88);
+    color:#6f5b43;
+    font-size:12px;
+    font-weight:900;
+    box-shadow:0 8px 18px rgba(15,23,42,.05);
+  }
+
+  .game-menu-block .menu-count{
+    border-color:#d7e1fb;
+    color:#315fca;
+  }
+
+  .menu-grid{
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .menu-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 190px;
+    padding: 18px 16px 15px;
+    border-radius: 22px;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(255,255,255,.95) 0%, rgba(255,255,255,0) 34%),
+      linear-gradient(180deg, #fffefc 0%, #f7f4ef 100%);
+    border: 1px solid #ddd6cb;
+    box-shadow:
+      0 10px 24px rgba(15,23,42,.05),
+      inset 0 1px 0 rgba(255,255,255,.95);
+    color:inherit;
+    text-decoration: none;
+    overflow: hidden;
+    transition:
+      transform .18s ease,
+      box-shadow .18s ease,
+      border-color .18s ease;
+  }
+
+  .menu-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:4px;
+    background: linear-gradient(90deg, #e1d4c3 0%, #c7b08f 52%, #a9875e 100%);
+  }
+
+  .menu-card::after{
+    content:"›";
+    position:absolute;
+    right:14px;
+    bottom:12px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:rgba(255,255,255,.82);
+    border:1px solid rgba(174,155,129,.28);
+    color:#8a6942;
+    font-size:20px;
+    font-weight:800;
+    line-height:1;
+    transition:transform .18s ease, background .18s ease;
+  }
+
+  .menu-card:hover{
+    transform: translateY(-4px);
+    border-color: #cbbda9;
+    box-shadow:
+      0 18px 34px rgba(15,23,42,.09),
+      inset 0 1px 0 rgba(255,255,255,.96);
+  }
+
+  .menu-card:hover::after{
+    transform:translateX(2px);
+    background:#fff;
+  }
+
+  .menu-card.game-card{
+    background:
+      radial-gradient(circle at 100% 0%, rgba(255,255,255,.96) 0%, rgba(255,255,255,0) 34%),
+      linear-gradient(180deg, #ffffff 0%, #f3f6ff 100%);
+    border-color: #d4def4;
+  }
+
+  .menu-card.game-card::before{
+    background: linear-gradient(90deg, #cbd9ff 0%, #8eafff 52%, #4f7df3 100%);
+  }
+
+  .menu-card.game-card::after{
+    border-color:rgba(79,125,243,.22);
+    color:#3564d3;
+  }
+
+  .menu-card.game-card:hover{
+    border-color:#b9ccf6;
+  }
+
+  .menu-card-inner{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .menu-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:44px;
+    height:44px;
+    margin-bottom:14px;
+    border-radius:14px;
+    background:linear-gradient(180deg,#fff 0%,#f3eee7 100%);
+    border:1px solid #e3d8c9;
+    box-shadow:0 8px 18px rgba(15,23,42,.05);
+    font-size:22px;
+  }
+
+  .game-card .menu-icon{
+    background:linear-gradient(180deg,#fff 0%,#eef3ff 100%);
+    border-color:#d8e2fb;
+  }
+
+  .menu-name{
+    min-height: 48px;
+    margin: 0 0 8px;
+    padding-right:8px;
+    display:flex;
+    align-items:flex-start;
+    color: #0f172a;
+    font-size: 16.5px;
+    line-height: 1.42;
+    font-weight: 950;
+    letter-spacing: -0.32px;
+    word-break: keep-all;
+  }
+
+  .menu-desc{
+    min-height: 48px;
+    margin: 0;
+    padding-right:8px;
+    display:flex;
+    align-items:flex-start;
+    color: #64748b;
+    font-size: 12.8px;
+    line-height: 1.68;
+    letter-spacing: -0.1px;
+    word-break: keep-all;
+  }
+
+  .menu-card-spacer{
+    flex: 1;
+  }
+
+  .menu-card-foot{
+    margin-top:14px;
+    padding-top:11px;
+    border-top:1px solid rgba(148,163,184,.18);
+    color:#8a6942;
+    font-size:11.5px;
+    font-weight:900;
+  }
+
+  .game-card .menu-card-foot{
+    color:#3564d3;
+  }
+
+  /* 빈 상태 메시지 */
+  .today-empty{
+    padding:16px 18px;
+    border:1.5px dashed #cfd6df;
+    border-radius:16px;
+    color:#6b7280;
+    background:#f8f9fb;
+    margin:14px;
+  }
+
+  @media (max-width: 1100px){
+    .menu-grid{
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px){
+    .home-wrap{
+      padding: 16px 14px 36px;
+    }
+
+    .hero-info,
+    .today-card,
+    .menu-wrap{
+      max-width: 100%;
+    }
+
+    .hero-top{
+      padding: 34px 20px 28px;
+    }
+
+    .hero-title{
+      font-size: 30px;
+      line-height: 1.3;
+    }
+
+    .hero-lead{
+      font-size: 15px;
+      line-height: 1.8;
+      margin-top: 14px;
+    }
+
+    .hero-grid{
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .hero-panel{
+      padding: 18px 16px;
+      border-radius: 18px;
+    }
+
+    .hero-panel h3{
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .hero-panel p,
+    .hero-list li{
+      font-size: 14px;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+
+    .hero-highlight-wrap{
+      padding: 28px 18px 22px;
+    }
+
+    .hero-highlight-title{
+      font-size: 26px;
+      line-height: 1.35;
+    }
+
+    .hero-highlight{
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .hero-highlight .item{
+      min-height: auto;
+      padding: 18px 16px;
+      border-radius: 20px;
+    }
+
+    .hero-highlight .v{
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .menu-block{
+      padding:22px 18px;
+      border-radius:24px;
+    }
+
+    .menu-head{
+      align-items:flex-start;
+    }
+
+    .menu-grid{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .menu-card{
+      min-height: 178px;
+    }
+
+    .menu-name{
+      min-height: 44px;
+      font-size: 16px;
+    }
+
+    .menu-desc{
+      min-height: 44px;
+    }
+  }
+
+  @media (max-width: 600px){
+    .home-wrap{
+      padding: 12px 10px 28px;
+    }
+
+    .hero-info{
+      border-radius: 22px;
+      margin-bottom: 18px;
+    }
+
+    .hero-top{
+      padding: 24px 14px 20px;
+    }
+
+    .hero-badge{
+      min-height: 30px;
+      padding: 0 10px;
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+
+    .hero-title{
+      font-size: 24px;
+      line-height: 1.35;
+      letter-spacing: -0.6px;
+    }
+
+    .hero-title::after{
+      width: 54px;
+      margin: 12px auto 0;
+    }
+
+    .hero-lead{
+      font-size: 13.5px;
+      line-height: 1.75;
+      margin-top: 12px;
+    }
+
+    .hero-grid{
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .hero-panel{
+      padding: 14px 12px;
+      border-radius: 16px;
+    }
+
+    .hero-panel h3{
+      font-size: 18px;
+      line-height: 1.45;
+      margin: 0 0 8px;
+    }
+
+    .hero-panel p{
+      font-size: 13.5px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .hero-list{
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .hero-list li{
+      font-size: 13.5px;
+      line-height: 1.65;
+      margin: 3px 0;
+    }
+
+    .hero-highlight-wrap{
+      padding: 22px 12px 18px;
+    }
+
+    .hero-highlight-head{
+      margin-bottom: 14px;
+    }
+
+    .hero-highlight-eyebrow{
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .hero-highlight-title{
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    .hero-highlight{
+      gap: 12px;
+    }
+
+    .hero-highlight .item{
+      padding: 16px 14px;
+      border-radius: 18px;
+    }
+
+    .hero-highlight .k{
+      min-height: 28px;
+      padding: 0 10px;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .hero-highlight .v{
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .today-box .row{
+      grid-template-columns: 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .tts-btn{
+      width: 100%;
+    }
+
+    .menu-block{
+      padding:18px 14px;
+      border-radius:21px;
+    }
+
+    .menu-head{
+      flex-direction:column;
+      align-items:stretch;
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    .menu-title{
+      font-size:24px;
+    }
+
+    .menu-count{
+      align-self:flex-start;
+      min-height:34px;
+    }
+
+    .menu-grid{
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+
+    .menu-card{
+      min-height: 0;
+      padding:15px 14px 14px;
+    }
+
+    .menu-icon{
+      width:40px;
+      height:40px;
+      margin-bottom:11px;
+      border-radius:12px;
+      font-size:20px;
+    }
+
+    .menu-name{
+      min-height: auto;
+      margin-bottom: 6px;
+    }
+
+    .menu-desc{
+      min-height: auto;
+      padding-right:30px;
+    }
+
+    .menu-card-foot{
+      margin-top:12px;
+    }
+  }
+</style>
+
+<div class="home-wrap">
+
+  <section class="content-section">
+    <div class="hero-info">
+
+      <div class="hero-top">
+        <div class="hero-badge">무료 일본어 학습 사이트</div>
+
+        <h1 class="hero-title">일본어 공부방은 이런 사이트예요</h1>
+
+        <p class="hero-lead">
+          일본어 공부방(Japanese Study Room)은 <b>무료로 일본어 회화와 JLPT 시험 공부를 할 수 있는 일본어 학습 사이트</b>입니다.
+          일본어 회화 연습부터 JLPT N5~N1 시험 대비까지 다양한 학습 콘텐츠를 제공하며,
+          초보자부터 중급·고급 학습자까지 누구나 쉽고 편하게 일본어를 공부할 수 있도록 구성되어 있습니다.
+        </p>
+
+        <div class="hero-grid">
+          <div class="hero-panel">
+            <h3>무엇을 공부할 수 있나요?</h3>
+            <p>
+              일본어 공부방은 <b>일본어 회화 공부방</b>과 <b>JLPT 공부방</b> 두 가지 학습 공간을 제공하는 커뮤니티형 일본어 공부 사이트입니다.
+              단순 회화 연습부터 JLPT N5~N1 단어·문장·문법 학습까지, <b>학습 목적에 맞춰 원하는 공부를 선택</b>할 수 있도록 구성되어 있습니다.
+            </p>
+          </div>
+
+          <div class="hero-panel">
+            <h3>제공하는 학습 콘텐츠</h3>
+            <ul class="hero-list">
+              <li>상황별 일본어 회화</li>
+              <li>일본어 단어 학습</li>
+              <li>JLPT N5~N1 시험 대비</li>
+              <li>일본 여행 필수 표현</li>
+              <li>일본어 퀴즈 및 학습 기능</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-highlight-wrap">
+        <div class="hero-highlight-head">
+          <div class="hero-highlight-eyebrow">핵심 학습 기능</div>
+          <h2 class="hero-highlight-title">일본어 공부방에서 가능한 학습</h2>
+        </div>
+
+        <div class="hero-highlight">
+          <div class="item">
+            <div class="k">일본어 회화 공부방</div>
+            <div class="v">공항, 식당, 호텔, 쇼핑, 교통 등 다양한 상황별 표현을 자연스럽게 익힐 수 있어요.</div>
+          </div>
+
+          <div class="item">
+            <div class="k">JLPT 공부방</div>
+            <div class="v">히라가나·가타카나 기초부터 JLPT N5, N4, N3, N2, N1까지 단계별로 학습할 수 있어요.</div>
+          </div>
+
+          <div class="item">
+            <div class="k">학습노트 / 복습 기능</div>
+            <div class="v">단어·문장·문법을 저장해 관리하고, 발음/뜻 가리기 기능으로 빠르게 점검할 수 있어요.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-9733127689125901"
+       crossorigin="anonymous"></script>
+  <!-- content-ad-2 -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9733127689125901"
+       data-ad-slot="5907060346"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+  <!-- ✅ 오늘의 회화 -->
+  <section class="today-wrap">
+    <div class="today-card">
+      <h2 class="today-title">☀️ 오늘의 회화</h2>
+      <p class="today-sub">매일 새로운 문장으로 바뀝니다.</p>
+
+      <div class="today-box">
+        {% if d.jp %}
+          <div class="row">
+            <div class="label">일본어</div>
+            <div class="value" id="dailyJp">{{ d.jp | e }}</div>
+            <button class="tts-btn" id="ttsBtn" type="button" aria-label="오늘의 회화 발음 듣기">발음 듣기</button>
+          </div>
+
+          <div class="row">
+            <div class="label">발음</div>
+            <div class="value">{{ d.pron | e }}</div>
+          </div>
+
+          <div class="row">
+            <div class="label">한국어 뜻</div>
+            <div class="value">{{ d.ko | e }}</div>
+          </div>
+        {% else %}
+          <div class="today-empty">
+            오늘의 회화를 준비 중입니다. 잠시 후 다시 확인해 주세요.
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="intro-box">
+        <p><b>오늘의 회화</b>는 하루 한 문장씩 부담 없이 일본어를 익히기 위한 콘텐츠입니다.</p>
+        <p>발음과 뜻을 함께 확인한 뒤, 소리 내어 따라 읽어보는 것을 추천합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ 메뉴 섹션 -->
+  <section class="menu-wrap">
+
+    <!-- 학습 메뉴 -->
+    <div class="menu-block">
+      <div class="menu-head">
+        <div class="menu-head-main">
+          <div class="menu-eyebrow">
+            <span class="menu-eyebrow-dot"></span>
+            STUDY
+          </div>
+          <h3 class="menu-title">학습 메뉴</h3>
+          <p class="menu-sub">원하는 학습을 선택해서 바로 시작해요.</p>
+        </div>
+        <div class="menu-count">학습 콘텐츠 10개</div>
+      </div>
+
+      <div class="menu-grid">
+
+        <a class="menu-card" href="{{ url_for('jlpt_kanji_home') }}" aria-label="한자 모음으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">📖</div>
+            <div class="menu-name">한자 모음</div>
+            <div class="menu-desc">상용한자 2136자를 단계별로 공부해요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">단계별 한자 학습</div>
+          </div>
+        </a>
+
+        <a class="menu-card" href="{{ url_for('meaning') }}" aria-label="일본어 표현 미니사전으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">📚</div>
+            <div class="menu-name">일본어 표현 미니사전</div>
+            <div class="menu-desc">표현의 뜻과 발음을 빠르게 찾아봐요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">표현 빠른 검색</div>
+          </div>
+        </a>
+
+        <a class="menu-card" href="{{ url_for('situations') }}" aria-label="상황별 회화로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">📍</div>
+            <div class="menu-name">상황별 회화</div>
+            <div class="menu-desc">상황별 핵심 회화를 모아 학습해요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">실전 회화 학습</div>
+          </div>
+        </a>
+
+        <a class="menu-card" href="{{ url_for('words_categories') }}" aria-label="단어모음으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">🧠</div>
+            <div class="menu-name">단어 모음</div>
+            <div class="menu-desc">자주 쓰는 단어를 주제별로 익혀요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">주제별 단어 학습</div>
+          </div>
+        </a>
+
+        <a class="menu-card" href="{{ url_for('jlpt_kana_home') }}" aria-label="기초 일본어로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">🌱</div>
+            <div class="menu-name">기초</div>
+            <div class="menu-desc">히라가나·가타카나·발음 기초를 배워요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">입문자 추천</div>
+          </div>
+        </a>
+
+        <a class="menu-card" href="{{ url_for('jlpt_n5_home') }}" aria-label="JLPT N5 홈으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">📝</div>
+            <div class="menu-name">JLPT N5</div>
+            <div class="menu-desc">N5 단어·문장·문법·테스트를 공부해요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">초급 시험 대비</div>
+          </div>
+        </a>
+
+        <a class="menu-card" href="{{ url_for('jlpt_n4_home') }}" aria-label="JLPT N4 홈으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">📝</div>
+            <div class="menu-name">JLPT N4</div>
+            <div class="menu-desc">N4 단어·문장·문법·테스트를 공부해요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">초중급 시험 대비</div>
+          </div>
+        </a>
+
+        <a class="menu-card" href="{{ url_for('jlpt_n3_home') }}" aria-label="JLPT N3 홈으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">📝</div>
+            <div class="menu-name">JLPT N3</div>
+            <div class="menu-desc">N3 단어·문장·문법·테스트를 공부해요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">중급 시험 대비</div>
+          </div>
+        </a>
+
+        <a class="menu-card" href="{{ url_for('jlpt_n2_home') }}" aria-label="JLPT N2 홈으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">📝</div>
+            <div class="menu-name">JLPT N2</div>
+            <div class="menu-desc">N2 단어·문장·문법·테스트를 공부해요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">중고급 시험 대비</div>
+          </div>
+        </a>
+
+        <a class="menu-card" href="{{ url_for('jlpt_n1_home') }}" aria-label="JLPT N1 홈으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">📝</div>
+            <div class="menu-name">JLPT N1</div>
+            <div class="menu-desc">N1 단어·문장·문법·테스트를 공부해요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">고급 시험 대비</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- 게임 메뉴 -->
+    <div class="menu-block game-menu-block">
+      <div class="menu-head">
+        <div class="menu-head-main">
+          <div class="menu-eyebrow">
+            <span class="menu-eyebrow-dot"></span>
+            GAME
+          </div>
+          <h3 class="menu-title">게임 메뉴</h3>
+          <p class="menu-sub">게임처럼 즐기면서 일본어를 반복 학습해요.</p>
+        </div>
+        <div class="menu-count">게임 콘텐츠 7개</div>
+      </div>
+
+      <div class="menu-grid">
+
+        <a class="menu-card game-card" href="{{ url_for('bomb_hunt_start') }}" aria-label="JLPT 단어 카드 챌린지로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">🃏</div>
+            <div class="menu-name">JLPT 단어 카드 챌린지</div>
+            <div class="menu-desc">뜻을 보고 알맞은 일본어를 찾는 게임이에요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">단어 선택 게임</div>
+          </div>
+        </a>
+
+        <a class="menu-card game-card" href="{{ url_for('word_game') }}" aria-label="단어게임으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">🕹️</div>
+            <div class="menu-name">단어 게임</div>
+            <div class="menu-desc">지나가는 단어의 뜻을 빠르게 익혀요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">반복 단어 학습</div>
+          </div>
+        </a>
+
+        <a class="menu-card game-card" href="{{ url_for('quiz_kanji_home') }}" aria-label="한자 게임으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">🎮</div>
+            <div class="menu-name">한자 게임</div>
+            <div class="menu-desc">한자와 뜻을 맞추며 자연스럽게 외워봐요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">한자 맞히기</div>
+          </div>
+        </a>
+
+        <a class="menu-card game-card" href="{{ url_for('quiz_dialog_list') }}" aria-label="상황별 퀴즈로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">❓</div>
+            <div class="menu-name">상황별 퀴즈</div>
+            <div class="menu-desc">상황에 맞는 일본어 표현을 골라봐요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">회화 선택 퀴즈</div>
+          </div>
+        </a>
+
+        <a class="menu-card game-card" href="{{ url_for('travel_start') }}" aria-label="일본 여행 시뮬레이션으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">🧳</div>
+            <div class="menu-name">일본 여행 시뮬레이션</div>
+            <div class="menu-desc">여행 흐름을 따라 배우는 회화 게임이에요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">여행 회화 체험</div>
+          </div>
+        </a>
+
+        <a class="menu-card game-card" href="{{ url_for('sudoku_start') }}" aria-label="스도쿠 게임으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">🔢</div>
+            <div class="menu-name">스도쿠</div>
+            <div class="menu-desc">숫자를 채우며 즐기는 두뇌 퍼즐 게임이에요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">두뇌 퍼즐</div>
+          </div>
+        </a>
+
+        <a class="menu-card game-card" href="{{ url_for('block_fill_start') }}" aria-label="도형 퍼즐 게임으로 이동">
+          <div class="menu-card-inner">
+            <div class="menu-icon">🧩</div>
+            <div class="menu-name">도형 퍼즐 게임</div>
+            <div class="menu-desc">도형을 빈칸 없이 채워 넣는 퍼즐 게임이에요.</div>
+            <div class="menu-card-spacer"></div>
+            <div class="menu-card-foot">공간 퍼즐</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-9733127689125901"
+     crossorigin="anonymous"></script>
+<!-- content-ad-1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9733127689125901"
+     data-ad-slot="8931844788"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+{# ✅ TTS: 기본 브라우저 SpeechSynthesis (서버 없이도 동작) #}
+<script>
+(function(){
+  const btn = document.getElementById("ttsBtn");
+  const jpEl = document.getElementById("dailyJp");
+  if (!btn || !jpEl) return;
+
+  btn.addEventListener("click", () => {
+    const text = (jpEl.textContent || "").trim();
+    if (!text) return;
+
+    try{
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "ja-JP";
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+    } catch(e){
+      alert("이 브라우저에서는 발음 듣기를 지원하지 않을 수 있어요.");
+    }
+  });
+})();
+</script>
+
+{% endblock %}
