@@ -1,0 +1,573 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  :root{
+    --word-page-bg: #eef2f8;
+    --word-card: #ffffff;
+    --word-line: rgba(15,23,42,.08);
+    --word-text: #0f172a;
+    --word-sub: #475569;
+    --word-soft: #64748b;
+    --word-blue: #2563eb;
+    --word-blue-2: #4f7df3;
+    --floating-width: 176px;
+  }
+
+  body{
+    background: var(--word-page-bg);
+  }
+
+  .word-page{
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 22px 20px 48px;
+  }
+
+  .sit-wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0;
+  }
+
+  /* =========================
+     우측 고정 링크 탭 (PC 전용)
+  ========================= */
+  .side-link-nav{
+    position: fixed;
+    top: 180px;
+    left: calc(50% + 560px + 28px);
+    width: var(--floating-width);
+    z-index: 50;
+  }
+
+  .side-link-box{
+    border-radius: 18px;
+    padding: 12px;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(37,99,235,.10);
+    box-shadow: 0 14px 30px rgba(15,23,42,.10);
+    backdrop-filter: blur(8px);
+  }
+
+  .side-link-title{
+    font-size: 13px;
+    font-weight: 900;
+    color: #1d4ed8;
+    margin: 2px 2px 10px;
+    letter-spacing: -0.2px;
+  }
+
+  .side-link-desc{
+    font-size: 11px;
+    line-height: 1.45;
+    color: #64748b;
+    margin: 0 2px 10px;
+  }
+
+  .side-link-list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .side-link-item{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    width:100%;
+    min-height:42px;
+    padding:11px 12px;
+    border-radius:13px;
+    text-decoration:none;
+    color:#334155;
+    background:#f8fafc;
+    border:1px solid rgba(15,23,42,.06);
+    font-size:13px;
+    font-weight:800;
+    line-height:1.35;
+    transition:.15s ease;
+    box-sizing:border-box;
+  }
+
+  .side-link-item:hover{
+    transform: translateY(-1px);
+    border-color: rgba(37,99,235,.24);
+    background:#ffffff;
+    box-shadow: 0 8px 18px rgba(37,99,235,.10);
+    color:#1e3a8a;
+  }
+
+  .side-link-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#5b82f4;
+    box-shadow:0 0 0 4px rgba(91,130,244,.12);
+    flex:0 0 auto;
+  }
+
+  .side-link-text{
+    flex:1;
+    min-width:0;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+
+  .side-link-arrow{
+    flex:0 0 auto;
+    color:#94a3b8;
+    font-size:12px;
+    font-weight:900;
+  }
+
+  @media (max-width: 1460px){
+    .side-link-nav{
+      display:none;
+    }
+  }
+
+  @media (max-width: 1024px){
+    .side-link-nav{
+      display:none !important;
+    }
+  }
+
+  /* ====== TOP HEADER ====== */
+  .top-wrap{
+    margin: 6px 0 18px;
+    display:grid;
+    grid-template-columns: 1.4fr .9fr;
+    gap:14px;
+    align-items:stretch;
+  }
+
+  @media (max-width: 860px){
+    .top-wrap{
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .top-card{
+    background:#fff;
+    border:1px solid rgba(15,23,42,.10);
+    border-radius:18px;
+    box-shadow:0 12px 30px rgba(15,23,42,.06);
+    padding:18px 18px;
+    overflow:hidden;
+  }
+
+  .top-title-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:8px;
+  }
+
+  .top-title{
+    margin:0;
+    font-size:30px;
+    font-weight:950;
+    letter-spacing:-0.02em;
+    color:#0b1f4b;
+    word-break: keep-all;
+  }
+
+  .top-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid rgba(37,99,235,.20);
+    background:#f1f5ff;
+    color:#1d4ed8;
+    font-weight:900;
+    font-size:12px;
+    white-space:nowrap;
+  }
+
+  .top-sub{
+    margin:6px 0 0;
+    color:#475569;
+    font-size:14px;
+    font-weight:750;
+    line-height:1.75;
+    word-break: keep-all;
+    overflow-wrap:anywhere;
+  }
+
+  .guide-box{
+    margin-top:12px;
+    padding:14px 14px;
+    border-radius:16px;
+    border:1px solid rgba(15,23,42,.08);
+    background:linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.02));
+  }
+
+  .guide-title{
+    margin:0 0 8px;
+    font-size:16px;
+    font-weight:950;
+    color:#0b1f4b;
+    letter-spacing:-0.02em;
+    word-break: keep-all;
+  }
+
+  .guide-text{
+    margin:0;
+    color:#334155;
+    font-size:13.5px;
+    font-weight:750;
+    line-height:1.7;
+    word-break: keep-all;
+    overflow-wrap:anywhere;
+  }
+
+  .guide-text + .guide-text{
+    margin-top:6px;
+  }
+
+  .guide-tip{
+    margin-top:10px;
+    font-size:13px;
+    color:#64748b;
+    font-weight:800;
+  }
+
+  /* 기존 상단 액션 버튼 제거 */
+  .top-actions{
+    display:none;
+  }
+
+  /* Search card */
+  .search-title{
+    margin:0 0 8px;
+    font-size:16px;
+    font-weight:950;
+    color:#0b1f4b;
+    letter-spacing:-0.02em;
+  }
+
+  .search-desc{
+    margin:0 0 12px;
+    color:#64748b;
+    font-size:13px;
+    font-weight:800;
+    line-height:1.6;
+  }
+
+  .search-row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+  }
+
+  .search-row input{
+    flex:1;
+    height:44px;
+    border-radius:14px;
+    border:1px solid rgba(15,23,42,.10);
+    padding:0 14px;
+    outline:none;
+    min-width:0;
+  }
+
+  .search-row input:focus{
+    border-color: rgba(37,99,235,.40);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.14);
+  }
+
+  .search-row button{
+    height:44px;
+    padding:0 16px;
+    border-radius:14px;
+    border:none;
+    background:#2563eb;
+    color:#fff;
+    font-weight:900;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+
+  .search-hint{
+    margin-top:10px;
+    color:#64748b;
+    font-size:12.5px;
+    font-weight:800;
+    line-height:1.6;
+  }
+
+  /* ====== category grid ====== */
+  .sit-grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:16px;
+    margin-top:16px;
+  }
+
+  @media (max-width: 860px){
+    .sit-grid{
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .wcard{
+    background:#fff;
+    border:1px solid rgba(15,23,42,.08);
+    border-radius:16px;
+    padding:16px 16px 14px;
+    box-shadow:0 6px 18px rgba(15,23,42,.06);
+  }
+
+  .wcard-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:10px;
+  }
+
+  .wtitle{
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:-0.2px;
+    margin:0;
+    color:#0f172a;
+  }
+
+  .wmeta{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#6b7280;
+    font-size:12px;
+    white-space:nowrap;
+    font-weight:800;
+  }
+
+  .wpill{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:4px 10px;
+    border-radius:999px;
+    background:#f1f5ff;
+    border:1px solid rgba(37,99,235,.18);
+    color:#1d4ed8;
+    font-weight:900;
+    font-size:12px;
+  }
+
+  .wpill.small{
+    height:26px;
+    padding:0 10px;
+  }
+
+  .wdesc{
+    margin:0 0 12px;
+    color:#475569;
+    font-size:13.5px;
+    font-weight:750;
+    line-height:1.65;
+  }
+
+  .wlist{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .witem{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    width:100%;
+    padding:12px 14px;
+    border-radius:14px;
+    background:#f8fafc;
+    border:1px solid rgba(15,23,42,.08);
+    text-decoration:none;
+    color:#0f172a;
+    transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+  }
+
+  .witem:hover{
+    transform: translateY(-1px);
+    background:#fff;
+    border-color: rgba(37,99,235,.22);
+    box-shadow:0 8px 18px rgba(37,99,235,.10);
+  }
+
+  .witem-text{
+    font-weight:900;
+    letter-spacing:-0.2px;
+  }
+
+  .wdot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: rgba(37,99,235,.85);
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+    flex:0 0 auto;
+  }
+
+  .whint{
+    margin-top:12px;
+    color:#64748b;
+    font-size:12px;
+    font-weight:800;
+  }
+
+  @media (max-width: 600px){
+    .word-page{
+      padding:18px 14px 36px;
+    }
+
+    .top-title{
+      font-size:26px;
+      line-height:1.15;
+    }
+
+    .top-card{
+      padding:16px;
+    }
+
+    .guide-title{
+      font-size:15px;
+    }
+  }
+</style>
+
+<div class="word-page">
+
+  <!-- PC 전용 우측 고정 링크탭 -->
+  <aside class="side-link-nav" aria-label="관련 페이지 바로가기">
+    <div class="side-link-box">
+      <div class="side-link-title">공부 이어가기</div>
+      <div class="side-link-desc">
+        필요한 페이지로 바로 이동할 수 있어요.
+      </div>
+
+      <div class="side-link-list">
+        <a href="https://japanesestudyroom.com/note" class="side-link-item">
+          <span class="side-link-dot"></span>
+          <span class="side-link-text">나만의학습노트</span>
+          <span class="side-link-arrow">›</span>
+        </a>
+
+        <a href="https://japanesestudyroom.com/situations" class="side-link-item">
+          <span class="side-link-dot"></span>
+          <span class="side-link-text">상황별회화</span>
+          <span class="side-link-arrow">›</span>
+        </a>
+
+        <a href="https://japanesestudyroom.com/quiz" class="side-link-item">
+          <span class="side-link-dot"></span>
+          <span class="side-link-text">퀴즈게임</span>
+          <span class="side-link-arrow">›</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <div class="sit-wrap">
+
+    <div class="top-wrap">
+
+      <!-- 왼쪽: 소개 카드 -->
+      <section class="top-card">
+        <div class="top-title-row">
+          <h1 class="top-title">📘 일본어 단어 모음</h1>
+          <span class="top-badge">카테고리별 정리 · 즐겨찾기 지원</span>
+        </div>
+
+        <p class="top-sub">
+이 페이지는 <b>일본어 단어 모음</b>으로,
+<b>JLPT 단어, 기초 일본어 단어, 일상 회화 단어</b>를
+카테고리별로 정리한 일본어 학습 페이지입니다.<br><br>
+
+자주 사용되는 <b>일본어 단어와 표현</b>을
+뜻, 발음과 함께 쉽게 확인할 수 있으며,
+초보자부터 JLPT 시험 준비까지
+<b>일본어 어휘를 체계적으로 학습</b>할 수 있습니다.<br><br>
+
+또한 <b>일본어 단어 검색 기능</b>을 통해
+한자, 가나, 발음, 뜻으로 원하는 단어를 빠르게 찾을 수 있어
+반복 학습과 복습에 효과적입니다.
+</p>
+
+        <div class="guide-box">
+          <h2 class="guide-title">자주 쓰는 일본어 단어를 카테고리별로 빠르게 정리했어요</h2>
+          <p class="guide-text">여행·일상에서 바로 쓰는 단어를 분야별로 모았습니다.</p>
+          <p class="guide-text">단어를 눌러 뜻·발음을 확인하고, ★ 즐겨찾기로 반복 복습하세요.</p>
+          <div class="guide-tip">Tip: “상황별 회화”랑 같이 보면 실전에서 훨씬 빨리 떠올라요.</div>
+        </div>
+      </section>
+
+      <!-- 오른쪽: 검색 카드 -->
+      <section class="top-card">
+        <div class="search-title">🔎 단어 빠른 검색</div>
+        <p class="search-desc">일본어/발음/한국어로 검색해서 원하는 단어를 바로 찾아보세요.</p>
+
+        <form method="GET" action="{{ url_for('words_search') }}">
+          <div class="search-row">
+            <input type="text" name="q" value="{{ q or '' }}" placeholder="일본어 / 발음 / 한국어로 검색">
+            <button type="submit">검색</button>
+          </div>
+        </form>
+
+        <div class="search-hint">
+          예) 今 / いま / 이마 / 지금<br>
+          ※ 카테고리를 눌러 들어가서도 동일하게 검색할 수 있어요.
+        </div>
+      </section>
+
+    </div>
+
+    <div class="sit-grid">
+      {% for cat in (categories or []) %}
+        <section class="wcard">
+          <div class="wcard-head">
+            <div class="wtitle">{{ cat["title"] }}</div>
+            <div class="wmeta">
+              <span>단어</span>
+              <span class="wpill">{{ cat["count"] }}</span>
+            </div>
+          </div>
+
+          <p class="wdesc">{{ cat["desc"] }}</p>
+
+          <div class="wlist">
+            <a class="witem" href="{{ url_for('words_detail', cat_key=cat['key']) }}">
+              <span class="wdot"></span>
+              <span class="witem-text">단어 목록 보기</span>
+              <span class="wpill small">{{ cat["count"] }}</span>
+            </a>
+          </div>
+
+          <div class="whint">※ 버튼을 누르면 해당 분류 단어가 열려요.</div>
+        </section>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733127689125901"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9733127689125901"
+     data-ad-slot="8931844788"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+{% endblock %}
