@@ -2492,3 +2492,55 @@ button[type="submit"]:hover{
   background: rgba(255,255,255,0.76);
   border-top: 1px solid rgba(140,154,180,0.18);
 }
+/* CLASS101 banners */
+.class101-horizontal{display:block;max-width:1000px;margin:24px auto 32px;line-height:0;border-radius:16px;overflow:hidden;}
+.class101-horizontal img{display:block;width:100%;height:auto;}
+.class101-vertical{display:block;width:100%;max-width:176px;margin:16px auto 0;line-height:0;border-radius:12px;overflow:hidden;}
+.class101-vertical img{display:block;width:100%;height:auto;}
+.class101-horizontal:focus-visible,.class101-vertical:focus-visible{outline:3px solid #1d70af;outline-offset:4px;}
+.class101-moved-ad{max-width:1000px;margin:32px auto;clear:both;}
+/* Keep the existing fixed navigation and its banner within the viewport. */
+@media(min-width:1461px){.side-link-nav{left:auto!important;right:max(16px,calc((100vw - 1528px)/2))!important;max-height:calc(100vh - 196px);overflow-y:auto;scrollbar-width:thin;}}
+@media(max-width:1460px){.side-link-nav{display:block!important;position:static!important;width:100%!important;margin:0 auto 24px!important;max-height:none!important;}.side-link-nav .class101-vertical{max-width:144px;}.side-link-nav .side-link-list{display:flex;flex-wrap:wrap;}.side-link-nav .side-link-item{flex:1 1 140px;}}
+/* 좁은 창에서는 공부 이어가기와 세로 배너를 함께 숨김 */
+@media (max-width: 1460px) {
+  .side-link-nav {
+    display: none !important;
+  }
+}
+/* JLPT 페이지 전용 세로 배너 */
+.jlpt-class101-banner {
+  display: none;
+}
+
+@media (min-width: 1600px) {
+  .jlpt-class101-banner {
+    display: block;
+    position: fixed;
+    top: 180px;
+    right: 24px;
+    width: 176px;
+    line-height: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 40;
+  }
+
+  .jlpt-class101-banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .jlpt-class101-banner:focus-visible {
+    outline: 3px solid #1d70af;
+    outline-offset: 4px;
+  }
+}
+
+/* 세로 공간이 부족한 창에서도 숨김 */
+@media (max-height: 480px) {
+  .jlpt-class101-banner {
+    display: none;
+  }
+}
